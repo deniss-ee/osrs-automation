@@ -43,12 +43,6 @@ global State := Map(
     ; ---- inventory detection ----
     "invX", 0, "invY", 0, "invDefaultColor", -1,
 
-    ; ---- stamina / run-energy orb calibration (see stamina.ahk) ----
-    "orbX", 0, "orbY", 0,
-    "orbEmptyColor", -1,      ; color sampled when energy bar is ~0%
-    "orbFullColor", -1,       ; color sampled when energy bar is ~100%
-    "minRunStamina", 30,      ; % - don't allow auto-run below this
-
     ; ---- recorded paths: { "toBank": [...], "backToMine": [...] } ----
     ; each step: Map("x",.., "y",.., "delay",.., "run", true/false, "label","")
     "paths", Map("toBank", [], "backToMine", []),
@@ -58,7 +52,7 @@ global State := Map(
     "recordingActive", false,
     "recordingPathName", "",
     "lastRecordTick", 0,
-    "recordNextStepRun", false,  ; toggled by F9 while recording
+    "recordNextStepRun", false,  ; toggled by F9 while recording - next clicks get run:=true (Ctrl-click)
 
     ; ---- step-based debug/resume system ----
     ; STEP_ORDER (below) lists step *names* in normal execution order.

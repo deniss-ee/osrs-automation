@@ -10,17 +10,16 @@
 ;    4. Set up hotkeys (F1-F9) so they call the right functions.
 ;
 ;  HOTKEY CHEAT SHEET:
-;    F1  = add a gathering spot under your mouse cursor
-;    F2  = calibrate inventory slot under your mouse cursor
-;    F3  = calibrate stamina orb EMPTY (drain energy first)
-;    F4  = record/stop TO-BANK path
-;    F5  = record/stop BACK-TO-MINE path
-;    F6  = Start the bot
-;    F7  = STOP the bot (also: throw mouse into top-left corner)
-;    F8  = clear saved config and reload the script fresh
-;    F9  = while recording a path, toggle RUN vs WALK for the
-;          next clicks you record (per-coordinate control)
-;    F10 = calibrate stamina orb FULL (let energy refill first)
+;    F1 = add a gathering spot under your mouse cursor
+;    F2 = calibrate inventory slot under your mouse cursor
+;    F4 = record/stop TO-BANK path
+;    F5 = record/stop BACK-TO-MINE path
+;    F6 = Start the bot
+;    F7 = STOP the bot (also: throw mouse into top-left corner)
+;    F8 = clear saved config and reload the script fresh
+;    F9 = while recording a path, toggle RUN vs WALK for the next
+;         clicks you record - "Run" replays as a Ctrl-click (your
+;         in-game force-run trick), per coordinate, not global
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -78,16 +77,6 @@ F2:: {
     State["invDefaultColor"] := PixelGetColor(x, y, "RGB")
     SaveConfig()
     State["statusText"] := "Inventory slot set at " x "," y
-}
-
-F3:: {
-    CalibrateOrbEmpty()
-    SaveConfig()
-}
-
-F10:: {
-    CalibrateOrbFull()
-    SaveConfig()
 }
 
 F4:: {

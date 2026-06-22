@@ -46,13 +46,6 @@ SaveConfig() {
         IniWrite(State["invY"],            cfg, "Inv", "y")
         IniWrite(State["invDefaultColor"], cfg, "Inv", "color")
 
-        ; ---- stamina orb calibration ----
-        IniWrite(State["orbX"],          cfg, "Stamina", "x")
-        IniWrite(State["orbY"],          cfg, "Stamina", "y")
-        IniWrite(State["orbEmptyColor"], cfg, "Stamina", "emptyColor")
-        IniWrite(State["orbFullColor"],  cfg, "Stamina", "fullColor")
-        IniWrite(State["minRunStamina"], cfg, "Stamina", "minRunStamina")
-
         ; ---- paths (each step now also stores a "run" flag) ----
         SavePathToIni(cfg, "ToBank", State["paths"]["toBank"])
         SavePathToIni(cfg, "BackToMine", State["paths"]["backToMine"])
@@ -117,13 +110,6 @@ LoadConfig() {
         State["invX"]            := Integer(IniRead(cfg, "Inv", "x", 0))
         State["invY"]            := Integer(IniRead(cfg, "Inv", "y", 0))
         State["invDefaultColor"] := Integer(IniRead(cfg, "Inv", "color", -1))
-
-        ; ---- stamina orb ----
-        State["orbX"]          := Integer(IniRead(cfg, "Stamina", "x", 0))
-        State["orbY"]          := Integer(IniRead(cfg, "Stamina", "y", 0))
-        State["orbEmptyColor"] := Integer(IniRead(cfg, "Stamina", "emptyColor", -1))
-        State["orbFullColor"]  := Integer(IniRead(cfg, "Stamina", "fullColor", -1))
-        State["minRunStamina"] := Integer(IniRead(cfg, "Stamina", "minRunStamina", 30))
 
         ; ---- paths ----
         State["paths"]["toBank"]     := LoadPathFromIni(cfg, "ToBank")

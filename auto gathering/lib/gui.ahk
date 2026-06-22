@@ -53,10 +53,6 @@ BuildGui() {
     stepDropdown.OnEvent("Change", (ctrl, *) => SetStartStep(ctrl.Text))
     stepDropdown.Choose(1)
 
-    MainGui.Add("Text", "xm y600", "Min stamina % to allow running:")
-    staminaEdit := MainGui.Add("Edit", "x+10 y598 w50", State["minRunStamina"])
-    staminaEdit.OnEvent("Change", (ctrl, *) => SetMinRunStamina(ctrl.Text))
-
     MainGui.OnEvent("Close", (*) => StopMining("GUI closed"))
     MainGui.Show()
 
@@ -67,15 +63,14 @@ BuildGui() {
 
 ; --------------------------------------------------------------
 ; RefreshGuiStatus: ticks every 250ms to pull the latest
-; State["statusText"] (and stamina%) into the window. Cheap and
-; simple - good enough since this isn't a high-frequency display.
+; State["statusText"] into the window. Cheap and simple - good
+; enough since this isn't a high-frequency display.
 ; --------------------------------------------------------------
 RefreshGuiStatus() {
     global State, StatusTextCtrl
     if (StatusTextCtrl = "")
         return
-    stamina := GetStaminaPercent()
-    StatusTextCtrl.Text := State["statusText"] . "  |  Stamina: " stamina "%"
+    StatusTextCtrl.Text := State["statusText"]
 }
 
 ; --------------------------------------------------------------
@@ -151,15 +146,4 @@ SetStartStep(stepName) {
     global State
     State["startStep"] := stepName
     State["statusText"] := "Next start will begin at: " stepName
-}
-
-SetMinRunStamina(text) {
-    global State
-    val := Integer(text)
-    if (val < 0)
-        val := 0
-    if (val > 100)
-        val := 100
-    State["minRunStamina"] := val
-    SaveConfig()
 }
