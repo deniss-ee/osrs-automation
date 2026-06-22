@@ -1,180 +1,157 @@
 ; ============================================================
 ;  paths.ahk - RECORDING AND REPLAYING WALKING ROUTES
 ; ------------------------------------------------------------
-;  ELI5: Instead of programming "walk to the bank" step by step
-;  in code, we let YOU walk there once while the bot watches
-;  (records) every click you make and how long you waited
-;  between clicks. Later, the bot "replays" those exact same
-;  clicks at the exact same timing to retrace your steps.
-;
-;  NEW in this version: every recorded click also remembers
-;  whether YOU want the character to be running on that specific
-;  click (press F9 to toggle this mid-recording). Combined with
-;  stamina.ahk's ShouldRun(), this means you can mark "run this
-;  long stretch, walk this short corner" - per coordinate, not
-;  one all-or-nothing switch for the whole path.
+;  ELI5: Instead of programming "walk to the bank" step by step,
+;  we let YOU walk there once while the bot watches (records)
+;  every click you make and how long you waited between clicks.
+;  Later, the bot "replays" those same clicks at the same timing
+;  to retrace your steps automatically.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 
 ; --------------------------------------------------------------
+; TogglePathRecording: pressing the path's hotkey (F4 or F5) the
+; first time starts recording; pressing it again stops and saves.
+; We listen for left-clicks via the "~LButton" hotkey while
+; recording is active (the "~" means "let the click still reach
+; the game too, don't swallow it - just also notice it").
+; --------------------------------------------------------------
+TogglePathRecording(pathName) {
+    global recordingActive, recordingPathName, lastRecordTick
+    global toBankPath, backToMinePath
+    global toBankTailDelay, backToMineTailDelay
+
+    if (!recordingActive) {
+        recordingActive := true
+        recordingPathName := pathName
+        lastRecordTick := A_TickCount
+
+        if (pathName = "toBank")
+            toBankPath := []
+        else
+            backToMinePath := []
+
+        if (pathName = "toBank")
+            toBankTailDelay := 0
+        else
+            backToMineTailDelay := 0
+
+        Hotkey("~LButton", RecordPathClick, "On")
+        ShowTip("Recording " PathLabel(pathName) "... Click route, press same hotkey to stop")
+        return
+    }
+
+    if (recordingPathName != pathName) {
+        ShowTip("Already recording " PathLabel(recordingPathName) ". Stop that first")
+        SetTimer(HideTip, -1800)
+        return
+    }
+
+    recordingActive := false
+    Hotkey("~LButton", RecordPathClick, "Off")
+
+    tail := 0
+    if (lastRecordTick > 0)
+        tail := RoundDelay(A_TickCount - lastRecordTick)
+
+    if (pathName = "toBank")
+        toBankTailDelay := tail
+    else
+        backToMineTailDelay := tail
+
+    SaveConfig()
+
+    count := (pathName = "toBank") ? toBankPath.Length : backToMinePath.Length
+    ShowTip("Saved " PathLabel(pathName) " with " count " steps, tail=" tail "ms")
+    SetTimer(HideTip, -1600)
+}
+
+; --------------------------------------------------------------
+; RecordPathClick: fires on every left click while recording is
+; active. Remembers where you clicked and how long it had been
+; since your last recorded click (so playback can reproduce the
+; same pacing later).
+; --------------------------------------------------------------
+RecordPathClick(*) {
+    global recordingActive, recordingPathName, lastRecordTick
+    global toBankPath, backToMinePath
+
+    if (!recordingActive)
+        return
+
+    MouseGetPos(&x, &y)
+    now := A_TickCount
+
+    delay := now - lastRecordTick
+    if (delay < 50)
+        delay := 50
+
+    step := Map("x", x, "y", y, "delay", RoundDelay(delay))
+
+    if (recordingPathName = "toBank") {
+        toBankPath.Push(step)
+        count := toBankPath.Length
+    } else {
+        backToMinePath.Push(step)
+        count := backToMinePath.Length
+    }
+
+    lastRecordTick := now
+    ShowTip("Recording " PathLabel(recordingPathName) " | step " count)
+}
+
+; --------------------------------------------------------------
+; PlayPath: replays a recorded path - waits the recorded delay,
+; then clicks, for every step. `delayMultiplier` shrinks the wait
+; time when run mode is on (faster travel = less waiting between
+; clicks), and `useCtrlClick` holds Ctrl during clicks for the
+; same reason (this game's force-run shortcut).
+; Returns false early if the user presses Stop mid-path.
+; --------------------------------------------------------------
+PlayPath(pathName, delayMultiplier := 1.0, useCtrlClick := false) {
+    global running, toBankPath, backToMinePath
+    global toBankTailDelay, backToMineTailDelay
+
+    path := (pathName = "toBank") ? toBankPath : backToMinePath
+    tail := (pathName = "toBank") ? toBankTailDelay : backToMineTailDelay
+    if (path.Length = 0) {
+        ShowTip(PathLabel(pathName) " path empty")
+        SetTimer(HideTip, -1500)
+        return false
+    }
+
+    ShowTip("Playing " PathLabel(pathName) "...")
+    for _, step in path {
+        if (!running)
+            return false
+
+        stepDelay := Round(step["delay"] * delayMultiplier)
+        Sleep(stepDelay)
+        DoClick(step["x"], step["y"], useCtrlClick)
+    }
+
+    if (tail > 0)
+        Sleep(Round(tail * delayMultiplier))
+
+    return true
+}
+
+; --------------------------------------------------------------
 ; PathLabel: turns the internal key ("toBank") into the friendly
-; text shown in tooltips/GUI ("TO-BANK"). Tiny helper so we don't
-; repeat this if/else everywhere we show a path name to the user.
+; text shown in tooltips ("TO-BANK").
 ; --------------------------------------------------------------
 PathLabel(pathName) {
     return (pathName = "toBank") ? "TO-BANK" : "BACK-TO-MINE"
 }
 
 ; --------------------------------------------------------------
-; RoundDelay: rounds a millisecond delay to the nearest 50ms.
-; ELI5: real human click timing is messy down to the millisecond
-; (153ms, 147ms, 161ms...) and storing all that exact noise adds
-; nothing useful - rounding keeps the INI file readable and the
-; replayed timing close enough to feel natural.
+; RoundDelay: rounds a millisecond delay to the nearest 50ms, with
+; a 50ms floor. Real human click timing is messy down to the
+; millisecond - rounding keeps the INI file readable without
+; meaningfully changing how the replay feels.
 ; --------------------------------------------------------------
 RoundDelay(ms) {
     rounded := Round(ms / 50) * 50
     return (rounded < 50) ? 50 : rounded
-}
-
-; --------------------------------------------------------------
-; ToggleRecordRun: bound to F9. While recording a path, pressing
-; this flips whether the NEXT clicks you record will be tagged
-; "run := true". It only affects clicks recorded AFTER you press
-; it - already-recorded steps keep whatever flag they had.
-; --------------------------------------------------------------
-ToggleRecordRun() {
-    global State
-    State["recordNextStepRun"] := !State["recordNextStepRun"]
-    status := State["recordNextStepRun"] ? "RUN" : "WALK"
-    State["statusText"] := "Recording mode: " status " (next clicks)"
-}
-
-; --------------------------------------------------------------
-; TogglePathRecording: start recording if nothing is recording,
-; or stop+save if this same path is already being recorded.
-; This mirrors the old script's F4/F5 behavior, just generalized
-; to work for any path name.
-; --------------------------------------------------------------
-TogglePathRecording(pathName, onRecordClick) {
-    global State
-
-    if (!State["recordingActive"]) {
-        State["recordingActive"] := true
-        State["recordingPathName"] := pathName
-        State["lastRecordTick"] := A_TickCount
-        State["recordNextStepRun"] := false
-        State["paths"][pathName] := []
-
-        ; ~LButton means "let the click still reach the game normally,
-        ; we're just ALSO listening for it" - the ~ tilde prefix is
-        ; AHK's way of saying "don't swallow this key, just notice it".
-        Hotkey("~LButton", onRecordClick, "On")
-        State["statusText"] := "Recording " PathLabel(pathName) "... click your route, press same hotkey to stop"
-        return
-    }
-
-    if (State["recordingPathName"] != pathName) {
-        State["statusText"] := "Already recording " PathLabel(State["recordingPathName"]) ". Stop that first."
-        return
-    }
-
-    State["recordingActive"] := false
-    Hotkey("~LButton", onRecordClick, "Off")
-
-    tail := 0
-    if (State["lastRecordTick"] > 0)
-        tail := RoundDelay(A_TickCount - State["lastRecordTick"])
-    State["pathTailDelay"][pathName] := tail
-
-    SaveConfig()
-
-    count := State["paths"][pathName].Length
-    State["statusText"] := "Saved " PathLabel(pathName) " with " count " steps, tail=" tail "ms"
-}
-
-; --------------------------------------------------------------
-; RecordPathClick: fired on every left click while recording is
-; active. Captures where the click landed and how long it had
-; been since the previous click, tagging it with whatever
-; run/walk mode is currently toggled (see ToggleRecordRun above).
-; --------------------------------------------------------------
-RecordPathClick(*) {
-    global State
-    if (!State["recordingActive"])
-        return
-
-    MouseGetPos(&x, &y)
-    now := A_TickCount
-    delay := now - State["lastRecordTick"]
-    if (delay < 50)
-        delay := 50
-
-    step := Map("x", x, "y", y, "delay", RoundDelay(delay), "run", State["recordNextStepRun"])
-    State["paths"][State["recordingPathName"]].Push(step)
-    State["lastRecordTick"] := now
-
-    count := State["paths"][State["recordingPathName"]].Length
-    State["statusText"] := "Recording " PathLabel(State["recordingPathName"]) " | step " count
-}
-
-; --------------------------------------------------------------
-; PlayPath: replays a recorded path. For EVERY step, asks
-; stamina.ahk's ShouldRun() whether THIS specific click should be
-; done while "running" - if so, we send a Ctrl-click (the in-game
-; convention many setups use to force a run-move) and shrink the
-; wait time to mimic faster travel; otherwise it's a normal click
-; at the originally recorded pace.
-;
-; Includes the stuck-path failsafe: if total elapsed time blows
-; past our rough estimate * pathTimeoutMultiplier, we bail out
-; instead of clicking forever (e.g. character stuck on terrain).
-; Returns true if it finished, false if stopped/timed-out.
-; --------------------------------------------------------------
-PlayPath(pathName) {
-    global State
-    path := State["paths"][pathName]
-    tail := State["pathTailDelay"][pathName]
-
-    if (path.Length = 0) {
-        State["statusText"] := PathLabel(pathName) " path is empty - nothing to play"
-        return false
-    }
-
-    estimatedMs := EstimatePathDuration(path, tail)
-    timeoutMs := estimatedMs * State["pathTimeoutMultiplier"]
-    startTick := A_TickCount
-
-    State["statusText"] := "Playing " PathLabel(pathName) "..."
-
-    for step in path {
-        if (!State["running"])
-            return false
-
-        if (CheckPanicCorner()) {
-            StopMining("Panic corner triggered during path")
-            return false
-        }
-
-        if (A_TickCount - startTick > timeoutMs) {
-            StopMining("Path timeout - possibly stuck (" PathLabel(pathName) ")")
-            return false
-        }
-
-        runThisStep := ShouldRun(step)
-        ; Running covers ground faster, so we shrink the recorded
-        ; delay a bit to match - 0.55x mirrors the old script's
-        ; fixed run-speed multiplier, now applied per-step instead
-        ; of to the whole path.
-        stepDelay := runThisStep ? Round(step["delay"] * 0.55) : step["delay"]
-
-        SleepJittered(stepDelay)
-        DoAction(step["x"], step["y"], runThisStep ? "ctrlClick" : "click")
-    }
-
-    if (tail > 0)
-        SleepJittered(tail)
-
-    return true
 }

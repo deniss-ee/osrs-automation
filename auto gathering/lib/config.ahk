@@ -2,222 +2,134 @@
 ;  config.ahk - SAVING AND LOADING YOUR SETTINGS TO A FILE
 ; ------------------------------------------------------------
 ;  ELI5: When you close the script, the computer forgets
-;  everything in `State` (it's just RAM). This file writes
-;  `State` to a text file (.ini) on disk so next time you open
-;  the script, it remembers your ore spots, paths, and stamina
-;  settings instead of making you redo F1-F5 every time.
+;  everything that was just in memory. This file writes all your
+;  calibrated coordinates/colors/paths to a text file
+;  (miner_part1.ini) on disk, so next time you open the script it
+;  remembers them instead of making you redo F1-F5 every time.
 ;
 ;  INI files look like this:
 ;     [SectionName]
 ;     key=value
-;  We pick INI (not JSON) because AHK has built-in IniRead/
-;  IniWrite commands - no extra libraries needed, and it's easy
-;  for a beginner to open the file in Notepad and understand it.
+;  AHK has built-in IniRead/IniWrite for this format - no extra
+;  libraries needed, and you can open the file in Notepad and
+;  read it yourself if you're curious.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 
 ; --------------------------------------------------------------
-; SaveConfig: dumps the important parts of `State` into the INI
-; file at State["configPath"]. Wrapped in try/catch so a locked
-; file or bad disk doesn't crash the whole bot mid-mining - it
-; just shows a status message instead (this is one of the
-; failsafe improvements from the plan).
+; SaveConfig: writes every calibrated value + both recorded
+; paths into the INI file next to the script.
 ; --------------------------------------------------------------
 SaveConfig() {
-    global State
-    cfg := State["configPath"]
+    global CONFIG
+    global ore1X, ore1Y, ore1FullColor
+    global ore2X, ore2Y, ore2FullColor
+    global invX, invY, invDefaultColor
+    global enableRun
+    global toBankPath, backToMinePath
+    global toBankTailDelay, backToMineTailDelay
 
-    try {
-        ; ---- spots: write count, then spot1_x, spot1_y, ... ----
-        IniWrite(State["spots"].Length, cfg, "Spots", "count")
-        i := 1
-        for spot in State["spots"] {
-            IniWrite(spot["name"],    cfg, "Spots", "spot" i "_name")
-            IniWrite(spot["x"],       cfg, "Spots", "spot" i "_x")
-            IniWrite(spot["y"],       cfg, "Spots", "spot" i "_y")
-            IniWrite(spot["color"],   cfg, "Spots", "spot" i "_color")
-            IniWrite(spot["enabled"], cfg, "Spots", "spot" i "_enabled")
-            i += 1
-        }
+    IniWrite(ore1X,         CONFIG, "Ore1", "x")
+    IniWrite(ore1Y,         CONFIG, "Ore1", "y")
+    IniWrite(ore1FullColor, CONFIG, "Ore1", "color")
 
-        ; ---- inventory slot ----
-        IniWrite(State["invX"],            cfg, "Inv", "x")
-        IniWrite(State["invY"],            cfg, "Inv", "y")
-        IniWrite(State["invDefaultColor"], cfg, "Inv", "color")
+    IniWrite(ore2X,         CONFIG, "Ore2", "x")
+    IniWrite(ore2Y,         CONFIG, "Ore2", "y")
+    IniWrite(ore2FullColor, CONFIG, "Ore2", "color")
 
-        ; ---- paths (each step now also stores a "run" flag) ----
-        SavePathToIni(cfg, "ToBank", State["paths"]["toBank"])
-        SavePathToIni(cfg, "BackToMine", State["paths"]["backToMine"])
-        IniWrite(State["pathTailDelay"]["toBank"],     cfg, "ToBank", "tail_delay")
-        IniWrite(State["pathTailDelay"]["backToMine"], cfg, "BackToMine", "tail_delay")
+    IniWrite(invX,              CONFIG, "Inv", "x")
+    IniWrite(invY,              CONFIG, "Inv", "y")
+    IniWrite(invDefaultColor,   CONFIG, "Inv", "color")
 
-        State["statusText"] := "Config saved"
-    } catch as err {
-        ; Don't crash the bot just because we couldn't save a file.
-        State["statusText"] := "SAVE FAILED: " err.Message
-    }
+    IniWrite(enableRun,     CONFIG, "Run", "enabled")
+
+    SavePathToIni("ToBank", toBankPath)
+    SavePathToIni("BackToMine", backToMinePath)
+
+    IniWrite(toBankTailDelay,   CONFIG, "ToBank", "tail_delay")
+    IniWrite(backToMineTailDelay, CONFIG, "BackToMine", "tail_delay")
 }
 
 ; --------------------------------------------------------------
-; SavePathToIni: writes one recorded path (array of step Maps)
-; into its own INI section. Pulled out as its own function
-; because we do this exact thing twice (toBank + backToMine) -
-; copy-pasting it twice would mean two places to fix bugs in.
+; SavePathToIni: writes one recorded path (a list of click steps)
+; into its own INI section, numbering each step (step1_x,
+; step2_x, ...) so LoadPathFromIni can read them back in order.
 ; --------------------------------------------------------------
-SavePathToIni(cfg, section, path) {
-    IniWrite(path.Length, cfg, section, "count")
+SavePathToIni(section, path) {
+    global CONFIG
+    IniWrite(path.Length, CONFIG, section, "count")
+
     i := 1
-    for step in path {
-        IniWrite(step["x"],     cfg, section, "step" i "_x")
-        IniWrite(step["y"],     cfg, section, "step" i "_y")
-        IniWrite(step["delay"], cfg, section, "step" i "_delay")
-        IniWrite(step["run"],   cfg, section, "step" i "_run")
+    for _, step in path {
+        IniWrite(step["x"],     CONFIG, section, "step" i "_x")
+        IniWrite(step["y"],     CONFIG, section, "step" i "_y")
+        IniWrite(step["delay"], CONFIG, section, "step" i "_delay")
         i += 1
     }
 }
 
 ; --------------------------------------------------------------
-; LoadConfig: reads the INI file back into `State`. If the file
-; doesn't exist yet (first run), we just leave the defaults from
-; state.ahk in place - nothing to load.
+; LoadConfig: reads the INI file back into memory when the
+; script starts. If the file doesn't exist yet (first run ever),
+; we just leave everything at its default "not set" value.
 ; --------------------------------------------------------------
 LoadConfig() {
-    global State
-    cfg := State["configPath"]
+    global CONFIG
+    global ore1X, ore1Y, ore1FullColor
+    global ore2X, ore2Y, ore2FullColor
+    global invX, invY, invDefaultColor
+    global enableRun
+    global toBankPath, backToMinePath
+    global toBankTailDelay, backToMineTailDelay
 
-    if !FileExist(cfg) {
-        MigrateOldConfig()
+    if !FileExist(CONFIG)
         return
-    }
 
-    try {
-        ; ---- spots ----
-        spots := []
-        count := Integer(IniRead(cfg, "Spots", "count", 0))
-        loop count {
-            i := A_Index
-            name := IniRead(cfg, "Spots", "spot" i "_name", "Spot " i)
-            x := Integer(IniRead(cfg, "Spots", "spot" i "_x", 0))
-            y := Integer(IniRead(cfg, "Spots", "spot" i "_y", 0))
-            color := Integer(IniRead(cfg, "Spots", "spot" i "_color", -1))
-            enabled := Integer(IniRead(cfg, "Spots", "spot" i "_enabled", 1))
-            spots.Push(Map("name", name, "x", x, "y", y, "color", color, "enabled", enabled))
-        }
-        State["spots"] := spots
+    ore1X         := Integer(IniRead(CONFIG, "Ore1", "x", 0))
+    ore1Y         := Integer(IniRead(CONFIG, "Ore1", "y", 0))
+    ore1FullColor := Integer(IniRead(CONFIG, "Ore1", "color", -1))
 
-        ; ---- inventory ----
-        State["invX"]            := Integer(IniRead(cfg, "Inv", "x", 0))
-        State["invY"]            := Integer(IniRead(cfg, "Inv", "y", 0))
-        State["invDefaultColor"] := Integer(IniRead(cfg, "Inv", "color", -1))
+    ore2X         := Integer(IniRead(CONFIG, "Ore2", "x", 0))
+    ore2Y         := Integer(IniRead(CONFIG, "Ore2", "y", 0))
+    ore2FullColor := Integer(IniRead(CONFIG, "Ore2", "color", -1))
 
-        ; ---- paths ----
-        State["paths"]["toBank"]     := LoadPathFromIni(cfg, "ToBank")
-        State["paths"]["backToMine"] := LoadPathFromIni(cfg, "BackToMine")
-        State["pathTailDelay"]["toBank"]     := Integer(IniRead(cfg, "ToBank", "tail_delay", 0))
-        State["pathTailDelay"]["backToMine"] := Integer(IniRead(cfg, "BackToMine", "tail_delay", 0))
+    invX              := Integer(IniRead(CONFIG, "Inv", "x", 0))
+    invY              := Integer(IniRead(CONFIG, "Inv", "y", 0))
+    invDefaultColor   := Integer(IniRead(CONFIG, "Inv", "color", -1))
 
-        State["statusText"] := "Config loaded"
-    } catch as err {
-        State["statusText"] := "LOAD FAILED: " err.Message
-    }
+    enableRun := Integer(IniRead(CONFIG, "Run", "enabled", 0))
+
+    toBankPath := LoadPathFromIni("ToBank")
+    backToMinePath := LoadPathFromIni("BackToMine")
+    toBankTailDelay := Integer(IniRead(CONFIG, "ToBank", "tail_delay", 0))
+    backToMineTailDelay := Integer(IniRead(CONFIG, "BackToMine", "tail_delay", 0))
+
+    ShowTip("Loaded saved miner config")
+    SetTimer(HideTip, -1500)
 }
 
 ; --------------------------------------------------------------
-; LoadPathFromIni: the reverse of SavePathToIni. Defaults
-; step["run"] to false if the key is missing, since old configs
-; (before this rewrite) never had a "run" key at all.
+; LoadPathFromIni: the reverse of SavePathToIni - reads "count",
+; then step1_x/step1_y/step1_delay, step2_x/..., and so on, and
+; rebuilds the array of click steps.
 ; --------------------------------------------------------------
-LoadPathFromIni(cfg, section) {
+LoadPathFromIni(section) {
+    global CONFIG
+
     path := []
-    count := Integer(IniRead(cfg, section, "count", 0))
-    loop count {
-        i := A_Index
-        x := Integer(IniRead(cfg, section, "step" i "_x", 0))
-        y := Integer(IniRead(cfg, section, "step" i "_y", 0))
-        d := Integer(IniRead(cfg, section, "step" i "_delay", 250))
-        r := Integer(IniRead(cfg, section, "step" i "_run", 0))
+    count := Integer(IniRead(CONFIG, section, "count", 0))
+    i := 1
+    while (i <= count) {
+        x := Integer(IniRead(CONFIG, section, "step" i "_x", 0))
+        y := Integer(IniRead(CONFIG, section, "step" i "_y", 0))
+        d := Integer(IniRead(CONFIG, section, "step" i "_delay", 250))
+
         if (x != 0 || y != 0)
-            path.Push(Map("x", x, "y", y, "delay", d, "run", r))
+            path.Push(Map("x", x, "y", y, "delay", d))
+
+        i += 1
     }
+
     return path
-}
-
-; --------------------------------------------------------------
-; MigrateOldConfig: ELI5 - if you used the OLD script before
-; (miner_part1.ini with just 2 ores), this copies that
-; calibration into the new format automatically so you don't
-; have to redo F1-F5. It only runs once, when no new-format
-; config exists yet.
-; --------------------------------------------------------------
-MigrateOldConfig() {
-    global State
-    oldCfg := A_ScriptDir "\miner_part1.ini"
-    if !FileExist(oldCfg)
-        return
-
-    try {
-        spots := []
-
-        ore1Color := Integer(IniRead(oldCfg, "Ore1", "color", -1))
-        if (ore1Color != -1) {
-            spots.Push(Map(
-                "name", "Ore 1",
-                "x", Integer(IniRead(oldCfg, "Ore1", "x", 0)),
-                "y", Integer(IniRead(oldCfg, "Ore1", "y", 0)),
-                "color", ore1Color,
-                "enabled", true))
-        }
-
-        ore2Color := Integer(IniRead(oldCfg, "Ore2", "color", -1))
-        if (ore2Color != -1) {
-            spots.Push(Map(
-                "name", "Ore 2",
-                "x", Integer(IniRead(oldCfg, "Ore2", "x", 0)),
-                "y", Integer(IniRead(oldCfg, "Ore2", "y", 0)),
-                "color", ore2Color,
-                "enabled", true))
-        }
-
-        State["spots"] := spots
-        State["invX"]            := Integer(IniRead(oldCfg, "Inv", "x", 0))
-        State["invY"]            := Integer(IniRead(oldCfg, "Inv", "y", 0))
-        State["invDefaultColor"] := Integer(IniRead(oldCfg, "Inv", "color", -1))
-
-        ; old script had ONE global "run" toggle - apply it to every
-        ; step of every path as a starting point. You can fine-tune
-        ; per-step afterwards with F9 during re-recording, or the GUI.
-        oldRun := Integer(IniRead(oldCfg, "Run", "enabled", 0))
-
-        toBank := []
-        tbCount := Integer(IniRead(oldCfg, "ToBank", "count", 0))
-        loop tbCount {
-            i := A_Index
-            x := Integer(IniRead(oldCfg, "ToBank", "step" i "_x", 0))
-            y := Integer(IniRead(oldCfg, "ToBank", "step" i "_y", 0))
-            d := Integer(IniRead(oldCfg, "ToBank", "step" i "_delay", 250))
-            if (x != 0 || y != 0)
-                toBank.Push(Map("x", x, "y", y, "delay", d, "run", oldRun))
-        }
-        State["paths"]["toBank"] := toBank
-        State["pathTailDelay"]["toBank"] := Integer(IniRead(oldCfg, "ToBank", "tail_delay", 0))
-
-        backToMine := []
-        btmCount := Integer(IniRead(oldCfg, "BackToMine", "count", 0))
-        loop btmCount {
-            i := A_Index
-            x := Integer(IniRead(oldCfg, "BackToMine", "step" i "_x", 0))
-            y := Integer(IniRead(oldCfg, "BackToMine", "step" i "_y", 0))
-            d := Integer(IniRead(oldCfg, "BackToMine", "step" i "_delay", 250))
-            if (x != 0 || y != 0)
-                backToMine.Push(Map("x", x, "y", y, "delay", d, "run", oldRun))
-        }
-        State["paths"]["backToMine"] := backToMine
-        State["pathTailDelay"]["backToMine"] := Integer(IniRead(oldCfg, "BackToMine", "tail_delay", 0))
-
-        SaveConfig()
-        State["statusText"] := "Migrated old miner_part1.ini -> new profile"
-    } catch as err {
-        State["statusText"] := "MIGRATION FAILED: " err.Message
-    }
 }
