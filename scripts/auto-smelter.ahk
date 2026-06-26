@@ -1,63 +1,80 @@
 ; ============================================================
 ;  auto-smelter.ahk
 ;  Smelting bot, built entirely from the shared lib\ functions -
-;  same library that auto-miner.ahk and the rest of this folder's
-;  scripts share. This replaces
-;  smelter-1.ahk's logic with the newer, hardened building blocks
-;  (multi-point inventory check, confirm-ticks debounce, pause-
-;  after-click paths, humanized clicks).
+;  same library auto-miner.ahk, auto-fisher.ahk and auto-smith.ahk
+;  use.
 ;
-;  EXPECTED STARTING STATE: you are standing at the smelter with
+;  EXPECTED STARTING STATE: you are standing at the furnace with
 ;  a full inventory of ore.
 ;
 ;  CYCLE:
-;    1. Play the SMELT path (click the furnace, click "Smelt All"
-;       or whatever starts smelting your whole inventory).
-;    2. Wait for the last inventory slot to go from full to empty -
-;       this is the SAME multi-point reference the mining script
+;    1. Play the SMELT path - this now covers ONLY the click on
+;       the furnace itself (its last recorded step), NOT the
+;       "Smelt X" dialog - same shape as auto-smith.ahk's
+;       TO-ANVIL path.
+;    2. Press SMELT_KEY (Space by default, or a number key like
+;       "1"/"2"/"3" - see tunables below) to confirm the dialog,
+;       exactly like auto-smith.ahk's anvil phase presses Space to
+;       confirm the "make X" dialog.
+;    3. Wait for the last (or second-to-last - see
+;       checkPreviousSlot below) inventory slot to go from full to
+;       empty - the same multi-point reference the mining script
 ;       uses for "is it full", just waiting for the opposite
-;       direction (here, empty means "all the ore got smelted").
-;    3. Play the TO-BANK path, then wait until the Deposit All
+;       direction.
+;    4. Play the TO-BANK path, then wait until the Deposit All
 ;       button (deposit.png) is actually visible near its known
 ;       position - see BANK_OPEN_TIMEOUT_MS - instead of guessing
 ;       how long the walk + bank-open takes, then click it (one
 ;       click, no right-click menu).
-;    4. Withdraw a fresh stack of ore - one click on a single bank
-;       slot (WITHDRAW_SLOT_INDEX below - "withdraw all" with this
-;       user's bank settings, same one-click pattern as deposit).
-;    5. Play the TO-SMELTER path, then start over from step 1.
+;    5. Withdraw a fresh stack of materials following
+;       WITHDRAW_SEQUENCE below - an ORDERED list of {slot, count}
+;       entries, so you can withdraw from more than one bank slot
+;       per trip and click some of them more than once (e.g. slot 1
+;       twice, then slot 2 once).
+;    6. Play the TO-SMELTER path, then start over from step 1.
 ;
 ;  HOTKEYS
-;    F1   = start/stop recording the SMELT path (click the
-;           furnace, click whatever starts smelting - record this
-;           with a full inventory of ore in hand)
+;    F1   = start/stop recording the SMELT path (click ONLY the
+;           furnace as your last step - do NOT click into the
+;           "Smelt X" dialog, SMELT_KEY handles that automatically)
 ;    F2   = save "inventory slot" reference points - EMPTY YOUR
 ;           INVENTORY first, then press F2 (no need to hover
 ;           anywhere specific). Samples FOUR points spread around
-;           the LAST inventory slot, exactly like the mining
-;           script's F2 - the bot uses these to detect BOTH "ore
-;           ran out" (here) and could detect "inventory full" too
-;           if you ever needed that check in a script built from
-;           this one.
+;           the LAST inventory slot (or the SECOND-TO-LAST slot if
+;           checkPreviousSlot=1 in the .ini - see below), same
+;           mechanism as mining's F2 - the bot uses these to detect
+;           both "ore ran out" (here) and "inventory full" too.
 ;    F3   = start/stop recording the WALK-TO-BANK path (start
 ;           right after smelting finishes, stop once you've
 ;           arrived at the bank - BEFORE touching deposit, since
 ;           that's handled automatically by the bot)
 ;    F4   = start/stop recording the WALK-TO-SMELTER path (start
-;           right after withdrawing ore, stop once you've arrived
-;           back at the furnace - BEFORE clicking it, since the
-;           SMELT path handles that)
+;           right after withdrawing materials, stop once you've
+;           arrived back at the furnace - BEFORE clicking it, since
+;           the SMELT path handles that)
 ;    F5   = start the bot
 ;    F6   = stop the bot
 ;    F7   = clear saved config and reload the script
 ;
 ;  RUN MODE is a plain setting in the .ini, not a hotkey - same as
-;  the mining script. Open config\auto-smelter.ini, find [Settings], set
+;  the other scripts. Open config\auto-smelter.ini, find [Settings], set
 ;
 ;      runMode=1   (hold Ctrl / run for every click)
 ;      runMode=0   (never hold Ctrl / always walk - the default)
 ;
-;  then restart the script.
+;  CHECK-PREVIOUS-SLOT is also a plain .ini flag, not a hotkey -
+;  some smelting recipes (or some inventory layouts) never actually
+;  fill the very last slot even when "full" (e.g. an odd ore count
+;  that always leaves slot 28 empty), which would make the
+;  last-slot reference useless. Set
+;
+;      checkPreviousSlot=1   (F2 calibrates/checks the SECOND-TO-
+;                              LAST slot, slot 27, instead of 28)
+;      checkPreviousSlot=0   (the default - last slot, slot 28)
+;
+;  then re-run F2 and restart the script (this changes WHICH slot
+;  F2 samples, so existing calibration must be redone after
+;  flipping it).
 ;
 ;  Config auto-saves to config\auto-smelter.ini next to this file.
 ; ============================================================
@@ -88,10 +105,25 @@ global CONFIG := A_ScriptDir "\..\config\auto-smelter.ini"
 global COLOR_TOLERANCE := 20
 global SMELT_TIMEOUT_MS := 180000        ; max time to wait for the inventory to empty out after starting a smelt (3 min) - raise this if you smelt a slower ore/bar
 global SMELT_CONFIRM_TICKS := 2          ; require "empty" to read true for this many consecutive ~100ms polls before trusting it (filters a transient glitch)
+global SMELT_KEY := "Space"              ; key pressed after the furnace click to confirm the "Smelt X" dialog - "Space" selects the highlighted/default bar, or use a number key ("1","2","3") if the dialog needs a specific bar selected
+global SMELT_KEY_SETTLE_MS := 100        ; brief wait after pressing SMELT_KEY, before the first emptiness check - just long enough to cover the dialog closing and smithing/smelting starting
 global PHASE_TIMEOUT_SMELT := 30000      ; give up and stop if we can't even START a smelt attempt (e.g. window unfocused) for this long
 global PHASE_TIMEOUT_BANK := 30000       ; give up and stop if banking hangs for 30s straight
-global WITHDRAW_SLOT_INDEX := 4          ; which bank slot (1-8, left to right - see Grid.ahk's GetBankSlots) holds the ore to withdraw after depositing. May change later.
-global WITHDRAW_SETTLE_MS := 300         ; pause after the withdrawal click before walking back - long enough for the inventory display to finish updating (see BankWithdrawSlot in lib\Bank.ahk)
+
+; Ordered withdraw plan: an array of {slot, count} entries, each
+; one bank slot index (1-8, left to right - see Grid.ahk's
+; GetBankSlots) and how many times to click it in a row before
+; moving to the next entry. Lets a trip withdraw from more than one
+; bank slot (e.g. two different raw materials) and click some of
+; them more than once (e.g. a slot whose "withdraw all" doesn't
+; cover a full inventory's worth on its own). Example below:
+; withdraws bank slot 1 twice, then bank slot 2 once.
+global WITHDRAW_SEQUENCE := [
+    Map("slot", 1, "count", 2),
+    Map("slot", 2, "count", 1)
+]
+global WITHDRAW_INTER_SETTLE_MS := 600   ; pause after every withdrawal click EXCEPT the very last one in the whole sequence
+global WITHDRAW_FINAL_SETTLE_MS := 300   ; pause after the LAST withdrawal click in the sequence - must be long enough for the inventory display to finish updating, or the next occupancy check reads stale (see BankWithdrawSlot in lib\Bank.ahk)
 
 ; Instead of a flat guess for how long the walk-to-bank + bank-open
 ; takes, wait until the Deposit All button image is actually
@@ -120,12 +152,19 @@ global ENABLE_HUMANIZATION := false
 
 ; ---------- Calibrated values (loaded from INI, or empty if unset) ----------
 ; emptySlotPoints is a list of {x, y, color} - several reference
-; points inside the last inventory slot, all captured by one F2
-; press. See IsAnyPointOccupied / WaitUntilNotOccupied (Colors.ahk).
+; points inside the calibrated slot (last, or second-to-last if
+; checkPreviousSlot is set), all captured by one F2 press. See
+; IsAnyPointOccupied / WaitUntilNotOccupied (Colors.ahk).
 global emptySlotPoints := []
 
 ; ---------- Run/walk setting - plain config flag, no hotkey ----------
 global runMode := false
+
+; ---------- Inventory-full reference slot - plain config flag, no hotkey ----------
+; false (default) = F2 calibrates/checks the LAST inventory slot.
+; true = F2 calibrates/checks the SECOND-TO-LAST slot instead, for
+; recipes/layouts where the very last slot never actually fills.
+global checkPreviousSlot := false
 
 ; ---------- Recorded paths ----------
 global smeltRecorder := NewPathRecorder()
@@ -147,22 +186,25 @@ LoadConfig()
 ;  CALIBRATION HOTKEYS
 ; ============================================================
 
-F1:: ToggleRecording(smeltRecorder, "Smelt", "SMELT ACTION")
+F1:: ToggleRecording(smeltRecorder, "Smelt", "SMELT ACTION (furnace click only)")
 
 F2:: {
-    global emptySlotPoints
+    global emptySlotPoints, checkPreviousSlot
     ; Uses the standard 28-slot inventory grid from Grid.ahk to
-    ; find the LAST slot, then samples 4 points spread around it
-    ; (GetDefaultSlotOffsets) instead of just its one center pixel
-    ; - make sure your inventory is empty before pressing this.
+    ; find the LAST slot (or the SECOND-TO-LAST slot if
+    ; checkPreviousSlot is set), then samples 4 points spread
+    ; around it (GetDefaultSlotOffsets) instead of just its one
+    ; center pixel - make sure your inventory is empty before
+    ; pressing this.
     slots := GetInventorySlots()
-    lastSlot := slots[slots.Length]
-    points := GetSlotSamplePoints(lastSlot, GetDefaultSlotOffsets())
+    slotIndex := checkPreviousSlot ? slots.Length - 1 : slots.Length
+    targetSlot := slots[slotIndex]
+    points := GetSlotSamplePoints(targetSlot, GetDefaultSlotOffsets())
     for p in points
         p["color"] := PixelGetColor(p["x"], p["y"], "RGB")
     emptySlotPoints := points
     SaveColorPointList(CONFIG, "InventoryEmptyPoints", emptySlotPoints)
-    ShowTipFor("Empty-slot reference points saved (make sure inventory was empty!)", 1800)
+    ShowTipFor("Empty-slot reference points saved (slot " slotIndex " of " slots.Length ") - make sure inventory was empty!", 1800)
 }
 
 F3:: ToggleRecording(toBankRecorder, "ToBank", "WALK-TO-BANK")
@@ -236,13 +278,15 @@ RecordClick(*) {
 ; ============================================================
 
 LoadConfig() {
-    global emptySlotPoints, runMode
+    global emptySlotPoints, runMode, checkPreviousSlot
     global smeltSteps, toBankSteps, toSmelterSteps
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
 
-    ; Plain on/off setting, edited directly in the .ini - see the
-    ; "RUN MODE" note in the header comment. Not a hotkey.
+    ; Plain on/off settings, edited directly in the .ini - see the
+    ; "RUN MODE" / "CHECK-PREVIOUS-SLOT" notes in the header
+    ; comment. Neither one is a hotkey.
     runMode := LoadFlag(CONFIG, "Settings", "runMode", false)
+    checkPreviousSlot := LoadFlag(CONFIG, "Settings", "checkPreviousSlot", false)
 
     smeltSteps := LoadPath(CONFIG, "Smelt")
     toBankSteps := LoadPath(CONFIG, "ToBank")
@@ -255,13 +299,14 @@ LoadConfig() {
 
 ValidateSetup() {
     global emptySlotPoints, smeltSteps, toBankSteps, toSmelterSteps
-    global DEPOSIT_IMG
+    global DEPOSIT_IMG, WITHDRAW_SEQUENCE
     v := NewValidator()
     RequireNonEmpty(v, "F2 - inventory slot reference points", emptySlotPoints)
     RequirePath(v, "F1 - smelt action path", smeltSteps)
     RequirePath(v, "F3 - walk-to-bank path", toBankSteps)
     RequirePath(v, "F4 - walk-to-smelter path", toSmelterSteps)
     RequireFile(v, "deposit.png (bank deposit image)", DEPOSIT_IMG)
+    RequireNonEmpty(v, "WITHDRAW_SEQUENCE (withdraw plan)", WITHDRAW_SEQUENCE)
     return ShowValidationErrors(v)
 }
 
@@ -285,22 +330,23 @@ StartBot() {
 ;  PHASES
 ; ============================================================
 
-; Starts a smelt cycle (the recorded SMELT path: click furnace,
-; click smelt-all), then waits for the last inventory slot to go
-; from full to empty - i.e. every bit of ore has been smelted -
-; before moving to the bank phase.
+; Starts a smelt cycle: plays the recorded SMELT path (furnace
+; click only), presses SMELT_KEY to confirm the "Smelt X" dialog,
+; then waits for the calibrated slot to go from occupied to empty -
+; i.e. every bit of ore has been smelted - before moving to the
+; bank phase.
 SmeltPhase(taskRunner) {
     global smeltSteps, emptySlotPoints
     global COLOR_TOLERANCE, SMELT_TIMEOUT_MS, SMELT_CONFIRM_TICKS
+    global SMELT_KEY, SMELT_KEY_SETTLE_MS
     if (!RequireOsrsWindowActive())
         return GoToPhase(taskRunner, "smelt")
 
-    ; If the last slot already reads as empty, there's no ore to
-    ; smelt (e.g. the bank ran out of ore to withdraw last trip) -
-    ; skip straight to restocking instead of wastefully clicking
-    ; the furnace and the smelt-all button for nothing, only to
-    ; have WaitUntilNotOccupied below immediately read "already
-    ; empty" anyway.
+    ; If the calibrated slot already reads as empty, there's no ore
+    ; to smelt (e.g. the bank ran out of ore to withdraw last trip)
+    ; - skip straight to restocking instead of wastefully clicking
+    ; the furnace for nothing, only to have WaitUntilNotOccupied
+    ; below immediately read "already empty" anyway.
     if (!IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE))
         return GoToPhase(taskRunner, "bank")
 
@@ -310,25 +356,37 @@ SmeltPhase(taskRunner) {
         return GoToPhase(taskRunner, "smelt")
     }
 
+    ; Confirms the "Smelt X" dialog the furnace click opened -
+    ; selects whichever option SMELT_KEY corresponds to (Space for
+    ; the highlighted/default bar, or a number key like "1"/"2"/"3"
+    ; if the dialog needs a specific bar selected), exactly like
+    ; pressing that key by hand. Same approach as auto-smith.ahk's
+    ; AnvilPhase pressing Space for the "make X" dialog.
+    HumanKeyPress(SMELT_KEY)
+    Sleep(JitterDelay(SMELT_KEY_SETTLE_MS))
+
     ; Smelting happens automatically once started - just wait for
-    ; the last slot to empty out. Same multi-point reference the
-    ; mining script uses for "is it full", just waiting for the
-    ; opposite direction, with the same confirm-ticks debounce so
-    ; a single transient glitch can't be mistaken for "done".
+    ; the calibrated slot to empty out. Same multi-point reference
+    ; the mining script uses for "is it full", just waiting for the
+    ; opposite direction, with the same confirm-ticks debounce so a
+    ; single transient glitch can't be mistaken for "done".
     WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, SMELT_TIMEOUT_MS, SMELT_CONFIRM_TICKS)
 
-    ; We made a real attempt (the smelt path played) - reset the
-    ; phase timer so PHASE_TIMEOUT_SMELT measures "can't even start
-    ; a smelt attempt for 30s", not "total time spent smelting".
+    ; We made a real attempt (the smelt path played and the key was
+    ; pressed) - reset the phase timer so PHASE_TIMEOUT_SMELT
+    ; measures "can't even start a smelt attempt for 30s", not
+    ; "total time spent smelting".
     ResetPhaseTimer(taskRunner)
     return GoToPhase(taskRunner, "bank")
 }
 
-; Walks to the bank, deposits everything, withdraws a fresh stack
-; of ore from one specific bank slot, then walks back to the
-; smelter.
+; Walks to the bank, deposits everything, withdraws materials
+; following WITHDRAW_SEQUENCE (one or more bank slots, each
+; clicked its configured number of times in a row), then walks back
+; to the smelter.
 BankPhase(taskRunner) {
-    global toBankSteps, toSmelterSteps, WITHDRAW_SLOT_INDEX, WITHDRAW_SETTLE_MS
+    global toBankSteps, toSmelterSteps, WITHDRAW_SEQUENCE
+    global WITHDRAW_INTER_SETTLE_MS, WITHDRAW_FINAL_SETTLE_MS
     global DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS
     if (!RequireOsrsWindowActive())
         return GoToPhase(taskRunner, "bank")
@@ -346,8 +404,26 @@ BankPhase(taskRunner) {
         return GoToPhase(taskRunner, "bank")
     }
 
-    ; Withdraw a fresh stack of ore from the slot that holds it.
-    BankWithdrawSlot(WITHDRAW_SLOT_INDEX, WITHDRAW_SETTLE_MS)
+    ; Withdraw every {slot, count} entry in WITHDRAW_SEQUENCE, in
+    ; order, clicking each slot its configured number of times in a
+    ; row before moving to the next entry. Every click except the
+    ; very last one in the whole sequence uses the shorter inter-
+    ; click settle; the last one uses the longer final settle so the
+    ; inventory display has time to catch up before the next phase
+    ; checks occupancy - same reasoning as auto-smith.ahk's two-slot
+    ; withdrawal, generalized to an arbitrary number of clicks.
+    totalClicks := 0
+    for entry in WITHDRAW_SEQUENCE
+        totalClicks += entry["count"]
+
+    clicksDone := 0
+    for entry in WITHDRAW_SEQUENCE {
+        loop entry["count"] {
+            clicksDone += 1
+            settle := (clicksDone = totalClicks) ? WITHDRAW_FINAL_SETTLE_MS : WITHDRAW_INTER_SETTLE_MS
+            BankWithdrawSlot(entry["slot"], settle)
+        }
+    }
 
     if (!PlayPathWithGuard(toSmelterSteps, isRunningFn)) {
         StopTaskRunner(taskRunner, "Walk-to-smelter path failed or was stopped")

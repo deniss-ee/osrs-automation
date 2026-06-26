@@ -113,3 +113,32 @@
 12:11:11 anvil: entered anvil phase, last slot occupied=1
 12:11:11 anvil: playing walk-to-anvil path (1 steps)
 12:11:12 STOPPED: Stopped (F6)
+18:34:53 ===== Bot started =====
+18:34:53 anvil: entered anvil phase, last slot occupied=1
+18:34:53 anvil: playing walk-to-anvil path (1 steps)
+18:35:01 anvil: pressing Space to confirm make-X dialog
+18:35:15 anvil: wait-until-empty returned 1 (false = timed out after 180000ms)
+18:35:15 bank: entered bank phase, playing walk-to-bank path (1 steps)
+18:35:22 bank: walk-to-bank path done, depositing
+18:35:23 bank: deposited, withdrawing slot 1 then 2
+18:35:24 bank: done withdrawing, last slot occupied=1 - returning to anvil phase
+18:35:24 anvil: entered anvil phase, last slot occupied=1
+18:35:24 anvil: playing walk-to-anvil path (1 steps)
+18:35:31 anvil: pressing Space to confirm make-X dialog
+18:35:46 anvil: wait-until-empty returned 1 (false = timed out after 180000ms)
+18:35:46 bank: entered bank phase, playing walk-to-bank path (1 steps)
+18:35:52 bank: walk-to-bank path done, depositing
+18:35:53 bank: deposited, withdrawing slot 1 then 2
+18:35:54 bank: done withdrawing, last slot occupied=1 - returning to anvil phase
+18:35:54 anvil: entered anvil phase, last slot occupied=1
+18:35:54 anvil: playing walk-to-anvil path (1 steps)
+18:36:02 anvil: pressing Space to confirm make-X dialog
+18:36:16 anvil: wait-until-empty returned 1 (false = timed out after 180000ms)
+18:36:16 bank: entered bank phase, playing walk-to-bank path (1 steps)
+18:36:23 bank: walk-to-bank path done, depositing
+18:36:24 bank: deposited, withdrawing slot 1 then 2
+18:36:25 bank: done withdrawing, last slot occupied=0 - returning to anvil phase
+18:36:25 anvil: entered anvil phase, last slot occupied=0
+18:36:25 bank: entered bank phase, playing walk-to-bank path (1 steps)
+18:36:32 bank: walk-to-bank path done, depositing
+18:36:36 STOPPED: Stopped (F6)

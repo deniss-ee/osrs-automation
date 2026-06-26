@@ -458,26 +458,40 @@ ore spots, checked in priority order.
 
 ### `auto-smelter.ahk` — smelting bot
 Lives in `scripts\`, built entirely from the library, replacing `smelter-1.ahk`'s logic.
-Expected starting state: standing at the smelter with a full inventory of ore.
+Expected starting state: standing at the smelter with a full inventory of ore. Rebuilt to mirror
+`auto-smith.ahk`'s anvil-confirm-key shape and generalized banking (see below) — it no longer
+records a click into the "Smelt X" dialog, and can withdraw more than one bank slot per trip.
 
-- **Hotkeys**: F1 = record the Smelt path (click furnace, click smelt-all). F2 = calibrate
-  inventory reference points (same mechanism as mining's F2, but used for the opposite
-  direction here — see below). F3/F4 = record walk-to-bank / walk-to-smelter paths. F5/F6 =
+- **Hotkeys**: F1 = record the Smelt path (click ONLY the furnace as the last step — the
+  "Smelt X" dialog is confirmed automatically via `SMELT_KEY`, not a recorded click). F2 =
+  calibrate inventory reference points (same mechanism as mining's F2, but used for the opposite
+  direction here — see below; samples the LAST slot, or the SECOND-TO-LAST slot if
+  `checkPreviousSlot=1` — see below). F3/F4 = record walk-to-bank / walk-to-smelter paths. F5/F6 =
   start/stop. F7 = clear config.
-- **Cycle**: `SmeltPhase` first checks the last inventory slot is actually occupied — if it's
+- **Cycle**: `SmeltPhase` first checks the calibrated slot is actually occupied — if it's
   already empty (e.g. the bank ran out of ore to withdraw the previous trip), it skips straight
-  to `BankPhase` instead of wastefully clicking the furnace and smelt-all button for nothing.
-  Otherwise it plays the Smelt path once, then blocks on `WaitUntilNotOccupied` until the last
-  inventory slot goes from full to EMPTY (all ore consumed) — the inverse of mining's check, same
-  underlying multi-point reference mechanism. `BankPhase` walks to the bank, waits for the
-  Deposit All button image to appear before clicking it, deposits everything, withdraws a fresh
-  stack of ore with one click on `GetBankSlots()[WITHDRAW_SLOT_INDEX]`, then walks back to the
-  smelter.
+  to `BankPhase` instead of wastefully clicking the furnace for nothing. Otherwise it plays the
+  Smelt path (furnace click only) once, presses `SMELT_KEY` to confirm the "Smelt X" dialog
+  (exactly like `auto-smith.ahk`'s `AnvilPhase` pressing Space for the "make X" dialog), then
+  blocks on `WaitUntilNotOccupied` until the calibrated slot goes from full to EMPTY (all ore
+  consumed) — the inverse of mining's check, same underlying multi-point reference mechanism.
+  `BankPhase` walks to the bank, waits for the Deposit All button image to appear before clicking
+  it, deposits everything, then withdraws following `WITHDRAW_SEQUENCE` — an ORDERED array of
+  `{slot, count}` entries, each clicked `count` times in a row via `BankWithdrawSlot` before
+  moving to the next entry (e.g. bank slot 1 twice, then bank slot 2 once) — then walks back to
+  the smelter.
+- **Inventory-full reference slot is a plain `.ini` flag, not a hotkey**: `[Settings]
+  checkPreviousSlot` (like `runMode`). Default `0` = F2 calibrates/checks inventory slot 28 (the
+  last slot); `1` = F2 calibrates/checks slot 27 (the second-to-last) instead, for recipes/layouts
+  where the very last slot never actually fills even when the inventory is otherwise full.
+  Flipping this requires re-running F2 (it changes which slot gets sampled).
 - **Currently**: `ENABLE_HUMANIZATION := false` (the default — flip to `true` for randomized
-  offset/jitter), `WITHDRAW_SLOT_INDEX := 4` (edited after initial creation — bank slot 4 from the
-  left holds the ore).
+  offset/jitter), `WITHDRAW_SEQUENCE := [{slot:1,count:2}, {slot:2,count:1}]` (edit this array
+  directly in the script to change which bank slots get withdrawn and how many times each).
 - **Tunables**: `COLOR_TOLERANCE=20`, `SMELT_TIMEOUT_MS=180000` (3 min), `SMELT_CONFIRM_TICKS=2`,
-  `PHASE_TIMEOUT_SMELT=30000`, `BANK_OPEN_SETTLE_MS=300`, `BANK_OPEN_FAILSAFE_DELAY_MS=300`,
+  `SMELT_KEY="Space"` (or a number key like `"1"`/`"2"`/`"3"` if the dialog needs a specific bar
+  selected), `SMELT_KEY_SETTLE_MS=100`, `PHASE_TIMEOUT_SMELT=30000`, `BANK_OPEN_SETTLE_MS=300`,
+  `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`, `WITHDRAW_FINAL_SETTLE_MS=300`,
   `PHASE_TIMEOUT_BANK=30000`. No debug logging in this script (see `Log.ahk` above).
 
 ### `auto-smith.ahk` — smithing bot
