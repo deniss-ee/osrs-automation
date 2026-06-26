@@ -1,0 +1,58 @@
+15:09:45 ===== Bot started =====
+15:09:45 mine: inventory full -> bank
+15:09:45 bank: searching for hopper marker color
+15:09:45 bank: marker found at 873,87 - clicking with offset
+15:09:48 STOPPED: Stopped (F8)
+15:09:52 ===== Bot started =====
+15:09:52 mine: found minable spot at 1313,749 - clicking
+15:10:31 STOPPED: Stopped (F8)
+15:10:34 mine: inventory full (while depleting) -> bank
+15:16:17 ===== Bot started =====
+15:16:17 mine: found minable spot at 1251,747 - clicking
+15:16:18 mine: another minable spot appeared at 1311,747 while waiting near 1251,747 - moving on
+15:16:18 mine: found minable spot at 1311,747 - clicking
+15:16:31 STOPPED: Stopped (F8)
+15:16:34 ===== Bot started =====
+15:16:35 mine: found minable spot at 1073,747 - clicking
+15:16:36 mine: another minable spot appeared at 1139,747 while waiting near 1085,747 - moving on
+15:16:36 mine: found minable spot at 1145,747 - clicking
+15:16:37 mine: another minable spot appeared at 1231,747 while waiting near 1145,747 - moving on
+15:16:37 mine: found minable spot at 1233,747 - clicking
+15:16:44 mine: inventory full (while depleting) -> bank
+15:16:44 bank: searching for hopper marker color
+15:16:44 bank: marker found at 1115,87 - clicking with offset
+15:16:54 bank: playing run-back path (2 steps)
+15:17:03 bank: done, returning to mine phase
+15:17:03 mine: no full/empty/none spot found in area, still searching
+15:17:07 mine: no full/empty/none spot found in area, still searching
+15:17:08 STOPPED: Stopped (F8)
+15:17:12 ===== Bot started =====
+15:17:12 mine: found minable spot at 1259,753 - clicking
+15:17:17 mine: another minable spot appeared at 1369,747 while waiting near 1251,747 - moving on
+15:17:17 mine: found minable spot at 1369,747 - clicking
+15:17:18 mine: another minable spot appeared at 1289,747 while waiting near 1353,747 - moving on
+15:17:19 mine: found minable spot at 1285,747 - clicking
+15:17:20 mine: another minable spot appeared at 1253,747 while waiting near 1285,747 - moving on
+15:17:20 mine: found minable spot at 1253,747 - clicking
+15:17:50 mine: another minable spot appeared at 1191,747 while waiting near 1251,747 - moving on
+15:17:50 mine: found minable spot at 1191,747 - clicking
+15:18:06 mine: another minable spot appeared at 1369,747 while waiting near 1243,747 - moving on
+15:18:06 mine: found minable spot at 1369,747 - clicking
+15:18:07 mine: another minable spot appeared at 1319,747 while waiting near 1369,747 - moving on
+15:18:07 mine: found minable spot at 1313,747 - clicking
+15:18:19 mine: another minable spot appeared at 1133,747 while waiting near 1313,747 - moving on
+15:18:19 mine: found minable spot at 1133,747 - clicking
+15:18:21 mine: another minable spot appeared at 1241,747 while waiting near 1145,747 - moving on
+15:18:21 mine: found minable spot at 1243,747 - clicking
+15:18:28 STOPPED: Stopped (F8)
+15:23:11 ===== Bot started =====
+15:23:11 mine: found minable spot at 1251,747 - clicking
+15:23:33 STOPPED: Stopped (F8)
+15:23:34 ===== Bot started =====
+15:23:34 STOPPED: Stopped (F8)
+15:23:36 ===== Bot started =====
+15:23:37 mine: found minable spot at 1311,747 - clicking
+15:24:14 mine: inventory full (while depleting) -> bank
+15:24:14 bank: searching for hopper marker color
+15:24:14 bank: marker found at 1039,87 - clicking with offset
+15:24:20 STOPPED: Stopped (F8)
