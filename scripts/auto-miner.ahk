@@ -91,12 +91,12 @@ CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
 ; ---------- Config file ----------
-global CONFIG := A_ScriptDir "\..\config\miner-m-iron.ini"
+global CONFIG := A_ScriptDir "\..\config\miner-m-coal.ini"
 
 ; ---------- Tunables ----------
 global COLOR_TOLERANCE := 20
 global ORE_CLICK_BOX := 12      ; humanized click lands within +/-12px of the sampled ore pixel
-global ORE_DEPLETE_TIMEOUT_MS := 20000   ; after clicking, wait up to this long for the ore pixel to change before allowing another click
+global ORE_DEPLETE_TIMEOUT_MS := 30000   ; after clicking, wait up to this long for the ore pixel to change before allowing another click
 global ORE_DEPLETE_CONFIRM_TICKS := 2    ; require the ore pixel to read as "changed" for this many consecutive ~10ms polls (the depletion-wait loop sleeps 10ms for fast spot-switching) before trusting it - filters out a single transient glitch (e.g. right as you arrive back from the bank) being mistaken for the rock actually depleting
 global PHASE_TIMEOUT_MINE := 15000   ; give up and stop if NO ore click happens for 15s straight (resets every time we click - see ResetPhaseTimer)
 global PHASE_TIMEOUT_BANK := 30000   ; give up and stop if banking hangs for 30s straight
