@@ -10,6 +10,17 @@
 ;  (they would spin forever until the user pressed Stop) -
 ;  always pass a real timeoutMs, even a generous one, so a
 ;  script can never get stuck silently.
+;
+;  Every wait/search helper also takes an OPTIONAL trailing
+;  runningVarGetter (same convention as Paths.ahk's
+;  PlayPathWithGuard) - a zero-arg function returning the
+;  script's "should I still be going" flag, checked on every
+;  poll. Without passing this, a script's Stop hotkey only
+;  flips TaskRunner's `running` flag between phases - it can't
+;  interrupt a wait already in progress, so Stop appeared to do
+;  nothing until that wait's own (sometimes multi-minute)
+;  timeoutMs elapsed. Pass `() => taskRunner["running"]` from
+;  every phase function that calls these.
 ; ============================================================
 
 ; Reads the pixel at (x,y) and checks it's within `tol` of `color`.
@@ -45,10 +56,22 @@ ColorClose(c1, c2, tol) {
 ; counts, same as before). Raise it for the same reason as
 ; WaitForPixelColorChange below - a one-frame flicker shouldn't be
 ; mistaken for a real state change.
-WaitForPixelColor(x, y, expectedColor, tol, timeoutMs, confirmTicks := 1, pollMs := 100) {
+;
+; runningVarGetter (optional, same convention as Paths.ahk's
+; PlayPathWithGuard): a zero-arg function returning the script's
+; "should I still be going" flag. Without this, a script's Stop
+; hotkey only flips TaskRunner's `running` flag - it can't actually
+; interrupt a wait already in progress, so pressing Stop while one of
+; these polls is mid-flight had no visible effect until its own
+; timeoutMs eventually elapsed (which can be minutes). Pass
+; `() => taskRunner["running"]` from a phase function so a stop
+; request is checked on every poll, not just between phases.
+WaitForPixelColor(x, y, expectedColor, tol, timeoutMs, confirmTicks := 1, pollMs := 100, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     streak := 0
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (ColorClose(PixelGetColor(x, y, "RGB"), expectedColor, tol)) {
             streak += 1
             if (streak >= confirmTicks)
@@ -79,10 +102,12 @@ WaitForPixelColor(x, y, expectedColor, tol, timeoutMs, confirmTicks := 1, pollMs
 ; which would otherwise look exactly like "this rock just
 ; depleted" even though it hasn't. Any poll that DOESN'T show a
 ; changed color resets the streak back to zero.
-WaitForPixelColorChange(x, y, awayFromColor, tol, timeoutMs, confirmTicks := 1, pollMs := 100) {
+WaitForPixelColorChange(x, y, awayFromColor, tol, timeoutMs, confirmTicks := 1, pollMs := 100, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     streak := 0
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (!ColorClose(PixelGetColor(x, y, "RGB"), awayFromColor, tol)) {
             streak += 1
             if (streak >= confirmTicks)
@@ -100,9 +125,11 @@ WaitForPixelColorChange(x, y, awayFromColor, tol, timeoutMs, confirmTicks := 1, 
 ; once (e.g. "ore spot #1" vs "ore spot #2"). Returns 1 if the
 ; first matched first, 2 if the second matched first, or 0 if
 ; neither matched before timeoutMs ran out.
-WaitForEitherPixelColor(x1, y1, color1, x2, y2, color2, tol, timeoutMs, pollMs := 100) {
+WaitForEitherPixelColor(x1, y1, color1, x2, y2, color2, tol, timeoutMs, pollMs := 100, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return 0
         if (ColorClose(PixelGetColor(x1, y1, "RGB"), color1, tol))
             return 1
         if (ColorClose(PixelGetColor(x2, y2, "RGB"), color2, tol))
@@ -119,9 +146,11 @@ WaitForEitherPixelColor(x1, y1, color1, x2, y2, color2, tol, timeoutMs, pollMs :
 ; writes the found position into foundX/foundY (pass by
 ; reference: WaitForPixelSearch(&fx, &fy, ...)). On failure
 ; returns false and leaves foundX/foundY untouched.
-WaitForPixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol, timeoutMs, pollMs := 150) {
+WaitForPixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol, timeoutMs, pollMs := 150, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol))
             return true
         if (A_TickCount >= deadline)
@@ -199,10 +228,12 @@ IsAnyPointOccupied(points, tol := 15) {
 ; timeoutMs. Returns true once confirmed occupied, false on
 ; timeout. Same confirm-ticks debounce as WaitForPixelColorChange,
 ; for the same reason - a single transient blip shouldn't count.
-WaitUntilOccupied(points, tol, timeoutMs, confirmTicks := 1, pollMs := 100) {
+WaitUntilOccupied(points, tol, timeoutMs, confirmTicks := 1, pollMs := 100, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     streak := 0
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (IsAnyPointOccupied(points, tol)) {
             streak += 1
             if (streak >= confirmTicks)
@@ -223,10 +254,12 @@ WaitUntilOccupied(points, tol, timeoutMs, confirmTicks := 1, pollMs := 100) {
 ; last slot" check - the same multi-point reference the mining
 ; script uses for "is it full", just waiting for the opposite
 ; direction.
-WaitUntilNotOccupied(points, tol, timeoutMs, confirmTicks := 1, pollMs := 100) {
+WaitUntilNotOccupied(points, tol, timeoutMs, confirmTicks := 1, pollMs := 100, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     streak := 0
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (!IsAnyPointOccupied(points, tol)) {
             streak += 1
             if (streak >= confirmTicks)

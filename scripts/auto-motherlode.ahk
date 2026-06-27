@@ -284,6 +284,8 @@ MinePhase(taskRunner) {
     acquired := false
     acquireDeadline := A_TickCount + SPOT_ACQUIRE_TIMEOUT_MS
     loop {
+        if (!taskRunner["running"])
+            return GoToPhase(taskRunner, "mine")
         if (FindImageCenter(MINING_AREA_X1, MINING_AREA_Y1, MINING_AREA_X2, MINING_AREA_Y2, SPOT_IMG, SPOT_IMG_W, SPOT_IMG_H, &cx, &cy, SPOT_IMG_OPTIONS)) {
             acquired := true
             break
@@ -311,6 +313,8 @@ MinePhase(taskRunner) {
     missingStreak := 0
     deadline := A_TickCount + SPOT_TIMEOUT_MS
     loop {
+        if (!taskRunner["running"])
+            return GoToPhase(taskRunner, "mine")
         if (FindImageCenter(cx - SPOT_TRACK_RADIUS, cy - SPOT_TRACK_RADIUS, cx + SPOT_TRACK_RADIUS, cy + SPOT_TRACK_RADIUS, SPOT_IMG, SPOT_IMG_W, SPOT_IMG_H, &ncx, &ncy, SPOT_IMG_OPTIONS)) {
             cx := ncx
             cy := ncy

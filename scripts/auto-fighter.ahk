@@ -293,14 +293,14 @@ FightPhase(taskRunner) {
         LogLine(LOG_FILE, "fight: outline found at " fx "," fy " - clicked (" tx "," ty ")")
         Sleep(ATTACK_SETTLE_MS)
 
-        if (!WaitForPixelColor(COMBAT_INDICATOR_X, COMBAT_INDICATOR_Y, COMBAT_START_COLOR, COLOR_TOLERANCE, COMBAT_START_TIMEOUT_MS, COMBAT_CONFIRM_TICKS, COMBAT_POLL_MS)) {
+        if (!WaitForPixelColor(COMBAT_INDICATOR_X, COMBAT_INDICATOR_Y, COMBAT_START_COLOR, COLOR_TOLERANCE, COMBAT_START_TIMEOUT_MS, COMBAT_CONFIRM_TICKS, COMBAT_POLL_MS, () => taskRunner["running"])) {
             LogLine(LOG_FILE, "fight: combat never started after click - retrying")
             continue
         }
         ResetPhaseTimer(taskRunner)
         LogLine(LOG_FILE, "fight: combat started - waiting for kill")
 
-        if (!WaitForPixelColor(COMBAT_INDICATOR_X, COMBAT_INDICATOR_Y, COMBAT_DEAD_COLOR, COLOR_TOLERANCE, COMBAT_KILL_TIMEOUT_MS, COMBAT_CONFIRM_TICKS, COMBAT_POLL_MS)) {
+        if (!WaitForPixelColor(COMBAT_INDICATOR_X, COMBAT_INDICATOR_Y, COMBAT_DEAD_COLOR, COLOR_TOLERANCE, COMBAT_KILL_TIMEOUT_MS, COMBAT_CONFIRM_TICKS, COMBAT_POLL_MS, () => taskRunner["running"])) {
             LogLine(LOG_FILE, "fight: kill not confirmed within timeout - retrying")
             continue
         }

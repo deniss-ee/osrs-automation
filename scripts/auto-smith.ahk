@@ -348,7 +348,7 @@ AnvilPhase(taskRunner) {
     ; mining/smelting scripts use for "is it full", just waiting for
     ; the opposite direction, with the same confirm-ticks debounce
     ; so a single transient glitch can't be mistaken for "done".
-    emptied := WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS)
+    emptied := WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS, , isRunningFn)
     LogLine(LOG_FILE, "anvil: wait-until-empty returned " emptied " (false = timed out after " ANVIL_TIMEOUT_MS "ms)")
 
     ; We made a real attempt (the walk + click + Space happened) -
@@ -381,7 +381,7 @@ BankPhase(taskRunner) {
 
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
     LogLine(LOG_FILE, "bank: walk-to-bank path done, depositing")
-    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS)) {
+    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {
         StopAndLog(taskRunner, "Bank never opened (Deposit All button not found)")
         return GoToPhase(taskRunner, "bank")
     }

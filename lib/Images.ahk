@@ -40,10 +40,12 @@ IsImagePresent(x1, y1, x2, y2, imageFile, options := "") {
 ; WaitForPixelColorChange, for the same reason - a single missed
 ; frame (e.g. a click animation briefly covering the icon)
 ; shouldn't be mistaken for "it's really gone".
-WaitUntilImageGone(x1, y1, x2, y2, imageFile, timeoutMs, confirmTicks := 1, options := "", pollMs := 200) {
+WaitUntilImageGone(x1, y1, x2, y2, imageFile, timeoutMs, confirmTicks := 1, options := "", pollMs := 200, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     streak := 0
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (!IsImagePresent(x1, y1, x2, y2, imageFile, options)) {
             streak += 1
             if (streak >= confirmTicks)
@@ -61,9 +63,11 @@ WaitUntilImageGone(x1, y1, x2, y2, imageFile, timeoutMs, confirmTicks := 1, opti
 ; (region) until it finds a match, writing the result into
 ; &centerX/&centerY, or gives up after timeoutMs. Returns true on a
 ; match, false (leaving centerX/centerY untouched) on timeout.
-WaitForImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, options := "", pollMs := 200) {
+WaitForImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, options := "", pollMs := 200, runningVarGetter := "") {
     deadline := A_TickCount + timeoutMs
     loop {
+        if (runningVarGetter != "" && !runningVarGetter())
+            return false
         if (FindImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, options))
             return true
         if (A_TickCount >= deadline)
@@ -81,12 +85,12 @@ WaitForImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, ti
 ; bank window to finish opening by waiting for its Deposit All
 ; button to render - instead of guessing how long that takes with a
 ; flat sleep.
-WaitForImageNearButton(button, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, margin := 20, options := "", pollMs := 200) {
+WaitForImageNearButton(button, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, margin := 20, options := "", pollMs := 200, runningVarGetter := "") {
     x1 := button["x"] - button["w"] // 2 - margin
     y1 := button["y"] - button["h"] // 2 - margin
     x2 := button["x"] + button["w"] // 2 + margin
     y2 := button["y"] + button["h"] // 2 + margin
-    return WaitForImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, options, pollMs)
+    return WaitForImageCenter(x1, y1, x2, y2, imageFile, imgW, imgH, &centerX, &centerY, timeoutMs, options, pollMs, runningVarGetter)
 }
 
 ; Tries each image in `images` (in order) against the same region/size/options,

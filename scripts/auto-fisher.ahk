@@ -455,6 +455,8 @@ FishPhase(taskRunner) {
     acquired := false
     acquireDeadline := A_TickCount + FISH_ACQUIRE_TIMEOUT_MS
     loop {
+        if (!taskRunner["running"])
+            return GoToPhase(taskRunner, "fish")
         if (IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE)) {
             LogLine(LOG_FILE, "fish: inventory full (during acquire) -> bank")
             return GoToPhase(taskRunner, "bank")
@@ -488,6 +490,8 @@ FishPhase(taskRunner) {
     missingStreak := 0
     deadline := A_TickCount + FISH_TIMEOUT_MS
     loop {
+        if (!taskRunner["running"])
+            return GoToPhase(taskRunner, "fish")
         if (IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE)) {
             LogLine(LOG_FILE, "fish: inventory full -> bank")
             return GoToPhase(taskRunner, "bank")
@@ -542,11 +546,13 @@ BankPhase(taskRunner) {
 
     LogLine(LOG_FILE, "bank: entered bank phase, searching for marker color")
 
+    isRunningFn := () => taskRunner["running"]
+
     ; First pixel matching this color, scanning from the top-left
     ; of the screen (PixelSearch's natural scan order), restricted
     ; to a top-left box - typically a plugin highlight marking the
     ; nearest bank.
-    if (!WaitForPixelSearch(&fx, &fy, BANK_MARKER_SEARCH_X1, BANK_MARKER_SEARCH_Y1, BANK_MARKER_SEARCH_X2, BANK_MARKER_SEARCH_Y2, BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_MARKER_SEARCH_TIMEOUT_MS)) {
+    if (!WaitForPixelSearch(&fx, &fy, BANK_MARKER_SEARCH_X1, BANK_MARKER_SEARCH_Y1, BANK_MARKER_SEARCH_X2, BANK_MARKER_SEARCH_Y2, BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_MARKER_SEARCH_TIMEOUT_MS, , isRunningFn)) {
         StopAndLog(taskRunner, "Could not find the bank marker color")
         return GoToPhase(taskRunner, "bank")
     }
@@ -557,7 +563,7 @@ BankPhase(taskRunner) {
     HumanClick(fx + BANK_MARKER_CLICK_OFFSET_X, fy + BANK_MARKER_CLICK_OFFSET_Y, 0, 0, runMode)
 
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
-    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS)) {
+    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {
         StopAndLog(taskRunner, "Bank never opened (Deposit All button not found)")
         return GoToPhase(taskRunner, "bank")
     }
@@ -574,7 +580,6 @@ BankPhase(taskRunner) {
     }
 
     LogLine(LOG_FILE, "bank: playing walk-to-fishing-spot path (" toFishingSpotSteps.Length " steps)")
-    isRunningFn := () => taskRunner["running"]
     if (!PlayPathWithGuard(toFishingSpotSteps, isRunningFn)) {
         StopAndLog(taskRunner, "Walk-to-fishing-spot path failed or was stopped")
         return GoToPhase(taskRunner, "bank")

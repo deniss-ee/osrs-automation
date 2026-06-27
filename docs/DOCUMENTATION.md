@@ -518,6 +518,61 @@ records a click into the "Smelt X" dialog, and can withdraw more than one bank s
   `SaveSlotSequence`/`LoadSlotSequence`) — editable from `control-panel.ahk`'s Smelter tab, which
   shows the withdraw sequence as a `slot:count,slot:count` shorthand text field.
 
+### `auto-cooker.ahk` — cooking bot
+Lives in `scripts\`, built entirely from the library. Expected starting state: standing near the
+bank with a full inventory of raw food. Unlike the other gathering/processing scripts, this one has
+no recorded paths at all — every "walk" in its cycle is triggered by clicking a colored plugin
+marker that the game/plugin handles automatically, the same marker-click pattern
+`auto-fisher.ahk`/`auto-motherlode.ahk` use for their bank markers, applied to both the
+walk-to-campfire and walk-to-bank legs here.
+
+- **Hotkeys**: F1 = calibrate raw-food reference points (same mechanism as every other script's
+  inventory reference points — samples 4 points on the LAST inventory slot — but calibrated while
+  RAW food sits there, not while the slot is empty). F2/F3 = start/stop. F4 = clear config.
+- **Cycle**: `CookPhase` first checks the calibrated slot already reads as "not raw" — if so (e.g.
+  the bank ran out of raw food to withdraw last trip), it skips straight to `BankPhase`, same guard
+  `auto-smelter.ahk`'s `SmeltPhase` uses for the opposite case. Otherwise it searches the
+  `CampfireSearch` box for `CAMPFIRE_MARKER_COLOR` (`#FF00FF`) via `WaitForPixelSearch`
+  (`lib\Colors.ahk`), clicks it with a fixed offset (walks to and clicks the campfire
+  automatically), waits for `cooking-marker.png` to appear (the "Cook X" dialog) via
+  `WaitForImageCenter`, presses `COOK_CONFIRM_KEY` (Space) to confirm it — exactly like
+  `auto-smelter.ahk`'s `SMELT_KEY` confirming the "Smelt X" dialog — then blocks on
+  `WaitUntilOccupied(rawFoodPoints, ...)` until the calibrated slot's color changes away from raw
+  (cooked or burnt, doesn't matter which — same multi-point occupancy mechanism every other script
+  uses for "is it full"/"is it empty", just checking for "no longer this color" instead of "occupied"
+  in the usual sense). `BankPhase` searches the `BankRunSearch` box for `BANK_RUN_MARKER_COLOR`
+  (`#0000FF` — the same color `auto-fisher.ahk`'s `BANK_MARKER_COLOR` already uses for its own bank
+  marker), clicks it with a fixed offset (walks to and opens the bank automatically), deposits
+  everything via the shared `BankDepositAll` (`lib\Bank.ahk`), withdraws one fresh stack from
+  `WITHDRAW_SLOT_INDEX` via `BankWithdrawSlot`, then loops back to `CookPhase`.
+- **The campfire/bank-run search boxes are hardcoded tunable defaults, not hotkey-calibrated
+  regions**: both are fixed, UI-anchored plugin markers, not world/camera-dependent positions — same
+  precedent as `auto-fisher.ahk`'s `BANK_MARKER_SEARCH_X1/Y1/X2/Y2` (hardcoded defaults, never
+  calibrated via a hotkey, for the same reason). Still overridable by hand-editing the `.ini`
+  (`[CampfireSearch]`/`[BankRunSearch]` sections via `SaveRegion`/`LoadRegion`'s own default-param
+  support), just never via a recalibration keypress.
+- **`deposit.png`'s search position needs no new region at all**: the user's measured top-left
+  `(1327,963)` for that 72x72 image is exactly `lib\Grid.ahk`'s `GetDepositAllButton()` default
+  center `(1363,999)` minus half its width/height — an exact match — so `BankPhase` calls
+  `BankDepositAll(...)` completely unchanged, same as every other script.
+- **Currently**: `ENABLE_HUMANIZATION := false` (the default everywhere).
+- **Tunables**: `COLOR_TOLERANCE=20`, `CAMPFIRE_MARKER_COLOR=0xFF00FF`,
+  `CAMPFIRE_MARKER_TOLERANCE=20`, `CAMPFIRE_SEARCH_X1/Y1/X2/Y2=1621,376,1871,626`,
+  `CAMPFIRE_CLICK_OFFSET_X/Y=10,10`, `CAMPFIRE_SEARCH_TIMEOUT_MS=8000`,
+  `COOKING_MARKER_IMG_W/H=436,32`, `COOKING_MARKER_SEARCH_X1/Y1/X2/Y2=125,1081,561,1113`,
+  `COOKING_MARKER_TIMEOUT_MS=15000`, `COOK_CONFIRM_KEY="Space"`, `COOK_KEY_SETTLE_MS=100`,
+  `COOK_DONE_TIMEOUT_MS=180000` (3 min), `COOK_DONE_CONFIRM_TICKS=2`, `PHASE_TIMEOUT_COOK=30000`,
+  `BANK_RUN_MARKER_COLOR=0x0000FF`, `BANK_RUN_MARKER_TOLERANCE=20`,
+  `BANK_RUN_SEARCH_X1/Y1/X2/Y2=448,1030,698,1280`, `BANK_RUN_CLICK_OFFSET_X/Y=10,10`,
+  `BANK_RUN_SEARCH_TIMEOUT_MS=8000`, `BANK_OPEN_SETTLE_MS=300`, `BANK_OPEN_FAILSAFE_DELAY_MS=300`,
+  `WITHDRAW_SLOT_INDEX=1`, `WITHDRAW_SETTLE_MS=300`, `PHASE_TIMEOUT_BANK=30000`.
+  `COLOR_TOLERANCE` and `WITHDRAW_SLOT_INDEX` are also loadable from `[Tunables] colorTolerance` /
+  `withdrawSlotIndex` in the `.ini`; the campfire/bank-run search boxes from `[CampfireSearch]`/
+  `[BankRunSearch]` — none of this is wired into `control-panel.ahk` yet.
+- **No prior working baseline**: brand-new script, not a port — calibrate `rawFoodPoints` (F1) with
+  raw food in the last slot and run a real end-to-end cycle (cook → bank → withdraw → cook again)
+  before trusting it unattended.
+
 ### `auto-smith.ahk` — smithing bot
 Lives in `scripts\`, built entirely from the library; the newest of the four. Expected
 starting state: standing near the bank, ready to withdraw bars.

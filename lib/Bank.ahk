@@ -30,7 +30,13 @@
 ; script hand-tuning); the deposit-image parameters are identical
 ; everywhere today, so they default - pass overrides only if a
 ; future script uses a different button image/size.
-BankDepositAll(depositImg, settleMs, failsafeMs, imgW := 72, imgH := 72, openTimeoutMs := 15000, searchMargin := 20, imgOptions := "*20") {
+;
+; runningVarGetter (optional, same convention as Paths.ahk's
+; PlayPathWithGuard / the rest of this codebase's wait helpers):
+; threaded straight through to WaitForImageNearButton so a Stop
+; request is noticed while waiting for the bank to open, not just
+; between phases.
+BankDepositAll(depositImg, settleMs, failsafeMs, imgW := 72, imgH := 72, openTimeoutMs := 15000, searchMargin := 20, imgOptions := "*20", runningVarGetter := "") {
     ; Small settle before we even start polling - not a substitute
     ; for detecting the bank is open, just a brief buffer so we
     ; don't start checking the very same instant as the path's last
@@ -38,7 +44,7 @@ BankDepositAll(depositImg, settleMs, failsafeMs, imgW := 72, imgH := 72, openTim
     Sleep(JitterDelay(settleMs))
 
     depositBtn := GetDepositAllButton()
-    if (!WaitForImageNearButton(depositBtn, depositImg, imgW, imgH, &dcx, &dcy, openTimeoutMs, searchMargin, imgOptions))
+    if (!WaitForImageNearButton(depositBtn, depositImg, imgW, imgH, &dcx, &dcy, openTimeoutMs, searchMargin, imgOptions, , runningVarGetter))
         return false
 
     ; Deposit everything - one left-click on where the button was

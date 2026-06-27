@@ -383,7 +383,7 @@ SmeltPhase(taskRunner) {
     ; the mining script uses for "is it full", just waiting for the
     ; opposite direction, with the same confirm-ticks debounce so a
     ; single transient glitch can't be mistaken for "done".
-    WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, SMELT_TIMEOUT_MS, SMELT_CONFIRM_TICKS)
+    WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, SMELT_TIMEOUT_MS, SMELT_CONFIRM_TICKS, , () => taskRunner["running"])
 
     ; We made a real attempt (the smelt path played and the key was
     ; pressed) - reset the phase timer so PHASE_TIMEOUT_SMELT
@@ -412,7 +412,7 @@ BankPhase(taskRunner) {
     }
 
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
-    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS)) {
+    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {
         StopTaskRunner(taskRunner, "Bank never opened (Deposit All button not found)")
         return GoToPhase(taskRunner, "bank")
     }

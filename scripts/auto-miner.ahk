@@ -337,6 +337,9 @@ MinePhase(taskRunner) {
     ; depleted. Only returns to the TaskRunner (still "mine") once NO
     ; spot is currently ready, so it doesn't busy-loop forever.
     loop {
+        if (!taskRunner["running"])
+            return GoToPhase(taskRunner, "mine")
+
         if (IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE))
             return GoToPhase(taskRunner, "bank")
 
@@ -374,6 +377,8 @@ MinePhase(taskRunner) {
             depleteDeadline := A_TickCount + ORE_DEPLETE_TIMEOUT_MS
             changedStreak := 0
             loop {
+                if (!taskRunner["running"])
+                    return GoToPhase(taskRunner, "mine")
                 if (IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE)) {
                     ResetPhaseTimer(taskRunner)
                     return GoToPhase(taskRunner, "bank")
@@ -422,7 +427,7 @@ BankPhase(taskRunner) {
     }
 
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
-    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS)) {
+    if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {
         StopTaskRunner(taskRunner, "Bank never opened (Deposit All button not found)")
         return GoToPhase(taskRunner, "bank")
     }

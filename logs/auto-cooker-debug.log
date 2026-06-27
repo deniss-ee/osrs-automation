@@ -1,0 +1,110 @@
+11:24:06 ===== Bot started =====
+11:24:06 cook: campfire marker found at 1711,471 - clicking with offset
+11:24:13 cook: cook dialog visible - confirming with Space
+11:25:19 cook: last slot changed - done cooking, moving to bank
+11:25:19 bank: bank-run marker found at 525,1115 - clicking with offset
+11:25:25 bank: deposited, withdrawing raw food from slot 1
+11:25:26 bank: done, returning to cook phase
+11:25:26 cook: campfire marker found at 1717,473 - clicking with offset
+11:25:33 cook: cook dialog visible - confirming with Space
+11:26:39 cook: last slot changed - done cooking, moving to bank
+11:26:39 bank: bank-run marker found at 525,1115 - clicking with offset
+11:26:45 bank: deposited, withdrawing raw food from slot 1
+11:26:46 bank: done, returning to cook phase
+11:26:46 cook: campfire marker found at 1717,475 - clicking with offset
+11:26:53 cook: cook dialog visible - confirming with Space
+11:27:59 cook: last slot changed - done cooking, moving to bank
+11:27:59 bank: bank-run marker found at 525,1115 - clicking with offset
+11:28:05 bank: deposited, withdrawing raw food from slot 1
+11:28:06 bank: done, returning to cook phase
+11:28:06 cook: campfire marker found at 1715,473 - clicking with offset
+11:28:12 cook: cook dialog visible - confirming with Space
+11:29:05 cook: last slot changed - done cooking, moving to bank
+11:29:08 bank: bank-run marker found at 525,1115 - clicking with offset
+11:29:14 bank: deposited, withdrawing raw food from slot 1
+11:29:15 bank: done, returning to cook phase
+11:29:15 cook: campfire marker found at 1717,473 - clicking with offset
+11:29:21 cook: cook dialog visible - confirming with Space
+11:30:28 cook: last slot changed - done cooking, moving to bank
+11:30:28 bank: bank-run marker found at 525,1115 - clicking with offset
+11:30:34 bank: deposited, withdrawing raw food from slot 1
+11:30:34 bank: done, returning to cook phase
+11:30:35 cook: campfire marker found at 1717,475 - clicking with offset
+11:30:41 cook: cook dialog visible - confirming with Space
+11:31:47 cook: last slot changed - done cooking, moving to bank
+11:31:47 bank: bank-run marker found at 525,1115 - clicking with offset
+11:31:54 bank: deposited, withdrawing raw food from slot 1
+11:31:54 bank: done, returning to cook phase
+11:31:54 cook: campfire marker found at 1717,473 - clicking with offset
+11:32:01 cook: cook dialog visible - confirming with Space
+11:33:07 cook: last slot changed - done cooking, moving to bank
+11:33:07 bank: bank-run marker found at 525,1115 - clicking with offset
+11:33:14 bank: deposited, withdrawing raw food from slot 1
+11:33:14 bank: done, returning to cook phase
+11:33:14 cook: campfire marker found at 1717,473 - clicking with offset
+11:33:21 cook: cook dialog visible - confirming with Space
+11:34:27 cook: last slot changed - done cooking, moving to bank
+11:34:27 bank: bank-run marker found at 525,1115 - clicking with offset
+11:34:33 bank: deposited, withdrawing raw food from slot 1
+11:34:34 bank: done, returning to cook phase
+11:34:34 cook: campfire marker found at 1717,473 - clicking with offset
+11:34:41 cook: cook dialog visible - confirming with Space
+11:35:47 cook: last slot changed - done cooking, moving to bank
+11:35:47 bank: bank-run marker found at 525,1115 - clicking with offset
+11:35:53 bank: deposited, withdrawing raw food from slot 1
+11:35:54 bank: done, returning to cook phase
+11:35:54 cook: campfire marker found at 1717,475 - clicking with offset
+11:36:00 cook: cook dialog visible - confirming with Space
+11:37:07 cook: last slot changed - done cooking, moving to bank
+11:37:07 bank: bank-run marker found at 525,1115 - clicking with offset
+11:37:13 bank: deposited, withdrawing raw food from slot 1
+11:37:13 bank: done, returning to cook phase
+11:37:14 cook: campfire marker found at 1717,473 - clicking with offset
+11:37:20 cook: cook dialog visible - confirming with Space
+11:38:26 cook: last slot changed - done cooking, moving to bank
+11:38:26 bank: bank-run marker found at 525,1115 - clicking with offset
+11:38:33 bank: deposited, withdrawing raw food from slot 1
+11:38:33 bank: done, returning to cook phase
+11:38:33 cook: campfire marker found at 1717,473 - clicking with offset
+11:38:40 cook: cook dialog visible - confirming with Space
+11:39:46 cook: last slot changed - done cooking, moving to bank
+11:39:46 bank: bank-run marker found at 525,1115 - clicking with offset
+11:39:53 bank: deposited, withdrawing raw food from slot 1
+11:39:53 bank: done, returning to cook phase
+11:39:53 cook: campfire marker found at 1717,473 - clicking with offset
+11:40:00 cook: cook dialog visible - confirming with Space
+11:41:06 cook: last slot changed - done cooking, moving to bank
+11:41:06 bank: bank-run marker found at 525,1115 - clicking with offset
+11:41:12 bank: deposited, withdrawing raw food from slot 1
+11:41:13 bank: done, returning to cook phase
+11:41:13 cook: campfire marker found at 1715,473 - clicking with offset
+11:41:13 STOPPED: Stopped (F3)
+11:41:29 STOPPED: Cook dialog never appeared (cooking-marker.png not found)
+11:41:33 ===== Bot started =====
+11:41:34 STOPPED: Stopped (F3)
+11:41:37 ===== Bot started =====
+11:41:40 cook: last slot still not raw after settle window - skipping to bank
+11:41:44 ===== Bot started =====
+11:41:53 ===== Bot started =====
+11:41:53 cook: campfire marker found at 1711,471 - clicking with offset
+11:42:00 cook: cook dialog visible - confirming with Space
+11:43:06 cook: last slot changed - done cooking, moving to bank
+11:43:06 bank: bank-run marker found at 525,1115 - clicking with offset
+11:43:12 bank: deposited, withdrawing raw food from slot 1
+11:43:13 bank: done, returning to cook phase
+11:43:13 cook: campfire marker found at 1717,473 - clicking with offset
+11:43:20 cook: cook dialog visible - confirming with Space
+11:44:26 cook: last slot changed - done cooking, moving to bank
+11:44:26 bank: bank-run marker found at 525,1115 - clicking with offset
+11:44:32 bank: deposited, withdrawing raw food from slot 1
+11:44:33 bank: done, returning to cook phase
+11:44:33 cook: campfire marker found at 1717,473 - clicking with offset
+11:44:39 cook: cook dialog visible - confirming with Space
+11:45:46 cook: last slot changed - done cooking, moving to bank
+11:45:46 bank: bank-run marker found at 525,1115 - clicking with offset
+11:45:52 bank: deposited, withdrawing raw food from slot 1
+11:45:52 bank: done, returning to cook phase
+11:45:53 cook: campfire marker found at 1717,473 - clicking with offset
+11:45:59 cook: cook dialog visible - confirming with Space
+11:46:43 STOPPED: Stopped (F3)
+11:46:52 cook: last slot changed - done cooking, moving to bank
