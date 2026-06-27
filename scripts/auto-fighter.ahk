@@ -96,15 +96,15 @@ StopAndLog(taskRunner, reason) {
 global ENABLE_HUMANIZATION := false
 
 ; ---------- Tunables: NPC outline detection ----------
-global COLOR_TOLERANCE := 20
+global COLOR_TOLERANCE := 30
 ; The in-game combat-target highlight is a fixed, known magenta -
 ; not something that needs per-NPC calibration.
 global NPC_OUTLINE_COLOR := 0xFF00FF
-global NPC_SEARCH_STEP_PX := 30   ; FindNearestPixelColor's box-growth step - smaller = more precise "closest" pixel but slower; this is plenty precise for picking a click direction
-global NPC_SCAN_POLL_MS := 30     ; how often FightPhase re-scans for an outline when nothing is found yet - deliberately tight (not the TaskRunner's own 150ms tick) so a brief outline doesn't disappear again before the next look
+global NPC_SEARCH_STEP_PX := 20   ; FindNearestPixelColor's box-growth step - smaller = more precise "closest" pixel but slower; this is plenty precise for picking a click direction
+global NPC_SCAN_POLL_MS := 20     ; how often FightPhase re-scans for an outline when nothing is found yet - deliberately tight (not the TaskRunner's own 150ms tick) so a brief outline doesn't disappear again before the next look
 
 ; ---------- Tunables: attack click ----------
-global NPC_CLICK_OFFSET_PX := 3   ; how far past the found outline pixel (away from the character, along whichever axis it's mainly offset on) to click - lands inside the NPC's body instead of on the bare edge pixel between it and the background
+global NPC_CLICK_OFFSET_PX := 5   ; how far past the found outline pixel (away from the character, along whichever axis it's mainly offset on) to click - lands inside the NPC's body instead of on the bare edge pixel between it and the background
 global ATTACK_CLICK_COUNT := 1
 global ATTACK_CLICK_DELAY_MS := 10
 global ATTACK_CLICK_BOX := 0      ; 0 = land on the exact computed pixel every click; HumanClick's own jitter (when ENABLE_HUMANIZATION) still applies on top, capped at +/-2px
@@ -189,6 +189,13 @@ F6:: {
 LoadConfig() {
     global COMBAT_AREA_X1, COMBAT_AREA_Y1, COMBAT_AREA_X2, COMBAT_AREA_Y2
     global CHARACTER_CENTER_X, CHARACTER_CENTER_Y
+    global COLOR_TOLERANCE
+
+    ; Curated tunable - overwrites the hardcoded default above from
+    ; the .ini if present, so it can be tweaked without editing this
+    ; file (e.g. from the control panel). This script has no
+    ; runMode/banking, so it's the only curated value here.
+    COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
 
     combatRegion := LoadRegion(CONFIG, "CombatArea")
     COMBAT_AREA_X1 := combatRegion[1]

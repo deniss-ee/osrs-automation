@@ -18,7 +18,8 @@ auto gathering\
 │   ├── auto-miner.ahk                   mining
 │   ├── auto-smith.ahk                   smithing
 │   ├── auto-motherlode.ahk              Motherlode Mine
-│   └── auto-fighter.ahk                 NPC combat
+│   ├── auto-fighter.ahk                 NPC combat
+│   └── control-panel.ahk                tabbed GUI front-end for all 6 bots above
 ├── legacy\                              legacy scripts, untouched, reference only
 │   └── motherlode-miner.ahk / .ini
 ├── tools\                               throwaway diagnostics, kept for reference
@@ -38,7 +39,9 @@ auto gathering\
 │   └── Tooltip.ahk
 ├── images\                              ImageSearch reference images (anch.png, deposit.png,
 │                                         full/semifull/empty/semiempty/none/seminone.png)
-├── config\                              auto-created .ini files (one or more per real script)
+├── config\                              auto-created .ini files (one or more per real script) -
+│                                         gitignored (machine-specific calibration data, not
+│                                         versioned); kept on disk, just untracked
 ├── logs\                                debug logs (auto-fisher-debug.log, auto-smith-debug.log)
 └── docs\
     ├── DOCUMENTATION.md                 this file
@@ -284,6 +287,11 @@ still loads).
 - `SaveCoord`/`LoadCoord(configFile, section, key, ...)` — `key_x`/`key_y` pair.
 - `SaveFlag`/`LoadFlag(configFile, section, key, default:=false)` — plain on/off setting (e.g.
   `runMode`). Stored as `1`/`0`.
+- `SaveNumber`/`LoadNumber(configFile, section, key, default:=0)` — any numeric tunable (color
+  tolerance, slot indices, wait times). Added so `control-panel.ahk` (see below) can persist the
+  curated per-script tunables that used to be hardcoded `global` constants only.
+- `SaveString`/`LoadString(configFile, section, key, default:="")` — plain string tunables (e.g.
+  the smelter's `SMELT_KEY`). Same motivation as `SaveNumber`/`LoadNumber` above.
 - `SaveColor`/`LoadColor(configFile, section, key, defaultColor:=-1)` — single color; `-1` is
   this codebase's "not calibrated" sentinel.
 - `SaveColorPointList`/`LoadColorPointList(configFile, section, points)` — an ordered list of
@@ -293,6 +301,13 @@ still loads).
 - `SaveRegion`/`LoadRegion(configFile, section, ...)` — a 4-corner rectangle.
 - `SavePath`/`LoadPath(configFile, section, steps)` — the canonical path format (see
   `Paths.ahk`). Writes/reads `count`, then `step{i}_x/y/pause/button/running` per step.
+- `SaveSlotSequence`/`LoadSlotSequence(configFile, section)` — an ordered list of `{slot, count}`
+  Maps (an ordered bank-withdrawal plan: click bank slot N "count" times before moving to the next
+  entry — `auto-smelter.ahk`'s `WITHDRAW_SEQUENCE`). Same `count` + indexed-key shape as
+  `SaveColorPointList`/`LoadColorPointList`. Returns `[]` if the section is absent, same
+  "unconfigured" convention as the other list loaders — a caller that wants a non-empty hardcoded
+  fallback when nothing's been saved yet (as `auto-smelter.ahk` does) checks the result's `Length`
+  itself rather than relying on a built-in default parameter here.
 
 ### `Validate.ahk` — setup-validation accumulator
 Depends on `Safety.ahk`. Lets a script check every calibration value it needs and report ALL
@@ -430,7 +445,9 @@ inventory slot 1 and the rest empty.
   routinely taking longer), `PHASE_TIMEOUT_FISH=45000`, `BANK_MARKER_COLOR=0x0000FF`,
   `BANK_MARKER_TOLERANCE=20`, `BANK_MARKER_SEARCH_TIMEOUT_MS=8000`,
   `BANK_OPEN_SETTLE_MS=300`, `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `PHASE_TIMEOUT_BANK=30000`,
-  `NET_BANK_SLOT_INDEX=1`.
+  `NET_BANK_SLOT_INDEX=1`. `COLOR_TOLERANCE` and `NET_BANK_SLOT_INDEX` are also loadable from
+  `[Tunables] colorTolerance` / `netBankSlotIndex` in the `.ini` — editable from
+  `control-panel.ahk`'s Fisher tab.
 
 ### `auto-miner.ahk` — mining bot
 Lives in `scripts\` (promoted from a former `templates\single-ore-template.ahk` location —
@@ -455,6 +472,9 @@ ore spots, checked in priority order.
 - **Tunables**: `COLOR_TOLERANCE=20`, `ORE_CLICK_BOX=12`, `ORE_DEPLETE_TIMEOUT_MS=20000`,
   `ORE_DEPLETE_CONFIRM_TICKS=2`, `PHASE_TIMEOUT_MINE=15000`, `BANK_OPEN_SETTLE_MS=300`,
   `BANK_OPEN_FAILSAFE_DELAY_MS=600`, `WITHDRAW_AFTER_DEPOSIT_SETTLE_MS=300`, `PHASE_TIMEOUT_BANK=30000`.
+  `COLOR_TOLERANCE` and `WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX` are now also loadable from `[Tunables]
+  colorTolerance` / `withdrawSlotIndex` in the `.ini` (overwritten in `LoadConfig()`, falling back
+  to the hardcoded literal above if unset) — editable from `control-panel.ahk`'s Miner tab.
 
 ### `auto-smelter.ahk` — smelting bot
 Lives in `scripts\`, built entirely from the library, replacing `smelter-1.ahk`'s logic.
@@ -493,6 +513,10 @@ records a click into the "Smelt X" dialog, and can withdraw more than one bank s
   selected), `SMELT_KEY_SETTLE_MS=100`, `PHASE_TIMEOUT_SMELT=30000`, `BANK_OPEN_SETTLE_MS=300`,
   `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`, `WITHDRAW_FINAL_SETTLE_MS=300`,
   `PHASE_TIMEOUT_BANK=30000`. No debug logging in this script (see `Log.ahk` above).
+  `COLOR_TOLERANCE`, `SMELT_KEY`, and `WITHDRAW_SEQUENCE` are also loadable from `.ini`
+  (`[Tunables] colorTolerance` / `smeltKey`, and a `[WithdrawSequence]` section via
+  `SaveSlotSequence`/`LoadSlotSequence`) — editable from `control-panel.ahk`'s Smelter tab, which
+  shows the withdraw sequence as a `slot:count,slot:count` shorthand text field.
 
 ### `auto-smith.ahk` — smithing bot
 Lives in `scripts\`, built entirely from the library; the newest of the four. Expected
@@ -513,6 +537,9 @@ starting state: standing near the bank, ready to withdraw bars.
   `ANVIL_SPACE_SETTLE_MS=100`, `PHASE_TIMEOUT_ANVIL=30000`, `BANK_OPEN_SETTLE_MS=300`,
   `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`, `WITHDRAW_FINAL_SETTLE_MS=300`,
   `PHASE_TIMEOUT_BANK=30000`. Logs to `logs\auto-smith-debug.log` via `lib\Log.ahk`.
+  `COLOR_TOLERANCE`, `WITHDRAW_SLOT_1_INDEX`, and `WITHDRAW_SLOT_2_INDEX` are also loadable from
+  `[Tunables] colorTolerance` / `withdrawSlot1Index` / `withdrawSlot2Index` in the `.ini` —
+  editable from `control-panel.ahk`'s Smith tab.
 
 ### `auto-motherlode.ahk` — Motherlode Mine bot
 Lives in `scripts\`, built entirely from the library. Unlike the other four scripts, it
@@ -552,15 +579,24 @@ the mining area with an empty inventory and at least one spot visible.
   done, so "does a different green spot exist somewhere in the area" was tried as a full/green exit
   signal and immediately proved unusable — the debug log showed it switching spots roughly once
   per second, far faster than a vein can plausibly deplete, because that condition is true almost
-  continuously. Yellow is different: it's a brief, comparatively rare transition state, not a
-  near-permanent one like green, so a stray yellow match elsewhere is unlikely and low-cost (worst
-  case: one early re-scan that likely re-clicks the same still-active spot). There is no
-  "missing -> assume depleted" fallback: a poll that matches neither full/semifull nor
-  empty/semiempty is simply ignored (box stays put, wait continues) rather than counted toward
-  abandoning the spot. The only ways out of the depletion wait are an explicit yellow match
-  anywhere in the mining area, the inventory filling, or the hard `SPOT_DEPLETE_TIMEOUT_MS`
-  safety-net timeout. The instant a spot depletes, the phase re-scans immediately for another
-  green spot (no waiting for
+  continuously. **Yellow turned out to have the same problem in a busy area** (see bug #20): a
+  whole-area search for yellow matched some OTHER, already-depleted vein almost instantly, every
+  time. The first fix gated that whole-area search behind a local-only grace period — but live
+  evidence (bug #22) proved an already-depleted neighbor can sit yellow far longer than any
+  grace period, getting wrongly matched as "our spot depleted" over and over at the exact same
+  wrong position regardless of how long the grace period was set to. **There is no whole-area
+  fallback anymore** — the depletion wait searches ONLY the small tracked box for yellow, full
+  stop. **The tracking (full/semifull re-center) check and the yellow/depleted check
+  run independently every poll** (see bug #21) — they used to be `if`/`else`, which let a
+  persistent nearby green neighbor win the `if` every poll and starve the yellow check completely;
+  now a neighbor can still update `cx`/`cy` for tracking without blocking depletion detection. A
+  poll that matches neither is simply ignored (box stays put, wait continues) rather than counted
+  toward abandoning the spot. The only ways out of the depletion wait are an explicit yellow match
+  inside the tracked box, the inventory filling, or the hard
+  `SPOT_DEPLETE_TIMEOUT_MS` safety-net timeout (now the sole recovery path for camera drift the
+  tracking box never re-centers out of — slower than a fallback search, but never wrong about
+  which spot depleted). The instant a spot depletes, the phase re-scans
+  immediately for another green spot (no waiting for
   the next task-runner tick — same tight inner loop as `auto-miner.ahk`'s `MinePhase`) until none
   are found, at which point it checks for a red spot and stops the bot entirely if found (the
   mining flow for this area is done for now). Once the inventory fills,
@@ -582,6 +618,8 @@ the mining area with an empty inventory and at least one spot visible.
   `BANK_MARKER_CLICK_OFFSET_X=10`/`_Y=20`, `BANK_MARKER_SEARCH_TIMEOUT_MS=8000`,
   `DEPOSIT_RUN_WAIT_MS=10000` (sanity-check this against the real run+deposit time before relying
   on it unattended), `PHASE_TIMEOUT_BANK=30000`.
+  `COLOR_TOLERANCE` and `DEPOSIT_RUN_WAIT_MS` are also loadable from `[Tunables] colorTolerance` /
+  `depositRunWaitMs` in the `.ini` — editable from `control-panel.ahk`'s Motherlode tab.
 - **No prior working baseline**: unlike the other scripts (which replaced legacy logic the user
   could compare against directly), this is a brand-new flow built from scratch — calibrate all
   four calibrated values (mining area, inventory-full points, bank/hopper marker area, run-back
@@ -627,10 +665,72 @@ neither was added.
   `COMBAT_INDICATOR_X=1657`, `COMBAT_INDICATOR_Y=1232`, `COMBAT_START_COLOR=0x068C37`,
   `COMBAT_DEAD_COLOR=0x651312`, `COMBAT_START_TIMEOUT_MS=3000`, `COMBAT_KILL_TIMEOUT_MS=120000`,
   `COMBAT_CONFIRM_TICKS=2`, `COMBAT_POLL_MS=100`, `PHASE_TIMEOUT_FIGHT=150000`.
+  `COLOR_TOLERANCE` is also loadable from `[Tunables] colorTolerance` in the `.ini` (this script
+  has no `runMode`/banking, so it's the only curated tunable here) — editable from
+  `control-panel.ahk`'s Fighter tab.
 - **No prior working baseline**: this is a brand-new flow, not a port of anything. Calibrate both
   F-key values in-game and run a real fight (find → click → combat starts → kill confirmed → next
   target) before trusting it unattended, and sanity-check the indicator coordinate/colors against
   your own UI scale/setup.
+
+### `control-panel.ahk` — tabbed GUI front-end for all 6 bots
+Lives in `scripts\`, alongside the bots it controls. This is purely a front-end — it never runs a
+bot's own phase/`TaskRunner` logic, only edits that bot's `.ini` (via the same `lib\ConfigStore.ahk`
+functions the bot's own hotkeys use) and launches/closes the bot's own `.ahk` file as a separate
+process. Every bot's F1-F9 hotkeys still work exactly as before if run standalone — this panel is
+an additional way to operate them, not a replacement, per the user's explicit choice to keep both.
+- **Includes only what it needs**: `Tooltip.ahk`, `ConfigStore.ahk`, `Grid.ahk`, `Paths.ahk` (which
+  pulls in `Click.ahk` transitively). No `TaskRunner.ahk`/`Validate.ahk`/`Safety.ahk`/
+  `Colors.ahk`/`Images.ahk`/`Bank.ahk`/`Log.ahk` — the panel never clicks in-game on a bot's
+  behalf or runs any phase loop, so none of those are needed.
+- **One data-driven descriptor table** (`global DESCRIPTORS`, near the top of the file) is the
+  single source of truth for all 6 tabs — each entry lists that bot's `scriptFile`, its curated
+  `flags` (Checkboxes, `[Settings]` section) and `tunables` (Edit fields, `[Tunables]` section —
+  see each script's own doc entry above for exactly which ones), and its `calibrations` (one of
+  `region`/`coord`/`slotpoints`/`pointlist-repeatable`/`path`, matching that bot's own F-key
+  calibration actions). One generic `BuildBotTab()` function renders all 6 tabs from this table
+  instead of six near-duplicate blocks of GUI-building code. The smelter's withdraw sequence is
+  the one special case (`withdrawSequenceSection` key on its descriptor), shown as a single
+  `slot:count,slot:count` shorthand text field, parsed/formatted by `TextToSlotSequence`/
+  `SlotSequenceToText` (local to this file — text-shorthand parsing is a UI concern, not a library
+  one).
+- **Config path is resolved, not hardcoded**: `ResolveConfigPath()` reads each bot's OWN
+  `global CONFIG := ...` line directly out of its `.ahk` source via a small regex, so the panel
+  stays correct even if the user swaps which `.ini` profile a script points to (e.g.
+  `auto-miner.ahk`'s multiple ore profiles — `config\miner-m-coal.ini`, `miner-m-iron.ini`,
+  `miner-nm.ini`) without needing any change here.
+- **Status summary per tab**: `BuildStatusText()` re-reads that bot's `.ini` directly (the same
+  way that bot's own `ValidateSetup()` would) and shows `[OK]`/`[--]` per calibration item, with a
+  "Refresh Status" button. Refreshed automatically after every Save/capture action too.
+- **Countdown capture instead of instant F-key capture**: clicking a GUI button (unlike pressing
+  an F-key) moves the mouse off whatever in-game target you were hovering, so single-point/region
+  captures (`CountdownThenCapture`) show a 3-second tooltip countdown before sampling
+  `MouseGetPos`/`PixelGetColor`, instead of sampling instantly. The empty-slot-points capture
+  doesn't need this (it samples computed inventory-grid coordinates, not the mouse position) so it
+  only shows a short "make sure the inventory is empty" countdown via the lower-level
+  `CountdownThenRun` primitive.
+- **Path recording uses ONE shared global mouse hook** (`~LButton`/`~RButton`, registered only
+  while a recording is active) across all 6 tabs — the same single-active-recorder rule every bot
+  already enforces internally, just shared across bots here too. **Caveat**: don't use this
+  panel's Record button for a bot while that same bot is also running standalone — both processes
+  would try to own the same global hook, and only one wins.
+- **Start/Stop**: `Run()`s the bot's own `.ahk` file via the hardcoded `AHK_EXE` path
+  (`C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe`, same path used by this project's own
+  syntax-check testing process — see "Testing notes" below) and tracks its PID; Stop calls
+  `ProcessClose` on that PID. The bot's own F5/F6-equivalent logic underneath is completely
+  unmodified — equivalent to double-clicking the script, just from one place.
+- **Caveat**: saved parameters only take effect the NEXT time that bot's script (re)starts (its
+  `LoadConfig()` runs once at startup) — if it's already running, Stop then Start it again after
+  saving.
+- **No prior working baseline**: brand-new tool, not a port of anything. Verified so far: all 6
+  bot scripts plus this file syntax-check clean; the status panels correctly read real
+  previously-calibrated data from `config\auto-motherlode.ini` and `config\auto-smith.ini`
+  (confirmed via screenshot during development); `ResolveConfigPath` correctly resolves all 6
+  scripts' actual config paths including `auto-miner.ahk`'s non-default active profile; and the
+  new `ConfigStore.ahk` round-trip functions (`SaveNumber`/`LoadNumber`, `SaveString`/
+  `LoadString`, `SaveSlotSequence`/`LoadSlotSequence`) were verified with a standalone test
+  harness. Actually clicking through every capture/record/start/stop button in-game has not yet
+  been done by the user — treat that as unverified until you've run through it live.
 
 All five gathering/processing scripts' `.ini` files live in `config\` and use the same section conventions:
 `[InventoryEmptyPoints]` (4-point list), `[Settings] runMode`, and one section per recorded path
@@ -764,6 +864,58 @@ re-run the F1/F2/F3 calibration if it's actually a different physical location) 
     continuously, yellow is a brief, comparatively rare transition, so a stray match elsewhere is
     unlikely and low-cost (worst case: one early re-scan, probably re-clicking the same still-active
     spot).
+20. **Fix #19's assumption about yellow being "rare" turned out false for a busy multi-vein area**:
+    live debug-log evidence showed the bot rapid-fire clicking across an entire row of spots roughly
+    60-90px apart (e.g. 1139→1221→1307→1371→1291→1255, all at the same y), "confirming" depletion
+    in 0-3 seconds each — far too fast to be real (a genuine depletion in the same log took ~7s when
+    it finally wasn't interrupted) — and the user confirmed it switched to mining a visibly different
+    spot than the one just clicked. Root cause: in a busy area with several spots laid out close
+    together, some OTHER vein is very often already yellow at any given moment, so searching the
+    WHOLE area from the very first poll (fix #19) mistook that unrelated vein's yellow for "our spot
+    depleted" almost instantly, almost every time — the exact "another spot elsewhere" failure mode
+    fix #18 ruled out for green turned out to apply to yellow too once the area is busy enough.
+    Fixed with a two-stage search: for the first `SPOT_DEPLETE_LOCAL_GRACE_MS` (3000ms default) after
+    clicking, only the small tracked box (`SPOT_DEPLETE_RADIUS`, same box used for the full/semifull
+    re-center) is searched for yellow; only after that grace period elapses with nothing found
+    locally does the search widen to the whole mining area, same as fix #19. This keeps fix #19's
+    actual goal (a real depletion the camera drifted away from still eventually gets caught by the
+    hard `SPOT_DEPLETE_TIMEOUT_MS` safety net) while no longer trusting an unrelated vein's yellow as
+    "ours" within the first few seconds, when a false match is far more likely than a true one at
+    that exact moment.
+21. **Fix #20 immediately exposed a worse, pre-existing starvation bug**: right after #20 shipped,
+    the bot stopped detecting depletion AT ALL — it sat for ~57s (just short of the 60s hard
+    timeout) with zero log activity before being force-stopped. Root cause turned out to predate
+    #20 entirely: the yellow/depleted check was only ever reached in an `else` branch, gated behind
+    "the full/semifull re-center check did NOT match this poll." Since several other veins
+    normally show green/semi-full *continuously* nearby (the same fact that made the green-based
+    exit signal unusable back in #18), a persistent neighboring green spot within the small tracked
+    box could win that `if` on literally every poll, so the yellow check — local or whole-area —
+    never ran at all for the entire wait. Before #20 this was masked: the whole-area yellow search,
+    whenever it DID get a rare chance to run, matched almost instantly (that's the bug #20 fixed),
+    so the starvation was never visible. Once #20 made false matches harder to trigger, the
+    starvation became the dominant (and total) failure mode instead. Fixed by decoupling tracking
+    from detection: the full/semifull re-center check still runs first and updates `cx`/`cy` (and
+    resets `yellowStreak`) when it matches, but the yellow check now runs unconditionally every poll
+    regardless of whether the re-center check also matched, so a nearby green neighbor can no longer
+    block depletion detection.
+22. **Fix #20's grace-period-gated whole-area fallback was itself unsound**: live debug-log evidence
+    showed the SAME exact position (1185,751) get matched as "yellow confirmed, whole-area fallback"
+    for TWO DIFFERENT tracked spots in a row (1133,751 then 1251,751), each right as that spot's
+    grace period elapsed — while the user could see both genuinely-minable AND genuinely-empty spots
+    on screen at the same time. Root cause: #19/#20 assumed an unrelated vein being yellow was a
+    "brief, rare transition" that a few seconds of local-only search would safely wait out before
+    falling back to the whole area. That assumption is false — an already-depleted vein can sit
+    yellow for well over a minute (veins take a while to regenerate, confirmed elsewhere in this
+    file), comfortably longer than any grace period short enough to still be useful. No finite grace
+    period can distinguish "real depletion is just slow" from "a stale neighbor has been yellow for
+    a while," so every fallback search after the grace period was just as likely to grab the stale
+    neighbor as the real spot — and since it's the SAME stale neighbor every time, it kept winning.
+    Fixed by removing the whole-area fallback entirely: the yellow check now searches ONLY the small
+    tracked box, unconditionally, for the life of the wait. `SPOT_DEPLETE_LOCAL_GRACE_MS` is gone —
+    there's no second stage left to gate. The hard `SPOT_DEPLETE_TIMEOUT_MS` (60000ms, unchanged) is
+    now the sole recovery path for the camera-drift case #19 originally targeted: slower to recover
+    from than a fallback search, but it can never again misattribute a different spot's depletion to
+    the one actually being tracked.
 
 ## Testing notes
 

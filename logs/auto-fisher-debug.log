@@ -556,3 +556,55 @@
 13:42:26 fish: OSRS window not focused - paused
 13:42:29 fish: OSRS window not focused - paused
 13:42:29 fish: no spot found in area, still searching
+09:45:56 ===== Bot started =====
+09:45:57 fish: found spot at 1573,765 - clicking
+09:45:58 fish: acquired at 1557,755 - tracking
+09:46:23 fish: inventory full -> bank
+09:46:23 bank: entered bank phase, searching for marker color
+09:46:23 bank: marker found at 133,367 - clicking with offset
+09:46:33 bank: deposited (withdrawAfterDeposit off - skipping withdraw)
+09:46:33 bank: playing walk-to-fishing-spot path (2 steps)
+09:46:42 bank: done, returning to fish phase
+09:46:42 fish: found spot at 1611,725 - clicking
+09:46:43 fish: acquired at 1569,711 - tracking
+09:46:49 fish: spot confirmed gone after 5 misses (last seen near 1245,801) -> re-search
+09:46:49 fish: found spot at 1317,801 - clicking
+09:46:50 fish: acquired at 1289,799 - tracking
+09:48:09 ===== Bot started =====
+09:48:10 fish: found spot at 1415,789 - clicking
+09:48:10 fish: acquired at 1367,785 - tracking
+09:48:12 STOPPED: Stopped (F6)
+09:48:14 fish: inventory full -> bank
+09:48:18 ===== Bot started =====
+09:48:18 fish: found spot at 1415,789 - clicking
+09:48:19 fish: inventory full (during acquire) -> bank
+09:48:19 bank: entered bank phase, searching for marker color
+09:48:19 bank: marker found at 239,377 - clicking with offset
+09:48:28 bank: deposited (withdrawAfterDeposit off - skipping withdraw)
+09:48:28 bank: playing walk-to-fishing-spot path (2 steps)
+09:48:37 bank: done, returning to fish phase
+09:48:37 fish: found spot at 1365,791 - clicking
+09:48:38 fish: acquired at 1253,817 - tracking
+09:50:57 fish: spot confirmed gone after 5 misses (last seen near 1245,785) -> re-search
+09:50:57 fish: found spot at 1187,785 - clicking
+09:50:58 fish: acquired at 1187,785 - tracking
+09:51:07 fish: inventory full -> bank
+09:51:07 bank: entered bank phase, searching for marker color
+09:51:08 bank: marker found at 355,331 - clicking with offset
+09:51:16 bank: deposited (withdrawAfterDeposit off - skipping withdraw)
+09:51:16 bank: playing walk-to-fishing-spot path (2 steps)
+09:51:25 bank: done, returning to fish phase
+09:51:25 fish: found spot at 1317,793 - clicking
+09:51:26 fish: acquired at 1255,815 - tracking
+09:53:23 fish: inventory full -> bank
+09:53:23 bank: entered bank phase, searching for marker color
+09:53:23 bank: marker found at 283,325 - clicking with offset
+09:53:31 bank: deposited (withdrawAfterDeposit off - skipping withdraw)
+09:53:31 bank: playing walk-to-fishing-spot path (2 steps)
+09:53:40 bank: done, returning to fish phase
+09:53:40 fish: found spot at 1341,795 - clicking
+09:53:41 fish: acquired at 1213,785 - tracking
+09:53:42 fish: spot confirmed gone after 5 misses (last seen near 1207,785) -> re-search
+09:53:42 fish: found spot at 1247,785 - clicking
+09:53:43 fish: acquired at 1245,785 - tracking
+09:53:47 ===== Bot started =====

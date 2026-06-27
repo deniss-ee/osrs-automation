@@ -280,6 +280,7 @@ RecordClick(*) {
 LoadConfig() {
     global emptySlotPoints, runMode, checkPreviousSlot
     global smeltSteps, toBankSteps, toSmelterSteps
+    global COLOR_TOLERANCE, SMELT_KEY, WITHDRAW_SEQUENCE
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
 
     ; Plain on/off settings, edited directly in the .ini - see the
@@ -287,6 +288,18 @@ LoadConfig() {
     ; comment. Neither one is a hotkey.
     runMode := LoadFlag(CONFIG, "Settings", "runMode", false)
     checkPreviousSlot := LoadFlag(CONFIG, "Settings", "checkPreviousSlot", false)
+
+    ; Curated tunables - overwrite the hardcoded defaults above from
+    ; the .ini if present, so these can be tweaked without editing
+    ; this file (e.g. from the control panel).
+    COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
+    SMELT_KEY := LoadString(CONFIG, "Tunables", "smeltKey", SMELT_KEY)
+    ; WITHDRAW_SEQUENCE keeps its hardcoded array (set above) as the
+    ; fallback default if the ini section is empty/unset - LoadSlotSequence
+    ; returns [] for "never saved", which isn't a usable withdraw plan.
+    loadedSequence := LoadSlotSequence(CONFIG, "WithdrawSequence")
+    if (loadedSequence.Length > 0)
+        WITHDRAW_SEQUENCE := loadedSequence
 
     smeltSteps := LoadPath(CONFIG, "Smelt")
     toBankSteps := LoadPath(CONFIG, "ToBank")

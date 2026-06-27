@@ -31,6 +31,26 @@ LoadFlag(configFile, section, key, default := false) {
     return Integer(IniRead(configFile, section, key, default ? 1 : 0)) = 1
 }
 
+; ---- Numbers (any numeric tunable - color tolerance, slot indices, wait times) ----
+
+SaveNumber(configFile, section, key, value) {
+    IniWrite(value, configFile, section, key)
+}
+
+LoadNumber(configFile, section, key, default := 0) {
+    return Number(IniRead(configFile, section, key, default))
+}
+
+; ---- Strings (plain text tunables, e.g. a confirm-dialog key name) ----
+
+SaveString(configFile, section, key, value) {
+    IniWrite(value, configFile, section, key)
+}
+
+LoadString(configFile, section, key, default := "") {
+    return IniRead(configFile, section, key, default)
+}
+
 ; ---- Colors ----
 
 SaveColor(configFile, section, key, color) {
@@ -120,4 +140,33 @@ LoadPath(configFile, section) {
         steps.Push(Map("x", x, "y", y, "pause", pause, "button", button, "running", running))
     }
     return steps
+}
+
+; ---- Slot sequences (an ordered list of {slot, count} - e.g. an
+; ordered bank-withdrawal plan, click bank slot N "count" times
+; before moving to the next entry). Same count + indexed-key shape
+; as SaveColorPointList/LoadColorPointList above. Returns [] if the
+; section is absent - same "unconfigured" convention as the other
+; list loaders, so a caller that wants a non-empty hardcoded default
+; when nothing's been saved yet should check the result's Length
+; itself rather than relying on a built-in default here.
+
+SaveSlotSequence(configFile, section, sequence) {
+    IniWrite(sequence.Length, configFile, section, "count")
+    for i, entry in sequence {
+        IniWrite(entry["slot"], configFile, section, "entry" i "_slot")
+        IniWrite(entry["count"], configFile, section, "entry" i "_count")
+    }
+}
+
+LoadSlotSequence(configFile, section) {
+    count := Integer(IniRead(configFile, section, "count", 0))
+    sequence := []
+    loop count {
+        i := A_Index
+        slot := Integer(IniRead(configFile, section, "entry" i "_slot", 0))
+        entryCount := Integer(IniRead(configFile, section, "entry" i "_count", 0))
+        sequence.Push(Map("slot", slot, "count", entryCount))
+    }
+    return sequence
 }

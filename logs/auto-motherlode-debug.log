@@ -1,58 +1,303 @@
-15:09:45 ===== Bot started =====
-15:09:45 mine: inventory full -> bank
-15:09:45 bank: searching for hopper marker color
-15:09:45 bank: marker found at 873,87 - clicking with offset
-15:09:48 STOPPED: Stopped (F8)
-15:09:52 ===== Bot started =====
-15:09:52 mine: found minable spot at 1313,749 - clicking
-15:10:31 STOPPED: Stopped (F8)
-15:10:34 mine: inventory full (while depleting) -> bank
-15:16:17 ===== Bot started =====
-15:16:17 mine: found minable spot at 1251,747 - clicking
-15:16:18 mine: another minable spot appeared at 1311,747 while waiting near 1251,747 - moving on
-15:16:18 mine: found minable spot at 1311,747 - clicking
-15:16:31 STOPPED: Stopped (F8)
-15:16:34 ===== Bot started =====
-15:16:35 mine: found minable spot at 1073,747 - clicking
-15:16:36 mine: another minable spot appeared at 1139,747 while waiting near 1085,747 - moving on
-15:16:36 mine: found minable spot at 1145,747 - clicking
-15:16:37 mine: another minable spot appeared at 1231,747 while waiting near 1145,747 - moving on
-15:16:37 mine: found minable spot at 1233,747 - clicking
-15:16:44 mine: inventory full (while depleting) -> bank
-15:16:44 bank: searching for hopper marker color
-15:16:44 bank: marker found at 1115,87 - clicking with offset
-15:16:54 bank: playing run-back path (2 steps)
-15:17:03 bank: done, returning to mine phase
-15:17:03 mine: no full/empty/none spot found in area, still searching
-15:17:07 mine: no full/empty/none spot found in area, still searching
-15:17:08 STOPPED: Stopped (F8)
-15:17:12 ===== Bot started =====
-15:17:12 mine: found minable spot at 1259,753 - clicking
-15:17:17 mine: another minable spot appeared at 1369,747 while waiting near 1251,747 - moving on
-15:17:17 mine: found minable spot at 1369,747 - clicking
-15:17:18 mine: another minable spot appeared at 1289,747 while waiting near 1353,747 - moving on
-15:17:19 mine: found minable spot at 1285,747 - clicking
-15:17:20 mine: another minable spot appeared at 1253,747 while waiting near 1285,747 - moving on
-15:17:20 mine: found minable spot at 1253,747 - clicking
-15:17:50 mine: another minable spot appeared at 1191,747 while waiting near 1251,747 - moving on
-15:17:50 mine: found minable spot at 1191,747 - clicking
-15:18:06 mine: another minable spot appeared at 1369,747 while waiting near 1243,747 - moving on
-15:18:06 mine: found minable spot at 1369,747 - clicking
-15:18:07 mine: another minable spot appeared at 1319,747 while waiting near 1369,747 - moving on
-15:18:07 mine: found minable spot at 1313,747 - clicking
-15:18:19 mine: another minable spot appeared at 1133,747 while waiting near 1313,747 - moving on
-15:18:19 mine: found minable spot at 1133,747 - clicking
-15:18:21 mine: another minable spot appeared at 1241,747 while waiting near 1145,747 - moving on
-15:18:21 mine: found minable spot at 1243,747 - clicking
-15:18:28 STOPPED: Stopped (F8)
-15:23:11 ===== Bot started =====
-15:23:11 mine: found minable spot at 1251,747 - clicking
-15:23:33 STOPPED: Stopped (F8)
-15:23:34 ===== Bot started =====
-15:23:34 STOPPED: Stopped (F8)
-15:23:36 ===== Bot started =====
-15:23:37 mine: found minable spot at 1311,747 - clicking
-15:24:14 mine: inventory full (while depleting) -> bank
-15:24:14 bank: searching for hopper marker color
-15:24:14 bank: marker found at 1039,87 - clicking with offset
-15:24:20 STOPPED: Stopped (F8)
+22:00:16 ===== Bot started =====
+22:00:16 mine: found minable spot at 1119,751 - clicking
+22:00:16 mine: depletion wait starting near 1119,751
+22:00:16 mine: still waiting near 1119,751 (0s elapsed, recentered-this-poll=0)
+22:00:19 mine: depletion-wait grace period elapsed near 1133,751 - widening yellow search to whole area
+22:00:20 mine: spot depleted (yellow confirmed, whole-area fallback) near 1133,751 (matched at 1185,751)
+22:00:20 mine: found minable spot at 1251,751 - clicking
+22:00:20 mine: depletion wait starting near 1251,751
+22:00:20 mine: still waiting near 1251,751 (0s elapsed, recentered-this-poll=0)
+22:00:23 mine: depletion-wait grace period elapsed near 1251,751 - widening yellow search to whole area
+22:00:25 mine: spot depleted (yellow confirmed, whole-area fallback) near 1251,751 (matched at 1185,751)
+22:00:25 mine: no full/empty/none spot found in area, still searching
+22:00:29 mine: no full/empty/none spot found in area, still searching
+22:00:32 STOPPED: Stopped (F8)
+22:09:12 ===== Bot started =====
+22:09:12 mine: inventory full -> bank
+22:09:12 bank: searching for hopper marker color
+22:09:13 bank: marker found at 905,49 - clicking with offset
+22:09:14 STOPPED: Stopped (F8)
+22:09:19 ===== Bot started =====
+22:09:19 mine: no full/empty/none spot found in area, still searching
+22:09:21 STOPPED: Stopped (F8)
+22:09:24 ===== Bot started =====
+22:09:24 mine: found minable spot at 1315,749 - clicking
+22:09:25 mine: depletion wait starting near 1315,749
+22:09:25 mine: still waiting near 1315,749 (0s elapsed, recentered-this-poll=0)
+22:09:30 mine: still waiting near 1299,749 (5s elapsed, recentered-this-poll=0)
+22:09:35 mine: still waiting near 1299,749 (10s elapsed, recentered-this-poll=0)
+22:09:40 mine: still waiting near 1299,749 (15s elapsed, recentered-this-poll=0)
+22:09:45 mine: still waiting near 1299,749 (21s elapsed, recentered-this-poll=0)
+22:09:50 mine: still waiting near 1299,749 (26s elapsed, recentered-this-poll=0)
+22:09:55 mine: still waiting near 1299,749 (31s elapsed, recentered-this-poll=0)
+22:10:00 mine: still waiting near 1299,749 (36s elapsed, recentered-this-poll=0)
+22:10:06 mine: still waiting near 1299,749 (41s elapsed, recentered-this-poll=0)
+22:10:06 STOPPED: Stopped (F8)
+22:10:09 mine: inventory full (while depleting) -> bank
+23:54:42 ===== Bot started =====
+23:54:42 mine: no vein found in area, still searching
+23:54:44 ===== Bot started =====
+23:54:46 mine: no vein found in area, still searching
+23:54:47 mine: OSRS window not focused - paused
+23:54:48 ===== Bot started =====
+23:54:48 mine: no vein found in area, still searching
+23:54:50 mine: OSRS window not focused - paused
+23:54:51 mine: OSRS window not focused - paused
+23:55:25 ===== Bot started =====
+23:55:25 mine: found vein at 1133,747 - clicking
+23:55:25 mine: acquired at 1133,747 - tracking
+23:55:26 mine: vein confirmed gone after 5 misses (last seen near 1133,747) -> re-search
+23:55:26 mine: found vein at 1137,747 - clicking
+23:55:26 mine: acquired at 1157,747 - tracking
+23:55:27 mine: vein confirmed gone after 5 misses (last seen near 1157,747) -> re-search
+23:55:27 mine: found vein at 1211,747 - clicking
+23:55:27 mine: acquired at 1241,747 - tracking
+23:55:28 mine: vein confirmed gone after 5 misses (last seen near 1241,747) -> re-search
+23:55:28 mine: found vein at 1249,747 - clicking
+23:55:28 mine: acquired at 1251,747 - tracking
+23:55:29 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:29 mine: found vein at 1251,747 - clicking
+23:55:30 mine: acquired at 1251,747 - tracking
+23:55:30 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:30 mine: found vein at 1251,747 - clicking
+23:55:31 mine: acquired at 1251,747 - tracking
+23:55:31 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:31 mine: found vein at 1251,747 - clicking
+23:55:32 mine: acquired at 1251,747 - tracking
+23:55:33 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:33 mine: found vein at 1251,747 - clicking
+23:55:33 mine: acquired at 1251,747 - tracking
+23:55:34 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:34 mine: found vein at 1251,747 - clicking
+23:55:34 mine: acquired at 1251,747 - tracking
+23:55:35 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:35 mine: found vein at 1251,747 - clicking
+23:55:35 mine: acquired at 1251,747 - tracking
+23:55:36 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:36 mine: found vein at 1251,747 - clicking
+23:55:36 mine: acquired at 1251,747 - tracking
+23:55:37 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:37 mine: found vein at 1251,747 - clicking
+23:55:37 mine: acquired at 1251,747 - tracking
+23:55:38 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:38 mine: found vein at 1251,747 - clicking
+23:55:39 mine: acquired at 1251,747 - tracking
+23:55:39 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:39 mine: found vein at 1251,747 - clicking
+23:55:40 mine: acquired at 1251,747 - tracking
+23:55:40 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:40 mine: found vein at 1251,747 - clicking
+23:55:41 mine: acquired at 1251,747 - tracking
+23:55:42 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:42 mine: found vein at 1251,747 - clicking
+23:55:42 mine: acquired at 1251,747 - tracking
+23:55:43 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:43 mine: found vein at 1251,747 - clicking
+23:55:43 mine: acquired at 1251,747 - tracking
+23:55:44 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:44 mine: found vein at 1251,747 - clicking
+23:55:44 mine: acquired at 1251,747 - tracking
+23:55:45 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:45 mine: found vein at 1251,747 - clicking
+23:55:45 mine: acquired at 1251,747 - tracking
+23:55:46 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:46 mine: found vein at 1251,747 - clicking
+23:55:47 mine: acquired at 1251,747 - tracking
+23:55:47 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:47 mine: found vein at 1251,747 - clicking
+23:55:48 mine: acquired at 1251,747 - tracking
+23:55:48 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:48 mine: found vein at 1251,747 - clicking
+23:55:49 mine: acquired at 1251,747 - tracking
+23:55:49 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:49 mine: found vein at 1251,747 - clicking
+23:55:50 mine: acquired at 1251,747 - tracking
+23:55:51 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:51 mine: found vein at 1251,747 - clicking
+23:55:51 mine: acquired at 1251,747 - tracking
+23:55:52 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:52 mine: found vein at 1251,747 - clicking
+23:55:52 mine: acquired at 1251,747 - tracking
+23:55:53 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:53 mine: found vein at 1251,747 - clicking
+23:55:53 mine: acquired at 1251,747 - tracking
+23:55:54 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:54 mine: found vein at 1251,747 - clicking
+23:55:54 mine: acquired at 1251,747 - tracking
+23:55:55 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:55 mine: found vein at 1251,747 - clicking
+23:55:55 mine: acquired at 1251,747 - tracking
+23:55:56 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:56 mine: found vein at 1251,747 - clicking
+23:55:57 mine: acquired at 1251,747 - tracking
+23:55:57 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:57 mine: found vein at 1251,747 - clicking
+23:55:58 mine: acquired at 1251,747 - tracking
+23:55:58 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:55:58 mine: found vein at 1311,747 - clicking
+23:55:59 mine: acquired at 1311,747 - tracking
+23:55:59 mine: vein confirmed gone after 5 misses (last seen near 1311,747) -> re-search
+23:56:00 mine: found vein at 1303,747 - clicking
+23:56:00 mine: acquired at 1275,747 - tracking
+23:56:01 mine: vein confirmed gone after 5 misses (last seen near 1275,747) -> re-search
+23:56:01 mine: found vein at 1253,747 - clicking
+23:56:01 mine: acquired at 1251,747 - tracking
+23:56:02 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:02 mine: found vein at 1251,747 - clicking
+23:56:02 mine: acquired at 1251,747 - tracking
+23:56:03 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:03 mine: found vein at 1251,747 - clicking
+23:56:03 mine: acquired at 1251,747 - tracking
+23:56:04 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:04 mine: found vein at 1251,747 - clicking
+23:56:04 mine: acquired at 1251,747 - tracking
+23:56:05 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:05 mine: found vein at 1251,747 - clicking
+23:56:06 mine: acquired at 1251,747 - tracking
+23:56:06 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:06 mine: found vein at 1251,747 - clicking
+23:56:07 mine: acquired at 1251,747 - tracking
+23:56:07 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:07 mine: found vein at 1251,747 - clicking
+23:56:08 mine: acquired at 1251,747 - tracking
+23:56:09 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:09 mine: found vein at 1251,747 - clicking
+23:56:09 mine: acquired at 1251,747 - tracking
+23:56:10 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:10 mine: found vein at 1251,747 - clicking
+23:56:10 mine: acquired at 1251,747 - tracking
+23:56:10 STOPPED: Stopped (F4)
+23:56:11 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:22 ===== Bot started =====
+23:56:22 mine: found vein at 1251,747 - clicking
+23:56:23 mine: acquired at 1251,747 - tracking
+23:56:23 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:24 mine: found vein at 1251,747 - clicking
+23:56:24 mine: acquired at 1251,747 - tracking
+23:56:25 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:25 mine: found vein at 1251,747 - clicking
+23:56:25 mine: acquired at 1251,747 - tracking
+23:56:26 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:26 mine: found vein at 1251,747 - clicking
+23:56:26 mine: acquired at 1251,747 - tracking
+23:56:27 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:27 mine: found vein at 1251,747 - clicking
+23:56:27 mine: acquired at 1251,747 - tracking
+23:56:28 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:28 mine: found vein at 1251,747 - clicking
+23:56:28 mine: acquired at 1251,747 - tracking
+23:56:29 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:29 mine: found vein at 1251,747 - clicking
+23:56:30 mine: acquired at 1251,747 - tracking
+23:56:30 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:30 mine: found vein at 1251,747 - clicking
+23:56:31 mine: acquired at 1251,747 - tracking
+23:56:31 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:31 mine: found vein at 1311,747 - clicking
+23:56:32 mine: acquired at 1311,747 - tracking
+23:56:32 mine: vein confirmed gone after 5 misses (last seen near 1311,747) -> re-search
+23:56:32 mine: found vein at 1307,747 - clicking
+23:56:33 mine: acquired at 1281,747 - tracking
+23:56:34 mine: vein confirmed gone after 5 misses (last seen near 1281,747) -> re-search
+23:56:34 mine: found vein at 1255,747 - clicking
+23:56:34 mine: acquired at 1251,747 - tracking
+23:56:35 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:35 mine: found vein at 1251,747 - clicking
+23:56:35 mine: acquired at 1251,747 - tracking
+23:56:36 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:36 mine: found vein at 1251,747 - clicking
+23:56:36 mine: acquired at 1251,747 - tracking
+23:56:37 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:37 mine: found vein at 1251,747 - clicking
+23:56:37 mine: acquired at 1251,747 - tracking
+23:56:38 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:38 mine: found vein at 1251,747 - clicking
+23:56:39 mine: acquired at 1251,747 - tracking
+23:56:39 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:39 mine: found vein at 1251,747 - clicking
+23:56:40 mine: acquired at 1251,747 - tracking
+23:56:40 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:40 mine: found vein at 1251,747 - clicking
+23:56:41 ===== Bot started =====
+23:56:41 mine: acquired at 1251,747 - tracking
+23:56:41 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:41 mine: found vein at 1251,747 - clicking
+23:56:42 mine: acquired at 1245,747 - tracking
+23:56:43 mine: vein confirmed gone after 5 misses (last seen near 1245,747) -> re-search
+23:56:43 mine: found vein at 1205,747 - clicking
+23:56:43 mine: acquired at 1195,747 - tracking
+23:56:44 mine: vein confirmed gone after 5 misses (last seen near 1195,747) -> re-search
+23:56:44 mine: found vein at 1197,747 - clicking
+23:56:44 mine: acquired at 1227,747 - tracking
+23:56:45 mine: vein confirmed gone after 5 misses (last seen near 1227,747) -> re-search
+23:56:45 mine: found vein at 1247,747 - clicking
+23:56:45 ===== Bot started =====
+23:56:45 mine: acquired at 1251,747 - tracking
+23:56:46 ===== Bot started =====
+23:56:46 ===== Bot started =====
+23:56:46 ===== Bot started =====
+23:56:46 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:46 mine: found vein at 1251,747 - clicking
+23:56:47 mine: acquired at 1251,747 - tracking
+23:56:47 ===== Bot started =====
+23:56:47 STOPPED: Stopped (F4)
+23:56:47 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+23:56:48 STOPPED: Stopped (F4)
+23:56:48 STOPPED: Stopped (F4)
+00:00:04 ===== Bot started =====
+00:00:04 mine: found vein at 1191,747 - clicking
+00:00:05 mine: acquired at 1195,747 - tracking
+00:00:37 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:00:37 mine: no vein found in area, still searching
+00:00:41 ===== Bot started =====
+00:00:41 mine: no vein found in area, still searching
+00:00:42 STOPPED: Stopped (F4)
+00:00:47 ===== Bot started =====
+00:00:47 mine: found vein at 1369,747 - clicking
+00:00:48 mine: acquired at 1363,747 - tracking
+00:01:22 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:01:22 mine: found vein at 1311,747 - clicking
+00:01:23 mine: acquired at 1305,747 - tracking
+00:01:57 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:01:57 mine: no vein found in area, still searching
+00:02:00 STOPPED: Stopped (F4)
+00:02:16 ===== Bot started =====
+00:02:16 mine: found vein at 1311,747 - clicking
+00:02:17 mine: acquired at 1303,747 - tracking
+00:02:47 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:02:47 mine: found vein at 1191,747 - clicking
+00:02:48 mine: acquired at 1203,747 - tracking
+00:03:05 ===== Bot started =====
+00:03:10 mine: vein confirmed gone after 5 misses (last seen near 1533,983) -> re-search
+00:03:10 mine: no vein found in area, still searching
+00:03:14 mine: no vein found in area, still searching
+00:03:18 mine: no vein found in area, still searching
+00:03:22 mine: found vein at 1271,763 - clicking
+00:03:22 mine: acquired at 1253,749 - tracking
+00:03:26 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:03:26 mine: found vein at 1369,747 - clicking
+00:03:27 mine: acquired at 1361,747 - tracking
+00:03:59 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:03:59 mine: found vein at 1311,747 - clicking
+00:04:00 mine: acquired at 1303,747 - tracking
+00:04:40 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:04:40 mine: found vein at 1133,747 - clicking
+00:04:40 mine: acquired at 1141,747 - tracking
+00:05:23 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:05:24 mine: found vein at 1191,747 - clicking
+00:05:24 mine: acquired at 1199,747 - tracking
+00:05:48 STOPPED: Stopped (F4)
+00:05:53 mine: vein confirmed gone after 5 misses (last seen near 1651,1211) -> re-search
+00:06:05 ===== Bot started =====
+00:06:05 mine: found vein at 1251,747 - clicking
+00:06:06 mine: acquired at 1251,747 - tracking
+00:06:08 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:06:08 mine: found vein at 1369,747 - clicking
+00:06:09 mine: acquired at 1361,747 - tracking
+00:06:50 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:06:50 mine: found vein at 1311,747 - clicking
+00:06:51 mine: acquired at 1301,747 - tracking
+00:07:23 mine: vein confirmed gone after 5 misses (last seen near 1251,747) -> re-search
+00:07:23 mine: found vein at 1133,747 - clicking
+00:07:24 mine: acquired at 1145,747 - tracking
+00:07:46 STOPPED: Stopped (F4)

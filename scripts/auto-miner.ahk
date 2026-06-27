@@ -261,6 +261,7 @@ RecordClick(*) {
 LoadConfig() {
     global oreSpots, emptySlotPoints, runMode, withdrawAfterDeposit
     global toBankSteps, backToMineSteps
+    global COLOR_TOLERANCE, WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX
     oreSpots := LoadColorPointList(CONFIG, "OreSpots")
 
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
@@ -270,6 +271,12 @@ LoadConfig() {
     ; comment. Neither is a hotkey.
     runMode := LoadFlag(CONFIG, "Settings", "runMode", false)
     withdrawAfterDeposit := LoadFlag(CONFIG, "Settings", "withdrawAfterDeposit", false)
+
+    ; Curated tunables - overwrite the hardcoded defaults above from
+    ; the .ini if present, so these can be tweaked without editing
+    ; this file (e.g. from the control panel).
+    COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
+    WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlotIndex", WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX)
 
     toBankSteps := LoadPath(CONFIG, "ToBank")
     backToMineSteps := LoadPath(CONFIG, "BackToMine")

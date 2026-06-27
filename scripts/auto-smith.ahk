@@ -256,11 +256,19 @@ RecordClick(*) {
 LoadConfig() {
     global emptySlotPoints, runMode
     global toAnvilSteps, toBankSteps
+    global COLOR_TOLERANCE, WITHDRAW_SLOT_1_INDEX, WITHDRAW_SLOT_2_INDEX
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
 
     ; Plain on/off setting, edited directly in the .ini - see the
     ; "RUN MODE" note in the header comment. Not a hotkey.
     runMode := LoadFlag(CONFIG, "Settings", "runMode", false)
+
+    ; Curated tunables - overwrite the hardcoded defaults above from
+    ; the .ini if present, so these can be tweaked without editing
+    ; this file (e.g. from the control panel).
+    COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
+    WITHDRAW_SLOT_1_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlot1Index", WITHDRAW_SLOT_1_INDEX)
+    WITHDRAW_SLOT_2_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlot2Index", WITHDRAW_SLOT_2_INDEX)
 
     toAnvilSteps := LoadPath(CONFIG, "ToAnvil")
     toBankSteps := LoadPath(CONFIG, "ToBank")

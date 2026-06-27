@@ -81,6 +81,18 @@
 ;
 ;  then restart the script.
 ;
+;  WITHDRAW AFTER DEPOSIT is the same kind of plain .ini setting, also
+;  under [Settings] (same flag/purpose as auto-miner.ahk's):
+;
+;      withdrawAfterDeposit=1   (after depositing, withdraw one item
+;                                 from NET_BANK_SLOT_INDEX - the
+;                                 original behavior, for when you
+;                                 actually need a fresh net each trip)
+;      withdrawAfterDeposit=0   (deposit only, walk straight back -
+;                                 the default - for an item that never
+;                                 runs out, so there's nothing to
+;                                 withdraw)
+;
 ;  Config auto-saves to config\auto-fisher.ini next to this file.
 ; ============================================================
 
@@ -165,7 +177,7 @@ global FISH_POLL_MS := 150             ; how often to re-check both exit conditi
 ; the whole time, simply because filling ~27 inventory slots via
 ; passive net fishing can legitimately take several minutes.
 global FISH_TIMEOUT_MS := 900000       ; 15 minutes
-global PHASE_TIMEOUT_FISH := 45000     ; give up and stop if we can't find ANY spot in the area for 45s straight (resets every time we click - see ResetPhaseTimer). Fishing spots can sit "gone" for several real seconds between despawning and respawning nearby - unlike mining rocks, which are basically always immediately visible - so this needs more headroom than the mining template's equivalent or it can mistake a normal respawn gap for being stuck.
+global PHASE_TIMEOUT_FISH := 5000     ; give up and stop if we can't find ANY spot in the area for 45s straight (resets every time we click - see ResetPhaseTimer). Fishing spots can sit "gone" for several real seconds between despawning and respawning nearby - unlike mining rocks, which are basically always immediately visible - so this needs more headroom than the mining template's equivalent or it can mistake a normal respawn gap for being stuck.
 
 ; ---------- Tunables: bank marker + deposit ----------
 global BANK_MARKER_COLOR := 0x0000FF
@@ -215,6 +227,9 @@ global lastSearchTipAt := 0
 
 ; ---------- Run/walk setting - plain config flag, no hotkey ----------
 global runMode := false
+
+; ---------- Withdraw-after-deposit setting - plain config flag, no hotkey ----------
+global withdrawAfterDeposit := false
 
 ; ---------- Recorded path ----------
 global toFishingSpotRecorder := NewPathRecorder()
@@ -320,12 +335,20 @@ RecordClick(*) {
 ; ============================================================
 
 LoadConfig() {
-    global emptySlotPoints, runMode, toFishingSpotSteps
+    global emptySlotPoints, runMode, withdrawAfterDeposit, toFishingSpotSteps
     global FISH_AREA_X1, FISH_AREA_Y1, FISH_AREA_X2, FISH_AREA_Y2
+    global COLOR_TOLERANCE, NET_BANK_SLOT_INDEX
 
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
     runMode := LoadFlag(CONFIG, "Settings", "runMode", false)
+    withdrawAfterDeposit := LoadFlag(CONFIG, "Settings", "withdrawAfterDeposit", false)
     toFishingSpotSteps := LoadPath(CONFIG, "ToFishingSpot")
+
+    ; Curated tunables - overwrite the hardcoded defaults above from
+    ; the .ini if present, so these can be tweaked without editing
+    ; this file (e.g. from the control panel).
+    COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
+    NET_BANK_SLOT_INDEX := LoadNumber(CONFIG, "Tunables", "netBankSlotIndex", NET_BANK_SLOT_INDEX)
 
     region := LoadRegion(CONFIG, "FishArea")
     FISH_AREA_X1 := region[1]
@@ -505,7 +528,7 @@ FishPhase(taskRunner) {
 ; offset, waits for the walk + bank-open, deposits everything and
 ; withdraws a fresh net, then walks back to the fishing spot.
 BankPhase(taskRunner) {
-    global toFishingSpotSteps, runMode, LOG_FILE
+    global toFishingSpotSteps, runMode, withdrawAfterDeposit, LOG_FILE
     global BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_MARKER_SEARCH_TIMEOUT_MS
     global BANK_MARKER_CLICK_OFFSET_X, BANK_MARKER_CLICK_OFFSET_Y
     global BANK_MARKER_SEARCH_X1, BANK_MARKER_SEARCH_Y1, BANK_MARKER_SEARCH_X2, BANK_MARKER_SEARCH_Y2
@@ -539,8 +562,16 @@ BankPhase(taskRunner) {
         return GoToPhase(taskRunner, "bank")
     }
 
-    LogLine(LOG_FILE, "bank: deposited, withdrawing net from slot " NET_BANK_SLOT_INDEX)
-    BankWithdrawSlot(NET_BANK_SLOT_INDEX, WITHDRAW_SETTLE_MS)
+    ; Optionally withdraw a fresh net before walking back - see the
+    ; withdrawAfterDeposit setting. Off by default, since an item that
+    ; never runs out (e.g. a barbarian-style net) has nothing to
+    ; withdraw each trip.
+    if (withdrawAfterDeposit) {
+        LogLine(LOG_FILE, "bank: deposited, withdrawing net from slot " NET_BANK_SLOT_INDEX)
+        BankWithdrawSlot(NET_BANK_SLOT_INDEX, WITHDRAW_SETTLE_MS)
+    } else {
+        LogLine(LOG_FILE, "bank: deposited (withdrawAfterDeposit off - skipping withdraw)")
+    }
 
     LogLine(LOG_FILE, "bank: playing walk-to-fishing-spot path (" toFishingSpotSteps.Length " steps)")
     isRunningFn := () => taskRunner["running"]
