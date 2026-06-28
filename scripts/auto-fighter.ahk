@@ -107,7 +107,7 @@ global NPC_SCAN_POLL_MS := 20     ; how often FightPhase re-scans for an outline
 global NPC_CLICK_OFFSET_PX := 5   ; how far past the found outline pixel (away from the character, along whichever axis it's mainly offset on) to click - lands inside the NPC's body instead of on the bare edge pixel between it and the background
 global ATTACK_CLICK_COUNT := 1
 global ATTACK_CLICK_DELAY_MS := 10
-global ATTACK_CLICK_BOX := 0      ; 0 = land on the exact computed pixel every click; HumanClick's own jitter (when ENABLE_HUMANIZATION) still applies on top, capped at +/-2px
+global ATTACK_CLICK_BOX := 1      ; 0 = land on the exact computed pixel every click; HumanClick's own jitter (when ENABLE_HUMANIZATION) still applies on top, capped at +/-2px
 global ATTACK_SETTLE_MS := 200    ; brief pause after clicking, before polling for the combat-start indicator
 
 ; ---------- Tunables: combat indicator ----------
@@ -118,7 +118,7 @@ global COMBAT_INDICATOR_X := 1657
 global COMBAT_INDICATOR_Y := 1232
 global COMBAT_START_COLOR := 0x068C37
 global COMBAT_DEAD_COLOR := 0x651312
-global COMBAT_START_TIMEOUT_MS := 3000     ; give up and re-scan if combat never visibly starts after a click (click missed, or the NPC moved/died/was taken first)
+global COMBAT_START_TIMEOUT_MS := 4000     ; give up and re-scan if combat never visibly starts after a click (click missed, or the NPC moved/died/was taken first)
 global COMBAT_KILL_TIMEOUT_MS := 120000    ; hard safety-net cap on a single fight
 global COMBAT_CONFIRM_TICKS := 2           ; require this many consecutive polls before trusting either color transition - filters a single transient glitch
 global COMBAT_POLL_MS := 100

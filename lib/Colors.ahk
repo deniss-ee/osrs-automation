@@ -163,19 +163,18 @@ WaitForPixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol, timeoutMs, poll
 ; closest to (refX,refY) and matches `color` within `tol` - for
 ; cases like an NPC's combat outline highlight, where there's no
 ; single fixed point to search and "closest to the character" is
-; what determines which way to click. Works by searching a box
-; centered on (refX,refY) that starts at +/-stepPx and grows by
-; stepPx each pass (clipped to the given rectangle) until
-; PixelSearch finds a match or the box has grown to cover the
-; whole rectangle with nothing found. This is an approximation, not
-; a true nearest-pixel scan - PixelSearch returns whatever match it
-; finds first within the current box, not necessarily the closest
-; point in it - but since the box only grows in small steps,
-; whatever it finds is within one stepPx of the true closest match,
-; which is plenty precise for deciding which side something is on.
-; On success writes the match into foundX/foundY (pass by
-; reference) and returns true; returns false (leaving them
-; untouched) if nothing in the whole rectangle matches.
+; what determines which way to click. DEPRECATED - use
+; FindNearestPixelColorSpiral instead for true center-outward
+; search. Works by searching a box centered on (refX,refY) that
+; starts at +/-stepPx and grows by stepPx each pass (clipped to the
+; given rectangle) until PixelSearch finds a match or the box has
+; grown to cover the whole rectangle with nothing found. This is an
+; approximation, not a true nearest-pixel scan - PixelSearch
+; returns whatever match it finds first within the current box, not
+; necessarily the closest point in it. On success writes the match
+; into foundX/foundY (pass by reference) and returns true; returns
+; false (leaving them untouched) if nothing in the whole rectangle
+; matches.
 FindNearestPixelColor(x1, y1, x2, y2, refX, refY, color, tol, &foundX, &foundY, stepPx := 20) {
     radius := stepPx
     loop {
@@ -189,6 +188,134 @@ FindNearestPixelColor(x1, y1, x2, y2, refX, refY, color, tol, &foundX, &foundY, 
             return false
         radius += stepPx
     }
+}
+
+; True center-outward spiral search: finds the pixel within
+; (x1,y1)-(x2,y2) that is ACTUALLY closest (by Chebyshev distance)
+; to (refX,refY) and matches `color` within `tol`. Spirals outward
+; from center in expanding square rings, so the first match found is
+; guaranteed to be one of the closest matches (all equidistant at the
+; same spiral ring). Much more accurate than the box-expansion
+; approximation, at the cost of checking individual pixels rather
+; than batches. For combat targeting, this ensures the NPC outline
+; pixel closest to the character is found first, every time.
+; On success writes the match into foundX/foundY (pass by reference)
+; and returns true; returns false (leaving them untouched) if nothing
+; in the whole rectangle matches.
+FindNearestPixelColorSpiral(x1, y1, x2, y2, refX, refY, color, tol, &foundX, &foundY, maxDistance := 1000) {
+    targetColor := color
+
+    ; Check center point first (distance 0)
+    if (ColorClose(PixelGetColor(refX, refY, "RGB"), targetColor, tol)) {
+        foundX := refX
+        foundY := refY
+        return true
+    }
+
+    ; Spiral outward from center in square rings (Chebyshev distance)
+    loop maxDistance {
+        distance := A_Index
+
+        ; Horizontal edges (top and bottom)
+        y := refY - distance
+        if (y >= y1 && y <= y2) {
+            loop (distance * 2 + 1) {
+                x := refX - distance + (A_Index - 1)
+                if (x >= x1 && x <= x2) {
+                    if (ColorClose(PixelGetColor(x, y, "RGB"), targetColor, tol)) {
+                        foundX := x
+                        foundY := y
+                        return true
+                    }
+                }
+            }
+        }
+
+        y := refY + distance
+        if (y >= y1 && y <= y2) {
+            loop (distance * 2 + 1) {
+                x := refX - distance + (A_Index - 1)
+                if (x >= x1 && x <= x2) {
+                    if (ColorClose(PixelGetColor(x, y, "RGB"), targetColor, tol)) {
+                        foundX := x
+                        foundY := y
+                        return true
+                    }
+                }
+            }
+        }
+
+        ; Vertical edges (left and right, excluding corners already checked above)
+        x := refX - distance
+        if (x >= x1 && x <= x2) {
+            loop (distance * 2 - 1) {
+                y := refY - distance + (A_Index)
+                if (y >= y1 && y <= y2) {
+                    if (ColorClose(PixelGetColor(x, y, "RGB"), targetColor, tol)) {
+                        foundX := x
+                        foundY := y
+                        return true
+                    }
+                }
+            }
+        }
+
+        x := refX + distance
+        if (x >= x1 && x <= x2) {
+            loop (distance * 2 - 1) {
+                y := refY - distance + (A_Index)
+                if (y >= y1 && y <= y2) {
+                    if (ColorClose(PixelGetColor(x, y, "RGB"), targetColor, tol)) {
+                        foundX := x
+                        foundY := y
+                        return true
+                    }
+                }
+            }
+        }
+    }
+
+    return false
+}
+
+; Finds the centroid (center of mass) of all pixels matching `color`
+; within tolerance in region (x1,y1)-(x2,y2). Scans every pixel,
+; collects all matches, and returns their average position - useful for
+; detecting the center of a shape like an NPC outline rather than just
+; the closest single pixel. On success writes the centroid into
+; centerX/centerY (pass by reference) and returns true; returns false
+; (leaving them untouched) if no pixels match.
+; NOTE: This is slower than FindNearestPixelColor since it checks every
+; pixel in the region, not just expanding boxes. For real-time use,
+; consider sampling every Nth pixel or limiting the search area.
+FindShapeCentroid(x1, y1, x2, y2, color, tol, &centerX, &centerY, sampleRate := 1) {
+    targetColor := color
+    totalX := 0, totalY := 0, matchCount := 0
+
+    loop (y2 - y1 + 1) {
+        y := y1 + (A_Index - 1)
+        if (Mod(y - y1, sampleRate) != 0 && A_Index != 1)
+            continue
+
+        loop (x2 - x1 + 1) {
+            x := x1 + (A_Index - 1)
+            if (Mod(x - x1, sampleRate) != 0 && A_Index != 1)
+                continue
+
+            if (ColorClose(PixelGetColor(x, y, "RGB"), targetColor, tol)) {
+                totalX += x
+                totalY += y
+                matchCount += 1
+            }
+        }
+    }
+
+    if (matchCount = 0)
+        return false
+
+    centerX := Round(totalX / matchCount)
+    centerY := Round(totalY / matchCount)
+    return true
 }
 
 ; Generalized "is this inventory/bank slot occupied" check.

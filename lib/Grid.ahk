@@ -38,17 +38,42 @@ BuildGrid(firstX, firstY, lastX, lastY, cols, rows) {
 }
 
 ; Standard OSRS backpack: 4 columns x 7 rows = 28 slots, each
-; 72x64px. firstX/firstY and lastX/lastY are the TOP-LEFT corner
-; of slot 1 and slot 28 (matching how the bank slots and the
-; deposit-all button below were measured - corner + size, not
-; center). The grid is built from those corners, then every cell
-; is shifted by half its width/height so the returned x,y is the
-; true CENTER - the point both clicks and color checks should
-; target, since a corner pixel is almost always plain background
-; even when the slot is full.
-GetInventorySlots(firstX := 2099, firstY := 801, lastX := 2351, lastY := 1233) {
-    w := 72, h := 64
-    slots := BuildGrid(firstX, firstY, lastX, lastY, 4, 7)
+; 72x64px, with 12px gaps between slots. This user's measured
+; layout, hardcoded as the canonical reference (not just default
+; parameters) so any future code can rely on these exact numbers
+; without depending on a caller never overriding them:
+;
+;   slot 1 (top-left)     top-left corner (2099, 801)
+;   slot 28 (bottom-right) top-left corner (2351, 1233)
+;   4 columns x 7 rows, each slot 72x64px, 12px gaps between slots
+;
+;     [] [] [] []
+;     [] [] [] []
+;     [] [] [] []
+;     [] [] [] []
+;     [] [] [] []
+;     [] [] [] []
+;     [] [] [] []
+;
+global INVENTORY_FIRST_X := 2099, INVENTORY_FIRST_Y := 801
+global INVENTORY_LAST_X := 2351, INVENTORY_LAST_Y := 1233
+global INVENTORY_COLS := 4, INVENTORY_ROWS := 7
+global INVENTORY_SLOT_W := 72, INVENTORY_SLOT_H := 64
+global INVENTORY_GAP := 12
+
+; firstX/firstY and lastX/lastY are the TOP-LEFT corner of slot 1
+; and slot 28 (matching how the bank slots and the deposit-all
+; button below were measured - corner + size, not center). The
+; grid is built from those corners, then every cell is shifted by
+; half its width/height so the returned x,y is the true CENTER -
+; the point both clicks and color checks should target, since a
+; corner pixel is almost always plain background even when the
+; slot is full. Defaults to the hardcoded INVENTORY_* constants
+; above - pass explicit values only if a different client layout
+; ever needs calibrating.
+GetInventorySlots(firstX := INVENTORY_FIRST_X, firstY := INVENTORY_FIRST_Y, lastX := INVENTORY_LAST_X, lastY := INVENTORY_LAST_Y) {
+    w := INVENTORY_SLOT_W, h := INVENTORY_SLOT_H
+    slots := BuildGrid(firstX, firstY, lastX, lastY, INVENTORY_COLS, INVENTORY_ROWS)
     for slot in slots {
         slot["x"] += w // 2
         slot["y"] += h // 2
@@ -57,6 +82,13 @@ GetInventorySlots(firstX := 2099, firstY := 801, lastX := 2351, lastY := 1233) {
     }
     return slots
 }
+
+; Precomputed, ready-to-use list of all 28 inventory slot centers
+; at this user's hardcoded layout (INVENTORY_* above) - for code
+; that just needs "the" slot list without calling GetInventorySlots()
+; itself. Each entry is the same {x, y, index, col, row, w, h} shape
+; GetInventorySlots() returns.
+global INVENTORY_SLOTS := GetInventorySlots()
 
 ; Bank item slots, one visible row of 8, each 72x64px, fixed
 ; y, x stepping by a constant amount. This is a flat hardcoded

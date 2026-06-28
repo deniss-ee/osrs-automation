@@ -478,41 +478,51 @@ ore spots, checked in priority order.
 
 ### `auto-smelter.ahk` — smelting bot
 Lives in `scripts\`, built entirely from the library, replacing `smelter-1.ahk`'s logic.
-Expected starting state: standing at the smelter with a full inventory of ore. Rebuilt to mirror
-`auto-smith.ahk`'s anvil-confirm-key shape and generalized banking (see below) — it no longer
-records a click into the "Smelt X" dialog, and can withdraw more than one bank slot per trip.
+Expected starting state: standing near the bank with a full inventory of ore. Rebuilt to mirror
+`auto-cooker.ahk`'s marker-based shape — no recorded paths anywhere; every "walk" in the cycle is
+triggered by clicking a colored plugin marker that the game/plugin handles automatically, the same
+pattern `auto-fisher.ahk`/`auto-motherlode.ahk`/`auto-cooker.ahk` use for their bank/campfire
+markers.
 
-- **Hotkeys**: F1 = record the Smelt path (click ONLY the furnace as the last step — the
-  "Smelt X" dialog is confirmed automatically via `SMELT_KEY`, not a recorded click). F2 =
-  calibrate inventory reference points (same mechanism as mining's F2, but used for the opposite
-  direction here — see below; samples the LAST slot, or the SECOND-TO-LAST slot if
-  `checkPreviousSlot=1` — see below). F3/F4 = record walk-to-bank / walk-to-smelter paths. F5/F6 =
-  start/stop. F7 = clear config.
+- **Hotkeys**: F1 = calibrate inventory reference points (same mechanism as mining's F2 used to be
+  — samples the LAST slot, or the SECOND-TO-LAST slot if `checkPreviousSlot=1` — see below; empty
+  your inventory first). F2/F3 = start/stop. F4 = clear config.
 - **Cycle**: `SmeltPhase` first checks the calibrated slot is actually occupied — if it's
   already empty (e.g. the bank ran out of ore to withdraw the previous trip), it skips straight
-  to `BankPhase` instead of wastefully clicking the furnace for nothing. Otherwise it plays the
-  Smelt path (furnace click only) once, presses `SMELT_KEY` to confirm the "Smelt X" dialog
-  (exactly like `auto-smith.ahk`'s `AnvilPhase` pressing Space for the "make X" dialog), then
-  blocks on `WaitUntilNotOccupied` until the calibrated slot goes from full to EMPTY (all ore
-  consumed) — the inverse of mining's check, same underlying multi-point reference mechanism.
-  `BankPhase` walks to the bank, waits for the Deposit All button image to appear before clicking
-  it, deposits everything, then withdraws following `WITHDRAW_SEQUENCE` — an ORDERED array of
-  `{slot, count}` entries, each clicked `count` times in a row via `BankWithdrawSlot` before
-  moving to the next entry (e.g. bank slot 1 twice, then bank slot 2 once) — then walks back to
-  the smelter.
+  to `BankPhase` instead of wastefully clicking the furnace for nothing. Otherwise it searches the
+  `SmelterSearch` box for `SMELTER_MARKER_COLOR` (`#FF00FF`) via `WaitForPixelSearch`
+  (`lib\Colors.ahk`), clicks it with a fixed offset (walks to and clicks the furnace
+  automatically), waits for `smelting-marker.png` to appear (the "Smelt X" dialog) via
+  `WaitForImageCenter`, presses `SMELT_KEY` to confirm it, then blocks on `WaitUntilNotOccupied`
+  until the calibrated slot goes from full to EMPTY (all ore consumed) — the inverse of mining's
+  check, same underlying multi-point reference mechanism. `BankPhase` searches the `BankSearch` box
+  for `BANK_MARKER_COLOR` (`#0000FF`), clicks it with a fixed offset (walks to and opens the bank
+  automatically), waits for the Deposit All button image to appear before clicking it, deposits
+  everything, then withdraws following `WITHDRAW_SEQUENCE` — an ORDERED array of `{slot, count}`
+  entries, each clicked `count` times in a row via `BankWithdrawSlot` before moving to the next
+  entry (e.g. bank slot 1 twice, then bank slot 2 once).
+- **The smelter/bank search boxes are hardcoded tunable defaults, not hotkey-calibrated regions**:
+  both are fixed, UI-anchored plugin markers, not world/camera-dependent positions — same precedent
+  as `auto-cooker.ahk`'s `CAMPFIRE_SEARCH_*`/`BANK_RUN_SEARCH_*`. Defaults: `SmelterSearch` is a
+  150x150 box centered at `(1544,394)`; `BankSearch` is a 200x100 box centered at `(191,1013)`.
+  Still overridable by hand-editing the `.ini` (`[SmelterSearch]`/`[BankSearch]` sections via
+  `SaveRegion`/`LoadRegion`'s own default-param support), just never via a recalibration keypress.
 - **Inventory-full reference slot is a plain `.ini` flag, not a hotkey**: `[Settings]
-  checkPreviousSlot` (like `runMode`). Default `0` = F2 calibrates/checks inventory slot 28 (the
-  last slot); `1` = F2 calibrates/checks slot 27 (the second-to-last) instead, for recipes/layouts
+  checkPreviousSlot` (like `runMode`). Default `0` = F1 calibrates/checks inventory slot 28 (the
+  last slot); `1` = F1 calibrates/checks slot 27 (the second-to-last) instead, for recipes/layouts
   where the very last slot never actually fills even when the inventory is otherwise full.
-  Flipping this requires re-running F2 (it changes which slot gets sampled).
+  Flipping this requires re-running F1 (it changes which slot gets sampled).
 - **Currently**: `ENABLE_HUMANIZATION := false` (the default — flip to `true` for randomized
   offset/jitter), `WITHDRAW_SEQUENCE := [{slot:1,count:2}, {slot:2,count:1}]` (edit this array
   directly in the script to change which bank slots get withdrawn and how many times each).
 - **Tunables**: `COLOR_TOLERANCE=20`, `SMELT_TIMEOUT_MS=180000` (3 min), `SMELT_CONFIRM_TICKS=2`,
   `SMELT_KEY="Space"` (or a number key like `"1"`/`"2"`/`"3"` if the dialog needs a specific bar
-  selected), `SMELT_KEY_SETTLE_MS=100`, `PHASE_TIMEOUT_SMELT=30000`, `BANK_OPEN_SETTLE_MS=300`,
-  `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`, `WITHDRAW_FINAL_SETTLE_MS=300`,
-  `PHASE_TIMEOUT_BANK=30000`. No debug logging in this script (see `Log.ahk` above).
+  selected), `SMELT_KEY_SETTLE_MS=100`, `PHASE_TIMEOUT_SMELT=30000`,
+  `SMELTER_MARKER_TOLERANCE=20`, `SMELTER_CLICK_OFFSET_X/Y=10,10`, `SMELTER_SEARCH_TIMEOUT_MS=8000`,
+  `BANK_MARKER_TOLERANCE=20`, `BANK_CLICK_OFFSET_X/Y=10,10`, `BANK_SEARCH_TIMEOUT_MS=8000`,
+  `BANK_OPEN_SETTLE_MS=300`, `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`,
+  `WITHDRAW_FINAL_SETTLE_MS=300`, `PHASE_TIMEOUT_BANK=30000`. Debug logging to
+  `logs\auto-smelter-debug.log`, same as `auto-cooker.ahk`/`auto-motherlode.ahk`.
   `COLOR_TOLERANCE`, `SMELT_KEY`, and `WITHDRAW_SEQUENCE` are also loadable from `.ini`
   (`[Tunables] colorTolerance` / `smeltKey`, and a `[WithdrawSequence]` section via
   `SaveSlotSequence`/`LoadSlotSequence`) — editable from `control-panel.ahk`'s Smelter tab, which
@@ -574,22 +584,38 @@ walk-to-campfire and walk-to-bank legs here.
   before trusting it unattended.
 
 ### `auto-smith.ahk` — smithing bot
-Lives in `scripts\`, built entirely from the library; the newest of the four. Expected
-starting state: standing near the bank, ready to withdraw bars.
+Lives in `scripts\`, built entirely from the library. Expected starting state: standing near
+the bank, ready to withdraw bars. Rebuilt to match `auto-smelter.ahk`'s marker-based shape — no
+recorded paths anywhere; every "walk" is triggered by clicking a colored plugin marker that the
+game/plugin handles automatically.
 
-- **Hotkeys**: F1 = record the walk-to-anvil path (one path covering the walk AND the anvil click
-  as its last step). F2 = calibrate inventory reference points (same mechanism as the other
-  scripts). F3 = record the walk-to-bank path. F5/F6 = start/stop. F7 = clear config.
-- **Cycle**: `AnvilPhase` checks the last inventory slot is occupied (bars in hand) — if empty
-  (e.g. the bank ran out of bars), it skips straight to `BankPhase`. Otherwise it plays the
-  walk-to-anvil path, presses `Space` to confirm the "make X" dialog, then blocks on
-  `WaitUntilNotOccupied` until the last slot empties (all bars smithed). `BankPhase` walks to the
-  bank, deposits everything, then withdraws **two** bank slots (`WITHDRAW_SLOT_1_INDEX`,
-  `WITHDRAW_SLOT_2_INDEX`) via the shared `BankWithdrawSlot`, and returns to `AnvilPhase`.
+- **Hotkeys**: F1 = calibrate inventory reference points (samples the LAST slot; empty your
+  inventory first). F2/F3 = start/stop. F4 = clear config.
+- **Cycle**: `AnvilPhase` first waits (with a short settle grace window,
+  `ANVIL_GUARD_SETTLE_TIMEOUT_MS=3000` — same fix `auto-smelter.ahk` needed for the analogous
+  post-withdrawal race) for the last inventory slot to read occupied (bars in hand) — if it never
+  does, it skips straight to `BankPhase`. Otherwise it searches the `AnvilSearch` box for
+  `ANVIL_MARKER_COLOR` (`#FF00FF`) via `WaitForPixelSearch` (`lib\Colors.ahk`), clicks it with a
+  fixed offset (walks to and clicks the anvil automatically), waits for `smithing-marker.png` to
+  appear (the "make X" dialog) via `WaitForImageCenter`, presses `ANVIL_KEY` (Space) to confirm it,
+  then blocks on `WaitUntilNotOccupied` until the last slot empties (all bars smithed). `BankPhase`
+  searches the `BankSearch` box for `BANK_MARKER_COLOR` (`#0000FF`), clicks it with a fixed offset
+  (walks to and opens the bank automatically), waits for the Deposit All button image to appear
+  before clicking it, deposits everything, then withdraws **two** bank slots
+  (`WITHDRAW_SLOT_1_INDEX`, `WITHDRAW_SLOT_2_INDEX`, one click each) via the shared
+  `BankWithdrawSlot`, and returns to `AnvilPhase`.
+- **The anvil/bank search boxes are hardcoded tunable defaults, not hotkey-calibrated regions**:
+  both are fixed, UI-anchored plugin markers, not world/camera-dependent positions — same
+  precedent as `auto-smelter.ahk`'s `SMELTER_SEARCH_*`/`BANK_SEARCH_*`. Defaults: `AnvilSearch` is
+  a 100x75 box centered at `(1699,552)`; `BankSearch` is a 150x100 box centered at `(624,756)`.
+  Still overridable by hand-editing the `.ini`, just never via a recalibration keypress.
 - **Currently**: `ENABLE_HUMANIZATION := false` (the default — flip to `true` for randomized
   offset/jitter).
 - **Tunables**: `COLOR_TOLERANCE=20`, `ANVIL_TIMEOUT_MS=180000` (3 min), `ANVIL_CONFIRM_TICKS=3`,
-  `ANVIL_SPACE_SETTLE_MS=100`, `PHASE_TIMEOUT_ANVIL=30000`, `BANK_OPEN_SETTLE_MS=300`,
+  `ANVIL_KEY="Space"`, `ANVIL_KEY_SETTLE_MS=100`, `PHASE_TIMEOUT_ANVIL=30000`,
+  `ANVIL_GUARD_SETTLE_TIMEOUT_MS=3000`, `ANVIL_MARKER_TOLERANCE=20`,
+  `ANVIL_CLICK_OFFSET_X/Y=10,10`, `ANVIL_SEARCH_TIMEOUT_MS=8000`, `BANK_MARKER_TOLERANCE=20`,
+  `BANK_CLICK_OFFSET_X/Y=10,10`, `BANK_SEARCH_TIMEOUT_MS=8000`, `BANK_OPEN_SETTLE_MS=300`,
   `BANK_OPEN_FAILSAFE_DELAY_MS=300`, `WITHDRAW_INTER_SETTLE_MS=600`, `WITHDRAW_FINAL_SETTLE_MS=300`,
   `PHASE_TIMEOUT_BANK=30000`. Logs to `logs\auto-smith-debug.log` via `lib\Log.ahk`.
   `COLOR_TOLERANCE`, `WITHDRAW_SLOT_1_INDEX`, and `WITHDRAW_SLOT_2_INDEX` are also loadable from

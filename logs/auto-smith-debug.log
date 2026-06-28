@@ -142,3 +142,1359 @@
 18:36:25 bank: entered bank phase, playing walk-to-bank path (1 steps)
 18:36:32 bank: walk-to-bank path done, depositing
 18:36:36 STOPPED: Stopped (F6)
+12:07:25 ===== Bot started =====
+12:07:26 anvil: anvil marker found at 1719,565 - clicking with offset
+12:07:32 anvil: make-X dialog visible - confirming with Space
+12:07:46 anvil: inventory emptied - done smithing, moving to bank
+12:07:46 bank: bank marker found at 665,767 - clicking with offset
+12:07:51 bank: deposited, withdrawing slot 1 then 2
+12:07:52 bank: done withdrawing, returning to anvil phase
+12:07:52 anvil: anvil marker found at 1719,563 - clicking with offset
+12:07:56 anvil: make-X dialog visible - confirming with Space
+12:08:11 anvil: inventory emptied - done smithing, moving to bank
+12:08:11 bank: bank marker found at 665,767 - clicking with offset
+12:08:15 bank: deposited, withdrawing slot 1 then 2
+12:08:17 bank: done withdrawing, returning to anvil phase
+12:08:17 anvil: anvil marker found at 1719,563 - clicking with offset
+12:08:21 anvil: make-X dialog visible - confirming with Space
+12:08:36 anvil: inventory emptied - done smithing, moving to bank
+12:08:36 bank: bank marker found at 665,767 - clicking with offset
+12:08:40 bank: deposited, withdrawing slot 1 then 2
+12:08:41 bank: done withdrawing, returning to anvil phase
+12:08:41 anvil: anvil marker found at 1719,563 - clicking with offset
+12:08:46 anvil: make-X dialog visible - confirming with Space
+12:09:00 anvil: inventory emptied - done smithing, moving to bank
+12:09:00 bank: bank marker found at 665,767 - clicking with offset
+12:09:05 bank: deposited, withdrawing slot 1 then 2
+12:09:06 bank: done withdrawing, returning to anvil phase
+12:09:06 anvil: anvil marker found at 1719,563 - clicking with offset
+12:09:10 anvil: make-X dialog visible - confirming with Space
+12:09:25 anvil: inventory emptied - done smithing, moving to bank
+12:09:25 bank: bank marker found at 665,767 - clicking with offset
+12:09:29 bank: deposited, withdrawing slot 1 then 2
+12:09:31 bank: done withdrawing, returning to anvil phase
+12:09:31 anvil: anvil marker found at 1719,563 - clicking with offset
+12:09:35 anvil: make-X dialog visible - confirming with Space
+12:09:49 anvil: inventory emptied - done smithing, moving to bank
+12:09:49 bank: bank marker found at 665,767 - clicking with offset
+12:09:54 bank: deposited, withdrawing slot 1 then 2
+12:09:55 bank: done withdrawing, returning to anvil phase
+12:09:55 anvil: anvil marker found at 1719,563 - clicking with offset
+12:09:59 anvil: make-X dialog visible - confirming with Space
+12:10:14 anvil: inventory emptied - done smithing, moving to bank
+12:10:14 bank: bank marker found at 665,767 - clicking with offset
+12:10:18 bank: deposited, withdrawing slot 1 then 2
+12:10:20 bank: done withdrawing, returning to anvil phase
+12:10:20 anvil: anvil marker found at 1719,563 - clicking with offset
+12:10:24 anvil: make-X dialog visible - confirming with Space
+12:10:39 anvil: inventory emptied - done smithing, moving to bank
+12:10:39 bank: bank marker found at 665,767 - clicking with offset
+12:10:43 bank: deposited, withdrawing slot 1 then 2
+12:10:44 bank: done withdrawing, returning to anvil phase
+12:10:44 anvil: anvil marker found at 1719,563 - clicking with offset
+12:10:49 anvil: make-X dialog visible - confirming with Space
+12:11:03 anvil: inventory emptied - done smithing, moving to bank
+12:11:03 bank: bank marker found at 665,767 - clicking with offset
+12:11:08 bank: deposited, withdrawing slot 1 then 2
+12:11:09 bank: done withdrawing, returning to anvil phase
+12:11:09 anvil: anvil marker found at 1719,563 - clicking with offset
+12:11:13 anvil: make-X dialog visible - confirming with Space
+12:11:28 anvil: inventory emptied - done smithing, moving to bank
+12:11:28 bank: bank marker found at 665,767 - clicking with offset
+12:11:32 bank: deposited, withdrawing slot 1 then 2
+12:11:33 bank: done withdrawing, returning to anvil phase
+12:11:34 anvil: anvil marker found at 1719,563 - clicking with offset
+12:11:38 anvil: make-X dialog visible - confirming with Space
+12:11:52 anvil: inventory emptied - done smithing, moving to bank
+12:11:53 bank: bank marker found at 665,767 - clicking with offset
+12:11:57 bank: deposited, withdrawing slot 1 then 2
+12:11:58 bank: done withdrawing, returning to anvil phase
+12:11:58 anvil: anvil marker found at 1719,563 - clicking with offset
+12:12:02 anvil: make-X dialog visible - confirming with Space
+12:12:17 anvil: inventory emptied - done smithing, moving to bank
+12:12:17 bank: bank marker found at 665,767 - clicking with offset
+12:12:22 bank: deposited, withdrawing slot 1 then 2
+12:12:23 bank: done withdrawing, returning to anvil phase
+12:12:23 anvil: anvil marker found at 1719,563 - clicking with offset
+12:12:27 anvil: make-X dialog visible - confirming with Space
+12:12:42 anvil: inventory emptied - done smithing, moving to bank
+12:12:42 bank: bank marker found at 665,767 - clicking with offset
+12:12:46 bank: deposited, withdrawing slot 1 then 2
+12:12:47 bank: done withdrawing, returning to anvil phase
+12:12:47 anvil: anvil marker found at 1719,563 - clicking with offset
+12:12:52 anvil: make-X dialog visible - confirming with Space
+12:13:06 anvil: inventory emptied - done smithing, moving to bank
+12:13:06 bank: bank marker found at 665,767 - clicking with offset
+12:13:11 bank: deposited, withdrawing slot 1 then 2
+12:13:12 bank: done withdrawing, returning to anvil phase
+12:13:12 anvil: anvil marker found at 1719,563 - clicking with offset
+12:13:18 anvil: make-X dialog visible - confirming with Space
+12:13:33 anvil: inventory emptied - done smithing, moving to bank
+12:13:33 bank: bank marker found at 665,767 - clicking with offset
+12:13:40 bank: deposited, withdrawing slot 1 then 2
+12:13:41 bank: done withdrawing, returning to anvil phase
+12:13:41 anvil: anvil marker found at 1719,563 - clicking with offset
+12:13:49 anvil: make-X dialog visible - confirming with Space
+12:14:03 anvil: inventory emptied - done smithing, moving to bank
+12:14:03 bank: bank marker found at 665,767 - clicking with offset
+12:14:11 bank: deposited, withdrawing slot 1 then 2
+12:14:12 bank: done withdrawing, returning to anvil phase
+12:14:12 anvil: anvil marker found at 1719,563 - clicking with offset
+12:14:19 anvil: make-X dialog visible - confirming with Space
+12:14:34 anvil: inventory emptied - done smithing, moving to bank
+12:14:34 bank: bank marker found at 665,767 - clicking with offset
+12:14:38 bank: deposited, withdrawing slot 1 then 2
+12:14:40 bank: done withdrawing, returning to anvil phase
+12:14:40 anvil: anvil marker found at 1719,563 - clicking with offset
+12:14:44 anvil: make-X dialog visible - confirming with Space
+12:14:59 anvil: inventory emptied - done smithing, moving to bank
+12:14:59 bank: bank marker found at 665,767 - clicking with offset
+12:15:03 bank: deposited, withdrawing slot 1 then 2
+12:15:04 bank: done withdrawing, returning to anvil phase
+12:15:04 anvil: anvil marker found at 1719,563 - clicking with offset
+12:15:09 anvil: make-X dialog visible - confirming with Space
+12:15:12 STOPPED: Stopped (F3)
+12:15:12 anvil: inventory emptied - done smithing, moving to bank
+12:15:38 ===== Bot started =====
+12:15:38 anvil: anvil marker found at 1719,565 - clicking with offset
+12:15:45 anvil: make-X dialog visible - confirming with Space
+12:15:48 STOPPED: Stopped (F3)
+12:15:49 anvil: inventory emptied - done smithing, moving to bank
+12:16:35 ===== Bot started =====
+12:16:36 anvil: anvil marker found at 1719,565 - clicking with offset
+12:16:40 anvil: make-X dialog visible - confirming with Space
+12:16:57 anvil: inventory emptied - done smithing, moving to bank
+12:16:57 bank: bank marker found at 665,767 - clicking with offset
+12:17:01 bank: deposited, withdrawing slot 1 then 2
+12:17:02 bank: done withdrawing, returning to anvil phase
+12:17:02 anvil: anvil marker found at 1719,563 - clicking with offset
+12:17:07 anvil: make-X dialog visible - confirming with Space
+12:17:21 anvil: inventory emptied - done smithing, moving to bank
+12:17:21 bank: bank marker found at 665,767 - clicking with offset
+12:17:25 bank: deposited, withdrawing slot 1 then 2
+12:17:26 bank: done withdrawing, returning to anvil phase
+12:17:26 anvil: anvil marker found at 1719,563 - clicking with offset
+12:17:31 anvil: make-X dialog visible - confirming with Space
+12:17:45 anvil: inventory emptied - done smithing, moving to bank
+12:17:45 bank: bank marker found at 665,767 - clicking with offset
+12:17:49 bank: deposited, withdrawing slot 1 then 2
+12:17:50 bank: done withdrawing, returning to anvil phase
+12:17:50 anvil: anvil marker found at 1719,563 - clicking with offset
+12:17:58 anvil: make-X dialog visible - confirming with Space
+12:18:12 anvil: inventory emptied - done smithing, moving to bank
+12:18:12 bank: bank marker found at 665,767 - clicking with offset
+12:18:19 bank: deposited, withdrawing slot 1 then 2
+12:18:20 bank: done withdrawing, returning to anvil phase
+12:18:20 anvil: anvil marker found at 1719,563 - clicking with offset
+12:18:28 anvil: make-X dialog visible - confirming with Space
+12:18:42 anvil: inventory emptied - done smithing, moving to bank
+12:18:42 bank: bank marker found at 665,767 - clicking with offset
+12:18:49 bank: deposited, withdrawing slot 1 then 2
+12:18:50 bank: done withdrawing, returning to anvil phase
+12:18:51 anvil: anvil marker found at 1719,563 - clicking with offset
+12:18:58 anvil: make-X dialog visible - confirming with Space
+12:21:58 anvil: inventory emptied - done smithing, moving to bank
+12:21:58 bank: bank marker found at 665,767 - clicking with offset
+12:22:02 bank: deposited, withdrawing slot 1 then 2
+12:22:03 bank: done withdrawing, returning to anvil phase
+12:22:03 anvil: anvil marker found at 1719,563 - clicking with offset
+12:22:07 anvil: make-X dialog visible - confirming with Space
+12:22:22 anvil: inventory emptied - done smithing, moving to bank
+12:22:22 bank: bank marker found at 665,767 - clicking with offset
+12:22:26 bank: deposited, withdrawing slot 1 then 2
+12:22:27 bank: done withdrawing, returning to anvil phase
+12:22:27 anvil: anvil marker found at 1719,563 - clicking with offset
+12:22:31 anvil: make-X dialog visible - confirming with Space
+12:22:46 anvil: inventory emptied - done smithing, moving to bank
+12:22:46 bank: bank marker found at 665,767 - clicking with offset
+12:22:50 bank: deposited, withdrawing slot 1 then 2
+12:22:51 bank: done withdrawing, returning to anvil phase
+12:22:51 anvil: anvil marker found at 1719,563 - clicking with offset
+12:22:55 anvil: make-X dialog visible - confirming with Space
+12:23:10 anvil: inventory emptied - done smithing, moving to bank
+12:23:10 bank: bank marker found at 665,767 - clicking with offset
+12:23:14 bank: deposited, withdrawing slot 1 then 2
+12:23:15 bank: done withdrawing, returning to anvil phase
+12:23:15 anvil: anvil marker found at 1719,563 - clicking with offset
+12:23:19 anvil: make-X dialog visible - confirming with Space
+12:23:34 anvil: inventory emptied - done smithing, moving to bank
+12:23:34 bank: bank marker found at 665,767 - clicking with offset
+12:23:38 bank: deposited, withdrawing slot 1 then 2
+12:23:39 bank: done withdrawing, returning to anvil phase
+12:23:39 anvil: anvil marker found at 1719,563 - clicking with offset
+12:23:43 anvil: make-X dialog visible - confirming with Space
+12:23:58 anvil: inventory emptied - done smithing, moving to bank
+12:23:58 bank: bank marker found at 665,767 - clicking with offset
+12:24:02 bank: deposited, withdrawing slot 1 then 2
+12:24:03 bank: done withdrawing, returning to anvil phase
+12:24:03 anvil: anvil marker found at 1719,563 - clicking with offset
+12:24:07 anvil: make-X dialog visible - confirming with Space
+12:24:22 anvil: inventory emptied - done smithing, moving to bank
+12:24:22 bank: bank marker found at 665,767 - clicking with offset
+12:24:26 bank: deposited, withdrawing slot 1 then 2
+12:24:27 bank: done withdrawing, returning to anvil phase
+12:24:27 anvil: anvil marker found at 1719,563 - clicking with offset
+12:24:31 anvil: make-X dialog visible - confirming with Space
+12:24:46 anvil: inventory emptied - done smithing, moving to bank
+12:24:46 bank: bank marker found at 665,767 - clicking with offset
+12:24:50 bank: deposited, withdrawing slot 1 then 2
+12:24:51 bank: done withdrawing, returning to anvil phase
+12:24:51 anvil: anvil marker found at 1719,563 - clicking with offset
+12:24:55 anvil: make-X dialog visible - confirming with Space
+12:25:10 anvil: inventory emptied - done smithing, moving to bank
+12:25:10 bank: bank marker found at 665,767 - clicking with offset
+12:25:15 bank: deposited, withdrawing slot 1 then 2
+12:25:15 bank: done withdrawing, returning to anvil phase
+12:25:16 anvil: anvil marker found at 1717,565 - clicking with offset
+12:25:23 anvil: make-X dialog visible - confirming with Space
+12:25:37 anvil: inventory emptied - done smithing, moving to bank
+12:25:37 bank: bank marker found at 665,767 - clicking with offset
+12:25:44 bank: deposited, withdrawing slot 1 then 2
+12:25:45 bank: done withdrawing, returning to anvil phase
+12:25:46 anvil: anvil marker found at 1719,563 - clicking with offset
+12:25:53 anvil: make-X dialog visible - confirming with Space
+12:26:07 anvil: inventory emptied - done smithing, moving to bank
+12:26:08 bank: bank marker found at 665,767 - clicking with offset
+12:26:14 bank: deposited, withdrawing slot 1 then 2
+12:26:15 bank: done withdrawing, returning to anvil phase
+12:26:16 anvil: anvil marker found at 1719,563 - clicking with offset
+12:26:23 anvil: make-X dialog visible - confirming with Space
+12:28:14 ===== Bot started =====
+12:28:14 anvil: anvil marker found at 1719,565 - clicking with offset
+12:28:18 anvil: make-X dialog visible - confirming with Space
+12:28:33 anvil: inventory emptied - done smithing, moving to bank
+12:28:33 bank: bank marker found at 665,767 - clicking with offset
+12:28:37 bank: deposited, withdrawing slot 1 then 2
+12:28:38 bank: done withdrawing, returning to anvil phase
+12:28:38 anvil: anvil marker found at 1719,563 - clicking with offset
+12:28:42 anvil: make-X dialog visible - confirming with Space
+12:28:57 anvil: inventory emptied - done smithing, moving to bank
+12:28:57 bank: bank marker found at 665,767 - clicking with offset
+12:29:01 bank: deposited, withdrawing slot 1 then 2
+12:29:01 bank: done withdrawing, returning to anvil phase
+12:29:02 anvil: anvil marker found at 1719,563 - clicking with offset
+12:29:06 anvil: make-X dialog visible - confirming with Space
+12:29:21 anvil: inventory emptied - done smithing, moving to bank
+12:29:21 bank: bank marker found at 665,767 - clicking with offset
+12:29:25 bank: deposited, withdrawing slot 1 then 2
+12:29:26 bank: done withdrawing, returning to anvil phase
+12:29:26 anvil: anvil marker found at 1719,563 - clicking with offset
+12:29:30 anvil: make-X dialog visible - confirming with Space
+12:29:45 anvil: inventory emptied - done smithing, moving to bank
+12:29:45 bank: bank marker found at 665,767 - clicking with offset
+12:29:49 bank: deposited, withdrawing slot 1 then 2
+12:29:50 bank: done withdrawing, returning to anvil phase
+12:29:50 anvil: anvil marker found at 1719,563 - clicking with offset
+12:29:54 anvil: make-X dialog visible - confirming with Space
+12:30:09 anvil: inventory emptied - done smithing, moving to bank
+12:30:09 bank: bank marker found at 665,767 - clicking with offset
+12:30:13 bank: deposited, withdrawing slot 1 then 2
+12:30:14 bank: done withdrawing, returning to anvil phase
+12:30:14 anvil: anvil marker found at 1719,563 - clicking with offset
+12:30:19 anvil: make-X dialog visible - confirming with Space
+12:30:34 anvil: inventory emptied - done smithing, moving to bank
+12:30:34 bank: bank marker found at 665,767 - clicking with offset
+12:30:41 bank: deposited, withdrawing slot 1 then 2
+12:30:42 bank: done withdrawing, returning to anvil phase
+12:30:42 anvil: anvil marker found at 1719,563 - clicking with offset
+12:30:50 anvil: make-X dialog visible - confirming with Space
+12:31:04 anvil: inventory emptied - done smithing, moving to bank
+12:31:04 bank: bank marker found at 665,767 - clicking with offset
+12:31:11 bank: deposited, withdrawing slot 1 then 2
+12:31:12 bank: done withdrawing, returning to anvil phase
+12:31:13 anvil: anvil marker found at 1719,563 - clicking with offset
+12:31:20 anvil: make-X dialog visible - confirming with Space
+12:31:35 anvil: inventory emptied - done smithing, moving to bank
+12:31:35 bank: bank marker found at 665,767 - clicking with offset
+12:31:40 bank: deposited, withdrawing slot 1 then 2
+12:31:41 bank: done withdrawing, returning to anvil phase
+12:31:41 anvil: anvil marker found at 1719,565 - clicking with offset
+12:31:45 anvil: make-X dialog visible - confirming with Space
+12:32:00 anvil: inventory emptied - done smithing, moving to bank
+12:32:00 bank: bank marker found at 665,767 - clicking with offset
+12:32:04 bank: deposited, withdrawing slot 1 then 2
+12:32:05 bank: done withdrawing, returning to anvil phase
+12:32:05 anvil: anvil marker found at 1719,563 - clicking with offset
+12:32:09 anvil: make-X dialog visible - confirming with Space
+12:32:24 anvil: inventory emptied - done smithing, moving to bank
+12:32:24 bank: bank marker found at 665,767 - clicking with offset
+12:32:28 bank: deposited, withdrawing slot 1 then 2
+12:32:29 bank: done withdrawing, returning to anvil phase
+12:32:29 anvil: anvil marker found at 1719,563 - clicking with offset
+12:32:34 anvil: make-X dialog visible - confirming with Space
+12:32:49 anvil: inventory emptied - done smithing, moving to bank
+12:32:49 bank: bank marker found at 665,767 - clicking with offset
+12:32:56 bank: deposited, withdrawing slot 1 then 2
+12:32:57 bank: done withdrawing, returning to anvil phase
+12:32:57 anvil: anvil marker found at 1719,563 - clicking with offset
+12:33:04 anvil: make-X dialog visible - confirming with Space
+12:33:19 anvil: inventory emptied - done smithing, moving to bank
+12:33:19 bank: bank marker found at 665,767 - clicking with offset
+12:33:26 bank: deposited, withdrawing slot 1 then 2
+12:33:27 bank: done withdrawing, returning to anvil phase
+12:33:27 anvil: anvil marker found at 1719,563 - clicking with offset
+12:33:34 anvil: make-X dialog visible - confirming with Space
+12:33:49 anvil: inventory emptied - done smithing, moving to bank
+12:33:49 bank: bank marker found at 665,767 - clicking with offset
+12:33:54 bank: deposited, withdrawing slot 1 then 2
+12:33:55 bank: done withdrawing, returning to anvil phase
+12:33:55 anvil: anvil marker found at 1719,563 - clicking with offset
+12:34:00 anvil: make-X dialog visible - confirming with Space
+12:34:14 anvil: inventory emptied - done smithing, moving to bank
+12:34:14 bank: bank marker found at 665,767 - clicking with offset
+12:34:18 bank: deposited, withdrawing slot 1 then 2
+12:34:19 bank: done withdrawing, returning to anvil phase
+12:34:19 anvil: anvil marker found at 1719,563 - clicking with offset
+12:34:24 anvil: make-X dialog visible - confirming with Space
+12:34:38 anvil: inventory emptied - done smithing, moving to bank
+12:34:38 bank: bank marker found at 665,767 - clicking with offset
+12:34:42 bank: deposited, withdrawing slot 1 then 2
+12:34:43 bank: done withdrawing, returning to anvil phase
+12:34:43 anvil: anvil marker found at 1719,563 - clicking with offset
+12:34:49 anvil: make-X dialog visible - confirming with Space
+12:35:03 anvil: inventory emptied - done smithing, moving to bank
+12:35:03 bank: bank marker found at 665,767 - clicking with offset
+12:35:10 bank: deposited, withdrawing slot 1 then 2
+12:35:11 bank: done withdrawing, returning to anvil phase
+12:35:12 anvil: anvil marker found at 1719,563 - clicking with offset
+12:35:19 anvil: make-X dialog visible - confirming with Space
+12:35:33 anvil: inventory emptied - done smithing, moving to bank
+12:35:33 bank: bank marker found at 665,767 - clicking with offset
+12:35:40 bank: deposited, withdrawing slot 1 then 2
+12:35:41 bank: done withdrawing, returning to anvil phase
+12:35:42 anvil: anvil marker found at 1719,563 - clicking with offset
+12:35:49 anvil: make-X dialog visible - confirming with Space
+12:36:03 anvil: inventory emptied - done smithing, moving to bank
+12:36:03 bank: bank marker found at 665,767 - clicking with offset
+12:36:08 bank: deposited, withdrawing slot 1 then 2
+12:36:09 bank: done withdrawing, returning to anvil phase
+12:36:10 anvil: anvil marker found at 1719,563 - clicking with offset
+12:36:14 anvil: make-X dialog visible - confirming with Space
+12:36:29 anvil: inventory emptied - done smithing, moving to bank
+12:36:29 bank: bank marker found at 665,767 - clicking with offset
+12:36:32 bank: deposited, withdrawing slot 1 then 2
+12:36:33 bank: done withdrawing, returning to anvil phase
+12:36:34 anvil: anvil marker found at 1719,563 - clicking with offset
+12:36:38 anvil: make-X dialog visible - confirming with Space
+12:36:53 anvil: inventory emptied - done smithing, moving to bank
+12:36:53 bank: bank marker found at 665,767 - clicking with offset
+12:36:56 bank: deposited, withdrawing slot 1 then 2
+12:36:57 bank: done withdrawing, returning to anvil phase
+12:37:00 anvil: inventory still empty after settle window - skipping to bank
+12:37:08 STOPPED: Could not find the bank marker color
+12:38:09 STOPPED: Stopped (F3)
+12:38:41 ===== Bot started =====
+12:38:41 anvil: anvil marker found at 1719,565 - clicking with offset
+12:38:45 anvil: make-X dialog visible - confirming with Space
+12:39:02 anvil: inventory emptied - done smithing, moving to bank
+12:39:02 bank: bank marker found at 665,767 - clicking with offset
+12:39:06 bank: deposited, withdrawing slot 1 then 2
+12:39:07 bank: done withdrawing, returning to anvil phase
+12:39:07 anvil: anvil marker found at 1719,563 - clicking with offset
+12:39:11 anvil: make-X dialog visible - confirming with Space
+12:39:26 anvil: inventory emptied - done smithing, moving to bank
+12:39:26 bank: bank marker found at 665,767 - clicking with offset
+12:39:30 bank: deposited, withdrawing slot 1 then 2
+12:39:30 bank: done withdrawing, returning to anvil phase
+12:39:31 anvil: anvil marker found at 1719,563 - clicking with offset
+12:39:35 anvil: make-X dialog visible - confirming with Space
+12:39:50 anvil: inventory emptied - done smithing, moving to bank
+12:39:50 bank: bank marker found at 665,767 - clicking with offset
+12:39:57 bank: deposited, withdrawing slot 1 then 2
+12:39:57 bank: done withdrawing, returning to anvil phase
+12:39:58 anvil: anvil marker found at 1719,563 - clicking with offset
+12:40:05 anvil: make-X dialog visible - confirming with Space
+12:40:20 anvil: inventory emptied - done smithing, moving to bank
+12:40:20 bank: bank marker found at 665,767 - clicking with offset
+12:40:27 bank: deposited, withdrawing slot 1 then 2
+12:40:28 bank: done withdrawing, returning to anvil phase
+12:40:28 anvil: anvil marker found at 1719,563 - clicking with offset
+12:40:35 anvil: make-X dialog visible - confirming with Space
+12:40:50 anvil: inventory emptied - done smithing, moving to bank
+12:40:50 bank: bank marker found at 665,767 - clicking with offset
+12:40:56 bank: deposited, withdrawing slot 1 then 2
+12:40:57 bank: done withdrawing, returning to anvil phase
+12:40:57 anvil: anvil marker found at 1719,563 - clicking with offset
+12:41:02 anvil: make-X dialog visible - confirming with Space
+12:41:16 anvil: inventory emptied - done smithing, moving to bank
+12:41:16 bank: bank marker found at 665,767 - clicking with offset
+12:41:20 bank: deposited, withdrawing slot 1 then 2
+12:41:21 bank: done withdrawing, returning to anvil phase
+12:41:21 anvil: anvil marker found at 1719,563 - clicking with offset
+12:41:25 anvil: make-X dialog visible - confirming with Space
+12:41:40 anvil: inventory emptied - done smithing, moving to bank
+12:41:40 bank: bank marker found at 665,767 - clicking with offset
+12:41:44 bank: deposited, withdrawing slot 1 then 2
+12:41:45 bank: done withdrawing, returning to anvil phase
+12:41:45 anvil: anvil marker found at 1719,563 - clicking with offset
+12:41:49 anvil: make-X dialog visible - confirming with Space
+12:42:04 anvil: inventory emptied - done smithing, moving to bank
+12:42:04 bank: bank marker found at 665,767 - clicking with offset
+12:42:11 bank: deposited, withdrawing slot 1 then 2
+12:42:12 bank: done withdrawing, returning to anvil phase
+12:42:12 anvil: anvil marker found at 1719,563 - clicking with offset
+12:42:19 anvil: make-X dialog visible - confirming with Space
+12:42:34 anvil: inventory emptied - done smithing, moving to bank
+12:42:34 bank: bank marker found at 665,767 - clicking with offset
+12:42:41 bank: deposited, withdrawing slot 1 then 2
+12:42:42 bank: done withdrawing, returning to anvil phase
+12:42:42 anvil: anvil marker found at 1719,563 - clicking with offset
+12:42:49 anvil: make-X dialog visible - confirming with Space
+12:43:04 anvil: inventory emptied - done smithing, moving to bank
+12:43:04 bank: bank marker found at 665,767 - clicking with offset
+12:43:10 bank: deposited, withdrawing slot 1 then 2
+12:43:11 bank: done withdrawing, returning to anvil phase
+12:43:12 anvil: anvil marker found at 1717,563 - clicking with offset
+12:43:16 anvil: make-X dialog visible - confirming with Space
+12:43:30 anvil: inventory emptied - done smithing, moving to bank
+12:43:30 bank: bank marker found at 665,767 - clicking with offset
+12:43:34 bank: deposited, withdrawing slot 1 then 2
+12:43:35 bank: done withdrawing, returning to anvil phase
+12:43:36 anvil: anvil marker found at 1719,563 - clicking with offset
+12:43:40 anvil: make-X dialog visible - confirming with Space
+12:43:54 anvil: inventory emptied - done smithing, moving to bank
+12:43:54 bank: bank marker found at 665,767 - clicking with offset
+12:43:58 bank: deposited, withdrawing slot 1 then 2
+12:43:59 bank: done withdrawing, returning to anvil phase
+12:44:00 anvil: anvil marker found at 1719,563 - clicking with offset
+12:44:04 anvil: make-X dialog visible - confirming with Space
+12:44:18 anvil: inventory emptied - done smithing, moving to bank
+12:44:18 bank: bank marker found at 665,767 - clicking with offset
+12:44:25 bank: deposited, withdrawing slot 1 then 2
+12:44:26 bank: done withdrawing, returning to anvil phase
+12:44:27 anvil: anvil marker found at 1719,563 - clicking with offset
+12:44:34 anvil: make-X dialog visible - confirming with Space
+12:44:48 anvil: inventory emptied - done smithing, moving to bank
+12:44:48 bank: bank marker found at 665,767 - clicking with offset
+12:44:55 bank: deposited, withdrawing slot 1 then 2
+12:44:56 bank: done withdrawing, returning to anvil phase
+12:44:57 anvil: anvil marker found at 1719,563 - clicking with offset
+12:45:04 anvil: make-X dialog visible - confirming with Space
+12:45:18 anvil: inventory emptied - done smithing, moving to bank
+12:45:18 bank: bank marker found at 665,767 - clicking with offset
+12:45:25 bank: deposited, withdrawing slot 1 then 2
+12:45:26 bank: done withdrawing, returning to anvil phase
+12:45:26 anvil: anvil marker found at 1719,563 - clicking with offset
+12:45:30 anvil: make-X dialog visible - confirming with Space
+12:45:45 anvil: inventory emptied - done smithing, moving to bank
+12:45:45 bank: bank marker found at 665,767 - clicking with offset
+12:45:49 bank: deposited, withdrawing slot 1 then 2
+12:45:50 bank: done withdrawing, returning to anvil phase
+12:45:50 anvil: anvil marker found at 1719,563 - clicking with offset
+12:45:54 anvil: make-X dialog visible - confirming with Space
+12:46:09 anvil: inventory emptied - done smithing, moving to bank
+12:46:09 bank: bank marker found at 665,767 - clicking with offset
+12:46:13 bank: deposited, withdrawing slot 1 then 2
+12:46:14 bank: done withdrawing, returning to anvil phase
+12:46:14 anvil: anvil marker found at 1719,563 - clicking with offset
+12:46:18 anvil: make-X dialog visible - confirming with Space
+12:46:33 anvil: inventory emptied - done smithing, moving to bank
+12:46:33 bank: bank marker found at 665,767 - clicking with offset
+12:46:40 bank: deposited, withdrawing slot 1 then 2
+12:46:41 bank: done withdrawing, returning to anvil phase
+12:46:41 anvil: anvil marker found at 1719,563 - clicking with offset
+12:46:48 anvil: make-X dialog visible - confirming with Space
+12:47:03 anvil: inventory emptied - done smithing, moving to bank
+12:47:03 bank: bank marker found at 665,767 - clicking with offset
+12:47:10 bank: deposited, withdrawing slot 1 then 2
+12:47:11 bank: done withdrawing, returning to anvil phase
+12:47:11 anvil: anvil marker found at 1719,563 - clicking with offset
+12:47:18 anvil: make-X dialog visible - confirming with Space
+12:47:33 anvil: inventory emptied - done smithing, moving to bank
+12:47:33 bank: bank marker found at 665,767 - clicking with offset
+12:47:39 bank: deposited, withdrawing slot 1 then 2
+12:47:40 bank: done withdrawing, returning to anvil phase
+12:47:40 anvil: anvil marker found at 1719,563 - clicking with offset
+12:47:45 anvil: make-X dialog visible - confirming with Space
+12:47:59 anvil: inventory emptied - done smithing, moving to bank
+12:47:59 bank: bank marker found at 665,767 - clicking with offset
+12:48:03 bank: deposited, withdrawing slot 1 then 2
+12:48:04 bank: done withdrawing, returning to anvil phase
+12:48:05 anvil: anvil marker found at 1719,563 - clicking with offset
+12:48:09 anvil: make-X dialog visible - confirming with Space
+12:48:23 anvil: inventory emptied - done smithing, moving to bank
+12:48:23 bank: bank marker found at 665,767 - clicking with offset
+12:48:27 bank: deposited, withdrawing slot 1 then 2
+12:48:28 bank: done withdrawing, returning to anvil phase
+12:48:28 anvil: anvil marker found at 1719,563 - clicking with offset
+12:48:33 anvil: make-X dialog visible - confirming with Space
+12:48:47 anvil: inventory emptied - done smithing, moving to bank
+12:48:47 bank: bank marker found at 665,767 - clicking with offset
+12:48:54 bank: deposited, withdrawing slot 1 then 2
+12:48:55 bank: done withdrawing, returning to anvil phase
+12:48:56 anvil: anvil marker found at 1719,563 - clicking with offset
+12:49:03 anvil: make-X dialog visible - confirming with Space
+12:49:17 anvil: inventory emptied - done smithing, moving to bank
+12:49:17 bank: bank marker found at 665,767 - clicking with offset
+12:49:24 bank: deposited, withdrawing slot 1 then 2
+12:49:25 bank: done withdrawing, returning to anvil phase
+12:49:25 anvil: anvil marker found at 1719,563 - clicking with offset
+12:49:33 anvil: make-X dialog visible - confirming with Space
+12:49:47 anvil: inventory emptied - done smithing, moving to bank
+12:49:47 bank: bank marker found at 665,767 - clicking with offset
+12:49:54 bank: deposited, withdrawing slot 1 then 2
+12:49:55 bank: done withdrawing, returning to anvil phase
+12:49:55 anvil: anvil marker found at 1719,563 - clicking with offset
+12:49:59 anvil: make-X dialog visible - confirming with Space
+12:50:14 anvil: inventory emptied - done smithing, moving to bank
+12:50:14 bank: bank marker found at 665,767 - clicking with offset
+12:50:18 bank: deposited, withdrawing slot 1 then 2
+12:50:18 bank: done withdrawing, returning to anvil phase
+12:50:19 anvil: anvil marker found at 1719,563 - clicking with offset
+12:50:23 anvil: make-X dialog visible - confirming with Space
+12:50:38 anvil: inventory emptied - done smithing, moving to bank
+12:50:38 bank: bank marker found at 665,767 - clicking with offset
+12:50:42 bank: deposited, withdrawing slot 1 then 2
+12:50:43 bank: done withdrawing, returning to anvil phase
+12:50:43 anvil: anvil marker found at 1719,563 - clicking with offset
+12:50:47 anvil: make-X dialog visible - confirming with Space
+12:51:02 anvil: inventory emptied - done smithing, moving to bank
+12:51:02 bank: bank marker found at 665,767 - clicking with offset
+12:51:09 bank: deposited, withdrawing slot 1 then 2
+12:51:10 bank: done withdrawing, returning to anvil phase
+12:51:10 anvil: anvil marker found at 1719,563 - clicking with offset
+12:51:17 anvil: make-X dialog visible - confirming with Space
+12:51:32 anvil: inventory emptied - done smithing, moving to bank
+12:51:32 bank: bank marker found at 665,767 - clicking with offset
+12:51:39 bank: deposited, withdrawing slot 1 then 2
+12:51:40 bank: done withdrawing, returning to anvil phase
+12:51:40 anvil: anvil marker found at 1719,563 - clicking with offset
+12:51:47 anvil: make-X dialog visible - confirming with Space
+12:52:02 anvil: inventory emptied - done smithing, moving to bank
+12:52:02 bank: bank marker found at 665,767 - clicking with offset
+12:52:08 bank: deposited, withdrawing slot 1 then 2
+12:52:09 bank: done withdrawing, returning to anvil phase
+12:52:09 anvil: anvil marker found at 1719,563 - clicking with offset
+12:52:13 anvil: make-X dialog visible - confirming with Space
+12:52:28 anvil: inventory emptied - done smithing, moving to bank
+12:52:28 bank: bank marker found at 665,767 - clicking with offset
+12:52:32 bank: deposited, withdrawing slot 1 then 2
+12:52:33 bank: done withdrawing, returning to anvil phase
+12:52:33 anvil: anvil marker found at 1719,563 - clicking with offset
+12:52:37 anvil: make-X dialog visible - confirming with Space
+12:52:52 anvil: inventory emptied - done smithing, moving to bank
+12:52:52 bank: bank marker found at 665,767 - clicking with offset
+12:52:56 bank: deposited, withdrawing slot 1 then 2
+12:52:57 bank: done withdrawing, returning to anvil phase
+12:52:57 anvil: anvil marker found at 1719,563 - clicking with offset
+12:53:01 anvil: make-X dialog visible - confirming with Space
+12:53:16 anvil: inventory emptied - done smithing, moving to bank
+12:53:16 bank: bank marker found at 665,767 - clicking with offset
+12:53:23 bank: deposited, withdrawing slot 1 then 2
+12:53:24 bank: done withdrawing, returning to anvil phase
+12:53:24 anvil: anvil marker found at 1719,563 - clicking with offset
+12:53:32 anvil: make-X dialog visible - confirming with Space
+12:53:46 anvil: inventory emptied - done smithing, moving to bank
+12:53:46 bank: bank marker found at 665,767 - clicking with offset
+12:53:53 bank: deposited, withdrawing slot 1 then 2
+12:53:54 bank: done withdrawing, returning to anvil phase
+12:53:54 anvil: anvil marker found at 1719,563 - clicking with offset
+12:54:01 anvil: make-X dialog visible - confirming with Space
+12:54:16 anvil: inventory emptied - done smithing, moving to bank
+12:54:16 bank: bank marker found at 665,767 - clicking with offset
+12:54:23 bank: deposited, withdrawing slot 1 then 2
+12:54:23 bank: done withdrawing, returning to anvil phase
+12:54:24 anvil: anvil marker found at 1717,563 - clicking with offset
+12:54:28 anvil: make-X dialog visible - confirming with Space
+12:54:42 anvil: inventory emptied - done smithing, moving to bank
+12:54:42 bank: bank marker found at 665,767 - clicking with offset
+12:54:47 bank: deposited, withdrawing slot 1 then 2
+12:54:47 bank: done withdrawing, returning to anvil phase
+12:54:48 anvil: anvil marker found at 1719,563 - clicking with offset
+12:54:52 anvil: make-X dialog visible - confirming with Space
+12:55:07 anvil: inventory emptied - done smithing, moving to bank
+12:55:07 bank: bank marker found at 665,767 - clicking with offset
+12:55:10 bank: deposited, withdrawing slot 1 then 2
+12:55:11 bank: done withdrawing, returning to anvil phase
+12:55:12 anvil: anvil marker found at 1719,563 - clicking with offset
+12:55:16 anvil: make-X dialog visible - confirming with Space
+12:55:30 anvil: inventory emptied - done smithing, moving to bank
+12:55:30 bank: bank marker found at 665,767 - clicking with offset
+12:55:37 bank: deposited, withdrawing slot 1 then 2
+12:55:38 bank: done withdrawing, returning to anvil phase
+12:55:39 anvil: anvil marker found at 1719,563 - clicking with offset
+12:55:46 anvil: make-X dialog visible - confirming with Space
+12:56:00 anvil: inventory emptied - done smithing, moving to bank
+12:56:01 bank: bank marker found at 665,767 - clicking with offset
+12:56:08 bank: deposited, withdrawing slot 1 then 2
+12:56:08 bank: done withdrawing, returning to anvil phase
+12:56:09 anvil: anvil marker found at 1719,563 - clicking with offset
+12:56:16 anvil: make-X dialog visible - confirming with Space
+12:56:31 anvil: inventory emptied - done smithing, moving to bank
+12:56:31 bank: bank marker found at 665,767 - clicking with offset
+12:56:37 bank: deposited, withdrawing slot 1 then 2
+12:56:38 bank: done withdrawing, returning to anvil phase
+12:56:38 anvil: anvil marker found at 1717,563 - clicking with offset
+12:56:42 anvil: make-X dialog visible - confirming with Space
+12:56:57 anvil: inventory emptied - done smithing, moving to bank
+12:56:57 bank: bank marker found at 665,767 - clicking with offset
+12:57:01 bank: deposited, withdrawing slot 1 then 2
+12:57:02 bank: done withdrawing, returning to anvil phase
+12:57:02 anvil: anvil marker found at 1719,563 - clicking with offset
+12:57:06 anvil: make-X dialog visible - confirming with Space
+12:57:21 anvil: inventory emptied - done smithing, moving to bank
+12:57:21 bank: bank marker found at 665,767 - clicking with offset
+12:57:25 bank: deposited, withdrawing slot 1 then 2
+12:57:26 bank: done withdrawing, returning to anvil phase
+12:57:26 anvil: anvil marker found at 1719,563 - clicking with offset
+12:57:30 anvil: make-X dialog visible - confirming with Space
+12:57:45 anvil: inventory emptied - done smithing, moving to bank
+12:57:45 bank: bank marker found at 665,767 - clicking with offset
+12:57:52 bank: deposited, withdrawing slot 1 then 2
+12:57:53 bank: done withdrawing, returning to anvil phase
+12:57:53 anvil: anvil marker found at 1719,563 - clicking with offset
+12:58:00 anvil: make-X dialog visible - confirming with Space
+12:58:15 anvil: inventory emptied - done smithing, moving to bank
+12:58:15 bank: bank marker found at 665,767 - clicking with offset
+12:58:22 bank: deposited, withdrawing slot 1 then 2
+12:58:23 bank: done withdrawing, returning to anvil phase
+12:58:23 anvil: anvil marker found at 1719,563 - clicking with offset
+12:58:30 anvil: make-X dialog visible - confirming with Space
+12:58:45 anvil: inventory emptied - done smithing, moving to bank
+12:58:45 bank: bank marker found at 665,767 - clicking with offset
+12:58:51 bank: deposited, withdrawing slot 1 then 2
+12:58:52 bank: done withdrawing, returning to anvil phase
+12:58:53 anvil: anvil marker found at 1717,563 - clicking with offset
+12:58:57 anvil: make-X dialog visible - confirming with Space
+12:59:11 anvil: inventory emptied - done smithing, moving to bank
+12:59:11 bank: bank marker found at 665,767 - clicking with offset
+12:59:15 bank: deposited, withdrawing slot 1 then 2
+12:59:16 bank: done withdrawing, returning to anvil phase
+12:59:17 anvil: anvil marker found at 1719,563 - clicking with offset
+12:59:21 anvil: make-X dialog visible - confirming with Space
+12:59:35 anvil: inventory emptied - done smithing, moving to bank
+12:59:35 bank: bank marker found at 665,767 - clicking with offset
+12:59:39 bank: deposited, withdrawing slot 1 then 2
+12:59:40 bank: done withdrawing, returning to anvil phase
+12:59:41 anvil: anvil marker found at 1719,563 - clicking with offset
+12:59:45 anvil: make-X dialog visible - confirming with Space
+12:59:59 anvil: inventory emptied - done smithing, moving to bank
+12:59:59 bank: bank marker found at 665,767 - clicking with offset
+13:00:06 bank: deposited, withdrawing slot 1 then 2
+13:00:07 bank: done withdrawing, returning to anvil phase
+13:00:08 anvil: anvil marker found at 1719,563 - clicking with offset
+13:00:15 anvil: make-X dialog visible - confirming with Space
+13:00:29 anvil: inventory emptied - done smithing, moving to bank
+13:00:29 bank: bank marker found at 665,767 - clicking with offset
+13:00:37 bank: deposited, withdrawing slot 1 then 2
+13:00:38 bank: done withdrawing, returning to anvil phase
+13:00:38 anvil: anvil marker found at 1719,563 - clicking with offset
+13:00:46 anvil: make-X dialog visible - confirming with Space
+13:01:00 anvil: inventory emptied - done smithing, moving to bank
+13:01:00 bank: bank marker found at 665,767 - clicking with offset
+13:01:06 bank: deposited, withdrawing slot 1 then 2
+13:01:07 bank: done withdrawing, returning to anvil phase
+13:01:08 anvil: anvil marker found at 1717,565 - clicking with offset
+13:01:12 anvil: make-X dialog visible - confirming with Space
+13:01:26 anvil: inventory emptied - done smithing, moving to bank
+13:01:26 bank: bank marker found at 665,767 - clicking with offset
+13:01:30 bank: deposited, withdrawing slot 1 then 2
+13:01:31 bank: done withdrawing, returning to anvil phase
+13:01:32 anvil: anvil marker found at 1719,563 - clicking with offset
+13:01:36 anvil: make-X dialog visible - confirming with Space
+13:01:50 anvil: inventory emptied - done smithing, moving to bank
+13:01:50 bank: bank marker found at 665,767 - clicking with offset
+13:01:54 bank: deposited, withdrawing slot 1 then 2
+13:01:55 bank: done withdrawing, returning to anvil phase
+13:01:56 anvil: anvil marker found at 1719,563 - clicking with offset
+13:02:00 anvil: make-X dialog visible - confirming with Space
+13:02:14 anvil: inventory emptied - done smithing, moving to bank
+13:02:14 bank: bank marker found at 665,767 - clicking with offset
+13:02:21 bank: deposited, withdrawing slot 1 then 2
+13:02:22 bank: done withdrawing, returning to anvil phase
+13:02:23 anvil: anvil marker found at 1719,563 - clicking with offset
+13:02:30 anvil: make-X dialog visible - confirming with Space
+13:02:44 anvil: inventory emptied - done smithing, moving to bank
+13:02:44 bank: bank marker found at 665,767 - clicking with offset
+13:02:51 bank: deposited, withdrawing slot 1 then 2
+13:02:52 bank: done withdrawing, returning to anvil phase
+13:02:53 anvil: anvil marker found at 1717,565 - clicking with offset
+13:03:00 anvil: make-X dialog visible - confirming with Space
+13:03:14 anvil: inventory emptied - done smithing, moving to bank
+13:03:14 bank: bank marker found at 665,767 - clicking with offset
+13:03:21 bank: deposited, withdrawing slot 1 then 2
+13:03:22 bank: done withdrawing, returning to anvil phase
+13:03:22 anvil: anvil marker found at 1717,563 - clicking with offset
+13:03:26 anvil: make-X dialog visible - confirming with Space
+13:03:41 anvil: inventory emptied - done smithing, moving to bank
+13:03:41 bank: bank marker found at 665,767 - clicking with offset
+13:03:45 bank: deposited, withdrawing slot 1 then 2
+13:03:46 bank: done withdrawing, returning to anvil phase
+13:03:46 anvil: anvil marker found at 1719,563 - clicking with offset
+13:03:50 anvil: make-X dialog visible - confirming with Space
+13:04:05 anvil: inventory emptied - done smithing, moving to bank
+13:04:05 bank: bank marker found at 665,767 - clicking with offset
+13:04:09 bank: deposited, withdrawing slot 1 then 2
+13:04:10 bank: done withdrawing, returning to anvil phase
+13:04:10 anvil: anvil marker found at 1719,563 - clicking with offset
+13:04:14 anvil: make-X dialog visible - confirming with Space
+13:04:29 anvil: inventory emptied - done smithing, moving to bank
+13:04:29 bank: bank marker found at 665,767 - clicking with offset
+13:04:36 bank: deposited, withdrawing slot 1 then 2
+13:04:37 bank: done withdrawing, returning to anvil phase
+13:04:37 anvil: anvil marker found at 1719,563 - clicking with offset
+13:04:44 anvil: make-X dialog visible - confirming with Space
+13:04:59 anvil: inventory emptied - done smithing, moving to bank
+13:04:59 bank: bank marker found at 665,767 - clicking with offset
+13:05:06 bank: deposited, withdrawing slot 1 then 2
+13:05:07 bank: done withdrawing, returning to anvil phase
+13:05:07 anvil: anvil marker found at 1719,563 - clicking with offset
+13:05:14 anvil: make-X dialog visible - confirming with Space
+13:05:29 anvil: inventory emptied - done smithing, moving to bank
+13:05:29 bank: bank marker found at 665,767 - clicking with offset
+13:05:35 bank: deposited, withdrawing slot 1 then 2
+13:05:36 bank: done withdrawing, returning to anvil phase
+13:05:36 anvil: anvil marker found at 1719,563 - clicking with offset
+13:05:41 anvil: make-X dialog visible - confirming with Space
+13:05:55 anvil: inventory emptied - done smithing, moving to bank
+13:05:55 bank: bank marker found at 665,767 - clicking with offset
+13:05:59 bank: deposited, withdrawing slot 1 then 2
+13:06:00 bank: done withdrawing, returning to anvil phase
+13:06:00 anvil: anvil marker found at 1719,563 - clicking with offset
+13:06:05 anvil: make-X dialog visible - confirming with Space
+13:06:19 anvil: inventory emptied - done smithing, moving to bank
+13:06:19 bank: bank marker found at 665,767 - clicking with offset
+13:06:23 bank: deposited, withdrawing slot 1 then 2
+13:06:24 bank: done withdrawing, returning to anvil phase
+13:06:24 anvil: anvil marker found at 1719,563 - clicking with offset
+13:06:29 anvil: make-X dialog visible - confirming with Space
+13:06:43 anvil: inventory emptied - done smithing, moving to bank
+13:06:43 bank: bank marker found at 665,767 - clicking with offset
+13:06:50 bank: deposited, withdrawing slot 1 then 2
+13:06:51 bank: done withdrawing, returning to anvil phase
+13:06:51 anvil: anvil marker found at 1719,563 - clicking with offset
+13:06:59 anvil: make-X dialog visible - confirming with Space
+13:07:13 anvil: inventory emptied - done smithing, moving to bank
+13:07:13 bank: bank marker found at 665,767 - clicking with offset
+13:07:20 bank: deposited, withdrawing slot 1 then 2
+13:07:21 bank: done withdrawing, returning to anvil phase
+13:07:21 anvil: anvil marker found at 1719,563 - clicking with offset
+13:07:29 anvil: make-X dialog visible - confirming with Space
+13:07:43 anvil: inventory emptied - done smithing, moving to bank
+13:07:43 bank: bank marker found at 665,767 - clicking with offset
+13:07:50 bank: deposited, withdrawing slot 1 then 2
+13:07:50 bank: done withdrawing, returning to anvil phase
+13:07:51 anvil: anvil marker found at 1717,563 - clicking with offset
+13:07:55 anvil: make-X dialog visible - confirming with Space
+13:08:10 anvil: inventory emptied - done smithing, moving to bank
+13:08:10 bank: bank marker found at 665,767 - clicking with offset
+13:08:13 bank: deposited, withdrawing slot 1 then 2
+13:08:14 bank: done withdrawing, returning to anvil phase
+13:08:15 anvil: anvil marker found at 1719,563 - clicking with offset
+13:08:19 anvil: make-X dialog visible - confirming with Space
+13:08:34 anvil: inventory emptied - done smithing, moving to bank
+13:08:34 bank: bank marker found at 665,767 - clicking with offset
+13:08:38 bank: deposited, withdrawing slot 1 then 2
+13:08:39 bank: done withdrawing, returning to anvil phase
+13:08:39 anvil: anvil marker found at 1719,563 - clicking with offset
+13:08:44 anvil: make-X dialog visible - confirming with Space
+13:08:58 anvil: inventory emptied - done smithing, moving to bank
+13:08:58 bank: bank marker found at 665,767 - clicking with offset
+13:09:05 bank: deposited, withdrawing slot 1 then 2
+13:09:06 bank: done withdrawing, returning to anvil phase
+13:09:06 anvil: anvil marker found at 1719,563 - clicking with offset
+13:09:14 anvil: make-X dialog visible - confirming with Space
+13:09:28 anvil: inventory emptied - done smithing, moving to bank
+13:09:28 bank: bank marker found at 665,767 - clicking with offset
+13:09:35 bank: deposited, withdrawing slot 1 then 2
+13:09:36 bank: done withdrawing, returning to anvil phase
+13:09:36 anvil: anvil marker found at 1719,563 - clicking with offset
+13:09:44 anvil: make-X dialog visible - confirming with Space
+13:09:58 anvil: inventory emptied - done smithing, moving to bank
+13:09:58 bank: bank marker found at 665,767 - clicking with offset
+13:10:05 bank: deposited, withdrawing slot 1 then 2
+13:10:05 bank: done withdrawing, returning to anvil phase
+13:10:06 anvil: anvil marker found at 1719,563 - clicking with offset
+13:10:10 anvil: make-X dialog visible - confirming with Space
+13:10:25 anvil: inventory emptied - done smithing, moving to bank
+13:10:25 bank: bank marker found at 665,767 - clicking with offset
+13:10:29 bank: deposited, withdrawing slot 1 then 2
+13:10:30 bank: done withdrawing, returning to anvil phase
+13:10:30 anvil: anvil marker found at 1719,563 - clicking with offset
+13:10:34 anvil: make-X dialog visible - confirming with Space
+13:10:49 anvil: inventory emptied - done smithing, moving to bank
+13:10:49 bank: bank marker found at 665,767 - clicking with offset
+13:10:53 bank: deposited, withdrawing slot 1 then 2
+13:10:53 bank: done withdrawing, returning to anvil phase
+13:10:54 anvil: anvil marker found at 1719,563 - clicking with offset
+13:10:58 anvil: make-X dialog visible - confirming with Space
+13:11:13 anvil: inventory emptied - done smithing, moving to bank
+13:11:13 bank: bank marker found at 665,767 - clicking with offset
+13:11:20 bank: deposited, withdrawing slot 1 then 2
+13:11:20 bank: done withdrawing, returning to anvil phase
+13:11:21 anvil: anvil marker found at 1719,563 - clicking with offset
+13:11:28 anvil: make-X dialog visible - confirming with Space
+13:11:43 anvil: inventory emptied - done smithing, moving to bank
+13:11:43 bank: bank marker found at 665,767 - clicking with offset
+13:11:50 bank: deposited, withdrawing slot 1 then 2
+13:11:51 bank: done withdrawing, returning to anvil phase
+13:11:51 anvil: anvil marker found at 1717,565 - clicking with offset
+13:11:58 anvil: make-X dialog visible - confirming with Space
+13:12:13 anvil: inventory emptied - done smithing, moving to bank
+13:12:13 bank: bank marker found at 665,767 - clicking with offset
+13:12:19 bank: deposited, withdrawing slot 1 then 2
+13:12:20 bank: done withdrawing, returning to anvil phase
+13:12:20 anvil: anvil marker found at 1719,563 - clicking with offset
+13:12:24 anvil: make-X dialog visible - confirming with Space
+13:12:39 anvil: inventory emptied - done smithing, moving to bank
+13:12:39 bank: bank marker found at 665,767 - clicking with offset
+13:12:43 bank: deposited, withdrawing slot 1 then 2
+13:12:44 bank: done withdrawing, returning to anvil phase
+13:12:44 anvil: anvil marker found at 1719,563 - clicking with offset
+13:12:49 anvil: make-X dialog visible - confirming with Space
+13:13:03 anvil: inventory emptied - done smithing, moving to bank
+13:13:03 bank: bank marker found at 665,767 - clicking with offset
+13:13:07 bank: deposited, withdrawing slot 1 then 2
+13:13:08 bank: done withdrawing, returning to anvil phase
+13:13:08 anvil: anvil marker found at 1719,563 - clicking with offset
+13:13:12 anvil: make-X dialog visible - confirming with Space
+13:13:27 anvil: inventory emptied - done smithing, moving to bank
+13:13:27 bank: bank marker found at 665,767 - clicking with offset
+13:13:34 bank: deposited, withdrawing slot 1 then 2
+13:13:35 bank: done withdrawing, returning to anvil phase
+13:13:35 anvil: anvil marker found at 1719,563 - clicking with offset
+13:13:43 anvil: make-X dialog visible - confirming with Space
+13:13:57 anvil: inventory emptied - done smithing, moving to bank
+13:13:57 bank: bank marker found at 665,767 - clicking with offset
+13:14:04 bank: deposited, withdrawing slot 1 then 2
+13:14:05 bank: done withdrawing, returning to anvil phase
+13:14:05 anvil: anvil marker found at 1719,563 - clicking with offset
+13:14:12 anvil: make-X dialog visible - confirming with Space
+13:14:27 anvil: inventory emptied - done smithing, moving to bank
+13:14:27 bank: bank marker found at 665,767 - clicking with offset
+13:14:33 bank: deposited, withdrawing slot 1 then 2
+13:14:34 bank: done withdrawing, returning to anvil phase
+13:14:35 anvil: anvil marker found at 1717,563 - clicking with offset
+13:14:39 anvil: make-X dialog visible - confirming with Space
+13:14:53 anvil: inventory emptied - done smithing, moving to bank
+13:14:53 bank: bank marker found at 665,767 - clicking with offset
+13:14:57 bank: deposited, withdrawing slot 1 then 2
+13:14:58 bank: done withdrawing, returning to anvil phase
+13:14:59 anvil: anvil marker found at 1719,563 - clicking with offset
+13:15:03 anvil: make-X dialog visible - confirming with Space
+13:15:17 anvil: inventory emptied - done smithing, moving to bank
+13:15:17 bank: bank marker found at 665,767 - clicking with offset
+13:15:21 bank: deposited, withdrawing slot 1 then 2
+13:15:22 bank: done withdrawing, returning to anvil phase
+13:15:23 anvil: anvil marker found at 1719,563 - clicking with offset
+13:15:27 anvil: make-X dialog visible - confirming with Space
+13:15:41 anvil: inventory emptied - done smithing, moving to bank
+13:15:41 bank: bank marker found at 665,767 - clicking with offset
+13:15:48 bank: deposited, withdrawing slot 1 then 2
+13:15:49 bank: done withdrawing, returning to anvil phase
+13:15:50 anvil: anvil marker found at 1717,565 - clicking with offset
+13:15:57 anvil: make-X dialog visible - confirming with Space
+13:16:11 anvil: inventory emptied - done smithing, moving to bank
+13:16:11 bank: bank marker found at 665,767 - clicking with offset
+13:16:18 bank: deposited, withdrawing slot 1 then 2
+13:16:19 bank: done withdrawing, returning to anvil phase
+13:16:20 anvil: anvil marker found at 1719,563 - clicking with offset
+13:16:27 anvil: make-X dialog visible - confirming with Space
+13:16:41 anvil: inventory emptied - done smithing, moving to bank
+13:16:41 bank: bank marker found at 665,767 - clicking with offset
+13:16:48 bank: deposited, withdrawing slot 1 then 2
+13:16:49 bank: done withdrawing, returning to anvil phase
+13:16:49 anvil: anvil marker found at 1717,563 - clicking with offset
+13:16:53 anvil: make-X dialog visible - confirming with Space
+13:17:08 anvil: inventory emptied - done smithing, moving to bank
+13:17:08 bank: bank marker found at 665,767 - clicking with offset
+13:17:12 bank: deposited, withdrawing slot 1 then 2
+13:17:13 bank: done withdrawing, returning to anvil phase
+13:17:13 anvil: anvil marker found at 1719,563 - clicking with offset
+13:17:17 anvil: make-X dialog visible - confirming with Space
+13:17:32 anvil: inventory emptied - done smithing, moving to bank
+13:17:32 bank: bank marker found at 665,767 - clicking with offset
+13:17:36 bank: deposited, withdrawing slot 1 then 2
+13:17:37 bank: done withdrawing, returning to anvil phase
+13:17:37 anvil: anvil marker found at 1719,563 - clicking with offset
+13:17:41 anvil: make-X dialog visible - confirming with Space
+13:17:56 anvil: inventory emptied - done smithing, moving to bank
+13:17:56 bank: bank marker found at 665,767 - clicking with offset
+13:18:03 bank: deposited, withdrawing slot 1 then 2
+13:18:04 bank: done withdrawing, returning to anvil phase
+13:18:04 anvil: anvil marker found at 1719,563 - clicking with offset
+13:18:11 anvil: make-X dialog visible - confirming with Space
+13:18:26 anvil: inventory emptied - done smithing, moving to bank
+13:18:26 bank: bank marker found at 665,767 - clicking with offset
+13:18:33 bank: deposited, withdrawing slot 1 then 2
+13:18:34 bank: done withdrawing, returning to anvil phase
+13:18:34 anvil: anvil marker found at 1719,563 - clicking with offset
+13:18:41 anvil: make-X dialog visible - confirming with Space
+13:18:56 anvil: inventory emptied - done smithing, moving to bank
+13:18:56 bank: bank marker found at 665,767 - clicking with offset
+13:19:02 bank: deposited, withdrawing slot 1 then 2
+13:19:03 bank: done withdrawing, returning to anvil phase
+13:19:04 anvil: anvil marker found at 1719,563 - clicking with offset
+13:19:08 anvil: make-X dialog visible - confirming with Space
+13:19:22 anvil: inventory emptied - done smithing, moving to bank
+13:19:22 bank: bank marker found at 665,767 - clicking with offset
+13:19:26 bank: deposited, withdrawing slot 1 then 2
+13:19:27 bank: done withdrawing, returning to anvil phase
+13:19:28 anvil: anvil marker found at 1719,563 - clicking with offset
+13:19:32 anvil: make-X dialog visible - confirming with Space
+13:19:46 anvil: inventory emptied - done smithing, moving to bank
+13:19:46 bank: bank marker found at 665,767 - clicking with offset
+13:19:50 bank: deposited, withdrawing slot 1 then 2
+13:19:51 bank: done withdrawing, returning to anvil phase
+13:19:52 anvil: anvil marker found at 1719,563 - clicking with offset
+13:19:56 anvil: make-X dialog visible - confirming with Space
+13:20:10 anvil: inventory emptied - done smithing, moving to bank
+13:20:10 bank: bank marker found at 665,767 - clicking with offset
+13:20:17 bank: deposited, withdrawing slot 1 then 2
+13:20:18 bank: done withdrawing, returning to anvil phase
+13:20:19 anvil: anvil marker found at 1719,563 - clicking with offset
+13:20:26 anvil: make-X dialog visible - confirming with Space
+13:20:40 anvil: inventory emptied - done smithing, moving to bank
+13:20:40 bank: bank marker found at 665,767 - clicking with offset
+13:20:47 bank: deposited, withdrawing slot 1 then 2
+13:20:48 bank: done withdrawing, returning to anvil phase
+13:20:49 anvil: anvil marker found at 1719,563 - clicking with offset
+13:20:56 anvil: make-X dialog visible - confirming with Space
+13:21:10 anvil: inventory emptied - done smithing, moving to bank
+13:21:10 bank: bank marker found at 665,767 - clicking with offset
+13:21:17 bank: deposited, withdrawing slot 1 then 2
+13:21:18 bank: done withdrawing, returning to anvil phase
+13:21:18 anvil: anvil marker found at 1717,563 - clicking with offset
+13:21:22 anvil: make-X dialog visible - confirming with Space
+13:21:37 anvil: inventory emptied - done smithing, moving to bank
+13:21:37 bank: bank marker found at 665,767 - clicking with offset
+13:21:41 bank: deposited, withdrawing slot 1 then 2
+13:21:42 bank: done withdrawing, returning to anvil phase
+13:21:42 anvil: anvil marker found at 1719,563 - clicking with offset
+13:21:46 anvil: make-X dialog visible - confirming with Space
+13:22:01 anvil: inventory emptied - done smithing, moving to bank
+13:22:01 bank: bank marker found at 665,767 - clicking with offset
+13:22:05 bank: deposited, withdrawing slot 1 then 2
+13:22:06 bank: done withdrawing, returning to anvil phase
+13:22:06 anvil: anvil marker found at 1719,563 - clicking with offset
+13:22:10 anvil: make-X dialog visible - confirming with Space
+13:22:25 anvil: inventory emptied - done smithing, moving to bank
+13:22:25 bank: bank marker found at 665,767 - clicking with offset
+13:22:32 bank: deposited, withdrawing slot 1 then 2
+13:22:33 bank: done withdrawing, returning to anvil phase
+13:22:33 anvil: anvil marker found at 1719,563 - clicking with offset
+13:22:40 anvil: make-X dialog visible - confirming with Space
+13:22:55 anvil: inventory emptied - done smithing, moving to bank
+13:22:55 bank: bank marker found at 665,767 - clicking with offset
+13:23:01 STOPPED: Stopped (F3)
+13:23:01 STOPPED: Bank never opened (Deposit All button not found)
+13:23:32 ===== Bot started =====
+13:23:32 anvil: anvil marker found at 1719,565 - clicking with offset
+13:23:37 anvil: make-X dialog visible - confirming with Space
+13:25:47 anvil: inventory emptied - done smithing, moving to bank
+13:25:47 bank: bank marker found at 665,767 - clicking with offset
+13:25:51 bank: deposited, withdrawing slot 1 then 2
+13:25:52 bank: done withdrawing, returning to anvil phase
+13:25:53 anvil: anvil marker found at 1719,563 - clicking with offset
+13:25:57 anvil: make-X dialog visible - confirming with Space
+13:26:12 anvil: inventory emptied - done smithing, moving to bank
+13:26:12 bank: bank marker found at 665,767 - clicking with offset
+13:26:15 bank: deposited, withdrawing slot 1 then 2
+13:26:16 bank: done withdrawing, returning to anvil phase
+13:26:17 anvil: anvil marker found at 1719,563 - clicking with offset
+13:26:21 anvil: make-X dialog visible - confirming with Space
+13:26:36 anvil: inventory emptied - done smithing, moving to bank
+13:26:36 bank: bank marker found at 665,767 - clicking with offset
+13:26:40 bank: deposited, withdrawing slot 1 then 2
+13:26:40 bank: done withdrawing, returning to anvil phase
+13:26:41 anvil: anvil marker found at 1719,563 - clicking with offset
+13:26:45 anvil: make-X dialog visible - confirming with Space
+13:27:00 anvil: inventory emptied - done smithing, moving to bank
+13:27:00 bank: bank marker found at 665,767 - clicking with offset
+13:27:03 bank: deposited, withdrawing slot 1 then 2
+13:27:04 bank: done withdrawing, returning to anvil phase
+13:27:05 anvil: anvil marker found at 1719,563 - clicking with offset
+13:27:09 anvil: make-X dialog visible - confirming with Space
+13:27:24 anvil: inventory emptied - done smithing, moving to bank
+13:27:24 bank: bank marker found at 665,767 - clicking with offset
+13:27:27 bank: deposited, withdrawing slot 1 then 2
+13:27:28 bank: done withdrawing, returning to anvil phase
+13:27:29 anvil: anvil marker found at 1719,563 - clicking with offset
+13:27:33 anvil: make-X dialog visible - confirming with Space
+13:27:47 anvil: inventory emptied - done smithing, moving to bank
+13:27:47 bank: bank marker found at 665,767 - clicking with offset
+13:27:52 bank: deposited, withdrawing slot 1 then 2
+13:27:53 bank: done withdrawing, returning to anvil phase
+13:27:53 anvil: anvil marker found at 1719,563 - clicking with offset
+13:27:57 anvil: make-X dialog visible - confirming with Space
+13:28:12 anvil: inventory emptied - done smithing, moving to bank
+13:28:12 bank: bank marker found at 665,767 - clicking with offset
+13:28:16 bank: deposited, withdrawing slot 1 then 2
+13:28:17 bank: done withdrawing, returning to anvil phase
+13:28:17 anvil: anvil marker found at 1717,565 - clicking with offset
+13:28:25 anvil: make-X dialog visible - confirming with Space
+13:28:39 anvil: inventory emptied - done smithing, moving to bank
+13:28:39 bank: bank marker found at 665,767 - clicking with offset
+13:28:46 bank: deposited, withdrawing slot 1 then 2
+13:28:47 bank: done withdrawing, returning to anvil phase
+13:28:47 anvil: anvil marker found at 1719,563 - clicking with offset
+13:28:55 anvil: make-X dialog visible - confirming with Space
+13:29:09 anvil: inventory emptied - done smithing, moving to bank
+13:29:09 bank: bank marker found at 665,767 - clicking with offset
+13:29:16 bank: deposited, withdrawing slot 1 then 2
+13:29:17 bank: done withdrawing, returning to anvil phase
+13:29:17 anvil: anvil marker found at 1717,565 - clicking with offset
+13:29:25 anvil: make-X dialog visible - confirming with Space
+13:32:02 STOPPED: Stopped (F3)
+13:32:02 anvil: inventory emptied - done smithing, moving to bank
+13:32:25 ===== Bot started =====
+13:32:26 STOPPED: Stopped (F3)
+13:32:26 STOPPED: Could not find the anvil marker color
+13:32:57 ===== Bot started =====
+13:32:57 anvil: anvil marker found at 1719,565 - clicking with offset
+13:33:02 anvil: make-X dialog visible - confirming with Space
+13:33:16 anvil: inventory emptied - done smithing, moving to bank
+13:33:16 bank: bank marker found at 665,767 - clicking with offset
+13:33:20 bank: deposited, withdrawing slot 1 then 2
+13:33:21 bank: done withdrawing, returning to anvil phase
+13:33:22 anvil: anvil marker found at 1719,563 - clicking with offset
+13:33:26 anvil: make-X dialog visible - confirming with Space
+13:33:40 anvil: inventory emptied - done smithing, moving to bank
+13:33:40 bank: bank marker found at 665,767 - clicking with offset
+13:33:44 bank: deposited, withdrawing slot 1 then 2
+13:33:45 bank: done withdrawing, returning to anvil phase
+13:33:46 anvil: anvil marker found at 1719,563 - clicking with offset
+13:33:50 anvil: make-X dialog visible - confirming with Space
+13:36:21 STOPPED: Stopped (F3)
+13:36:21 anvil: inventory emptied - done smithing, moving to bank
+13:38:47 ===== Bot started =====
+13:38:47 anvil: anvil marker found at 1719,565 - clicking with offset
+13:38:52 anvil: make-X dialog visible - confirming with Space
+13:39:06 anvil: inventory emptied - done smithing, moving to bank
+13:39:06 bank: bank marker found at 665,767 - clicking with offset
+13:39:10 bank: deposited, withdrawing slot 1 then 2
+13:39:11 bank: done withdrawing, returning to anvil phase
+13:39:11 anvil: anvil marker found at 1719,563 - clicking with offset
+13:39:16 anvil: make-X dialog visible - confirming with Space
+13:39:30 anvil: inventory emptied - done smithing, moving to bank
+13:39:30 bank: bank marker found at 665,767 - clicking with offset
+13:39:34 bank: deposited, withdrawing slot 1 then 2
+13:39:35 bank: done withdrawing, returning to anvil phase
+13:39:36 anvil: anvil marker found at 1719,563 - clicking with offset
+13:39:40 anvil: make-X dialog visible - confirming with Space
+13:39:54 anvil: inventory emptied - done smithing, moving to bank
+13:39:54 bank: bank marker found at 665,767 - clicking with offset
+13:39:58 bank: deposited, withdrawing slot 1 then 2
+13:39:59 bank: done withdrawing, returning to anvil phase
+13:39:59 anvil: anvil marker found at 1719,563 - clicking with offset
+13:40:04 anvil: make-X dialog visible - confirming with Space
+13:40:18 anvil: inventory emptied - done smithing, moving to bank
+13:40:18 bank: bank marker found at 665,767 - clicking with offset
+13:40:22 bank: deposited, withdrawing slot 1 then 2
+13:40:23 bank: done withdrawing, returning to anvil phase
+13:40:23 anvil: anvil marker found at 1719,563 - clicking with offset
+13:40:28 anvil: make-X dialog visible - confirming with Space
+13:40:42 anvil: inventory emptied - done smithing, moving to bank
+13:40:42 bank: bank marker found at 665,767 - clicking with offset
+13:40:46 bank: deposited, withdrawing slot 1 then 2
+13:40:47 bank: done withdrawing, returning to anvil phase
+13:40:47 anvil: anvil marker found at 1719,563 - clicking with offset
+13:40:52 anvil: make-X dialog visible - confirming with Space
+13:41:06 anvil: inventory emptied - done smithing, moving to bank
+13:41:06 bank: bank marker found at 665,767 - clicking with offset
+13:41:10 bank: deposited, withdrawing slot 1 then 2
+13:41:11 bank: done withdrawing, returning to anvil phase
+13:41:11 anvil: anvil marker found at 1719,563 - clicking with offset
+13:41:16 anvil: make-X dialog visible - confirming with Space
+13:41:30 anvil: inventory emptied - done smithing, moving to bank
+13:41:30 bank: bank marker found at 665,767 - clicking with offset
+13:41:34 bank: deposited, withdrawing slot 1 then 2
+13:41:35 bank: done withdrawing, returning to anvil phase
+13:41:36 anvil: anvil marker found at 1719,563 - clicking with offset
+13:41:40 anvil: make-X dialog visible - confirming with Space
+13:41:54 anvil: inventory emptied - done smithing, moving to bank
+13:41:54 bank: bank marker found at 665,767 - clicking with offset
+13:41:58 bank: deposited, withdrawing slot 1 then 2
+13:41:59 bank: done withdrawing, returning to anvil phase
+13:42:00 anvil: anvil marker found at 1719,563 - clicking with offset
+13:42:04 anvil: make-X dialog visible - confirming with Space
+13:42:18 anvil: inventory emptied - done smithing, moving to bank
+13:42:18 bank: bank marker found at 665,767 - clicking with offset
+13:42:22 bank: deposited, withdrawing slot 1 then 2
+13:42:23 bank: done withdrawing, returning to anvil phase
+13:42:24 anvil: anvil marker found at 1719,563 - clicking with offset
+13:42:28 anvil: make-X dialog visible - confirming with Space
+13:42:42 anvil: inventory emptied - done smithing, moving to bank
+13:42:42 bank: bank marker found at 665,767 - clicking with offset
+13:42:49 bank: deposited, withdrawing slot 1 then 2
+13:42:50 bank: done withdrawing, returning to anvil phase
+13:42:50 anvil: anvil marker found at 1719,563 - clicking with offset
+13:42:58 anvil: make-X dialog visible - confirming with Space
+13:43:12 anvil: inventory emptied - done smithing, moving to bank
+13:43:12 bank: bank marker found at 665,767 - clicking with offset
+13:43:19 bank: deposited, withdrawing slot 1 then 2
+13:43:20 bank: done withdrawing, returning to anvil phase
+13:43:21 anvil: anvil marker found at 1719,563 - clicking with offset
+13:43:28 anvil: make-X dialog visible - confirming with Space
+13:43:42 anvil: inventory emptied - done smithing, moving to bank
+13:43:42 bank: bank marker found at 665,767 - clicking with offset
+13:43:49 bank: deposited, withdrawing slot 1 then 2
+13:43:50 bank: done withdrawing, returning to anvil phase
+13:43:50 anvil: anvil marker found at 1719,563 - clicking with offset
+13:43:54 anvil: make-X dialog visible - confirming with Space
+13:44:09 anvil: inventory emptied - done smithing, moving to bank
+13:44:09 bank: bank marker found at 665,767 - clicking with offset
+13:44:13 bank: deposited, withdrawing slot 1 then 2
+13:44:14 bank: done withdrawing, returning to anvil phase
+13:44:14 anvil: anvil marker found at 1719,563 - clicking with offset
+13:44:18 anvil: make-X dialog visible - confirming with Space
+13:44:33 anvil: inventory emptied - done smithing, moving to bank
+13:44:33 bank: bank marker found at 665,767 - clicking with offset
+13:44:37 bank: deposited, withdrawing slot 1 then 2
+13:44:38 bank: done withdrawing, returning to anvil phase
+13:44:38 anvil: anvil marker found at 1719,563 - clicking with offset
+13:44:42 anvil: make-X dialog visible - confirming with Space
+13:44:57 anvil: inventory emptied - done smithing, moving to bank
+13:44:57 bank: bank marker found at 665,767 - clicking with offset
+13:45:04 bank: deposited, withdrawing slot 1 then 2
+13:45:05 bank: done withdrawing, returning to anvil phase
+13:45:05 anvil: anvil marker found at 1719,563 - clicking with offset
+13:45:12 anvil: make-X dialog visible - confirming with Space
+13:45:27 anvil: inventory emptied - done smithing, moving to bank
+13:45:27 bank: bank marker found at 665,767 - clicking with offset
+13:45:34 bank: deposited, withdrawing slot 1 then 2
+13:45:35 bank: done withdrawing, returning to anvil phase
+13:45:35 anvil: anvil marker found at 1719,563 - clicking with offset
+13:45:42 anvil: make-X dialog visible - confirming with Space
+13:45:57 anvil: inventory emptied - done smithing, moving to bank
+13:45:57 bank: bank marker found at 665,767 - clicking with offset
+13:46:03 bank: deposited, withdrawing slot 1 then 2
+13:46:04 bank: done withdrawing, returning to anvil phase
+13:46:04 anvil: anvil marker found at 1717,563 - clicking with offset
+13:46:08 anvil: make-X dialog visible - confirming with Space
+13:46:23 anvil: inventory emptied - done smithing, moving to bank
+13:46:23 bank: bank marker found at 665,767 - clicking with offset
+13:46:27 bank: deposited, withdrawing slot 1 then 2
+13:46:28 bank: done withdrawing, returning to anvil phase
+13:46:28 anvil: anvil marker found at 1719,563 - clicking with offset
+13:46:33 anvil: make-X dialog visible - confirming with Space
+13:46:47 anvil: inventory emptied - done smithing, moving to bank
+13:46:47 bank: bank marker found at 665,767 - clicking with offset
+13:46:51 bank: deposited, withdrawing slot 1 then 2
+13:46:52 bank: done withdrawing, returning to anvil phase
+13:46:52 anvil: anvil marker found at 1719,563 - clicking with offset
+13:46:57 anvil: make-X dialog visible - confirming with Space
+13:47:11 anvil: inventory emptied - done smithing, moving to bank
+13:47:11 bank: bank marker found at 665,767 - clicking with offset
+13:47:18 bank: deposited, withdrawing slot 1 then 2
+13:47:19 bank: done withdrawing, returning to anvil phase
+13:47:19 anvil: anvil marker found at 1719,563 - clicking with offset
+13:47:27 anvil: make-X dialog visible - confirming with Space
+13:47:41 anvil: inventory emptied - done smithing, moving to bank
+13:47:41 bank: bank marker found at 665,767 - clicking with offset
+13:47:48 bank: deposited, withdrawing slot 1 then 2
+13:47:49 bank: done withdrawing, returning to anvil phase
+13:47:49 anvil: anvil marker found at 1719,563 - clicking with offset
+13:47:57 anvil: make-X dialog visible - confirming with Space
+13:48:11 anvil: inventory emptied - done smithing, moving to bank
+13:48:11 bank: bank marker found at 665,767 - clicking with offset
+13:48:17 bank: deposited, withdrawing slot 1 then 2
+13:48:18 bank: done withdrawing, returning to anvil phase
+13:48:19 anvil: anvil marker found at 1717,563 - clicking with offset
+13:48:23 anvil: make-X dialog visible - confirming with Space
+13:48:37 anvil: inventory emptied - done smithing, moving to bank
+13:48:37 bank: bank marker found at 665,767 - clicking with offset
+13:48:42 bank: deposited, withdrawing slot 1 then 2
+13:48:42 bank: done withdrawing, returning to anvil phase
+13:48:43 anvil: anvil marker found at 1719,563 - clicking with offset
+13:48:47 anvil: make-X dialog visible - confirming with Space
+13:49:01 anvil: inventory emptied - done smithing, moving to bank
+13:49:01 bank: bank marker found at 665,767 - clicking with offset
+13:49:05 bank: deposited, withdrawing slot 1 then 2
+13:49:06 bank: done withdrawing, returning to anvil phase
+13:49:07 anvil: anvil marker found at 1719,563 - clicking with offset
+13:49:11 anvil: make-X dialog visible - confirming with Space
+13:49:26 anvil: inventory emptied - done smithing, moving to bank
+13:49:26 bank: bank marker found at 665,767 - clicking with offset
+13:49:32 bank: deposited, withdrawing slot 1 then 2
+13:49:33 bank: done withdrawing, returning to anvil phase
+13:49:34 anvil: anvil marker found at 1719,563 - clicking with offset
+13:49:41 anvil: make-X dialog visible - confirming with Space
+13:49:55 anvil: inventory emptied - done smithing, moving to bank
+13:49:55 bank: bank marker found at 665,767 - clicking with offset
+13:50:03 bank: deposited, withdrawing slot 1 then 2
+13:50:03 bank: done withdrawing, returning to anvil phase
+13:50:04 anvil: anvil marker found at 1719,563 - clicking with offset
+13:50:11 anvil: make-X dialog visible - confirming with Space
+13:50:26 anvil: inventory emptied - done smithing, moving to bank
+13:50:26 bank: bank marker found at 665,767 - clicking with offset
+13:50:32 bank: deposited, withdrawing slot 1 then 2
+13:50:33 bank: done withdrawing, returning to anvil phase
+13:50:33 anvil: anvil marker found at 1719,563 - clicking with offset
+13:50:37 anvil: make-X dialog visible - confirming with Space
+13:50:52 anvil: inventory emptied - done smithing, moving to bank
+13:50:52 bank: bank marker found at 665,767 - clicking with offset
+13:50:56 bank: deposited, withdrawing slot 1 then 2
+13:50:57 bank: done withdrawing, returning to anvil phase
+13:50:57 anvil: anvil marker found at 1719,563 - clicking with offset
+13:51:01 anvil: make-X dialog visible - confirming with Space
+13:51:16 anvil: inventory emptied - done smithing, moving to bank
+13:51:16 bank: bank marker found at 665,767 - clicking with offset
+13:51:20 bank: deposited, withdrawing slot 1 then 2
+13:51:21 bank: done withdrawing, returning to anvil phase
+13:51:21 anvil: anvil marker found at 1719,563 - clicking with offset
+13:51:25 anvil: make-X dialog visible - confirming with Space
+13:51:40 anvil: inventory emptied - done smithing, moving to bank
+13:51:40 bank: bank marker found at 665,767 - clicking with offset
+13:51:47 bank: deposited, withdrawing slot 1 then 2
+13:51:48 bank: done withdrawing, returning to anvil phase
+13:51:48 anvil: anvil marker found at 1719,563 - clicking with offset
+13:51:55 anvil: make-X dialog visible - confirming with Space
+13:52:10 anvil: inventory emptied - done smithing, moving to bank
+13:52:10 bank: bank marker found at 665,767 - clicking with offset
+13:52:17 bank: deposited, withdrawing slot 1 then 2
+13:52:18 bank: done withdrawing, returning to anvil phase
+13:52:18 anvil: anvil marker found at 1719,563 - clicking with offset
+13:52:25 anvil: make-X dialog visible - confirming with Space
+13:52:40 anvil: inventory emptied - done smithing, moving to bank
+13:52:40 bank: bank marker found at 665,767 - clicking with offset
+13:52:46 bank: deposited, withdrawing slot 1 then 2
+13:52:47 bank: done withdrawing, returning to anvil phase
+13:52:48 anvil: anvil marker found at 1719,563 - clicking with offset
+13:52:52 anvil: make-X dialog visible - confirming with Space
+13:53:06 anvil: inventory emptied - done smithing, moving to bank
+13:53:06 bank: bank marker found at 665,767 - clicking with offset
+13:53:10 bank: deposited, withdrawing slot 1 then 2
+13:53:11 bank: done withdrawing, returning to anvil phase
+13:53:12 anvil: anvil marker found at 1719,563 - clicking with offset
+13:53:16 anvil: make-X dialog visible - confirming with Space
+13:53:30 anvil: inventory emptied - done smithing, moving to bank
+13:53:30 bank: bank marker found at 665,767 - clicking with offset
+13:53:34 bank: deposited, withdrawing slot 1 then 2
+13:53:35 bank: done withdrawing, returning to anvil phase
+13:53:36 anvil: anvil marker found at 1719,563 - clicking with offset
+13:53:40 anvil: make-X dialog visible - confirming with Space
+13:53:54 anvil: inventory emptied - done smithing, moving to bank
+13:53:54 bank: bank marker found at 665,767 - clicking with offset
+13:54:01 bank: deposited, withdrawing slot 1 then 2
+13:54:02 bank: done withdrawing, returning to anvil phase
+13:54:03 anvil: anvil marker found at 1719,563 - clicking with offset
+13:54:10 anvil: make-X dialog visible - confirming with Space
+13:54:24 anvil: inventory emptied - done smithing, moving to bank
+13:54:24 bank: bank marker found at 665,767 - clicking with offset
+13:54:31 bank: deposited, withdrawing slot 1 then 2
+13:54:32 bank: done withdrawing, returning to anvil phase
+13:54:33 anvil: anvil marker found at 1719,563 - clicking with offset
+13:54:40 anvil: make-X dialog visible - confirming with Space
+13:54:54 anvil: inventory emptied - done smithing, moving to bank
+13:54:54 bank: bank marker found at 665,767 - clicking with offset
+13:55:01 bank: deposited, withdrawing slot 1 then 2
+13:55:02 bank: done withdrawing, returning to anvil phase
+13:55:02 anvil: anvil marker found at 1717,563 - clicking with offset
+13:55:06 anvil: make-X dialog visible - confirming with Space
+13:55:21 anvil: inventory emptied - done smithing, moving to bank
+13:55:21 bank: bank marker found at 665,767 - clicking with offset
+13:55:25 bank: deposited, withdrawing slot 1 then 2
+13:55:26 bank: done withdrawing, returning to anvil phase
+13:55:26 anvil: anvil marker found at 1719,563 - clicking with offset
+13:55:30 anvil: make-X dialog visible - confirming with Space
+13:55:45 anvil: inventory emptied - done smithing, moving to bank
+13:55:45 bank: bank marker found at 665,767 - clicking with offset
+13:55:49 bank: deposited, withdrawing slot 1 then 2
+13:55:50 bank: done withdrawing, returning to anvil phase
+13:55:50 anvil: anvil marker found at 1719,563 - clicking with offset
+13:55:54 anvil: make-X dialog visible - confirming with Space
+13:56:09 anvil: inventory emptied - done smithing, moving to bank
+13:56:09 bank: bank marker found at 665,767 - clicking with offset
+13:56:16 bank: deposited, withdrawing slot 1 then 2
+13:56:17 bank: done withdrawing, returning to anvil phase
+13:56:17 anvil: anvil marker found at 1719,563 - clicking with offset
+13:56:24 anvil: make-X dialog visible - confirming with Space
+13:56:39 anvil: inventory emptied - done smithing, moving to bank
+13:56:39 bank: bank marker found at 665,767 - clicking with offset
+13:56:46 bank: deposited, withdrawing slot 1 then 2
+13:56:47 bank: done withdrawing, returning to anvil phase
+13:56:47 anvil: anvil marker found at 1719,563 - clicking with offset
+13:56:54 anvil: make-X dialog visible - confirming with Space
+13:57:09 anvil: inventory emptied - done smithing, moving to bank
+13:57:09 bank: bank marker found at 665,767 - clicking with offset
+13:57:15 bank: deposited, withdrawing slot 1 then 2
+13:57:16 bank: done withdrawing, returning to anvil phase
+13:57:16 anvil: anvil marker found at 1717,563 - clicking with offset
+13:57:21 anvil: make-X dialog visible - confirming with Space
+13:57:35 anvil: inventory emptied - done smithing, moving to bank
+13:57:35 bank: bank marker found at 665,767 - clicking with offset
+13:57:39 bank: deposited, withdrawing slot 1 then 2
+13:57:40 bank: done withdrawing, returning to anvil phase
+13:57:40 anvil: anvil marker found at 1719,563 - clicking with offset
+13:57:45 anvil: make-X dialog visible - confirming with Space
+13:57:59 anvil: inventory emptied - done smithing, moving to bank
+13:57:59 bank: bank marker found at 665,767 - clicking with offset
+13:58:03 bank: deposited, withdrawing slot 1 then 2
+13:58:04 bank: done withdrawing, returning to anvil phase
+13:58:04 anvil: anvil marker found at 1719,563 - clicking with offset
+13:58:09 anvil: make-X dialog visible - confirming with Space
+13:58:23 anvil: inventory emptied - done smithing, moving to bank
+13:58:23 bank: bank marker found at 665,767 - clicking with offset
+13:58:30 bank: deposited, withdrawing slot 1 then 2
+13:58:31 bank: done withdrawing, returning to anvil phase
+13:58:31 anvil: anvil marker found at 1719,563 - clicking with offset
+13:58:39 anvil: make-X dialog visible - confirming with Space
+13:58:53 anvil: inventory emptied - done smithing, moving to bank
+13:58:53 bank: bank marker found at 665,767 - clicking with offset
+13:59:00 bank: deposited, withdrawing slot 1 then 2
+13:59:01 bank: done withdrawing, returning to anvil phase
+13:59:01 anvil: anvil marker found at 1719,563 - clicking with offset
+13:59:09 anvil: make-X dialog visible - confirming with Space
+13:59:23 anvil: inventory emptied - done smithing, moving to bank
+13:59:23 bank: bank marker found at 665,767 - clicking with offset
+13:59:30 bank: deposited, withdrawing slot 1 then 2
+13:59:31 bank: done withdrawing, returning to anvil phase
+13:59:31 anvil: anvil marker found at 1717,563 - clicking with offset
+13:59:35 anvil: make-X dialog visible - confirming with Space
+13:59:50 anvil: inventory emptied - done smithing, moving to bank
+13:59:50 bank: bank marker found at 665,767 - clicking with offset
+13:59:54 bank: deposited, withdrawing slot 1 then 2
+13:59:55 bank: done withdrawing, returning to anvil phase
+13:59:55 anvil: anvil marker found at 1719,563 - clicking with offset
+13:59:59 anvil: make-X dialog visible - confirming with Space
+14:00:14 anvil: inventory emptied - done smithing, moving to bank
+14:00:14 bank: bank marker found at 665,767 - clicking with offset
+14:00:18 bank: deposited, withdrawing slot 1 then 2
+14:00:19 bank: done withdrawing, returning to anvil phase
+14:00:19 anvil: anvil marker found at 1719,563 - clicking with offset
+14:00:23 anvil: make-X dialog visible - confirming with Space
+14:00:38 anvil: inventory emptied - done smithing, moving to bank
+14:00:38 bank: bank marker found at 665,767 - clicking with offset
+14:00:44 bank: deposited, withdrawing slot 1 then 2
+14:00:45 bank: done withdrawing, returning to anvil phase
+14:00:46 anvil: anvil marker found at 1719,563 - clicking with offset
+14:00:53 anvil: make-X dialog visible - confirming with Space
+14:01:08 anvil: inventory emptied - done smithing, moving to bank
+14:01:08 bank: bank marker found at 665,767 - clicking with offset
+14:01:15 bank: deposited, withdrawing slot 1 then 2
+14:01:16 bank: done withdrawing, returning to anvil phase
+14:01:16 anvil: anvil marker found at 1719,563 - clicking with offset
+14:01:23 anvil: make-X dialog visible - confirming with Space
+14:01:38 anvil: inventory emptied - done smithing, moving to bank
+14:01:38 bank: bank marker found at 665,767 - clicking with offset
+14:01:44 bank: deposited, withdrawing slot 1 then 2
+14:01:45 bank: done withdrawing, returning to anvil phase
+14:01:45 anvil: anvil marker found at 1717,563 - clicking with offset
+14:01:49 anvil: make-X dialog visible - confirming with Space
+14:02:04 anvil: inventory emptied - done smithing, moving to bank
+14:02:04 bank: bank marker found at 665,767 - clicking with offset
+14:02:08 bank: deposited, withdrawing slot 1 then 2
+14:02:09 bank: done withdrawing, returning to anvil phase
+14:02:09 anvil: anvil marker found at 1719,563 - clicking with offset
+14:02:14 anvil: make-X dialog visible - confirming with Space
+14:02:28 anvil: inventory emptied - done smithing, moving to bank
+14:02:28 bank: bank marker found at 665,767 - clicking with offset
+14:02:32 bank: deposited, withdrawing slot 1 then 2
+14:02:33 bank: done withdrawing, returning to anvil phase
+14:02:33 anvil: anvil marker found at 1719,563 - clicking with offset
+14:02:38 anvil: make-X dialog visible - confirming with Space
+14:02:52 anvil: inventory emptied - done smithing, moving to bank
+14:02:52 bank: bank marker found at 665,767 - clicking with offset
+14:02:59 bank: deposited, withdrawing slot 1 then 2
+14:03:00 bank: done withdrawing, returning to anvil phase
+14:03:00 anvil: anvil marker found at 1719,563 - clicking with offset
+14:03:08 anvil: make-X dialog visible - confirming with Space
+14:03:22 anvil: inventory emptied - done smithing, moving to bank
+14:03:22 bank: bank marker found at 665,767 - clicking with offset
+14:03:29 bank: deposited, withdrawing slot 1 then 2
+14:03:30 bank: done withdrawing, returning to anvil phase
+14:03:30 anvil: anvil marker found at 1719,563 - clicking with offset
+14:03:37 anvil: make-X dialog visible - confirming with Space
+14:03:52 anvil: inventory emptied - done smithing, moving to bank
+14:03:52 bank: bank marker found at 665,767 - clicking with offset

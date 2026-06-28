@@ -32,15 +32,20 @@
 ;           needed - and isn't fooled by an item icon that happens
 ;           to have a gap exactly where a single sampled pixel
 ;           would land.
-;    F3   = start/stop recording the WALK-TO-BANK path
 ;    F4   = start/stop recording the WALK-BACK-TO-MINE path
 ;           (while recording, every left/right click you make is
-;           captured as a step - walk to the bank, open it, and
-;           press F3/F4 again to stop BEFORE you touch deposit,
-;           since that's handled automatically by the bot. By
-;           default this only deposits and walks back - see
-;           WITHDRAW AFTER DEPOSIT below if you also want it to
-;           withdraw one item before walking back)
+;           captured as a step - walk back to the mining spot and
+;           press F4 again to stop. By default this only deposits
+;           and walks back - see WITHDRAW AFTER DEPOSIT below if
+;           you also want it to withdraw one item before walking
+;           back)
+;
+;  WALKING TO THE BANK is no longer a recorded path - same as
+;  auto-fisher.ahk, the bot searches for a fixed blue marker color
+;  (a plugin overlay marking the nearest bank) and clicks it with a
+;  fixed offset, which triggers the game/plugin's own automated
+;  walk-and-open. Only the walk BACK to the mining spot still needs
+;  a recorded path (F4), since there's no equivalent marker for that.
 ;    F5   = start the bot
 ;    F6   = stop the bot
 ;    F7   = clear saved config and reload the script
@@ -119,7 +124,21 @@ global BANK_OPEN_TIMEOUT_MS := 15000      ; give up waiting for the bank to visi
 ; already visible the instant we started polling - they're not a
 ; substitute for the detection itself, just a safety margin.
 global BANK_OPEN_SETTLE_MS := 300
-global BANK_OPEN_FAILSAFE_DELAY_MS := 600
+global BANK_OPEN_FAILSAFE_DELAY_MS := 300
+
+; ---------- Bank marker (walk-to-bank, no recorded path needed) ----------
+; Same exact values as auto-fisher.ahk's BANK_MARKER_* - a fixed blue
+; plugin overlay marking the nearest bank, clicked with a fixed offset
+; rather than walked to via a recorded path.
+global BANK_MARKER_COLOR := 0x0000FF
+global BANK_MARKER_TOLERANCE := 20
+global BANK_MARKER_CLICK_OFFSET_X := 10
+global BANK_MARKER_CLICK_OFFSET_Y := 30
+global BANK_MARKER_SEARCH_TIMEOUT_MS := 8000
+global BANK_MARKER_SEARCH_X1 := 538
+global BANK_MARKER_SEARCH_Y1 := 337
+global BANK_MARKER_SEARCH_X2 := 688
+global BANK_MARKER_SEARCH_Y2 := 487
 
 ; INITIAL_CLICK_DELAY (defined in lib\Paths.ahk, currently 0) is
 ; the wait before the very FIRST click of any path playback. It's
@@ -148,9 +167,10 @@ global runMode := false
 global withdrawAfterDeposit := false
 
 ; ---------- Recorded paths ----------
-global toBankRecorder := NewPathRecorder()
+; Only the walk-BACK-to-mine path is recorded now - walking TO the
+; bank is marker-based (see BANK_MARKER_* above), same as
+; auto-fisher.ahk.
 global backToMineRecorder := NewPathRecorder()
-global toBankSteps := []
 global backToMineSteps := []
 
 ; ---------- Library objects built from the above ----------
@@ -190,8 +210,34 @@ F2:: {
     ShowTipFor("Empty-slot reference points saved (make sure inventory was empty!)", 1800)
 }
 
-F3:: ToggleRecording(toBankRecorder, "ToBank", "WALK-TO-BANK")
 F4:: ToggleRecording(backToMineRecorder, "BackToMine", "WALK-BACK-TO-MINE")
+
+; Diagnostic only - doesn't change any saved value. Reads the LIVE
+; color at each calibrated empty-slot point right now and compares
+; it to what F2 saved, so you can check (with the inventory actually
+; full) whether the item sitting in the last slot is being judged
+; "occupied" or is - wrongly - reading close enough to the
+; calibrated empty color to pass as still empty (this is the failure
+; mode for dark ores like coal, whose icon color can be close to a
+; dark slot background within COLOR_TOLERANCE).
+F8:: {
+    global emptySlotPoints, COLOR_TOLERANCE
+    if (emptySlotPoints.Length = 0) {
+        ShowTipFor("No empty-slot points saved yet - press F2 first", 1500)
+        return
+    }
+    msg := "Live vs saved (tolerance " COLOR_TOLERANCE "):`n"
+    anyOccupied := false
+    for i, p in emptySlotPoints {
+        live := PixelGetColor(p["x"], p["y"], "RGB")
+        occupied := IsSlotOccupied(p["x"], p["y"], p["color"], COLOR_TOLERANCE)
+        if (occupied)
+            anyOccupied := true
+        msg .= "  pt" i ": saved " Format("0x{:06X}", p["color"]) " live " Format("0x{:06X}", live) " -> " (occupied ? "OCCUPIED" : "reads empty") "`n"
+    }
+    msg .= "Overall: " (anyOccupied ? "OCCUPIED (would go to bank)" : "reads as EMPTY (would keep mining)")
+    ShowTipFor(msg, 6000)
+}
 
 F5:: StartBot()
 F6:: StopTaskRunner(runner, "Stopped (F6)")
@@ -206,28 +252,20 @@ F7:: {
 ;  PATH RECORDING
 ; ============================================================
 
-; Starts/stops recording for whichever recorder is passed in.
-; Only one path can record at a time - this mirrors the
-; existing scripts' behavior and avoids interleaving two paths'
-; clicks together.
+; Starts/stops recording for the walk-back-to-mine recorder. Only
+; one path is recorded in this script now (walking to the bank is
+; marker-based - see BANK_MARKER_* above), but this keeps the same
+; shape as the other scripts' multi-recorder ToggleRecording in case
+; a future copy of this template adds more paths.
 ToggleRecording(recorder, sectionName, label) {
-    global toBankRecorder, backToMineRecorder
-    global toBankSteps, backToMineSteps
+    global backToMineRecorder, backToMineSteps
     if (recorder["active"]) {
         steps := StopRecording(recorder)
         SavePath(CONFIG, sectionName, steps)
-        if (sectionName = "ToBank")
-            toBankSteps := steps
-        else
-            backToMineSteps := steps
+        backToMineSteps := steps
         Hotkey("~LButton", RecordClick, "Off")
         Hotkey("~RButton", RecordClick, "Off")
         ShowTipFor(label " recording stopped (" steps.Length " clicks)", 1500)
-        return
-    }
-
-    if (toBankRecorder["active"] || backToMineRecorder["active"]) {
-        ShowTipFor("Already recording another path - finish that first", 1200)
         return
     }
 
@@ -237,15 +275,12 @@ ToggleRecording(recorder, sectionName, label) {
     ShowTipFor(label " recording started - click your route, then press the key again to stop", 2200)
 }
 
-; Fires on every click while a recorder is active. Figures out
-; which recorder is the active one and which mouse button was
-; used, then hands off to Paths.ahk's RecordClickStep along with
-; whatever runMode is currently set to.
+; Fires on every click while the recorder is active, handing off to
+; Paths.ahk's RecordClickStep along with whatever runMode is
+; currently set to.
 RecordClick(*) {
-    global toBankRecorder, backToMineRecorder, runMode
-    activeRecorder := toBankRecorder["active"] ? toBankRecorder
-        : backToMineRecorder["active"] ? backToMineRecorder
-        : ""
+    global backToMineRecorder, runMode
+    activeRecorder := backToMineRecorder["active"] ? backToMineRecorder : ""
     if (activeRecorder = "")
         return
 
@@ -260,7 +295,7 @@ RecordClick(*) {
 
 LoadConfig() {
     global oreSpots, emptySlotPoints, runMode, withdrawAfterDeposit
-    global toBankSteps, backToMineSteps
+    global backToMineSteps
     global COLOR_TOLERANCE, WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX
     oreSpots := LoadColorPointList(CONFIG, "OreSpots")
 
@@ -278,7 +313,6 @@ LoadConfig() {
     COLOR_TOLERANCE := LoadNumber(CONFIG, "Tunables", "colorTolerance", COLOR_TOLERANCE)
     WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlotIndex", WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX)
 
-    toBankSteps := LoadPath(CONFIG, "ToBank")
     backToMineSteps := LoadPath(CONFIG, "BackToMine")
 }
 
@@ -287,21 +321,20 @@ LoadConfig() {
 ; ============================================================
 
 ValidateSetup() {
-    global oreSpots, emptySlotPoints, toBankSteps, backToMineSteps
+    global oreSpots, emptySlotPoints, backToMineSteps
     global DEPOSIT_IMG
     v := NewValidator()
     RequireNonEmpty(v, "F1 - at least one ore spot", oreSpots)
     RequireNonEmpty(v, "F2 - empty inventory slot reference points", emptySlotPoints)
-    RequirePath(v, "F3 - walk-to-bank path", toBankSteps)
     RequirePath(v, "F4 - walk-back-to-mine path", backToMineSteps)
     RequireFile(v, "deposit.png (bank deposit image)", DEPOSIT_IMG)
     return ShowValidationErrors(v)
 }
 
 StartBot() {
-    global toBankRecorder, backToMineRecorder, runner
+    global backToMineRecorder, runner
     global PHASE_TIMEOUT_MINE, PHASE_TIMEOUT_BANK
-    if (toBankRecorder["active"] || backToMineRecorder["active"]) {
+    if (backToMineRecorder["active"]) {
         ShowTipFor("Finish recording before starting the bot", 1200)
         return
     }
@@ -410,21 +443,36 @@ MinePhase(taskRunner) {
     }
 }
 
-; Walks to the bank, deposits everything, optionally withdraws one
-; item (see withdrawAfterDeposit / WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX),
-; then walks back.
+; Clicks the bank marker (triggers the game/plugin's own automated
+; walk-and-open, same as auto-fisher.ahk - no recorded path needed
+; for this leg), deposits everything, optionally withdraws one item
+; (see withdrawAfterDeposit / WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX),
+; then walks back via the recorded path.
 BankPhase(taskRunner) {
-    global toBankSteps, backToMineSteps, withdrawAfterDeposit, WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX, WITHDRAW_AFTER_DEPOSIT_SETTLE_MS
+    global backToMineSteps, withdrawAfterDeposit, WITHDRAW_AFTER_DEPOSIT_SLOT_INDEX, WITHDRAW_AFTER_DEPOSIT_SETTLE_MS
     global DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS
+    global BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_MARKER_SEARCH_TIMEOUT_MS
+    global BANK_MARKER_CLICK_OFFSET_X, BANK_MARKER_CLICK_OFFSET_Y
+    global BANK_MARKER_SEARCH_X1, BANK_MARKER_SEARCH_Y1, BANK_MARKER_SEARCH_X2, BANK_MARKER_SEARCH_Y2
+    global runMode
     if (!RequireOsrsWindowActive())
         return GoToPhase(taskRunner, "bank")
 
     isRunningFn := () => taskRunner["running"]
 
-    if (!PlayPathWithGuard(toBankSteps, isRunningFn)) {
-        StopTaskRunner(taskRunner, "Walk-to-bank path failed or was stopped")
+    ; First pixel matching this color, scanning from the top-left of
+    ; the screen (PixelSearch's natural scan order), restricted to a
+    ; top-left box - typically a plugin highlight marking the
+    ; nearest bank.
+    if (!WaitForPixelSearch(&fx, &fy, BANK_MARKER_SEARCH_X1, BANK_MARKER_SEARCH_Y1, BANK_MARKER_SEARCH_X2, BANK_MARKER_SEARCH_Y2, BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_MARKER_SEARCH_TIMEOUT_MS, , isRunningFn)) {
+        StopTaskRunner(taskRunner, "Could not find the bank marker color")
         return GoToPhase(taskRunner, "bank")
     }
+
+    ; The marker pixel itself usually isn't the clickable spot -
+    ; offset into the actual bank tile/icon next to it.
+    HumanClick(fx + BANK_MARKER_CLICK_OFFSET_X, fy + BANK_MARKER_CLICK_OFFSET_Y, 0, 0, runMode)
+    ResetPhaseTimer(taskRunner)
 
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
     if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {

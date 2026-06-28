@@ -1,62 +1,59 @@
 ; ============================================================
 ;  auto-smith.ahk
 ;  Smithing bot, built entirely from the shared lib\ functions -
-;  same library auto-smelter.ahk, auto-fisher.ahk and auto-miner.ahk
-;  use.
+;  same library auto-smelter.ahk, auto-cooker.ahk, auto-miner.ahk
+;  and auto-fisher.ahk use.
 ;
 ;  EXPECTED STARTING STATE: standing near the bank with an empty
-;  inventory (or already holding bars - either way, the first
-;  ANVIL action only happens once the last inventory slot reads
-;  occupied).
+;  inventory (or already holding bars - either way, the first ANVIL
+;  action only happens once the last inventory slot reads occupied).
 ;
-;  CYCLE:
-;    1. Once the last inventory slot is occupied (we've withdrawn
-;       bars), play the TO-ANVIL path - this is ONE recorded path
-;       that covers the whole walk AND the click on the anvil
-;       itself (its last recorded step), since unlike the smelter's
-;       furnace this needs to cover real walking distance.
-;    2. Press Space to confirm the "make X" dialog the anvil click
-;       opens (selects the highlighted/default item).
-;    3. Wait for the last inventory slot to go from occupied to
-;       EMPTY - same multi-point reference mining/smelting use for
-;       "is it full", just waiting for the opposite direction here.
-;    4. Play the TO-BANK path (also one recorded path covering the
-;       walk AND the click that opens the bank).
-;    5. Wait for the Deposit All button (deposit.png) to actually be
-;       visible near its known position - see BANK_OPEN_TIMEOUT_MS -
-;       instead of guessing how long the walk + bank-open takes,
-;       then click it (one click, no right-click menu).
-;    6. Withdraw from bank slots 1 and 2 (one click each -
-;       "withdraw all" with this user's bank settings, same
-;       one-click pattern as every other script's withdrawal).
-;    7. Start over from step 1.
+;  CYCLE (marker-based, same shape as auto-smelter.ahk - no recorded
+;  paths anywhere; every "walk" is triggered by clicking a colored
+;  plugin marker that the game/plugin handles automatically):
+;    1. Find the anvil marker color (ANVIL_MARKER_COLOR) in the
+;       calibrated ANVIL search box and click it with a fixed offset -
+;       same "marker color, fixed-offset click" pattern
+;       auto-smelter.ahk's furnace click uses.
+;    2. Wait for smithing-marker.png to appear (the "Smith X" / "make
+;       X" dialog), then press ANVIL_KEY (Space by default) to
+;       confirm it - exactly like auto-smelter.ahk's SMELT_KEY
+;       confirming the "Smelt X" dialog.
+;    3. Smithing happens automatically once started - wait for the
+;       calibrated last inventory slot to go from full to empty, the
+;       same multi-point reference every other script uses for "is it
+;       full"/"is it empty".
+;    4. Find the bank marker color (BANK_MARKER_COLOR) in the
+;       calibrated BANK search box and click it with a fixed offset -
+;       same marker-click pattern as step 1, this one walks to and
+;       opens the bank automatically.
+;    5. Wait for deposit.png (the bank's Deposit All button) and
+;       click it - shared lib\Bank.ahk, same as every other script.
+;    6. Withdraw from bank slots 1 and 2 (one click each), then start
+;       over from step 1.
 ;
-;  DEBUG LOGGING: every phase transition and bank-detection outcome
-;  is timestamped and appended to LOG_FILE (logs\auto-smith-debug.log)
-;  via lib\Log.ahk - useful for diagnosing a run after the fact
-;  without relying on catching a tooltip live.
+;  WHY THE ANVIL/BANK SEARCH BOXES ARE HARDCODED DEFAULTS, NOT A
+;  HOTKEY CALIBRATION: both are fixed, UI-anchored plugin markers, not
+;  world/camera-dependent positions - same reasoning as
+;  auto-smelter.ahk's SMELTER_SEARCH_*/BANK_SEARCH_*. They're still
+;  overridable by hand-editing the .ini if your setup ever differs.
+;
+;  EXPECTED STARTING STATE (calibration): inventory EMPTY when you
+;  press F1.
 ;
 ;  HOTKEYS
-;    F1   = start/stop recording the TO-ANVIL path (start walking
-;           from the bank, click the anvil as your LAST click before
-;           stopping the recording - the "make X" dialog and the
-;           Space press are handled automatically by the bot)
-;    F2   = save "inventory slot" reference points - EMPTY YOUR
-;           INVENTORY first, then press F2 (no need to hover
-;           anywhere specific). Samples FOUR points spread around
-;           the LAST inventory slot, same mechanism as mining/
-;           smelting/fishing - used to detect both "bars withdrawn"
-;           (full, triggers the anvil) and "smithing done" (empty).
-;    F3   = start/stop recording the TO-BANK path (start walking
-;           from the anvil, click the bank booth as your LAST click
-;           before stopping - deposit/withdraw are automatic)
-;    F5   = start the bot
-;    F6   = stop the bot
-;    F7   = clear saved config and reload the script
+;    F1   = save "inventory slot" reference points - EMPTY YOUR
+;           INVENTORY first, then press F1. Samples FOUR points
+;           spread around the LAST inventory slot, same mechanism as
+;           every other script's emptySlotPoints - the bot uses these
+;           to detect both "bars withdrawn" (full) and "smithing done"
+;           (empty).
+;    F2   = start the bot
+;    F3   = stop the bot
+;    F4   = clear saved config and reload the script
 ;
 ;  RUN MODE is a plain setting in the .ini, not a hotkey - same as
-;  the other scripts. Open config\auto-smith.ini, find [Settings],
-;  set
+;  the other scripts. Open config\auto-smith.ini, find [Settings], set
 ;
 ;      runMode=1   (hold Ctrl / run for every click)
 ;      runMode=0   (never hold Ctrl / always walk - the default)
@@ -76,7 +73,6 @@
 #Include ..\lib\ConfigStore.ahk
 #Include ..\lib\Grid.ahk
 #Include ..\lib\Click.ahk
-#Include ..\lib\Paths.ahk
 #Include ..\lib\Bank.ahk
 #Include ..\lib\Validate.ahk
 #Include ..\lib\TaskRunner.ahk
@@ -90,88 +86,103 @@ CoordMode("ToolTip", "Screen")
 global CONFIG := A_ScriptDir "\..\config\auto-smith.ini"
 
 ; ---------- Debug log ----------
-; Plain text, timestamped, appended to forever - read this after a
-; run to see exactly what the bot did, since a tooltip might not
-; actually be visible depending on how the game window is running.
 global LOG_FILE := A_ScriptDir "\..\logs\auto-smith-debug.log"
 
-; Stops the runner AND records why in the debug log, so a stop
-; that happens off-screen (or whose tooltip you miss) is never a
-; mystery - just open auto-smith-debug.log afterward.
+; Stops the runner AND records why in the debug log, so a stop that
+; happens off-screen (or whose tooltip you miss) is never a mystery -
+; just open auto-smith-debug.log afterward.
 StopAndLog(taskRunner, reason) {
     global LOG_FILE
     LogLine(LOG_FILE, "STOPPED: " reason)
     StopTaskRunner(taskRunner, reason)
 }
 
-; ---------- Tunables ----------
+; ---------- Humanization: off by default ----------
+global ENABLE_HUMANIZATION := false
+
+; ---------- Tunables: inventory check ----------
 global COLOR_TOLERANCE := 20
 global ANVIL_TIMEOUT_MS := 180000        ; max time to wait for the inventory to empty out after starting to smith (3 min) - raise this if you're smithing something slower
-global ANVIL_CONFIRM_TICKS := 3          ; require "empty" to read true for this many consecutive ~100ms polls before trusting it (filters a transient glitch)
-global ANVIL_SPACE_SETTLE_MS := 100      ; brief wait after pressing Space, before the first emptiness check - just long enough to cover the dialog closing and smithing starting
+global ANVIL_CONFIRM_TICKS := 2          ; require "empty" to read true for this many consecutive ~100ms polls before trusting it (filters a transient glitch)
 global PHASE_TIMEOUT_ANVIL := 30000      ; give up and stop if we can't even START smithing (e.g. window unfocused) for this long
 global PHASE_TIMEOUT_BANK := 30000       ; give up and stop if banking hangs for 30s straight
+; Right after a bank withdrawal, the inventory display can take a
+; moment to actually render freshly-withdrawn bars - an instantaneous
+; check right then can misread the slot as still empty even though
+; bars were genuinely just withdrawn, which would bounce straight back
+; to BankPhase forever without ever clicking the anvil again. Same fix
+; as auto-smelter.ahk's SMELT_GUARD_SETTLE_TIMEOUT_MS / auto-cooker.ahk's
+; COOK_GUARD_SETTLE_TIMEOUT_MS - give the slot a short grace window to
+; settle into "occupied" before believing it's genuinely empty.
+global ANVIL_GUARD_SETTLE_TIMEOUT_MS := 3000
+
+; ---------- Tunables: anvil marker ----------
+global ANVIL_MARKER_COLOR := 0xFF00FF
+global ANVIL_MARKER_TOLERANCE := 20
+; 100x75 box centered at (1699,552) - this user's measured position of
+; the anvil's plugin marker. Hardcoded default, see header comment for
+; why this isn't a hotkey-calibrated region.
+global ANVIL_SEARCH_X1 := 1649, ANVIL_SEARCH_Y1 := 515
+global ANVIL_SEARCH_X2 := 1749, ANVIL_SEARCH_Y2 := 590
+global ANVIL_CLICK_OFFSET_X := 15, ANVIL_CLICK_OFFSET_Y := 15
+global ANVIL_SEARCH_TIMEOUT_MS := 8000
+
+; ---------- Tunables: smithing dialog ----------
+global SMITHING_MARKER_IMG := A_ScriptDir "\..\images\smithing-marker.png"
+global SMITHING_MARKER_IMG_OPTIONS := "*20"
+global SMITHING_MARKER_IMG_W := 382
+global SMITHING_MARKER_IMG_H := 26
+; Top-left (809,247), 382x26 - this user's measured position of the
+; make-X dialog's marker, used exactly as given (no center-conversion).
+global SMITHING_MARKER_SEARCH_X1 := 809, SMITHING_MARKER_SEARCH_Y1 := 247
+global SMITHING_MARKER_SEARCH_X2 := 1191, SMITHING_MARKER_SEARCH_Y2 := 273
+global SMITHING_MARKER_TIMEOUT_MS := 15000   ; covers however long the walk-to-anvil + dialog-open takes
+global ANVIL_KEY := "Space"                  ; key pressed after the smithing-marker dialog appears - selects the highlighted/default item
+global ANVIL_KEY_SETTLE_MS := 300            ; brief wait after pressing ANVIL_KEY, before the first emptiness check - just long enough to cover the dialog closing and smithing starting
+
+; ---------- Tunables: bank marker ----------
+global BANK_MARKER_COLOR := 0x0000FF
+global BANK_MARKER_TOLERANCE := 20
+; 150x100 box centered at (624,756) - this user's measured position of
+; the bank plugin marker. Hardcoded default, same reasoning as the
+; anvil search box above.
+global BANK_SEARCH_X1 := 549, BANK_SEARCH_Y1 := 706
+global BANK_SEARCH_X2 := 699, BANK_SEARCH_Y2 := 806
+global BANK_CLICK_OFFSET_X := 15, BANK_CLICK_OFFSET_Y := 25
+global BANK_SEARCH_TIMEOUT_MS := 8000
+
 global WITHDRAW_SLOT_1_INDEX := 1        ; which bank slot (1-8, left to right - see Grid.ahk's GetBankSlots) to withdraw first
 global WITHDRAW_SLOT_2_INDEX := 2        ; which bank slot to withdraw second
-global WITHDRAW_INTER_SETTLE_MS := 600   ; pause between the two withdrawal clicks
+global WITHDRAW_INTER_SETTLE_MS := 300   ; pause between the two withdrawal clicks
 global WITHDRAW_FINAL_SETTLE_MS := 300   ; pause after the SECOND withdrawal before returning - must be long enough for the inventory display to finish updating, or the next occupancy check reads stale (see BankWithdrawSlot in lib\Bank.ahk)
 
-; Instead of a flat guess for how long the walk-to-bank + bank-open
-; takes, wait until the Deposit All button image is actually
-; visible near its known position.
+; Instead of a flat guess for how long the bank-open takes, wait
+; until the Deposit All button image is actually visible near its
+; known position.
 global DEPOSIT_IMG := A_ScriptDir "\..\images\deposit.png"
-global DEPOSIT_IMG_OPTIONS := "*20"   ; deposit.png is a direct screenshot of the button (matches its 72x72 size exactly) - just a little shade tolerance, no transparency trick needed
-global DEPOSIT_IMG_W := 72
-global DEPOSIT_IMG_H := 72
-global DEPOSIT_BTN_SEARCH_MARGIN := 20   ; how far past the button's own box to search - the button is a fixed UI element, not a world object, so this only needs to cover minor calibration slack
-global BANK_OPEN_TIMEOUT_MS := 15000      ; give up waiting for the bank to visibly open after this long
-; Two small settle delays around the bank-open detection: one right
-; after the to-bank path's last click (before we even start polling
-; for the Deposit All button), and one right after we find AND click
-; it. Both apply every time, even if the button was already visible
-; the instant we started polling - they're not a substitute for the
-; detection itself, just a safety margin.
 global BANK_OPEN_SETTLE_MS := 300
 global BANK_OPEN_FAILSAFE_DELAY_MS := 300
 
-; ---------- TESTING: humanization disabled ----------
-; Click.ahk defaults ENABLE_HUMANIZATION to false (and hard-caps it
-; at +/-2px / +/-100ms even if enabled). Set to false here too so
-; clicks land on the exact calibrated pixel with exact delays while
-; you're testing - flip this to true once you've confirmed the bot
-; behaves correctly.
-global ENABLE_HUMANIZATION := false
-
 ; ---------- Calibrated values (loaded from INI, or empty if unset) ----------
 ; emptySlotPoints is a list of {x, y, color} - several reference
-; points inside the last inventory slot, all captured by one F2
+; points inside the last inventory slot, all captured by one F1
 ; press. See IsAnyPointOccupied / WaitUntilNotOccupied (Colors.ahk).
 global emptySlotPoints := []
 
 ; ---------- Run/walk setting - plain config flag, no hotkey ----------
 global runMode := false
 
-; ---------- Recorded paths ----------
-global toAnvilRecorder := NewPathRecorder()
-global toBankRecorder := NewPathRecorder()
-global toAnvilSteps := []
-global toBankSteps := []
-
 ; ---------- Library objects built from the above ----------
 global runner := NewTaskRunner(150)
 
 ; ---------- Init ----------
-Hotkey("~LButton", RecordClick, "Off")
-Hotkey("~RButton", RecordClick, "Off")
 LoadConfig()
 
 ; ============================================================
 ;  CALIBRATION HOTKEYS
 ; ============================================================
 
-F1:: ToggleRecording(toAnvilRecorder, "ToAnvil", "WALK-TO-ANVIL")
-
-F2:: {
+F1:: {
     global emptySlotPoints
     ; Uses the standard 28-slot inventory grid from Grid.ahk to
     ; find the LAST slot, then samples 4 points spread around it
@@ -187,66 +198,40 @@ F2:: {
     ShowTipFor("Empty-slot reference points saved (make sure inventory was empty!)", 1800)
 }
 
-F3:: ToggleRecording(toBankRecorder, "ToBank", "WALK-TO-BANK")
+F2:: StartBot()
+F3:: StopAndLog(runner, "Stopped (F3)")
 
-F5:: StartBot()
-F6:: StopAndLog(runner, "Stopped (F6)")
-
-F7:: {
+F4:: {
     if FileExist(CONFIG)
         FileDelete(CONFIG)
     Reload()
 }
 
-; ============================================================
-;  PATH RECORDING
-; ============================================================
-
-; Starts/stops recording for whichever recorder is passed in.
-; Only one path can record at a time - this mirrors the other
-; scripts' behavior and avoids interleaving two paths' clicks.
-ToggleRecording(recorder, sectionName, label) {
-    global toAnvilRecorder, toBankRecorder
-    global toAnvilSteps, toBankSteps
-    if (recorder["active"]) {
-        steps := StopRecording(recorder)
-        SavePath(CONFIG, sectionName, steps)
-        if (sectionName = "ToAnvil")
-            toAnvilSteps := steps
-        else
-            toBankSteps := steps
-        Hotkey("~LButton", RecordClick, "Off")
-        Hotkey("~RButton", RecordClick, "Off")
-        ShowTipFor(label " recording stopped (" steps.Length " clicks)", 1500)
-        return
-    }
-
-    if (toAnvilRecorder["active"] || toBankRecorder["active"]) {
-        ShowTipFor("Already recording another path - finish that first", 1200)
-        return
-    }
-
-    StartRecording(recorder, sectionName)
-    Hotkey("~LButton", RecordClick, "On")
-    Hotkey("~RButton", RecordClick, "On")
-    ShowTipFor(label " recording started - click your route, then press the key again to stop", 2200)
+; Diagnostic only - doesn't start/stop the bot or change any saved
+; value. Runs the EXACT same image search AnvilPhase uses for
+; smithing-marker.png, right now, against whatever is on screen - so
+; you can open the "make X" dialog by hand, press F5, and get an
+; immediate true/false instead of waiting through a full bot cycle.
+F5:: {
+    global SMITHING_MARKER_SEARCH_X1, SMITHING_MARKER_SEARCH_Y1, SMITHING_MARKER_SEARCH_X2, SMITHING_MARKER_SEARCH_Y2
+    global SMITHING_MARKER_IMG, SMITHING_MARKER_IMG_W, SMITHING_MARKER_IMG_H, SMITHING_MARKER_IMG_OPTIONS
+    found := FindImageCenter(SMITHING_MARKER_SEARCH_X1, SMITHING_MARKER_SEARCH_Y1, SMITHING_MARKER_SEARCH_X2, SMITHING_MARKER_SEARCH_Y2, SMITHING_MARKER_IMG, SMITHING_MARKER_IMG_W, SMITHING_MARKER_IMG_H, &cx, &cy, SMITHING_MARKER_IMG_OPTIONS)
+    if (found)
+        ShowTipFor("FOUND smithing-marker.png at " cx "," cy, 3000)
+    else
+        ShowTipFor("NOT FOUND - searched (" SMITHING_MARKER_SEARCH_X1 "," SMITHING_MARKER_SEARCH_Y1 ") to (" SMITHING_MARKER_SEARCH_X2 "," SMITHING_MARKER_SEARCH_Y2 ") with options '" SMITHING_MARKER_IMG_OPTIONS "'", 3000)
 }
 
-; Fires on every click while a recorder is active. Figures out
-; which recorder is the active one and which mouse button was
-; used, then hands off to Paths.ahk's RecordClickStep along with
-; whatever runMode is currently set to.
-RecordClick(*) {
-    global toAnvilRecorder, toBankRecorder, runMode
-    activeRecorder := toAnvilRecorder["active"] ? toAnvilRecorder
-        : toBankRecorder["active"] ? toBankRecorder
-        : ""
-    if (activeRecorder = "")
-        return
-
-    MouseGetPos(&mx, &my)
-    button := InStr(A_ThisHotkey, "RButton") ? "Right" : "Left"
-    RecordClickStep(activeRecorder, mx, my, button, runMode ? 1 : 0)
+; Diagnostic only - same idea as F5, but for the anvil's FF00FF
+; marker color instead of the dialog image.
+F6:: {
+    global ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2
+    global ANVIL_MARKER_COLOR, ANVIL_MARKER_TOLERANCE
+    found := PixelSearch(&fx, &fy, ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2, ANVIL_MARKER_COLOR, ANVIL_MARKER_TOLERANCE)
+    if (found)
+        ShowTipFor("FOUND anvil marker at " fx "," fy, 3000)
+    else
+        ShowTipFor("NOT FOUND - searched (" ANVIL_SEARCH_X1 "," ANVIL_SEARCH_Y1 ") to (" ANVIL_SEARCH_X2 "," ANVIL_SEARCH_Y2 ") for " Format("0x{:06X}", ANVIL_MARKER_COLOR) " tol " ANVIL_MARKER_TOLERANCE, 3000)
 }
 
 ; ============================================================
@@ -255,8 +240,10 @@ RecordClick(*) {
 
 LoadConfig() {
     global emptySlotPoints, runMode
-    global toAnvilSteps, toBankSteps
     global COLOR_TOLERANCE, WITHDRAW_SLOT_1_INDEX, WITHDRAW_SLOT_2_INDEX
+    global ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2
+    global BANK_SEARCH_X1, BANK_SEARCH_Y1, BANK_SEARCH_X2, BANK_SEARCH_Y2
+
     emptySlotPoints := LoadColorPointList(CONFIG, "InventoryEmptyPoints")
 
     ; Plain on/off setting, edited directly in the .ini - see the
@@ -270,8 +257,19 @@ LoadConfig() {
     WITHDRAW_SLOT_1_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlot1Index", WITHDRAW_SLOT_1_INDEX)
     WITHDRAW_SLOT_2_INDEX := LoadNumber(CONFIG, "Tunables", "withdrawSlot2Index", WITHDRAW_SLOT_2_INDEX)
 
-    toAnvilSteps := LoadPath(CONFIG, "ToAnvil")
-    toBankSteps := LoadPath(CONFIG, "ToBank")
+    ; Hardcoded search-box defaults (see header comment) - still
+    ; overridable by hand-editing the .ini, just never via a hotkey.
+    anvilRegion := LoadRegion(CONFIG, "AnvilSearch", ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2)
+    ANVIL_SEARCH_X1 := anvilRegion[1]
+    ANVIL_SEARCH_Y1 := anvilRegion[2]
+    ANVIL_SEARCH_X2 := anvilRegion[3]
+    ANVIL_SEARCH_Y2 := anvilRegion[4]
+
+    bankRegion := LoadRegion(CONFIG, "BankSearch", BANK_SEARCH_X1, BANK_SEARCH_Y1, BANK_SEARCH_X2, BANK_SEARCH_Y2)
+    BANK_SEARCH_X1 := bankRegion[1]
+    BANK_SEARCH_Y1 := bankRegion[2]
+    BANK_SEARCH_X2 := bankRegion[3]
+    BANK_SEARCH_Y2 := bankRegion[4]
 }
 
 ; ============================================================
@@ -279,23 +277,16 @@ LoadConfig() {
 ; ============================================================
 
 ValidateSetup() {
-    global emptySlotPoints, toAnvilSteps, toBankSteps
-    global DEPOSIT_IMG
+    global emptySlotPoints, SMITHING_MARKER_IMG, DEPOSIT_IMG
     v := NewValidator()
-    RequireNonEmpty(v, "F2 - inventory slot reference points", emptySlotPoints)
-    RequirePath(v, "F1 - walk-to-anvil path", toAnvilSteps)
-    RequirePath(v, "F3 - walk-to-bank path", toBankSteps)
+    RequireNonEmpty(v, "F1 - inventory slot reference points", emptySlotPoints)
+    RequireFile(v, "smithing-marker.png (make-X dialog image)", SMITHING_MARKER_IMG)
     RequireFile(v, "deposit.png (bank deposit image)", DEPOSIT_IMG)
     return ShowValidationErrors(v)
 }
 
 StartBot() {
-    global toAnvilRecorder, toBankRecorder, runner, LOG_FILE
-    global PHASE_TIMEOUT_ANVIL, PHASE_TIMEOUT_BANK
-    if (toAnvilRecorder["active"] || toBankRecorder["active"]) {
-        ShowTipFor("Finish recording before starting the bot", 1200)
-        return
-    }
+    global runner, LOG_FILE, PHASE_TIMEOUT_ANVIL, PHASE_TIMEOUT_BANK
     if (!ValidateSetup())
         return
 
@@ -310,77 +301,98 @@ StartBot() {
 ;  PHASES
 ; ============================================================
 
-; If the last inventory slot is occupied (we're holding bars), walks
-; to the anvil and clicks it, presses Space to confirm the "make X"
-; dialog, then waits for the last slot to go from occupied to empty
-; (all bars smithed). If it's already empty (e.g. the bank ran out
-; of bars to withdraw last trip), skips straight to banking instead
-; of wastefully walking to the anvil for nothing.
+; Clicks the anvil marker, confirms the "make X" dialog once
+; smithing-marker.png appears, then waits for the calibrated last slot
+; to go from occupied to empty (every bar smithed) before moving to
+; the bank phase.
 AnvilPhase(taskRunner) {
-    global toAnvilSteps, emptySlotPoints, LOG_FILE
-    global COLOR_TOLERANCE, ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS, ANVIL_SPACE_SETTLE_MS
+    global emptySlotPoints, runMode, COLOR_TOLERANCE, LOG_FILE
+    global ANVIL_MARKER_COLOR, ANVIL_MARKER_TOLERANCE
+    global ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2
+    global ANVIL_CLICK_OFFSET_X, ANVIL_CLICK_OFFSET_Y, ANVIL_SEARCH_TIMEOUT_MS
+    global SMITHING_MARKER_IMG, SMITHING_MARKER_IMG_OPTIONS, SMITHING_MARKER_IMG_W, SMITHING_MARKER_IMG_H
+    global SMITHING_MARKER_SEARCH_X1, SMITHING_MARKER_SEARCH_Y1, SMITHING_MARKER_SEARCH_X2, SMITHING_MARKER_SEARCH_Y2
+    global SMITHING_MARKER_TIMEOUT_MS, ANVIL_KEY, ANVIL_KEY_SETTLE_MS
+    global ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS, ANVIL_GUARD_SETTLE_TIMEOUT_MS
+
     if (!RequireOsrsWindowActive()) {
         LogLine(LOG_FILE, "anvil: OSRS window not focused - paused")
         return GoToPhase(taskRunner, "anvil")
     }
 
-    occupied := IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE)
-    LogLine(LOG_FILE, "anvil: entered anvil phase, last slot occupied=" occupied)
-    if (!occupied)
-        return GoToPhase(taskRunner, "bank")
-
     isRunningFn := () => taskRunner["running"]
-    LogLine(LOG_FILE, "anvil: playing walk-to-anvil path (" toAnvilSteps.Length " steps)")
-    if (!PlayPathWithGuard(toAnvilSteps, isRunningFn)) {
-        StopAndLog(taskRunner, "Walk-to-anvil path failed or was stopped")
+
+    ; If the calibrated slot doesn't read as occupied yet, give it a
+    ; short grace window to settle (see ANVIL_GUARD_SETTLE_TIMEOUT_MS
+    ; comment above) - a fresh withdrawal can still be rendering. Only
+    ; if it NEVER becomes occupied within that window do we treat this
+    ; as "the bank ran out of bars" and skip straight to the bank
+    ; phase instead of clicking the anvil for nothing.
+    if (!WaitUntilOccupied(emptySlotPoints, COLOR_TOLERANCE, ANVIL_GUARD_SETTLE_TIMEOUT_MS, , , isRunningFn)) {
+        LogLine(LOG_FILE, "anvil: inventory still empty after settle window - skipping to bank")
+        return GoToPhase(taskRunner, "bank")
+    }
+
+    if (!WaitForPixelSearch(&fx, &fy, ANVIL_SEARCH_X1, ANVIL_SEARCH_Y1, ANVIL_SEARCH_X2, ANVIL_SEARCH_Y2, ANVIL_MARKER_COLOR, ANVIL_MARKER_TOLERANCE, ANVIL_SEARCH_TIMEOUT_MS, , isRunningFn)) {
+        StopAndLog(taskRunner, "Could not find the anvil marker color")
         return GoToPhase(taskRunner, "anvil")
     }
 
-    ; Confirms the "make X" dialog the anvil click opened - selects
-    ; the highlighted/default item, exactly like pressing Space by
-    ; hand.
-    LogLine(LOG_FILE, "anvil: pressing Space to confirm make-X dialog")
-    HumanKeyPress("Space")
-    Sleep(JitterDelay(ANVIL_SPACE_SETTLE_MS))
+    LogLine(LOG_FILE, "anvil: anvil marker found at " fx "," fy " - clicking with offset")
+    HumanClick(fx + ANVIL_CLICK_OFFSET_X, fy + ANVIL_CLICK_OFFSET_Y, 0, 0, runMode)
+    ResetPhaseTimer(taskRunner)
 
-    ; Smithing happens automatically once started - just wait for
-    ; the last slot to empty out. Same multi-point reference the
+    if (!WaitForImageCenter(SMITHING_MARKER_SEARCH_X1, SMITHING_MARKER_SEARCH_Y1, SMITHING_MARKER_SEARCH_X2, SMITHING_MARKER_SEARCH_Y2, SMITHING_MARKER_IMG, SMITHING_MARKER_IMG_W, SMITHING_MARKER_IMG_H, &mcx, &mcy, SMITHING_MARKER_TIMEOUT_MS, SMITHING_MARKER_IMG_OPTIONS, , isRunningFn)) {
+        StopAndLog(taskRunner, "Make-X dialog never appeared (smithing-marker.png not found)")
+        return GoToPhase(taskRunner, "anvil")
+    }
+
+    LogLine(LOG_FILE, "anvil: make-X dialog visible - confirming with " ANVIL_KEY)
+    HumanKeyPress(ANVIL_KEY)
+    Sleep(JitterDelay(ANVIL_KEY_SETTLE_MS))
+
+    ; Smithing happens automatically once started - just wait for the
+    ; calibrated slot to empty out. Same multi-point reference the
     ; mining/smelting scripts use for "is it full", just waiting for
-    ; the opposite direction, with the same confirm-ticks debounce
-    ; so a single transient glitch can't be mistaken for "done".
-    emptied := WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS, , isRunningFn)
-    LogLine(LOG_FILE, "anvil: wait-until-empty returned " emptied " (false = timed out after " ANVIL_TIMEOUT_MS "ms)")
+    ; the opposite direction, with the same confirm-ticks debounce so a
+    ; single transient glitch can't be mistaken for "done".
+    WaitUntilNotOccupied(emptySlotPoints, COLOR_TOLERANCE, ANVIL_TIMEOUT_MS, ANVIL_CONFIRM_TICKS, , isRunningFn)
 
-    ; We made a real attempt (the walk + click + Space happened) -
-    ; reset the phase timer so PHASE_TIMEOUT_ANVIL measures "can't
+    ; We made a real attempt (clicked the anvil, confirmed the dialog)
+    ; - reset the phase timer so PHASE_TIMEOUT_ANVIL measures "can't
     ; even start smithing for 30s", not "total time spent smithing".
     ResetPhaseTimer(taskRunner)
+    LogLine(LOG_FILE, "anvil: inventory emptied - done smithing, moving to bank")
     return GoToPhase(taskRunner, "bank")
 }
 
-; Walks to the bank, deposits everything, withdraws from bank slots
-; 1 and 2, then returns to the anvil phase (which will play the
-; to-anvil path again on its next entry).
+; Clicks the bank marker, deposits everything, withdraws from bank
+; slots 1 and 2 (one click each), then loops back to the anvil phase.
 BankPhase(taskRunner) {
-    global toAnvilSteps, toBankSteps, LOG_FILE
+    global runMode, LOG_FILE
     global WITHDRAW_SLOT_1_INDEX, WITHDRAW_SLOT_2_INDEX, WITHDRAW_INTER_SETTLE_MS, WITHDRAW_FINAL_SETTLE_MS
+    global BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE
+    global BANK_SEARCH_X1, BANK_SEARCH_Y1, BANK_SEARCH_X2, BANK_SEARCH_Y2
+    global BANK_CLICK_OFFSET_X, BANK_CLICK_OFFSET_Y, BANK_SEARCH_TIMEOUT_MS
     global DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS
-    global COLOR_TOLERANCE, emptySlotPoints
+
     if (!RequireOsrsWindowActive()) {
         LogLine(LOG_FILE, "bank: OSRS window not focused - paused")
         return GoToPhase(taskRunner, "bank")
     }
 
-    LogLine(LOG_FILE, "bank: entered bank phase, playing walk-to-bank path (" toBankSteps.Length " steps)")
     isRunningFn := () => taskRunner["running"]
 
-    if (!PlayPathWithGuard(toBankSteps, isRunningFn)) {
-        StopAndLog(taskRunner, "Walk-to-bank path failed or was stopped")
+    if (!WaitForPixelSearch(&fx, &fy, BANK_SEARCH_X1, BANK_SEARCH_Y1, BANK_SEARCH_X2, BANK_SEARCH_Y2, BANK_MARKER_COLOR, BANK_MARKER_TOLERANCE, BANK_SEARCH_TIMEOUT_MS, , isRunningFn)) {
+        StopAndLog(taskRunner, "Could not find the bank marker color")
         return GoToPhase(taskRunner, "bank")
     }
 
+    LogLine(LOG_FILE, "bank: bank marker found at " fx "," fy " - clicking with offset")
+    HumanClick(fx + BANK_CLICK_OFFSET_X, fy + BANK_CLICK_OFFSET_Y, 0, 0, runMode)
+    ResetPhaseTimer(taskRunner)
+
     ; Open the bank and deposit everything (shared lib\Bank.ahk).
-    LogLine(LOG_FILE, "bank: walk-to-bank path done, depositing")
     if (!BankDepositAll(DEPOSIT_IMG, BANK_OPEN_SETTLE_MS, BANK_OPEN_FAILSAFE_DELAY_MS, , , , , , isRunningFn)) {
         StopAndLog(taskRunner, "Bank never opened (Deposit All button not found)")
         return GoToPhase(taskRunner, "bank")
@@ -390,12 +402,11 @@ BankPhase(taskRunner) {
     ; gap between the two clicks because the next phase immediately
     ; checks "is the last slot occupied" - too soon after the click
     ; that reads stale (the inventory display hadn't finished
-    ; updating yet), confirmed via the debug log.
+    ; updating yet).
     LogLine(LOG_FILE, "bank: deposited, withdrawing slot " WITHDRAW_SLOT_1_INDEX " then " WITHDRAW_SLOT_2_INDEX)
     BankWithdrawSlot(WITHDRAW_SLOT_1_INDEX, WITHDRAW_INTER_SETTLE_MS)
     BankWithdrawSlot(WITHDRAW_SLOT_2_INDEX, WITHDRAW_FINAL_SETTLE_MS)
 
-    occupied := IsAnyPointOccupied(emptySlotPoints, COLOR_TOLERANCE)
-    LogLine(LOG_FILE, "bank: done withdrawing, last slot occupied=" occupied " - returning to anvil phase")
+    LogLine(LOG_FILE, "bank: done withdrawing, returning to anvil phase")
     return GoToPhase(taskRunner, "anvil")
 }
