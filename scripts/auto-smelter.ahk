@@ -145,7 +145,7 @@ global SMELTER_CLICK_OFFSET_X := 15, SMELTER_CLICK_OFFSET_Y := 25
 global SMELTER_SEARCH_TIMEOUT_MS := 8000
 
 ; ---------- Tunables: smelting dialog ----------
-global SMELTING_MARKER_IMG := A_ScriptDir "\..\images\smelting-marker.png"
+global SMELTING_MARKER_IMG := A_ScriptDir "\..\images\craft-marker-1.png"
 ; This capture is noticeably noisier than auto-cooker.ahk's
 ; cooking-marker.png (18KB vs 4KB for a similar-size crop, far more
 ; unique colors sampled) - likely some compression/anti-aliasing
@@ -153,15 +153,15 @@ global SMELTING_MARKER_IMG := A_ScriptDir "\..\images\smelting-marker.png"
 ; tolerance for a file this noisy and never matched live - raised to
 ; *60 to compensate.
 global SMELTING_MARKER_IMG_OPTIONS := "*20"
-global SMELTING_MARKER_IMG_W := 386
-global SMELTING_MARKER_IMG_H := 32
+global SMELTING_MARKER_IMG_W := 70
+global SMELTING_MARKER_IMG_H := 60
 ; Top-left (185,1081), 386x32, confirmed correct against this user's
 ; setup - widened by a 10px margin on every side (search box is now
 ; LARGER than the image) so a few pixels of position drift still
 ; finds it, since ImageSearch only requires the image to fit
 ; somewhere inside the search box, not fill it exactly.
-global SMELTING_MARKER_SEARCH_X1 := 175, SMELTING_MARKER_SEARCH_Y1 := 1071
-global SMELTING_MARKER_SEARCH_X2 := 581, SMELTING_MARKER_SEARCH_Y2 := 1123
+global SMELTING_MARKER_SEARCH_X1 := 929, SMELTING_MARKER_SEARCH_Y1 := 1081
+global SMELTING_MARKER_SEARCH_X2 := 999, SMELTING_MARKER_SEARCH_Y2 := 1141
 global SMELTING_MARKER_TIMEOUT_MS := 15000   ; covers however long the walk-to-furnace + dialog-open takes
 global SMELT_KEY := "Space"              ; key pressed after the smelting-marker dialog appears - "Space" selects the highlighted/default bar, or use a number key ("1","2","3") if the dialog needs a specific bar selected
 global SMELT_KEY_SETTLE_MS := 100        ; brief wait after pressing SMELT_KEY, before the first emptiness check - just long enough to cover the dialog closing and smelting starting
@@ -186,8 +186,8 @@ global BANK_SEARCH_TIMEOUT_MS := 8000
 ; cover a full inventory's worth on its own). Example below:
 ; withdraws bank slot 1 twice, then bank slot 2 once.
 global WITHDRAW_SEQUENCE := [
-    Map("slot", 1, "count", 2),
-    Map("slot", 2, "count", 1)
+    Map("slot", 1, "count", 3),
+    Map("slot", 2, "count", 2)
 ]
 global WITHDRAW_INTER_SETTLE_MS := 600   ; pause after every withdrawal click EXCEPT the very last one in the whole sequence
 global WITHDRAW_FINAL_SETTLE_MS := 300   ; pause after the LAST withdrawal click in the sequence - must be long enough for the inventory display to finish updating, or the next occupancy check reads stale (see BankWithdrawSlot in lib\Bank.ahk)
