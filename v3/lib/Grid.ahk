@@ -40,14 +40,16 @@ BuildGrid(firstX, firstY, lastX, lastY, cols, rows) {
 }
 
 ; Standard OSRS backpack: 4 columns x 7 rows = 28 slots, each
-; 72x64px, with 12px gaps between slots. This user's measured
-; layout, hardcoded as the canonical reference (not just default
-; parameters) so any future code can rely on these exact numbers
-; without depending on a caller never overriding them:
+; 72x64px. Gaps are NOT uniform: 12px horizontally between columns,
+; 8px vertically between rows. This user's measured layout,
+; hardcoded as the canonical reference (not just default parameters)
+; so any future code can rely on these exact numbers without
+; depending on a caller never overriding them:
 ;
-;   slot 1 (top-left)     top-left corner (2099, 801)
-;   slot 28 (bottom-right) top-left corner (2351, 1233)
-;   4 columns x 7 rows, each slot 72x64px, 12px gaps between slots
+;   container top-left (1615, 801), 324x496px
+;   slot 1 (top-left)      top-left corner (1615, 801)
+;   slot 28 (bottom-right) top-left corner (1867, 1233)
+;   4 columns x 7 rows, each slot 72x64px, 12px horizontal / 8px vertical gaps
 ;
 ;     [] [] [] []
 ;     [] [] [] []
@@ -57,11 +59,21 @@ BuildGrid(firstX, firstY, lastX, lastY, cols, rows) {
 ;     [] [] [] []
 ;     [] [] [] []
 ;
-global INVENTORY_FIRST_X := 2099, INVENTORY_FIRST_Y := 801
-global INVENTORY_LAST_X := 2351, INVENTORY_LAST_Y := 1233
+global INVENTORY_FIRST_X := 1615, INVENTORY_FIRST_Y := 801
+global INVENTORY_LAST_X := 1867, INVENTORY_LAST_Y := 1233
 global INVENTORY_COLS := 4, INVENTORY_ROWS := 7
 global INVENTORY_SLOT_W := 72, INVENTORY_SLOT_H := 64
-global INVENTORY_GAP := 12
+global INVENTORY_GAP_X := 12, INVENTORY_GAP_Y := 8
+
+; Hardcoded empty-slot background color, measured directly from
+; v3\images\inv-empty.png (a 324x496px screenshot of the fully empty
+; inventory, captured at this same container position). Sampled all
+; 28 slots' GetDefaultSlotOffsets() points from that file: every slot
+; reads ~(63,54,41) give or take 2-5 per channel (faint texture noise).
+; This single constant is the basis for Slots.ahk's hardcoded
+; emptiness check - no per-session calibration needed, since an empty
+; slot's background never changes between game sessions.
+global INVENTORY_EMPTY_COLOR := 0x3F3629
 
 ; firstX/firstY and lastX/lastY are the TOP-LEFT corner of slot 1
 ; and slot 28 (matching how the bank slots and the deposit-all
@@ -99,10 +111,12 @@ global INVENTORY_SLOTS := GetInventorySlots()
 ; "last slot" to interpolate from the way the inventory has.
 ; baseX/y are the TOP-LEFT corner of slot 1 (same corner+size
 ; convention as GetInventorySlots/GetDepositAllButton) - converted
-; to each slot's true center below. Defaults come from this
-; user's measured corners: 625, 721, 817, 913, 1009, 1105, 1201,
-; 1297 @ y=203.
-GetBankSlots(baseX := 625, y := 203, step := 96, count := 8) {
+; to each slot's true center below. Container is 744x64px at
+; top-left (383, 203), 8 slots of 72x64px with 24px margins
+; between them (step = 72 + 24 = 96). Defaults come from this
+; user's measured corners: 383, 479, 575, 671, 767, 863, 959,
+; 1055 @ y=203.
+GetBankSlots(baseX := 383, y := 203, step := 96, count := 8) {
     w := 72, h := 64
     slots := []
     loop count {
@@ -115,9 +129,37 @@ GetBankSlots(baseX := 625, y := 203, step := 96, count := 8) {
 
 ; The bank's "Deposit all inventory" button, as a single named
 ; clickable region. Default is this user's measured button:
-; 72x72px box, top-left (1327, 963) -> center (1363, 999).
-GetDepositAllButton(x := 1363, y := 999, w := 72, h := 72) {
+; 72x72px box, top-left (1085, 963) -> center (1121, 999).
+GetDepositAllButton(x := 1121, y := 999, w := 72, h := 72) {
     return Map("x", x, "y", y, "w", w, "h", h)
+}
+
+; The deposit-all button's reference image (v3\images\deposit.png),
+; as a ready-to-use {file, w, h, x1, y1, x2, y2} spec for
+; WaitForImageNearButton/ImageSearch calls - doubles as the "is the
+; bank actually open" signal. Search region is the button's own
+; 72x72px box, top-left (1085, 963).
+GetDepositButtonImage() {
+    return Map("file", A_ScriptDir "\..\images\deposit.png", "w", 72, "h", 72,
+                "x1", 1085, "y1", 963, "x2", 1085 + 72, "y2", 963 + 72, "options", "")
+}
+
+; Indicator image for an opened Smelting/Cooking action menu
+; (v3\images\smelt-cook.png), 70x60px, top-left (929, 1081). Once
+; this is visible, any of 1/2/3/Space confirms the action and it
+; continues automatically - use as a Marker.ahk "confirm" image.
+GetSmeltCookIndicatorImage() {
+    return Map("file", A_ScriptDir "\..\images\smelt-cook.png", "w", 70, "h", 60,
+                "x1", 929, "y1", 1081, "x2", 929 + 70, "y2", 1081 + 60, "options", "")
+}
+
+; Indicator image for an opened Crafting action menu
+; (v3\images\craft.png), 382x34px, top-left (929, 1081). Once this
+; is visible, Space confirms the action and it continues
+; automatically - use as a Marker.ahk "confirm" image.
+GetCraftIndicatorImage() {
+    return Map("file", A_ScriptDir "\..\images\craft.png", "w", 382, "h", 34,
+                "x1", 929, "y1", 1081, "x2", 929 + 382, "y2", 1081 + 34, "options", "")
 }
 
 ; A sane default spread of sample points for a 72x64 slot, as

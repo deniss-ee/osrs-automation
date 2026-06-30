@@ -10,6 +10,23 @@
 
 #Requires AutoHotkey v2.0
 
+EnsureLogDirectory(logFile) {
+    slashPos := InStr(logFile, "\", , -1)
+    if (slashPos <= 0)
+        return
+
+    dir := SubStr(logFile, 1, slashPos - 1)
+    if (dir != "" && !DirExist(dir))
+        DirCreate(dir)
+}
+
 LogLine(logFile, text) {
-    FileAppend(FormatTime(A_Now, "HH:mm:ss") " " text "`n", logFile)
+    EnsureLogDirectory(logFile)
+    line := FormatTime(A_Now, "HH:mm:ss") " " text "`n"
+    try {
+        FileAppend(line, logFile)
+    } catch {
+        Sleep(25)
+        try FileAppend(line, logFile)
+    }
 }

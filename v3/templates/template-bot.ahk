@@ -68,6 +68,8 @@ StartBot() {
     global ctx
     if (!ValidateSetup())
         return
+    if (ctx["runner"] != "" && ctx["runner"]["running"])
+        StopTaskRunner(ctx["runner"], "Restarting...")
     ctx["runner"] := NewTaskRunner(150)
     AddPhase(ctx["runner"], "gather", GatherPhase, CtxTunable(ctx, "phaseTimeoutGather", 30000))
     AddPhase(ctx["runner"], "bank", BankPhase, CtxTunable(ctx, "phaseTimeoutBank", 30000))

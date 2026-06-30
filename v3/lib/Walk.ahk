@@ -16,6 +16,7 @@
 #Include Click.ahk
 #Include TaskRunner.ahk
 #Include Context.ahk
+#Include Targeting.ahk
 
 ; Walks to a destination by clicking a marker, then blocks until an
 ; arrival signal confirms the walk completed. The arrival signal can be:
@@ -31,10 +32,20 @@
 ;   {mode: "disappear", color, tolerance, x, y}
 ;   {mode: "disappear", file, w, h, x1, y1, x2, y2, options}
 ;
+; centroid: false (default) finds the first matching pixel (fast, fine for
+; small/precise markers). true finds the CENTER of the whole colored blob
+; instead (FindOutlineBlobCenter) - use this for a painted ground-tile
+; marker covering an area, where clicking dead-center is more reliable
+; than whichever edge pixel a raw scan hits first.
+;
 ; Returns true once arrival confirmed, false if marker not found or arrival timeout.
-WalkToMarker(ctx, destMarker, markerTimeoutMs, arrival, arrivalTimeoutMs, confirmTicks := 3) {
-    if (!WaitForPixelSearch(ctx, &fx, &fy, destMarker["x1"], destMarker["y1"], destMarker["x2"], destMarker["y2"], destMarker["color"], destMarker["tolerance"], markerTimeoutMs))
+WalkToMarker(ctx, destMarker, markerTimeoutMs, arrival, arrivalTimeoutMs, confirmTicks := 3, centroid := false, sampleRate := 2) {
+    if (centroid) {
+        if (!WaitForBlobCenter(ctx, &fx, &fy, destMarker["x1"], destMarker["y1"], destMarker["x2"], destMarker["y2"], destMarker["color"], destMarker["tolerance"], markerTimeoutMs, sampleRate))
+            return false
+    } else if (!WaitForPixelSearch(ctx, &fx, &fy, destMarker["x1"], destMarker["y1"], destMarker["x2"], destMarker["y2"], destMarker["color"], destMarker["tolerance"], markerTimeoutMs)) {
         return false
+    }
 
     HumanClick(fx + destMarker["clickOffsetX"], fy + destMarker["clickOffsetY"], 0, 0, ctx["runMode"])
     ResetPhaseTimer(ctx["runner"])

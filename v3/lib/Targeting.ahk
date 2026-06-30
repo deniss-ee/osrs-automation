@@ -60,6 +60,25 @@ FindNearestOutlineBlobCenter(x1, y1, x2, y2, refX, refY, color, tolerance, &targ
 ; refX, refY: character's approximate screen position (for "nearest to character" bias)
 ; blobRadius: how far from the seed point to search for pixels belonging to the same blob
 ; sampleRate: pixel-sampling stride (2 = check every 2nd pixel for speed; 1 = check all)
+; Polls FindOutlineBlobCenter over a region until a centroid is found, or
+; gives up after timeoutMs. Same call shape as Colors.ahk's
+; WaitForPixelSearch, but returns the CENTER of the whole matching blob
+; instead of the first/nearest matching pixel - for ground markers/regions
+; painted as a solid colored area, where the real click target is the
+; middle of that area, not whichever edge pixel is scanned first.
+WaitForBlobCenter(ctx, &foundX, &foundY, x1, y1, x2, y2, color, tol, timeoutMs, sampleRate := 2, pollMs := 150) {
+    deadline := A_TickCount + timeoutMs
+    loop {
+        if (!CtxIsRunning(ctx))
+            return false
+        if (FindOutlineBlobCenter(x1, y1, x2, y2, color, tol, &foundX, &foundY, sampleRate))
+            return true
+        if (A_TickCount >= deadline)
+            return false
+        Sleep(pollMs)
+    }
+}
+
 AcquireTarget(ctx, targetRegion, refX, refY, blobRadius := 60, sampleRate := 2, clickCount := 1, clickDelayMs := 10) {
     if (!FindNearestOutlineBlobCenter(targetRegion["x1"], targetRegion["y1"], targetRegion["x2"], targetRegion["y2"], refX, refY, targetRegion["color"], targetRegion["tolerance"], &tx, &ty, blobRadius, sampleRate))
         return false

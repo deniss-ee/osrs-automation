@@ -33,7 +33,7 @@ v3/
 │   ├── Safety.ahk      window-focus + paused state (redesigned)
 │   ├── Paths.ahk       path record/playback (guarded-only form)
 │   ├── Validate.ahk    setup validation (+ 2 new checks)
-│   ├── Log.ahk         debug logging (ported unchanged)
+│   ├── Log.ahk         debug logging (auto-creates parent log directory)
 │   └── Tooltip.ahk     on-screen feedback (ported unchanged)
 ├── config/             per-bot .ini files (created at calibration; gitignored)
 ├── images/             reference PNGs for ImageSearch (empty initially; filled per-bot)
@@ -138,7 +138,11 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 
 **Replaces:** v2's `IsSlotOccupied` + `IsAnyPointOccupied` + `WaitUntilOccupied` + `WaitUntilNotOccupied` + the binary last/second-to-last slot flag.
 
-**Key insight:** Calibrate any slot's baseline (whatever state was present when F-key was pressed), then detect ANY change from that baseline, direction-agnostic. Same code, different calibration = mining (empty→occupied), smelting (full→empty), cooking (raw→cooked), withdrawing (empty→filled-with-specific-item).
+**Key insight:** Calibrate any slot's baseline (whatever state was present when F-key was pressed), then detect ANY change from that baseline, direction-agnostic. Same code, different calibration = mining (empty→occupied), smelting full depletion (full→empty), item transformation (ore→bar, raw→cooked — same count, different item), withdrawing (empty→filled-with-specific-item).
+
+**Smelting completion modes** (two patterns, choose by `smeltWaitMode` tunable):
+- `"empty"` — use `WaitForSlotEmpty`: slot goes to the hardcoded empty-background color. For ores that are fully consumed (e.g. coal, iron at the right ratio).
+- `"change"` — use `CalibrateSlotSignature` **before** pressing Space (captures ore pixels as baseline), then `WaitForSlotChange` after: detects when the item texture changes to the bar. Use this for gold ore → gold bar (1:1 ratio, slot never empties, just transforms).
 
 **Primitives:**
 - `CalibrateSlotSignature(slotIndex, offsets := "")` → `{slot, points: [{x, y, color}]}` for any slot 1-28
@@ -147,6 +151,14 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 - `WaitForSlotChange(ctx, sig, tol, timeoutMs, confirmTicks := 3, pollMs := 100)`
 - `WaitForSlotUnchanged(ctx, sig, tol, timeoutMs, confirmTicks := 3, pollMs := 100)`
 - `RecaptureSlotSignature(sig)` — re-calibrate to current state for chained checks
+
+**Global hardcoded empty-slot support (no calibration required):**
+- `INVENTORY_EMPTY_COLOR` is defined once in `Grid.ahk` from `v3/images/inv-empty.png`
+- `GetEmptySlotSignature(slotIndex, offsets := "")`
+- `IsSlotEmpty(slotIndex, tol := 15, offsets := "")`
+- `IsSlotOccupied(slotIndex, tol := 15, offsets := "")`
+- `WaitForSlotEmpty(ctx, slotIndex, tol, timeoutMs, confirmTicks := 3, pollMs := 100, offsets := "")`
+- `WaitForSlotOccupied(ctx, slotIndex, tol, timeoutMs, confirmTicks := 3, pollMs := 100, offsets := "")`
 
 ### `Marker.ahk` (NEW) — generalized click-confirm-act sequence
 
@@ -225,7 +237,7 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 
 ### `Grid.ahk`, `Click.ahk`, `TaskRunner.ahk`, `Validate.ahk`, `Log.ahk`, `Tooltip.ahk`
 
-**Ported essentially as-is** from v2. Included for completeness. `Validate.ahk` gains two new checks: `RequireSlotSignature` and `RequireTargetRegion`.
+**Ported essentially as-is** from v2, with targeted v3 updates. `Validate.ahk` gains two new checks: `RequireSlotSignature` and `RequireTargetRegion`. `Log.ahk` now ensures the target log directory exists before appending, so scripts can safely log to `v3\logs\*.log` even when the directory is missing.
 
 ---
 
@@ -239,7 +251,7 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 
 4. **Calibrate via hotkeys, persist via `Db.ahk`, validate via `Validate.ahk`.** A script's `ValidateSetup()` is one `Require*` call per F-key (or per config value that needs checking), ending in `return ShowValidationErrors(v)`.
 
-5. **Inventory/slot checks use `Slots.ahk`:** calibrate any slot (1-28) with `CalibrateSlotSignature(slotIndex)`, check for changes with `HasSlotChanged(sig)` or `WaitForSlotChange(ctx, sig, ...)`.
+5. **Inventory/slot checks use `Slots.ahk`:** either calibrate any slot (1-28) with `CalibrateSlotSignature(slotIndex)` and check changes via `HasSlotChanged(sig)` / `WaitForSlotChange(ctx, sig, ...)`, or use the global hardcoded-empty helpers `IsSlotEmpty` / `WaitForSlotEmpty` when a bot only needs emptiness checks.
 
 6. **Any "did state change" check should debounce with `confirmTicks`** (default 3 in v3). This filters out one-frame glitches (character sprite, camera settling).
 
