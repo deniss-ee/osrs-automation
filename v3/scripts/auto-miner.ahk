@@ -37,9 +37,9 @@ CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
-global CONFIG   := A_ScriptDir "\..\config\auto-miner.ini"
+global CONFIG := A_ScriptDir "\..\config\auto-miner.ini"
 global LOG_FILE := A_ScriptDir "\..\logs\auto-miner-debug.log"
-global ctx      := NewBotContext(CONFIG)
+global ctx := NewBotContext(CONFIG)
 
 EnsureDbVersion(CONFIG)
 LoadConfig()
@@ -62,12 +62,12 @@ StartBot() {
         return
     if (ctx["runner"] != "" && ctx["runner"]["running"])
         StopTaskRunner(ctx["runner"], "Restarting...")
-    
+
     ctx["runner"] := NewTaskRunner(50)
-    AddPhase(ctx["runner"], "mine",      MinePhase,      CtxTunable(ctx, "phaseTimeoutMine",  180000))
-    AddPhase(ctx["runner"], "walkBank",  WalkBankPhase,  CtxTunable(ctx, "phaseTimeoutWalk",   60000))
-    AddPhase(ctx["runner"], "bank",      BankPhase,      CtxTunable(ctx, "phaseTimeoutBank",   30000))
-    AddPhase(ctx["runner"], "walkVeins", WalkVeinsPhase, CtxTunable(ctx, "phaseTimeoutWalk",   60000))
+    AddPhase(ctx["runner"], "mine", MinePhase, CtxTunable(ctx, "phaseTimeoutMine", 180000))
+    AddPhase(ctx["runner"], "walkBank", WalkBankPhase, CtxTunable(ctx, "phaseTimeoutWalk", 60000))
+    AddPhase(ctx["runner"], "bank", BankPhase, CtxTunable(ctx, "phaseTimeoutBank", 30000))
+    AddPhase(ctx["runner"], "walkVeins", WalkVeinsPhase, CtxTunable(ctx, "phaseTimeoutWalk", 60000))
 
     ctx["activeVein"] := 0  ; Track currently mined vein index (0 = none)
     StartTaskRunner(ctx["runner"], "mine")
@@ -110,11 +110,12 @@ MinePhase(runner) {
     indicatorSlot := CtxTunable(ctx, "indicatorSlot", 28)
     slotOccupied := IsSlotOccupied(indicatorSlot, tol)
     activeVein := ctx.Has("activeVein") ? ctx["activeVein"] : 0
-    veinCount  := CtxTunable(ctx, "veinCount", 2)
+    veinCount := CtxTunable(ctx, "veinCount", 2)
 
     if (A_TickCount - lastLogTime > 2000) {
         lastLogTime := A_TickCount
-        LogLine(LOG_FILE, "MinePhase tick: ACTIVE, slot28Occupied=" (slotOccupied ? "true" : "false") " activeVein=" activeVein)
+        LogLine(LOG_FILE, "MinePhase tick: ACTIVE, slot28Occupied=" (slotOccupied ? "true" : "false") " activeVein=" activeVein
+        )
     }
 
     ; 1. Check if inventory slot 28 is full
@@ -146,7 +147,8 @@ MinePhase(runner) {
         vm := ctx["markers"]["Vein" i]
         found := IsColorInRegion(vm["x1"], vm["y1"], vm["x2"], vm["y2"], vm["color"], vm["tolerance"])
         if (A_TickCount - lastLogTime > 1900) {
-            LogLine(LOG_FILE, "  Checking Vein " i ": found=" (found ? "true" : "false") " region=[" vm["x1"] "," vm["y1"] " to " vm["x2"] "," vm["y2"] "]")
+            LogLine(LOG_FILE, "  Checking Vein " i ": found=" (found ? "true" : "false") " region=[" vm["x1"] "," vm[
+                "y1"] " to " vm["x2"] "," vm["y2"] "]")
         }
         if (found) {
             ; Click the center of the vein to start mining
@@ -190,10 +192,10 @@ WalkBankPhase(runner) {
 
     depositImg := ctx["images"]["DepositImg"]
     if (!WaitForImageCenter(ctx, depositImg["x1"], depositImg["y1"], depositImg["x2"], depositImg["y2"],
-                            depositImg["file"], depositImg["w"], depositImg["h"], &_cx, &_cy,
-                            CtxTunable(ctx, "walkTimeoutMs", 30000),
-                            depositImg.Has("options") ? depositImg["options"] : "",
-                            50)) {
+        depositImg["file"], depositImg["w"], depositImg["h"], &_cx, &_cy,
+        CtxTunable(ctx, "walkTimeoutMs", 30000),
+        depositImg.Has("options") ? depositImg["options"] : "",
+        50)) {
         if (!CtxIsRunning(ctx))
             return GoToPhase(runner, "walkBank")
         LogLine(LOG_FILE, "WalkBank: never arrived at bank - retrying")
@@ -217,7 +219,7 @@ BankPhase(runner) {
     depositImg := ctx["images"]["DepositImg"]
 
     if (!BankDepositAll(ctx, depositImg["file"], CtxTunable(ctx, "bankSettleMs", 100),
-                        CtxTunable(ctx, "bankFailsafeMs", 100))) {
+    CtxTunable(ctx, "bankFailsafeMs", 100))) {
         if (!CtxIsRunning(ctx))
             return GoToPhase(runner, "bank")
         LogLine(LOG_FILE, "BankPhase: deposit failed - bank may not be open")
@@ -290,37 +292,37 @@ LoadConfig() {
     global ctx, CONFIG
 
     ; --- Tunables (read from ini or write defaults) ---
-    ctx["tunables"]["colorTolerance"]        := DbGet(CONFIG, "Tunables", "colorTolerance",        20,     "int")
-    ctx["tunables"]["markerSearchTimeoutMs"] := DbGet(CONFIG, "Tunables", "markerSearchTimeoutMs", 5000,   "int")
-    ctx["tunables"]["walkTimeoutMs"]         := DbGet(CONFIG, "Tunables", "walkTimeoutMs",         30000,  "int")
-    ctx["tunables"]["bankTimeoutMs"]         := DbGet(CONFIG, "Tunables", "bankTimeoutMs",         5000,   "int")
-    ctx["tunables"]["bankSettleMs"]          := DbGet(CONFIG, "Tunables", "bankSettleMs",          100,    "int")
-    ctx["tunables"]["bankFailsafeMs"]        := DbGet(CONFIG, "Tunables", "bankFailsafeMs",        100,    "int")
-    ctx["tunables"]["walkBackSettleMs"]      := DbGet(CONFIG, "Tunables", "walkBackSettleMs",      300,    "int")
-    ctx["tunables"]["phaseTimeoutMine"]      := DbGet(CONFIG, "Tunables", "phaseTimeoutMine",      180000, "int")
-    ctx["tunables"]["phaseTimeoutWalk"]      := DbGet(CONFIG, "Tunables", "phaseTimeoutWalk",      60000,  "int")
-    ctx["tunables"]["phaseTimeoutBank"]      := DbGet(CONFIG, "Tunables", "phaseTimeoutBank",      30000,  "int")
-    ctx["tunables"]["veinCount"]             := DbGet(CONFIG, "Settings", "veinCount",             2,      "int")
-    ctx["tunables"]["indicatorSlot"]         := DbGet(CONFIG, "Settings", "indicatorSlot",         28,     "int")
+    ctx["tunables"]["colorTolerance"] := DbGet(CONFIG, "Tunables", "colorTolerance", 20, "int")
+    ctx["tunables"]["markerSearchTimeoutMs"] := DbGet(CONFIG, "Tunables", "markerSearchTimeoutMs", 5000, "int")
+    ctx["tunables"]["walkTimeoutMs"] := DbGet(CONFIG, "Tunables", "walkTimeoutMs", 30000, "int")
+    ctx["tunables"]["bankTimeoutMs"] := DbGet(CONFIG, "Tunables", "bankTimeoutMs", 5000, "int")
+    ctx["tunables"]["bankSettleMs"] := DbGet(CONFIG, "Tunables", "bankSettleMs", 100, "int")
+    ctx["tunables"]["bankFailsafeMs"] := DbGet(CONFIG, "Tunables", "bankFailsafeMs", 100, "int")
+    ctx["tunables"]["walkBackSettleMs"] := DbGet(CONFIG, "Tunables", "walkBackSettleMs", 300, "int")
+    ctx["tunables"]["phaseTimeoutMine"] := DbGet(CONFIG, "Tunables", "phaseTimeoutMine", 180000, "int")
+    ctx["tunables"]["phaseTimeoutWalk"] := DbGet(CONFIG, "Tunables", "phaseTimeoutWalk", 60000, "int")
+    ctx["tunables"]["phaseTimeoutBank"] := DbGet(CONFIG, "Tunables", "phaseTimeoutBank", 30000, "int")
+    ctx["tunables"]["veinCount"] := DbGet(CONFIG, "Settings", "veinCount", 2, "int")
+    ctx["tunables"]["indicatorSlot"] := DbGet(CONFIG, "Settings", "indicatorSlot", 28, "int")
 
     ; Write all tunables/settings back to ini so they appear in the file
-    DbSet(CONFIG, "Tunables", "colorTolerance",        ctx["tunables"]["colorTolerance"],        "int")
+    DbSet(CONFIG, "Tunables", "colorTolerance", ctx["tunables"]["colorTolerance"], "int")
     DbSet(CONFIG, "Tunables", "markerSearchTimeoutMs", ctx["tunables"]["markerSearchTimeoutMs"], "int")
-    DbSet(CONFIG, "Tunables", "walkTimeoutMs",         ctx["tunables"]["walkTimeoutMs"],         "int")
-    DbSet(CONFIG, "Tunables", "bankTimeoutMs",         ctx["tunables"]["bankTimeoutMs"],         "int")
-    DbSet(CONFIG, "Tunables", "bankSettleMs",          ctx["tunables"]["bankSettleMs"],          "int")
-    DbSet(CONFIG, "Tunables", "bankFailsafeMs",        ctx["tunables"]["bankFailsafeMs"],        "int")
-    DbSet(CONFIG, "Tunables", "walkBackSettleMs",      ctx["tunables"]["walkBackSettleMs"],      "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutMine",      ctx["tunables"]["phaseTimeoutMine"],      "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutWalk",      ctx["tunables"]["phaseTimeoutWalk"],      "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutBank",      ctx["tunables"]["phaseTimeoutBank"],      "int")
+    DbSet(CONFIG, "Tunables", "walkTimeoutMs", ctx["tunables"]["walkTimeoutMs"], "int")
+    DbSet(CONFIG, "Tunables", "bankTimeoutMs", ctx["tunables"]["bankTimeoutMs"], "int")
+    DbSet(CONFIG, "Tunables", "bankSettleMs", ctx["tunables"]["bankSettleMs"], "int")
+    DbSet(CONFIG, "Tunables", "bankFailsafeMs", ctx["tunables"]["bankFailsafeMs"], "int")
+    DbSet(CONFIG, "Tunables", "walkBackSettleMs", ctx["tunables"]["walkBackSettleMs"], "int")
+    DbSet(CONFIG, "Tunables", "phaseTimeoutMine", ctx["tunables"]["phaseTimeoutMine"], "int")
+    DbSet(CONFIG, "Tunables", "phaseTimeoutWalk", ctx["tunables"]["phaseTimeoutWalk"], "int")
+    DbSet(CONFIG, "Tunables", "phaseTimeoutBank", ctx["tunables"]["phaseTimeoutBank"], "int")
 
     ; --- Settings ---
     ctx["runMode"] := DbGet(CONFIG, "Settings", "runMode", true, "bool")
     DbSet(CONFIG, "Settings", "runMode", ctx["runMode"], "bool")
-    
-    DbSet(CONFIG, "Settings", "veinCount",             ctx["tunables"]["veinCount"],             "int")
-    DbSet(CONFIG, "Settings", "indicatorSlot",         ctx["tunables"]["indicatorSlot"],         "int")
+
+    DbSet(CONFIG, "Settings", "veinCount", ctx["tunables"]["veinCount"], "int")
+    DbSet(CONFIG, "Settings", "indicatorSlot", ctx["tunables"]["indicatorSlot"], "int")
 
     ; --- Return Walk Point ---
     ctx["returnWalkPoint"] := DbGetPoint(CONFIG, "Settings", "returnWalkPoint", 1453, 929)
