@@ -119,6 +119,7 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 - `FindNearestColor(x1, y1, x2, y2, refX, refY, color, tol, &foundX, &foundY, maxDistance := 1000)` — true center-outward spiral
 - `FindShapeCentroid(x1, y1, x2, y2, color, tol, &centerX, &centerY, sampleRate := 1)` — average position of all matching pixels
 - `IsAnyOreColor(currentColor, baseColor, tol, useGreenFallback := false)` — tolerant ore match with optional green heuristic
+- `IsColorInRegion(x1, y1, x2, y2, color, tol, &foundX := 0, &foundY := 0)` — checks once instantly if a color is present in the region
 
 ### `Images.ahk` — ImageSearch detection layer
 

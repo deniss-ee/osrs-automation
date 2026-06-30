@@ -266,3 +266,9 @@ IsAnyOreColor(currentColor, baseColor, tol, useGreenFallback := false) {
     b := currentColor & 0xFF
     return (g >= r + 30) && (g >= b + 30) && (g >= 100)
 }
+
+; Checks once (instantly, no wait/loop) if a color is present in the region.
+; Returns true and writes the found position into foundX/foundY if found, false otherwise.
+IsColorInRegion(x1, y1, x2, y2, color, tol, &foundX := 0, &foundY := 0) {
+    return PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol) ? true : false
+}

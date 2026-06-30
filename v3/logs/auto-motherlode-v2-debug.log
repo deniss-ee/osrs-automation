@@ -1,0 +1,70 @@
+16:39:00 MinePhase: inventory full - transitioning to clearRed
+16:39:01 ===== Motherlode Miner v2 started =====
+16:39:03 ClearRedPhase: clicked 16x16 red block at [969,341]
+16:39:11 ClearRedPhase: clicked 16x16 red block at [1275,633]
+16:39:14 ClearRedPhase: clicked 16x16 red block at [1003,627]
+16:39:16 ClearRedPhase: no red blocks found, moving to clearYellow
+16:39:18 ClearYellowPhase: clicked 16x16 yellow block at [645,435]
+16:39:21 ClearYellowPhase: clicked 16x16 yellow block at [939,443]
+16:39:25 ClearYellowPhase: clicked 16x16 yellow block at [1045,729]
+16:39:25 ClearYellowPhase: slot cleared, moving to withdrawSack
+16:40:55 MinePhase tick: ACTIVE, nearestVeinDist=123.01625908797584px stableTicks=0
+16:40:55 MinePhase: clicked vein at [1077,578] (dist=123.01625908797584px)
+16:40:55 ===== Motherlode Miner v2 started =====
+16:40:57 MinePhase tick: ACTIVE, nearestVeinDist=137.17871555019022px stableTicks=0
+16:40:59 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=31
+16:41:01 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=64
+16:41:03 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=97
+16:41:05 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=130
+16:41:07 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=163
+16:41:09 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=196
+16:41:11 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=229
+16:41:13 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=261
+16:41:15 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=294
+16:41:17 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=327
+16:41:19 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=360
+16:41:22 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=393
+16:41:24 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=426
+16:41:25 MinePhase: clicked vein at [1043,743] (dist=219.31256233968907px)
+16:41:26 MinePhase tick: ACTIVE, nearestVeinDist=175.82377541163197px stableTicks=0
+16:41:28 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=27
+16:41:30 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=60
+16:41:32 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=93
+16:41:34 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=125
+16:41:36 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=157
+16:41:38 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=190
+16:41:40 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=222
+16:41:42 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=254
+16:41:44 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=287
+16:41:46 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=320
+16:41:48 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=353
+16:41:50 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=386
+16:41:52 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=418
+16:41:54 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=451
+16:41:56 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=484
+16:41:57 MinePhase: clicked vein at [1041,613] (dist=109.04127658827184px)
+16:41:58 MinePhase tick: ACTIVE, nearestVeinDist=134.20134127496641px stableTicks=2
+16:42:00 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=26
+16:42:02 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=50
+16:42:04 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=74
+16:42:06 MinePhase tick: ACTIVE, nearestVeinDist=139.03237033151669px stableTicks=99
+16:42:07 MinePhase: inventory full - transitioning to clearRed
+16:42:10 ClearRedPhase: clicked 16x16 red block at [469,781]
+16:42:16 ClearRedPhase: clicked 16x16 red block at [947,615]
+16:42:21 ClearRedPhase: clicked 16x16 red block at [953,451]
+16:42:24 ClearRedPhase: clicked 16x16 red block at [945,661]
+16:42:26 ClearRedPhase: no red blocks found, moving to clearYellow
+16:42:27 ClearYellowPhase: clicked 16x16 yellow block at [613,1133]
+16:42:31 ClearYellowPhase: clicked 16x16 yellow block at [689,703]
+16:42:34 ClearYellowPhase: clicked 16x16 yellow block at [967,625]
+16:42:38 ClearYellowPhase: clicked 16x16 yellow block at [1035,733]
+16:42:39 ClearYellowPhase: slot cleared, moving to withdrawSack
+16:42:49 STOPPED: Stopped (F6)
+16:44:35 MinePhase: inventory full - transitioning to clearRed
+16:44:35 ===== Motherlode Miner v2 started =====
+16:44:37 ClearRedPhase: no red blocks found, moving to clearYellow
+16:44:38 ClearYellowPhase: clicked 16x16 yellow block at [295,755]
+16:44:42 ClearYellowPhase: clicked 16x16 yellow block at [567,613]
+16:44:46 ClearYellowPhase: clicked 16x16 yellow block at [1073,715]
+16:44:50 ClearYellowPhase: clicked 16x16 yellow block at [997,663]
+16:44:52 STOPPED: Stopped (F6)

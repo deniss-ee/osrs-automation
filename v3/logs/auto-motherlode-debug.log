@@ -1,0 +1,37 @@
+16:32:42 MinePhase: inventory full - transitioning to clearRed
+16:32:43 ===== Motherlode Miner started =====
+16:32:45 ClearRedPhase: clicked 16x16 red block at [969,341]
+16:32:53 ClearRedPhase: clicked 16x16 red block at [1005,633]
+16:32:56 ClearRedPhase: clicked 16x16 red block at [1269,633]
+16:33:00 ClearRedPhase: clicked 16x16 red block at [1003,627]
+16:33:03 ClearRedPhase: clicked 16x16 red block at [1001,627]
+16:33:06 ClearRedPhase: no red blocks found, moving to clearYellow
+16:33:07 ClearYellowPhase: clicked 16x16 yellow block at [645,435]
+16:33:08 ClearYellowPhase: clicked 16x16 yellow block at [711,437]
+16:33:10 ClearYellowPhase: clicked 16x16 yellow block at [905,443]
+16:33:14 ClearYellowPhase: clicked 16x16 yellow block at [1077,721]
+16:33:15 ClearYellowPhase: clicked 16x16 yellow block at [1001,733]
+16:33:16 ClearYellowPhase: slot cleared, moving to withdrawSack
+16:34:41 MinePhase tick: ACTIVE, nearestVeinDist=194.13912537147169px stableTicks=0
+16:34:41 MinePhase: clicked vein at [1059,707] (dist=194.13912537147169px)
+16:34:41 ===== Motherlode Miner started =====
+16:34:43 MinePhase tick: ACTIVE, nearestVeinDist=175.20844728494114px stableTicks=10
+16:34:45 MinePhase tick: ACTIVE, nearestVeinDist=174.61385970191483px stableTicks=43
+16:34:47 MinePhase tick: ACTIVE, nearestVeinDist=174.61385970191483px stableTicks=76
+16:34:49 STOPPED: Stopped (F6)
+16:34:50 STOPPED: Stopped (F6)
+16:34:51 MinePhase: inventory full - stopping bot
+16:34:51 STOPPED: Inventory full - stopping
+16:34:51 ===== Motherlode Miner started =====
+16:34:53 MinePhase: inventory full - stopping bot
+16:34:53 STOPPED: Inventory full - stopping
+16:34:53 ===== Motherlode Miner started =====
+16:34:54 MinePhase: inventory full - stopping bot
+16:34:54 STOPPED: Inventory full - stopping
+16:34:54 ===== Motherlode Miner started =====
+16:34:54 MinePhase: inventory full - stopping bot
+16:34:54 STOPPED: Inventory full - stopping
+16:34:54 ===== Motherlode Miner started =====
+16:34:54 MinePhase: inventory full - stopping bot
+16:34:54 STOPPED: Inventory full - stopping
+16:34:54 ===== Motherlode Miner started =====
