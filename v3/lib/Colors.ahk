@@ -272,3 +272,61 @@ IsAnyOreColor(currentColor, baseColor, tol, useGreenFallback := false) {
 IsColorInRegion(x1, y1, x2, y2, color, tol, &foundX := 0, &foundY := 0) {
     return PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol) ? true : false
 }
+
+; Checks if a block of contiguous pixels of the specified color exists
+; extending from (x, y). Uses a fast 5-point cross-check pattern.
+VerifyBlock(x, y, color, tol, reqW, reqH) {
+    cx := x + reqW // 2
+    cy := y + reqH // 2
+
+    ; We verify that it is AT LEAST checkW x checkH solid fill.
+    ; Checking 75% of the requested size is safe against edge anti-aliasing.
+    checkW := reqW * 3 // 4
+    checkH := reqH * 3 // 4
+
+    if (!IsColorAt(cx, cy, color, tol))
+        return false
+    if (!IsColorAt(x, y + checkH // 2, color, tol))
+        return false
+    if (!IsColorAt(x + checkW // 2, y, color, tol))
+        return false
+    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
+        return false
+    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
+        return false
+
+    return true
+}
+
+; Searches the region for a continuous block of pixels matching `color`
+; that is at least reqW x reqH in size. Returns true and writes the center
+; coordinate to cx/cy if found. Uses an iterative stack to avoid AHK recursion limits.
+FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy) {
+    stack := [[x1, y1, x2, y2]]
+    
+    while (stack.Length > 0) {
+        rect := stack.Pop()
+        rx1 := rect[1], ry1 := rect[2], rx2 := rect[3], ry2 := rect[4]
+        
+        if (rx1 > rx2 || ry1 > ry2)
+            continue
+            
+        if (!PixelSearch(&foundX, &foundY, rx1, ry1, rx2, ry2, color, tol))
+            continue
+            
+        if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
+            cx := foundX + reqW // 2
+            cy := foundY + reqH // 2
+            return true
+        }
+        
+        ; Push the two sub-rectangles (order matters! We want to search the rest of the row first, so push it last)
+        ; 2. All subsequent lines below the current pixel row
+        stack.Push([rx1, foundY + 1, rx2, ry2])
+        
+        ; 1. The rest of the current horizontal line segment
+        stack.Push([foundX + 1, foundY, rx2, foundY])
+    }
+    
+    return false
+}

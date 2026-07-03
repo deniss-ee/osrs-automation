@@ -1,5 +1,5 @@
 ; ============================================================
-; auto-motherlode-v2.ahk - v3 (Mining + Rapid Deposit/Banking Cycle)
+; auto-motherlode-v2.ahk - v3 (Completely Refactored)
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -18,6 +18,7 @@
 #Include ..\lib\Validate.ahk
 #Include ..\lib\TaskRunner.ahk
 #Include ..\lib\Log.ahk
+#Include ..\lib\Bank.ahk
 
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
@@ -33,21 +34,34 @@ LoadConfig()
 ; ============================================================
 ; HOTKEYS
 ; ============================================================
-
 F5:: StartBot()
 F6:: StopAndLog(ctx["runner"], "Stopped (F6)")
 F7:: ClearConfigAndReload()
+F8:: {
+    if (ctx["runner"] != "" && ctx["runner"]["running"]) {
+        ResetBotState(ctx)
+        GoToPhase(ctx["runner"], "clearYellow")
+    }
+}
+F9:: {
+    if (ctx["runner"] != "" && ctx["runner"]["running"]) {
+        ResetBotState(ctx)
+        GoToPhase(ctx["runner"], "depositBank")
+    }
+}
 
 ; ============================================================
-; BOT LIFECYCLE
+; LIFECYCLE
 ; ============================================================
-
 StartBot() {
     global ctx
     if (!ValidateSetup())
         return
+
     if (ctx["runner"] != "" && ctx["runner"]["running"])
         StopTaskRunner(ctx["runner"], "Restarting...")
+
+    ResetBotState(ctx)
 
     ctx["runner"] := NewTaskRunner(CtxTunable(ctx, "runnerTickMs", 50))
     AddPhase(ctx["runner"], "mine", MinePhase, CtxTunable(ctx, "phaseTimeoutMine", 180000))
@@ -60,7 +74,7 @@ StartBot() {
 
     StartTaskRunner(ctx["runner"], "mine")
     TickTaskRunner(ctx["runner"])
-    LogLine(LOG_FILE, "===== Motherlode Miner v2 started =====")
+    LogLine(LOG_FILE, "===== Motherlode Miner Refactored started =====")
 }
 
 StopAndLog(runner, reason) {
@@ -77,173 +91,147 @@ ClearConfigAndReload() {
     Reload()
 }
 
+ResetBotState(ctx) {
+    ctx["mineTargetX"] := 0
+    ctx["mineTargetY"] := 0
+    ctx["mineTargetColor"] := 0
+    ctx["mineStableTicks"] := 0
+    ctx["mineLastClickTime"] := 0
+
+    ctx["redTargetX"] := 0
+    ctx["redTargetY"] := 0
+    ctx["redStableTicks"] := 0
+    ctx["redLastClickTime"] := 0
+
+    ctx["yellowTargetX"] := 0
+    ctx["yellowTargetY"] := 0
+    ctx["yellowStableTicks"] := 0
+    ctx["yellowLastClickTime"] := 0
+
+    ctx["sackLastClickTime"] := 0
+
+    ctx["bankTargetX"] := 0
+    ctx["bankTargetY"] := 0
+    ctx["bankStableTicks"] := 0
+    ctx["bankLastClickTime"] := 0
+
+    ctx["return1LastClickTime"] := 0
+
+    ctx["return2Stage"] := 1
+    ctx["return2LastClickTime"] := 0
+}
+
 ; ============================================================
 ; PHASES
 ; ============================================================
 
 MinePhase(runner) {
     global ctx, LOG_FILE
-    static lastLogTime := 0
-    static lastClickTime := 0
-    static prevVx := 0
-    static prevVy := 0
-    static stableTicks := 0
-    static lockVx := 0
-    static lockVy := 0
-    static lockMissingTicks := 0
 
-    if (!RequireOsrsWindowActive(ctx)) {
-        if (A_TickCount - lastLogTime > CtxTunable(ctx, "mineLogIntervalMs", 2000)) {
-            lastLogTime := A_TickCount
-            LogLine(LOG_FILE, "MinePhase tick: PAUSED (RuneLite not focused)")
-        }
+    if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "mine")
-    }
 
     tol := CtxTunable(ctx, "colorTolerance", 20)
     indicatorSlot := CtxTunable(ctx, "indicatorSlot", 28)
-    slotOccupied := IsSlotOccupied(indicatorSlot, tol)
 
-    ; 1. Check if inventory is full
-    if (slotOccupied) {
-        lockVx := 0
-        lockVy := 0
-        lockMissingTicks := 0
-        LogLine(LOG_FILE, "MinePhase: inventory full - transitioning to clearRed")
+    if (IsSlotOccupied(indicatorSlot, tol)) {
+        LogLine(LOG_FILE, "MinePhase: Inventory full, transitioning to clearRed")
         ShowTipFor("Miner: inventory full - depositing", 1500)
-        ctx["depositOccupiedBaseline"] := CountOccupiedSlots(tol)
         return GoToPhase(runner, "clearRed")
     }
 
     searchRegion := ctx["targetRegions"]["SearchRegion"]
-    refPoint := ctx["returnWalkPoint"] ; Character center (960, 540)
-    clickCooldown := CtxTunable(ctx, "clickCooldownMs", 3000)
-    stableReclickEnabled := CtxTunable(ctx, "mineStableReclickEnabled", 0)
-    stableReclickTicks := CtxTunable(ctx, "mineStableReclickTicks", 120)
-    stableReclickCooldownMs := CtxTunable(ctx, "mineStableReclickCooldownMs", 6000)
-    forceMineClick := ctx.Has("forceMineClick") ? ctx["forceMineClick"] : false
-    mineBlockedUntil := ctx.Has("mineClickBlockedUntil") ? ctx["mineClickBlockedUntil"] : 0
-    veinClickOffsetX := CtxTunable(ctx, "veinClickOffsetX", 15)
-    veinClickOffsetY := CtxTunable(ctx, "veinClickOffsetY", 15)
-    lockEnabled := CtxTunable(ctx, "mineTargetLockEnabled", 1)
-    unlockMissing := CtxTunable(ctx, "mineUnlockMissingTicks", 2)
-    lockCheckRadius := CtxTunable(ctx, "mineLockCheckRadiusPx", 3)
-    lockMaxMs := CtxTunable(ctx, "mineLockMaxMs", 2500)
-    lockTol := CtxTunable(ctx, "mineLockColorTolerance", 6)
+    refPoint := ctx["returnWalkPoint"]
 
-    ; Keep mining the same clicked vein while it remains visible to avoid
-    ; retarget switching (e.g., dark -> light green) mid-action.
-    foundVein := false
-    if (lockEnabled && lockVx != 0 && lockVy != 0) {
-        lockStartAt := ctx.Has("mineLockStartAt") ? ctx["mineLockStartAt"] : 0
-        lockExpired := (lockStartAt > 0) && (A_TickCount - lockStartAt > lockMaxMs)
-        if (lockExpired) {
-            lockVx := 0
-            lockVy := 0
-            lockMissingTicks := 0
-        } else if (IsVeinStillActive(lockVx, lockVy, lockTol, lockCheckRadius)) {
-            vx := lockVx
-            vy := lockVy
-            foundVein := true
-            lockMissingTicks := 0
-        } else {
-            lockMissingTicks++
-            if (lockMissingTicks >= unlockMissing) {
-                lockVx := 0
-                lockVy := 0
-                lockMissingTicks := 0
-            }
-        }
-    }
-    if (!foundVein) {
-        foundVein := FindNearestVein(searchRegion["x1"], searchRegion["y1"], searchRegion["x2"], searchRegion["y2"],
-            refPoint["x"], refPoint["y"], tol, &vx, &vy, veinClickOffsetX, veinClickOffsetY)
-    }
+    ; 1. If we don't have a target, search for a 15x15 vein block
+    if (ctx["mineTargetX"] == 0) {
+        foundLight := FindFilledBlock(searchRegion["x1"], searchRegion["y1"], searchRegion["x2"], searchRegion["y2"],
+            0x00FF00, tol, 15, 15, &lx, &ly)
+        foundDark := FindFilledBlock(searchRegion["x1"], searchRegion["y1"], searchRegion["x2"], searchRegion["y2"],
+            0x00CE00, tol, 15, 15, &dx, &dy)
 
-    if (foundVein) {
-        ; Check if coordinate is stable (meaning we have arrived and are standing still mining)
-        isStable := (Abs(vx - prevVx) <= 2 && Abs(vy - prevVy) <= 2)
-        if (isStable) {
-            stableTicks++
-        } else {
-            stableTicks := 0
-        }
-
-        prevVx := vx
-        prevVy := vy
-
-        dx := vx - refPoint["x"]
-        dy := vy - refPoint["y"]
-        dist := Sqrt(dx * dx + dy * dy)
-
-        if (A_TickCount - lastLogTime > CtxTunable(ctx, "mineLogIntervalMs", 2000)) {
-            lastLogTime := A_TickCount
-            LogLine(LOG_FILE, "MinePhase tick: ACTIVE, nearestVeinDist=" dist "px stableTicks=" stableTicks)
-        }
-
-        ; During post-return grace, do not accumulate stable ticks (prevents false
-        ; "already mining" state without an actual click).
-        if (A_TickCount < mineBlockedUntil) {
-            stableTicks := 0
-            ShowTip("Miner: settling after return...")
-            return GoToPhase(runner, "mine")
-        }
-
-        ; First mine tick after return handoff should force a real click once.
-        if (forceMineClick && A_TickCount - lastClickTime > CtxTunable(ctx, "mineForceClickCooldownMs", 150)) {
-            HumanClick(vx, vy, 0, 0, ctx["runMode"])
-            lastClickTime := A_TickCount
-            stableTicks := 0
-            lockVx := vx
-            lockVy := vy
-            lockMissingTicks := 0
-            ctx["mineLockStartAt"] := A_TickCount
-            ctx["forceMineClick"] := false
-            LogLine(LOG_FILE, "MinePhase: forced post-return click at [" vx "," vy "]")
-            ShowTipFor("Miner: re-locking vein after return...", 1200)
-            return GoToPhase(runner, "mine")
-        }
-
-        ; We consider ourselves "mining" if the vein coordinates have been stable for at least 3 ticks (150ms)
-        if (stableTicks >= CtxTunable(ctx, "mineStableTicks", 3)) {
-            if (stableReclickEnabled && stableTicks >= stableReclickTicks && (A_TickCount - lastClickTime > stableReclickCooldownMs)) {
-                HumanClick(vx, vy, 0, 0, ctx["runMode"])
-                lastClickTime := A_TickCount
-                stableTicks := 0
-                lockVx := vx
-                lockVy := vy
-                lockMissingTicks := 0
-                ctx["mineLockStartAt"] := A_TickCount
-                LogLine(LOG_FILE, "MinePhase: stable reclick at [" vx "," vy "] after prolonged static state")
-                ShowTipFor("Miner: refreshing mine click...", 1000)
+        found := false
+        if (foundLight && foundDark) {
+            ; Both exist, pick the one closest to our character's center
+            lDist := (lx - refPoint["x"])**2 + (ly - refPoint["y"])**2
+            dDist := (dx - refPoint["x"])**2 + (dy - refPoint["y"])**2
+            if (lDist <= dDist) {
+                vx := lx, vy := ly, vColor := 0x00FF00
             } else {
-                ShowTip("Miner: mining vein (static)...")
+                vx := dx, vy := dy, vColor := 0x00CE00
             }
+            found := true
+        } else if (foundLight) {
+            vx := lx, vy := ly, vColor := 0x00FF00
+            found := true
+        } else if (foundDark) {
+            vx := dx, vy := dy, vColor := 0x00CE00
+            found := true
+        }
+
+        if (found) {
+            ctx["mineTargetX"] := vx
+            ctx["mineTargetY"] := vy
+            ctx["mineTargetColor"] := vColor
+            ctx["mineStableTicks"] := 0
+            ctx["mineLastClickTime"] := 0
+            LogLine(LOG_FILE, "MinePhase: Found new vein at [" vx ", " vy "]")
+            ShowTip("Miner: Moving to vein...")
         } else {
-            ; Click to start mining (rate-limited to prevent spamming while walking)
-            if (A_TickCount - lastClickTime > clickCooldown) {
-                HumanClick(vx, vy, 0, 0, ctx["runMode"])
-                lastClickTime := A_TickCount
-                stableTicks := 0 ; reset stability on click
-                lockVx := vx
-                lockVy := vy
-                lockMissingTicks := 0
-                ctx["mineLockStartAt"] := A_TickCount
-                LogLine(LOG_FILE, "MinePhase: clicked vein at [" vx "," vy "] (dist=" dist "px)")
-                ShowTipFor("Miner: moving to vein...", 1500)
-            } else {
-                ShowTip("Miner: walking to vein...")
-            }
+            ShowTip("Miner: Waiting for veins...")
         }
     } else {
-        prevVx := 0
-        prevVy := 0
-        stableTicks := 0
-        if (A_TickCount - lastLogTime > CtxTunable(ctx, "mineLogIntervalMs", 2000)) {
-            lastLogTime := A_TickCount
-            LogLine(LOG_FILE, "MinePhase tick: ACTIVE, no veins found")
+        ; 2. We have a target, track it
+        ; The camera might have moved. Search a 100x100 box around last known target
+        rx1 := Max(searchRegion["x1"], ctx["mineTargetX"] - 50)
+        ry1 := Max(searchRegion["y1"], ctx["mineTargetY"] - 50)
+        rx2 := Min(searchRegion["x2"], ctx["mineTargetX"] + 50)
+        ry2 := Min(searchRegion["y2"], ctx["mineTargetY"] + 50)
+
+        ; Track only the exact color we locked onto originally
+        found := FindFilledBlock(rx1, ry1, rx2, ry2, ctx["mineTargetColor"], tol, 15, 15, &nvx, &nvy)
+
+        if (found) {
+            ; Check if stable
+            isStable := (Abs(nvx - ctx["mineTargetX"]) <= 2 && Abs(nvy - ctx["mineTargetY"]) <= 2)
+            ctx["mineTargetX"] := nvx
+            ctx["mineTargetY"] := nvy
+
+            if (isStable) {
+                ctx["mineStableTicks"] += 1
+            } else {
+                ctx["mineStableTicks"] := 0
+            }
+
+            ; 3. Handle clicking and locking
+            if (ctx["mineStableTicks"] >= CtxTunable(ctx, "mineStableTicks", 3)) {
+                ; We are stable. If we haven't clicked yet, click
+                clickCooldown := CtxTunable(ctx, "clickCooldownMs", 2000)
+                if (A_TickCount - ctx["mineLastClickTime"] > clickCooldown) {
+                    HumanClick(nvx, nvy, 0, 0, ctx["runMode"])
+                    ctx["mineLastClickTime"] := A_TickCount
+                    LogLine(LOG_FILE, "MinePhase: Clicked stable vein at [" nvx ", " nvy "]")
+                    ResetPhaseTimer(runner) ; Progress made!
+                }
+                ShowTip("Miner: Mining vein...")
+            } else {
+                ; We are walking, occasionally re-click if taking too long?
+                ; Let's click immediately upon finding a new vein, then wait to stabilize.
+                if (ctx["mineLastClickTime"] == 0) {
+                    HumanClick(nvx, nvy, 0, 0, ctx["runMode"])
+                    ctx["mineLastClickTime"] := A_TickCount
+                    LogLine(LOG_FILE, "MinePhase: Initial click to walk to vein at [" nvx ", " nvy "]")
+                    ResetPhaseTimer(runner)
+                }
+                ShowTip("Miner: Walking to vein...")
+            }
+        } else {
+            ; Target disappeared! Either depleted, or we lost track of it.
+            ; Reset target to search for a new one.
+            LogLine(LOG_FILE, "MinePhase: Lost track of vein or depleted. Finding new vein.")
+            ctx["mineTargetX"] := 0
+            ctx["mineTargetY"] := 0
         }
-        ShowTip("Miner: waiting for veins...")
     }
 
     return GoToPhase(runner, "mine")
@@ -251,522 +239,337 @@ MinePhase(runner) {
 
 ClearRedPhase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static prevCx := 0
-    static prevCy := 0
-    static stableTicks := 0
-    static clickedThisBox := false
 
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "clearRed")
 
-    ; Search for 24x24 red block
-    if (FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFF0000, 0, 24, 24, &cx, &cy)) {
-        isStable := (Abs(cx - prevCx) <= 2 && Abs(cy - prevCy) <= 2)
-        if (isStable) {
-            stableTicks++
+    ; 1. If we don't have a target, search for a 24x24 red rockfall globally
+    if (ctx["redTargetX"] == 0) {
+        found := FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFF0000, 0, 24, 24, &cx, &cy)
+        if (found) {
+            ctx["redTargetX"] := cx
+            ctx["redTargetY"] := cy
+            ctx["redStableTicks"] := 0
+            ctx["redLastClickTime"] := 0
+            LogLine(LOG_FILE, "ClearRedPhase: Found new red rockfall at [" cx ", " cy "]")
+            ShowTip("Miner: Target locked on rockfall...")
         } else {
-            ; A new / moved red block - allow a fresh click for it
-            stableTicks := 0
-            clickedThisBox := false
+            ; No red rockfalls found anywhere on screen, safe to proceed
+            LogLine(LOG_FILE, "ClearRedPhase: No red rockfalls found. Moving to hopper.")
+            
+            ; Clean state for next phase
+            ctx["yellowTargetX"] := 0
+            ctx["yellowTargetY"] := 0
+            ctx["yellowStableTicks"] := 0
+            ctx["yellowLastClickTime"] := 0
+            
+            return GoToPhase(runner, "clearYellow")
         }
-        prevCx := cx
-        prevCy := cy
-
-        ; Click a stable box only ONCE, then wait for it to disappear (cleared).
-        ; Only re-click if it abnormally persists past the failsafe (a missed click).
-        ; This kills the old bug where the fixed 3s cooldown fired a SECOND click
-        ; just as the rockfall cleared, landing on the empty ground behind it.
-        failsafe := CtxTunable(ctx, "redClearFailsafeMs", 6000)
-        if (stableTicks >= CtxTunable(ctx, "redStableTicks", 3) && (!clickedThisBox || (A_TickCount - lastClickTime > failsafe))) {
-            HumanClick(cx, cy, 0, 0, ctx["runMode"])
-            lastClickTime := A_TickCount
-            clickedThisBox := true
-            stableTicks := 0 ; reset after click
-            LogLine(LOG_FILE, "ClearRedPhase: clicked red block at [" cx "," cy "]")
-            ShowTip("Miner: clearing rockfalls (#FF0000)...")
-        } else if (clickedThisBox) {
-            ShowTip("Miner: waiting for rockfall to clear...")
-        } else {
-            ShowTip("Miner: stabilizing red block...")
-        }
-        return GoToPhase(runner, "clearRed")
     } else {
-        prevCx := 0
-        prevCy := 0
-        stableTicks := 0
-        clickedThisBox := false
-        LogLine(LOG_FILE, "ClearRedPhase: no red blocks found, moving to clearYellow")
-        return GoToPhase(runner, "clearYellow")
+        ; 2. We have a target, track it within a 400x400 box (fast running camera movement shifts it greatly)
+        rx1 := Max(0, ctx["redTargetX"] - 200)
+        ry1 := Max(0, ctx["redTargetY"] - 200)
+        rx2 := Min(A_ScreenWidth, ctx["redTargetX"] + 200)
+        ry2 := Min(A_ScreenHeight, ctx["redTargetY"] + 200)
+        
+        found := FindFilledBlock(rx1, ry1, rx2, ry2, 0xFF0000, 0, 24, 24, &ncx, &ncy)
+        
+        if (found) {
+            isStable := (Abs(ncx - ctx["redTargetX"]) <= 2 && Abs(ncy - ctx["redTargetY"]) <= 2)
+            ctx["redTargetX"] := ncx
+            ctx["redTargetY"] := ncy
+            
+            if (isStable)
+                ctx["redStableTicks"] += 1
+            else
+                ctx["redStableTicks"] := 0
+                
+            if (ctx["redStableTicks"] >= CtxTunable(ctx, "redStableTicks", 3)) {
+                failsafe := CtxTunable(ctx, "redClearFailsafeMs", 6000)
+                    
+                if (A_TickCount - ctx["redLastClickTime"] > failsafe) {
+                    HumanClick(ncx, ncy, 0, 0, ctx["runMode"])
+                    ctx["redLastClickTime"] := A_TickCount
+                    LogLine(LOG_FILE, "ClearRedPhase: Failsafe click on red rockfall at [" ncx ", " ncy "]")
+                    ResetPhaseTimer(runner)
+                }
+                ShowTip("Miner: Clearing red rockfall...")
+            } else {
+                if (ctx["redLastClickTime"] == 0) {
+                    HumanClick(ncx, ncy, 0, 0, ctx["runMode"])
+                    ctx["redLastClickTime"] := A_TickCount
+                    LogLine(LOG_FILE, "ClearRedPhase: Initial click on red rockfall at [" ncx ", " ncy "]")
+                    ResetPhaseTimer(runner)
+                }
+                ShowTip("Miner: Walking to red rockfall...")
+            }
+        } else {
+            ; Target disappeared! (We either mined it, or walked past it)
+            LogLine(LOG_FILE, "ClearRedPhase: Rockfall cleared or lost. Scanning for another.")
+            ctx["redTargetX"] := 0
+            ctx["redTargetY"] := 0
+        }
     }
+    
+    return GoToPhase(runner, "clearRed")
 }
 
 ClearYellowPhase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static prevCx := 0
-    static prevCy := 0
-    static stableTicks := 0
-    static awaitingYellowResult := false
-    static yellowClickAt := 0
 
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "clearYellow")
 
-    tol := CtxTunable(ctx, "colorTolerance", 20)
-    gateSlot := CtxTunable(ctx, "withdrawGateSlot", 2)
+    tol := CtxTunable(ctx, "yellowFindTolerance", 12)
+    reqW := CtxTunable(ctx, "yellowFindW", 22)
+    reqH := CtxTunable(ctx, "yellowFindH", 22)
 
-    ; Fast gate: as soon as slot #2 is empty, hopper transfer is done for this cycle.
-    if (!IsSlotOccupied(gateSlot, tol)) {
-        prevCx := 0
-        prevCy := 0
-        stableTicks := 0
-        awaitingYellowResult := false
-        yellowClickAt := 0
-        LogLine(LOG_FILE, "ClearYellowPhase: slot " gateSlot " empty, moving to withdrawSack")
+    indicatorSlot := CtxTunable(ctx, "indicatorSlot", 28)
+    if (!IsSlotOccupied(indicatorSlot, tol)) {
+        LogLine(LOG_FILE, "ClearYellowPhase: Inventory empty, ore deposited. Moving to sack.")
+        ShowTipFor("Miner: Ore deposited", 1500)
         return GoToPhase(runner, "withdrawSack")
     }
 
-    ; Check if at least one item slot has become empty (relative to baseline when full)
-    baseline := ctx.Has("depositOccupiedBaseline") ? ctx["depositOccupiedBaseline"] : 28
-    if (CountOccupiedSlots(tol) < baseline) {
-        prevCx := 0
-        prevCy := 0
-        stableTicks := 0
-        awaitingYellowResult := false
-        yellowClickAt := 0
-        LogLine(LOG_FILE, "ClearYellowPhase: slot cleared, moving to withdrawSack")
-        return GoToPhase(runner, "withdrawSack")
-    }
+    found := FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFFFF00, tol, reqW, reqH, &cx, &cy)
+    if (found) {
+        isStable := (Abs(cx - ctx["yellowTargetX"]) <= 2 && Abs(cy - ctx["yellowTargetY"]) <= 2)
+        ctx["yellowTargetX"] := cx
+        ctx["yellowTargetY"] := cy
 
-    ; After one hopper click, wait for result and DO NOT reclick yellow.
-    if (awaitingYellowResult) {
-        elapsed := A_TickCount - yellowClickAt
-        maxWait := CtxTunable(ctx, "yellowWaitForDrainMaxMs", 7000)
-        if (elapsed < maxWait) {
-            ShowTip("Miner: waiting hopper settle...")
-            return GoToPhase(runner, "clearYellow")
-        }
-        awaitingYellowResult := false
-        stableTicks := 0
-        prevCx := 0
-        prevCy := 0
-        LogLine(LOG_FILE, "ClearYellowPhase: wait max reached, retrying yellow hopper cycle")
-        return GoToPhase(runner, "clearYellow")
-    }
+        if (isStable)
+            ctx["yellowStableTicks"] += 1
+        else
+            ctx["yellowStableTicks"] := 0
 
-    ; Search for yellow block (tunable tolerance/size for faster/less brittle detection)
-    yellowTol := CtxTunable(ctx, "yellowFindTolerance", 12)
-    yellowReqW := CtxTunable(ctx, "yellowFindW", 22)
-    yellowReqH := CtxTunable(ctx, "yellowFindH", 22)
-    if (FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFFFF00, yellowTol, yellowReqW, yellowReqH, &cx, &cy)) {
-        isStable := (Abs(cx - prevCx) <= 2 && Abs(cy - prevCy) <= 2)
-        if (isStable) {
-            stableTicks++
-        } else {
-            stableTicks := 0
-        }
-        prevCx := cx
-        prevCy := cy
-
-        if (stableTicks >= CtxTunable(ctx, "yellowStableTicks", 1)) {
-            if (A_TickCount - lastClickTime > CtxTunable(ctx, "yellowClickCooldownMs", 60)) {
+        if (ctx["yellowStableTicks"] >= CtxTunable(ctx, "yellowStableTicks", 1)) {
+            ; Give a generous 15 second cooldown to allow walking and the inventory to drain completely
+            cooldown := 15000
+            
+            if (A_TickCount - ctx["yellowLastClickTime"] > cooldown) {
                 HumanClick(cx, cy, 0, 0, ctx["runMode"])
-                lastClickTime := A_TickCount
-                awaitingYellowResult := true
-                yellowClickAt := A_TickCount
-                stableTicks := 0 ; reset after click
-                LogLine(LOG_FILE, "ClearYellowPhase: clicked 16x16 yellow block at [" cx "," cy "]")
-                ShowTip("Miner: clearing yellow hopper (#FFFF00)...")
-            } else {
-                ShowTip("Miner: waiting on yellow hopper click cooldown...")
+                ctx["yellowLastClickTime"] := A_TickCount
+                LogLine(LOG_FILE, "ClearYellowPhase: Clicked hopper at [" cx ", " cy "]")
+                ResetPhaseTimer(runner)
             }
+            ShowTip("Miner: Depositing in hopper...")
         } else {
-            ShowTip("Miner: stabilizing yellow hopper...")
+            if (ctx["yellowLastClickTime"] == 0) {
+                HumanClick(cx, cy, 0, 0, ctx["runMode"])
+                ctx["yellowLastClickTime"] := A_TickCount
+                LogLine(LOG_FILE, "ClearYellowPhase: Initial click to hopper at [" cx ", " cy "]")
+                ResetPhaseTimer(runner)
+            }
+            ShowTip("Miner: Walking to hopper...")
         }
     } else {
-        prevCx := 0
-        prevCy := 0
-        stableTicks := 0
-        ShowTip("Miner: waiting for yellow hopper...")
+        ShowTip("Miner: Cannot see hopper!")
     }
-
     return GoToPhase(runner, "clearYellow")
 }
 
 WithdrawSackPhase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static clicked := false
 
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "withdrawSack")
 
-    tol := CtxTunable(ctx, "colorTolerance", 20)
     gateSlot := CtxTunable(ctx, "withdrawGateSlot", 2)
+    tol := CtxTunable(ctx, "colorTolerance", 20)
 
-    ; 1. Completion check: empty-sack message visible.
-    ;    Keep deposit phase next for deterministic bank cycle.
-    emptySackImg := ctx["images"]["EmptySack"]
-    if (IsImagePresent(emptySackImg["x1"], emptySackImg["y1"], emptySackImg["x2"], emptySackImg["y2"], emptySackImg["file"])) {
-        LogLine(LOG_FILE, "WithdrawSackPhase: empty-sack message detected, moving to depositBank")
-        lastClickTime := 0
-        clicked := false
+    if (IsSlotOccupied(gateSlot, tol)) {
+        LogLine(LOG_FILE, "WithdrawSackPhase: Items taken from sack. Settling then moving to bank.")
+        ShowTipFor("Miner: Sack emptied", 1500)
+        
+        settleMs := CtxTunable(ctx, "sackToBankSettleMs", 600)
+        if (settleMs > 0)
+            Sleep(settleMs)
+            
         return GoToPhase(runner, "depositBank")
     }
 
-    ; 2. Run to the sack to take ore: click ONCE, then keep waiting for marker.
-    ;    Only re-click if the marker never appears within the failsafe window
-    ;    (i.e. the first click missed) - never spam-click while still walking.
-    sackX := CtxTunable(ctx, "sackRunX", 1571)
-    sackY := CtxTunable(ctx, "sackRunY", 708)
-    sackPreClickDelayMs := CtxTunable(ctx, "sackPreClickDelayMs", 200)
-    sackPostClickCheckDelayMs := CtxTunable(ctx, "sackPostClickCheckDelayMs", 250)
-    failsafe := CtxTunable(ctx, "sackRunFailsafeMs", 12000)
-    if (!clicked || (A_TickCount - lastClickTime > failsafe)) {
-        if (sackPreClickDelayMs > 0)
-            Sleep(sackPreClickDelayMs)
-        HumanClick(sackX, sackY, 0, 0, ctx["runMode"])
-        lastClickTime := A_TickCount
-        clicked := true
-        LogLine(LOG_FILE, "WithdrawSackPhase: clicked run-to-sack at [" sackX "," sackY "]")
-        ShowTipFor("Miner: running to sack...", 1500)
-    } else {
-        ; 3. Only AFTER a sack click attempt do we accept bank transition checks.
-        if (A_TickCount - lastClickTime > sackPostClickCheckDelayMs && IsSlotOccupied(gateSlot, tol)) {
-            LogLine(LOG_FILE, "WithdrawSackPhase: slot " gateSlot " occupied post-click, moving to depositBank")
-            lastClickTime := 0
-            clicked := false
-            return GoToPhase(runner, "depositBank")
-        }
-
-        ; Marker is now informational/guidance only. Banking is gated by post-click slot fill.
-        sackMarker := ctx["images"]["SackMarker"]
-        if (IsImagePresent(sackMarker["x1"], sackMarker["y1"], sackMarker["x2"], sackMarker["y2"], sackMarker["file"])) {
-            ShowTip("Miner: at sack, waiting for inventory fill...")
-        } else {
-            ShowTip("Miner: waiting to arrive at sack (ml-marker-1)...")
-        }
+    emptySackImg := ctx["images"]["EmptySack"]
+    if (FindImageCenter(emptySackImg["x1"], emptySackImg["y1"], emptySackImg["x2"], emptySackImg["y2"], emptySackImg["file"], emptySackImg["w"], emptySackImg["h"], &ex, &ey)) {
+        LogLine(LOG_FILE, "WithdrawSackPhase: Sack empty message seen. Moving to bank.")
+        return GoToPhase(runner, "depositBank")
     }
 
+    ; Give a generous cooldown to walk to the sack, animate, and let the inventory fill up
+    clickCooldown := CtxTunable(ctx, "sackRunFailsafeMs", 12000)
+    
+    if (A_TickCount - ctx["sackLastClickTime"] > clickCooldown) {
+        ; Check if this is the first time we are clicking the sack this phase
+        isFirstClick := (ctx["sackLastClickTime"] == 0)
+        
+        if (isFirstClick) {
+            ; Apply the pre-click delay before the very first click to let the hopper finish dropping
+            preDelay := CtxTunable(ctx, "sackPreClickDelayMs", 2700)
+            if (preDelay > 0) {
+                LogLine(LOG_FILE, "WithdrawSackPhase: Waiting " preDelay "ms before clicking sack.")
+                Sleep(preDelay)
+            }
+        }
+    
+        sx := CtxTunable(ctx, "sackRunX", 1571)
+        sy := CtxTunable(ctx, "sackRunY", 708)
+        HumanClick(sx, sy, 0, 0, ctx["runMode"])
+        ctx["sackLastClickTime"] := A_TickCount
+        LogLine(LOG_FILE, "WithdrawSackPhase: Clicked sack at [" sx ", " sy "]")
+        ResetPhaseTimer(runner)
+    }
+
+    ShowTip("Miner: Withdrawing from sack...")
     return GoToPhase(runner, "withdrawSack")
 }
 
 DepositBankPhase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static prevCx := 0
-    static prevCy := 0
-    static stableTicks := 0
 
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "depositBank")
 
-    ; 1. Check if deposit-motherlode interface is open
-    depositImg := ctx["images"]["DepositMotherlode"]
-    if (IsImagePresent(depositImg["x1"], depositImg["y1"], depositImg["x2"], depositImg["y2"], depositImg["file"])) {
-        if (A_TickCount - lastClickTime > CtxTunable(ctx, "depositInterfaceClickCooldownMs", 3000)) {
-            cx := depositImg["x1"] + depositImg["w"] // 2
-            cy := depositImg["y1"] + depositImg["h"] // 2
-            HumanClick(cx, cy, 0, 0, ctx["runMode"])
-            lastClickTime := A_TickCount
-            ctx["awaitDepositClose"] := true
-            ctx["returnMineReadyAt"] := A_TickCount + CtxTunable(ctx, "postDepositSettleMs", 220)
-            LogLine(LOG_FILE, "DepositBankPhase: deposit interface open, clicked deposit")
-            ShowTipFor("Miner: deposited ore", 1500)
-            prevCx := 0
-            prevCy := 0
-            stableTicks := 0
-            return GoToPhase(runner, "depositBank")
-        } else {
-            ShowTip("Miner: waiting on deposit click cooldown...")
-        }
-        return GoToPhase(runner, "depositBank")
-    }
+    gateSlot := CtxTunable(ctx, "withdrawGateSlot", 2)
+    tol := CtxTunable(ctx, "colorTolerance", 20)
 
-    ; 1b. After a deposit click, wait for interface close + short settle before first run-back click.
-    if (ctx.Has("awaitDepositClose") && ctx["awaitDepositClose"]) {
-        if (A_TickCount < (ctx.Has("returnMineReadyAt") ? ctx["returnMineReadyAt"] : 0)) {
-            ShowTip("Miner: settling after deposit...")
-            return GoToPhase(runner, "depositBank")
-        }
-        ctx["awaitDepositClose"] := false
-        LogLine(LOG_FILE, "DepositBankPhase: deposit settled, moving to returnMine1")
+    if (!IsSlotOccupied(gateSlot, tol)) {
+        LogLine(LOG_FILE, "DepositBankPhase: Inventory empty. Moving to return route.")
+        ShowTipFor("Miner: Banking complete", 1500)
         return GoToPhase(runner, "returnMine1")
     }
 
-    ; 2. If not open, search for 24x24 magenta block (#FF00FF)
-    if (FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFF00FF, 0, 24, 24, &cx, &cy)) {
-        isStable := (Abs(cx - prevCx) <= 2 && Abs(cy - prevCy) <= 2)
-        if (isStable) {
-            stableTicks++
-        } else {
-            stableTicks := 0
-        }
-        prevCx := cx
-        prevCy := cy
-
-        if (stableTicks >= CtxTunable(ctx, "depositBankStableTicks", 3)) {
-            if (A_TickCount - lastClickTime > CtxTunable(ctx, "depositBankClickCooldownMs", 3000)) {
-                HumanClick(cx, cy, 0, 0, ctx["runMode"])
-                lastClickTime := A_TickCount
-                stableTicks := 0 ; reset after click
-                LogLine(LOG_FILE, "DepositBankPhase: clicked 16x16 bank chest at [" cx "," cy "]")
-                ShowTip("Miner: opening bank chest (#FF00FF)...")
+    found := FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFF00FF, 0, 24, 24, &cx, &cy)
+    if (found) {
+        ; Use a 15 second failsafe. We only want to click the bank chest ONCE,
+        ; then wait for the deposit box to open.
+        failsafe := CtxTunable(ctx, "depositBankClickFailsafeMs", 15000)
+        
+        if (A_TickCount - ctx["bankLastClickTime"] > failsafe) {
+            ; Wait a tiny bit for camera to settle before initial click
+            if (ctx["bankLastClickTime"] == 0) {
+                Sleep(CtxTunable(ctx, "preBankClickSettleMs", 400))
+                ; Recalculate position after settling
+                FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight, 0xFF00FF, 0, 24, 24, &cx, &cy)
+            }
+            
+            HumanClick(cx, cy, 0, 0, ctx["runMode"])
+            ctx["bankLastClickTime"] := A_TickCount
+            LogLine(LOG_FILE, "DepositBankPhase: Clicked bank chest at [" cx ", " cy "]")
+            ResetPhaseTimer(runner)
+            
+            ; Now wait for the deposit box interface to open!
+            depositImg := ctx["images"]["DepositMotherlode"]
+            settleMs := CtxTunable(ctx, "postDepositSettleMs", 300)
+            
+            ShowTip("Miner: Waiting for deposit box to open...")
+            if (WaitForImageCenter(ctx, depositImg["x1"] - 20, depositImg["y1"] - 20, depositImg["x2"] + 20, depositImg["y2"] + 20, depositImg["file"], depositImg["w"], depositImg["h"], &dcx, &dcy, 15000, "*20")) {
+                HumanClick(dcx, dcy, depositImg["w"], depositImg["h"])
+                Sleep(JitterDelay(settleMs))
+                LogLine(LOG_FILE, "DepositBankPhase: DepositAll successful.")
             } else {
-                ShowTip("Miner: waiting on bank chest click cooldown...")
+                LogLine(LOG_FILE, "DepositBankPhase: Failed to find deposit button (timeout).")
             }
         } else {
-            ShowTip("Miner: stabilizing bank chest...")
+            ShowTip("Miner: Walking to bank...")
         }
     } else {
-        prevCx := 0
-        prevCy := 0
-        stableTicks := 0
-        ShowTip("Miner: waiting for bank chest...")
+        ShowTip("Miner: Cannot see bank chest!")
     }
-
     return GoToPhase(runner, "depositBank")
 }
 
 ReturnMine1Phase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static clicked := false
-
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "returnMine1")
 
-    arriveX := CtxTunable(ctx, "return1ArriveX", 1232)
-    arriveY := CtxTunable(ctx, "return1ArriveY", 1072)
-    arriveW := CtxTunable(ctx, "return1ArriveW", 36)
-    arriveH := CtxTunable(ctx, "return1ArriveH", 36)
-    arriveColor := CtxTunable(ctx, "return1ArriveColor", 0xFF8900)
-    arriveTol := CtxTunable(ctx, "return1ArriveTolerance", 0)
+    rX := CtxTunable(ctx, "return1ArriveX", 1232)
+    rY := CtxTunable(ctx, "return1ArriveY", 1072)
+    rW := CtxTunable(ctx, "return1ArriveW", 36)
+    rH := CtxTunable(ctx, "return1ArriveH", 36)
+    rColor := CtxTunable(ctx, "return1ArriveColor", 0xFF8900)
+    tol := CtxTunable(ctx, "return1ArriveTolerance", 0)
 
-    if (VerifyBlock(arriveX, arriveY, arriveColor, arriveTol, arriveW, arriveH)) {
-        clicked := false
-        lastClickTime := 0
-        LogLine(LOG_FILE, "ReturnMine1: orange marker detected, moving to returnMine2")
+    if (FindFilledBlock(Max(0, rX - 50), Max(0, rY - 50), Min(A_ScreenWidth, rX + 100), Min(A_ScreenHeight, rY + 100), rColor, tol, rW, rH, &cx, &cy)) {
+        LogLine(LOG_FILE, "ReturnMine1Phase: Arrived at waypoint 1!")
+        
+        ; Add a delay before transitioning to phase 2 so the character fully finishes running 
+        ; and the camera settles. Otherwise, phase 2 might click its waypoint while we are still running!
+        settleMs := CtxTunable(ctx, "return1SettleMs", 2000)
+        if (settleMs > 0)
+            Sleep(settleMs)
+            
         return GoToPhase(runner, "returnMine2")
     }
 
-    runX := CtxTunable(ctx, "return1ClickX", 454)
-    runY := CtxTunable(ctx, "return1ClickY", 1223)
     failsafe := CtxTunable(ctx, "return1ClickFailsafeMs", 12000)
-    readyAt := ctx.Has("returnMineReadyAt") ? ctx["returnMineReadyAt"] : 0
-    if (A_TickCount < readyAt) {
-        ShowTip("Miner: preparing run click...")
-        return GoToPhase(runner, "returnMine1")
-    }
-    if (!clicked || (A_TickCount - lastClickTime > failsafe)) {
-        HumanClick(runX, runY, 0, 0, ctx["runMode"])
-        clicked := true
-        lastClickTime := A_TickCount
-        ctx["returnMineReadyAt"] := 0
-        LogLine(LOG_FILE, "ReturnMine1: clicked waypoint at [" runX "," runY "]")
-        ShowTipFor("Miner: returning to mine (step 1)", 1200)
-    } else {
-        ShowTip("Miner: waiting for orange marker...")
+    if (A_TickCount - ctx["return1LastClickTime"] > failsafe) {
+        rx := CtxTunable(ctx, "return1ClickX", 454)
+        ry := CtxTunable(ctx, "return1ClickY", 1223)
+        HumanClick(rx, ry, 0, 0, ctx["runMode"])
+        ctx["return1LastClickTime"] := A_TickCount
+        LogLine(LOG_FILE, "ReturnMine1Phase: Clicked minimap waypoint 1 at [" rx ", " ry "]")
+        ResetPhaseTimer(runner)
     }
 
+    ShowTip("Miner: Returning to mine (Step 1)...")
     return GoToPhase(runner, "returnMine1")
 }
 
 ReturnMine2Phase(runner) {
     global ctx, LOG_FILE
-    static lastClickTime := 0
-    static clicked := false
-    static finalClicked := false
-    static finalReadyAt := 0
-
     if (!RequireOsrsWindowActive(ctx))
         return GoToPhase(runner, "returnMine2")
 
-    ; Finalized return flow:
-    ; 1) Run toward return2 waypoint.
-    ; 2) Wait for fixed orange marker (24x24 at configured coords).
-    ; 3) Click fixed mine-start coordinate.
-    ; 4) Wait fixed post-click delay, then hand off to mine loop.
-    if (finalClicked) {
-        if (A_TickCount < finalReadyAt) {
-            remainMs := finalReadyAt - A_TickCount
-            ShowTip("Miner: waiting before mine loop... " remainMs "ms")
-            return GoToPhase(runner, "returnMine2")
+    if (!ctx.Has("return2Stage"))
+        ctx["return2Stage"] := 1
+
+    if (ctx["return2Stage"] == 1) {
+        failsafe := CtxTunable(ctx, "return2ClickFailsafeMs", 12000)
+        if (A_TickCount - ctx["return2LastClickTime"] > failsafe) {
+            rx := CtxTunable(ctx, "return2ClickX", 952)
+            ry := CtxTunable(ctx, "return2ClickY", 1271)
+            HumanClick(rx, ry, 0, 0, ctx["runMode"])
+            ctx["return2LastClickTime"] := A_TickCount
+            LogLine(LOG_FILE, "ReturnMine2Phase: Clicked minimap waypoint 2 at [" rx ", " ry "]")
+            ResetPhaseTimer(runner)
         }
-        finalClicked := false
-        clicked := false
-        lastClickTime := 0
-        ctx["mineClickBlockedUntil"] := A_TickCount + CtxTunable(ctx, "return2ToMineGraceMs", 3500)
-        ctx["forceMineClick"] := true
-        ResetPhaseTimer(ctx["runner"])
-        LogLine(LOG_FILE, "ReturnMine2: post-click wait complete, moving to mine")
-        return GoToPhase(runner, "mine")
-    }
 
-    markerX := CtxTunable(ctx, "return2MarkerX", 1225)
-    markerY := CtxTunable(ctx, "return2MarkerY", 600)
-    markerW := CtxTunable(ctx, "return2MarkerW", 24)
-    markerH := CtxTunable(ctx, "return2MarkerH", 24)
-    markerColor := CtxTunable(ctx, "return2MarkerColor", 0xFF8900)
-    markerTol := CtxTunable(ctx, "return2MarkerTolerance", 0)
-    if (VerifyBlock(markerX, markerY, markerColor, markerTol, markerW, markerH)) {
-        mineX := CtxTunable(ctx, "return2FinalClickX", 1337)
-        mineY := CtxTunable(ctx, "return2FinalClickY", 1039)
-        HumanClick(mineX, mineY, 0, 0, ctx["runMode"])
-        finalClicked := true
-        finalReadyAt := A_TickCount + CtxTunable(ctx, "return2AfterClickWaitMs", 2000)
-        clicked := false
-        lastClickTime := 0
-        LogLine(LOG_FILE, "ReturnMine2: orange marker found, clicked final point at [" mineX "," mineY "]")
-        ShowTipFor("Miner: final return click done", 1000)
-        return GoToPhase(runner, "returnMine2")
-    }
+        rX := CtxTunable(ctx, "return2MarkerX", 1225)
+        rY := CtxTunable(ctx, "return2MarkerY", 600)
+        rW := CtxTunable(ctx, "return2MarkerW", 24)
+        rH := CtxTunable(ctx, "return2MarkerH", 24)
+        rColor := CtxTunable(ctx, "return2MarkerColor", 0xFF8900)
+        tol := CtxTunable(ctx, "return2MarkerTolerance", 0)
 
-    runX := CtxTunable(ctx, "return2ClickX", 952)
-    runY := CtxTunable(ctx, "return2ClickY", 1271)
-    failsafe := CtxTunable(ctx, "return2ClickFailsafeMs", 12000)
-    if (!clicked || (A_TickCount - lastClickTime > failsafe)) {
-        HumanClick(runX, runY, 0, 0, ctx["runMode"])
-        clicked := true
-        lastClickTime := A_TickCount
-        LogLine(LOG_FILE, "ReturnMine2: clicked waypoint at [" runX "," runY "]")
-        ShowTipFor("Miner: returning to mine (step 2)", 1200)
-    } else {
-        ShowTip("Miner: waiting for return orange marker...")
+        if (FindFilledBlock(Max(0, rX - 50), Max(0, rY - 50), Min(A_ScreenWidth, rX + 100), Min(A_ScreenHeight, rY + 100), rColor, tol, rW, rH, &cx, &cy)) {
+            LogLine(LOG_FILE, "ReturnMine2Phase: Saw final marker! Stage 2.")
+            ctx["return2Stage"] := 2
+            ctx["return2LastClickTime"] := A_TickCount
+        }
+        ShowTip("Miner: Returning to mine (Step 2 - walking)...")
+    } else if (ctx["return2Stage"] == 2) {
+        settleMs := CtxTunable(ctx, "return2SettleMs", 4000)
+        if (A_TickCount - ctx["return2LastClickTime"] > settleMs) {
+            fx := CtxTunable(ctx, "return2FinalClickX", 1337)
+            fy := CtxTunable(ctx, "return2FinalClickY", 1039)
+            HumanClick(fx, fy, 0, 0, ctx["runMode"])
+            ctx["return2LastClickTime"] := A_TickCount
+            LogLine(LOG_FILE, "ReturnMine2Phase: Clicked final screen spot at [" fx ", " fy "]")
+            ResetPhaseTimer(runner)
+            ctx["return2Stage"] := 3
+        }
+        ShowTip("Miner: Returning to mine (Step 2 - final click)...")
+    } else if (ctx["return2Stage"] == 3) {
+        waitMs := CtxTunable(ctx, "return2AfterClickWaitMs", 2000)
+        if (A_TickCount - ctx["return2LastClickTime"] > waitMs) {
+            LogLine(LOG_FILE, "ReturnMine2Phase: Wait complete. Handing off to mine phase.")
+            ResetBotState(ctx)
+            return GoToPhase(runner, "mine")
+        }
+        ShowTip("Miner: Returning to mine (Step 2 - settling)...")
     }
 
     return GoToPhase(runner, "returnMine2")
-}
-
-HasAnyEmptySlot(tol) {
-    loop 28 {
-        if (IsSlotEmpty(A_Index, tol))
-            return true
-    }
-    return false
-}
-
-CountOccupiedSlots(tol) {
-    occupied := 0
-    loop 28 {
-        if (IsSlotOccupied(A_Index, tol))
-            occupied++
-    }
-    return occupied
-}
-
-; ============================================================
-; HELPERS
-; ============================================================
-
-VerifyBlock(x, y, color, tol, reqW, reqH) {
-    cx := x + reqW // 2
-    cy := y + reqH // 2
-
-    ; We verify that it is AT LEAST checkW x checkH solid fill.
-    ; Checking 75% of the requested size is safe against edge anti-aliasing.
-    checkW := reqW * 3 // 4
-    checkH := reqH * 3 // 4
-
-    ; Check internal points using type-safe IsColorAt
-    if (!IsColorAt(cx, cy, color, tol))
-        return false
-    if (!IsColorAt(x, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y, color, tol))
-        return false
-    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
-        return false
-
-    return true
-}
-
-FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy) {
-    if (x1 > x2 || y1 > y2)
-        return false
-
-    if (!PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol))
-        return false
-
-    if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
-        cx := foundX + reqW // 2
-        cy := foundY + reqH // 2
-        return true
-    }
-
-    ; Recursive search to cover the remaining areas:
-    ; 1. The rest of the current horizontal line segment
-    if (FindFilledBlock(foundX + 1, foundY, x2, foundY, color, tol, reqW, reqH, &cx, &cy))
-        return true
-
-    ; 2. All subsequent lines below the current pixel row
-    if (FindFilledBlock(x1, foundY + 1, x2, y2, color, tol, reqW, reqH, &cx, &cy))
-        return true
-
-    return false
-}
-
-FindNearestColorBox(x1, y1, x2, y2, refX, refY, color, tol, &foundX, &foundY) {
-    ; Expanding boxes: 50, 100, 200, then full region
-    steps := [50, 100, 200]
-    for dist in steps {
-        bx1 := Max(x1, refX - dist)
-        by1 := Max(y1, refY - dist)
-        bx2 := Min(x2, refX + dist)
-        by2 := Min(y2, refY + dist)
-        if (IsColorInRegion(bx1, by1, bx2, by2, color, tol, &foundX, &foundY)) {
-            return true
-        }
-    }
-    ; Fallback to full region
-    return IsColorInRegion(x1, y1, x2, y2, color, tol, &foundX, &foundY)
-}
-
-FindNearestVein(x1, y1, x2, y2, refX, refY, tol, &vx, &vy, clickOffsetX := 8, clickOffsetY := 8) {
-    foundBright := FindNearestColorBox(x1, y1, x2, y2, refX, refY, 0x00FF00, tol, &bx, &by)
-    foundDark := FindNearestColorBox(x1, y1, x2, y2, refX, refY, 0x00CE00, tol, &dx, &dy)
-
-    if (!foundBright && !foundDark)
-        return false
-
-    if (foundBright && !foundDark) {
-        vx := bx + clickOffsetX
-        vy := by + clickOffsetY
-        return true
-    }
-
-    if (!foundBright && foundDark) {
-        vx := dx + clickOffsetX
-        vy := dy + clickOffsetY
-        return true
-    }
-
-    ; Both colors found: choose whichever is truly closer to reference point.
-    bcx := bx + clickOffsetX
-    bcy := by + clickOffsetY
-    dcx := dx + clickOffsetX
-    dcy := dy + clickOffsetY
-    bDist2 := (bcx - refX) * (bcx - refX) + (bcy - refY) * (bcy - refY)
-    dDist2 := (dcx - refX) * (dcx - refX) + (dcy - refY) * (dcy - refY)
-    if (bDist2 <= dDist2) {
-        vx := bcx
-        vy := bcy
-    } else {
-        vx := dcx
-        vy := dcy
-    }
-    return true
-}
-
-IsVeinStillActive(vx, vy, tol, radius := 15) {
-    x1 := Max(734, vx - radius)
-    y1 := Max(570, vy - radius)
-    x2 := Min(1454, vx + radius)
-    y2 := Min(930, vy + radius)
-    return IsColorInRegion(x1, y1, x2, y2, 0x00FF00, tol) || IsColorInRegion(x1, y1, x2, y2, 0x00CE00, tol)
 }
 
 ; ============================================================
@@ -789,7 +592,8 @@ LoadConfig() {
     ctx["tunables"]["mineStableTicks"] := DbGet(CONFIG, "Tunables", "mineStableTicks", 3, "int")
     ctx["tunables"]["mineStableReclickEnabled"] := DbGet(CONFIG, "Tunables", "mineStableReclickEnabled", 0, "int")
     ctx["tunables"]["mineStableReclickTicks"] := DbGet(CONFIG, "Tunables", "mineStableReclickTicks", 120, "int")
-    ctx["tunables"]["mineStableReclickCooldownMs"] := DbGet(CONFIG, "Tunables", "mineStableReclickCooldownMs", 6000, "int")
+    ctx["tunables"]["mineStableReclickCooldownMs"] := DbGet(CONFIG, "Tunables", "mineStableReclickCooldownMs", 6000,
+        "int")
     ctx["tunables"]["clickCooldownMs"] := DbGet(CONFIG, "Tunables", "clickCooldownMs", 2000, "int")
     ctx["tunables"]["veinClickOffsetX"] := DbGet(CONFIG, "Tunables", "veinClickOffsetX", 15, "int")
     ctx["tunables"]["veinClickOffsetY"] := DbGet(CONFIG, "Tunables", "veinClickOffsetY", 15, "int")
@@ -818,12 +622,16 @@ LoadConfig() {
     ctx["tunables"]["sackRunX"] := DbGet(CONFIG, "Tunables", "sackRunX", 1571, "int")
     ctx["tunables"]["sackRunY"] := DbGet(CONFIG, "Tunables", "sackRunY", 708, "int")
     ctx["tunables"]["sackRunFailsafeMs"] := DbGet(CONFIG, "Tunables", "sackRunFailsafeMs", 12000, "int")
+    ctx["tunables"]["sackToBankSettleMs"] := DbGet(CONFIG, "Tunables", "sackToBankSettleMs", 600, "int")
 
     ; Deposit bank
-    ctx["tunables"]["depositInterfaceClickCooldownMs"] := DbGet(CONFIG, "Tunables", "depositInterfaceClickCooldownMs", 1200, "int")
+    ctx["tunables"]["depositInterfaceClickCooldownMs"] := DbGet(CONFIG, "Tunables", "depositInterfaceClickCooldownMs",
+        1200, "int")
     ctx["tunables"]["depositBankStableTicks"] := DbGet(CONFIG, "Tunables", "depositBankStableTicks", 3, "int")
-    ctx["tunables"]["depositBankClickCooldownMs"] := DbGet(CONFIG, "Tunables", "depositBankClickCooldownMs", 1400, "int")
-    ctx["tunables"]["postDepositSettleMs"] := DbGet(CONFIG, "Tunables", "postDepositSettleMs", 220, "int")
+    ctx["tunables"]["depositBankClickCooldownMs"] := DbGet(CONFIG, "Tunables", "depositBankClickCooldownMs", 1400,
+        "int")
+    ctx["tunables"]["preDepositWaitMs"] := DbGet(CONFIG, "Tunables", "preDepositWaitMs", 800, "int")
+    ctx["tunables"]["postDepositSettleMs"] := DbGet(CONFIG, "Tunables", "postDepositSettleMs", 300, "int")
 
     ; Return to mine (step 1: orange marker)
     ctx["tunables"]["return1ClickX"] := DbGet(CONFIG, "Tunables", "return1ClickX", 454, "int")
@@ -852,68 +660,6 @@ LoadConfig() {
     ctx["tunables"]["return2ToMineGraceMs"] := DbGet(CONFIG, "Tunables", "return2ToMineGraceMs", 3500, "int")
 
     ctx["tunables"]["indicatorSlot"] := DbGet(CONFIG, "Settings", "indicatorSlot", 28, "int")
-
-    ; Write back
-    DbSet(CONFIG, "Tunables", "runnerTickMs", ctx["tunables"]["runnerTickMs"], "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutMine", ctx["tunables"]["phaseTimeoutMine"], "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutBank", ctx["tunables"]["phaseTimeoutBank"], "int")
-    DbSet(CONFIG, "Tunables", "phaseTimeoutReturn", ctx["tunables"]["phaseTimeoutReturn"], "int")
-    DbSet(CONFIG, "Tunables", "colorTolerance", ctx["tunables"]["colorTolerance"], "int")
-    DbSet(CONFIG, "Tunables", "mineLogIntervalMs", ctx["tunables"]["mineLogIntervalMs"], "int")
-    DbSet(CONFIG, "Tunables", "mineStableTicks", ctx["tunables"]["mineStableTicks"], "int")
-    DbSet(CONFIG, "Tunables", "mineStableReclickEnabled", ctx["tunables"]["mineStableReclickEnabled"], "int")
-    DbSet(CONFIG, "Tunables", "mineStableReclickTicks", ctx["tunables"]["mineStableReclickTicks"], "int")
-    DbSet(CONFIG, "Tunables", "mineStableReclickCooldownMs", ctx["tunables"]["mineStableReclickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "clickCooldownMs", ctx["tunables"]["clickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "veinClickOffsetX", ctx["tunables"]["veinClickOffsetX"], "int")
-    DbSet(CONFIG, "Tunables", "veinClickOffsetY", ctx["tunables"]["veinClickOffsetY"], "int")
-    DbSet(CONFIG, "Tunables", "mineForceClickCooldownMs", ctx["tunables"]["mineForceClickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "mineTargetLockEnabled", ctx["tunables"]["mineTargetLockEnabled"], "int")
-    DbSet(CONFIG, "Tunables", "mineUnlockMissingTicks", ctx["tunables"]["mineUnlockMissingTicks"], "int")
-    DbSet(CONFIG, "Tunables", "mineLockCheckRadiusPx", ctx["tunables"]["mineLockCheckRadiusPx"], "int")
-    DbSet(CONFIG, "Tunables", "mineLockMaxMs", ctx["tunables"]["mineLockMaxMs"], "int")
-    DbSet(CONFIG, "Tunables", "mineLockColorTolerance", ctx["tunables"]["mineLockColorTolerance"], "int")
-    DbSet(CONFIG, "Tunables", "miningActiveRadius", ctx["tunables"]["miningActiveRadius"], "int")
-    DbSet(CONFIG, "Tunables", "redStableTicks", ctx["tunables"]["redStableTicks"], "int")
-    DbSet(CONFIG, "Tunables", "redClearFailsafeMs", ctx["tunables"]["redClearFailsafeMs"], "int")
-    DbSet(CONFIG, "Tunables", "yellowStableTicks", ctx["tunables"]["yellowStableTicks"], "int")
-    DbSet(CONFIG, "Tunables", "yellowClickCooldownMs", ctx["tunables"]["yellowClickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "yellowWaitForDrainMaxMs", ctx["tunables"]["yellowWaitForDrainMaxMs"], "int")
-    DbSet(CONFIG, "Tunables", "yellowFindTolerance", ctx["tunables"]["yellowFindTolerance"], "int")
-    DbSet(CONFIG, "Tunables", "yellowFindW", ctx["tunables"]["yellowFindW"], "int")
-    DbSet(CONFIG, "Tunables", "yellowFindH", ctx["tunables"]["yellowFindH"], "int")
-    DbSet(CONFIG, "Tunables", "withdrawGateSlot", ctx["tunables"]["withdrawGateSlot"], "int")
-    DbSet(CONFIG, "Tunables", "sackPreClickDelayMs", ctx["tunables"]["sackPreClickDelayMs"], "int")
-    DbSet(CONFIG, "Tunables", "sackPostClickCheckDelayMs", ctx["tunables"]["sackPostClickCheckDelayMs"], "int")
-    DbSet(CONFIG, "Tunables", "sackRunX", ctx["tunables"]["sackRunX"], "int")
-    DbSet(CONFIG, "Tunables", "sackRunY", ctx["tunables"]["sackRunY"], "int")
-    DbSet(CONFIG, "Tunables", "sackRunFailsafeMs", ctx["tunables"]["sackRunFailsafeMs"], "int")
-    DbSet(CONFIG, "Tunables", "depositInterfaceClickCooldownMs", ctx["tunables"]["depositInterfaceClickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "depositBankStableTicks", ctx["tunables"]["depositBankStableTicks"], "int")
-    DbSet(CONFIG, "Tunables", "depositBankClickCooldownMs", ctx["tunables"]["depositBankClickCooldownMs"], "int")
-    DbSet(CONFIG, "Tunables", "postDepositSettleMs", ctx["tunables"]["postDepositSettleMs"], "int")
-    DbSet(CONFIG, "Tunables", "return1ClickX", ctx["tunables"]["return1ClickX"], "int")
-    DbSet(CONFIG, "Tunables", "return1ClickY", ctx["tunables"]["return1ClickY"], "int")
-    DbSet(CONFIG, "Tunables", "return1ClickFailsafeMs", ctx["tunables"]["return1ClickFailsafeMs"], "int")
-    DbSet(CONFIG, "Tunables", "return1ArriveX", ctx["tunables"]["return1ArriveX"], "int")
-    DbSet(CONFIG, "Tunables", "return1ArriveY", ctx["tunables"]["return1ArriveY"], "int")
-    DbSet(CONFIG, "Tunables", "return1ArriveW", ctx["tunables"]["return1ArriveW"], "int")
-    DbSet(CONFIG, "Tunables", "return1ArriveH", ctx["tunables"]["return1ArriveH"], "int")
-    DbSet(CONFIG, "Tunables", "return1ArriveColor", ctx["tunables"]["return1ArriveColor"], "color")
-    DbSet(CONFIG, "Tunables", "return1ArriveTolerance", ctx["tunables"]["return1ArriveTolerance"], "int")
-    DbSet(CONFIG, "Tunables", "return2ClickX", ctx["tunables"]["return2ClickX"], "int")
-    DbSet(CONFIG, "Tunables", "return2ClickY", ctx["tunables"]["return2ClickY"], "int")
-    DbSet(CONFIG, "Tunables", "return2ClickFailsafeMs", ctx["tunables"]["return2ClickFailsafeMs"], "int")
-    DbSet(CONFIG, "Tunables", "return2MarkerX", ctx["tunables"]["return2MarkerX"], "int")
-    DbSet(CONFIG, "Tunables", "return2MarkerY", ctx["tunables"]["return2MarkerY"], "int")
-    DbSet(CONFIG, "Tunables", "return2MarkerW", ctx["tunables"]["return2MarkerW"], "int")
-    DbSet(CONFIG, "Tunables", "return2MarkerH", ctx["tunables"]["return2MarkerH"], "int")
-    DbSet(CONFIG, "Tunables", "return2MarkerColor", ctx["tunables"]["return2MarkerColor"], "color")
-    DbSet(CONFIG, "Tunables", "return2MarkerTolerance", ctx["tunables"]["return2MarkerTolerance"], "int")
-    DbSet(CONFIG, "Tunables", "return2FinalClickX", ctx["tunables"]["return2FinalClickX"], "int")
-    DbSet(CONFIG, "Tunables", "return2FinalClickY", ctx["tunables"]["return2FinalClickY"], "int")
-    DbSet(CONFIG, "Tunables", "return2AfterClickWaitMs", ctx["tunables"]["return2AfterClickWaitMs"], "int")
-    DbSet(CONFIG, "Tunables", "return2ToMineGraceMs", ctx["tunables"]["return2ToMineGraceMs"], "int")
 
     ; --- Settings ---
     ctx["runMode"] := DbGet(CONFIG, "Settings", "runMode", true, "bool")

@@ -1,64 +1,28 @@
-22:28:33 MinePhase: inventory full - transitioning to clearRed
-22:28:33 ===== Motherlode Miner v2 started =====
-22:28:34 ClearRedPhase: clicked red block at [975,347]
-22:28:41 ClearRedPhase: clicked red block at [1283,639]
-22:28:44 ClearRedPhase: clicked red block at [1015,633]
-22:28:45 ClearRedPhase: clicked red block at [1007,633]
-22:28:47 ClearRedPhase: no red blocks found, moving to clearYellow
-22:28:48 ClearYellowPhase: clicked 16x16 yellow block at [650,440]
-22:28:54 ClearYellowPhase: slot cleared, moving to withdrawSack
-22:28:56 WithdrawSackPhase: clicked run-to-sack at [1571,708]
-22:29:02 WithdrawSackPhase: empty-sack message detected, moving to depositBank
-22:29:03 DepositBankPhase: clicked 16x16 bank chest at [821,351]
-22:29:06 DepositBankPhase: deposit interface open, clicked deposit
-22:29:07 DepositBankPhase: deposit settled, moving to returnMine1
-22:29:07 ReturnMine1: clicked waypoint at [454,1223]
-22:29:12 ReturnMine1: orange marker detected, moving to returnMine2
-22:29:13 ReturnMine2: clicked waypoint at [952,1271]
-22:29:18 ReturnMine2: orange marker found, clicked final point at [1337,1039]
-22:29:20 ReturnMine2: post-click wait complete, moving to mine
-22:29:20 MinePhase tick: ACTIVE, nearestVeinDist=391.24672522591163px stableTicks=0
-22:29:22 MinePhase: forced post-return click at [1003,729]
-22:29:22 MinePhase tick: ACTIVE, nearestVeinDist=186.31693428134759px stableTicks=0
-22:29:24 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=26
-22:29:26 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=52
-22:29:28 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=78
-22:29:30 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=104
-22:29:32 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=130
-22:29:34 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=157
-22:29:36 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=183
-22:29:38 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=209
-22:29:40 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=235
-22:29:42 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=262
-22:29:44 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=289
-22:29:46 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=315
-22:29:48 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=341
-22:29:51 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=367
-22:29:53 MinePhase tick: ACTIVE, nearestVeinDist=183.63550854886427px stableTicks=393
-22:29:53 MinePhase: clicked vein at [1063,721] (dist=208.25465180878913px)
-22:29:55 MinePhase tick: ACTIVE, nearestVeinDist=190.37331745809337px stableTicks=2
-22:29:57 MinePhase tick: ACTIVE, nearestVeinDist=189.1718795170149px stableTicks=28
-22:29:59 MinePhase tick: ACTIVE, nearestVeinDist=189.1718795170149px stableTicks=55
-22:30:00 MinePhase: clicked vein at [1063,721] (dist=208.25465180878913px)
-22:30:01 MinePhase tick: ACTIVE, nearestVeinDist=207.27276714513172px stableTicks=6
-22:30:03 MinePhase tick: ACTIVE, nearestVeinDist=189.1718795170149px stableTicks=15
-22:30:05 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=0
-22:30:05 MinePhase: clicked vein at [965,721] (dist=181.06904760339356px)
-22:30:07 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=22
-22:30:09 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=48
-22:30:11 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=74
-22:30:13 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=100
-22:30:15 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=126
-22:30:17 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=152
-22:30:19 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=178
-22:30:21 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=205
-22:30:23 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=231
-22:30:25 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=258
-22:30:27 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=284
-22:30:29 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=311
-22:30:31 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=338
-22:30:33 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=364
-22:30:35 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=391
-22:30:37 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=418
-22:30:39 STOPPED: Stopped (F6)
-22:30:40 MinePhase tick: ACTIVE, nearestVeinDist=181.06904760339356px stableTicks=445
+00:01:45 MinePhase: Inventory full, transitioning to clearRed
+00:01:45 ===== Motherlode Miner Refactored started =====
+00:01:46 ClearRedPhase: Found new red rockfall at [975, 347]
+00:01:46 ClearRedPhase: Initial click on red rockfall at [975, 347]
+00:01:53 ClearRedPhase: Failsafe click on red rockfall at [1015, 639]
+00:01:54 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+00:01:54 ClearRedPhase: No red rockfalls found. Moving to hopper.
+00:01:55 ClearYellowPhase: Clicked hopper at [884, 448]
+00:02:00 ClearYellowPhase: Inventory empty, ore deposited. Moving to sack.
+00:02:01 WithdrawSackPhase: Waiting 2700ms before clicking sack.
+00:02:03 WithdrawSackPhase: Clicked sack at [1571, 708]
+00:02:09 WithdrawSackPhase: Sack empty message seen. Moving to bank.
+00:02:10 DepositBankPhase: Clicked bank chest at [849, 355]
+00:02:14 DepositBankPhase: DepositAll successful.
+00:02:14 DepositBankPhase: Inventory empty. Moving to return route.
+00:02:14 ReturnMine1Phase: Clicked minimap waypoint 1 at [454, 1223]
+00:02:19 ReturnMine1Phase: Arrived at waypoint 1!
+00:02:21 ReturnMine2Phase: Clicked minimap waypoint 2 at [952, 1271]
+00:02:25 ReturnMine2Phase: Saw final marker! Stage 2.
+00:02:29 ReturnMine2Phase: Clicked final screen spot at [1337, 1039]
+00:02:31 ReturnMine2Phase: Wait complete. Handing off to mine phase.
+00:02:31 MinePhase: Found new vein at [1260, 878]
+00:02:31 MinePhase: Initial click to walk to vein at [1254, 868]
+00:02:34 MinePhase: Clicked stable vein at [996, 712]
+00:02:36 MinePhase: Clicked stable vein at [988, 708]
+00:02:38 MinePhase: Clicked stable vein at [988, 708]
+00:02:41 MinePhase: Clicked stable vein at [988, 708]
+00:02:41 STOPPED: Stopped (F6)

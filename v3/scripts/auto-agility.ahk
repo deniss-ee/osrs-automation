@@ -302,56 +302,6 @@ AgilityPhase(runner) {
 ; ============================================================
 ; HELPERS
 ; ============================================================
-
-VerifyBlock(x, y, color, tol, reqW, reqH) {
-    cx := x + reqW // 2
-    cy := y + reqH // 2
-
-    ; We verify that it is AT LEAST checkW x checkH solid fill.
-    ; Checking 75% of the requested size is safe against edge anti-aliasing.
-    checkW := reqW * 3 // 4
-    checkH := reqH * 3 // 4
-
-    ; Check internal points using type-safe IsColorAt
-    if (!IsColorAt(cx, cy, color, tol))
-        return false
-    if (!IsColorAt(x, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y, color, tol))
-        return false
-    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
-        return false
-
-    return true
-}
-
-FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy) {
-    if (x1 > x2 || y1 > y2)
-        return false
-
-    if (!PixelSearch(&foundX, &foundY, x1, y1, x2, y2, color, tol))
-        return false
-
-    if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
-        cx := foundX + reqW // 2
-        cy := foundY + reqH // 2
-        return true
-    }
-
-    ; Recursive search to cover the remaining areas:
-    ; 1. The rest of the current horizontal line segment
-    if (FindFilledBlock(foundX + 1, foundY, x2, foundY, color, tol, reqW, reqH, &cx, &cy))
-        return true
-
-    ; 2. All subsequent lines below the current pixel row
-    if (FindFilledBlock(x1, foundY + 1, x2, y2, color, tol, reqW, reqH, &cx, &cy))
-        return true
-
-    return false
-}
-
 GetSlot1QtySignature() {
     sig := []
     loop 16 {
