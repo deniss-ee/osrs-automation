@@ -197,6 +197,10 @@ Sentinels: `-1` = uncalibrated color, `0,0` = uncalibrated coord (carried forwar
 - `AcquireTarget(ctx, targetRegion, refX, refY, blobRadius := 60, sampleRate := 2, clickCount := 1, clickDelayMs := 10)` → true if target found and clicked
   - `targetRegion`: `{color, tolerance, x1, y1, x2, y2}`
   - **No click offset parameter** — centroid is already inside the blob
+- `FindNearestSolidColorBlockCenter(x1, y1, x2, y2, refX, refY, color, tolerance, &targetX, &targetY, blockSize := 17)` — nearest center of a fully-filled solid-color block
+- `AcquireSolidColorBlockTarget(ctx, targetRegion, refX, refY, blockSize := 17, clickCount := 1, clickDelayMs := 10)` — one-call nearest solid-block find + click (exact block targeting mode)
+
+Use `AcquireTarget` when targets are colored outlines/blobs. Use `AcquireSolidColorBlockTarget` when targets are represented by fully-filled solid blocks (for example, exact 17x17 magenta markers).
 
 ### `Bank.ahk` — deposit/withdraw unified
 

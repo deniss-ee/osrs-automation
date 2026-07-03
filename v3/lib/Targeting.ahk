@@ -79,6 +79,129 @@ WaitForBlobCenter(ctx, &foundX, &foundY, x1, y1, x2, y2, color, tol, timeoutMs, 
     }
 }
 
+; Builds a sparse per-row pixel set for one color inside a region.
+; Result shape: rows[y][x] := true
+BuildColorPixelRowsForRegion(x1, y1, x2, y2, color, tolerance := 0) {
+    rows := Map()
+    y := y1
+    while (y <= y2) {
+        row := Map()
+        startX := x1
+        while (startX <= x2) {
+            if (!PixelSearch(&px, &py, startX, y, x2, y, color, tolerance))
+                break
+            row[px] := true
+            startX := px + 1
+        }
+        if (row.Count > 0)
+            rows[y] := row
+        y += 1
+    }
+    return rows
+}
+
+HasPixelInRows(rows, x, y) {
+    return rows.Has(y) && rows[y].Has(x)
+}
+
+; True only when every pixel in the block is present in rows.
+IsSolidColorBlockInRows(rows, topLeftX, topLeftY, blockSize) {
+    endY := topLeftY + blockSize - 1
+    endX := topLeftX + blockSize - 1
+
+    y := topLeftY
+    while (y <= endY) {
+        if (!rows.Has(y))
+            return false
+        row := rows[y]
+
+        x := topLeftX
+        while (x <= endX) {
+            if (!row.Has(x))
+                return false
+            x += 1
+        }
+        y += 1
+    }
+    return true
+}
+
+; Finds the center of the nearest fully-filled solid-color block.
+; A candidate block is valid only if all blockSize*blockSize pixels match.
+FindNearestSolidColorBlockCenter(x1, y1, x2, y2, refX, refY, color, tolerance, &targetX, &targetY, blockSize := 17) {
+    if (blockSize < 1)
+        return false
+
+    maxTopLeftX := x2 - blockSize + 1
+    maxTopLeftY := y2 - blockSize + 1
+    if (maxTopLeftX < x1 || maxTopLeftY < y1)
+        return false
+
+    rows := BuildColorPixelRowsForRegion(x1, y1, x2, y2, color, tolerance)
+    if (rows.Count = 0)
+        return false
+
+    found := false
+    bestDistSq := 0
+    bestX := 0
+    bestY := 0
+    half := Floor(blockSize / 2)
+
+    for y, row in rows {
+        if (y > maxTopLeftY)
+            continue
+
+        for x, _ in row {
+            if (x > maxTopLeftX)
+                continue
+
+            endX := x + blockSize - 1
+            endY := y + blockSize - 1
+            if (!HasPixelInRows(rows, endX, y) || !HasPixelInRows(rows, x, endY) || !HasPixelInRows(rows, endX, endY))
+                continue
+
+            if (!IsSolidColorBlockInRows(rows, x, y, blockSize))
+                continue
+
+            cx := x + half
+            cy := y + half
+            dx := cx - refX
+            dy := cy - refY
+            distSq := (dx * dx) + (dy * dy)
+
+            if (!found || distSq < bestDistSq) {
+                found := true
+                bestDistSq := distSq
+                bestX := cx
+                bestY := cy
+            }
+        }
+    }
+
+    if (!found)
+        return false
+
+    targetX := bestX
+    targetY := bestY
+    return true
+}
+
+; Exact solid-block targeting flow: find nearest valid block center and click it.
+; targetRegion: {color, tolerance, x1, y1, x2, y2}
+AcquireSolidColorBlockTarget(ctx, targetRegion, refX, refY, blockSize := 17, clickCount := 1, clickDelayMs := 10) {
+    if (!FindNearestSolidColorBlockCenter(targetRegion["x1"], targetRegion["y1"], targetRegion["x2"], targetRegion["y2"], refX, refY, targetRegion["color"], targetRegion["tolerance"], &tx, &ty, blockSize))
+        return false
+
+    loop clickCount {
+        HumanClick(tx, ty, 0, 0, ctx["runMode"])
+        if (A_Index < clickCount)
+            Sleep(JitterDelay(clickDelayMs))
+    }
+
+    ResetPhaseTimer(ctx["runner"])
+    return true
+}
+
 AcquireTarget(ctx, targetRegion, refX, refY, blobRadius := 60, sampleRate := 2, clickCount := 1, clickDelayMs := 10) {
     if (!FindNearestOutlineBlobCenter(targetRegion["x1"], targetRegion["y1"], targetRegion["x2"], targetRegion["y2"], refX, refY, targetRegion["color"], targetRegion["tolerance"], &tx, &ty, blobRadius, sampleRate))
         return false

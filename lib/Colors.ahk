@@ -318,6 +318,74 @@ FindShapeCentroid(x1, y1, x2, y2, color, tol, &centerX, &centerY, sampleRate := 
     return true
 }
 
+; Finds the approximate center of a FILLED solid-color shape (not a
+; hollow outline) nearest a reference point - quickly. FindShapeCentroid
+; above reads EVERY pixel in its box (thousands of slow PixelGetColor
+; calls), which is far too slow to run inside a tight targeting loop and
+; makes a bot appear frozen. This instead:
+;   1. Finds one pixel of the shape nearest (refX,refY) with a fast
+;      native PixelSearch (FindNearestPixelColor).
+;   2. "Walks" outward from there along single horizontal/vertical lines
+;      in COARSE walkStepPx strides to measure the shape's span and step
+;      to its middle, repeating a couple passes so the crosshair
+;      converges on the center.
+; PixelGetColor is slow (can be several ms per call on some machines), so
+; the walk deliberately strides walkStepPx pixels at a time rather than
+; reading every pixel - a click only needs to land somewhere inside the
+; blob, not on its exact geometric center, so a stride's worth of
+; imprecision is harmless and cuts the read count (and the delay) by
+; roughly walkStepPx-fold. It only reads pixels along those crosshair
+; lines (proportional to the shape's WIDTH, not its AREA), so it stays
+; fast even on large blobs. On success writes the center into
+; centerX/centerY (pass by reference) and returns true; returns false
+; (leaving them untouched) if no shape pixel is found.
+FindNearestFilledShapeCenter(x1, y1, x2, y2, refX, refY, color, tol, &centerX, &centerY, stepPx := 20, maxSpanPx := 400, walkStepPx := 6, passes := 2) {
+    ; Seed: nearest shape pixel to the reference point (fast PixelSearch).
+    if (!FindNearestPixelColor(x1, y1, x2, y2, refX, refY, color, tol, &cx, &cy, stepPx))
+        return false
+
+    maxStrides := Max(1, maxSpanPx // walkStepPx)
+    loop passes {
+        ; Horizontal span through cy at the current cx.
+        left := cx
+        loop maxStrides {
+            nx := cx - A_Index * walkStepPx
+            if (nx < x1 || !ColorClose(PixelGetColor(nx, cy, "RGB"), color, tol))
+                break
+            left := nx
+        }
+        right := cx
+        loop maxStrides {
+            nx := cx + A_Index * walkStepPx
+            if (nx > x2 || !ColorClose(PixelGetColor(nx, cy, "RGB"), color, tol))
+                break
+            right := nx
+        }
+        cx := Round((left + right) / 2)
+
+        ; Vertical span through the (now centered) cx.
+        top := cy
+        loop maxStrides {
+            ny := cy - A_Index * walkStepPx
+            if (ny < y1 || !ColorClose(PixelGetColor(cx, ny, "RGB"), color, tol))
+                break
+            top := ny
+        }
+        bottom := cy
+        loop maxStrides {
+            ny := cy + A_Index * walkStepPx
+            if (ny > y2 || !ColorClose(PixelGetColor(cx, ny, "RGB"), color, tol))
+                break
+            bottom := ny
+        }
+        cy := Round((top + bottom) / 2)
+    }
+
+    centerX := cx
+    centerY := cy
+    return true
+}
+
 ; Generalized "is this inventory/bank slot occupied" check.
 ; Rather than calibrating a different "expected item color" per
 ; script/ore (which breaks the moment you gather a different
