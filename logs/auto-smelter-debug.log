@@ -1,93 +1,539 @@
-20:20:15 ===== Bot started =====
-20:20:17 ===== Bot started =====
-20:20:18 ===== Bot started =====
-20:20:18 smelt: inventory still empty after settle window - skipping to bank
-20:20:26 STOPPED: Could not find the bank marker color
-20:20:29 ===== Bot started =====
-20:20:30 STOPPED: Stopped (F3)
-20:20:30 smelt: inventory still empty after settle window - skipping to bank
-20:20:34 ===== Bot started =====
-20:20:35 ===== Bot started =====
-20:20:36 ===== Bot started =====
-20:20:36 ===== Bot started =====
-20:20:36 ===== Bot started =====
-20:20:36 ===== Bot started =====
-20:20:37 ===== Bot started =====
-20:20:37 ===== Bot started =====
-20:20:37 smelt: inventory still empty after settle window - skipping to bank
-20:20:40 ===== Bot started =====
-20:20:42 STOPPED: Stopped (F3)
-20:20:42 STOPPED: Could not find the bank marker color
-20:20:44 ===== Bot started =====
-20:20:46 ===== Bot started =====
-20:20:49 ===== Bot started =====
-20:20:50 smelt: inventory still empty after settle window - skipping to bank
-20:20:50 ===== Bot started =====
-20:20:53 ===== Bot started =====
-20:20:56 smelt: furnace marker found at 1863,319 - clicking with offset
-20:21:01 smelt: smelt dialog visible - confirming with Space
-20:21:01 smelt: inventory emptied - done smelting, moving to bank
-20:21:09 STOPPED: Could not find the bank marker color
-20:21:22 ===== Bot started =====
-20:21:23 STOPPED: Stopped (F3)
-20:21:23 smelt: inventory still empty after settle window - skipping to bank
-20:21:35 ===== Bot started =====
-20:21:37 STOPPED: Stopped (F3)
-20:21:37 STOPPED: Could not find the furnace marker color
-20:21:37 ===== Bot started =====
-20:21:38 STOPPED: Stopped (F3)
-20:21:38 STOPPED: Could not find the furnace marker color
-20:21:38 ===== Bot started =====
-20:21:40 STOPPED: Stopped (F3)
-20:21:40 STOPPED: Could not find the furnace marker color
-20:21:40 ===== Bot started =====
-20:21:41 STOPPED: Stopped (F3)
-20:21:41 STOPPED: Could not find the furnace marker color
-20:21:41 ===== Bot started =====
-20:21:42 STOPPED: Stopped (F3)
-20:21:42 STOPPED: Could not find the furnace marker color
-20:21:42 ===== Bot started =====
-20:21:43 STOPPED: Stopped (F3)
-20:21:43 STOPPED: Could not find the furnace marker color
-20:21:43 ===== Bot started =====
-20:21:44 STOPPED: Stopped (F3)
-20:21:44 STOPPED: Could not find the furnace marker color
-20:21:44 ===== Bot started =====
-20:21:44 STOPPED: Stopped (F3)
-20:21:44 STOPPED: Could not find the furnace marker color
-20:21:45 ===== Bot started =====
-20:21:45 ===== Bot started =====
-20:21:46 STOPPED: Stopped (F3)
-20:21:46 STOPPED: Could not find the furnace marker color
-20:21:46 ===== Bot started =====
-20:21:47 smelt: furnace marker found at 1785,345 - clicking with offset
-20:21:52 ===== Bot started =====
-20:21:53 STOPPED: Stopped (F3)
-20:21:53 smelt: inventory still empty after settle window - skipping to bank
-20:21:54 ===== Bot started =====
-20:21:58 smelt: inventory still empty after settle window - skipping to bank
-20:22:14 ===== Bot started =====
-20:22:15 STOPPED: Stopped (F3)
-20:22:15 smelt: inventory still empty after settle window - skipping to bank
-20:22:20 ===== Bot started =====
-20:22:21 STOPPED: Stopped (F3)
-20:22:21 smelt: inventory still empty after settle window - skipping to bank
-20:22:24 ===== Bot started =====
-20:22:26 ===== Bot started =====
-20:22:27 ===== Bot started =====
-20:22:29 ===== Bot started =====
-20:22:30 ===== Bot started =====
-20:22:30 ===== Bot started =====
-20:22:31 ===== Bot started =====
-20:22:31 ===== Bot started =====
-20:22:31 ===== Bot started =====
-20:22:31 smelt: furnace marker found at 1821,439 - clicking with offset
-20:22:31 ===== Bot started =====
-20:22:31 ===== Bot started =====
-20:22:32 ===== Bot started =====
-20:22:36 ===== Bot started =====
-20:22:37 ===== Bot started =====
-20:22:37 ===== Bot started =====
-20:22:38 smelt: furnace marker found at 1863,453 - clicking with offset
-20:22:43 smelt: smelt dialog visible - confirming with Space
-20:23:06 smelt: inventory emptied - done smelting, moving to bank
+13:57:18 ===== Smelter started =====
+13:57:32 ===== Smelter started =====
+13:57:37 WalkFurnace: arrived at furnace
+13:58:04 SmeltPhase: smelting complete
+13:58:09 WalkBank: arrived at bank
+13:58:11 BankPhase: deposited and withdrew, cycling back to furnace
+13:58:54 ===== Smelter started =====
+13:59:00 WalkFurnace: arrived at furnace
+13:59:15 STOPPED: Stopped (F6)
+13:59:25 ===== Smelter started =====
+13:59:30 WalkFurnace: arrived at furnace
+13:59:57 SmeltPhase: smelting complete
+14:00:02 WalkBank: arrived at bank
+14:00:04 BankPhase: deposited and withdrew, cycling back to furnace
+14:00:07 STOPPED: Stopped (F6)
+14:00:17 ===== Smelter started =====
+14:00:22 WalkFurnace: arrived at furnace
+14:00:49 SmeltPhase: smelting complete
+14:00:54 WalkBank: arrived at bank
+14:00:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:00:58 STOPPED: Stopped (F6)
+14:01:14 ===== Smelter started =====
+14:01:19 WalkFurnace: arrived at furnace
+14:01:46 SmeltPhase: smelting complete
+14:01:52 WalkBank: arrived at bank
+14:01:53 BankPhase: deposited and withdrew, cycling back to furnace
+14:01:58 WalkFurnace: arrived at furnace
+14:02:25 SmeltPhase: smelting complete
+14:02:31 WalkBank: arrived at bank
+14:02:32 BankPhase: deposited and withdrew, cycling back to furnace
+14:02:37 WalkFurnace: arrived at furnace
+14:03:04 SmeltPhase: smelting complete
+14:03:10 WalkBank: arrived at bank
+14:03:11 BankPhase: deposited and withdrew, cycling back to furnace
+14:03:16 WalkFurnace: arrived at furnace
+14:03:43 SmeltPhase: smelting complete
+14:03:49 WalkBank: arrived at bank
+14:03:50 BankPhase: deposited and withdrew, cycling back to furnace
+14:03:55 WalkFurnace: arrived at furnace
+14:04:22 SmeltPhase: smelting complete
+14:04:28 WalkBank: arrived at bank
+14:04:29 BankPhase: deposited and withdrew, cycling back to furnace
+14:04:34 WalkFurnace: arrived at furnace
+14:05:01 SmeltPhase: smelting complete
+14:05:06 WalkBank: arrived at bank
+14:05:08 BankPhase: deposited and withdrew, cycling back to furnace
+14:05:13 WalkFurnace: arrived at furnace
+14:05:40 SmeltPhase: smelting complete
+14:05:46 WalkBank: arrived at bank
+14:05:47 BankPhase: deposited and withdrew, cycling back to furnace
+14:05:52 WalkFurnace: arrived at furnace
+14:06:19 SmeltPhase: smelting complete
+14:06:24 WalkBank: arrived at bank
+14:06:26 BankPhase: deposited and withdrew, cycling back to furnace
+14:06:31 WalkFurnace: arrived at furnace
+14:06:58 SmeltPhase: smelting complete
+14:07:04 WalkBank: arrived at bank
+14:07:05 BankPhase: deposited and withdrew, cycling back to furnace
+14:07:10 WalkFurnace: arrived at furnace
+14:07:37 SmeltPhase: smelting complete
+14:07:43 WalkBank: arrived at bank
+14:07:44 BankPhase: deposited and withdrew, cycling back to furnace
+14:07:49 WalkFurnace: arrived at furnace
+14:08:16 SmeltPhase: smelting complete
+14:08:21 WalkBank: arrived at bank
+14:08:23 BankPhase: deposited and withdrew, cycling back to furnace
+14:08:28 WalkFurnace: arrived at furnace
+14:08:55 SmeltPhase: smelting complete
+14:09:00 WalkBank: arrived at bank
+14:09:02 BankPhase: deposited and withdrew, cycling back to furnace
+14:09:07 WalkFurnace: arrived at furnace
+14:09:34 SmeltPhase: smelting complete
+14:09:40 WalkBank: arrived at bank
+14:09:41 BankPhase: deposited and withdrew, cycling back to furnace
+14:09:46 WalkFurnace: arrived at furnace
+14:10:13 SmeltPhase: smelting complete
+14:10:19 WalkBank: arrived at bank
+14:10:20 BankPhase: deposited and withdrew, cycling back to furnace
+14:10:25 WalkFurnace: arrived at furnace
+14:10:52 SmeltPhase: smelting complete
+14:10:58 WalkBank: arrived at bank
+14:10:59 BankPhase: deposited and withdrew, cycling back to furnace
+14:11:04 WalkFurnace: arrived at furnace
+14:11:31 SmeltPhase: smelting complete
+14:11:37 WalkBank: arrived at bank
+14:11:38 BankPhase: deposited and withdrew, cycling back to furnace
+14:11:43 WalkFurnace: arrived at furnace
+14:12:10 SmeltPhase: smelting complete
+14:12:16 WalkBank: arrived at bank
+14:12:17 BankPhase: deposited and withdrew, cycling back to furnace
+14:12:22 WalkFurnace: arrived at furnace
+14:12:49 SmeltPhase: smelting complete
+14:12:55 WalkBank: arrived at bank
+14:12:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:13:01 WalkFurnace: arrived at furnace
+14:13:28 SmeltPhase: smelting complete
+14:13:34 WalkBank: arrived at bank
+14:13:35 BankPhase: deposited and withdrew, cycling back to furnace
+14:13:40 WalkFurnace: arrived at furnace
+14:14:07 SmeltPhase: smelting complete
+14:14:13 WalkBank: arrived at bank
+14:14:14 BankPhase: deposited and withdrew, cycling back to furnace
+14:14:19 WalkFurnace: arrived at furnace
+14:14:46 SmeltPhase: smelting complete
+14:14:52 WalkBank: arrived at bank
+14:14:53 BankPhase: deposited and withdrew, cycling back to furnace
+14:14:58 WalkFurnace: arrived at furnace
+14:15:25 SmeltPhase: smelting complete
+14:15:31 WalkBank: arrived at bank
+14:15:32 BankPhase: deposited and withdrew, cycling back to furnace
+14:15:38 WalkFurnace: arrived at furnace
+14:16:05 SmeltPhase: smelting complete
+14:16:10 WalkBank: arrived at bank
+14:16:11 BankPhase: deposited and withdrew, cycling back to furnace
+14:16:17 WalkFurnace: arrived at furnace
+14:16:45 SmeltPhase: smelting complete
+14:16:50 WalkBank: arrived at bank
+14:16:52 BankPhase: deposited and withdrew, cycling back to furnace
+14:16:57 WalkFurnace: arrived at furnace
+14:17:24 SmeltPhase: smelting complete
+14:17:29 WalkBank: arrived at bank
+14:17:31 BankPhase: deposited and withdrew, cycling back to furnace
+14:17:37 WalkFurnace: arrived at furnace
+14:18:04 SmeltPhase: smelting complete
+14:18:10 WalkBank: arrived at bank
+14:18:11 BankPhase: deposited and withdrew, cycling back to furnace
+14:18:17 WalkFurnace: arrived at furnace
+14:18:44 SmeltPhase: smelting complete
+14:18:49 WalkBank: arrived at bank
+14:18:51 BankPhase: deposited and withdrew, cycling back to furnace
+14:18:57 WalkFurnace: arrived at furnace
+14:19:24 SmeltPhase: smelting complete
+14:19:29 WalkBank: arrived at bank
+14:19:31 BankPhase: deposited and withdrew, cycling back to furnace
+14:19:37 WalkFurnace: arrived at furnace
+14:20:04 SmeltPhase: smelting complete
+14:20:08 WalkBank: arrived at bank
+14:20:10 BankPhase: deposited and withdrew, cycling back to furnace
+14:20:16 WalkFurnace: arrived at furnace
+14:20:43 SmeltPhase: smelting complete
+14:20:49 WalkBank: arrived at bank
+14:20:50 BankPhase: deposited and withdrew, cycling back to furnace
+14:20:56 WalkFurnace: arrived at furnace
+14:21:23 SmeltPhase: smelting complete
+14:21:28 WalkBank: arrived at bank
+14:21:30 BankPhase: deposited and withdrew, cycling back to furnace
+14:21:36 WalkFurnace: arrived at furnace
+14:22:03 SmeltPhase: smelting complete
+14:22:09 WalkBank: arrived at bank
+14:22:10 BankPhase: deposited and withdrew, cycling back to furnace
+14:22:16 WalkFurnace: arrived at furnace
+14:22:43 SmeltPhase: smelting complete
+14:22:48 WalkBank: arrived at bank
+14:22:50 BankPhase: deposited and withdrew, cycling back to furnace
+14:22:56 WalkFurnace: arrived at furnace
+14:23:23 SmeltPhase: smelting complete
+14:23:28 WalkBank: arrived at bank
+14:23:30 BankPhase: deposited and withdrew, cycling back to furnace
+14:23:36 WalkFurnace: arrived at furnace
+14:24:03 SmeltPhase: smelting complete
+14:24:08 WalkBank: arrived at bank
+14:24:10 BankPhase: deposited and withdrew, cycling back to furnace
+14:24:16 WalkFurnace: arrived at furnace
+14:24:43 SmeltPhase: smelting complete
+14:24:48 WalkBank: arrived at bank
+14:24:50 BankPhase: deposited and withdrew, cycling back to furnace
+14:24:55 WalkFurnace: arrived at furnace
+14:25:22 SmeltPhase: smelting complete
+14:25:28 WalkBank: arrived at bank
+14:25:29 BankPhase: deposited and withdrew, cycling back to furnace
+14:25:35 WalkFurnace: arrived at furnace
+14:26:03 SmeltPhase: smelting complete
+14:26:08 WalkBank: arrived at bank
+14:26:10 BankPhase: deposited and withdrew, cycling back to furnace
+14:26:15 WalkFurnace: arrived at furnace
+14:26:42 SmeltPhase: smelting complete
+14:26:48 WalkBank: arrived at bank
+14:26:49 BankPhase: deposited and withdrew, cycling back to furnace
+14:26:55 WalkFurnace: arrived at furnace
+14:27:22 SmeltPhase: smelting complete
+14:27:28 WalkBank: arrived at bank
+14:27:30 BankPhase: deposited and withdrew, cycling back to furnace
+14:27:35 WalkFurnace: arrived at furnace
+14:28:02 SmeltPhase: smelting complete
+14:28:07 WalkBank: arrived at bank
+14:28:09 BankPhase: deposited and withdrew, cycling back to furnace
+14:28:15 WalkFurnace: arrived at furnace
+14:28:42 SmeltPhase: smelting complete
+14:28:47 WalkBank: arrived at bank
+14:28:49 BankPhase: deposited and withdrew, cycling back to furnace
+14:28:55 WalkFurnace: arrived at furnace
+14:29:22 SmeltPhase: smelting complete
+14:29:27 WalkBank: arrived at bank
+14:29:29 BankPhase: deposited and withdrew, cycling back to furnace
+14:29:35 WalkFurnace: arrived at furnace
+14:30:02 SmeltPhase: smelting complete
+14:30:07 WalkBank: arrived at bank
+14:30:09 BankPhase: deposited and withdrew, cycling back to furnace
+14:30:15 WalkFurnace: arrived at furnace
+14:30:42 SmeltPhase: smelting complete
+14:30:47 WalkBank: arrived at bank
+14:30:49 BankPhase: deposited and withdrew, cycling back to furnace
+14:30:55 WalkFurnace: arrived at furnace
+14:31:22 SmeltPhase: smelting complete
+14:31:27 WalkBank: arrived at bank
+14:31:29 BankPhase: deposited and withdrew, cycling back to furnace
+14:31:34 WalkFurnace: arrived at furnace
+14:32:02 SmeltPhase: smelting complete
+14:32:07 WalkBank: arrived at bank
+14:32:09 BankPhase: deposited and withdrew, cycling back to furnace
+14:32:14 WalkFurnace: arrived at furnace
+14:32:42 SmeltPhase: smelting complete
+14:32:47 WalkBank: arrived at bank
+14:32:49 BankPhase: deposited and withdrew, cycling back to furnace
+14:32:54 WalkFurnace: arrived at furnace
+14:33:21 SmeltPhase: smelting complete
+14:33:27 WalkBank: arrived at bank
+14:33:28 BankPhase: deposited and withdrew, cycling back to furnace
+14:33:34 WalkFurnace: arrived at furnace
+14:34:02 SmeltPhase: smelting complete
+14:34:07 WalkBank: arrived at bank
+14:34:08 BankPhase: deposited and withdrew, cycling back to furnace
+14:34:14 WalkFurnace: arrived at furnace
+14:34:41 SmeltPhase: smelting complete
+14:34:46 WalkBank: arrived at bank
+14:34:48 BankPhase: deposited and withdrew, cycling back to furnace
+14:34:54 WalkFurnace: arrived at furnace
+14:35:21 SmeltPhase: smelting complete
+14:35:27 WalkBank: arrived at bank
+14:35:28 BankPhase: deposited and withdrew, cycling back to furnace
+14:35:34 WalkFurnace: arrived at furnace
+14:36:01 SmeltPhase: smelting complete
+14:36:06 WalkBank: arrived at bank
+14:36:08 BankPhase: deposited and withdrew, cycling back to furnace
+14:36:14 WalkFurnace: arrived at furnace
+14:36:41 SmeltPhase: smelting complete
+14:36:46 WalkBank: arrived at bank
+14:36:48 BankPhase: deposited and withdrew, cycling back to furnace
+14:36:54 WalkFurnace: arrived at furnace
+14:37:21 SmeltPhase: smelting complete
+14:37:26 WalkBank: arrived at bank
+14:37:28 BankPhase: deposited and withdrew, cycling back to furnace
+14:37:34 WalkFurnace: arrived at furnace
+14:37:37 SmeltPhase: smelting complete
+14:38:07 WalkBank: never arrived at bank - retrying
+14:38:12 WalkBank: marker not found - retrying
+14:38:17 WalkBank: marker not found - retrying
+14:38:22 WalkBank: marker not found - retrying
+14:38:27 WalkBank: marker not found - retrying
+14:38:33 WalkBank: marker not found - retrying
+14:38:38 WalkBank: marker not found - retrying
+14:38:59 STOPPED: Stopped (F6)
+14:39:15 ===== Smelter started =====
+14:39:19 STOPPED: Stopped (F6)
+14:39:19 STOPPED: Stopped (F6)
+14:39:19 STOPPED: Stopped (F6)
+14:39:24 ===== Smelter started =====
+14:39:29 WalkFurnace: arrived at furnace
+14:39:56 SmeltPhase: smelting complete
+14:40:01 WalkBank: arrived at bank
+14:40:03 BankPhase: deposited and withdrew, cycling back to furnace
+14:40:08 WalkFurnace: arrived at furnace
+14:40:35 SmeltPhase: smelting complete
+14:40:40 WalkBank: arrived at bank
+14:40:42 BankPhase: deposited and withdrew, cycling back to furnace
+14:40:47 WalkFurnace: arrived at furnace
+14:41:14 SmeltPhase: smelting complete
+14:41:19 WalkBank: arrived at bank
+14:41:21 BankPhase: deposited and withdrew, cycling back to furnace
+14:41:26 WalkFurnace: arrived at furnace
+14:41:53 SmeltPhase: smelting complete
+14:41:58 WalkBank: arrived at bank
+14:42:00 BankPhase: deposited and withdrew, cycling back to furnace
+14:42:05 WalkFurnace: arrived at furnace
+14:42:32 SmeltPhase: smelting complete
+14:42:38 WalkBank: arrived at bank
+14:42:39 BankPhase: deposited and withdrew, cycling back to furnace
+14:42:44 WalkFurnace: arrived at furnace
+14:43:11 SmeltPhase: smelting complete
+14:43:16 WalkBank: arrived at bank
+14:43:18 BankPhase: deposited and withdrew, cycling back to furnace
+14:43:23 WalkFurnace: arrived at furnace
+14:43:50 SmeltPhase: smelting complete
+14:43:56 WalkBank: arrived at bank
+14:43:57 BankPhase: deposited and withdrew, cycling back to furnace
+14:44:03 WalkFurnace: arrived at furnace
+14:44:30 SmeltPhase: smelting complete
+14:44:35 WalkBank: arrived at bank
+14:44:37 BankPhase: deposited and withdrew, cycling back to furnace
+14:44:43 WalkFurnace: arrived at furnace
+14:45:10 SmeltPhase: smelting complete
+14:45:15 WalkBank: arrived at bank
+14:45:17 BankPhase: deposited and withdrew, cycling back to furnace
+14:45:23 WalkFurnace: arrived at furnace
+14:45:50 SmeltPhase: smelting complete
+14:45:54 WalkBank: arrived at bank
+14:45:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:46:02 WalkFurnace: arrived at furnace
+14:46:29 SmeltPhase: smelting complete
+14:46:35 WalkBank: arrived at bank
+14:46:36 BankPhase: deposited and withdrew, cycling back to furnace
+14:46:42 WalkFurnace: arrived at furnace
+14:47:09 SmeltPhase: smelting complete
+14:47:14 WalkBank: arrived at bank
+14:47:16 BankPhase: deposited and withdrew, cycling back to furnace
+14:47:22 WalkFurnace: arrived at furnace
+14:47:49 SmeltPhase: smelting complete
+14:47:54 WalkBank: arrived at bank
+14:47:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:48:01 WalkFurnace: arrived at furnace
+14:48:29 SmeltPhase: smelting complete
+14:48:34 WalkBank: arrived at bank
+14:48:36 BankPhase: deposited and withdrew, cycling back to furnace
+14:48:42 WalkFurnace: arrived at furnace
+14:49:09 SmeltPhase: smelting complete
+14:49:14 WalkBank: arrived at bank
+14:49:16 BankPhase: deposited and withdrew, cycling back to furnace
+14:49:21 WalkFurnace: arrived at furnace
+14:49:48 SmeltPhase: smelting complete
+14:49:54 WalkBank: arrived at bank
+14:49:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:50:01 WalkFurnace: arrived at furnace
+14:50:29 SmeltPhase: smelting complete
+14:50:34 WalkBank: arrived at bank
+14:50:36 BankPhase: deposited and withdrew, cycling back to furnace
+14:50:41 WalkFurnace: arrived at furnace
+14:51:08 SmeltPhase: smelting complete
+14:51:14 WalkBank: arrived at bank
+14:51:15 BankPhase: deposited and withdrew, cycling back to furnace
+14:51:21 WalkFurnace: arrived at furnace
+14:51:49 SmeltPhase: smelting complete
+14:51:54 WalkBank: arrived at bank
+14:51:56 BankPhase: deposited and withdrew, cycling back to furnace
+14:52:01 WalkFurnace: arrived at furnace
+14:52:28 SmeltPhase: smelting complete
+14:52:33 WalkBank: arrived at bank
+14:52:35 BankPhase: deposited and withdrew, cycling back to furnace
+14:52:41 WalkFurnace: arrived at furnace
+14:53:08 SmeltPhase: smelting complete
+14:53:14 WalkBank: arrived at bank
+14:53:15 BankPhase: deposited and withdrew, cycling back to furnace
+14:53:21 WalkFurnace: arrived at furnace
+14:53:48 SmeltPhase: smelting complete
+14:53:53 WalkBank: arrived at bank
+14:53:55 BankPhase: deposited and withdrew, cycling back to furnace
+14:54:01 WalkFurnace: arrived at furnace
+14:54:28 SmeltPhase: smelting complete
+14:54:33 WalkBank: arrived at bank
+14:54:35 BankPhase: deposited and withdrew, cycling back to furnace
+14:54:41 WalkFurnace: arrived at furnace
+14:55:08 SmeltPhase: smelting complete
+14:55:13 WalkBank: arrived at bank
+14:55:15 BankPhase: deposited and withdrew, cycling back to furnace
+14:55:21 WalkFurnace: arrived at furnace
+14:55:48 SmeltPhase: smelting complete
+14:55:53 WalkBank: arrived at bank
+14:55:55 BankPhase: deposited and withdrew, cycling back to furnace
+14:56:00 WalkFurnace: arrived at furnace
+14:56:28 SmeltPhase: smelting complete
+14:56:33 WalkBank: arrived at bank
+14:56:35 BankPhase: deposited and withdrew, cycling back to furnace
+14:56:41 WalkFurnace: arrived at furnace
+14:57:08 SmeltPhase: smelting complete
+14:57:13 WalkBank: arrived at bank
+14:57:15 BankPhase: deposited and withdrew, cycling back to furnace
+14:57:20 WalkFurnace: arrived at furnace
+14:57:47 SmeltPhase: smelting complete
+14:57:53 WalkBank: arrived at bank
+14:57:54 BankPhase: deposited and withdrew, cycling back to furnace
+14:58:00 WalkFurnace: arrived at furnace
+14:58:28 SmeltPhase: smelting complete
+14:58:33 WalkBank: arrived at bank
+14:58:35 BankPhase: deposited and withdrew, cycling back to furnace
+14:58:40 WalkFurnace: arrived at furnace
+14:59:07 SmeltPhase: smelting complete
+14:59:13 WalkBank: arrived at bank
+14:59:14 BankPhase: deposited and withdrew, cycling back to furnace
+14:59:20 WalkFurnace: arrived at furnace
+14:59:47 SmeltPhase: smelting complete
+14:59:53 WalkBank: arrived at bank
+14:59:54 BankPhase: deposited and withdrew, cycling back to furnace
+15:00:00 WalkFurnace: arrived at furnace
+15:00:27 SmeltPhase: smelting complete
+15:00:32 WalkBank: arrived at bank
+15:00:34 BankPhase: deposited and withdrew, cycling back to furnace
+15:00:40 WalkFurnace: arrived at furnace
+15:01:07 SmeltPhase: smelting complete
+15:01:12 WalkBank: arrived at bank
+15:01:14 BankPhase: deposited and withdrew, cycling back to furnace
+15:01:20 WalkFurnace: arrived at furnace
+15:01:47 SmeltPhase: smelting complete
+15:01:52 WalkBank: arrived at bank
+15:01:54 BankPhase: deposited and withdrew, cycling back to furnace
+15:02:00 WalkFurnace: arrived at furnace
+15:02:27 SmeltPhase: smelting complete
+15:02:32 WalkBank: arrived at bank
+15:02:34 BankPhase: deposited and withdrew, cycling back to furnace
+15:02:40 WalkFurnace: arrived at furnace
+15:03:07 SmeltPhase: smelting complete
+15:03:12 WalkBank: arrived at bank
+15:03:14 BankPhase: deposited and withdrew, cycling back to furnace
+15:03:20 WalkFurnace: arrived at furnace
+15:03:47 SmeltPhase: smelting complete
+15:03:52 WalkBank: arrived at bank
+15:03:54 BankPhase: deposited and withdrew, cycling back to furnace
+15:03:59 WalkFurnace: arrived at furnace
+15:04:26 SmeltPhase: smelting complete
+15:04:32 WalkBank: arrived at bank
+15:04:33 BankPhase: deposited and withdrew, cycling back to furnace
+15:04:40 WalkFurnace: arrived at furnace
+15:05:07 SmeltPhase: smelting complete
+15:05:12 WalkBank: arrived at bank
+15:05:14 BankPhase: deposited and withdrew, cycling back to furnace
+15:05:19 WalkFurnace: arrived at furnace
+15:05:46 SmeltPhase: smelting complete
+15:05:52 WalkBank: arrived at bank
+15:05:53 BankPhase: deposited and withdrew, cycling back to furnace
+15:05:59 WalkFurnace: arrived at furnace
+15:06:26 SmeltPhase: smelting complete
+15:06:32 WalkBank: arrived at bank
+15:06:33 BankPhase: deposited and withdrew, cycling back to furnace
+15:06:39 WalkFurnace: arrived at furnace
+15:07:06 SmeltPhase: smelting complete
+15:07:11 WalkBank: arrived at bank
+15:07:13 BankPhase: deposited and withdrew, cycling back to furnace
+15:07:19 WalkFurnace: arrived at furnace
+15:07:46 SmeltPhase: smelting complete
+15:07:51 WalkBank: arrived at bank
+15:07:53 BankPhase: deposited and withdrew, cycling back to furnace
+15:07:59 WalkFurnace: arrived at furnace
+15:08:26 SmeltPhase: smelting complete
+15:08:31 WalkBank: arrived at bank
+15:08:33 BankPhase: deposited and withdrew, cycling back to furnace
+15:08:39 WalkFurnace: arrived at furnace
+15:09:06 SmeltPhase: smelting complete
+15:09:11 WalkBank: arrived at bank
+15:09:13 BankPhase: deposited and withdrew, cycling back to furnace
+15:09:19 WalkFurnace: arrived at furnace
+15:09:46 SmeltPhase: smelting complete
+15:09:51 WalkBank: arrived at bank
+15:09:53 BankPhase: deposited and withdrew, cycling back to furnace
+15:09:59 WalkFurnace: arrived at furnace
+15:10:26 SmeltPhase: smelting complete
+15:10:31 WalkBank: arrived at bank
+15:10:33 BankPhase: deposited and withdrew, cycling back to furnace
+15:10:38 WalkFurnace: arrived at furnace
+15:11:05 SmeltPhase: smelting complete
+15:11:10 WalkBank: arrived at bank
+15:11:12 BankPhase: deposited and withdrew, cycling back to furnace
+15:11:18 WalkFurnace: arrived at furnace
+15:11:45 SmeltPhase: smelting complete
+15:11:50 WalkBank: arrived at bank
+15:11:52 BankPhase: deposited and withdrew, cycling back to furnace
+15:11:58 WalkFurnace: arrived at furnace
+15:12:25 SmeltPhase: smelting complete
+15:12:30 WalkBank: arrived at bank
+15:12:32 BankPhase: deposited and withdrew, cycling back to furnace
+15:12:38 WalkFurnace: arrived at furnace
+15:13:05 SmeltPhase: smelting complete
+15:13:10 WalkBank: arrived at bank
+15:13:12 BankPhase: deposited and withdrew, cycling back to furnace
+15:13:17 WalkFurnace: arrived at furnace
+15:13:45 SmeltPhase: smelting complete
+15:13:50 WalkBank: arrived at bank
+15:13:52 BankPhase: deposited and withdrew, cycling back to furnace
+15:13:58 WalkFurnace: arrived at furnace
+15:14:25 SmeltPhase: smelting complete
+15:14:30 WalkBank: arrived at bank
+15:14:32 BankPhase: deposited and withdrew, cycling back to furnace
+15:14:37 WalkFurnace: arrived at furnace
+15:15:04 SmeltPhase: smelting complete
+15:15:10 WalkBank: arrived at bank
+15:15:11 BankPhase: deposited and withdrew, cycling back to furnace
+15:15:18 WalkFurnace: arrived at furnace
+15:15:45 SmeltPhase: smelting complete
+15:15:50 WalkBank: arrived at bank
+15:15:52 BankPhase: deposited and withdrew, cycling back to furnace
+15:15:57 WalkFurnace: arrived at furnace
+15:16:24 SmeltPhase: smelting complete
+15:16:30 WalkBank: arrived at bank
+15:16:31 BankPhase: deposited and withdrew, cycling back to furnace
+15:16:37 WalkFurnace: arrived at furnace
+15:17:04 SmeltPhase: smelting complete
+15:17:10 WalkBank: arrived at bank
+15:17:11 BankPhase: deposited and withdrew, cycling back to furnace
+15:17:17 WalkFurnace: arrived at furnace
+15:17:44 SmeltPhase: smelting complete
+15:17:49 WalkBank: arrived at bank
+15:17:51 BankPhase: deposited and withdrew, cycling back to furnace
+15:17:57 WalkFurnace: arrived at furnace
+15:18:24 SmeltPhase: smelting complete
+15:18:29 WalkBank: arrived at bank
+15:18:31 BankPhase: deposited and withdrew, cycling back to furnace
+15:18:37 WalkFurnace: arrived at furnace
+15:19:04 SmeltPhase: smelting complete
+15:19:09 WalkBank: arrived at bank
+15:19:11 BankPhase: deposited and withdrew, cycling back to furnace
+15:19:17 WalkFurnace: arrived at furnace
+15:19:44 SmeltPhase: smelting complete
+15:19:49 WalkBank: arrived at bank
+15:19:51 BankPhase: deposited and withdrew, cycling back to furnace
+15:19:56 WalkFurnace: arrived at furnace
+15:20:24 SmeltPhase: smelting complete
+15:20:29 WalkBank: arrived at bank
+15:20:31 BankPhase: deposited and withdrew, cycling back to furnace
+15:20:37 WalkFurnace: arrived at furnace
+15:21:04 SmeltPhase: smelting complete
+15:21:09 WalkBank: arrived at bank
+15:21:11 BankPhase: deposited and withdrew, cycling back to furnace
+15:21:16 WalkFurnace: arrived at furnace
+15:21:43 SmeltPhase: smelting complete
+15:21:49 WalkBank: arrived at bank
+15:21:50 BankPhase: deposited and withdrew, cycling back to furnace
+15:21:56 WalkFurnace: arrived at furnace
+15:22:24 SmeltPhase: smelting complete
+15:22:29 WalkBank: arrived at bank
+15:22:31 BankPhase: deposited and withdrew, cycling back to furnace
+15:22:36 WalkFurnace: arrived at furnace
+15:23:03 SmeltPhase: smelting complete
+15:23:08 WalkBank: arrived at bank
+15:23:10 BankPhase: deposited and withdrew, cycling back to furnace
+15:23:16 WalkFurnace: arrived at furnace
+15:23:44 SmeltPhase: smelting complete
+15:23:49 WalkBank: arrived at bank
+15:23:50 BankPhase: deposited and withdrew, cycling back to furnace
+15:23:56 WalkFurnace: arrived at furnace
+15:24:23 SmeltPhase: smelting complete
+15:24:28 WalkBank: arrived at bank
+15:24:30 BankPhase: deposited and withdrew, cycling back to furnace
+15:24:36 WalkFurnace: arrived at furnace
+15:25:03 SmeltPhase: smelting complete
+15:25:09 WalkBank: arrived at bank
+15:25:10 BankPhase: deposited and withdrew, cycling back to furnace
+15:25:16 WalkFurnace: arrived at furnace
+15:25:43 SmeltPhase: smelting complete
+15:25:48 WalkBank: arrived at bank
+15:25:50 BankPhase: deposited and withdrew, cycling back to furnace
+15:25:56 WalkFurnace: arrived at furnace
+15:26:12 STOPPED: Stopped (F6)

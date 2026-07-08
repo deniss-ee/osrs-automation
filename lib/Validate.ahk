@@ -1,21 +1,17 @@
 ; ============================================================
-;  Validate.ahk
-;  Setup-validation accumulator. Lets a script check every
-;  calibration value it needs and report ALL problems in one
-;  popup, instead of stopping at the first missing F-key.
+; Validate.ahk - v3 REDESIGNED
 ;
-;  Typical use, inside your script's own ValidateSetup():
+; Setup-validation accumulator. Check every calibration value
+; needed and report ALL problems in one popup, instead of stopping
+; at the first failure.
 ;
-;     ValidateSetup() {
-;         v := NewValidator()
-;         RequireColor(v, "F1 - ore color", oreColor)
-;         RequireCoord(v, "F1 - ore position", oreX, oreY)
-;         RequirePath(v, "F4 - to-bank path", toBankPath)
-;         return ShowValidationErrors(v)
-;     }
+; v3 additions: RequireSlotSignature, RequireTargetRegion for the
+; new primitives (Slots.ahk, Targeting.ahk).
 ;
-;  Depends on: Safety.ahk (IsCoordOnScreen, IsRegionValid)
+; Depends on: Safety.ahk (IsCoordOnScreen, IsRegionValid)
 ; ============================================================
+
+#Requires AutoHotkey v2.0
 
 #Include Safety.ahk
 
@@ -23,16 +19,14 @@ NewValidator() {
     return Map("errors", [])
 }
 
-; -1 is this codebase's "not calibrated yet" sentinel for colors.
+; -1 is the "not calibrated yet" sentinel for colors.
 RequireColor(validator, label, color) {
     if (color = -1)
         validator["errors"].Push(label " is not set")
 }
 
-; 0,0 is this codebase's "never calibrated" sentinel for coords.
-; A non-zero coord that's off-screen is ALSO flagged - that
-; usually means the calibration is stale (e.g. saved on a
-; different monitor setup) rather than genuinely unset.
+; 0,0 is the "never calibrated" sentinel for coords.
+; A non-zero coord that's off-screen also flags (stale calibration).
 RequireCoord(validator, label, x, y) {
     if (x = 0 && y = 0) {
         validator["errors"].Push(label " is not set")
@@ -42,6 +36,7 @@ RequireCoord(validator, label, x, y) {
         validator["errors"].Push(label " (" x ", " y ") is off-screen - recalibrate it")
 }
 
+; Checks that a region (x1,y1,x2,y2) is properly defined and on-screen.
 RequireRegion(validator, label, x1, y1, x2, y2) {
     if (x1 = 0 && y1 = 0 && x2 = 0 && y2 = 0) {
         validator["errors"].Push(label " is not set")
@@ -51,21 +46,35 @@ RequireRegion(validator, label, x1, y1, x2, y2) {
         validator["errors"].Push(label " is invalid (off-screen or corners out of order) - recalibrate it")
 }
 
+; NEW: Checks that a slot signature has been calibrated (has a slot index and points).
+RequireSlotSignature(validator, label, sig) {
+    if (sig["slot"] = 0 || sig["points"].Length = 0)
+        validator["errors"].Push(label " is not calibrated")
+}
+
+; NEW: Checks that a target region (for NPC/enemy targeting) is valid.
+RequireTargetRegion(validator, label, region) {
+    if (region["color"] = -1)
+        validator["errors"].Push(label " color is not set")
+    if (!IsRegionValid(region["x1"], region["y1"], region["x2"], region["y2"]))
+        validator["errors"].Push(label " region is invalid - recalibrate it")
+}
+
+; Checks that a recorded path has steps.
 RequirePath(validator, label, steps) {
     if (steps.Length = 0)
         validator["errors"].Push(label " has not been recorded")
 }
 
-; Generic "this list needs at least one entry" check - for things
-; that aren't a recorded path, e.g. a list of calibrated ore spots.
+; Generic "this list needs at least one entry" check - for lists that
+; aren't recorded paths (e.g. ore spot list, calibrated points).
 RequireNonEmpty(validator, label, list) {
     if (list.Length = 0)
         validator["errors"].Push(label " is empty")
 }
 
-; Checks that a required asset file (e.g. an ImageSearch reference
-; image) actually exists on disk - catches a missing/renamed file at
-; startup instead of a confusing failure deep inside a phase later.
+; Checks that a required asset file (e.g. ImageSearch reference image)
+; actually exists on disk - catches missing/renamed files at startup.
 RequireFile(validator, label, path) {
     if (!FileExist(path))
         validator["errors"].Push(label " not found at: " path)
@@ -75,9 +84,8 @@ HasErrors(validator) {
     return validator["errors"].Length > 0
 }
 
-; If there are any accumulated errors, joins them into one
-; MsgBox and returns false. Otherwise returns true. Designed to
-; be the final line of a script's ValidateSetup().
+; If there are accumulated errors, joins them into one MsgBox and returns false.
+; Otherwise returns true. Designed to be the final line of ValidateSetup().
 ShowValidationErrors(validator, title := "Setup incomplete") {
     if (!HasErrors(validator))
         return true

@@ -1,17 +1,19 @@
 ; ============================================================
-;  Click.ahk
-;  The one click primitive every script should use. Adds a
-;  small random offset and delay jitter BY DEFAULT (not an
-;  opt-in flag) - the old scripts clicked the exact same pixel
-;  every single time with a fixed delay, which is both easy to
-;  detect and fragile (a single dead/edge pixel breaks the
-;  whole script). No dependencies on any other lib file.
+; Click.ahk
+; The one click primitive every script should use. Adds a
+; small random offset and delay jitter BY DEFAULT (not an
+; opt-in flag) - the old scripts clicked the exact same pixel
+; every single time with a fixed delay, which is both easy to
+; detect and fragile (a single dead/edge pixel breaks the
+; whole script). No dependencies on any other lib file.
 ;
-;  ENABLE_HUMANIZATION is a single global switch to turn all of
-;  that off (e.g. while testing, so clicks land on the exact
-;  calibrated pixel and delays are exact). Flip it back to true
-;  for normal use - nothing else needs to change.
+; ENABLE_HUMANIZATION is a single global switch to turn all of
+; that off (e.g. while testing, so clicks land on the exact
+; calibrated pixel and delays are exact). Flip it back to true
+; for normal use - nothing else needs to change.
 ; ============================================================
+
+#Requires AutoHotkey v2.0
 
 global ENABLE_HUMANIZATION := false
 

@@ -1,9 +1,11 @@
 ; ============================================================
-;  Tooltip.ahk
-;  On-screen feedback helpers used by every script for status
-;  messages ("Ore #1 saved", "Recording started", etc).
-;  No dependencies on any other lib file.
+; Tooltip.ahk
+; On-screen feedback helpers used by every script for status
+; messages ("Ore #1 saved", "Recording started", etc).
+; No dependencies on any other lib file.
 ; ============================================================
+
+#Requires AutoHotkey v2.0
 
 ; Shows a tooltip at a fixed screen position (defaults to the
 ; top-right corner, out of the way of the game viewport).

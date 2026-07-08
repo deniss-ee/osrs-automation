@@ -1,38 +1,32 @@
 ; ============================================================
-;  Paths.ahk
-;  One canonical path record/playback engine, replacing the two
-;  incompatible formats the old scripts used (miner-3/motherlode
-;  stored the first click separately from the rest; smelter-1
-;  stored it as a normal step). Here, the first click is simply
-;  steps[1] - there is no special case anywhere.
+; Paths.ahk - v3 REDESIGNED
 ;
-;  A "path" is just an Array of step Maps:
-;    {x, y, pause, button := "Left", running := 0}
-;  `pause` is how long to wait AFTER clicking this step, before
-;  doing whatever comes next (the next step's click, or finishing
-;  the path if this was the last step). There is no separate
-;  "tail delay" - the last step's own pause covers that.
+; Record/playback engine for mouse-click walking paths.
+; v3 change: Only the guarded form exists (renamed PlayPath).
+; The unguarded v2 PlayPath() has no v3 equivalent - the footgun
+; is structurally absent.
 ;
-;  The wait BEFORE the very first click of a path is a separate,
-;  global setting (INITIAL_CLICK_DELAY below) rather than something
-;  stored per-path, since it's not really "part of the path" - it's
-;  how long you wait before starting to walk it at all.
+; A "path" is an Array of step Maps: {x, y, pause, button := "Left", running := 0}
+; `pause` is the wait AFTER clicking this step, before the next.
+; The last step's pause covers the wait before the path is done.
 ;
-;  Depends on: Click.ahk (HumanClick, JitterDelay)
+; Depends on: Click.ahk (HumanClick, JitterDelay), Context.ahk (CtxIsRunning)
 ; ============================================================
 
+#Requires AutoHotkey v2.0
+
 #Include Click.ahk
+#Include Context.ahk
 
 global MIN_RECORDED_DELAY := 50
 
-; Wait before the first click of ANY path playback. Hardcoded to
-; 0 for now (click immediately) - might add randomization here
-; later instead of per-path storage.
+; Wait before the first click of ANY path. Currently hardcoded to 0
+; (click immediately) - might add randomization here later instead of
+; per-path storage.
 global INITIAL_CLICK_DELAY := 0
 
 ; Rounds a duration down to the nearest 50ms, with a 50ms floor.
-; Keeps recorded INI files small and avoids storing
-; impossible 1ms gaps from a double-click.
+; Keeps recorded INI files small and avoids storing impossible 1ms gaps.
 RoundDelay(ms) {
     rounded := Floor(ms / 50) * 50
     return Max(MIN_RECORDED_DELAY, rounded)
@@ -40,14 +34,13 @@ RoundDelay(ms) {
 
 ; ---- Recording ----
 
-; Fresh recorder bundle. One of these per path you want to record
-; (e.g. one for "to bank", one for "back to mine").
+; Fresh recorder bundle. One of these per path (e.g. one for "to bank",
+; one for "back to mine").
 NewPathRecorder() {
     return Map("active", false, "name", "", "lastTick", 0, "steps", [])
 }
 
-; Begins recording: clears any previous steps for this recorder
-; and starts the inter-click delay clock.
+; Begins recording: clears any previous steps and starts the inter-click timer.
 StartRecording(recorder, pathName) {
     recorder["active"] := true
     recorder["name"] := pathName
@@ -55,9 +48,7 @@ StartRecording(recorder, pathName) {
     recorder["lastTick"] := A_TickCount
 }
 
-; Ends recording: the time since the last click becomes that
-; click's `pause` (the wait after it, before the path is
-; considered finished), then returns the finished steps array.
+; Ends recording: the time since the last click becomes that click's pause.
 StopRecording(recorder) {
     if (recorder["steps"].Length > 0) {
         lastStep := recorder["steps"][recorder["steps"].Length]
@@ -67,11 +58,8 @@ StopRecording(recorder) {
     return recorder["steps"]
 }
 
-; Call this from your ~LButton / ~RButton hotkey while
-; recorder["active"] is true. The time since the PREVIOUS click
-; becomes that previous step's `pause` (the wait after it, before
-; this one) - this new step's own pause is set later, either by
-; the next click or by StopRecording.
+; Call this from ~LButton / ~RButton hotkey while recorder["active"] is true.
+; The time since the PREVIOUS click becomes that previous step's pause.
 RecordClickStep(recorder, x, y, button := "Left", runningFlag := 0) {
     now := A_TickCount
     if (recorder["steps"].Length > 0) {
@@ -84,42 +72,19 @@ RecordClickStep(recorder, x, y, button := "Left", runningFlag := 0) {
 
 ; ---- Playback ----
 
-; Scales a recorded pause down while running (OSRS's run speed
-; roughly compresses travel time to ~53.5% of walk time). Purely
-; optional - only call this if you want the legacy run-speed
-; behavior; most scripts can just use the recorded pause as-is.
+; Scales a recorded pause down while running (OSRS run speed ~53.5% of walk time).
+; Purely optional - only call if needed; most scripts can use the recorded pause as-is.
 ApplyRunningDelayScale(delayMs, wasRunning, scaleFactor := 0.535) {
     return wasRunning ? Round(delayMs * scaleFactor) : delayMs
 }
 
-; Plays back a recorded path: waits INITIAL_CLICK_DELAY, then for
-; each step clicks via HumanClick and waits that step's (jittered)
-; pause before moving on. Returns true once every step has played;
-; this simple version has no abort/timeout support - use
-; PlayPathWithGuard for that.
-PlayPath(steps, jitter := true, scaleRunDelay := true) {
-    if (steps.Length = 0)
-        return true
-
-    Sleep(INITIAL_CLICK_DELAY)
-    for step in steps {
-        wasRunning := (step["running"] = 1)
-        HumanClick(step["x"], step["y"], 0, 0, wasRunning, step["button"])
-
-        basePause := scaleRunDelay ? ApplyRunningDelayScale(step["pause"], wasRunning) : step["pause"]
-        Sleep(jitter ? JitterDelay(basePause) : basePause)
-    }
-    return true
-}
-
-; Same as PlayPath, but aborts early (returns false) if either:
-;   - runningVarGetter() (a zero-arg function returning the
-;     script's global "should I still be going" flag) becomes
-;     false at any point, or
-;   - timeoutMs > 0 and total playback time exceeds it.
-; This replaces the scattered "if (!running) return false" checks
-; that were copy-pasted into every step of the old scripts.
-PlayPathWithGuard(steps, runningVarGetter, timeoutMs := 0) {
+; Plays back a recorded path: waits INITIAL_CLICK_DELAY, then for each step
+; clicks and waits that step's pause. Aborts immediately (returns false) if
+; CtxIsRunning(ctx) becomes false (Stop hotkey pressed) or if timeoutMs > 0
+; and total time exceeds it. Returns true on full playback completion.
+;
+; v3: ctx is required (first param), replaces optional runningVarGetter closure.
+PlayPath(ctx, steps, timeoutMs := 0) {
     if (steps.Length = 0)
         return true
 
@@ -127,7 +92,7 @@ PlayPathWithGuard(steps, runningVarGetter, timeoutMs := 0) {
     Sleep(INITIAL_CLICK_DELAY)
 
     for step in steps {
-        if (!runningVarGetter())
+        if (!CtxIsRunning(ctx))
             return false
         if (timeoutMs > 0 && (A_TickCount - startTick) > timeoutMs)
             return false
@@ -135,7 +100,7 @@ PlayPathWithGuard(steps, runningVarGetter, timeoutMs := 0) {
         wasRunning := (step["running"] = 1)
         HumanClick(step["x"], step["y"], 0, 0, wasRunning, step["button"])
 
-        if (!runningVarGetter())
+        if (!CtxIsRunning(ctx))
             return false
 
         pause := JitterDelay(ApplyRunningDelayScale(step["pause"], wasRunning))
