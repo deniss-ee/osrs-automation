@@ -828,3 +828,246 @@
 2026-07-09 12:27:38 MinePhase: Initial click to walk to vein at [1438, 831] (vein at [1438, 831])
 2026-07-09 12:27:41 MinePhase: Clicked stable vein at [1265, 717] (vein at [1265, 717])
 2026-07-09 12:27:42 Engine: stopped - Stopped (F6)
+2026-07-09 12:34:47 Engine: started at phase 'mine'
+2026-07-09 12:34:47 MinePhase: Found new vein at [1307, 713]
+2026-07-09 12:34:47 MinePhase: Initial click to walk to vein at [1307, 713] (vein at [1307, 713])
+2026-07-09 12:34:49 MinePhase: Clicked stable vein at [1263, 713] (vein at [1263, 713])
+2026-07-09 12:34:51 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:34:52 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:34:54 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:34:56 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:34:57 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:34:59 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:01 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:02 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:04 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:06 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:07 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:09 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:11 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:13 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:14 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:16 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:18 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:19 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:21 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:23 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:35:23 MinePhase: Inventory full, transitioning to clearRed
+2026-07-09 12:35:23 ClearRedPhase: Found new red rockfall at [1217, 347]
+2026-07-09 12:35:23 ClearRedPhase: Initial click on red rockfall at [1217, 347]
+2026-07-09 12:35:30 ClearRedPhase: Failsafe click on red rockfall at [1257, 639]
+2026-07-09 12:35:31 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+2026-07-09 12:35:31 ClearRedPhase: Found new red rockfall at [1517, 639]
+2026-07-09 12:35:31 ClearRedPhase: Initial click on red rockfall at [1517, 639]
+2026-07-09 12:35:34 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+2026-07-09 12:35:34 ClearRedPhase: No red rockfalls found. Moving to hopper.
+2026-07-09 12:35:34 ClearYellowPhase: Clicked hopper at [896, 440]
+2026-07-09 12:35:41 ClearYellowPhase: Ore deposited. Moving to sack.
+2026-07-09 12:35:41 WithdrawSackPhase: Clicked sack at [1825, 724]
+2026-07-09 12:35:48 Engine: stopped - Stopped (F6)
+2026-07-09 12:36:25 Engine: started at phase 'mine'
+2026-07-09 12:36:25 MinePhase: Found new vein at [1329, 761]
+2026-07-09 12:36:25 MinePhase: Initial click to walk to vein at [1317, 757] (vein at [1317, 757])
+2026-07-09 12:36:27 MinePhase: Clicked stable vein at [1237, 713] (vein at [1237, 713])
+2026-07-09 12:36:28 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:30 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:32 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:33 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:35 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:37 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:39 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:40 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:42 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:44 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:45 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:47 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:49 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:51 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:52 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:54 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:56 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:57 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:36:59 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:01 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:02 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:04 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:06 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:08 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:09 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:11 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:37:12 MinePhase: Lost track of vein or depleted. Finding new vein.
+2026-07-09 12:37:12 MinePhase: Found new vein at [1307, 713]
+2026-07-09 12:37:13 MinePhase: Initial click to walk to vein at [1307, 713] (vein at [1307, 713])
+2026-07-09 12:37:15 MinePhase: Clicked stable vein at [1263, 713] (vein at [1263, 713])
+2026-07-09 12:37:16 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:18 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:20 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:21 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:23 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:25 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:27 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:28 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:30 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:32 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:33 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:35 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:37 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:39 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:40 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:42 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:44 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:45 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:47 MinePhase: Clicked stable vein at [1357, 713] (vein at [1357, 713])
+2026-07-09 12:37:49 MinePhase: Clicked stable vein at [1265, 713] (vein at [1265, 713])
+2026-07-09 12:37:51 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:53 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:54 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:56 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:58 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:37:59 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:01 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:03 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:04 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:06 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:08 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:10 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:11 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:13 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:15 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:16 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:18 MinePhase: Lost track of vein or depleted. Finding new vein.
+2026-07-09 12:38:18 MinePhase: Found new vein at [1209, 713]
+2026-07-09 12:38:18 MinePhase: Initial click to walk to vein at [1209, 713] (vein at [1209, 713])
+2026-07-09 12:38:20 MinePhase: Clicked stable vein at [1253, 713] (vein at [1253, 713])
+2026-07-09 12:38:21 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:23 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:25 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:26 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:28 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:30 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:32 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:33 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:35 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:37 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:38 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:40 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:42 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:43 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:45 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:47 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:49 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:38:50 MinePhase: Inventory full, transitioning to clearRed
+2026-07-09 12:38:50 ClearRedPhase: Found new red rockfall at [1185, 347]
+2026-07-09 12:38:50 ClearRedPhase: Initial click on red rockfall at [1185, 347]
+2026-07-09 12:38:58 ClearRedPhase: Failsafe click on red rockfall at [1257, 639]
+2026-07-09 12:38:59 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+2026-07-09 12:39:00 ClearRedPhase: Found new red rockfall at [1517, 639]
+2026-07-09 12:39:00 ClearRedPhase: Initial click on red rockfall at [1517, 639]
+2026-07-09 12:39:02 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+2026-07-09 12:39:03 ClearRedPhase: No red rockfalls found. Moving to hopper.
+2026-07-09 12:39:03 ClearYellowPhase: Clicked hopper at [894, 440]
+2026-07-09 12:39:11 ClearYellowPhase: Ore deposited. Moving to sack.
+2026-07-09 12:39:12 WithdrawSackPhase: Clicked sack at [1825, 724]
+2026-07-09 12:39:18 WithdrawSackPhase: Items received from sack. Moving to bank.
+2026-07-09 12:39:18 DepositBankPhase: Clicked deposit container at [1097, 355]
+2026-07-09 12:39:18 DepositBankPhase: Waiting for deposit box to open...
+2026-07-09 12:39:22 DepositBankPhase: Deposited all - banking complete, returning to mine
+2026-07-09 12:39:22 ReturnMine1Phase: Clicked waypoint 1 at [699, 1279]
+2026-07-09 12:39:28 ReturnMine1Phase: Arrived at waypoint 1!
+2026-07-09 12:39:28 ReturnMine2Phase: Clicked waypoint 2 at [1251, 1354]
+2026-07-09 12:39:32 ReturnMine2Phase: Saw waypoint 2 marker. Moving to final approach.
+2026-07-09 12:39:33 ReturnMine2Phase: Clicked final approach spot at [1491, 933]
+2026-07-09 12:39:34 ReturnMine2Phase: Wait complete. Handing off to mine phase.
+2026-07-09 12:39:35 MinePhase: Found new vein at [1438, 839]
+2026-07-09 12:39:35 MinePhase: Initial click to walk to vein at [1438, 817] (vein at [1438, 817])
+2026-07-09 12:39:37 MinePhase: Clicked stable vein at [1237, 721] (vein at [1237, 721])
+2026-07-09 12:39:39 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:39:40 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:39:42 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:39:43 Engine: stopped - Stopped (F6)
+2026-07-09 12:40:08 Engine: started at phase 'mine'
+2026-07-09 12:40:09 MinePhase: Found new vein at [1235, 713]
+2026-07-09 12:40:09 MinePhase: Initial click to walk to vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:40:11 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:40:11 MinePhase: Lost track of vein or depleted. Finding new vein.
+2026-07-09 12:40:11 MinePhase: Found new vein at [1307, 713]
+2026-07-09 12:40:12 MinePhase: Initial click to walk to vein at [1307, 713] (vein at [1307, 713])
+2026-07-09 12:40:13 MinePhase: Clicked stable vein at [1263, 713] (vein at [1263, 713])
+2026-07-09 12:40:15 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:17 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:19 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:20 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:22 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:24 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:25 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:27 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:29 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:31 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:32 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:34 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:36 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:37 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:39 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:41 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:42 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:44 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:46 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:48 MinePhase: Clicked stable vein at [1355, 713] (vein at [1355, 713])
+2026-07-09 12:40:50 MinePhase: Clicked stable vein at [1265, 713] (vein at [1265, 713])
+2026-07-09 12:40:51 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:53 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:55 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:57 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:40:58 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:00 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:02 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:03 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:05 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:07 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:08 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:10 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:12 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:14 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:15 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:17 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:18 MinePhase: Lost track of vein or depleted. Finding new vein.
+2026-07-09 12:41:18 MinePhase: Found new vein at [1209, 713]
+2026-07-09 12:41:18 MinePhase: Initial click to walk to vein at [1209, 713] (vein at [1209, 713])
+2026-07-09 12:41:20 MinePhase: Clicked stable vein at [1255, 713] (vein at [1255, 713])
+2026-07-09 12:41:22 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:24 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:25 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:27 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:29 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:31 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:32 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:34 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:36 MinePhase: Clicked stable vein at [1259, 713] (vein at [1259, 713])
+2026-07-09 12:41:36 MinePhase: Inventory full, transitioning to clearRed
+2026-07-09 12:41:36 ClearRedPhase: Found new red rockfall at [1185, 347]
+2026-07-09 12:41:37 ClearRedPhase: Initial click on red rockfall at [1185, 347]
+2026-07-09 12:41:43 ClearRedPhase: Rockfall cleared or lost. Scanning for another.
+2026-07-09 12:41:43 ClearRedPhase: No red rockfalls found. Moving to hopper.
+2026-07-09 12:41:44 ClearYellowPhase: Clicked hopper at [1126, 448]
+2026-07-09 12:41:52 ClearYellowPhase: Ore deposited. Moving to sack.
+2026-07-09 12:41:53 WithdrawSackPhase: Clicked sack at [1825, 724]
+2026-07-09 12:41:58 WithdrawSackPhase: Items received from sack. Moving to bank.
+2026-07-09 12:41:59 DepositBankPhase: Clicked deposit container at [1099, 355]
+2026-07-09 12:41:59 DepositBankPhase: Waiting for deposit box to open...
+2026-07-09 12:42:03 DepositBankPhase: Deposited all - banking complete, returning to mine
+2026-07-09 12:42:03 ReturnMine1Phase: Clicked waypoint 1 at [699, 1279]
+2026-07-09 12:42:08 ReturnMine1Phase: Arrived at waypoint 1!
+2026-07-09 12:42:08 ReturnMine2Phase: Clicked waypoint 2 at [1251, 1354]
+2026-07-09 12:42:12 ReturnMine2Phase: Saw waypoint 2 marker. Moving to final approach.
+2026-07-09 12:42:12 ReturnMine2Phase: Clicked final approach spot at [1491, 933]
+2026-07-09 12:42:13 ReturnMine2Phase: Wait complete. Handing off to mine phase.
+2026-07-09 12:42:14 MinePhase: Found new vein at [1438, 842]
+2026-07-09 12:42:14 MinePhase: Initial click to walk to vein at [1438, 819] (vein at [1438, 819])
+2026-07-09 12:42:16 MinePhase: Clicked stable vein at [1243, 717] (vein at [1243, 717])
+2026-07-09 12:42:18 MinePhase: Clicked stable vein at [1235, 713] (vein at [1235, 713])
+2026-07-09 12:42:18 MinePhase: Inventory full, transitioning to clearRed
+2026-07-09 12:42:18 ClearRedPhase: Found new red rockfall at [1447, 347]
+2026-07-09 12:42:19 ClearRedPhase: Initial click on red rockfall at [1447, 347]
+2026-07-09 12:42:20 Engine: stopped - Stopped (F6)
+2026-07-09 12:42:20 Engine: stopped - Stopped (F6)
+2026-07-09 12:42:20 Engine: stopped - Stopped (F6)

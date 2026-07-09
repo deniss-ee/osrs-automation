@@ -747,6 +747,10 @@ class ReturnMine1Phase extends Phase {
 
         if (found) {
             ctx.Log("ReturnMine1Phase: Arrived at waypoint 1!")
+            ; Settle delay before handing off - without this, returnMine2's
+            ; very next tick would click the step-2 waypoint instantly,
+            ; before the character has actually finished arriving here.
+            ctx.waiter.After(ctx.timing, "return1PostMarkerDelay")
             return "returnMine2"
         }
 
@@ -848,6 +852,9 @@ class ReturnMine2Phase extends Phase {
 
         if (found) {
             ctx.Log("ReturnMine2Phase: Saw waypoint 2 marker. Moving to final approach.")
+            ; Settle delay before advancing - without this, stage 2 would
+            ; fire the final approach click instantly on the very next tick.
+            ctx.waiter.After(ctx.timing, "return2PostMarkerDelay")
             ctx.Set("return2Stage", 2)
             ctx.Set("return2LastClickTime", 0)
             return "returnMine2"
@@ -1013,7 +1020,9 @@ timingSchema := Map(
     "ctrlHoldSettle", Map("section", "Tunables", "baseMsKey", "ctrlHoldSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
     "sackPreClickDelay", Map("section", "Tunables", "baseMsKey", "sackPreClickDelayMs"),
     "bankImagePoll", Map("section", "Tunables", "baseMsKey", "bankImagePollMs"),
-    "bankPreClickDelay", Map("section", "Tunables", "baseMsKey", "bankPreClickDelayMs")
+    "bankPreClickDelay", Map("section", "Tunables", "baseMsKey", "bankPreClickDelayMs"),
+    "return1PostMarkerDelay", Map("section", "Tunables", "baseMsKey", "return1PostMarkerDelayMs"),
+    "return2PostMarkerDelay", Map("section", "Tunables", "baseMsKey", "return2PostMarkerDelayMs")
 )
 
 iniPath := A_ScriptDir "\..\..\config\auto-motherlode-v2.ini"
