@@ -166,6 +166,7 @@ class MinePhase extends Phase {
             ctx.Set("yellowTargetX", 0)
             ctx.Set("yellowTargetY", 0)
             ctx.Set("yellowLastClickTime", 0)
+            ctx.Set("yellowEntryDelayApplied", false)
             ctx.Set("sackLastClickTime", 0)
             ctx.Set("sackWaitStartedAt", 0)
             ctx.Set("bankPreDelayApplied", false)
@@ -431,13 +432,14 @@ class ClearRedPhase extends Phase {
 ; withdrawSack (running to the ore sack) to continue the cycle.
 ; ============================================================
 class ClearYellowPhase extends Phase {
-    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, runMode := false) {
+    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, entryDelayKey, runMode := false) {
         super.__New("clearYellow")
         this._color := color
         this._tolerance := tolerance
         this._reqW := reqW
         this._reqH := reqH
         this._clickCooldownMs := clickCooldownMs
+        this._entryDelayKey := entryDelayKey
         this._lock := TargetLock(stableTicksRequired, 2)
         this._runMode := runMode
     }
@@ -484,6 +486,19 @@ class ClearYellowPhase extends Phase {
         this._lock.Observe(true, cx, cy, &outX, &outY)
         ctx.Set("yellowTargetX", outX)
         ctx.Set("yellowTargetY", outY)
+
+        ; One-time settle delay on the very first tick this phase ever
+        ; finds the hopper - without this, since yellowStableTicks=0 makes
+        ; the hopper "instantly stable" the moment it's found, the first
+        ; click fires as fast as this very first search happens to
+        ; resolve, which feels inconsistent tick-to-tick rather than a
+        ; deliberate, consistent settle (same fix already applied to
+        ; DepositBankPhase's container click and both return-phase
+        ; markers).
+        if (!ctx.Get("yellowEntryDelayApplied", false)) {
+            ctx.waiter.After(ctx.timing, this._entryDelayKey)
+            ctx.Set("yellowEntryDelayApplied", true)
+        }
 
         if (this._lock.IsStable()) {
             lastClick := ctx.Get("yellowLastClickTime", 0)
@@ -914,6 +929,7 @@ class ReturnMine2Phase extends Phase {
         ctx.Set("yellowTargetX", 0)
         ctx.Set("yellowTargetY", 0)
         ctx.Set("yellowLastClickTime", 0)
+        ctx.Set("yellowEntryDelayApplied", false)
         ctx.Set("sackLastClickTime", 0)
         ctx.Set("sackWaitStartedAt", 0)
         ctx.Set("bankPreDelayApplied", false)
@@ -1022,7 +1038,8 @@ timingSchema := Map(
     "bankImagePoll", Map("section", "Tunables", "baseMsKey", "bankImagePollMs"),
     "bankPreClickDelay", Map("section", "Tunables", "baseMsKey", "bankPreClickDelayMs"),
     "return1PostMarkerDelay", Map("section", "Tunables", "baseMsKey", "return1PostMarkerDelayMs"),
-    "return2PostMarkerDelay", Map("section", "Tunables", "baseMsKey", "return2PostMarkerDelayMs")
+    "return2PostMarkerDelay", Map("section", "Tunables", "baseMsKey", "return2PostMarkerDelayMs"),
+    "yellowEntryDelay", Map("section", "Tunables", "baseMsKey", "yellowEntryDelayMs")
 )
 
 iniPath := A_ScriptDir "\..\..\config\auto-motherlode-v2.ini"
@@ -1084,7 +1101,7 @@ botClearYellowPhase := ClearYellowPhase(
     botConfig.Get("yellowColor"), botConfig.Get("yellowTolerance"),
     botConfig.Get("yellowBlockW"), botConfig.Get("yellowBlockH"),
     botConfig.Get("yellowStableTicks"), botConfig.Get("yellowClickCooldownMs"),
-    botConfig.Get("runMode")
+    "yellowEntryDelay", botConfig.Get("runMode")
 )
 
 botWithdrawSackPhase := WithdrawSackPhase(
