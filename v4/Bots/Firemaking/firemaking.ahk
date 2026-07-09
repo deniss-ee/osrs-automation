@@ -286,12 +286,27 @@ class WithdrawLogsPhase extends Phase {
         ; withdrawClicked is reset by this phase's own completion below.
     }
 
+    _Click(ctx, x, y) {
+        if (this._runMode)
+            Send("{Ctrl down}")
+
+        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
+        ctx.waiter.After(ctx.timing, "clickSettle")
+        ctx.clicker.Press()
+
+        if (this._runMode) {
+            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
+            Send("{Ctrl up}")
+        }
+    }
+
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "withdrawLogs"
 
         if (!ctx.Get("withdrawClicked", false)) {
             this._bank.WithdrawSlot(this._slotIndex, &x, &y)
+            this._Click(ctx, x, y)
             ctx.Set("withdrawClicked", true)
             ctx.Log("WithdrawLogsPhase: Clicked bank slot " this._slotIndex " at [" x ", " y "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
@@ -341,6 +356,8 @@ schema := Map(
     "fireMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "craftMarkerAnchorX", Map("section", "Tunables", "type", "int"),
     "craftMarkerAnchorY", Map("section", "Tunables", "type", "int"),
+    "craftMarkerImageW", Map("section", "Tunables", "type", "int"),
+    "craftMarkerImageH", Map("section", "Tunables", "type", "int"),
     "craftMarkerSearchPaddingPx", Map("section", "Tunables", "type", "int"),
     "craftMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "bankMarkerX", Map("section", "Tunables", "type", "int"),
@@ -354,6 +371,8 @@ schema := Map(
     "bankMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "bankOpenAnchorX", Map("section", "Tunables", "type", "int"),
     "bankOpenAnchorY", Map("section", "Tunables", "type", "int"),
+    "bankOpenImageW", Map("section", "Tunables", "type", "int"),
+    "bankOpenImageH", Map("section", "Tunables", "type", "int"),
     "bankOpenSearchPaddingPx", Map("section", "Tunables", "type", "int"),
     "bankOpenWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "bankSlotFirstX", Map("section", "Tunables", "type", "int"),
@@ -398,24 +417,24 @@ emptyGate := SlotGate(botConfig.Get("indicatorSlot"), botConfig.Get("colorTolera
 ctx.inventory.SetFullGate(emptyGate)
 ctx.inventory.SetEmptyGate(NotGate(emptyGate))
 
-; craft-marker-1.png (70x60px) - shown once the "burn logs" dialog opens.
+; craft-marker-1.png - shown once the "burn logs" dialog opens.
 craftImagePath := A_ScriptDir "\..\..\Images\craft-marker-1.png"
 craftImageRegion := Map(
     "x1", botConfig.Get("craftMarkerAnchorX") - botConfig.Get("craftMarkerSearchPaddingPx"),
     "y1", botConfig.Get("craftMarkerAnchorY") - botConfig.Get("craftMarkerSearchPaddingPx"),
-    "x2", botConfig.Get("craftMarkerAnchorX") + 70 + botConfig.Get("craftMarkerSearchPaddingPx"),
-    "y2", botConfig.Get("craftMarkerAnchorY") + 60 + botConfig.Get("craftMarkerSearchPaddingPx")
+    "x2", botConfig.Get("craftMarkerAnchorX") + botConfig.Get("craftMarkerImageW") + botConfig.Get("craftMarkerSearchPaddingPx"),
+    "y2", botConfig.Get("craftMarkerAnchorY") + botConfig.Get("craftMarkerImageH") + botConfig.Get("craftMarkerSearchPaddingPx")
 )
-craftAnchor := ImageAnchor(craftImageRegion, craftImagePath, 70, 60)
+craftAnchor := ImageAnchor(craftImageRegion, craftImagePath, botConfig.Get("craftMarkerImageW"), botConfig.Get("craftMarkerImageH"))
 
-; deposit-default.png (72x72px) - used only to confirm the bank interface
-; opened; never clicked as "deposit all" in this bot.
+; deposit-default.png - used only to confirm the bank interface opened;
+; never clicked as "deposit all" in this bot.
 bankOpenImagePath := A_ScriptDir "\..\..\Images\deposit-default.png"
 bankOpenImageRegion := Map(
     "x1", botConfig.Get("bankOpenAnchorX") - botConfig.Get("bankOpenSearchPaddingPx"),
     "y1", botConfig.Get("bankOpenAnchorY") - botConfig.Get("bankOpenSearchPaddingPx"),
-    "x2", botConfig.Get("bankOpenAnchorX") + 72 + botConfig.Get("bankOpenSearchPaddingPx"),
-    "y2", botConfig.Get("bankOpenAnchorY") + 72 + botConfig.Get("bankOpenSearchPaddingPx")
+    "x2", botConfig.Get("bankOpenAnchorX") + botConfig.Get("bankOpenImageW") + botConfig.Get("bankOpenSearchPaddingPx"),
+    "y2", botConfig.Get("bankOpenAnchorY") + botConfig.Get("bankOpenImageH") + botConfig.Get("bankOpenSearchPaddingPx")
 )
 bankOpenAnchor := ImageAnchor(bankOpenImageRegion, bankOpenImagePath, 72, 72)
 

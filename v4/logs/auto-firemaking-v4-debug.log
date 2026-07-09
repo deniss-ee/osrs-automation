@@ -1,0 +1,821 @@
+2026-07-09 17:32:59 Engine: started at phase 'goToFire'
+2026-07-09 17:32:59 GoToFirePhase: Found fire marker at [1561, 533]
+2026-07-09 17:32:59 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:33:05 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:33:05 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:35:34 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:35:34 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:35:34 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:35:39 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:35:40 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:35:40 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:35:40 GoToFirePhase: Found fire marker at [1568, 527]
+2026-07-09 17:35:41 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:35:47 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:35:47 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:38:15 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:38:15 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:38:16 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:38:21 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:38:21 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:38:22 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:38:22 GoToFirePhase: Found fire marker at [1561, 537]
+2026-07-09 17:38:22 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:38:28 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:38:28 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:40:57 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:40:57 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:40:57 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:41:02 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:41:02 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:41:03 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:41:03 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 17:41:03 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:41:09 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:41:10 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:43:38 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:43:38 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:43:38 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:43:44 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:43:44 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:43:45 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:43:45 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 17:43:45 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:43:51 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:43:51 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:46:20 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:46:20 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:46:20 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:46:25 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:46:25 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:46:26 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:46:26 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 17:46:26 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:46:32 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:46:33 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:49:01 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:49:01 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:49:01 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:49:06 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:49:07 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:49:07 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:49:07 GoToFirePhase: Found fire marker at [1559, 541]
+2026-07-09 17:49:08 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:49:14 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:49:14 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:51:42 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:51:42 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:51:43 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:51:48 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:51:48 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:51:49 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:51:49 GoToFirePhase: Found fire marker at [1557, 537]
+2026-07-09 17:51:49 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:51:55 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:51:55 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:54:24 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:54:24 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:54:24 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:54:29 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:54:29 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:54:30 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:54:30 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 17:54:30 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:54:36 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 17:54:37 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 17:57:05 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 17:57:05 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 17:57:05 GoToBankPhase: Waiting for bank interface...
+2026-07-09 17:57:11 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 17:57:11 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 17:57:12 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 17:57:12 GoToFirePhase: Found fire marker at [1567, 531]
+2026-07-09 17:57:12 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 17:57:27 GoToFirePhase: Timed out waiting for burn dialog - stopping
+2026-07-09 17:57:27 Engine: stopped - Timed out waiting for burn dialog
+2026-07-09 17:58:55 Engine: stopped - Stopped (F6)
+2026-07-09 18:02:24 Engine: started at phase 'goToFire'
+2026-07-09 18:02:24 GoToFirePhase: Clicked fire marker at [1534, 539]
+2026-07-09 18:02:25 Engine: stopped - Stopped (F6)
+2026-07-09 18:03:06 Engine: started at phase 'goToFire'
+2026-07-09 18:03:06 GoToFirePhase: Found fire marker at [1552, 530]
+2026-07-09 18:03:06 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:03:07 Engine: stopped - Stopped (F6)
+2026-07-09 18:03:21 GoToFirePhase: Timed out waiting for burn dialog - stopping
+2026-07-09 18:03:21 Engine: stopped - Timed out waiting for burn dialog
+2026-07-09 18:03:57 Engine: started at phase 'goToFire'
+2026-07-09 18:03:57 GoToFirePhase: Found fire marker at [1551, 537]
+2026-07-09 18:03:57 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:04:00 Engine: stopped - Stopped (F6)
+2026-07-09 18:04:12 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:04:32 Engine: started at phase 'goToFire'
+2026-07-09 18:04:32 GoToFirePhase: Found fire marker at [1555, 535]
+2026-07-09 18:04:32 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:04:38 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:04:39 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:07:07 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:07:07 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:07:07 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:07:13 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:07:13 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:07:13 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:07:14 GoToFirePhase: Found fire marker at [1559, 542]
+2026-07-09 18:07:14 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:07:20 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:07:20 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:09:49 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:09:49 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:09:49 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:09:54 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:09:54 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:09:55 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:09:55 GoToFirePhase: Found fire marker at [1562, 541]
+2026-07-09 18:09:55 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:10:01 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:10:01 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:12:30 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:12:30 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:12:30 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:12:35 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:12:36 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:12:36 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:12:37 GoToFirePhase: Found fire marker at [1562, 527]
+2026-07-09 18:12:37 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:12:43 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:12:43 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:15:11 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:15:11 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:15:12 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:15:17 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:15:17 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:15:18 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:15:18 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 18:15:18 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:15:24 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:15:24 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:17:53 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:17:53 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:17:53 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:17:58 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:17:58 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:17:59 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:17:59 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 18:17:59 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:18:05 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:18:06 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:20:34 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:20:34 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:20:34 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:20:40 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:20:40 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:20:41 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:20:41 GoToFirePhase: Found fire marker at [1559, 541]
+2026-07-09 18:20:41 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:20:47 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:20:47 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:23:16 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:23:16 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:23:16 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:23:21 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:23:21 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:23:22 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:23:22 GoToFirePhase: Found fire marker at [1562, 541]
+2026-07-09 18:23:22 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:23:28 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:23:28 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:25:57 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:25:57 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:25:57 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:26:02 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:26:03 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:26:03 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:26:03 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 18:26:04 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:26:10 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:26:10 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:28:38 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:28:39 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:28:39 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:28:44 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:28:44 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:28:45 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:28:45 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 18:28:45 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:28:51 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:28:51 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:31:20 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:31:20 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:31:20 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:31:25 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:31:25 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:31:26 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:31:26 GoToFirePhase: Found fire marker at [1562, 531]
+2026-07-09 18:31:27 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:31:33 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:31:33 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:34:01 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:34:01 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:34:02 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:34:07 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:34:07 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:34:08 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:34:08 GoToFirePhase: Found fire marker at [1562, 541]
+2026-07-09 18:34:08 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:34:14 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:34:14 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:36:43 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:36:43 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:36:43 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:36:48 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:36:48 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:36:49 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:36:49 GoToFirePhase: Found fire marker at [1561, 533]
+2026-07-09 18:36:49 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:36:55 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:36:56 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:39:24 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:39:24 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:39:24 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:39:29 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:39:30 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:39:31 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:39:31 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 18:39:31 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:39:37 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:39:37 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:42:06 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:42:06 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:42:06 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:42:11 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:42:11 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:42:12 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:42:12 GoToFirePhase: Found fire marker at [1555, 541]
+2026-07-09 18:42:12 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:42:18 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:42:18 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:44:47 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:44:47 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:44:47 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:44:52 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:44:53 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:44:53 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:44:53 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 18:44:54 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:45:00 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:45:00 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:47:28 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:47:28 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:47:29 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:47:34 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:47:34 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:47:35 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:47:35 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 18:47:35 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:47:41 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:47:41 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:50:10 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:50:10 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:50:10 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:50:15 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:50:15 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:50:16 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:50:16 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 18:50:17 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:50:22 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:50:23 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:52:51 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:52:51 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:52:52 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:52:57 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:52:57 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:52:58 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:52:58 GoToFirePhase: Found fire marker at [1561, 537]
+2026-07-09 18:52:58 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:53:04 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:53:04 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:55:33 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:55:33 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:55:33 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:55:38 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:55:38 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:55:39 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:55:39 GoToFirePhase: Found fire marker at [1557, 539]
+2026-07-09 18:55:39 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:55:45 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:55:46 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 18:58:14 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 18:58:14 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 18:58:14 GoToBankPhase: Waiting for bank interface...
+2026-07-09 18:58:19 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 18:58:20 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 18:58:20 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 18:58:21 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 18:58:21 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 18:58:27 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 18:58:27 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:00:55 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:00:56 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:00:56 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:01:01 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:01:01 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:01:02 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:01:02 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 19:01:02 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:01:08 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:01:09 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:03:37 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:03:37 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:03:37 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:03:42 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:03:43 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:03:43 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:03:43 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 19:03:44 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:03:50 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:03:50 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:06:18 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:06:18 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:06:19 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:06:24 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:06:24 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:06:25 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:06:25 GoToFirePhase: Found fire marker at [1557, 542]
+2026-07-09 19:06:25 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:06:31 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:06:31 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:09:00 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:09:00 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:09:00 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:09:05 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:09:05 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:09:06 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:09:06 GoToFirePhase: Found fire marker at [1557, 539]
+2026-07-09 19:09:06 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:09:12 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:09:13 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:11:41 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:11:41 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:11:41 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:11:47 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:11:47 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:11:48 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:11:48 GoToFirePhase: Found fire marker at [1561, 539]
+2026-07-09 19:11:48 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:11:54 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:11:54 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:14:23 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:14:23 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:14:23 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:14:28 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:14:28 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:14:29 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:14:29 GoToFirePhase: Found fire marker at [1559, 539]
+2026-07-09 19:14:29 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:14:35 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:14:35 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:17:04 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:17:04 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:17:04 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:17:09 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:17:10 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:17:10 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:17:10 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 19:17:11 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:17:17 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:17:17 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:19:45 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:19:45 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:19:46 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:19:51 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:19:51 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:19:52 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:19:52 GoToFirePhase: Found fire marker at [1562, 531]
+2026-07-09 19:19:52 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:19:58 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:19:58 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:22:27 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:22:27 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:22:27 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:22:32 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:22:32 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:22:33 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:22:33 GoToFirePhase: Found fire marker at [1562, 529]
+2026-07-09 19:22:33 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:22:40 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:22:40 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:25:08 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:25:08 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:25:09 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:25:14 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:25:14 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:25:15 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:25:15 GoToFirePhase: Found fire marker at [1561, 539]
+2026-07-09 19:25:15 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:25:21 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:25:21 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:26:55 Engine: started at phase 'goToFire'
+2026-07-09 19:26:55 GoToFirePhase: Found fire marker at [1551, 536]
+2026-07-09 19:26:56 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:27:02 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:27:02 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:29:30 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:29:31 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:29:31 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:29:36 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:29:36 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:29:37 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:29:37 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 19:29:37 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:29:43 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:29:44 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:32:12 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:32:12 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:32:12 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:32:17 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:32:18 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:32:18 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:32:18 GoToFirePhase: Found fire marker at [1559, 539]
+2026-07-09 19:32:19 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:32:24 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:32:25 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:34:53 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:34:53 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:34:54 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:34:59 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:34:59 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:35:00 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:35:00 GoToFirePhase: Found fire marker at [1562, 531]
+2026-07-09 19:35:00 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:35:06 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:35:06 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:37:35 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:37:35 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:37:35 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:37:40 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:37:40 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:37:41 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:37:41 GoToFirePhase: Found fire marker at [1562, 529]
+2026-07-09 19:37:41 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:37:47 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:37:48 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:40:16 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:40:16 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:40:16 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:40:22 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:40:22 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:40:23 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:40:23 GoToFirePhase: Found fire marker at [1559, 539]
+2026-07-09 19:40:23 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:40:29 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:40:29 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:42:58 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:42:58 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:42:58 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:43:03 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:43:03 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:43:04 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:43:04 GoToFirePhase: Found fire marker at [1557, 543]
+2026-07-09 19:43:04 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:43:10 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:43:11 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:45:39 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:45:39 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:45:39 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:45:45 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:45:45 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:45:46 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:45:46 GoToFirePhase: Found fire marker at [1557, 537]
+2026-07-09 19:45:46 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:45:52 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:45:52 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:48:20 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:48:21 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:48:21 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:48:26 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:48:26 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:48:27 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:48:27 GoToFirePhase: Found fire marker at [1562, 527]
+2026-07-09 19:48:27 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:48:33 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:48:33 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:51:02 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:51:02 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:51:02 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:51:07 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:51:07 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:51:08 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:51:08 GoToFirePhase: Found fire marker at [1561, 539]
+2026-07-09 19:51:09 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:51:15 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:51:15 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:53:43 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:53:43 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:53:44 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:53:49 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:53:49 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:53:50 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:53:50 GoToFirePhase: Found fire marker at [1562, 531]
+2026-07-09 19:53:50 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:53:56 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:53:56 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:56:25 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:56:25 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:56:25 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:56:30 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:56:30 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:56:31 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:56:31 GoToFirePhase: Found fire marker at [1562, 541]
+2026-07-09 19:56:31 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:56:37 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:56:38 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 19:59:06 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 19:59:06 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 19:59:06 GoToBankPhase: Waiting for bank interface...
+2026-07-09 19:59:12 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 19:59:12 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 19:59:13 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 19:59:13 GoToFirePhase: Found fire marker at [1561, 537]
+2026-07-09 19:59:13 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 19:59:19 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 19:59:19 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:01:48 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:01:48 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:01:48 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:01:53 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:01:53 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:01:54 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:01:54 GoToFirePhase: Found fire marker at [1555, 541]
+2026-07-09 20:01:54 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:02:00 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:02:00 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:04:29 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:04:29 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:04:29 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:04:34 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:04:35 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:04:35 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:04:35 GoToFirePhase: Found fire marker at [1562, 529]
+2026-07-09 20:04:36 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:04:42 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:04:42 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:07:10 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:07:10 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:07:11 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:07:16 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:07:16 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:07:17 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:07:17 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 20:07:17 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:07:23 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:07:23 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:09:52 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:09:52 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:09:52 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:09:57 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:09:57 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:09:58 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:09:58 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 20:09:58 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:10:04 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:10:05 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:12:33 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:12:33 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:12:33 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:12:39 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:12:39 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:12:40 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:12:40 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 20:12:40 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:12:46 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:12:46 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:15:15 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:15:15 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:15:15 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:15:20 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:15:20 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:15:21 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:15:21 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 20:15:21 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:15:27 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:15:28 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:17:56 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:17:56 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:17:56 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:18:02 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:18:02 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:18:02 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:18:03 GoToFirePhase: Found fire marker at [1562, 527]
+2026-07-09 20:18:03 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:18:09 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:18:09 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:20:38 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:20:38 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:20:38 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:20:43 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:20:43 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:20:44 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:20:44 GoToFirePhase: Found fire marker at [1562, 531]
+2026-07-09 20:20:44 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:20:50 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:20:50 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:23:19 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:23:19 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:23:19 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:23:24 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:23:25 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:23:25 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:23:25 GoToFirePhase: Found fire marker at [1561, 541]
+2026-07-09 20:23:26 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:23:32 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:23:32 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:26:00 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:26:00 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:26:01 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:26:06 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:26:06 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:26:07 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:26:07 GoToFirePhase: Found fire marker at [1557, 537]
+2026-07-09 20:26:07 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:26:13 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:26:13 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:28:42 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:28:42 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:28:42 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:28:47 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:28:48 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:28:48 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:28:48 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 20:28:49 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:28:54 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:28:55 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:31:23 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:31:23 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:31:23 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:31:29 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:31:29 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:31:30 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:31:30 GoToFirePhase: Found fire marker at [1557, 537]
+2026-07-09 20:31:30 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:31:36 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:31:36 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:34:05 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:34:05 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:34:05 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:34:10 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:34:10 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:34:11 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:34:11 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 20:34:11 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:34:17 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:34:18 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:36:46 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:36:46 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:36:46 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:36:52 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:36:52 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:36:53 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:36:53 GoToFirePhase: Found fire marker at [1555, 539]
+2026-07-09 20:36:53 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:36:59 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:36:59 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:39:27 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:39:28 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:39:28 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:39:33 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:39:33 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:39:34 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:39:34 GoToFirePhase: Found fire marker at [1553, 543]
+2026-07-09 20:39:34 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:39:40 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:39:40 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:42:09 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:42:09 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:42:09 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:42:14 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:42:15 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:42:15 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:42:15 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 20:42:16 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:42:21 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:42:22 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:44:50 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:44:50 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:44:51 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:44:56 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:44:56 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:44:57 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:44:57 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 20:44:57 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:45:03 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:45:03 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:47:32 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:47:32 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:47:32 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:47:37 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:47:37 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:47:38 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:47:38 GoToFirePhase: Found fire marker at [1559, 535]
+2026-07-09 20:47:38 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:47:44 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:47:45 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:50:13 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:50:13 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:50:13 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:50:19 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:50:19 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:50:20 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:50:20 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 20:50:20 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:50:26 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:50:26 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:52:55 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:52:55 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:52:55 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:53:00 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:53:00 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:53:01 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:53:01 GoToFirePhase: Found fire marker at [1557, 541]
+2026-07-09 20:53:01 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:53:07 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:53:07 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:55:36 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:55:36 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:55:36 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:55:42 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:55:42 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:55:43 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:55:43 GoToFirePhase: Found fire marker at [1559, 535]
+2026-07-09 20:55:43 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:55:49 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:55:49 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 20:58:17 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 20:58:17 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 20:58:18 GoToBankPhase: Waiting for bank interface...
+2026-07-09 20:58:23 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 20:58:23 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 20:58:24 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 20:58:24 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 20:58:24 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 20:58:30 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 20:58:30 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:00:59 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:00:59 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:00:59 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:01:04 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:01:04 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:01:05 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:01:05 GoToFirePhase: Found fire marker at [1562, 537]
+2026-07-09 21:01:06 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:01:12 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:01:12 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:03:40 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:03:40 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:03:40 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:03:46 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:03:46 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:03:47 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:03:47 GoToFirePhase: Found fire marker at [1559, 543]
+2026-07-09 21:03:47 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:03:53 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:03:53 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:06:22 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:06:22 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:06:22 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:06:27 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:06:27 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:06:28 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:06:28 GoToFirePhase: Found fire marker at [1561, 539]
+2026-07-09 21:06:28 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:06:34 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:06:35 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:09:03 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:09:03 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:09:03 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:09:08 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:09:09 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:09:09 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:09:10 GoToFirePhase: Found fire marker at [1562, 539]
+2026-07-09 21:09:10 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:09:16 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:09:16 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:11:44 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:11:45 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:11:45 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:11:50 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:11:50 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:11:51 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:11:51 GoToFirePhase: Found fire marker at [1561, 535]
+2026-07-09 21:11:51 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:11:57 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:11:57 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:14:26 BurnLogsPhase: Inventory empty. Moving to bank.
+2026-07-09 21:14:26 GoToBankPhase: Found bank marker at [863, 1025]
+2026-07-09 21:14:26 GoToBankPhase: Waiting for bank interface...
+2026-07-09 21:14:31 GoToBankPhase: Bank interface open. Withdrawing.
+2026-07-09 21:14:32 WithdrawLogsPhase: Clicked bank slot 1 at [661, 235]
+2026-07-09 21:14:32 WithdrawLogsPhase: Withdrew logs. Handing off to fire phase.
+2026-07-09 21:14:32 GoToFirePhase: Found fire marker at [1562, 533]
+2026-07-09 21:14:33 GoToFirePhase: Waiting for burn dialog...
+2026-07-09 21:14:39 GoToFirePhase: Burn dialog visible. Confirming.
+2026-07-09 21:14:39 BurnLogsPhase: Pressed space to confirm burn dialog
+2026-07-09 21:16:21 Engine: stopped - Stopped (F6)

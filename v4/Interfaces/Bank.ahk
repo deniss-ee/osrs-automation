@@ -38,14 +38,16 @@ class Bank {
         return true
     }
 
-    ; Clicks a bank slot by its 1-based index (single row, pitchX spacing).
-    ; Returns the clicked point via out-params so the caller can log it.
+    ; Computes a bank slot's center by its 1-based index (single row,
+    ; pitchX spacing) via out-params - pure coordinate math, no click.
+    ; Unlike OpenChest/DepositAll, this doesn't click itself: a withdraw
+    ; click needs a settle delay + optional Ctrl-hold like every other
+    ; click in the framework, which requires ctx/waiter - so the caller's
+    ; own _Click(ctx,x,y) helper does the actual clicking.
     WithdrawSlot(slotIndex, &x, &y) {
         l := this._slotLayout
         x := l["firstX"] + (slotIndex - 1) * l["pitchX"] + l["slotW"] // 2
         y := l["firstY"] + l["slotH"] // 2
-        this._clicker.ClickAt(x, y)
-        return true
     }
 
     WithdrawPlan(plan) {
