@@ -1,13 +1,9 @@
 ; ============================================================
 ; Config.ahk
-; Typed .ini accessor + per-bot schema validation, merged from
-; the originally-proposed ConfigLoader/ScriptConfig split (see
-; plan trim). A bot declares every key it needs up front in a
-; schema Map; Load() throws at startup if any declared key is
-; missing from .ini - this is the direct fix for legacy's
-; silent config/code default drift (e.g. preBankClickSettleMs
-; never appearing in the .ini at all, mineStableTicks disagreeing
-; between code default and calibrated ini value).
+; Typed .ini accessor + per-bot schema validation. A bot declares
+; every key it needs up front in a schema Map; Load() throws at
+; startup if any declared key is missing - no silent code-side
+; defaults, no config/code drift.
 ; ============================================================
 
 #Requires AutoHotkey v2.0

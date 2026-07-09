@@ -1,27 +1,21 @@
 ; ============================================================
 ; Inventory.ahk
-; Wraps Telemetry gates + inventory slot math (legacy's
-; lib/Grid.ahk + lib/Slots.ahk) behind one bot-facing surface.
-; A Phase asks "IsFull()"/"IsEmpty()" without knowing whether
-; that's backed by a single indicator slot or a full slot scan.
+; Wraps Telemetry gates + inventory slot math behind one
+; bot-facing surface. A Phase asks "IsFull()"/"IsEmpty()" without
+; knowing whether that's a single indicator slot or a full scan.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 
 class Inventory {
     ; layout: {firstX, firstY, cols, rows, slotW, slotH, gapX, gapY} - the
-    ; TOP-LEFT corner of slot 1, matching lib/Grid.ahk's corner+size
-    ; convention (not center) so calibration numbers are measured the same
-    ; way in both places. This user's measured layout: firstX=2099,
-    ; firstY=801, 4 cols x 7 rows, 72x64px slots, 12px horizontal / 8px
-    ; vertical gaps (no outer padding).
+    ; TOP-LEFT corner of slot 1 (not center), so calibration numbers are
+    ; measured the same way everywhere.
     ;
-    ; fullGate/emptyGate are Telemetry gates (e.g. SlotGate) constructed
-    ; AFTER this Inventory (they need to call back into its SlotCenter()),
-    ; then attached via SetFullGate/SetEmptyGate - avoids a constructor
-    ; cycle between Inventory and its gates. Either may be left unset
-    ; ("") if a bot never needs that particular check (e.g. MinePhase only
-    ; ever calls IsFull(), never IsEmpty()).
+    ; fullGate/emptyGate/sackGate are Telemetry gates constructed AFTER
+    ; this Inventory (they need SlotCenter()), then attached via the
+    ; setters - avoids a constructor cycle. Any may be left unset ("")
+    ; if a bot never needs that check.
     __New(layout, fullGate := "", emptyGate := "", sackGate := "") {
         this._layout := layout
         this._fullGate := fullGate
@@ -33,9 +27,8 @@ class Inventory {
 
     SetEmptyGate(gate) => this._emptyGate := gate
 
-    ; A distinct gate from full/empty - "did withdrawing from the ore sack
-    ; put something in the inventory" (WithdrawSackPhase), backed by an
-    ; OrGate over two spread-out slots since a gem can land in either.
+    ; Distinct from full/empty - "did the sack put something in the
+    ; inventory" (WithdrawSackPhase).
     SetSackGate(gate) => this._sackGate := gate
 
     IsFull() => this._fullGate.IsSet()
@@ -44,14 +37,11 @@ class Inventory {
 
     HasSackItems() => this._sackGate.IsSet()
 
-    ; Slot coordinate math - given a 1-based, row-major slot index (1 = top-
-    ; left, reading left-to-right then top-to-bottom, matching lib/Grid.ahk's
-    ; BuildGrid/GetInventorySlots indexing exactly), returns that slot's
-    ; screen-space CENTER via out-params. Corner-based like legacy (not
-    ; center-based) because a slot's corner is measured directly off-screen,
-    ; then shifted by half width/height here - a corner pixel is almost
-    ; always plain background even when the slot is full, so clicks/color
-    ; checks must target the center, never the corner itself.
+    ; Given a 1-based, row-major slot index (1 = top-left, reading
+    ; left-to-right then top-to-bottom), returns that slot's screen-space
+    ; CENTER via out-params. Corner-based math because a slot's corner is
+    ; measured directly, then shifted by half width/height - a corner
+    ; pixel is almost always background even when the slot is full.
     SlotCenter(slotIndex, &x, &y) {
         l := this._layout
         total := l["cols"] * l["rows"]

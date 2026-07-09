@@ -1,14 +1,9 @@
 ; ============================================================
 ; WindowFocus.ahk
-; Guards that a Phase should check before clicking: is the game
-; window actually focused right now. Direct port of legacy's
-; lib/Safety.ahk (IsOsrsWindowActive/RequireOsrsWindowActive) -
-; v4 previously had NO equivalent anywhere, meaning MinePhase
-; would happily keep computing FindFilledBlock results and
-; issuing MouseMove/Click calls even if RuneLite lost focus
-; entirely (alt-tab, a notification stealing focus, clicking a
-; second monitor) - a real gap every legacy phase guarded
-; against but v4 didn't.
+; Guard a Phase checks before clicking: is the game window
+; actually focused right now - without it, a Phase would keep
+; clicking even if RuneLite lost focus (alt-tab, a notification,
+; a second monitor).
 ; ============================================================
 
 #Requires AutoHotkey v2.0

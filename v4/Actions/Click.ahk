@@ -2,10 +2,8 @@
 ; Click.ahk
 ; Pure click execution - mouse move + click, zero Sleep calls.
 ; Offset humanization (spatial) is applied here via an injected
-; Humanizer; delay humanization (temporal) is NOT this class's
-; job - that's applied by the Phase via Waiter calls that wrap
-; the Click() call. Legacy's HumanClick fused both concerns into
-; one function; v4 splits them per ruleset 3.4.
+; Humanizer; delay humanization (temporal) is the Phase's job via
+; Waiter calls wrapping the click.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -30,13 +28,9 @@ class Clicker {
     ; Sends the actual click at the mouse's current position - call after
     ; MoveTo (and any settle delay). No Sleep in this method.
     ;
-    ; Named Press, not Click, deliberately: a class method sharing a name
-    ; with an AHK builtin function (Click) risks the unqualified call
-    ; inside this class resolving to the method itself (self-recursion)
-    ; instead of the builtin - caught for real when a same-shaped method
-    ; named Click() elsewhere in this class called the builtin Click()
-    ; and silently failed. Avoided entirely by never naming a method the
-    ; same as a builtin it needs to call.
+    ; Named Press, not Click: a method sharing a name with an AHK builtin
+    ; (Click) can resolve to itself instead of the builtin (self-recursion) -
+    ; never name a method the same as a builtin it needs to call.
     Press(button := "Left") {
         if (button = "Right")
             Click("Right")
@@ -44,13 +38,10 @@ class Clicker {
             Click()
     }
 
-    ; Convenience wrapper: MoveTo + Press back-to-back with no settle delay
-    ; in between. Use MoveTo/Press directly (with a Waiter.After() call
-    ; between them) wherever a settle delay matters - e.g. game clients
-    ; that need a moment to register hover/highlight state on the target
-    ; before the click itself is sent (legacy's HumanClick did this via a
-    ; jittered ~150ms Sleep between MouseMove and Click). Named ClickAt,
-    ; not Click, for the same builtin-name-collision reason as Press above.
+    ; Convenience wrapper: MoveTo + Press back-to-back, no settle delay.
+    ; Use MoveTo/Press directly (with a Waiter.After() between them)
+    ; wherever a settle delay matters - e.g. letting the client register
+    ; hover state before the click fires.
     ClickAt(centerX, centerY, width := 0, height := 0, button := "Left") {
         this.MoveTo(centerX, centerY, width, height, &targetX, &targetY)
         this.Press(button)

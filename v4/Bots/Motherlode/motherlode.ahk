@@ -1,30 +1,19 @@
 ; ============================================================
 ; motherlode.ahk
-; v4 entry point + the "mine" phase for the Motherlode Mine bot,
-; combined into one file. MinePhase used to live in its own
-; MinePhase.ahk - merged here since the split between "entry
-; point" and "the one phase it runs" added a file-hop for no
-; real benefit with a single bot/single phase. Shared framework
-; classes (Core/Timing/Detection/Actions/Interfaces/Config/
-; Diagnostics) stay as separate reusable files - only the two
-; Motherlode-specific files collapsed.
+; v4 entry point + all Motherlode Mine phases, one file (single
+; bot/single loop, so no benefit to splitting entry point from
+; phases). Shared framework classes stay in their own files.
 ;
-; Isolation: reads/writes only v4's own config/ and logs/ folders
-; (v4/config/auto-motherlode-v2.ini, v4/logs/...) - never the
-; legacy repo-root config/ or logs/ folders.
-;
-; Remaining phases (withdrawSack, depositBank, returnMine1/2)
-; are still to be ported. clearRed/clearYellow are now built.
+; Isolation: reads/writes only v4's own config/ and logs/ - never
+; the legacy repo-root config/ or logs/ folders.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-; Without these, AHK v2 defaults Click/MouseMove/PixelSearch coordinates to
-; "Client" (relative to whatever window currently has focus), not "Screen" -
-; but every coordinate in v4 (search regions, found vein positions, click
-; offsets) is computed as absolute screen pixels. Matches legacy's exact
-; CoordMode setup.
+; AHK v2 defaults Click/MouseMove/PixelSearch to "Client" coords
+; (relative to the focused window). Every coordinate in v4 is
+; absolute screen space, so force "Screen" mode - matches legacy.
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
@@ -47,53 +36,30 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Diagnostics\Overlay.ahk
 
 ; ============================================================
-; MinePhase - direct port of auto-motherlode-v2.ahk's MinePhase
-; (lines 128-238). Two distinct modes, exactly like legacy - this
-; is NOT forced into the generic acquire/wait/act/verify shape
-; because legacy's real branching (acquisition vs. tracking are
-; materially different algorithms) would be distorted by that;
-; instead every raw Sleep/Click/PixelGetColor/.ini read legacy
-; had is routed through the same four contracts (Detection/
-; Timing/Actions/Telemetry) the ruleset requires, just composed
-; in the shape the actual behavior needs.
+; MinePhase - finds and mines veins.
 ;
-; Mode 1 - ACQUIRE (no target locked yet, ctx state "mineHasTarget" = false):
-;   Search the full region for BOTH the light and dark vein overlay
-;   colors. If both exist, pick whichever is closer to the character's
-;   reference point (squared distance, matching legacy exactly).
+; Mode 1 - ACQUIRE (mineHasTarget=false): search the full region
+; for both vein overlay colors; if both are visible, pick
+; whichever is closer to the reference point.
 ;
-; Mode 2 - TRACK (target locked, ctx state "mineHasTarget" = true):
-;   Re-search a narrowed 100x100 box around the last known position,
-;   locked onto the SAME color only (never re-considers the other
-;   color once locked, matching legacy exactly). Stability gates
-;   which click-cadence branch runs; a lost target resets to Mode 1.
+; Mode 2 - TRACK (mineHasTarget=true): re-search a narrowed box
+; around the last known position, locked to the same color.
+; Stability gates click cadence; a lost target resets to Mode 1.
 ; ============================================================
 class MinePhase extends Phase {
-    ; region: {x1,y1,x2,y2} full vein search area.
-    ; veinColors: [light, dark] - overlay color candidates.
-    ; referencePoint: {x,y} - character center, used to pick between two
-    ; simultaneously-visible veins (legacy: ctx["returnWalkPoint"]).
-    ; reqW/reqH: minimum solid block size to count as a vein.
-    ; trackBoxRadiusPx: half-width of the narrowed tracking box around the
-    ; last known position once locked (legacy: 50, i.e. a 100x100 box).
-    ; clickOffsetX/Y: pixel offset applied to every click point AFTER the
-    ; block's center is found - e.g. the found block's center is a fixed
-    ; distance from the actual clickable ore rock in-game, so this shifts
-    ; the click to land on it instead. Configurable via .ini (veinClickOffsetX/Y).
-    ; scanBottomUp: when true, searches scan from the bottom of the region
-    ; upward instead of top-down, so the first-found pixel (and therefore
-    ; the computed block center) is near the bottom-left of the vein
-    ; overlay instead of the top-left.
-    ; walkReclickTimeoutMs: while walking to a vein (not yet "stable"), if
-    ; this much time passes since the last click with still no stability,
-    ; click again anyway - prevents getting permanently stuck after exactly
-    ; one click if the found position never settles within 2px for 2
-    ; consecutive ticks (e.g. due to jitter between search passes).
-    ; nextCyclePhases: [ClearRedPhase, ClearYellowPhase] instances, so this
-    ; phase can reset their per-cycle state (TargetLock + scratch coords)
-    ; at the one transition point where a fresh inventory-full cycle begins -
-    ; see ClearRedPhase.ResetForNewCycle.
-    __New(region, veinColors, referencePoint, tolerance, reqW, reqH, trackBoxRadiusPx, stableTicksRequired, runMode := false, clickOffsetX := 0, clickOffsetY := 0, scanBottomUp := false, walkReclickTimeoutMs := 3000, nextCyclePhases := "") {
+    ; region: {x1,y1,x2,y2} vein search area.
+    ; veinColors: [light, dark] overlay color candidates.
+    ; referencePoint: {x,y}, used to pick between two visible veins.
+    ; reqW/reqH: min solid block size to count as a vein.
+    ; trackBoxRadiusPx: half-width of the tracking box once locked.
+    ; clickOffsetX/Y: click offset applied after the block center is
+    ; found, since the rock can sit off from the overlay's center.
+    ; scanBottomUp: scan the region bottom-up instead of top-down.
+    ; walkReclickTimeoutMs: re-click if still not stable after this
+    ; long, so jitter can't strand the click at exactly one attempt.
+    ; nextCyclePhases: every phase whose per-cycle state this phase
+    ; resets on the mine->clearRed transition (see ResetForNewCycle).
+    __New(region, veinColors, referencePoint, tolerance, reqW, reqH, trackBoxRadiusPx, stableTicksRequired, moveTolerancePx, runMode := false, clickOffsetX := 0, clickOffsetY := 0, scanBottomUp := false, walkReclickTimeoutMs := 3000, nextCyclePhases := "") {
         super.__New("mine")
         this._region := region
         this._veinColors := veinColors
@@ -102,8 +68,8 @@ class MinePhase extends Phase {
         this._reqW := reqW
         this._reqH := reqH
         this._trackBoxRadiusPx := trackBoxRadiusPx
-        this._lock := TargetLock(stableTicksRequired, 2)
-        this._runMode := runMode   ; legacy's ctx["runMode"] - holds Ctrl (force-run) while clicking
+        this._lock := TargetLock(stableTicksRequired, moveTolerancePx)
+        this._runMode := runMode
         this._clickOffsetX := clickOffsetX
         this._clickOffsetY := clickOffsetY
         this._scanBottomUp := scanBottomUp
@@ -111,18 +77,9 @@ class MinePhase extends Phase {
         this._nextCyclePhases := nextCyclePhases != "" ? nextCyclePhases : []
     }
 
-    ; Click helper matching legacy's HumanClick(x, y, 0, 0, ctx["runMode"])
-    ; exactly - Ctrl is only held while this._runMode is truthy. Applies the
-    ; configured click offset to the found block center before clicking, and
-    ; returns the actual post-offset coordinates via out-params so callers
-    ; can log what was REALLY clicked (not the raw found vein position,
-    ; which is misleading once an offset is configured).
-    ;
-    ; Settle delay: legacy's HumanClick does MouseMove -> Sleep(~150ms
-    ; jittered) -> Click - giving the game client a moment to register the
-    ; cursor actually being over the target (hover/highlight state) before
-    ; the click fires. Routed through ctx.waiter/ctx.timing exactly like
-    ; every other timed step, keyed on "clickSettle" (see .ini).
+    ; Applies the configured click offset, then moves + settles + clicks
+    ; (+ optional Ctrl-hold for force-run). Returns the actual clicked
+    ; point via out-params so callers can log what was really clicked.
     _Click(ctx, x, y, &clickX, &clickY) {
         clickX := x + this._clickOffsetX
         clickY := y + this._clickOffsetY
@@ -141,24 +98,14 @@ class MinePhase extends Phase {
     }
 
     Run(ctx) {
-        ; Window-focus gate, matching legacy's RequireOsrsWindowActive check
-        ; at the top of every phase - without this, the bot would keep
-        ; searching/clicking with screen-absolute coordinates even if RuneLite
-        ; loses focus (alt-tab, a notification, a second monitor).
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "mine"
 
-        ; Inventory-full gate gets checked first every tick, matching
-        ; legacy's exact ordering (before any vein search happens at all).
         if (ctx.inventory.IsFull()) {
             ctx.Log("MinePhase: Inventory full, transitioning to clearRed")
-            ; Fresh state for the upcoming clearRed/clearYellow cycle - without
-            ; this, a second full-inventory cycle in the same script run (no
-            ; process restart) would resume clearRed/clearYellow's _Track mode
-            ; using stale target coordinates and a stale TargetLock stability
-            ; streak left over from the previous cycle, instead of starting a
-            ; clean whole-screen _Acquire search (matches legacy's
-            ; ResetBotState(), called at the same transition point).
+            ; Reset every downstream phase's per-cycle state here, so a
+            ; second full-inventory cycle in the same run doesn't resume
+            ; with stale coordinates/timestamps from the first one.
             ctx.Set("redHasTarget", false)
             ctx.Set("redTargetX", 0)
             ctx.Set("redTargetY", 0)
@@ -180,8 +127,8 @@ class MinePhase extends Phase {
         return this._Track(ctx)
     }
 
-    ; Mode 1: search the full region for both candidate colors, pick
-    ; whichever is closer to the reference point if both are present.
+    ; Mode 1: search for both candidate colors, pick whichever is
+    ; closer to the reference point if both are present.
     _Acquire(ctx) {
         foundLight := ColorSearch.FindFilledBlock(
             this._region["x1"], this._region["y1"], this._region["x2"], this._region["y2"],
@@ -218,22 +165,15 @@ class MinePhase extends Phase {
         this._lock.Reset()
         ctx.Log("MinePhase: Found new vein at [" vx ", " vy "]")
 
-        ; Deliberately do NOT click on this same tick. The vein's color
-        ; overlay may not be fully rendered/settled yet at the exact instant
-        ; it's first detected (e.g. a fade-in), so a click computed from
-        ; this very first detection can land on the overlay's edge/glow
-        ; instead of the actual clickable rock - registering in-game as a
-        ; plain tile click (yellow) rather than a vein interaction. Just
-        ; record the position here; _Track's next-tick "not yet stable,
-        ; lastClickTime == 0" branch fires the actual first click using a
-        ; freshly re-verified position one tick later.
+        ; Don't click on this same tick - the overlay may not be fully
+        ; rendered yet, so a click here can miss the actual clickable
+        ; rock. _Track's next-tick branch fires the real first click.
         ctx.failsafe.ResetPhaseTimer(ctx)
         return "mine"
     }
 
     ; Mode 2: re-search a narrowed box around the last known position,
-    ; locked onto the same color only. Position always updates to the
-    ; latest real coordinates (TargetLock never freezes it); stability
+    ; locked to the same color. Position always updates live; stability
     ; only gates which click-cadence branch runs.
     _Track(ctx) {
         lastX := ctx.Get("mineTargetX", 0)
@@ -261,11 +201,7 @@ class MinePhase extends Phase {
         ctx.Set("mineTargetY", outY)
 
         if (this._lock.IsStable()) {
-            ; Non-blocking cooldown check - matches legacy exactly
-            ; (A_TickCount - lastClickTime > cooldown), never a Sleep. The
-            ; cooldown duration itself still comes from ctx.timing (the
-            ; single source of truth for the value), just compared inline
-            ; rather than slept through.
+            ; Non-blocking cooldown check, never a Sleep.
             lastClick := ctx.Get("mineLastClickTime", 0)
             if ((A_TickCount - lastClick) > ctx.timing.BaseMs("mineClickCooldown")) {
                 this._Click(ctx, outX, outY, &clickX, &clickY)
@@ -274,12 +210,9 @@ class MinePhase extends Phase {
                 ctx.failsafe.ResetPhaseTimer(ctx)
             }
         } else {
-            ; Not yet stable. Click once immediately upon finding the vein,
-            ; then re-click if stability still hasn't been reached after
-            ; walkReclickTimeoutMs - without this, a vein whose found
-            ; position keeps jittering (never landing within 2px for 2
-            ; consecutive ticks) would get exactly one click and then never
-            ; be clicked again, since IsStable() never becomes true.
+            ; Not yet stable - click once immediately, then re-click if
+            ; still not stable after walkReclickTimeoutMs (prevents
+            ; getting stuck if the position keeps jittering).
             lastClick := ctx.Get("mineLastClickTime", 0)
             if (lastClick = 0 || (A_TickCount - lastClick) > this._walkReclickTimeoutMs) {
                 this._Click(ctx, outX, outY, &clickX, &clickY)
@@ -294,21 +227,16 @@ class MinePhase extends Phase {
 }
 
 ; ============================================================
-; ClearRedPhase - direct port of auto-motherlode-v2.ahk's
-; ClearRedPhase (lines 240-315). Clears rockfall obstacles that
-; block the hopper walkway after the inventory fills up. Same
-; acquire/track shape as MinePhase, but searches the WHOLE
-; screen (a rockfall can appear anywhere) instead of a fixed
-; region, single color instead of two candidates, and no click
-; offset - so this is its own small class rather than a
-; generalization of MinePhase.
+; ClearRedPhase - clears rockfall obstacles blocking the hopper
+; walkway. Same acquire/track shape as MinePhase, but searches
+; the whole screen (a rockfall can appear anywhere), one color,
+; no click offset.
 ;
-; Exit condition: a full-screen search comes back completely
-; empty (no target currently locked) -> no more rockfalls ->
-; transition to clearYellow.
+; Exit: a full-screen search comes back empty (no target locked)
+; -> no more rockfalls -> transition to clearYellow.
 ; ============================================================
 class ClearRedPhase extends Phase {
-    __New(color, tolerance, reqW, reqH, trackBoxRadiusPx, stableTicksRequired, clearCooldownMs, runMode := false) {
+    __New(color, tolerance, reqW, reqH, trackBoxRadiusPx, stableTicksRequired, clearCooldownMs, moveTolerancePx, runMode := false) {
         super.__New("clearRed")
         this._color := color
         this._tolerance := tolerance
@@ -316,15 +244,12 @@ class ClearRedPhase extends Phase {
         this._reqH := reqH
         this._trackBoxRadiusPx := trackBoxRadiusPx
         this._clearCooldownMs := clearCooldownMs
-        this._lock := TargetLock(stableTicksRequired, 2)
+        this._lock := TargetLock(stableTicksRequired, moveTolerancePx)
         this._runMode := runMode
     }
 
-    ; Called by MinePhase on the mine->clearRed transition so a fresh
-    ; inventory-full cycle always starts this phase's TargetLock clean -
-    ; without this, a second cycle in the same script run (no process
-    ; restart) would resume with a stale stability streak carried over
-    ; from whatever rockfall was last tracked.
+    ; Called on the mine->clearRed transition so a fresh cycle starts
+    ; this phase's TargetLock clean, not with a stale stability streak.
     ResetForNewCycle() {
         this._lock.Reset()
     }
@@ -352,8 +277,8 @@ class ClearRedPhase extends Phase {
         return this._Track(ctx)
     }
 
-    ; Mode 1: no target locked - search the whole screen. Not found at all
-    ; means no more rockfalls anywhere, so move on to clearYellow.
+    ; Mode 1: no target locked - search the whole screen. Not found at
+    ; all means no more rockfalls, so move on to clearYellow.
     _Acquire(ctx) {
         found := ColorSearch.FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight,
             this._color, this._tolerance, this._reqW, this._reqH, &cx, &cy)
@@ -423,16 +348,14 @@ class ClearRedPhase extends Phase {
 }
 
 ; ============================================================
-; ClearYellowPhase - direct port of auto-motherlode-v2.ahk's
-; ClearYellowPhase (lines 317-369). Deposits mined ore into the
-; hopper. Exit check (indicator slot empty) runs FIRST every
-; tick, before searching - matching legacy's exact ordering.
+; ClearYellowPhase - deposits mined ore into the hopper. Exit
+; check (inventory empty) runs first every tick, before searching.
 ;
 ; Exit: once the ore is fully deposited, transitions to
-; withdrawSack (running to the ore sack) to continue the cycle.
+; withdrawSack to continue the cycle.
 ; ============================================================
 class ClearYellowPhase extends Phase {
-    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, entryDelayKey, runMode := false) {
+    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, entryDelayKey, moveTolerancePx, runMode := false) {
         super.__New("clearYellow")
         this._color := color
         this._tolerance := tolerance
@@ -440,14 +363,13 @@ class ClearYellowPhase extends Phase {
         this._reqH := reqH
         this._clickCooldownMs := clickCooldownMs
         this._entryDelayKey := entryDelayKey
-        this._lock := TargetLock(stableTicksRequired, 2)
+        this._lock := TargetLock(stableTicksRequired, moveTolerancePx)
         this._runMode := runMode
     }
 
-    ; See ClearRedPhase.ResetForNewCycle - same rationale, called by
-    ; MinePhase on the mine->clearRed transition (clearYellow is entered
-    ; only via clearRed, so resetting both phases' locks at that one
-    ; transition point covers a fresh entry into either).
+    ; Called by MinePhase on the mine->clearRed transition - clearYellow
+    ; is only entered via clearRed, so resetting both locks there covers
+    ; a fresh entry into either.
     ResetForNewCycle() {
         this._lock.Reset()
     }
@@ -487,14 +409,9 @@ class ClearYellowPhase extends Phase {
         ctx.Set("yellowTargetX", outX)
         ctx.Set("yellowTargetY", outY)
 
-        ; One-time settle delay on the very first tick this phase ever
-        ; finds the hopper - without this, since yellowStableTicks=0 makes
-        ; the hopper "instantly stable" the moment it's found, the first
-        ; click fires as fast as this very first search happens to
-        ; resolve, which feels inconsistent tick-to-tick rather than a
-        ; deliberate, consistent settle (same fix already applied to
-        ; DepositBankPhase's container click and both return-phase
-        ; markers).
+        ; One-time settle delay on the first tick the hopper is found -
+        ; yellowStableTicks=0 makes it "instantly stable", so without
+        ; this the first click fires as fast as the search resolves.
         if (!ctx.Get("yellowEntryDelayApplied", false)) {
             ctx.waiter.After(ctx.timing, this._entryDelayKey)
             ctx.Set("yellowEntryDelayApplied", true)
@@ -523,16 +440,12 @@ class ClearYellowPhase extends Phase {
 }
 
 ; ============================================================
-; WithdrawSackPhase - direct port of auto-motherlode-v2.ahk's
-; WithdrawSackPhase (lines 371-423). Clicks a fixed screen point
-; to run to/interact with the ore sack, then waits for the
-; inventory to receive items (checked via slot 2 OR slot 12,
-; since a gem can land in either) before moving to depositBank.
+; WithdrawSackPhase - clicks a fixed point to run to the ore
+; sack, then waits for the inventory to receive items (slot 2 OR
+; slot 12, since a gem can land in either) before moving on.
 ;
-; Exit: if the wait exceeds sackWaitTimeoutMs with no items
-; received, logs and stops the engine cleanly rather than
-; looping or re-clicking forever - matches the established
-; fail-safely-stop pattern from earlier phases.
+; Exit: if the wait exceeds sackWaitTimeoutMs, logs and stops the
+; engine cleanly rather than looping or re-clicking forever.
 ; ============================================================
 class WithdrawSackPhase extends Phase {
     __New(sackX, sackY, preClickDelayKey, reclickCooldownMs, waitTimeoutMs, runMode := false) {
@@ -546,9 +459,8 @@ class WithdrawSackPhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; No TargetLock here (fixed-point click, no tracking) - just the
-        ; scratch timestamps, which MinePhase already resets on the
-        ; mine->clearRed transition (sackLastClickTime/sackWaitStartedAt).
+        ; No TargetLock here - scratch timestamps are reset by MinePhase
+        ; on the mine->clearRed transition.
     }
 
     _Click(ctx, x, y) {
@@ -601,20 +513,12 @@ class WithdrawSackPhase extends Phase {
 }
 
 ; ============================================================
-; DepositBankPhase - direct port of auto-motherlode-v2.ahk's
-; DepositBankPhase (lines 425-478). Finds and clicks the
-; deposit-container (a magenta 0xFF00FF overlay marker), waits
-; for the deposit box's "Deposit All" button image to appear,
-; then clicks it - the terminal action of the whole mine/bank
-; cycle for now, since returning to the mining spot (phase 4)
-; isn't built yet.
+; DepositBankPhase - finds and clicks the deposit container (a
+; magenta 0xFF00FF marker), waits for the deposit box's "Deposit
+; All" button image to appear, then clicks it.
 ;
-; Exit: once the deposit button is clicked, logs completion and
-; stops the engine cleanly (matches the established pattern -
-; phase 4 doesn't exist, so this is the current end of the road)
-; rather than transitioning to a phase name that doesn't exist.
-; Also stops cleanly if the deposit-box image never appears
-; within bankImageWaitTimeoutMs.
+; Exit: once deposited, transitions to returnMine1. Stops the
+; engine cleanly if the deposit box image never appears.
 ; ============================================================
 class DepositBankPhase extends Phase {
     __New(color, tolerance, reqW, reqH, depositAnchor, imageWaitTimeoutMs, imagePollKey, preClickDelayKey, runMode := false) {
@@ -631,9 +535,8 @@ class DepositBankPhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; bankPreDelayApplied (the one-time settle-delay flag) is reset by
-        ; MinePhase's mine->clearRed transition, alongside its other
-        ; per-cycle scratch state.
+        ; bankPreDelayApplied is reset by MinePhase's mine->clearRed
+        ; transition, alongside the other per-cycle scratch state.
     }
 
     _Click(ctx, x, y) {
@@ -654,17 +557,9 @@ class DepositBankPhase extends Phase {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "depositBank"
 
-        ; One-time settle delay on first entry into this phase, BEFORE
-        ; searching - not after. Searching first and sleeping afterward
-        ; would click the coordinates found before the sleep, which go
-        ; stale while the character/camera is still moving (arriving
-        ; fresh from the sack), causing the click to land on whatever
-        ; happens to be at that old screen position instead of the
-        ; deposit container. Waiting first, then searching and clicking
-        ; immediately with no gap in between, guarantees the click always
-        ; targets a position found right now - same principle MinePhase/
-        ; ClearRedPhase/ClearYellowPhase already follow (never sleep
-        ; between finding a target and clicking it).
+        ; One-time settle delay BEFORE searching, not after - searching
+        ; first and sleeping afterward would click stale coordinates
+        ; once the character/camera has kept moving during the sleep.
         if (!ctx.Get("bankPreDelayApplied", false)) {
             ctx.waiter.After(ctx.timing, this._preClickDelayKey)
             ctx.Set("bankPreDelayApplied", true)
@@ -697,19 +592,11 @@ class DepositBankPhase extends Phase {
 
 ; ============================================================
 ; ReturnMine1Phase - step 1 of walking from the bank back to the
-; mining spot. Clicks a fixed screen point once, then waits for
-; an orange (0xFF8700) waypoint-arrival marker to appear in a
-; padded region around a calibrated point, with a re-click
-; failsafe if the marker doesn't appear within a cooldown of the
-; last click. Direct analog of auto-motherlode-v2.ahk's
-; ReturnMine1Phase (lines 480-516), just without the extra
-; settle-sleep legacy had after finding the marker (not part of
-; this user's spec).
+; mine. Clicks a fixed point once, waits for an orange marker to
+; appear near a calibrated point, with a re-click failsafe.
 ;
-; Exit: transitions to returnMine2 once the marker is found. If
-; the marker never appears within return1WaitTimeoutMs, logs and
-; stops the engine cleanly (same pattern as every other phase's
-; internal wait failsafe).
+; Exit: transitions to returnMine2 once the marker is found.
+; Stops the engine cleanly if it never appears.
 ; ============================================================
 class ReturnMine1Phase extends Phase {
     __New(clickX, clickY, markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, waitTimeoutMs, runMode := false) {
@@ -729,9 +616,8 @@ class ReturnMine1Phase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; Scratch timestamps (return1LastClickTime/return1WaitStartedAt) are
-        ; reset by ReturnMine2Phase's stage-2 full-cycle reset, alongside
-        ; every other phase's per-cycle state.
+        ; Scratch timestamps are reset by ReturnMine2Phase's stage-2
+        ; full-cycle reset, alongside every other phase's state.
     }
 
     _Click(ctx, x, y) {
@@ -762,9 +648,8 @@ class ReturnMine1Phase extends Phase {
 
         if (found) {
             ctx.Log("ReturnMine1Phase: Arrived at waypoint 1!")
-            ; Settle delay before handing off - without this, returnMine2's
-            ; very next tick would click the step-2 waypoint instantly,
-            ; before the character has actually finished arriving here.
+            ; Settle delay before handing off, or returnMine2 would
+            ; click the step-2 waypoint instantly on its first tick.
             ctx.waiter.After(ctx.timing, "return1PostMarkerDelay")
             return "returnMine2"
         }
@@ -792,16 +677,13 @@ class ReturnMine1Phase extends Phase {
 
 ; ============================================================
 ; ReturnMine2Phase - step 2 (walk + marker wait) and the final
-; approach click, combined as a 2-stage internal state machine
-; reported externally as the single phase "returnMine2" (matches
-; legacy's own internal-substage-under-one-phase-name pattern).
+; approach click, a 2-stage internal state machine under one
+; phase name.
 ;
-; Stage 1: click the step-2 point, wait for its orange marker
-; (same click/wait/failsafe shape as ReturnMine1Phase).
-; Stage 2: click the final fixed mine-spot point, wait
-; return2AfterClickWaitMs, then do a full per-cycle state reset
-; (mirroring legacy's ResetBotState()) and hand off to "mine" -
-; the completion of the entire mine/bank/return loop.
+; Stage 1: click the step-2 point, wait for its marker.
+; Stage 2: click the final mine-spot point, wait a fixed delay,
+; then fully reset per-cycle state and hand off to "mine" -
+; completing the whole loop.
 ; ============================================================
 class ReturnMine2Phase extends Phase {
     __New(clickX, clickY, markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, waitTimeoutMs, finalClickX, finalClickY, afterClickWaitMs, nextCyclePhases, runMode := false) {
@@ -825,9 +707,8 @@ class ReturnMine2Phase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; return2Stage/return2LastClickTime/return2WaitStartedAt are reset
-        ; by this phase's own stage-2 completion (the one place a fresh
-        ; cycle actually begins) - nothing to do here.
+        ; return2Stage/return2LastClickTime/return2WaitStartedAt are
+        ; reset by this phase's own stage-2 completion below.
     }
 
     _Click(ctx, x, y) {
@@ -854,8 +735,7 @@ class ReturnMine2Phase extends Phase {
         return this._Stage2(ctx)
     }
 
-    ; Stage 1: click the step-2 waypoint, wait for its marker - identical
-    ; shape to ReturnMine1Phase.
+    ; Stage 1: click the step-2 waypoint, wait for its marker.
     _Stage1(ctx) {
         rx1 := Max(0, this._markerX - this._searchPaddingPx)
         ry1 := Max(0, this._markerY - this._searchPaddingPx)
@@ -867,8 +747,8 @@ class ReturnMine2Phase extends Phase {
 
         if (found) {
             ctx.Log("ReturnMine2Phase: Saw waypoint 2 marker. Moving to final approach.")
-            ; Settle delay before advancing - without this, stage 2 would
-            ; fire the final approach click instantly on the very next tick.
+            ; Settle delay before advancing, or stage 2 would fire the
+            ; final approach click instantly on the next tick.
             ctx.waiter.After(ctx.timing, "return2PostMarkerDelay")
             ctx.Set("return2Stage", 2)
             ctx.Set("return2LastClickTime", 0)
@@ -896,8 +776,7 @@ class ReturnMine2Phase extends Phase {
     }
 
     ; Stage 2: click the final mine-spot point once, wait
-    ; afterClickWaitMs, then fully reset per-cycle state and hand off to
-    ; "mine" - the completion of the whole loop.
+    ; afterClickWaitMs, then fully reset and hand off to "mine".
     _Stage2(ctx) {
         lastClick := ctx.Get("return2LastClickTime", 0)
         if (lastClick == 0) {
@@ -913,11 +792,9 @@ class ReturnMine2Phase extends Phase {
 
         ctx.Log("ReturnMine2Phase: Wait complete. Handing off to mine phase.")
 
-        ; Full per-cycle reset, mirroring legacy's ResetBotState() right
-        ; before handing off to "mine" - without this, a second full
-        ; mine->bank->return cycle in the same script run would resume
-        ; every phase with stale target coordinates/timestamps/stability
-        ; streaks left over from the first cycle.
+        ; Full per-cycle reset before handing off to "mine" - without
+        ; this, a second full cycle would resume every phase with stale
+        ; state left over from the first one.
         ctx.Set("mineHasTarget", false)
         ctx.Set("mineTargetX", 0)
         ctx.Set("mineTargetY", 0)
@@ -949,9 +826,8 @@ class ReturnMine2Phase extends Phase {
 ; Wiring
 ; ============================================================
 
-; --- Config schema: every .ini key this bot needs, declared up front ---
-; Fails fast at Load() if any of these are missing from the .ini - no
-; silent fallback to a code-side default (ruleset 3.6).
+; Every .ini key this bot needs, declared up front - Config.Load()
+; fails fast listing all missing keys, no silent code-side defaults.
 schema := Map(
     "runnerTickMs", Map("section", "Tunables", "type", "int"),
     "phaseTimeoutMine", Map("section", "Tunables", "type", "int"),
@@ -959,6 +835,8 @@ schema := Map(
     "phaseTimeoutSack", Map("section", "Tunables", "type", "int"),
     "phaseTimeoutReturn", Map("section", "Tunables", "type", "int"),
     "colorTolerance", Map("section", "Tunables", "type", "int"),
+    "targetLockMoveTolerancePx", Map("section", "Tunables", "type", "int"),
+    "mineTrackBoxRadiusPx", Map("section", "Tunables", "type", "int"),
     "mineStableTicks", Map("section", "Tunables", "type", "int"),
     "veinClickOffsetX", Map("section", "Tunables", "type", "int"),
     "veinClickOffsetY", Map("section", "Tunables", "type", "int"),
@@ -1056,36 +934,25 @@ botOverlay := Overlay(8, 10, 10)
 
 ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, botWindowFocus, botOverlay)
 
-; --- Inventory: this user's measured layout - a fixed property of this
-; client window (not a game-state tunable), so it's a hardcoded constant
-; here rather than an .ini key, matching how legacy's lib/Grid.ahk treats
-; INVENTORY_FIRST_X etc. as hardcoded module-level constants. Recalibrate
-; this Map directly if the client window ever moves/resizes. Only the
-; DETECTION tuning (colorTolerance, indicatorSlot) is .ini-configurable. ---
+; Inventory layout is a fixed property of this client window (not a
+; game-state tunable), so it's a hardcoded constant, not an .ini key.
+; Recalibrate directly if the window ever moves/resizes.
 inventoryLayout := Map("firstX", 2099, "firstY", 801, "cols", 4, "rows", 7, "slotW", 72, "slotH", 64, "gapX", 12, "gapY", 8)
 ctx.inventory := Inventory(inventoryLayout)
-; Full requires BOTH indicatorSlot (28) AND secondaryIndicatorSlot (27)
-; occupied - a lone gem can land in slot 28 without the hopper ever
-; collecting it (gems aren't ore), which would make a 28-only check
-; falsely report "full" forever after a single gem. Requiring 27 too
-; means a gem alone in 28 (with 27 still empty) correctly reads as not
-; full, and "empty" (the clearYellow exit) is just the inverse of this
-; same combined gate.
+; Full requires BOTH indicatorSlot (28) AND secondaryIndicatorSlot (27) -
+; a lone gem can sit in slot 28 without the hopper collecting it, so 28
+; alone can't be trusted as "full".
 indicatorGate := SlotGate(botConfig.Get("indicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
 secondaryIndicatorGate := SlotGate(botConfig.Get("secondaryIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
 fullGate := AndGate([indicatorGate, secondaryIndicatorGate])
 ctx.inventory.SetFullGate(fullGate)
 ctx.inventory.SetEmptyGate(NotGate(fullGate))
 ; "Sack gave us something" - true if EITHER of two spread-out slots is
-; occupied, since a gem can land in any slot (WithdrawSackPhase's exit
-; check).
+; occupied, since a gem can land in any slot.
 sackGateA := SlotGate(botConfig.Get("sackGateSlotA"), botConfig.Get("colorTolerance"), ctx.inventory)
 sackGateB := SlotGate(botConfig.Get("sackGateSlotB"), botConfig.Get("colorTolerance"), ctx.inventory)
 ctx.inventory.SetSackGate(OrGate([sackGateA, sackGateB]))
 
-; --- Mine phase wiring - every value below now comes from the .ini
-; (see [Tunables] mineRegionX1/Y1/X2/Y2, veinColorLight/Dark, mineBlockW/H,
-; referencePointX/Y) rather than being hardcoded here. ---
 mineRegion := Map("x1", botConfig.Get("mineRegionX1"), "y1", botConfig.Get("mineRegionY1"), "x2", botConfig.Get("mineRegionX2"), "y2", botConfig.Get("mineRegionY2"))
 veinColors := [botConfig.Get("veinColorLight"), botConfig.Get("veinColorDark")]
 referencePoint := Map("x", botConfig.Get("referencePointX"), "y", botConfig.Get("referencePointY"))
@@ -1094,14 +961,14 @@ botClearRedPhase := ClearRedPhase(
     botConfig.Get("redColor"), botConfig.Get("redTolerance"),
     botConfig.Get("redBlockW"), botConfig.Get("redBlockH"),
     botConfig.Get("redTrackBoxRadiusPx"), botConfig.Get("redStableTicks"),
-    botConfig.Get("redClearCooldownMs"), botConfig.Get("runMode")
+    botConfig.Get("redClearCooldownMs"), botConfig.Get("targetLockMoveTolerancePx"), botConfig.Get("runMode")
 )
 
 botClearYellowPhase := ClearYellowPhase(
     botConfig.Get("yellowColor"), botConfig.Get("yellowTolerance"),
     botConfig.Get("yellowBlockW"), botConfig.Get("yellowBlockH"),
     botConfig.Get("yellowStableTicks"), botConfig.Get("yellowClickCooldownMs"),
-    "yellowEntryDelay", botConfig.Get("runMode")
+    "yellowEntryDelay", botConfig.Get("targetLockMoveTolerancePx"), botConfig.Get("runMode")
 )
 
 botWithdrawSackPhase := WithdrawSackPhase(
@@ -1110,10 +977,9 @@ botWithdrawSackPhase := WithdrawSackPhase(
     botConfig.Get("sackWaitTimeoutMs"), botConfig.Get("runMode")
 )
 
-; --- Deposit box "Deposit All" button image anchor - calibrated region is
-; bankImageAnchorX/Y padded by bankImageSearchPaddingPx in every direction,
-; matching legacy's padded-box approach around its own calibrated image
-; position. deposit-motherlode.png is 80x72px (confirmed on disk). ---
+; Deposit box "Deposit All" button image anchor - the search region is
+; the calibrated anchor padded by bankImageSearchPaddingPx.
+; deposit-motherlode.png is 80x72px (confirmed on disk).
 depositImagePath := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
 depositImageRegion := Map(
     "x1", botConfig.Get("bankImageAnchorX") - botConfig.Get("bankImageSearchPaddingPx"),
@@ -1156,8 +1022,9 @@ nextCyclePhases.Push(botReturnMine2Phase)
 botMinePhase := MinePhase(
     mineRegion, veinColors, referencePoint,
     botConfig.Get("colorTolerance"), botConfig.Get("mineBlockW"), botConfig.Get("mineBlockH"),
-    50,   ; trackBoxRadiusPx - legacy's 100x100 box = +/-50
+    botConfig.Get("mineTrackBoxRadiusPx"),
     botConfig.Get("mineStableTicks"),
+    botConfig.Get("targetLockMoveTolerancePx"),
     botConfig.Get("runMode"),
     botConfig.Get("veinClickOffsetX"),
     botConfig.Get("veinClickOffsetY"),

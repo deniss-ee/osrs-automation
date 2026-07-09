@@ -1,18 +1,13 @@
 ; ============================================================
 ; TargetLock.ahk
-; Stability-debounce tracking, matching legacy MinePhase's exact
-; semantics: the reported position ALWAYS updates to the latest
-; found coordinates (never freezes), while IsStable() is a
-; separate side flag counting consecutive ticks within
-; moveTolerancePx of the previous tick's position. Legacy uses
-; stability only to decide click cadence/tooltip text, never to
-; stop updating the tracked position - a real vein can drift
-; slightly (camera pan) and must keep being followed.
+; Stability-debounce tracking: the reported position always
+; updates to the latest found coordinates (never freezes), while
+; IsStable() is a separate flag counting consecutive ticks within
+; moveTolerancePx of the previous position - used only to decide
+; click cadence, never to stop following a drifting target.
 ;
-; Missing-ticks handling: if the target isn't found for
-; missingTicksToUnlock consecutive ticks, the tracker resets
-; (stability streak clears) - this is the "lost track of vein or
-; depleted" case from legacy, letting the caller re-search.
+; If the target isn't found for missingTicksToUnlock consecutive
+; ticks, the stability streak clears, signaling "lost, re-search".
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -31,16 +26,13 @@ class TargetLock {
 
     IsStable() => this._stableTicks >= this._stableTicksRequired
 
-    ; True once the tracker has given up on the target entirely (gone missing
-    ; for missingTicksToUnlock consecutive ticks) - the caller should treat
-    ; this as "depleted, search for a new target" (legacy: resets
-    ; mineTargetX/Y to 0).
+    ; True once the target has been missing for missingTicksToUnlock
+    ; consecutive ticks - the caller should treat this as "depleted,
+    ; search for a new target."
     IsLost() => this._missingTicks >= this._missingTicksToUnlock
 
     ; Feed one tick's raw find result. Always writes the latest coordinates
-    ; via out-params when found=true (never a stale/frozen value). Returns
-    ; found as-is, mirroring legacy's own `found` check straight after calling
-    ; FindFilledBlock.
+    ; via out-params when found=true (never a stale/frozen value).
     Observe(found, x, y, &outX, &outY) {
         if (!found) {
             this._missingTicks += 1

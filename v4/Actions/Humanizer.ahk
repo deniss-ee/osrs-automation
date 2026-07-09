@@ -1,10 +1,7 @@
 ; ============================================================
 ; Humanizer.ahk
-; Pure offset/jitter policy object - no timing role (that's
-; Waiter's job entirely, see ruleset 3.4). Replaces legacy's
-; global ENABLE_HUMANIZATION/MAX_CLICK_OFFSET_PX/MAX_DELAY_JITTER_MS
-; switches (lib/Click.ahk) with instance state so it can be
-; toggled/tuned per-bot without a global flag.
+; Pure offset/jitter policy object, tunable per-bot as instance
+; state - no timing role, that's Waiter's job entirely.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -17,8 +14,7 @@ class Humanizer {
     }
 
     ; Random offset bounded by +/- maxX/2, +/- maxY/2, capped at
-    ; +/- maxClickOffsetPx. Returns 0,0 when disabled. Matches
-    ; lib/Click.ahk's RandomOffset contract exactly.
+    ; +/- maxClickOffsetPx. Returns 0,0 when disabled.
     Offset(maxX, maxY, &dx, &dy) {
         if (!this.enabled) {
             dx := 0
@@ -32,9 +28,8 @@ class Humanizer {
     }
 
     ; Returns baseMs adjusted by +/- jitterPercent, capped at
-    ; +/- maxDelayJitterMs, floored at 30ms. Returns baseMs unchanged
-    ; when disabled. Matches lib/Click.ahk's JitterDelay contract exactly.
-    ; This is the function passed into Waiter's constructor as its jitterFn.
+    ; +/- maxDelayJitterMs, floored at 30ms. Unchanged when disabled.
+    ; Passed into Waiter's constructor as its jitterFn.
     Jitter(baseMs, jitterPercent := 15) {
         if (!this.enabled)
             return baseMs

@@ -1,10 +1,7 @@
 ; ============================================================
 ; Engine.ahk
-; Owns the phase graph and the tick loop. Directly ports
-; lib/TaskRunner.ahk's proven shape (busy-guard, try/finally,
-; per-phase timeout via FailSafe, "same name = stay" contract)
-; into a class, so the runtime behavior legacy bots already
-; rely on is unchanged - only the packaging is new.
+; Owns the phase graph and the tick loop - busy-guard, per-phase
+; timeout via FailSafe, "same name returned = stay" contract.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -24,8 +21,7 @@ class Engine {
         this._tickFn := () => this.Tick()
     }
 
-    ; Registers a Phase instance under its own .name. timeoutMs (default 0 =
-    ; unlimited) matches AddPhase's contract from lib/TaskRunner.ahk.
+    ; Registers a Phase under its own .name. timeoutMs=0 means unlimited.
     AddPhase(phase, timeoutMs := 0) {
         this._phases[phase.name] := phase
         this._timeouts[phase.name] := timeoutMs
@@ -46,8 +42,7 @@ class Engine {
         this.ctx.logger.Log("Engine: stopped - " reason)
     }
 
-    ; Force-jump to a phase regardless of current state - mirrors legacy's
-    ; F8/F9 manual-recovery hotkey pattern.
+    ; Force-jump to a phase regardless of current state (manual recovery).
     JumpToPhase(phaseName) {
         this.currentPhase := phaseName
         this.ctx.failsafe.EnterPhase(phaseName, this._timeouts.Get(phaseName, 0))

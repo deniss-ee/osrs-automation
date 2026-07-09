@@ -1,12 +1,9 @@
 ; ============================================================
 ; FailSafe.ahk
-; Centralizes the "no progress for too long -> stop safely"
-; rule so every Phase gets it for free instead of hand-rolling
-; its own timeout/failure counter (legacy repeated this pattern
-; ad hoc per-phase). Two independent tripwires:
-; - per-phase timeout, measured from last ResetPhaseTimer() call
-; - consecutive-failure counter, for "N failed attempts in a row"
-;   checks that aren't naturally time-based (e.g. image never found)
+; "No progress for too long -> stop safely", shared by every
+; Phase. Two independent tripwires:
+; - per-phase timeout, measured from the last ResetPhaseTimer() call
+; - consecutive-failure counter, for non-time-based failure checks
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -20,21 +17,20 @@ class FailSafe {
         this._maxConsecutiveFailures := 0
     }
 
-    ; Call once when entering a new phase, with that phase's configured timeout.
+    ; Call once when entering a new phase, with its configured timeout.
     EnterPhase(phaseName, timeoutMs := 0) {
         this._phaseEnteredAt := A_TickCount
         this._phaseTimeoutMs := timeoutMs
         this._phaseName := phaseName
     }
 
-    ; Call after real progress (a successful click, a confirmed state change) -
-    ; NOT on every tick. Matches legacy's ResetPhaseTimer contract exactly:
-    ; the timeout means "no progress for this long", not "total time in phase".
+    ; Call after real progress (a click, a confirmed state change) - NOT on
+    ; every tick. The timeout means "no progress this long", not "total time".
     ResetPhaseTimer(ctx) {
         this._phaseEnteredAt := A_TickCount
     }
 
-    ; True once the current phase has gone longer than its timeout with no
+    ; True once the phase has gone longer than its timeout with no
     ; ResetPhaseTimer call. Engine checks this before ticking a phase.
     HasPhaseTimedOut() {
         if (this._phaseTimeoutMs <= 0)
@@ -42,8 +38,7 @@ class FailSafe {
         return (A_TickCount - this._phaseEnteredAt) > this._phaseTimeoutMs
     }
 
-    ; Configure a consecutive-failure ceiling for the current phase (e.g.
-    ; "give up after 3 clicks with no color change"). 0 = unlimited.
+    ; Consecutive-failure ceiling for the current phase. 0 = unlimited.
     SetFailureBudget(maxConsecutiveFailures) {
         this._maxConsecutiveFailures := maxConsecutiveFailures
         this._consecutiveFailures := 0
@@ -63,9 +58,8 @@ class FailSafe {
         return this._consecutiveFailures >= this._maxConsecutiveFailures
     }
 
-    ; Called by Engine when either tripwire fires. Logs and signals the
-    ; caller to stop; does not itself perform a logout - that's a bot-level
-    ; concern (some bots may want a real in-game logout sequence).
+    ; Called by Engine when either tripwire fires. Logs and returns the
+    ; reason; a real logout (if wanted) is a bot-level concern.
     Trip(reason) {
         this._logger.Log("FailSafe: tripped - " reason)
         return reason
