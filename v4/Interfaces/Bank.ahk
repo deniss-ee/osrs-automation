@@ -22,7 +22,7 @@ class Bank {
     OpenChest(&x, &y) {
         if (!this._chestAnchor.Find(&x, &y))
             return false
-        this._clicker.Click(x, y)
+        this._clicker.ClickAt(x, y)
         return true
     }
 
@@ -30,7 +30,7 @@ class Bank {
     DepositAll(waiter, profile, pollKey, timeoutMs) {
         if (!this._depositAllAnchor.WaitFor(waiter, profile, pollKey, timeoutMs, &x, &y))
             return false
-        this._clicker.Click(x, y)
+        this._clicker.ClickAt(x, y)
         return true
     }
 

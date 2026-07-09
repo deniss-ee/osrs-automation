@@ -36,7 +36,7 @@ class Walk {
     ; Clicks the current waypoint's click point.
     ClickCurrent() {
         wp := this.CurrentWaypoint()
-        this._clicker.Click(wp.clickX, wp.clickY)
+        this._clicker.ClickAt(wp.clickX, wp.clickY)
     }
 
     ; Checks the current waypoint's arrival anchor; advances to the next

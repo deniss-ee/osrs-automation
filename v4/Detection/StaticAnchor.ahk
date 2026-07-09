@@ -13,14 +13,28 @@
 ; PNG-based anchor - direct analog of FindImageCenter/WaitForImageCenter
 ; from lib/Images.ahk (deposit interface, empty-sack banner, craft dialog).
 class ImageAnchor {
-    __New(region, imagePath, options := "") {
+    ; imageW/imageH: the PNG's own pixel dimensions, supplied by the caller
+    ; (not read from the file at runtime) - AHK's ImageSearch has no way to
+    ; query an image's size, and legacy's FindImageCenter takes the same
+    ; explicit w/h parameters for exactly this reason.
+    __New(region, imagePath, imageW, imageH, options := "") {
         this._region := region   ; {x1, y1, x2, y2}
         this._imagePath := imagePath
-        this._options := options
+        this._imageW := imageW
+        this._imageH := imageH
+        this._options := options   ; e.g. "*20" for ImageSearch's shade-variation tolerance
     }
 
+    ; ImageSearch returns the match's upper-left corner; converts to the
+    ; image's center point, matching legacy's FindImageCenter exactly.
     Find(&x, &y) {
-        throw Error("ImageAnchor.Find not yet implemented - ported from lib/Images.ahk in Phase 5")
+        r := this._region
+        pattern := this._options != "" ? this._options " " this._imagePath : this._imagePath
+        if (!ImageSearch(&foundX, &foundY, r["x1"], r["y1"], r["x2"], r["y2"], pattern))
+            return false
+        x := foundX + this._imageW // 2
+        y := foundY + this._imageH // 2
+        return true
     }
 
     ; Polls Find() until it succeeds or timeoutMs elapses, sleeping via the
