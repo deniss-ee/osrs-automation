@@ -1,0 +1,123 @@
+2026-07-10 21:48:20 Engine: started at phase 'goToFurnace'
+2026-07-10 21:48:21 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:48:21 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:48:26 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:48:26 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:48:40 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:48:41 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:48:41 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:48:45 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:48:46 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:48:46 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:48:46 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:48:47 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:48:47 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:48:48 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:48:49 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:48:49 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:48:49 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:48:54 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:48:54 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:49:09 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:49:09 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:49:09 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:49:14 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:49:14 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:49:14 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:49:14 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:49:15 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:49:15 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:49:16 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:49:17 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:49:17 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:49:17 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:49:22 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:49:22 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:49:23 Engine: stopped - Stopped (F6)
+2026-07-10 21:55:51 Engine: started at phase 'goToFurnace'
+2026-07-10 21:55:51 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:55:51 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:55:56 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:55:56 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:56:11 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:56:11 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:56:11 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:56:16 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:56:16 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:56:16 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:56:17 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:56:17 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:56:17 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:56:18 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:56:18 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:56:19 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:56:19 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:56:23 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:56:23 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:56:38 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:56:38 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:56:38 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:56:43 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:56:43 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:56:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:56:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:56:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:56:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:56:45 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:56:45 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:56:46 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:56:46 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:56:50 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:56:51 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:57:05 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:57:05 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:57:05 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:57:10 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:57:10 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:57:10 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:57:11 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:57:11 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:57:11 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:57:12 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:57:12 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:57:13 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:57:13 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:57:17 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:57:17 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:57:32 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:57:32 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:57:32 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:57:37 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:57:37 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:57:37 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:57:38 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:57:38 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:57:38 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:57:38 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:57:39 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:57:39 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:57:39 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:57:44 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:57:45 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:57:48 Engine: stopped - Stopped (F6)
+2026-07-10 21:59:22 Engine: started at phase 'goToFurnace'
+2026-07-10 21:59:22 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:59:22 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:59:27 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:59:27 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 21:59:42 SmeltPhase: Inventory empty. Moving to bank.
+2026-07-10 21:59:42 GoToBankPhase: Found bank marker at [1799, 409]
+2026-07-10 21:59:43 GoToBankPhase: Waiting for bank interface...
+2026-07-10 21:59:47 GoToBankPhase: Bank interface open. Depositing.
+2026-07-10 21:59:47 DepositAndWithdrawPhase: Deposited ingots at [1363, 999]
+2026-07-10 21:59:48 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/4)
+2026-07-10 21:59:48 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (2/4)
+2026-07-10 21:59:48 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (3/4)
+2026-07-10 21:59:48 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (4/4)
+2026-07-10 21:59:49 DepositAndWithdrawPhase: Clicked bank slot 2 at [757, 235] (1/1)
+2026-07-10 21:59:49 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.
+2026-07-10 21:59:49 GoToFurnacePhase: Found furnace marker at [457, 984]
+2026-07-10 21:59:49 GoToFurnacePhase: Waiting for smelt dialog...
+2026-07-10 21:59:54 GoToFurnacePhase: Smelt dialog visible. Confirming.
+2026-07-10 21:59:55 SmeltPhase: Pressed space to confirm smelt dialog
+2026-07-10 22:00:01 Engine: stopped - Stopped (F6)

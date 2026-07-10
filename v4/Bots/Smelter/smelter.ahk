@@ -1,11 +1,11 @@
 ; ============================================================
-; firemaking.ahk
-; v4 entry point + all Firemaking phases, one file (single
-; bot/single loop, same shape as Motherlode). Shared framework
-; classes stay in their own files.
+; smelter.ahk
+; v4 entry point + all Smelter phases, one file (single
+; bot/single loop, same shape as Motherlode/Firemaking). Shared
+; framework classes stay in their own files.
 ;
 ; First version: assumes F5 is pressed with a full inventory of
-; logs already in hand - withdrawing when NOT already full is a
+; ore already in hand - withdrawing when NOT already full is a
 ; later addition.
 ;
 ; Isolation: reads/writes only v4's own config/ and logs/ - never
@@ -38,15 +38,15 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Diagnostics\Overlay.ahk
 
 ; ============================================================
-; GoToFirePhase - verifies the green firemaking-spot marker,
-; clicks it, then waits for craft-marker-1.png (the "burn logs"
-; dialog) to appear.
+; GoToFurnacePhase - verifies the magenta furnace marker, clicks
+; it, then waits for craft-marker-1.png (the "smelt X" dialog)
+; to appear.
 ;
-; Exit: once the dialog image is found, transitions to burnLogs.
+; Exit: once the dialog image is found, transitions to smelt.
 ; ============================================================
-class GoToFirePhase extends Phase {
+class GoToFurnacePhase extends Phase {
     __New(markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, markerWaitTimeoutMs, craftAnchor, craftWaitTimeoutMs, craftPollKey, runMode := false) {
-        super.__New("goToFire")
+        super.__New("goToFurnace")
         this._markerX := markerX
         this._markerY := markerY
         this._markerW := markerW
@@ -63,7 +63,8 @@ class GoToFirePhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; Scratch timestamps are reset by WithdrawLogsPhase's per-cycle reset.
+        ; Scratch timestamps are reset by DepositAndWithdrawPhase's
+        ; per-cycle reset.
     }
 
     _Click(ctx, x, y) {
@@ -82,7 +83,7 @@ class GoToFirePhase extends Phase {
 
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "goToFire"
+            return "goToFurnace"
 
         rx1 := Max(0, this._markerX - this._searchPaddingPx)
         ry1 := Max(0, this._markerY - this._searchPaddingPx)
@@ -93,92 +94,92 @@ class GoToFirePhase extends Phase {
             this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy)
 
         if (!found) {
-            waitStartedAt := ctx.Get("fireMarkerWaitStartedAt", 0)
+            waitStartedAt := ctx.Get("furnaceMarkerWaitStartedAt", 0)
             if (waitStartedAt == 0) {
-                ctx.Set("fireMarkerWaitStartedAt", A_TickCount)
+                ctx.Set("furnaceMarkerWaitStartedAt", A_TickCount)
             } else if ((A_TickCount - waitStartedAt) > this._markerWaitTimeoutMs) {
-                ctx.Log("GoToFirePhase: Timed out waiting for the fire marker - stopping")
-                ctx.engine.Stop("Timed out waiting for fire marker")
-                return "goToFire"
+                ctx.Log("GoToFurnacePhase: Timed out waiting for the furnace marker - stopping")
+                ctx.engine.Stop("Timed out waiting for furnace marker")
+                return "goToFurnace"
             }
 
-            lastClick := ctx.Get("fireMarkerLastClickTime", 0)
+            lastClick := ctx.Get("furnaceMarkerLastClickTime", 0)
             if (lastClick == 0 || (A_TickCount - lastClick) > this._reclickCooldownMs) {
                 this._Click(ctx, this._markerX, this._markerY)
-                ctx.Set("fireMarkerLastClickTime", A_TickCount)
-                ctx.Log("GoToFirePhase: Clicked fire marker at [" this._markerX ", " this._markerY "]")
+                ctx.Set("furnaceMarkerLastClickTime", A_TickCount)
+                ctx.Log("GoToFurnacePhase: Clicked furnace marker at [" this._markerX ", " this._markerY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
             }
-            return "goToFire"
+            return "goToFurnace"
         }
 
-        if (!ctx.Get("fireMarkerClicked", false)) {
-            ctx.Log("GoToFirePhase: Found fire marker at [" cx ", " cy "]")
+        if (!ctx.Get("furnaceMarkerClicked", false)) {
+            ctx.Log("GoToFurnacePhase: Found furnace marker at [" cx ", " cy "]")
             this._Click(ctx, cx, cy)
-            ctx.Set("fireMarkerClicked", true)
+            ctx.Set("furnaceMarkerClicked", true)
             ctx.failsafe.ResetPhaseTimer(ctx)
         }
 
-        ctx.Log("GoToFirePhase: Waiting for burn dialog...")
+        ctx.Log("GoToFurnacePhase: Waiting for smelt dialog...")
         if (!this._craftAnchor.WaitFor(ctx.waiter, ctx.timing, this._craftPollKey, this._craftWaitTimeoutMs, &dx, &dy)) {
-            ctx.Log("GoToFirePhase: Timed out waiting for burn dialog - stopping")
-            ctx.engine.Stop("Timed out waiting for burn dialog")
-            return "goToFire"
+            ctx.Log("GoToFurnacePhase: Timed out waiting for smelt dialog - stopping")
+            ctx.engine.Stop("Timed out waiting for smelt dialog")
+            return "goToFurnace"
         }
 
-        ctx.Log("GoToFirePhase: Burn dialog visible. Confirming.")
-        return "burnLogs"
+        ctx.Log("GoToFurnacePhase: Smelt dialog visible. Confirming.")
+        return "smelt"
     }
 }
 
 ; ============================================================
-; BurnLogsPhase - presses space once to confirm the burn dialog,
-; then just waits (firemaking runs on its own) until the last
-; inventory slot empties.
+; SmeltPhase - presses space once to confirm the smelt dialog,
+; then just waits (smelting runs on its own) until the
+; configured indicator slot empties.
 ;
 ; Exit: once inventory is empty, transitions to goToBank.
 ; ============================================================
-class BurnLogsPhase extends Phase {
+class SmeltPhase extends Phase {
     __New(keyAction, spaceSettleKey, runMode := false) {
-        super.__New("burnLogs")
+        super.__New("smelt")
         this._keyAction := keyAction
         this._spaceSettleKey := spaceSettleKey
         this._runMode := runMode
     }
 
     ResetForNewCycle() {
-        ; spacePressed is reset by WithdrawLogsPhase's per-cycle reset.
+        ; spacePressed is reset by DepositAndWithdrawPhase's per-cycle reset.
     }
 
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "burnLogs"
+            return "smelt"
 
         if (!ctx.Get("spacePressed", false)) {
             this._keyAction.Press("space")
             ctx.waiter.After(ctx.timing, this._spaceSettleKey)
             ctx.Set("spacePressed", true)
-            ctx.Log("BurnLogsPhase: Pressed space to confirm burn dialog")
+            ctx.Log("SmeltPhase: Pressed space to confirm smelt dialog")
             ctx.failsafe.ResetPhaseTimer(ctx)
-            return "burnLogs"
+            return "smelt"
         }
 
         if (ctx.inventory.IsEmpty()) {
-            ctx.Log("BurnLogsPhase: Inventory empty. Moving to bank.")
+            ctx.Log("SmeltPhase: Inventory empty. Moving to bank.")
             return "goToBank"
         }
 
-        return "burnLogs"
+        return "smelt"
     }
 }
 
 ; ============================================================
 ; GoToBankPhase - verifies the blue bank-booth marker, clicks
-; it, then waits for deposit-default.png (a pure "bank is open"
-; signal - no deposit-all is ever clicked here).
+; it, then waits for deposit-default.png to appear (the bank
+; interface signal).
 ;
 ; Exit: once the bank-open image is found, transitions to
-; withdrawLogs.
+; depositAndWithdraw.
 ; ============================================================
 class GoToBankPhase extends Phase {
     __New(markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, markerWaitTimeoutMs, bankOpenAnchor, bankOpenWaitTimeoutMs, bankOpenPollKey, runMode := false) {
@@ -199,7 +200,8 @@ class GoToBankPhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; Scratch timestamps are reset by WithdrawLogsPhase's per-cycle reset.
+        ; Scratch timestamps are reset by DepositAndWithdrawPhase's
+        ; per-cycle reset.
     }
 
     _Click(ctx, x, y) {
@@ -262,23 +264,25 @@ class GoToBankPhase extends Phase {
             return "goToBank"
         }
 
-        ctx.Log("GoToBankPhase: Bank interface open. Withdrawing.")
-        return "withdrawLogs"
+        ctx.Log("GoToBankPhase: Bank interface open. Depositing.")
+        return "depositAndWithdraw"
     }
 }
 
 ; ============================================================
-; WithdrawLogsPhase - withdraws a multi-slot plan (each slot
-; clicked its own configured number of times - currently one
-; slot/one click for logs, but the same shape Smelter uses for
-; multi-slot withdraws in case this ever needs more than one
-; slot), then applies a settle delay before fully resetting
-; per-cycle state and handing off back to goToFire.
+; DepositAndWithdrawPhase - re-finds deposit-default.png and
+; clicks its own found center (deposit-all), then withdraws a
+; multi-slot plan (each slot clicked its own configured number
+; of times), then settles and fully resets per-cycle state
+; before handing off back to goToFurnace.
 ; ============================================================
-class WithdrawLogsPhase extends Phase {
+class DepositAndWithdrawPhase extends Phase {
     ; withdrawPlan: array of {slotIndex, clicks} in withdraw order.
-    __New(bank, withdrawPlan, clickIntervalMs, settleDelayKey, nextCyclePhases, runMode := false) {
-        super.__New("withdrawLogs")
+    __New(bankOpenAnchor, bankOpenPollKey, bankOpenWaitTimeoutMs, bank, withdrawPlan, clickIntervalMs, settleDelayKey, nextCyclePhases, runMode := false) {
+        super.__New("depositAndWithdraw")
+        this._bankOpenAnchor := bankOpenAnchor
+        this._bankOpenPollKey := bankOpenPollKey
+        this._bankOpenWaitTimeoutMs := bankOpenWaitTimeoutMs
         this._bank := bank
         this._withdrawPlan := withdrawPlan
         this._clickIntervalMs := clickIntervalMs
@@ -288,8 +292,8 @@ class WithdrawLogsPhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; withdrawPlanIndex/withdrawClicksDone are reset by this phase's
-        ; own completion below.
+        ; depositClicked/withdrawPlanIndex/withdrawClicksDone are reset by
+        ; this phase's own completion below.
     }
 
     _Click(ctx, x, y) {
@@ -308,7 +312,21 @@ class WithdrawLogsPhase extends Phase {
 
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "withdrawLogs"
+            return "depositAndWithdraw"
+
+        if (!ctx.Get("depositClicked", false)) {
+            if (!this._bankOpenAnchor.WaitFor(ctx.waiter, ctx.timing, this._bankOpenPollKey, this._bankOpenWaitTimeoutMs, &dx, &dy)) {
+                ctx.Log("DepositAndWithdrawPhase: Timed out waiting for deposit box - stopping")
+                ctx.engine.Stop("Timed out waiting for deposit box")
+                return "depositAndWithdraw"
+            }
+
+            this._Click(ctx, dx, dy)
+            ctx.Set("depositClicked", true)
+            ctx.Log("DepositAndWithdrawPhase: Deposited ingots at [" dx ", " dy "]")
+            ctx.failsafe.ResetPhaseTimer(ctx)
+            return "depositAndWithdraw"
+        }
 
         planIndex := ctx.Get("withdrawPlanIndex", 1)
         if (planIndex <= this._withdrawPlan.Length) {
@@ -318,44 +336,45 @@ class WithdrawLogsPhase extends Phase {
             if (clicksDone >= entry["clicks"]) {
                 ctx.Set("withdrawPlanIndex", planIndex + 1)
                 ctx.Set("withdrawClicksDone", 0)
-                return "withdrawLogs"
+                return "depositAndWithdraw"
             }
 
             lastClick := ctx.Get("withdrawLastClickTime", 0)
             if (lastClick != 0 && (A_TickCount - lastClick) < this._clickIntervalMs)
-                return "withdrawLogs"
+                return "depositAndWithdraw"
 
             this._bank.WithdrawSlot(entry["slotIndex"], &x, &y)
             this._Click(ctx, x, y)
             ctx.Set("withdrawClicksDone", clicksDone + 1)
             ctx.Set("withdrawLastClickTime", A_TickCount)
-            ctx.Log("WithdrawLogsPhase: Clicked bank slot " entry["slotIndex"] " at [" x ", " y "] (" clicksDone + 1 "/" entry["clicks"] ")")
+            ctx.Log("DepositAndWithdrawPhase: Clicked bank slot " entry["slotIndex"] " at [" x ", " y "] (" clicksDone + 1 "/" entry["clicks"] ")")
             ctx.failsafe.ResetPhaseTimer(ctx)
-            return "withdrawLogs"
+            return "depositAndWithdraw"
         }
 
-        ; One-time settle delay before handing off - the fire marker may not
-        ; be rendered/stable in the client immediately after withdrawing
-        ; (character/camera still catching up), same bug class fixed
-        ; repeatedly in Motherlode. Tune postWithdrawSettleDelayMs live.
+        ; One-time settle delay before handing off - the furnace marker may
+        ; not be rendered/stable in the client immediately after
+        ; withdrawing (character/camera still catching up), same bug class
+        ; fixed repeatedly in Motherlode/Firemaking. Tune this live.
         ctx.waiter.After(ctx.timing, this._settleDelayKey)
 
-        ctx.Log("WithdrawLogsPhase: Withdraw plan complete. Handing off to fire phase.")
+        ctx.Log("DepositAndWithdrawPhase: Withdraw plan complete. Handing off to furnace phase.")
 
-        ctx.Set("fireMarkerWaitStartedAt", 0)
-        ctx.Set("fireMarkerLastClickTime", 0)
-        ctx.Set("fireMarkerClicked", false)
+        ctx.Set("furnaceMarkerWaitStartedAt", 0)
+        ctx.Set("furnaceMarkerLastClickTime", 0)
+        ctx.Set("furnaceMarkerClicked", false)
         ctx.Set("spacePressed", false)
         ctx.Set("bankMarkerWaitStartedAt", 0)
         ctx.Set("bankMarkerLastClickTime", 0)
         ctx.Set("bankMarkerClicked", false)
+        ctx.Set("depositClicked", false)
         ctx.Set("withdrawPlanIndex", 1)
         ctx.Set("withdrawClicksDone", 0)
         ctx.Set("withdrawLastClickTime", 0)
         for phase in this._nextCyclePhases
             phase.ResetForNewCycle()
 
-        return "goToFire"
+        return "goToFurnace"
     }
 }
 
@@ -365,24 +384,25 @@ class WithdrawLogsPhase extends Phase {
 
 schema := Map(
     "runnerTickMs", Map("section", "Tunables", "type", "int"),
-    "phaseTimeoutFire", Map("section", "Tunables", "type", "int"),
+    "phaseTimeoutFurnace", Map("section", "Tunables", "type", "int"),
     "phaseTimeoutBank", Map("section", "Tunables", "type", "int"),
     "colorTolerance", Map("section", "Tunables", "type", "int"),
-    "fireMarkerX", Map("section", "Tunables", "type", "int"),
-    "fireMarkerY", Map("section", "Tunables", "type", "int"),
-    "fireMarkerW", Map("section", "Tunables", "type", "int"),
-    "fireMarkerH", Map("section", "Tunables", "type", "int"),
-    "fireMarkerColor", Map("section", "Tunables", "type", "color"),
-    "fireMarkerTolerance", Map("section", "Tunables", "type", "int"),
-    "fireMarkerSearchPaddingPx", Map("section", "Tunables", "type", "int"),
-    "fireMarkerReclickCooldownMs", Map("section", "Tunables", "type", "int"),
-    "fireMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerX", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerY", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerW", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerH", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerColor", Map("section", "Tunables", "type", "color"),
+    "furnaceMarkerTolerance", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerSearchPaddingPx", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerReclickCooldownMs", Map("section", "Tunables", "type", "int"),
+    "furnaceMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "craftMarkerAnchorX", Map("section", "Tunables", "type", "int"),
     "craftMarkerAnchorY", Map("section", "Tunables", "type", "int"),
     "craftMarkerImageW", Map("section", "Tunables", "type", "int"),
     "craftMarkerImageH", Map("section", "Tunables", "type", "int"),
     "craftMarkerSearchPaddingPx", Map("section", "Tunables", "type", "int"),
     "craftMarkerWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
+    "smeltIndicatorSlot", Map("section", "Tunables", "type", "int"),
     "bankMarkerX", Map("section", "Tunables", "type", "int"),
     "bankMarkerY", Map("section", "Tunables", "type", "int"),
     "bankMarkerW", Map("section", "Tunables", "type", "int"),
@@ -406,9 +426,10 @@ schema := Map(
     "withdrawSlotCount", Map("section", "Tunables", "type", "int"),
     "withdrawSlot1Index", Map("section", "Tunables", "type", "int"),
     "withdrawSlot1Clicks", Map("section", "Tunables", "type", "int"),
+    "withdrawSlot2Index", Map("section", "Tunables", "type", "int"),
+    "withdrawSlot2Clicks", Map("section", "Tunables", "type", "int"),
     "withdrawClickIntervalMs", Map("section", "Tunables", "type", "int"),
-    "runMode", Map("section", "Settings", "type", "int"),
-    "indicatorSlot", Map("section", "Settings", "type", "int")
+    "runMode", Map("section", "Settings", "type", "int")
 )
 timingSchema := Map(
     "clickSettle", Map("section", "Tunables", "baseMsKey", "clickSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
@@ -419,11 +440,11 @@ timingSchema := Map(
     "postWithdrawSettle", Map("section", "Tunables", "baseMsKey", "postWithdrawSettleDelayMs")
 )
 
-iniPath := A_ScriptDir "\..\..\config\auto-firemaking-v2.ini"
+iniPath := A_ScriptDir "\..\..\config\auto-smelter-v2.ini"
 botConfig := Config(iniPath, schema, timingSchema)
 botConfig.Load()
 
-botLogger := Logger(A_ScriptDir "\..\..\logs\auto-firemaking-v4-debug.log")
+botLogger := Logger(A_ScriptDir "\..\..\logs\auto-smelter-v4-debug.log")
 botHumanizer := Humanizer(false)
 botClicker := Clicker(botHumanizer)
 botFailsafe := FailSafe(botLogger)
@@ -436,14 +457,15 @@ ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, b
 
 ; Inventory layout is a fixed property of this client window (not a
 ; game-state tunable), so it's a hardcoded constant - same values as
-; Motherlode's calibration for this window.
+; Motherlode/Firemaking's calibration for this window.
 inventoryLayout := Map("firstX", 2099, "firstY", 801, "cols", 4, "rows", 7, "slotW", 72, "slotH", 64, "gapX", 12, "gapY", 8)
 ctx.inventory := Inventory(inventoryLayout)
-emptyGate := SlotGate(botConfig.Get("indicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
+emptyGate := SlotGate(botConfig.Get("smeltIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
 ctx.inventory.SetFullGate(emptyGate)
 ctx.inventory.SetEmptyGate(NotGate(emptyGate))
 
-; craft-marker-1.png - shown once the "burn logs" dialog opens.
+; craft-marker-1.png - shown once the "smelt X" dialog opens (same image
+; Firemaking uses for its own crafting dialog).
 craftImagePath := A_ScriptDir "\..\..\Images\craft-marker-1.png"
 craftImageRegion := Map(
     "x1", botConfig.Get("craftMarkerAnchorX") - botConfig.Get("craftMarkerSearchPaddingPx"),
@@ -453,8 +475,8 @@ craftImageRegion := Map(
 )
 craftAnchor := ImageAnchor(craftImageRegion, craftImagePath, botConfig.Get("craftMarkerImageW"), botConfig.Get("craftMarkerImageH"))
 
-; deposit-default.png - used only to confirm the bank interface opened;
-; never clicked as "deposit all" in this bot.
+; deposit-default.png - clicked directly as deposit-all (unlike Firemaking,
+; where this same image is only a detection signal).
 bankOpenImagePath := A_ScriptDir "\..\..\Images\deposit-default.png"
 bankOpenImageRegion := Map(
     "x1", botConfig.Get("bankOpenAnchorX") - botConfig.Get("bankOpenSearchPaddingPx"),
@@ -468,21 +490,30 @@ bankSlotLayout := Map(
     "firstX", botConfig.Get("bankSlotFirstX"), "firstY", botConfig.Get("bankSlotFirstY"),
     "pitchX", botConfig.Get("bankSlotPitchX"), "slotW", botConfig.Get("bankSlotW"), "slotH", botConfig.Get("bankSlotH")
 )
-; chestAnchor is unused by this bot (GoToBankPhase clicks the blue marker
-; directly via ColorSearch, not through Bank.OpenChest's own anchor) -
-; OpenChest is still reused for its click-and-report shape.
+; chestAnchor/depositAllAnchor are unused by this bot's own Bank methods
+; (GoToBankPhase/DepositAndWithdrawPhase click markers/images directly via
+; ColorSearch/StaticAnchor, not through Bank.OpenChest/DepositAll) - Bank is
+; constructed here only for its WithdrawSlot coordinate math.
 botBank := Bank(bankOpenAnchor, bankOpenAnchor, botClicker, bankSlotLayout)
 
-botGoToFirePhase := GoToFirePhase(
-    botConfig.Get("fireMarkerX"), botConfig.Get("fireMarkerY"),
-    botConfig.Get("fireMarkerW"), botConfig.Get("fireMarkerH"),
-    botConfig.Get("fireMarkerColor"), botConfig.Get("fireMarkerTolerance"),
-    botConfig.Get("fireMarkerSearchPaddingPx"), botConfig.Get("fireMarkerReclickCooldownMs"),
-    botConfig.Get("fireMarkerWaitTimeoutMs"), craftAnchor,
+; Withdraw plan: ordered list of {slotIndex, clicks}, built from .ini so the
+; slot count/indices/click counts are all tunable, not hardcoded.
+withdrawPlan := []
+loop botConfig.Get("withdrawSlotCount") {
+    n := A_Index
+    withdrawPlan.Push(Map("slotIndex", botConfig.Get("withdrawSlot" n "Index"), "clicks", botConfig.Get("withdrawSlot" n "Clicks")))
+}
+
+botGoToFurnacePhase := GoToFurnacePhase(
+    botConfig.Get("furnaceMarkerX"), botConfig.Get("furnaceMarkerY"),
+    botConfig.Get("furnaceMarkerW"), botConfig.Get("furnaceMarkerH"),
+    botConfig.Get("furnaceMarkerColor"), botConfig.Get("furnaceMarkerTolerance"),
+    botConfig.Get("furnaceMarkerSearchPaddingPx"), botConfig.Get("furnaceMarkerReclickCooldownMs"),
+    botConfig.Get("furnaceMarkerWaitTimeoutMs"), craftAnchor,
     botConfig.Get("craftMarkerWaitTimeoutMs"), "craftMarkerPoll", botConfig.Get("runMode")
 )
 
-botBurnLogsPhase := BurnLogsPhase(botKeyAction, "spacePressSettle", botConfig.Get("runMode"))
+botSmeltPhase := SmeltPhase(botKeyAction, "spacePressSettle", botConfig.Get("runMode"))
 
 botGoToBankPhase := GoToBankPhase(
     botConfig.Get("bankMarkerX"), botConfig.Get("bankMarkerY"),
@@ -493,31 +524,23 @@ botGoToBankPhase := GoToBankPhase(
     botConfig.Get("bankOpenWaitTimeoutMs"), "bankOpenPoll", botConfig.Get("runMode")
 )
 
-nextCyclePhases := [botGoToFirePhase, botBurnLogsPhase, botGoToBankPhase]
+nextCyclePhases := [botGoToFurnacePhase, botSmeltPhase, botGoToBankPhase]
 
-; Withdraw plan: ordered list of {slotIndex, clicks}, built from .ini so the
-; slot count/indices/click counts are all tunable, not hardcoded - same
-; shape Smelter uses for its own (currently larger) withdraw plan.
-withdrawPlan := []
-loop botConfig.Get("withdrawSlotCount") {
-    n := A_Index
-    withdrawPlan.Push(Map("slotIndex", botConfig.Get("withdrawSlot" n "Index"), "clicks", botConfig.Get("withdrawSlot" n "Clicks")))
-}
-
-botWithdrawLogsPhase := WithdrawLogsPhase(
-    botBank, withdrawPlan, botConfig.Get("withdrawClickIntervalMs"), "postWithdrawSettle",
-    nextCyclePhases, botConfig.Get("runMode")
+botDepositAndWithdrawPhase := DepositAndWithdrawPhase(
+    bankOpenAnchor, "bankOpenPoll", botConfig.Get("bankOpenWaitTimeoutMs"),
+    botBank, withdrawPlan, botConfig.Get("withdrawClickIntervalMs"),
+    "postWithdrawSettle", nextCyclePhases, botConfig.Get("runMode")
 )
-nextCyclePhases.Push(botWithdrawLogsPhase)
+nextCyclePhases.Push(botDepositAndWithdrawPhase)
 
 botEngine := Engine(ctx, botConfig.Get("runnerTickMs"))
 ctx.engine := botEngine
-botEngine.AddPhase(botGoToFirePhase, botConfig.Get("phaseTimeoutFire"))
-botEngine.AddPhase(botBurnLogsPhase, botConfig.Get("phaseTimeoutFire"))
+botEngine.AddPhase(botGoToFurnacePhase, botConfig.Get("phaseTimeoutFurnace"))
+botEngine.AddPhase(botSmeltPhase, botConfig.Get("phaseTimeoutFurnace"))
 botEngine.AddPhase(botGoToBankPhase, botConfig.Get("phaseTimeoutBank"))
-botEngine.AddPhase(botWithdrawLogsPhase, botConfig.Get("phaseTimeoutBank"))
+botEngine.AddPhase(botDepositAndWithdrawPhase, botConfig.Get("phaseTimeoutBank"))
 
-F5:: botEngine.Start("goToFire")
+F5:: botEngine.Start("goToFurnace")
 F6:: {
     botEngine.Stop("Stopped (F6)")
     botOverlay.Clear()
