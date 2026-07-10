@@ -119,8 +119,57 @@ class GoToFurnacePhase extends Phase {
     }
 }
 
-; SmeltPhase/GoToBankPhase are the shared PressAndWaitEmptyPhase and
-; GoToBankPhase classes from Core/SharedPhases.ahk - see Wiring below.
+; GoToBankPhase is the shared class from Core/SharedPhases.ahk - see
+; Wiring below.
+
+; ============================================================
+; SmeltPhase - presses space once to confirm the smelt dialog,
+; calibrating a SlotSignatureGate baseline on the ore-filled
+; indicator slot at that instant, then waits until that slot's
+; contents change (ore -> bar) - NOT until the slot empties,
+; since a smelted bar still occupies the slot, so SlotGate/
+; IsEmpty() never fires. Bot-specific rather than the shared
+; PressAndWaitEmptyPhase for exactly this reason.
+;
+; Exit: once the slot's signature changes, transitions to goToBank.
+; ============================================================
+class SmeltPhase extends Phase {
+    __New(keyAction, spaceSettleKey, signatureGate) {
+        super.__New("smelt")
+        this._keyAction := keyAction
+        this._spaceSettleKey := spaceSettleKey
+        this._signatureGate := signatureGate
+    }
+
+    ResetForNewCycle() {
+        ; keyPressed is reset by DepositAndWithdrawPhase's per-cycle reset.
+    }
+
+    Run(ctx) {
+        if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
+            return "smelt"
+
+        if (!ctx.Get("keyPressed", false)) {
+            this._keyAction.Press("space")
+            ctx.waiter.After(ctx.timing, this._spaceSettleKey)
+            ; Calibrate while ore is still visible in the slot, right after
+            ; confirming the dialog - the baseline this bot's "done" check
+            ; compares against for the rest of this smelt.
+            this._signatureGate.Calibrate()
+            ctx.Set("keyPressed", true)
+            ctx.Log("SmeltPhase: Pressed space to confirm smelt dialog")
+            ctx.failsafe.ResetPhaseTimer(ctx)
+            return "smelt"
+        }
+
+        if (this._signatureGate.IsSet()) {
+            ctx.Log("SmeltPhase: Indicator slot changed (ore -> bar). Moving to bank.")
+            return "goToBank"
+        }
+
+        return "smelt"
+    }
+}
 
 ; ============================================================
 ; DepositAndWithdrawPhase - re-finds deposit-default.png and
@@ -299,9 +348,6 @@ ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, b
 ; Motherlode/Firemaking's calibration for this window.
 inventoryLayout := Map("firstX", 2099, "firstY", 801, "cols", 4, "rows", 7, "slotW", 72, "slotH", 64, "gapX", 12, "gapY", 8)
 ctx.inventory := Inventory(inventoryLayout)
-fullGate := SlotGate(botConfig.Get("smeltIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
-ctx.inventory.SetFullGate(fullGate)
-ctx.inventory.SetEmptyGate(NotGate(fullGate))
 
 ; craft-marker-1.png - shown once the "smelt X" dialog opens (same image
 ; Firemaking uses for its own crafting dialog).
@@ -352,7 +398,10 @@ botGoToFurnacePhase := GoToFurnacePhase(
     botConfig.Get("craftMarkerWaitTimeoutMs"), "craftMarkerPoll", botConfig.Get("runMode")
 )
 
-botSmeltPhase := PressAndWaitEmptyPhase("smelt", botKeyAction, "space", "spacePressSettle", "goToBank")
+; Detects "this slot's ore became a bar" - unlike the full/empty gate
+; above, a smelted bar still occupies the slot, so IsEmpty() never fires.
+smeltSignatureGate := SlotSignatureGate(botConfig.Get("smeltIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
+botSmeltPhase := SmeltPhase(botKeyAction, "spacePressSettle", smeltSignatureGate)
 
 botGoToBankPhase := GoToBankPhase(
     botConfig.Get("bankMarkerX"), botConfig.Get("bankMarkerY"),

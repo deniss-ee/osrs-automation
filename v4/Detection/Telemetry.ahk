@@ -94,22 +94,43 @@ class OrGate {
     }
 }
 
+; True once a slot's contents change from whatever they were at Calibrate()
+; time - unlike SlotGate (occupied vs. a fixed empty-background color),
+; this detects "the item itself changed" (e.g. ore -> bar), which never
+; empties the slot's background, so SlotGate/NotGate can't see it.
 class SlotSignatureGate {
-    __New(slotIndex, tolerance) {
+    __New(slotIndex, tolerance, inventory, offsets := "") {
         this._slotIndex := slotIndex
         this._tolerance := tolerance
+        this._inventory := inventory
+        this._offsets := offsets != "" ? offsets : SlotSampling.DefaultOffsets()
         this._baseline := ""
     }
 
-    ; Snapshots the current slot color/state as the comparison baseline -
-    ; must be called once before IsSet() is meaningful (e.g. right after
-    ; placing raw food in the range).
+    ; Snapshots the current sampled colors as the comparison baseline -
+    ; must be called once while the pre-transform item is visible (e.g.
+    ; right after confirming a "smelt X" dialog, while ore still shows).
     Calibrate() {
-        throw Error("SlotSignatureGate.Calibrate not yet implemented - ported from lib/Slots.ahk in Phase 5")
+        this._inventory.SlotCenter(this._slotIndex, &cx, &cy)
+        snapshot := []
+        for off in this._offsets
+            snapshot.Push(PixelGetColor(cx + off[1], cy + off[2], "RGB"))
+        this._baseline := snapshot
     }
 
-    ; True once the slot differs from the calibrated baseline.
+    ; True once any sampled point no longer matches its calibrated baseline
+    ; color - the item in the slot changed (or the slot emptied, which also
+    ; differs from a non-empty baseline).
     IsSet() {
-        throw Error("SlotSignatureGate.IsSet not yet implemented - ported from lib/Slots.ahk in Phase 5")
+        if (this._baseline = "")
+            throw Error("SlotSignatureGate.IsSet: Calibrate() was never called")
+
+        this._inventory.SlotCenter(this._slotIndex, &cx, &cy)
+        for i, off in this._offsets {
+            current := PixelGetColor(cx + off[1], cy + off[2], "RGB")
+            if (!ColorSearch.ColorClose(current, this._baseline[i], this._tolerance))
+                return true
+        }
+        return false
     }
 }
