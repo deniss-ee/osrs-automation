@@ -23,6 +23,7 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Core\EngineContext.ahk
 #Include ..\..\Core\FailSafe.ahk
 #Include ..\..\Core\Phase.ahk
+#Include ..\..\Core\SharedPhases.ahk
 #Include ..\..\Timing\Waiter.ahk
 #Include ..\..\Detection\ColorSearch.ahk
 #Include ..\..\Detection\Telemetry.ahk
@@ -67,20 +68,6 @@ class GoToFurnacePhase extends Phase {
         ; per-cycle reset.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "goToFurnace"
@@ -105,7 +92,7 @@ class GoToFurnacePhase extends Phase {
 
             lastClick := ctx.Get("furnaceMarkerLastClickTime", 0)
             if (lastClick == 0 || (A_TickCount - lastClick) > this._reclickCooldownMs) {
-                this._Click(ctx, this._markerX, this._markerY)
+                ctx.clicker.ClickSettled(ctx, this._markerX, this._markerY, this._runMode)
                 ctx.Set("furnaceMarkerLastClickTime", A_TickCount)
                 ctx.Log("GoToFurnacePhase: Clicked furnace marker at [" this._markerX ", " this._markerY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -115,7 +102,7 @@ class GoToFurnacePhase extends Phase {
 
         if (!ctx.Get("furnaceMarkerClicked", false)) {
             ctx.Log("GoToFurnacePhase: Found furnace marker at [" cx ", " cy "]")
-            this._Click(ctx, cx, cy)
+            ctx.clicker.ClickSettled(ctx, cx, cy, this._runMode)
             ctx.Set("furnaceMarkerClicked", true)
             ctx.failsafe.ResetPhaseTimer(ctx)
         }
@@ -132,142 +119,8 @@ class GoToFurnacePhase extends Phase {
     }
 }
 
-; ============================================================
-; SmeltPhase - presses space once to confirm the smelt dialog,
-; then just waits (smelting runs on its own) until the
-; configured indicator slot empties.
-;
-; Exit: once inventory is empty, transitions to goToBank.
-; ============================================================
-class SmeltPhase extends Phase {
-    __New(keyAction, spaceSettleKey, runMode := false) {
-        super.__New("smelt")
-        this._keyAction := keyAction
-        this._spaceSettleKey := spaceSettleKey
-        this._runMode := runMode
-    }
-
-    ResetForNewCycle() {
-        ; spacePressed is reset by DepositAndWithdrawPhase's per-cycle reset.
-    }
-
-    Run(ctx) {
-        if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "smelt"
-
-        if (!ctx.Get("spacePressed", false)) {
-            this._keyAction.Press("space")
-            ctx.waiter.After(ctx.timing, this._spaceSettleKey)
-            ctx.Set("spacePressed", true)
-            ctx.Log("SmeltPhase: Pressed space to confirm smelt dialog")
-            ctx.failsafe.ResetPhaseTimer(ctx)
-            return "smelt"
-        }
-
-        if (ctx.inventory.IsEmpty()) {
-            ctx.Log("SmeltPhase: Inventory empty. Moving to bank.")
-            return "goToBank"
-        }
-
-        return "smelt"
-    }
-}
-
-; ============================================================
-; GoToBankPhase - verifies the blue bank-booth marker, clicks
-; it, then waits for deposit-default.png to appear (the bank
-; interface signal).
-;
-; Exit: once the bank-open image is found, transitions to
-; depositAndWithdraw.
-; ============================================================
-class GoToBankPhase extends Phase {
-    __New(markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, markerWaitTimeoutMs, bankOpenAnchor, bankOpenWaitTimeoutMs, bankOpenPollKey, runMode := false) {
-        super.__New("goToBank")
-        this._markerX := markerX
-        this._markerY := markerY
-        this._markerW := markerW
-        this._markerH := markerH
-        this._markerColor := markerColor
-        this._markerTolerance := markerTolerance
-        this._searchPaddingPx := searchPaddingPx
-        this._reclickCooldownMs := reclickCooldownMs
-        this._markerWaitTimeoutMs := markerWaitTimeoutMs
-        this._bankOpenAnchor := bankOpenAnchor
-        this._bankOpenWaitTimeoutMs := bankOpenWaitTimeoutMs
-        this._bankOpenPollKey := bankOpenPollKey
-        this._runMode := runMode
-    }
-
-    ResetForNewCycle() {
-        ; Scratch timestamps are reset by DepositAndWithdrawPhase's
-        ; per-cycle reset.
-    }
-
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
-    Run(ctx) {
-        if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "goToBank"
-
-        if (!ctx.Get("bankMarkerClicked", false)) {
-            rx1 := Max(0, this._markerX - this._searchPaddingPx)
-            ry1 := Max(0, this._markerY - this._searchPaddingPx)
-            rx2 := Min(A_ScreenWidth, this._markerX + this._searchPaddingPx)
-            ry2 := Min(A_ScreenHeight, this._markerY + this._searchPaddingPx)
-
-            found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2,
-                this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy)
-
-            if (!found) {
-                waitStartedAt := ctx.Get("bankMarkerWaitStartedAt", 0)
-                if (waitStartedAt == 0) {
-                    ctx.Set("bankMarkerWaitStartedAt", A_TickCount)
-                } else if ((A_TickCount - waitStartedAt) > this._markerWaitTimeoutMs) {
-                    ctx.Log("GoToBankPhase: Timed out waiting for the bank marker - stopping")
-                    ctx.engine.Stop("Timed out waiting for bank marker")
-                    return "goToBank"
-                }
-
-                lastClick := ctx.Get("bankMarkerLastClickTime", 0)
-                if (lastClick == 0 || (A_TickCount - lastClick) > this._reclickCooldownMs) {
-                    this._Click(ctx, this._markerX, this._markerY)
-                    ctx.Set("bankMarkerLastClickTime", A_TickCount)
-                    ctx.Log("GoToBankPhase: Clicked bank marker at [" this._markerX ", " this._markerY "]")
-                    ctx.failsafe.ResetPhaseTimer(ctx)
-                }
-                return "goToBank"
-            }
-
-            ctx.Log("GoToBankPhase: Found bank marker at [" cx ", " cy "]")
-            this._Click(ctx, cx, cy)
-            ctx.Set("bankMarkerClicked", true)
-            ctx.failsafe.ResetPhaseTimer(ctx)
-        }
-
-        ctx.Log("GoToBankPhase: Waiting for bank interface...")
-        if (!this._bankOpenAnchor.WaitFor(ctx.waiter, ctx.timing, this._bankOpenPollKey, this._bankOpenWaitTimeoutMs, &dx, &dy)) {
-            ctx.Log("GoToBankPhase: Timed out waiting for bank interface - stopping")
-            ctx.engine.Stop("Timed out waiting for bank interface")
-            return "goToBank"
-        }
-
-        ctx.Log("GoToBankPhase: Bank interface open. Depositing.")
-        return "depositAndWithdraw"
-    }
-}
+; SmeltPhase/GoToBankPhase are the shared PressAndWaitEmptyPhase and
+; GoToBankPhase classes from Core/SharedPhases.ahk - see Wiring below.
 
 ; ============================================================
 ; DepositAndWithdrawPhase - re-finds deposit-default.png and
@@ -296,20 +149,6 @@ class DepositAndWithdrawPhase extends Phase {
         ; this phase's own completion below.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "depositAndWithdraw"
@@ -321,7 +160,7 @@ class DepositAndWithdrawPhase extends Phase {
                 return "depositAndWithdraw"
             }
 
-            this._Click(ctx, dx, dy)
+            ctx.clicker.ClickSettled(ctx, dx, dy, this._runMode)
             ctx.Set("depositClicked", true)
             ctx.Log("DepositAndWithdrawPhase: Deposited ingots at [" dx ", " dy "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
@@ -344,7 +183,7 @@ class DepositAndWithdrawPhase extends Phase {
                 return "depositAndWithdraw"
 
             this._bank.WithdrawSlot(entry["slotIndex"], &x, &y)
-            this._Click(ctx, x, y)
+            ctx.clicker.ClickSettled(ctx, x, y, this._runMode)
             ctx.Set("withdrawClicksDone", clicksDone + 1)
             ctx.Set("withdrawLastClickTime", A_TickCount)
             ctx.Log("DepositAndWithdrawPhase: Clicked bank slot " entry["slotIndex"] " at [" x ", " y "] (" clicksDone + 1 "/" entry["clicks"] ")")
@@ -363,7 +202,7 @@ class DepositAndWithdrawPhase extends Phase {
         ctx.Set("furnaceMarkerWaitStartedAt", 0)
         ctx.Set("furnaceMarkerLastClickTime", 0)
         ctx.Set("furnaceMarkerClicked", false)
-        ctx.Set("spacePressed", false)
+        ctx.Set("keyPressed", false)
         ctx.Set("bankMarkerWaitStartedAt", 0)
         ctx.Set("bankMarkerLastClickTime", 0)
         ctx.Set("bankMarkerClicked", false)
@@ -440,7 +279,7 @@ timingSchema := Map(
     "postWithdrawSettle", Map("section", "Tunables", "baseMsKey", "postWithdrawSettleDelayMs")
 )
 
-iniPath := A_ScriptDir "\..\..\config\auto-smelter-v2.ini"
+iniPath := A_ScriptDir "\..\..\config\smelter-gold.ini"
 botConfig := Config(iniPath, schema, timingSchema)
 botConfig.Load()
 
@@ -460,9 +299,9 @@ ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, b
 ; Motherlode/Firemaking's calibration for this window.
 inventoryLayout := Map("firstX", 2099, "firstY", 801, "cols", 4, "rows", 7, "slotW", 72, "slotH", 64, "gapX", 12, "gapY", 8)
 ctx.inventory := Inventory(inventoryLayout)
-emptyGate := SlotGate(botConfig.Get("smeltIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
-ctx.inventory.SetFullGate(emptyGate)
-ctx.inventory.SetEmptyGate(NotGate(emptyGate))
+fullGate := SlotGate(botConfig.Get("smeltIndicatorSlot"), botConfig.Get("colorTolerance"), ctx.inventory)
+ctx.inventory.SetFullGate(fullGate)
+ctx.inventory.SetEmptyGate(NotGate(fullGate))
 
 ; craft-marker-1.png - shown once the "smelt X" dialog opens (same image
 ; Firemaking uses for its own crafting dialog).
@@ -513,7 +352,7 @@ botGoToFurnacePhase := GoToFurnacePhase(
     botConfig.Get("craftMarkerWaitTimeoutMs"), "craftMarkerPoll", botConfig.Get("runMode")
 )
 
-botSmeltPhase := SmeltPhase(botKeyAction, "spacePressSettle", botConfig.Get("runMode"))
+botSmeltPhase := PressAndWaitEmptyPhase("smelt", botKeyAction, "space", "spacePressSettle", "goToBank")
 
 botGoToBankPhase := GoToBankPhase(
     botConfig.Get("bankMarkerX"), botConfig.Get("bankMarkerY"),
@@ -521,7 +360,7 @@ botGoToBankPhase := GoToBankPhase(
     botConfig.Get("bankMarkerColor"), botConfig.Get("bankMarkerTolerance"),
     botConfig.Get("bankMarkerSearchPaddingPx"), botConfig.Get("bankMarkerReclickCooldownMs"),
     botConfig.Get("bankMarkerWaitTimeoutMs"), bankOpenAnchor,
-    botConfig.Get("bankOpenWaitTimeoutMs"), "bankOpenPoll", botConfig.Get("runMode")
+    botConfig.Get("bankOpenWaitTimeoutMs"), "bankOpenPoll", "depositAndWithdraw", botConfig.Get("runMode")
 )
 
 nextCyclePhases := [botGoToFurnacePhase, botSmeltPhase, botGoToBankPhase]

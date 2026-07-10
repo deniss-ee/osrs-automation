@@ -77,24 +77,13 @@ class MinePhase extends Phase {
         this._nextCyclePhases := nextCyclePhases != "" ? nextCyclePhases : []
     }
 
-    ; Applies the configured click offset, then moves + settles + clicks
-    ; (+ optional Ctrl-hold for force-run). Returns the actual clicked
-    ; point via out-params so callers can log what was really clicked.
+    ; Applies the configured click offset, then delegates to the shared
+    ; settled click. Returns the actual clicked point via out-params so
+    ; callers can log what was really clicked.
     _Click(ctx, x, y, &clickX, &clickY) {
         clickX := x + this._clickOffsetX
         clickY := y + this._clickOffsetY
-
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(clickX, clickY, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
+        ctx.clicker.ClickSettled(ctx, clickX, clickY, this._runMode)
     }
 
     Run(ctx) {
@@ -254,20 +243,6 @@ class ClearRedPhase extends Phase {
         this._lock.Reset()
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "clearRed"
@@ -328,7 +303,7 @@ class ClearRedPhase extends Phase {
         if (this._lock.IsStable()) {
             lastClick := ctx.Get("redLastClickTime", 0)
             if ((A_TickCount - lastClick) > this._clearCooldownMs) {
-                this._Click(ctx, outX, outY)
+                ctx.clicker.ClickSettled(ctx, outX, outY, this._runMode)
                 ctx.Set("redLastClickTime", A_TickCount)
                 ctx.Log("ClearRedPhase: Failsafe click on red rockfall at [" outX ", " outY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -336,7 +311,7 @@ class ClearRedPhase extends Phase {
         } else {
             lastClick := ctx.Get("redLastClickTime", 0)
             if (lastClick = 0) {
-                this._Click(ctx, outX, outY)
+                ctx.clicker.ClickSettled(ctx, outX, outY, this._runMode)
                 ctx.Set("redLastClickTime", A_TickCount)
                 ctx.Log("ClearRedPhase: Initial click on red rockfall at [" outX ", " outY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -374,20 +349,6 @@ class ClearYellowPhase extends Phase {
         this._lock.Reset()
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "clearYellow"
@@ -420,7 +381,7 @@ class ClearYellowPhase extends Phase {
         if (this._lock.IsStable()) {
             lastClick := ctx.Get("yellowLastClickTime", 0)
             if ((A_TickCount - lastClick) > this._clickCooldownMs) {
-                this._Click(ctx, outX, outY)
+                ctx.clicker.ClickSettled(ctx, outX, outY, this._runMode)
                 ctx.Set("yellowLastClickTime", A_TickCount)
                 ctx.Log("ClearYellowPhase: Clicked hopper at [" outX ", " outY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -428,7 +389,7 @@ class ClearYellowPhase extends Phase {
         } else {
             lastClick := ctx.Get("yellowLastClickTime", 0)
             if (lastClick = 0) {
-                this._Click(ctx, outX, outY)
+                ctx.clicker.ClickSettled(ctx, outX, outY, this._runMode)
                 ctx.Set("yellowLastClickTime", A_TickCount)
                 ctx.Log("ClearYellowPhase: Initial click to hopper at [" outX ", " outY "]")
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -463,20 +424,6 @@ class WithdrawSackPhase extends Phase {
         ; on the mine->clearRed transition.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "withdrawSack"
@@ -502,7 +449,7 @@ class WithdrawSackPhase extends Phase {
             if (isFirstClick)
                 ctx.waiter.After(ctx.timing, this._preClickDelayKey)
 
-            this._Click(ctx, this._sackX, this._sackY)
+            ctx.clicker.ClickSettled(ctx, this._sackX, this._sackY, this._runMode)
             ctx.Set("sackLastClickTime", A_TickCount)
             ctx.Log("WithdrawSackPhase: Clicked sack at [" this._sackX ", " this._sackY "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
@@ -539,20 +486,6 @@ class DepositBankPhase extends Phase {
         ; transition, alongside the other per-cycle scratch state.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "depositBank"
@@ -574,7 +507,7 @@ class DepositBankPhase extends Phase {
         }
 
         ctx.Log("DepositBankPhase: Clicked deposit container at [" cx ", " cy "]")
-        this._Click(ctx, cx, cy)
+        ctx.clicker.ClickSettled(ctx, cx, cy, this._runMode)
         ctx.failsafe.ResetPhaseTimer(ctx)
 
         ctx.Log("DepositBankPhase: Waiting for deposit box to open...")
@@ -584,7 +517,7 @@ class DepositBankPhase extends Phase {
             return "depositBank"
         }
 
-        this._Click(ctx, dx, dy)
+        ctx.clicker.ClickSettled(ctx, dx, dy, this._runMode)
         ctx.Log("DepositBankPhase: Deposited all - banking complete, returning to mine")
         return "returnMine1"
     }
@@ -620,20 +553,6 @@ class ReturnMine1Phase extends Phase {
         ; full-cycle reset, alongside every other phase's state.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "returnMine1"
@@ -665,7 +584,7 @@ class ReturnMine1Phase extends Phase {
 
         lastClick := ctx.Get("return1LastClickTime", 0)
         if (lastClick == 0 || (A_TickCount - lastClick) > this._reclickCooldownMs) {
-            this._Click(ctx, this._clickX, this._clickY)
+            ctx.clicker.ClickSettled(ctx, this._clickX, this._clickY, this._runMode)
             ctx.Set("return1LastClickTime", A_TickCount)
             ctx.Log("ReturnMine1Phase: Clicked waypoint 1 at [" this._clickX ", " this._clickY "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
@@ -711,20 +630,6 @@ class ReturnMine2Phase extends Phase {
         ; reset by this phase's own stage-2 completion below.
     }
 
-    _Click(ctx, x, y) {
-        if (this._runMode)
-            Send("{Ctrl down}")
-
-        ctx.clicker.MoveTo(x, y, 0, 0, &targetX, &targetY)
-        ctx.waiter.After(ctx.timing, "clickSettle")
-        ctx.clicker.Press()
-
-        if (this._runMode) {
-            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
-            Send("{Ctrl up}")
-        }
-    }
-
     Run(ctx) {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "returnMine2"
@@ -766,7 +671,7 @@ class ReturnMine2Phase extends Phase {
 
         lastClick := ctx.Get("return2LastClickTime", 0)
         if (lastClick == 0 || (A_TickCount - lastClick) > this._reclickCooldownMs) {
-            this._Click(ctx, this._clickX, this._clickY)
+            ctx.clicker.ClickSettled(ctx, this._clickX, this._clickY, this._runMode)
             ctx.Set("return2LastClickTime", A_TickCount)
             ctx.Log("ReturnMine2Phase: Clicked waypoint 2 at [" this._clickX ", " this._clickY "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
@@ -780,7 +685,7 @@ class ReturnMine2Phase extends Phase {
     _Stage2(ctx) {
         lastClick := ctx.Get("return2LastClickTime", 0)
         if (lastClick == 0) {
-            this._Click(ctx, this._finalClickX, this._finalClickY)
+            ctx.clicker.ClickSettled(ctx, this._finalClickX, this._finalClickY, this._runMode)
             ctx.Set("return2LastClickTime", A_TickCount)
             ctx.Log("ReturnMine2Phase: Clicked final approach spot at [" this._finalClickX ", " this._finalClickY "]")
             ctx.failsafe.ResetPhaseTimer(ctx)

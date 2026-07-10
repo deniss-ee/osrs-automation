@@ -55,4 +55,24 @@ class Clicker {
         this.ClickAt(centerX, centerY, width, height, button)
         Send("{Ctrl up}")
     }
+
+    ; The standard settled click every Phase uses: MoveTo -> clickSettle
+    ; delay -> Press, optionally wrapped in a held Ctrl (OSRS "force run")
+    ; with its own ctrlHoldSettle delay before release. Takes ctx since the
+    ; settle delays are Waiter/TimingProfile-driven, not this class's own
+    ; state - replaces the identical _Click(ctx,x,y) every Phase used to
+    ; hand-roll.
+    ClickSettled(ctx, x, y, runMode := false) {
+        if (runMode)
+            Send("{Ctrl down}")
+
+        this.MoveTo(x, y, 0, 0, &targetX, &targetY)
+        ctx.waiter.After(ctx.timing, "clickSettle")
+        this.Press()
+
+        if (runMode) {
+            ctx.waiter.After(ctx.timing, "ctrlHoldSettle")
+            Send("{Ctrl up}")
+        }
+    }
 }
