@@ -1,0 +1,106 @@
+2026-07-11 16:10:26 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:10:33 Engine: stopped - Stopped (F6)
+2026-07-11 16:10:33 Engine: stopped - Stopped (F6)
+2026-07-11 16:10:33 Engine: stopped - Stopped (F6)
+2026-07-11 16:10:34 Engine: stopped - Stopped (F6)
+2026-07-11 16:11:02 ScanAndAttackPhase: Found target blob at [1327, 501]
+2026-07-11 16:11:08 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:14:51 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:14:53 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:14:56 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:15:04 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:15:04 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:16:03 ScanAndAttackPhase: Timed out waiting for a target - stopping
+2026-07-11 16:16:03 Engine: stopped - Timed out waiting for a target
+2026-07-11 16:17:27 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:17:30 Engine: stopped - Stopped (F6)
+2026-07-11 16:17:49 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:17:57 Engine: stopped - Stopped (F6)
+2026-07-11 16:17:58 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:00 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:14 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:15 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:15 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:15 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:15 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:15 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:15 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:15 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:16 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:16 Engine: stopped - Stopped (F6)
+2026-07-11 16:18:19 ScanAndAttackPhase: Found target blob at [1253, 512]
+2026-07-11 16:18:25 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:28 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:18:46 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:50:42 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:50:42 ScanAndAttackPhase: Found target blob at [1151, 588]
+2026-07-11 16:50:48 Engine: stopped - Stopped (F6)
+2026-07-11 16:50:49 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:50:49 ScanAndAttackPhase: Found target blob at [1300, 648]
+2026-07-11 16:50:52 Engine: stopped - Stopped (F6)
+2026-07-11 16:52:33 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:52:33 ScanAndAttackPhase: Found target blob at [1313, 678]
+2026-07-11 16:52:41 Engine: stopped - Stopped (F6)
+2026-07-11 16:53:39 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:53:40 ScanAndAttackPhase: Found target blob at [1182, 894]
+2026-07-11 16:53:40 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:41 ScanAndAttackPhase: Found target blob at [1234, 810]
+2026-07-11 16:53:41 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:42 ScanAndAttackPhase: Found target blob at [1222, 858]
+2026-07-11 16:53:42 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:43 ScanAndAttackPhase: Found target blob at [1326, 618]
+2026-07-11 16:53:44 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:45 ScanAndAttackPhase: Found target blob at [1378, 678]
+2026-07-11 16:53:45 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:46 ScanAndAttackPhase: Found target blob at [1254, 736]
+2026-07-11 16:53:46 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:53:47 Engine: stopped - Stopped (F6)
+2026-07-11 16:54:27 Engine: started at phase 'scanAndAttack'
+2026-07-11 16:54:28 ScanAndAttackPhase: Found target blob at [1208, 526]
+2026-07-11 16:54:31 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:32 ScanAndAttackPhase: Found target blob at [1029, 738]
+2026-07-11 16:54:32 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:33 ScanAndAttackPhase: Found target blob at [1024, 738]
+2026-07-11 16:54:33 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:34 ScanAndAttackPhase: Found target blob at [1038, 640]
+2026-07-11 16:54:35 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 16:54:40 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:41 ScanAndAttackPhase: Found target blob at [1000, 858]
+2026-07-11 16:54:42 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:43 ScanAndAttackPhase: Found target blob at [1094, 846]
+2026-07-11 16:54:43 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:44 ScanAndAttackPhase: Found target blob at [1257, 750]
+2026-07-11 16:54:44 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:45 ScanAndAttackPhase: Found target blob at [1033, 714]
+2026-07-11 16:54:45 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:46 ScanAndAttackPhase: Found target blob at [1273, 702]
+2026-07-11 16:54:47 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:48 ScanAndAttackPhase: Found target blob at [1299, 726]
+2026-07-11 16:54:48 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 16:54:49 ScanAndAttackPhase: Found target blob at [1280, 664]
+2026-07-11 16:54:49 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 16:54:50 Engine: stopped - Stopped (F6)
+2026-07-11 17:02:02 Engine: started at phase 'scanAndAttack'
+2026-07-11 17:02:03 ScanAndAttackPhase: Found target blob at [1366, 558]
+2026-07-11 17:02:08 WaitCombatPhase: No combat signal after 5000ms - click likely missed, retrying scan
+2026-07-11 17:02:09 ScanAndAttackPhase: Found target blob at [1506, 594]
+2026-07-11 17:02:14 WaitCombatPhase: No combat signal after 5000ms - click likely missed, retrying scan
+2026-07-11 17:02:14 ScanAndAttackPhase: Found target blob at [1396, 880]
+2026-07-11 17:02:17 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 17:02:19 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 17:02:20 ScanAndAttackPhase: Found target blob at [1091, 954]
+2026-07-11 17:02:23 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 17:02:26 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 17:02:27 ScanAndAttackPhase: Found target blob at [942, 690]
+2026-07-11 17:02:30 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 17:02:55 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 17:02:56 ScanAndAttackPhase: Found target blob at [1268, 834]
+2026-07-11 17:02:58 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 17:03:01 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 17:03:02 ScanAndAttackPhase: Found target blob at [1063, 678]
+2026-07-11 17:03:05 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-11 17:03:08 WaitCombatPhase: Kill confirmed. Settling before rescan.
+2026-07-11 17:03:09 ScanAndAttackPhase: Found target blob at [1060, 854]
+2026-07-11 17:03:14 WaitCombatPhase: No combat signal after 5000ms - click likely missed, retrying scan
+2026-07-11 17:03:15 ScanAndAttackPhase: Found target blob at [1125, 738]
+2026-07-11 17:03:17 Engine: stopped - Stopped (F6)

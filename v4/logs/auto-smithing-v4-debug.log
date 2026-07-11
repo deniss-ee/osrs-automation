@@ -1,0 +1,819 @@
+2026-07-11 12:22:52 Engine: started at phase 'goToAnvil'
+2026-07-11 12:22:53 GoToAnvilPhase: Found anvil marker at [1625, 610]
+2026-07-11 12:22:53 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:22:57 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:22:57 smith: Pressed space to confirm dialog
+2026-07-11 12:23:11 smith: Inventory empty. Moving to bank.
+2026-07-11 12:23:11 GoToBankPhase: Clicked bank marker at [797, 755]
+2026-07-11 12:23:18 GoToBankPhase: Clicked bank marker at [797, 755]
+2026-07-11 12:23:21 Engine: stopped - Stopped (F6)
+2026-07-11 12:28:07 Engine: started at phase 'goToAnvil'
+2026-07-11 12:28:07 GoToAnvilPhase: Found anvil marker at [1625, 610]
+2026-07-11 12:28:07 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:28:11 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:28:11 smith: Pressed space to confirm dialog
+2026-07-11 12:28:25 smith: Inventory empty. Moving to bank.
+2026-07-11 12:28:25 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:28:26 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:28:29 GoToBankPhase: Bank interface open.
+2026-07-11 12:28:29 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:28:30 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:28:30 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:28:30 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:28:30 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:28:34 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:28:34 smith: Pressed space to confirm dialog
+2026-07-11 12:28:48 smith: Inventory empty. Moving to bank.
+2026-07-11 12:28:48 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:28:48 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:28:52 GoToBankPhase: Bank interface open.
+2026-07-11 12:28:52 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:28:52 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:28:53 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:28:53 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:28:53 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:28:57 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:28:57 smith: Pressed space to confirm dialog
+2026-07-11 12:29:11 smith: Inventory empty. Moving to bank.
+2026-07-11 12:29:11 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:29:11 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:29:15 GoToBankPhase: Bank interface open.
+2026-07-11 12:29:15 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:29:15 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:29:15 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:29:15 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:29:16 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:29:19 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:29:20 smith: Pressed space to confirm dialog
+2026-07-11 12:29:34 smith: Inventory empty. Moving to bank.
+2026-07-11 12:29:34 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:29:34 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:29:37 GoToBankPhase: Bank interface open.
+2026-07-11 12:29:38 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:29:38 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:29:38 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:29:38 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:29:38 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:29:42 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:29:42 smith: Pressed space to confirm dialog
+2026-07-11 12:29:57 smith: Inventory empty. Moving to bank.
+2026-07-11 12:29:57 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:29:57 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:30:00 GoToBankPhase: Bank interface open.
+2026-07-11 12:30:00 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:30:01 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:30:01 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:30:01 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:30:01 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:30:05 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:30:05 smith: Pressed space to confirm dialog
+2026-07-11 12:30:19 smith: Inventory empty. Moving to bank.
+2026-07-11 12:30:20 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:30:20 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:30:23 GoToBankPhase: Bank interface open.
+2026-07-11 12:30:23 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:30:23 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:30:24 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:30:24 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:30:24 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:30:28 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:30:28 smith: Pressed space to confirm dialog
+2026-07-11 12:30:42 smith: Inventory empty. Moving to bank.
+2026-07-11 12:30:42 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:30:43 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:30:46 GoToBankPhase: Bank interface open.
+2026-07-11 12:30:46 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:30:46 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:30:47 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:30:47 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:30:47 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:30:51 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:30:51 smith: Pressed space to confirm dialog
+2026-07-11 12:31:05 smith: Inventory empty. Moving to bank.
+2026-07-11 12:31:05 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:31:05 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:31:09 GoToBankPhase: Bank interface open.
+2026-07-11 12:31:09 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:31:09 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:31:09 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:31:09 GoToAnvilPhase: Found anvil marker at [1622, 604]
+2026-07-11 12:31:10 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:31:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:31:14 smith: Pressed space to confirm dialog
+2026-07-11 12:31:28 smith: Inventory empty. Moving to bank.
+2026-07-11 12:31:28 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:31:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:31:32 GoToBankPhase: Bank interface open.
+2026-07-11 12:31:32 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:31:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:31:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:31:32 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:31:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:31:36 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:31:36 smith: Pressed space to confirm dialog
+2026-07-11 12:31:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:31:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:31:51 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:31:54 GoToBankPhase: Bank interface open.
+2026-07-11 12:31:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:31:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:31:55 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:31:55 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:31:55 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:31:59 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:31:59 smith: Pressed space to confirm dialog
+2026-07-11 12:32:13 smith: Inventory empty. Moving to bank.
+2026-07-11 12:32:14 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:32:14 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:32:17 GoToBankPhase: Bank interface open.
+2026-07-11 12:32:17 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:32:17 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:32:18 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:32:18 GoToAnvilPhase: Found anvil marker at [1621, 604]
+2026-07-11 12:32:18 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:32:22 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:32:22 smith: Pressed space to confirm dialog
+2026-07-11 12:32:36 smith: Inventory empty. Moving to bank.
+2026-07-11 12:32:36 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:32:37 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:32:40 GoToBankPhase: Bank interface open.
+2026-07-11 12:32:40 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:32:40 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:32:41 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:32:41 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:32:41 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:32:45 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:32:45 smith: Pressed space to confirm dialog
+2026-07-11 12:32:59 smith: Inventory empty. Moving to bank.
+2026-07-11 12:32:59 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:32:59 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:33:03 GoToBankPhase: Bank interface open.
+2026-07-11 12:33:03 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:33:03 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:33:03 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:33:03 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:33:04 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:33:07 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:33:08 smith: Pressed space to confirm dialog
+2026-07-11 12:33:22 smith: Inventory empty. Moving to bank.
+2026-07-11 12:33:22 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:33:22 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:33:26 GoToBankPhase: Bank interface open.
+2026-07-11 12:33:26 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:33:26 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:33:26 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:33:26 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:33:26 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:33:30 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:33:30 smith: Pressed space to confirm dialog
+2026-07-11 12:33:45 smith: Inventory empty. Moving to bank.
+2026-07-11 12:33:45 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:33:45 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:33:48 GoToBankPhase: Bank interface open.
+2026-07-11 12:33:49 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:33:49 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:33:49 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:33:49 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:33:49 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:33:53 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:33:53 smith: Pressed space to confirm dialog
+2026-07-11 12:34:07 smith: Inventory empty. Moving to bank.
+2026-07-11 12:34:08 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:34:08 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:34:11 GoToBankPhase: Bank interface open.
+2026-07-11 12:34:11 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:34:12 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:34:12 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:34:12 GoToAnvilPhase: Found anvil marker at [1621, 604]
+2026-07-11 12:34:12 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:34:16 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:34:16 smith: Pressed space to confirm dialog
+2026-07-11 12:34:30 smith: Inventory empty. Moving to bank.
+2026-07-11 12:34:30 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:34:31 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:34:34 GoToBankPhase: Bank interface open.
+2026-07-11 12:34:34 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:34:34 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:34:35 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:34:35 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:34:35 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:34:39 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:34:39 smith: Pressed space to confirm dialog
+2026-07-11 12:34:53 smith: Inventory empty. Moving to bank.
+2026-07-11 12:34:53 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:34:53 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:34:57 GoToBankPhase: Bank interface open.
+2026-07-11 12:34:57 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:34:57 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:34:57 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:34:57 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:34:58 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:35:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:35:02 smith: Pressed space to confirm dialog
+2026-07-11 12:35:16 smith: Inventory empty. Moving to bank.
+2026-07-11 12:35:16 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:35:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:35:20 GoToBankPhase: Bank interface open.
+2026-07-11 12:35:20 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:35:20 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:35:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:35:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:35:21 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:35:24 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:35:24 smith: Pressed space to confirm dialog
+2026-07-11 12:35:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:35:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:35:39 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:35:42 GoToBankPhase: Bank interface open.
+2026-07-11 12:35:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:35:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:35:43 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:35:43 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:35:43 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:35:47 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:35:47 smith: Pressed space to confirm dialog
+2026-07-11 12:36:01 smith: Inventory empty. Moving to bank.
+2026-07-11 12:36:01 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:36:02 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:36:05 GoToBankPhase: Bank interface open.
+2026-07-11 12:36:05 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:36:06 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:36:06 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:36:06 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:36:06 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:36:10 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:36:10 smith: Pressed space to confirm dialog
+2026-07-11 12:36:24 smith: Inventory empty. Moving to bank.
+2026-07-11 12:36:24 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:36:25 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:36:28 GoToBankPhase: Bank interface open.
+2026-07-11 12:36:28 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:36:28 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:36:29 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:36:29 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:36:29 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:36:33 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:36:33 smith: Pressed space to confirm dialog
+2026-07-11 12:36:47 smith: Inventory empty. Moving to bank.
+2026-07-11 12:36:47 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:36:47 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:36:51 GoToBankPhase: Bank interface open.
+2026-07-11 12:36:51 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:36:51 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:36:51 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:36:51 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:36:52 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:36:55 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:36:56 smith: Pressed space to confirm dialog
+2026-07-11 12:37:10 smith: Inventory empty. Moving to bank.
+2026-07-11 12:37:10 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:37:10 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:37:13 GoToBankPhase: Bank interface open.
+2026-07-11 12:37:14 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:37:14 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:37:14 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:37:14 GoToAnvilPhase: Found anvil marker at [1620, 604]
+2026-07-11 12:37:14 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:37:18 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:37:18 smith: Pressed space to confirm dialog
+2026-07-11 12:37:33 smith: Inventory empty. Moving to bank.
+2026-07-11 12:37:33 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:37:33 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:37:36 GoToBankPhase: Bank interface open.
+2026-07-11 12:37:37 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:37:37 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:37:37 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:37:37 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:37:37 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:37:41 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:37:41 smith: Pressed space to confirm dialog
+2026-07-11 12:37:55 smith: Inventory empty. Moving to bank.
+2026-07-11 12:37:56 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:37:56 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:37:59 GoToBankPhase: Bank interface open.
+2026-07-11 12:37:59 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:38:00 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:38:00 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:38:00 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:38:00 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:38:04 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:38:04 smith: Pressed space to confirm dialog
+2026-07-11 12:38:18 smith: Inventory empty. Moving to bank.
+2026-07-11 12:38:18 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:38:19 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:38:22 GoToBankPhase: Bank interface open.
+2026-07-11 12:38:22 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:38:22 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:38:23 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:38:23 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:38:23 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:38:27 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:38:27 smith: Pressed space to confirm dialog
+2026-07-11 12:38:41 smith: Inventory empty. Moving to bank.
+2026-07-11 12:38:41 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:38:41 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:38:45 GoToBankPhase: Bank interface open.
+2026-07-11 12:38:45 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:38:45 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:38:45 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:38:45 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:38:46 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:38:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:38:50 smith: Pressed space to confirm dialog
+2026-07-11 12:39:04 smith: Inventory empty. Moving to bank.
+2026-07-11 12:39:04 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:39:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:39:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:39:08 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:39:08 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:39:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:39:08 GoToAnvilPhase: Found anvil marker at [1625, 604]
+2026-07-11 12:39:09 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:39:12 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:39:12 smith: Pressed space to confirm dialog
+2026-07-11 12:39:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:39:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:39:27 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:39:30 GoToBankPhase: Bank interface open.
+2026-07-11 12:39:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:39:31 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:39:31 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:39:31 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:39:31 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:39:36 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:39:36 smith: Pressed space to confirm dialog
+2026-07-11 12:39:50 smith: Inventory empty. Moving to bank.
+2026-07-11 12:39:50 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:39:50 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:39:54 GoToBankPhase: Bank interface open.
+2026-07-11 12:39:54 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:39:54 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:39:54 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:39:55 GoToAnvilPhase: Found anvil marker at [1620, 604]
+2026-07-11 12:39:55 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:40:00 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:40:00 smith: Pressed space to confirm dialog
+2026-07-11 12:40:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:40:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:40:15 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:40:18 GoToBankPhase: Bank interface open.
+2026-07-11 12:40:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:40:19 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:40:19 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:40:19 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:40:19 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:40:24 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:40:24 smith: Pressed space to confirm dialog
+2026-07-11 12:40:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:40:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:40:39 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:40:42 GoToBankPhase: Bank interface open.
+2026-07-11 12:40:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:40:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:40:43 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:40:43 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:40:43 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:40:48 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:40:48 smith: Pressed space to confirm dialog
+2026-07-11 12:41:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:41:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:41:03 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:41:06 GoToBankPhase: Bank interface open.
+2026-07-11 12:41:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:41:07 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:41:07 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:41:07 GoToAnvilPhase: Found anvil marker at [1622, 604]
+2026-07-11 12:41:07 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:41:12 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:41:12 smith: Pressed space to confirm dialog
+2026-07-11 12:41:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:41:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:41:27 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:41:30 GoToBankPhase: Bank interface open.
+2026-07-11 12:41:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:41:31 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:41:31 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:41:31 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:41:31 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:41:36 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:41:36 smith: Pressed space to confirm dialog
+2026-07-11 12:41:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:41:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:41:51 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:41:54 GoToBankPhase: Bank interface open.
+2026-07-11 12:41:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:41:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:41:55 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:41:55 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:41:55 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:42:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:42:01 smith: Pressed space to confirm dialog
+2026-07-11 12:42:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:42:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:42:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:42:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:42:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:42:19 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:42:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:42:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:42:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:42:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:42:25 smith: Pressed space to confirm dialog
+2026-07-11 12:42:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:42:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:42:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:42:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:42:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:42:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:42:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:42:44 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:42:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:42:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:42:49 smith: Pressed space to confirm dialog
+2026-07-11 12:43:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:43:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:43:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:43:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:43:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:43:07 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:43:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:43:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:43:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:43:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:43:13 smith: Pressed space to confirm dialog
+2026-07-11 12:43:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:43:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:43:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:43:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:43:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:43:31 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:43:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:43:32 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:43:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:43:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:43:37 smith: Pressed space to confirm dialog
+2026-07-11 12:43:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:43:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:43:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:43:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:43:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:43:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:43:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:43:56 GoToAnvilPhase: Found anvil marker at [1620, 604]
+2026-07-11 12:43:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:44:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:44:01 smith: Pressed space to confirm dialog
+2026-07-11 12:44:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:44:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:44:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:44:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:44:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:44:19 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:44:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:44:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:44:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:44:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:44:25 smith: Pressed space to confirm dialog
+2026-07-11 12:44:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:44:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:44:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:44:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:44:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:44:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:44:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:44:44 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:44:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:44:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:44:49 smith: Pressed space to confirm dialog
+2026-07-11 12:45:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:45:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:45:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:45:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:45:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:45:07 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:45:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:45:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:45:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:45:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:45:13 smith: Pressed space to confirm dialog
+2026-07-11 12:45:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:45:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:45:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:45:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:45:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:45:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:45:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:45:32 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:45:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:45:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:45:37 smith: Pressed space to confirm dialog
+2026-07-11 12:45:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:45:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:45:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:45:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:45:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:45:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:45:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:45:56 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:45:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:46:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:46:01 smith: Pressed space to confirm dialog
+2026-07-11 12:46:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:46:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:46:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:46:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:46:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:46:19 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:46:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:46:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:46:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:46:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:46:25 smith: Pressed space to confirm dialog
+2026-07-11 12:46:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:46:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:46:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:46:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:46:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:46:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:46:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:46:44 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:46:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:46:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:46:49 smith: Pressed space to confirm dialog
+2026-07-11 12:47:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:47:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:47:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:47:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:47:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:47:07 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:47:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:47:08 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:47:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:47:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:47:13 smith: Pressed space to confirm dialog
+2026-07-11 12:47:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:47:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:47:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:47:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:47:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:47:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:47:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:47:32 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:47:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:47:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:47:37 smith: Pressed space to confirm dialog
+2026-07-11 12:47:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:47:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:47:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:47:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:47:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:47:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:47:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:47:56 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:47:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:48:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:48:01 smith: Pressed space to confirm dialog
+2026-07-11 12:48:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:48:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:48:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:48:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:48:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:48:20 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:48:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:48:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:48:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:48:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:48:25 smith: Pressed space to confirm dialog
+2026-07-11 12:48:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:48:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:48:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:48:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:48:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:48:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:48:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:48:44 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:48:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:48:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:48:49 smith: Pressed space to confirm dialog
+2026-07-11 12:49:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:49:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:49:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:49:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:49:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:49:07 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:49:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:49:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:49:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:49:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:49:13 smith: Pressed space to confirm dialog
+2026-07-11 12:49:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:49:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:49:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:49:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:49:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:49:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:49:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:49:32 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:49:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:49:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:49:37 smith: Pressed space to confirm dialog
+2026-07-11 12:49:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:49:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:49:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:49:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:49:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:49:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:49:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:49:56 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:49:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:50:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:50:01 smith: Pressed space to confirm dialog
+2026-07-11 12:50:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:50:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:50:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:50:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:50:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:50:19 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:50:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:50:20 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:50:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:50:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:50:25 smith: Pressed space to confirm dialog
+2026-07-11 12:50:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:50:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:50:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:50:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:50:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:50:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:50:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:50:44 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:50:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:50:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:50:49 smith: Pressed space to confirm dialog
+2026-07-11 12:51:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:51:03 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:51:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:51:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:51:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:51:08 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:51:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:51:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:51:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:51:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:51:13 smith: Pressed space to confirm dialog
+2026-07-11 12:51:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:51:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:51:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:51:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:51:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:51:31 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:51:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:51:32 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:51:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:51:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:51:37 smith: Pressed space to confirm dialog
+2026-07-11 12:51:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:51:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:51:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:51:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:51:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:51:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:51:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:51:56 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:51:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:52:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:52:01 smith: Pressed space to confirm dialog
+2026-07-11 12:52:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:52:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:52:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:52:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:52:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:52:20 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:52:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:52:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:52:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:52:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:52:25 smith: Pressed space to confirm dialog
+2026-07-11 12:52:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:52:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:52:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:52:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:52:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:52:44 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:52:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:52:44 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:52:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:52:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:52:49 smith: Pressed space to confirm dialog
+2026-07-11 12:53:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:53:04 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:53:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:53:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:53:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:53:08 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:53:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:53:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:53:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:53:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:53:13 smith: Pressed space to confirm dialog
+2026-07-11 12:53:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:53:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:53:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:53:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:53:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:53:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:53:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:53:32 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:53:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:53:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:53:37 smith: Pressed space to confirm dialog
+2026-07-11 12:53:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:53:52 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:53:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:53:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:53:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:53:55 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:53:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:53:56 GoToAnvilPhase: Found anvil marker at [1622, 604]
+2026-07-11 12:53:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:54:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:54:01 smith: Pressed space to confirm dialog
+2026-07-11 12:54:15 smith: Inventory empty. Moving to bank.
+2026-07-11 12:54:15 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:54:16 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:54:19 GoToBankPhase: Bank interface open.
+2026-07-11 12:54:19 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:54:20 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:54:20 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:54:20 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:54:20 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:54:25 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:54:25 smith: Pressed space to confirm dialog
+2026-07-11 12:54:39 smith: Inventory empty. Moving to bank.
+2026-07-11 12:54:39 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:54:40 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:54:43 GoToBankPhase: Bank interface open.
+2026-07-11 12:54:43 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:54:43 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:54:44 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:54:44 GoToAnvilPhase: Found anvil marker at [1619, 604]
+2026-07-11 12:54:44 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:54:49 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:54:49 smith: Pressed space to confirm dialog
+2026-07-11 12:55:03 smith: Inventory empty. Moving to bank.
+2026-07-11 12:55:04 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:55:04 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:55:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:55:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:55:08 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:55:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:55:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:55:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:55:13 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:55:13 smith: Pressed space to confirm dialog
+2026-07-11 12:55:27 smith: Inventory empty. Moving to bank.
+2026-07-11 12:55:27 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:55:28 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:55:31 GoToBankPhase: Bank interface open.
+2026-07-11 12:55:31 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:55:32 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:55:32 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:55:32 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:55:32 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:55:37 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:55:37 smith: Pressed space to confirm dialog
+2026-07-11 12:55:51 smith: Inventory empty. Moving to bank.
+2026-07-11 12:55:51 GoToBankPhase: Found bank marker at [807, 765]
+2026-07-11 12:55:52 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:55:55 GoToBankPhase: Bank interface open.
+2026-07-11 12:55:55 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:55:56 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:55:56 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:55:56 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:55:56 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:56:01 GoToAnvilPhase: Smith dialog visible. Confirming.
+2026-07-11 12:56:01 smith: Pressed space to confirm dialog
+2026-07-11 12:56:01 smith: Inventory empty. Moving to bank.
+2026-07-11 12:56:01 GoToBankPhase: Clicked bank marker at [797, 755]
+2026-07-11 12:56:02 GoToBankPhase: Found bank marker at [807, 763]
+2026-07-11 12:56:02 GoToBankPhase: Waiting for bank interface...
+2026-07-11 12:56:07 GoToBankPhase: Bank interface open.
+2026-07-11 12:56:07 DepositAndWithdrawPhase: Deposited items at [1363, 999]
+2026-07-11 12:56:08 DepositAndWithdrawPhase: Clicked bank slot 1 at [661, 235] (1/1)
+2026-07-11 12:56:08 DepositAndWithdrawPhase: Withdraw plan complete. Handing off to anvil phase.
+2026-07-11 12:56:08 GoToAnvilPhase: Found anvil marker at [1618, 604]
+2026-07-11 12:56:08 GoToAnvilPhase: Waiting for smith dialog...
+2026-07-11 12:56:23 GoToAnvilPhase: Timed out waiting for smith dialog - stopping
+2026-07-11 12:56:23 Engine: stopped - Timed out waiting for smith dialog
+2026-07-11 13:00:51 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:51 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:51 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:52 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:52 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:52 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:52 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:52 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:53 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:53 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:53 Engine: stopped - Stopped (F6)
+2026-07-11 13:00:53 Engine: stopped - Stopped (F6)

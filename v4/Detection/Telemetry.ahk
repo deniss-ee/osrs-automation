@@ -134,3 +134,21 @@ class SlotSignatureGate {
         return false
     }
 }
+
+; Checks a fixed screen point against an arbitrary color, on demand - unlike
+; the slot-anchored gates above, this isn't tied to Inventory/SlotCenter, and
+; it distinguishes WHICH of several candidate colors is present rather than
+; reporting a single on/off state. Used for combat-indicator pixels (e.g. an
+; HP-bar overlay that takes one color while fighting, another on a kill).
+class PixelColorGate {
+    __New(x, y, tolerance) {
+        this._x := x
+        this._y := y
+        this._tolerance := tolerance
+    }
+
+    ; True if the live pixel currently matches `color` within tolerance.
+    Matches(color) {
+        return ColorSearch.IsColorAt(this._x, this._y, color, this._tolerance)
+    }
+}

@@ -101,4 +101,110 @@ class ColorSearch {
 
         return false
     }
+
+    ; Finds the color pixel in [x1,y1]-[x2,y2] nearest to (refX, refY) -
+    ; a single-pixel seed search, no block/shape requirement. Returns false
+    ; if no matching pixel exists in the region.
+    ;
+    ; rowStep: rows are sampled at this stride (not every literal row) -
+    ; a whole-viewport scan (thousands of rows) calling PixelSearch per row
+    ; is too slow to be usable as a per-tick poll; a seed only needs to land
+    ; somewhere on a matching blob; a real row is always at most rowStep-1
+    ; px away vertically, which FindCentroid's blobRadius box comfortably
+    ; absorbs afterward.
+    ;
+    ; Only the FIRST match on each sampled row is taken (not every match on
+    ; that row) - when many small blobs/outline pixels are scattered across
+    ; the region (e.g. several irregularly-shaped NPC overlays), exhaustively
+    ; walking every match on every row multiplies into a multi-second scan;
+    ; a seed just needs to land near a blob, so one candidate per row is
+    ; enough precision for this step.
+    static FindNearestColor(x1, y1, x2, y2, refX, refY, color, tol, &nearX, &nearY, rowStep := 4) {
+        found := false
+        bestDistSq := 0
+        bestX := 0
+        bestY := 0
+
+        y := y1
+        while (y <= y2) {
+            if (PixelSearch(&px, &py, x1, y, x2, y, color, tol)) {
+                dx := px - refX
+                dy := py - refY
+                distSq := (dx * dx) + (dy * dy)
+                if (!found || distSq < bestDistSq) {
+                    found := true
+                    bestDistSq := distSq
+                    bestX := px
+                    bestY := py
+                }
+            }
+            y += rowStep
+        }
+
+        if (!found)
+            return false
+
+        nearX := bestX
+        nearY := bestY
+        return true
+    }
+
+    ; Centroid (average position) of `color` pixels inside [x1,y1]-[x2,y2],
+    ; one sampled row per `sampleRate` rows (first match per row, same
+    ; cheap-approximation shape as FindNearestColor) - NOT a per-pixel
+    ; PixelGetColor loop. On this framework's target machines, individual
+    ; PixelGetColor/PixelSearch calls carry a large fixed per-call cost (the
+    ; underlying screen-capture setup, not the pixel comparison itself), so
+    ; a brute-force per-pixel loop over even a small 120x120 box multiplies
+    ; into a multi-second stall - PixelSearch already scans a whole row
+    ; natively in one call, so this reuses that same primitive instead of
+    ; re-implementing the scan by hand. Returns false if nothing matches.
+    static FindCentroid(x1, y1, x2, y2, color, tol, &cx, &cy, sampleRate := 2) {
+        sumX := 0
+        sumY := 0
+        count := 0
+
+        y := y1
+        while (y <= y2) {
+            if (PixelSearch(&px, &py, x1, y, x2, y, color, tol)) {
+                sumX += px
+                sumY += py
+                count += 1
+            }
+            y += sampleRate
+        }
+
+        if (count = 0)
+            return false
+
+        cx := Round(sumX / count)
+        cy := Round(sumY / count)
+        return true
+    }
+
+    ; Finds the NEAREST irregular color blob to (refX, refY) inside
+    ; [x1,y1]-[x2,y2] and returns its centroid - unlike FindFilledBlock,
+    ; this makes no assumption about the blob being a solid fixed-size
+    ; rectangle, so it correctly handles the irregular, variably-shaped/sized
+    ; overlays OSRS paints on NPCs (a fixed-block search misses/mis-clicks
+    ; on these). Two-step, ported from legacy's FindNearestOutlineBlobCenter
+    ; (lib/Targeting.ahk), which the legacy codebase's own comments say
+    ; supersedes the old solid-block approach for exactly this reason:
+    ; 1. Seed: nearest single matching pixel to (refX, refY) - picks WHICH
+    ;    blob is closest when several exist simultaneously.
+    ; 2. Centroid: average position of matching pixels within a
+    ;    blobRadius box around that seed (clamped to the original region) -
+    ;    the real click target, not the seed pixel itself (which is likely
+    ;    on the blob's edge, not its middle).
+    static FindNearestBlobCenter(x1, y1, x2, y2, refX, refY, color, tol, blobRadius, &targetX, &targetY, sampleRate := 2, seedRowStep := 4) {
+        if (!ColorSearch.FindNearestColor(x1, y1, x2, y2, refX, refY, color, tol, &seedX, &seedY, seedRowStep))
+            return false
+
+        bx1 := Max(x1, seedX - blobRadius)
+        by1 := Max(y1, seedY - blobRadius)
+        bx2 := Min(x2, seedX + blobRadius)
+        by2 := Min(y2, seedY + blobRadius)
+
+        return ColorSearch.FindCentroid(bx1, by1, bx2, by2, color, tol, &targetX, &targetY, sampleRate)
+    }
 }

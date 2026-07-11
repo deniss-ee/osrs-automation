@@ -1,6 +1,6 @@
 # v4 Framework Reference — Helpers & Repeated Patterns
 
-_Written 2026-07-09 after Motherlode; updated after Firemaking, Smelter, and a cross-bot unification pass. Purpose: a lookup reference for building the next bot, so patterns are reused instead of reinvented._
+_Written 2026-07-09 after Motherlode; updated after Firemaking, Smelter, a cross-bot unification pass, `SlotSignatureGate`'s real implementation, and Smithing. Purpose: a lookup reference for building the next bot, so patterns are reused instead of reinvented._
 
 ## Layer map
 
@@ -18,7 +18,9 @@ Bots/<Name>/  <name>.ahk                                     — entry point + b
 config/       <name>.ini                                     — that bot's own config, isolated from legacy
 ```
 
-Three bots exist: **Motherlode** (7 phases, most complex — acquire/track mining loop, `TargetLock`-based stability), **Firemaking** (4 phases), **Smelter** (4 phases). Firemaking and Smelter share two generic phases from `Core/SharedPhases.ahk` (see below); Motherlode's phases are all bot-specific since its acquire/track shape doesn't fit the generic pattern.
+Four bots exist: **Motherlode** (7 phases, most complex — acquire/track mining loop, `TargetLock`-based stability), **Firemaking** (4 phases), **Smelter** (4 phases, uses `SlotSignatureGate` — see below), **Smithing** (4 phases). Firemaking and Smithing share both generic phases from `Core/SharedPhases.ahk` (`PressAndWaitEmptyPhase` + `GoToBankPhase`); Smelter shares only `GoToBankPhase` (its "done" check needs `SlotSignatureGate`, not a plain empty-check — see Telemetry section); Motherlode's phases are all bot-specific since its acquire/track shape doesn't fit the generic pattern.
+
+Smelter has two `.ini` variants (`smelter-gold.ini`, `smelter-mithril.ini`) — same `smelter.ahk` code, different calibration/withdraw-plan values per metal. This is the pattern for "same bot, different game content": one code file, multiple `.ini`s, repoint `smelter.ahk`'s `iniPath` (or keep separate copies) per variant in use.
 
 Legacy (`lib/`, `scripts/`, `config/` at repo root) is read-only reference material — never modified, only mined for behavior to reimplement cleanly.
 
@@ -54,7 +56,7 @@ All expose `IsSet() => bool`, so a phase never cares which strategy backs a gate
 - **`NotGate(gate)`**: inverts.
 - **`AndGate([gates])`**: true only if every wrapped gate is set — used for Motherlode's "truly full" check (slot 28 AND slot 27, since a lone gem in 28 isn't hoppered and shouldn't count as full).
 - **`OrGate([gates])`**: true if any wrapped gate is set — used for "sack gave us something" (slot 2 OR slot 12, since a gem can land anywhere).
-- **`SlotSignatureGate`**: stub for "item transformed" detection (raw→cooked) via snapshot-then-diff — not yet implemented.
+- **`SlotSignatureGate(slotIndex, tolerance, inventory, offsets?)`**: implemented (was a stub). `Calibrate()` snapshots the slot's sampled colors as a baseline — call this while the pre-transform item is visible (e.g. right after confirming a "smelt X" dialog, while ore still shows). `IsSet()` returns true once any sampled point differs from that baseline. **Why this exists over `SlotGate`/`NotGate`**: Smelter's ore→bar transform never empties the slot's background (a bar occupies the slot exactly like ore did), so `IsEmpty()` never fires — `SlotSignatureGate` detects "the item changed," not "the slot emptied." Smelter's `SmeltPhase` is bot-specific (not the shared `PressAndWaitEmptyPhase`) specifically because of this — see Shared generic phases section.
 
 **Gate composition pattern**: build individual `SlotGate`s, wrap in `AndGate`/`OrGate`/`NotGate` as needed, attach to `Inventory` via `SetFullGate`/`SetEmptyGate`/`SetSackGate`. This composition happens once at wiring time, in the bot's entry-point file, not inside phase logic.
 
@@ -71,12 +73,14 @@ All expose `IsSet() => bool`, so a phase never cares which strategy backs a gate
 
 Two phase shapes turned out to be **byte-identical across bots apart from names/keys** — rather than copy-pasting a third/fourth time, they're generic classes any bot can construct directly:
 
-- **`PressAndWaitEmptyPhase(name, keyAction, key, spaceSettleKey, nextPhaseName)`**: presses `key` once (with a settle delay), then polls `ctx.inventory.IsEmpty()` every tick with no further action until it's empty, then transitions to `nextPhaseName`. Used by Firemaking (`burnLogs`) and Smelter (`smelt`) — same shape, different key/dialog/log context. Uses a shared `"keyPressed"` scratch flag (not `"spacePressed"` — the key isn't always space).
-- **`GoToBankPhase(markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, markerWaitTimeoutMs, bankOpenAnchor, bankOpenWaitTimeoutMs, bankOpenPollKey, nextPhaseName, runMode=false)`**: verifies a fixed-point color marker, clicks it, waits for a bank-open image anchor, then transitions to `nextPhaseName`. Used by Firemaking (image is a pure "bank is open" signal, `nextPhaseName="withdrawLogs"`) and Smelter (same image, but the *next* phase then clicks it as deposit-all, `nextPhaseName="depositAndWithdraw"`) — the class itself doesn't care which; it only detects and hands off.
+- **`PressAndWaitEmptyPhase(name, keyAction, key, spaceSettleKey, nextPhaseName)`**: presses `key` once (with a settle delay), then polls `ctx.inventory.IsEmpty()` every tick with no further action until it's empty, then transitions to `nextPhaseName`. Used by Firemaking (`burnLogs`) and Smithing (`smith`) — same shape, different key/dialog/log context. Uses a shared `"keyPressed"` scratch flag (not `"spacePressed"` — the key isn't always space). **Not used by Smelter** — smelting doesn't empty the slot (ore→bar), so Smelter needs `SlotSignatureGate` instead (see Telemetry section); its `SmeltPhase` is bot-specific for exactly this reason. Before reusing this class for a new bot, confirm the crafted item actually *disappears* from the indicator slot rather than just changing appearance.
+- **`GoToBankPhase(markerX, markerY, markerW, markerH, markerColor, markerTolerance, searchPaddingPx, reclickCooldownMs, markerWaitTimeoutMs, bankOpenAnchor, bankOpenWaitTimeoutMs, bankOpenPollKey, nextPhaseName, runMode=false)`**: verifies a fixed-point color marker, clicks it, waits for a bank-open image anchor, then transitions to `nextPhaseName`. Used by all of Firemaking/Smelter/Smithing (image is a pure "bank is open" signal for Firemaking, `nextPhaseName="withdrawLogs"`; the same image is then clicked as deposit-all by the *next* phase for Smelter/Smithing, `nextPhaseName="depositAndWithdraw"`) — the class itself doesn't care which; it only detects and hands off.
 
 Both classes still require the caller to `#Include Core/SharedPhases.ahk` and construct them in the bot's own wiring section — they aren't auto-registered.
 
-**Not (yet) unified, on purpose**: `GoToFirePhase`/`GoToFurnacePhase` (structurally identical but scratch-key names like `"fireMarkerWaitStartedAt"` vs `"furnaceMarkerWaitStartedAt"` are hardcoded per-bot — would need a prefix parameter threaded through every `ctx.Get`/`ctx.Set`) and the withdraw-plan polling/clicking loop (`WithdrawLogsPhase`/`DepositAndWithdrawPhase` share the same loop shape, but Smelter's has an extra pre-step — a one-time deposit-all click — that Firemaking's doesn't). Revisit if a 4th bot needs either shape verbatim.
+**Not (yet) unified, on purpose**: `GoToFirePhase`/`GoToFurnacePhase`/`GoToAnvilPhase` (structurally identical but scratch-key names like `"fireMarkerWaitStartedAt"` vs `"furnaceMarkerWaitStartedAt"` vs `"anvilMarkerWaitStartedAt"` are hardcoded per-bot — would need a prefix parameter threaded through every `ctx.Get`/`ctx.Set`) and the withdraw-plan polling/clicking loop (`WithdrawLogsPhase`/`DepositAndWithdrawPhase` in both Smelter and Smithing share the same loop shape, but Smelter's has an extra pre-step — a one-time deposit-all click — that plain Firemaking-style withdraw doesn't; Smithing's `DepositAndWithdrawPhase` *does* include that same deposit step, so it's actually closer to Smelter's shape than Firemaking's). Revisit if unifying starts saving more than it costs in indirection.
+
+**A concrete miscalibration bug worth remembering**: Smithing's `.ini` initially had `bankMarkerColor=0xFF00FF` (magenta, copy-pasted from the anvil marker just above it) instead of the correct `0x0000FF` (blue) — `GoToBankPhase` silently re-clicked the bank marker forever without ever finding the wrong color, so it never reached the bank-open wait, and nothing ever got deposited/withdrawn. The log symptom was two "Clicked bank marker" lines exactly `reclickCooldownMs` apart with nothing after — that pattern (repeated re-clicks of the same marker, no further progress) means the color/size/position search is failing, even if the click itself is landing somewhere that happens to work in-game.
 
 ## Interfaces (bot-facing wrappers)
 
@@ -117,7 +121,6 @@ Both classes still require the caller to `#Include Core/SharedPhases.ahk` and co
 
 ## Known stubs / not-yet-implemented (forward-looking scaffolding, confirmed intentional)
 
-- `Telemetry.SlotSignatureGate` (snapshot-then-diff detection)
 - `DynamicTarget.NearestColorTarget._FindRawBlock`
 - `Interfaces.Bank.OpenChest` / `DepositAll` / `WithdrawPlan` — constructed but uncalled by any bot; `WithdrawSlot` is the only `Bank` method any bot actually uses
 - `Timing/Clock.ahk` — zero references anywhere, not included by any bot
