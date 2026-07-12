@@ -103,7 +103,6 @@ class MinePhase extends Phase {
             ctx.Set("yellowTargetY", 0)
             ctx.Set("yellowLastClickTime", 0)
             ctx.Set("yellowEntryDelayApplied", false)
-            ctx.Set("yellowSawFull", false)
             ctx.Set("sackLastClickTime", 0)
             ctx.Set("sackWaitStartedAt", 0)
             ctx.Set("bankPreDelayApplied", false)
@@ -324,24 +323,14 @@ class ClearRedPhase extends Phase {
 }
 
 ; ============================================================
-; ClearYellowPhase - deposits mined ore into the hopper.
+; ClearYellowPhase - deposits mined ore into the hopper. Exit
+; check (inventory empty) runs first every tick, before searching.
 ;
-; Exit condition is NOT ctx.inventory.IsEmpty() - that gate is
-; AndGate(slot27, slot28) inverted, built for MinePhase's "is the
-; pack full" check, and reads true any time slot 27 OR 28 alone is
-; unoccupied (e.g. a diamond only landed in one of the two, or ore
-; simply never filled both). Using it here let this phase see
-; "empty" as already true on entry - before the hopper was ever
-; clicked - and skip straight to withdrawSack with a full pack
-; still on the character.
-;
-; Instead, this phase tracks its OWN indicator slot (28 alone) and
-; only exits once that slot is observed to go occupied -> empty
-; during THIS visit (yellowSawFull latches once occupied is seen,
-; the exit check requires that latch plus current-empty).
+; Exit: once the ore is fully deposited, transitions to
+; withdrawSack to continue the cycle.
 ; ============================================================
 class ClearYellowPhase extends Phase {
-    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, entryDelayKey, moveTolerancePx, indicatorGate, runMode := false) {
+    __New(color, tolerance, reqW, reqH, stableTicksRequired, clickCooldownMs, entryDelayKey, moveTolerancePx, runMode := false) {
         super.__New("clearYellow")
         this._color := color
         this._tolerance := tolerance
@@ -350,7 +339,6 @@ class ClearYellowPhase extends Phase {
         this._clickCooldownMs := clickCooldownMs
         this._entryDelayKey := entryDelayKey
         this._lock := TargetLock(stableTicksRequired, moveTolerancePx)
-        this._indicatorGate := indicatorGate
         this._runMode := runMode
     }
 
@@ -365,12 +353,8 @@ class ClearYellowPhase extends Phase {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "clearYellow"
 
-        slotOccupied := this._indicatorGate.IsSet()
-        if (slotOccupied) {
-            ctx.Set("yellowSawFull", true)
-        } else if (ctx.Get("yellowSawFull", false)) {
+        if (ctx.inventory.IsEmpty()) {
             ctx.Log("ClearYellowPhase: Ore deposited. Moving to sack.")
-            ctx.Set("yellowSawFull", false)
             return "withdrawSack"
         }
 
@@ -728,7 +712,6 @@ class ReturnMine2Phase extends Phase {
         ctx.Set("yellowTargetY", 0)
         ctx.Set("yellowLastClickTime", 0)
         ctx.Set("yellowEntryDelayApplied", false)
-        ctx.Set("yellowSawFull", false)
         ctx.Set("sackLastClickTime", 0)
         ctx.Set("sackWaitStartedAt", 0)
         ctx.Set("bankPreDelayApplied", false)
@@ -890,7 +873,7 @@ botClearYellowPhase := ClearYellowPhase(
     botConfig.Get("yellowColor"), botConfig.Get("yellowTolerance"),
     botConfig.Get("yellowBlockW"), botConfig.Get("yellowBlockH"),
     botConfig.Get("yellowStableTicks"), botConfig.Get("yellowClickCooldownMs"),
-    "yellowEntryDelay", botConfig.Get("targetLockMoveTolerancePx"), indicatorGate, botConfig.Get("runMode")
+    "yellowEntryDelay", botConfig.Get("targetLockMoveTolerancePx"), botConfig.Get("runMode")
 )
 
 botWithdrawSackPhase := WithdrawSackPhase(
