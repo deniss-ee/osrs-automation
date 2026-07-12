@@ -1794,3 +1794,68 @@
 17:14:26 ===== Motherlode Miner Refactored started =====
 17:14:27 MinePhase: Initial click to walk to vein at [1042, 712]
 17:14:27 STOPPED: Stopped (F6)
+23:35:58 MinePhase: Found new vein at [1278, 708]
+23:35:58 ===== Motherlode Miner Refactored started =====
+23:35:58 MinePhase: Initial click to walk to vein at [1278, 708]
+23:36:00 MinePhase: Clicked stable vein at [1232, 708]
+23:36:03 MinePhase: Clicked stable vein at [1230, 708]
+23:36:05 MinePhase: Clicked stable vein at [1230, 708]
+23:36:07 MinePhase: Clicked stable vein at [1230, 708]
+23:36:10 MinePhase: Clicked stable vein at [1230, 708]
+23:36:12 MinePhase: Clicked stable vein at [1230, 708]
+23:36:13 STOPPED: Stopped (F6)
+23:37:51 MinePhase: Found new vein at [1302, 708]
+23:37:51 ===== Motherlode Miner Refactored started =====
+23:37:51 MinePhase: Initial click to walk to vein at [1302, 708]
+23:37:51 MinePhase: Inventory full, transitioning to clearRed
+23:37:52 ClearRedPhase: Found new red rockfall at [1215, 347]
+23:37:52 ClearRedPhase: Initial click on red rockfall at [1213, 347]
+23:37:55 STOPPED: Stopped (F6)
+23:37:58 MinePhase: Inventory full, transitioning to clearRed
+23:37:58 ===== Motherlode Miner Refactored started =====
+23:37:58 ClearRedPhase: Found new red rockfall at [1185, 347]
+23:37:58 ClearRedPhase: Initial click on red rockfall at [1185, 347]
+23:38:00 STOPPED: Stopped (F6)
+23:38:21 MinePhase: Found new vein at [1180, 708]
+23:38:21 ===== Motherlode Miner Refactored started =====
+23:38:21 MinePhase: Initial click to walk to vein at [1180, 708]
+23:38:24 MinePhase: Clicked stable vein at [1228, 708]
+23:38:26 MinePhase: Clicked stable vein at [1230, 708]
+23:38:28 STOPPED: Stopped (F6)
+23:38:30 MinePhase: Found new vein at [1230, 708]
+23:38:30 ===== Motherlode Miner Refactored started =====
+23:38:30 MinePhase: Initial click to walk to vein at [1230, 708]
+23:38:33 MinePhase: Clicked stable vein at [1230, 708]
+23:38:34 STOPPED: Stopped (F6)
+23:39:01 MinePhase: Found new vein at [1302, 708]
+23:39:01 ===== Motherlode Miner Refactored started =====
+23:39:01 MinePhase: Initial click to walk to vein at [1302, 708]
+23:39:03 MinePhase: Clicked stable vein at [1256, 708]
+23:39:06 MinePhase: Clicked stable vein at [1254, 708]
+23:39:08 MinePhase: Clicked stable vein at [1254, 708]
+23:39:09 STOPPED: Stopped (F6)
+23:39:37 MinePhase: Inventory full, transitioning to clearRed
+23:39:37 ===== Motherlode Miner Refactored started =====
+23:39:37 ClearRedPhase: No red rockfalls found. Moving to hopper.
+23:39:37 ClearYellowPhase: Clicked hopper at [886, 240]
+23:39:54 STOPPED: Stopped (F6)
+23:39:55 ClearYellowPhase: Clicked hopper at [1280, 702]
+23:40:18 MinePhase: Inventory full, transitioning to clearRed
+23:40:18 ===== Motherlode Miner Refactored started =====
+23:40:18 ClearRedPhase: Found new red rockfall at [1453, 349]
+23:40:18 ClearRedPhase: Initial click on red rockfall at [1451, 349]
+23:40:21 STOPPED: Stopped (F6)
+23:40:32 STOPPED: Stopped (F6)
+23:40:33 MinePhase: Found new vein at [1254, 708]
+23:40:33 ===== Motherlode Miner Refactored started =====
+23:40:35 STOPPED: Stopped (F6)
+23:40:35 MinePhase: Found new vein at [1254, 708]
+23:40:35 ===== Motherlode Miner Refactored started =====
+23:40:35 MinePhase: Initial click to walk to vein at [1254, 708]
+23:40:35 STOPPED: Stopped (F6)
+23:40:38 MinePhase: Found new vein at [1180, 708]
+23:40:38 ===== Motherlode Miner Refactored started =====
+23:40:38 MinePhase: Initial click to walk to vein at [1180, 708]
+23:40:41 MinePhase: Clicked stable vein at [1230, 708]
+23:40:43 MinePhase: Clicked stable vein at [1230, 708]
+23:40:45 MinePhase: Clicked stable vein at [1230, 708]

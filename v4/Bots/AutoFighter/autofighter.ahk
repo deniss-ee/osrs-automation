@@ -35,20 +35,28 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Diagnostics\Overlay.ahk
 
 ; ============================================================
-; ScanAndAttackPhase - scans the whole viewport for the nearest
-; #FF00FF NPC blob (relative to a calibrated reference point),
-; clicks its centroid, then hands off to waitCombat.
+; ScanAndAttackPhase - scans a bounded box around the reference point
+; for the nearest #FF00FF NPC blob, clicks its centroid, then hands
+; off to waitCombat.
+;
+; Scoped to searchRadiusX/Y around (refX, refY) instead of the whole
+; screen - "nearest to ref" rarely picks a faraway match anyway, and a
+; smaller region means far fewer PixelSearch calls for the same
+; rowStep, buying back precision (a finer seedRowStep/sampleRate)
+; without paying the full-screen scan's latency cost.
 ;
 ; Exit: once clicked, transitions to waitCombat. Stops the engine
 ; cleanly if no target blob appears within targetWaitTimeoutMs.
 ; ============================================================
 class ScanAndAttackPhase extends Phase {
-    __New(targetColor, targetTolerance, refX, refY, blobRadius, sampleRate, seedRowStep, scanPollKey, waitTimeoutMs, runMode := false) {
+    __New(targetColor, targetTolerance, refX, refY, searchRadiusX, searchRadiusY, blobRadius, sampleRate, seedRowStep, scanPollKey, waitTimeoutMs, runMode := false) {
         super.__New("scanAndAttack")
         this._targetColor := targetColor
         this._targetTolerance := targetTolerance
         this._refX := refX
         this._refY := refY
+        this._searchRadiusX := searchRadiusX
+        this._searchRadiusY := searchRadiusY
         this._blobRadius := blobRadius
         this._sampleRate := sampleRate
         this._seedRowStep := seedRowStep
@@ -65,7 +73,12 @@ class ScanAndAttackPhase extends Phase {
         if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
             return "scanAndAttack"
 
-        found := ColorSearch.FindNearestBlobCenter(0, 0, A_ScreenWidth, A_ScreenHeight,
+        x1 := Max(0, this._refX - this._searchRadiusX)
+        y1 := Max(0, this._refY - this._searchRadiusY)
+        x2 := Min(A_ScreenWidth, this._refX + this._searchRadiusX)
+        y2 := Min(A_ScreenHeight, this._refY + this._searchRadiusY)
+
+        found := ColorSearch.FindNearestBlobCenter(x1, y1, x2, y2,
             this._refX, this._refY, this._targetColor, this._targetTolerance,
             this._blobRadius, &tx, &ty, this._sampleRate, this._seedRowStep)
 
@@ -87,6 +100,13 @@ class ScanAndAttackPhase extends Phase {
         ctx.clicker.ClickSettled(ctx, tx, ty, this._runMode)
         ctx.failsafe.ResetPhaseTimer(ctx)
 
+        ; Fresh per-click baseline for WaitCombatPhase's stale-killColor
+        ; guard - every new click (including a retry after a stall) needs
+        ; its own snapshot of whether killColor was already showing before
+        ; THIS fight had any chance to happen.
+        ctx.Set("entrySnapshotTaken", false)
+        ctx.Set("combatWaitStartedAt", 0)
+
         return "waitCombat"
     }
 }
@@ -106,10 +126,18 @@ class ScanAndAttackPhase extends Phase {
 ; outlasts postKillSettleDelayMs - without a guard, the very next
 ; click's waitCombat tick would immediately re-read that STALE kill
 ; color as "new kill confirmed" before the new fight ever started,
-; producing a rapid false-kill loop. Fix: a fresh kill only counts
-; once this phase has actually observed startColor (combat genuinely
-; begun) since the last click - killColor seen before that is ignored
-; as stale leftover from the previous fight.
+; producing a rapid false-kill loop.
+;
+; Fix (was: require startColor seen first - wrong, since a genuine
+; one-shot kill can go straight to killColor with startColor never
+; appearing at all, which made real instant kills wait out the full
+; retryClickAfterMs instead of being recognized immediately). The
+; real distinction is STALE (killColor already present at the moment
+; this phase was entered, i.e. leftover from the previous kill) vs.
+; FRESH (killColor appearing after having NOT been present at entry -
+; whether or not startColor was ever seen in between). wasKillColorAtEntry
+; is captured once on entry and only killColor readings after that
+; baseline clears count as a fresh kill.
 ; ============================================================
 class WaitCombatPhase extends Phase {
     __New(indicatorGate, startColor, killColor, combatPollKey, retryClickAfterMs, startTimeoutMs, postKillSettleKey) {
@@ -124,29 +152,39 @@ class WaitCombatPhase extends Phase {
     }
 
     ResetForNewCycle() {
-        ; combatWaitStartedAt/combatStartSeen reset below on kill.
+        ; combatWaitStartedAt/staleKillCleared reset below on kill.
     }
 
     Run(ctx) {
-        combatStartSeen := ctx.Get("combatStartSeen", false)
+        ; Captured once, the first tick this phase runs after a click -
+        ; establishes whether killColor was already showing (stale, from the
+        ; previous kill's lingering death animation) before this fight had
+        ; any chance to actually happen.
+        if (!ctx.Get("entrySnapshotTaken", false)) {
+            ctx.Set("entrySnapshotTaken", true)
+            ctx.Set("staleKillCleared", !this._indicatorGate.Matches(this._killColor))
+        }
 
-        ; A kill only counts once THIS fight's start has actually been
-        ; observed - otherwise this is stale killColor still on screen from
-        ; the previous kill's death animation.
-        if (combatStartSeen && this._indicatorGate.Matches(this._killColor)) {
+        if (!ctx.Get("staleKillCleared", false)) {
+            ; Stale killColor hasn't cleared yet - only a REAL state change
+            ; (no longer killColor) proves the previous fight's residue is
+            ; gone and this fight's own signal can now be trusted.
+            if (!this._indicatorGate.Matches(this._killColor))
+                ctx.Set("staleKillCleared", true)
+        } else if (this._indicatorGate.Matches(this._killColor)) {
             ctx.Log("WaitCombatPhase: Kill confirmed. Settling before rescan.")
             ctx.waiter.After(ctx.timing, this._postKillSettleKey)
             ctx.Set("targetWaitStartedAt", 0)
             ctx.Set("combatWaitStartedAt", 0)
-            ctx.Set("combatStartSeen", false)
+            ctx.Set("entrySnapshotTaken", false)
+            ctx.Set("staleKillCleared", false)
             ctx.failsafe.ResetPhaseTimer(ctx)
             return "scanAndAttack"
         }
 
         if (this._indicatorGate.Matches(this._startColor)) {
-            if (!combatStartSeen) {
+            if (ctx.Get("combatWaitStartedAt", 0) != 0) {
                 ctx.Log("WaitCombatPhase: Combat started. Waiting for kill.")
-                ctx.Set("combatStartSeen", true)
                 ctx.failsafe.ResetPhaseTimer(ctx)
             }
             ctx.Set("combatWaitStartedAt", 0)
@@ -157,20 +195,18 @@ class WaitCombatPhase extends Phase {
         ; Neither a fresh kill nor combat-start observed yet - only relevant
         ; if this drags on past the attack click with no combat signal at
         ; all (a miss/no-op click, or stale killColor still lingering).
-        if (!combatStartSeen) {
-            waitStartedAt := ctx.Get("combatWaitStartedAt", 0)
-            if (waitStartedAt == 0) {
-                ctx.Set("combatWaitStartedAt", A_TickCount)
-            } else if ((A_TickCount - waitStartedAt) > this._startTimeoutMs) {
-                ctx.Log("WaitCombatPhase: Timed out waiting for a combat signal - stopping")
-                ctx.engine.Stop("Timed out waiting for combat signal")
-                return "waitCombat"
-            } else if ((A_TickCount - waitStartedAt) > this._retryClickAfterMs) {
-                ctx.Log("WaitCombatPhase: No combat signal after " this._retryClickAfterMs "ms - click likely missed, retrying scan")
-                ctx.Set("combatWaitStartedAt", 0)
-                ctx.failsafe.ResetPhaseTimer(ctx)
-                return "scanAndAttack"
-            }
+        waitStartedAt := ctx.Get("combatWaitStartedAt", 0)
+        if (waitStartedAt == 0) {
+            ctx.Set("combatWaitStartedAt", A_TickCount)
+        } else if ((A_TickCount - waitStartedAt) > this._startTimeoutMs) {
+            ctx.Log("WaitCombatPhase: Timed out waiting for a combat signal - stopping")
+            ctx.engine.Stop("Timed out waiting for combat signal")
+            return "waitCombat"
+        } else if ((A_TickCount - waitStartedAt) > this._retryClickAfterMs) {
+            ctx.Log("WaitCombatPhase: No combat signal after " this._retryClickAfterMs "ms - click likely missed, retrying scan")
+            ctx.Set("combatWaitStartedAt", 0)
+            ctx.failsafe.ResetPhaseTimer(ctx)
+            return "scanAndAttack"
         }
 
         ctx.waiter.After(ctx.timing, this._combatPollKey)
@@ -193,6 +229,8 @@ schema := Map(
     "targetSeedRowStep", Map("section", "Tunables", "type", "int"),
     "refPointX", Map("section", "Tunables", "type", "int"),
     "refPointY", Map("section", "Tunables", "type", "int"),
+    "targetSearchRadiusX", Map("section", "Tunables", "type", "int"),
+    "targetSearchRadiusY", Map("section", "Tunables", "type", "int"),
     "scanPollMs", Map("section", "Tunables", "type", "int"),
     "targetWaitTimeoutMs", Map("section", "Tunables", "type", "int"),
     "combatIndicatorX", Map("section", "Tunables", "type", "int"),
@@ -235,6 +273,7 @@ combatIndicatorGate := PixelColorGate(
 botScanAndAttackPhase := ScanAndAttackPhase(
     botConfig.Get("targetColor"), botConfig.Get("targetColorTolerance"),
     botConfig.Get("refPointX"), botConfig.Get("refPointY"),
+    botConfig.Get("targetSearchRadiusX"), botConfig.Get("targetSearchRadiusY"),
     botConfig.Get("targetBlobRadius"), botConfig.Get("targetSampleRate"), botConfig.Get("targetSeedRowStep"), "scanPoll",
     botConfig.Get("targetWaitTimeoutMs"), botConfig.Get("runMode")
 )
