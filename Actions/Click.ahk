@@ -62,13 +62,13 @@ class Clicker {
     ; settle delays are Waiter/TimingProfile-driven, not this class's own
     ; state - replaces the identical _Click(ctx,x,y) every Phase used to
     ; hand-roll.
-    ClickSettled(ctx, x, y, runMode := false) {
+    ClickSettled(ctx, x, y, runMode := false, button := "Left") {
         if (runMode)
             Send("{Ctrl down}")
 
         this.MoveTo(x, y, 0, 0, &targetX, &targetY)
         ctx.waiter.After(ctx.timing, "clickSettle")
-        this.Press()
+        this.Press(button)
 
         if (runMode) {
             ctx.waiter.After(ctx.timing, "ctrlHoldSettle")

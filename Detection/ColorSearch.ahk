@@ -150,15 +150,26 @@ class ColorSearch {
     }
 
     ; Centroid (average position) of `color` pixels inside [x1,y1]-[x2,y2],
-    ; one sampled row per `sampleRate` rows (first match per row, same
-    ; cheap-approximation shape as FindNearestColor) - NOT a per-pixel
-    ; PixelGetColor loop. On this framework's target machines, individual
+    ; one sampled row per `sampleRate` rows - NOT a per-pixel PixelGetColor
+    ; loop. On this framework's target machines, individual
     ; PixelGetColor/PixelSearch calls carry a large fixed per-call cost (the
     ; underlying screen-capture setup, not the pixel comparison itself), so
     ; a brute-force per-pixel loop over even a small 120x120 box multiplies
     ; into a multi-second stall - PixelSearch already scans a whole row
     ; natively in one call, so this reuses that same primitive instead of
     ; re-implementing the scan by hand. Returns false if nothing matches.
+    ;
+    ; Each sampled row is searched TWICE: once left-to-right (leftmost
+    ; match) and once right-to-left (rightmost match, by swapping which X
+    ; comes first - PixelSearch scans toward the second X argument, same
+    ; trick FindFilledBlock uses for scanBottomUp), then the row's own
+    ; midpoint (leftmost+rightmost)/2 is what gets averaged into the
+    ; centroid - not just the leftmost match. A solid blob's row is
+    ; usually several pixels wide; averaging only the leftmost match per
+    ; row (the original implementation) systematically drags the whole
+    ; centroid toward the blob's LEFT edge instead of its true center,
+    ; which was confirmed live as a real mis-click bug on AutoFighter's
+    ; NPC-blob targeting before this fix.
     static FindCentroid(x1, y1, x2, y2, color, tol, &cx, &cy, sampleRate := 2) {
         sumX := 0
         sumY := 0
@@ -166,9 +177,12 @@ class ColorSearch {
 
         y := y1
         while (y <= y2) {
-            if (PixelSearch(&px, &py, x1, y, x2, y, color, tol)) {
-                sumX += px
-                sumY += py
+            leftFound := PixelSearch(&leftX, &leftY, x1, y, x2, y, color, tol)
+            if (leftFound) {
+                rightFound := PixelSearch(&rightX, &rightY, x2, y, x1, y, color, tol)
+                midX := rightFound ? (leftX + rightX) / 2 : leftX
+                sumX += midX
+                sumY += leftY
                 count += 1
             }
             y += sampleRate

@@ -1,0 +1,638 @@
+2026-07-13 16:59:27 Engine: started at phase 'scanAndAttack'
+2026-07-13 16:59:28 ScanAndAttackPhase: Found target blob at [967, 684]
+2026-07-13 16:59:30 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:00:06 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:00:10 LootPickupPhase: Found bb-item at [1180, 712]. Right-clicking.
+2026-07-13 17:00:10 LootPickupPhase: Found take-bb at [1128, 798]. Clicking.
+2026-07-13 17:00:11 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:00:15 ScanAndAttackPhase: Found target blob at [1641, 684]
+2026-07-13 17:00:18 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:00:20 Engine: stopped - Stopped (F6)
+2026-07-13 17:02:10 Engine: started at phase 'scanAndAttack'
+2026-07-13 17:02:10 ScanAndAttackPhase: Found target blob at [1178, 754]
+2026-07-13 17:02:12 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:02:42 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:02:46 LootPickupPhase: Found bb-item at [1250, 778]. Right-clicking.
+2026-07-13 17:02:46 LootPickupPhase: Found take-bb at [1184, 864]. Clicking.
+2026-07-13 17:02:47 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:02:48 ScanAndAttackPhase: Found target blob at [1285, 889]
+2026-07-13 17:02:52 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:02:53 ScanAndAttackPhase: Found target blob at [1173, 754]
+2026-07-13 17:02:54 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:03:21 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:03:25 LootPickupPhase: Found bb-item at [1250, 778]. Right-clicking.
+2026-07-13 17:03:26 LootPickupPhase: Found take-bb at [1224, 864]. Clicking.
+2026-07-13 17:03:27 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:03:28 ScanAndAttackPhase: Found target blob at [1308, 604]
+2026-07-13 17:03:29 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:03:44 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:03:48 LootPickupPhase: Found bb-item at [1316, 592]. Right-clicking.
+2026-07-13 17:03:48 LootPickupPhase: Found take-bb at [1286, 678]. Clicking.
+2026-07-13 17:03:50 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:03:51 ScanAndAttackPhase: Found target blob at [1390, 559]
+2026-07-13 17:03:53 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:04:08 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:04:12 LootPickupPhase: Found bb-item at [1316, 590]. Right-clicking.
+2026-07-13 17:04:12 LootPickupPhase: Found take-bb at [1282, 676]. Clicking.
+2026-07-13 17:04:13 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:04:14 ScanAndAttackPhase: Found target blob at [1517, 549]
+2026-07-13 17:04:17 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:04:29 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:04:33 LootPickupPhase: Found bb-item at [1386, 650]. Right-clicking.
+2026-07-13 17:04:33 LootPickupPhase: Found take-bb at [1288, 766]. Clicking.
+2026-07-13 17:04:35 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:04:36 ScanAndAttackPhase: Found target blob at [1214, 709]
+2026-07-13 17:04:40 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:04:41 ScanAndAttackPhase: Found target blob at [916, 849]
+2026-07-13 17:04:45 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:04:46 ScanAndAttackPhase: Found target blob at [1172, 764]
+2026-07-13 17:04:47 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:05:11 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:05:15 LootPickupPhase: Found bb-item at [1250, 778]. Right-clicking.
+2026-07-13 17:05:15 LootPickupPhase: Found take-bb at [1224, 864]. Clicking.
+2026-07-13 17:05:17 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:05:18 ScanAndAttackPhase: Found target blob at [1647, 699]
+2026-07-13 17:05:22 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:05:46 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:05:50 LootPickupPhase: Found bb-item at [1316, 596]. Right-clicking.
+2026-07-13 17:05:50 LootPickupPhase: Found take-bb at [1290, 682]. Clicking.
+2026-07-13 17:05:52 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:05:52 ScanAndAttackPhase: Found target blob at [1329, 349]
+2026-07-13 17:05:56 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:06:14 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:06:18 LootPickupPhase: Found bb-item at [1386, 650]. Right-clicking.
+2026-07-13 17:06:18 LootPickupPhase: Found take-bb at [1344, 736]. Clicking.
+2026-07-13 17:06:20 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:06:21 ScanAndAttackPhase: Found target blob at [942, 979]
+2026-07-13 17:06:24 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:06:54 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:06:58 LootPickupPhase: Found bb-item at [1378, 478]. Right-clicking.
+2026-07-13 17:06:58 LootPickupPhase: Found take-bb at [1280, 594]. Clicking.
+2026-07-13 17:06:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:07:00 ScanAndAttackPhase: Found target blob at [1379, 599]
+2026-07-13 17:07:05 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:07:05 ScanAndAttackPhase: Found target blob at [1007, 914]
+2026-07-13 17:07:07 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:07:34 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:07:38 LootPickupPhase: Found bb-item at [1382, 590]. Right-clicking.
+2026-07-13 17:07:38 LootPickupPhase: Found take-bb at [1356, 646]. Clicking.
+2026-07-13 17:07:40 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:07:40 ScanAndAttackPhase: Found target blob at [954, 964]
+2026-07-13 17:07:45 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:07:46 ScanAndAttackPhase: Found target blob at [1187, 764]
+2026-07-13 17:07:47 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:08:08 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:08:12 LootPickupPhase: Found bb-item at [1250, 650]. Right-clicking.
+2026-07-13 17:08:12 LootPickupPhase: Found take-bb at [1214, 736]. Clicking.
+2026-07-13 17:08:13 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:08:14 ScanAndAttackPhase: Found target blob at [1278, 519]
+2026-07-13 17:08:18 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:08:19 ScanAndAttackPhase: Found target blob at [1178, 659]
+2026-07-13 17:08:20 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:08:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:08:57 LootPickupPhase: Found bb-item at [1250, 590]. Right-clicking.
+2026-07-13 17:08:57 LootPickupPhase: Found take-bb at [1154, 676]. Clicking.
+2026-07-13 17:08:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:08:59 ScanAndAttackPhase: Found target blob at [1171, 974]
+2026-07-13 17:09:04 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:09:05 ScanAndAttackPhase: Found target blob at [1169, 774]
+2026-07-13 17:09:06 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:09:42 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:09:46 LootPickupPhase: Found bb-item at [1250, 778]. Right-clicking.
+2026-07-13 17:09:46 LootPickupPhase: Found take-bb at [1224, 864]. Clicking.
+2026-07-13 17:09:47 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:09:48 ScanAndAttackPhase: Found target blob at [1376, 524]
+2026-07-13 17:09:53 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:09:53 ScanAndAttackPhase: Found target blob at [1005, 609]
+2026-07-13 17:09:55 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:10:19 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:10:23 LootPickupPhase: Found bb-item at [1250, 590]. Right-clicking.
+2026-07-13 17:10:23 LootPickupPhase: Found take-bb at [1206, 676]. Clicking.
+2026-07-13 17:10:25 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:10:25 ScanAndAttackPhase: Found target blob at [1254, 1079]
+2026-07-13 17:10:30 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:10:31 ScanAndAttackPhase: Found target blob at [1262, 769]
+2026-07-13 17:10:32 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:11:09 Engine: stopped - Stopped (F6)
+2026-07-13 17:11:24 Engine: started at phase 'scanAndAttack'
+2026-07-13 17:11:25 ScanAndAttackPhase: Found target blob at [1394, 784]
+2026-07-13 17:11:26 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:11:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:11:57 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:11:57 LootPickupPhase: Found take-bb at [1354, 798]. Clicking.
+2026-07-13 17:11:58 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:11:59 ScanAndAttackPhase: Found target blob at [990, 884]
+2026-07-13 17:12:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:12:01 Engine: stopped - Stopped (F6)
+2026-07-13 17:12:18 Engine: started at phase 'scanAndAttack'
+2026-07-13 17:12:19 ScanAndAttackPhase: Found target blob at [1228, 639]
+2026-07-13 17:12:21 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:12:25 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:12:26 LootPickupPhase: Found take-bb at [1224, 860]. Clicking.
+2026-07-13 17:12:27 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:12:28 ScanAndAttackPhase: Found target blob at [1309, 644]
+2026-07-13 17:12:29 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:12:47 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:12:51 LootPickupPhase: Found bb-item at [1312, 596]. Right-clicking.
+2026-07-13 17:12:52 LootPickupPhase: Found take-bb at [1282, 682]. Clicking.
+2026-07-13 17:12:53 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:12:54 ScanAndAttackPhase: Found target blob at [875, 1064]
+2026-07-13 17:12:57 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:13:15 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:13:19 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:13:19 LootPickupPhase: Found take-bb at [1224, 858]. Clicking.
+2026-07-13 17:13:21 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:13:22 ScanAndAttackPhase: Found target blob at [1179, 659]
+2026-07-13 17:13:26 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:13:27 ScanAndAttackPhase: Found target blob at [950, 489]
+2026-07-13 17:13:31 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:13:32 ScanAndAttackPhase: Found target blob at [1254, 629]
+2026-07-13 17:13:52 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:13:56 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:13:56 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:13:58 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:13:59 ScanAndAttackPhase: Found target blob at [1103, 974]
+2026-07-13 17:14:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:14:22 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:14:26 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:14:26 LootPickupPhase: Found take-bb at [1220, 860]. Clicking.
+2026-07-13 17:14:28 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:14:29 ScanAndAttackPhase: Found target blob at [1189, 604]
+2026-07-13 17:14:33 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:14:34 ScanAndAttackPhase: Found target blob at [1443, 739]
+2026-07-13 17:14:35 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:14:39 Engine: stopped - Stopped (F6)
+2026-07-13 17:14:39 Engine: stopped - Stopped (F6)
+2026-07-13 17:18:43 Engine: started at phase 'scanAndAttack'
+2026-07-13 17:18:44 ScanAndAttackPhase: Found target blob at [1210, 757]
+2026-07-13 17:18:58 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:19:02 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:19:02 LootPickupPhase: Found take-bb at [1198, 858]. Clicking.
+2026-07-13 17:19:04 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:19:05 ScanAndAttackPhase: Found target blob at [1385, 644]
+2026-07-13 17:19:06 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:19:36 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:19:40 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:19:40 LootPickupPhase: Found take-bb at [1350, 740]. Clicking.
+2026-07-13 17:19:42 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:19:43 ScanAndAttackPhase: Found target blob at [1012, 699]
+2026-07-13 17:19:44 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:20:20 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:20:23 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:20:24 LootPickupPhase: Found take-bb at [1160, 740]. Clicking.
+2026-07-13 17:20:25 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:20:26 ScanAndAttackPhase: Found target blob at [1074, 649]
+2026-07-13 17:20:28 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:20:43 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:20:46 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:20:47 LootPickupPhase: Found take-bb at [1144, 740]. Clicking.
+2026-07-13 17:20:48 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:20:49 ScanAndAttackPhase: Found target blob at [1347, 1074]
+2026-07-13 17:20:51 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:21:03 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:21:07 LootPickupPhase: Found bb-item at [1316, 772]. Right-clicking.
+2026-07-13 17:21:07 LootPickupPhase: Found take-bb at [1264, 858]. Clicking.
+2026-07-13 17:21:09 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:21:10 ScanAndAttackPhase: Found target blob at [1284, 544]
+2026-07-13 17:21:11 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:21:44 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:21:48 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:21:48 LootPickupPhase: Found take-bb at [1260, 684]. Clicking.
+2026-07-13 17:21:49 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:21:50 ScanAndAttackPhase: Found target blob at [1153, 854]
+2026-07-13 17:21:51 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:22:15 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:22:19 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:22:20 LootPickupPhase: Found take-bb at [1224, 860]. Clicking.
+2026-07-13 17:22:21 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:22:22 ScanAndAttackPhase: Found target blob at [1313, 499]
+2026-07-13 17:22:23 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:22:56 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:23:00 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:23:00 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:23:02 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:23:03 ScanAndAttackPhase: Found target blob at [1210, 904]
+2026-07-13 17:23:04 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:23:28 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:23:32 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:23:32 LootPickupPhase: Found take-bb at [1216, 858]. Clicking.
+2026-07-13 17:23:34 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:23:35 ScanAndAttackPhase: Found target blob at [1409, 589]
+2026-07-13 17:23:36 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:23:51 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:23:55 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:23:55 LootPickupPhase: Found take-bb at [1324, 740]. Clicking.
+2026-07-13 17:23:57 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:23:58 ScanAndAttackPhase: Found target blob at [902, 764]
+2026-07-13 17:23:59 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:24:35 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:24:39 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:24:39 LootPickupPhase: Found take-bb at [1216, 888]. Clicking.
+2026-07-13 17:24:41 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:24:42 ScanAndAttackPhase: Found target blob at [1394, 594]
+2026-07-13 17:24:43 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:25:07 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:25:11 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:25:11 LootPickupPhase: Found take-bb at [1308, 740]. Clicking.
+2026-07-13 17:25:13 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:25:14 ScanAndAttackPhase: Found target blob at [940, 829]
+2026-07-13 17:25:15 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:25:40 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:25:43 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:25:44 LootPickupPhase: Found take-bb at [1224, 858]. Clicking.
+2026-07-13 17:25:45 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:25:46 ScanAndAttackPhase: Found target blob at [1210, 659]
+2026-07-13 17:25:47 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:26:05 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:26:09 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:26:09 LootPickupPhase: Found take-bb at [1154, 684]. Clicking.
+2026-07-13 17:26:11 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:26:12 ScanAndAttackPhase: Found target blob at [1306, 729]
+2026-07-13 17:26:16 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:26:17 ScanAndAttackPhase: Found target blob at [1340, 719]
+2026-07-13 17:26:19 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:26:34 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:26:37 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:26:38 LootPickupPhase: Found take-bb at [1338, 798]. Clicking.
+2026-07-13 17:26:39 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:26:40 ScanAndAttackPhase: Found target blob at [1204, 709]
+2026-07-13 17:26:41 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:27:05 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:27:09 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:27:09 LootPickupPhase: Found take-bb at [1160, 740]. Clicking.
+2026-07-13 17:27:11 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:27:12 ScanAndAttackPhase: Found target blob at [1054, 899]
+2026-07-13 17:27:13 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:27:46 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:27:50 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:27:50 LootPickupPhase: Found take-bb at [1224, 858]. Clicking.
+2026-07-13 17:27:52 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:27:53 ScanAndAttackPhase: Found target blob at [1266, 394]
+2026-07-13 17:27:55 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:28:13 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:28:17 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:28:17 LootPickupPhase: Found take-bb at [1258, 684]. Clicking.
+2026-07-13 17:28:19 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:28:20 ScanAndAttackPhase: Found target blob at [1126, 1059]
+2026-07-13 17:28:22 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:28:43 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:28:46 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:28:47 LootPickupPhase: Found take-bb at [1182, 860]. Clicking.
+2026-07-13 17:28:48 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:28:49 ScanAndAttackPhase: Found target blob at [1332, 724]
+2026-07-13 17:28:50 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:29:17 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:29:21 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:29:21 LootPickupPhase: Found take-bb at [1354, 798]. Clicking.
+2026-07-13 17:29:23 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:29:24 ScanAndAttackPhase: Found target blob at [1049, 829]
+2026-07-13 17:29:25 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:29:52 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:29:56 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:29:56 LootPickupPhase: Found take-bb at [1206, 858]. Clicking.
+2026-07-13 17:29:58 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:29:59 ScanAndAttackPhase: Found target blob at [1287, 469]
+2026-07-13 17:30:03 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:30:04 ScanAndAttackPhase: Found target blob at [1201, 649]
+2026-07-13 17:30:05 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:30:23 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:30:27 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:30:27 LootPickupPhase: Found take-bb at [1224, 684]. Clicking.
+2026-07-13 17:30:29 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:30:31 ScanAndAttackPhase: Found target blob at [1081, 1094]
+2026-07-13 17:30:32 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:30:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:30:57 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:30:57 LootPickupPhase: Found take-bb at [1354, 798]. Clicking.
+2026-07-13 17:30:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:31:00 ScanAndAttackPhase: Found target blob at [1203, 704]
+2026-07-13 17:31:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:31:19 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:31:23 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:31:23 LootPickupPhase: Found take-bb at [1160, 740]. Clicking.
+2026-07-13 17:31:25 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:31:26 ScanAndAttackPhase: Found target blob at [983, 854]
+2026-07-13 17:31:30 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:31:31 ScanAndAttackPhase: Found target blob at [1342, 774]
+2026-07-13 17:31:32 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:31:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:31:57 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:31:57 LootPickupPhase: Found take-bb at [1274, 860]. Clicking.
+2026-07-13 17:31:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:32:00 ScanAndAttackPhase: Found target blob at [1400, 469]
+2026-07-13 17:32:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:32:25 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:32:28 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:32:29 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:32:30 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:32:31 ScanAndAttackPhase: Found target blob at [1066, 919]
+2026-07-13 17:32:36 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:32:36 ScanAndAttackPhase: Found target blob at [1298, 834]
+2026-07-13 17:32:38 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:32:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:32:56 LootPickupPhase: Found bb-item at [1316, 772]. Right-clicking.
+2026-07-13 17:32:57 LootPickupPhase: Found take-bb at [1220, 858]. Clicking.
+2026-07-13 17:32:58 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:32:59 ScanAndAttackPhase: Found target blob at [1196, 654]
+2026-07-13 17:33:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:33:28 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:33:31 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:33:32 LootPickupPhase: Found take-bb at [1198, 684]. Clicking.
+2026-07-13 17:33:33 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:33:34 ScanAndAttackPhase: Found target blob at [1266, 704]
+2026-07-13 17:33:35 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:34:20 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:34:24 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:34:24 LootPickupPhase: Found take-bb at [1354, 798]. Clicking.
+2026-07-13 17:34:26 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:34:27 ScanAndAttackPhase: Found target blob at [1207, 594]
+2026-07-13 17:34:28 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:34:55 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:34:59 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:34:59 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:35:01 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:35:02 ScanAndAttackPhase: Found target blob at [1364, 974]
+2026-07-13 17:35:04 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:35:31 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:35:34 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:35:35 LootPickupPhase: Found take-bb at [1290, 860]. Clicking.
+2026-07-13 17:35:36 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:35:37 ScanAndAttackPhase: Found target blob at [955, 714]
+2026-07-13 17:35:39 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:36:03 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:36:07 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:36:07 LootPickupPhase: Found take-bb at [1200, 684]. Clicking.
+2026-07-13 17:36:09 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:36:10 ScanAndAttackPhase: Found target blob at [1297, 984]
+2026-07-13 17:36:11 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:36:32 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:36:36 LootPickupPhase: Found bb-item at [1316, 772]. Right-clicking.
+2026-07-13 17:36:36 LootPickupPhase: Found take-bb at [1290, 858]. Clicking.
+2026-07-13 17:36:38 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:36:39 ScanAndAttackPhase: Found target blob at [1134, 619]
+2026-07-13 17:36:40 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:37:10 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:37:14 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:37:14 LootPickupPhase: Found take-bb at [1160, 740]. Clicking.
+2026-07-13 17:37:16 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:37:17 ScanAndAttackPhase: Found target blob at [1282, 754]
+2026-07-13 17:37:18 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:37:36 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:37:40 LootPickupPhase: Found bb-item at [1316, 772]. Right-clicking.
+2026-07-13 17:37:40 LootPickupPhase: Found take-bb at [1220, 918]. Clicking.
+2026-07-13 17:37:42 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:37:43 ScanAndAttackPhase: Found target blob at [1269, 389]
+2026-07-13 17:37:45 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:38:12 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:38:16 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:38:16 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:38:18 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:38:21 ScanAndAttackPhase: Found target blob at [1081, 1084]
+2026-07-13 17:38:23 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:38:56 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:39:00 LootPickupPhase: Found bb-item at [1186, 712]. Right-clicking.
+2026-07-13 17:39:00 LootPickupPhase: Found take-bb at [1136, 798]. Clicking.
+2026-07-13 17:39:02 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:39:03 ScanAndAttackPhase: Found target blob at [1262, 649]
+2026-07-13 17:39:04 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:39:25 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:39:29 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:39:29 LootPickupPhase: Found take-bb at [1258, 684]. Clicking.
+2026-07-13 17:39:31 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:39:32 ScanAndAttackPhase: Found target blob at [1008, 519]
+2026-07-13 17:39:34 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:39:58 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:40:02 LootPickupPhase: Found bb-item at [1186, 654]. Right-clicking.
+2026-07-13 17:40:02 LootPickupPhase: Found take-bb at [1142, 740]. Clicking.
+2026-07-13 17:40:04 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:40:05 ScanAndAttackPhase: Found target blob at [1574, 989]
+2026-07-13 17:40:07 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:40:28 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:40:31 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:40:32 LootPickupPhase: Found take-bb at [1286, 860]. Clicking.
+2026-07-13 17:40:33 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:40:34 ScanAndAttackPhase: Found target blob at [1062, 989]
+2026-07-13 17:40:36 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:41:09 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:41:13 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:41:13 LootPickupPhase: Found take-bb at [1224, 860]. Clicking.
+2026-07-13 17:41:15 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:41:16 ScanAndAttackPhase: Found target blob at [1452, 689]
+2026-07-13 17:41:17 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:41:54 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:41:57 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:41:58 LootPickupPhase: Found take-bb at [1322, 740]. Clicking.
+2026-07-13 17:41:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:42:00 ScanAndAttackPhase: Found target blob at [907, 754]
+2026-07-13 17:42:02 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:42:50 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:42:54 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:42:54 LootPickupPhase: Found take-bb at [1220, 858]. Clicking.
+2026-07-13 17:42:56 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:42:56 ScanAndAttackPhase: Found target blob at [1394, 594]
+2026-07-13 17:42:58 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:43:13 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:43:16 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:43:17 LootPickupPhase: Found take-bb at [1350, 740]. Clicking.
+2026-07-13 17:43:18 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:43:19 ScanAndAttackPhase: Found target blob at [1106, 684]
+2026-07-13 17:43:24 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:43:24 ScanAndAttackPhase: Found target blob at [1288, 754]
+2026-07-13 17:43:25 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:43:49 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:43:53 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:43:53 LootPickupPhase: Found take-bb at [1262, 860]. Clicking.
+2026-07-13 17:43:55 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:43:56 ScanAndAttackPhase: Found target blob at [1223, 599]
+2026-07-13 17:43:57 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:44:12 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:44:16 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:44:16 LootPickupPhase: Found take-bb at [1224, 684]. Clicking.
+2026-07-13 17:44:18 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:44:19 ScanAndAttackPhase: Found target blob at [1086, 974]
+2026-07-13 17:44:20 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:44:53 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:44:57 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:44:57 LootPickupPhase: Found take-bb at [1224, 860]. Clicking.
+2026-07-13 17:44:59 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:45:00 ScanAndAttackPhase: Found target blob at [1385, 644]
+2026-07-13 17:45:01 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:45:22 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:45:26 LootPickupPhase: Found bb-item at [1376, 652]. Right-clicking.
+2026-07-13 17:45:26 LootPickupPhase: Found take-bb at [1350, 738]. Clicking.
+2026-07-13 17:45:28 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:45:29 ScanAndAttackPhase: Found target blob at [870, 834]
+2026-07-13 17:45:31 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:45:49 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:45:53 LootPickupPhase: Found bb-item at [1186, 712]. Right-clicking.
+2026-07-13 17:45:53 LootPickupPhase: Found take-bb at [1160, 798]. Clicking.
+2026-07-13 17:45:55 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:45:56 ScanAndAttackPhase: Found target blob at [1458, 749]
+2026-07-13 17:45:57 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:46:27 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:46:28 ScanAndAttackPhase: Found target blob at [1260, 799]
+2026-07-13 17:46:32 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 17:46:33 ScanAndAttackPhase: Found target blob at [1260, 759]
+2026-07-13 17:46:35 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:46:48 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:46:52 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:46:52 LootPickupPhase: Found take-bb at [1214, 684]. Clicking.
+2026-07-13 17:46:54 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:46:55 ScanAndAttackPhase: Found target blob at [1369, 699]
+2026-07-13 17:46:56 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:47:20 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:47:24 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:47:24 LootPickupPhase: Found take-bb at [1266, 860]. Clicking.
+2026-07-13 17:47:26 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:47:27 ScanAndAttackPhase: Found target blob at [1122, 909]
+2026-07-13 17:47:28 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:47:43 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:47:47 LootPickupPhase: Found bb-item at [1250, 712]. Right-clicking.
+2026-07-13 17:47:47 LootPickupPhase: Found take-bb at [1224, 798]. Clicking.
+2026-07-13 17:47:48 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:47:49 ScanAndAttackPhase: Found target blob at [1150, 539]
+2026-07-13 17:47:51 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:48:15 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:48:18 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:48:19 LootPickupPhase: Found take-bb at [1212, 684]. Clicking.
+2026-07-13 17:48:20 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:48:21 ScanAndAttackPhase: Found target blob at [1349, 839]
+2026-07-13 17:48:22 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:48:46 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:48:50 LootPickupPhase: Found bb-item at [1316, 774]. Right-clicking.
+2026-07-13 17:48:50 LootPickupPhase: Found take-bb at [1218, 890]. Clicking.
+2026-07-13 17:48:52 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:48:53 ScanAndAttackPhase: Found target blob at [1270, 714]
+2026-07-13 17:48:54 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:49:18 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:49:22 LootPickupPhase: Found bb-item at [1380, 712]. Right-clicking.
+2026-07-13 17:49:22 LootPickupPhase: Found take-bb at [1354, 798]. Clicking.
+2026-07-13 17:49:24 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:49:25 ScanAndAttackPhase: Found target blob at [980, 834]
+2026-07-13 17:49:26 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:49:56 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:50:00 LootPickupPhase: Found bb-item at [1186, 712]. Right-clicking.
+2026-07-13 17:50:00 LootPickupPhase: Found take-bb at [1160, 798]. Clicking.
+2026-07-13 17:50:02 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:50:03 ScanAndAttackPhase: Found target blob at [1454, 634]
+2026-07-13 17:50:04 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:50:22 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:50:26 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:50:26 LootPickupPhase: Found take-bb at [1350, 740]. Clicking.
+2026-07-13 17:50:27 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:50:28 ScanAndAttackPhase: Found target blob at [994, 904]
+2026-07-13 17:50:30 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:51:03 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:51:07 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:51:07 LootPickupPhase: Found take-bb at [1200, 858]. Clicking.
+2026-07-13 17:51:09 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:51:10 ScanAndAttackPhase: Found target blob at [1385, 619]
+2026-07-13 17:51:11 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:51:23 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:51:27 LootPickupPhase: Found bb-item at [1312, 600]. Right-clicking.
+2026-07-13 17:51:27 LootPickupPhase: Found take-bb at [1262, 686]. Clicking.
+2026-07-13 17:51:29 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:51:30 ScanAndAttackPhase: Found target blob at [1126, 829]
+2026-07-13 17:51:31 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:51:55 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:51:59 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:51:59 LootPickupPhase: Found take-bb at [1200, 858]. Clicking.
+2026-07-13 17:52:00 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:52:01 ScanAndAttackPhase: Found target blob at [1331, 539]
+2026-07-13 17:52:03 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:52:21 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:52:24 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:52:25 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 17:52:26 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:52:27 ScanAndAttackPhase: Found target blob at [1043, 984]
+2026-07-13 17:52:29 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:52:50 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:52:54 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:52:54 LootPickupPhase: Found take-bb at [1200, 888]. Clicking.
+2026-07-13 17:52:56 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:52:57 ScanAndAttackPhase: Found target blob at [1228, 654]
+2026-07-13 17:52:58 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:53:25 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:53:29 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:53:29 LootPickupPhase: Found take-bb at [1224, 684]. Clicking.
+2026-07-13 17:53:31 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:53:31 ScanAndAttackPhase: Found target blob at [993, 754]
+2026-07-13 17:53:33 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:53:57 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:54:01 LootPickupPhase: Found bb-item at [1186, 712]. Right-clicking.
+2026-07-13 17:54:01 LootPickupPhase: Found take-bb at [1114, 798]. Clicking.
+2026-07-13 17:54:03 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:54:04 ScanAndAttackPhase: Found target blob at [1508, 684]
+2026-07-13 17:54:05 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:54:29 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:54:33 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:54:33 LootPickupPhase: Found take-bb at [1324, 740]. Clicking.
+2026-07-13 17:54:35 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:54:36 ScanAndAttackPhase: Found target blob at [1059, 974]
+2026-07-13 17:54:37 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:55:01 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:55:05 LootPickupPhase: Found bb-item at [1250, 772]. Right-clicking.
+2026-07-13 17:55:05 LootPickupPhase: Found take-bb at [1190, 858]. Clicking.
+2026-07-13 17:55:07 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:55:08 ScanAndAttackPhase: Found target blob at [1382, 589]
+2026-07-13 17:55:09 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:55:24 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:55:28 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:55:28 LootPickupPhase: Found take-bb at [1322, 740]. Clicking.
+2026-07-13 17:55:30 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:55:31 ScanAndAttackPhase: Found target blob at [976, 829]
+2026-07-13 17:55:33 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:55:51 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:55:54 LootPickupPhase: Found bb-item at [1250, 742]. Right-clicking.
+2026-07-13 17:56:05 LootPickupPhase: take-bb.png not found in time (unexpected). Skipping loot, resuming scan.
+2026-07-13 17:56:06 ScanAndAttackPhase: Found target blob at [1324, 694]
+2026-07-13 17:56:07 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:56:28 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:56:32 LootPickupPhase: Found bb-item at [1376, 654]. Right-clicking.
+2026-07-13 17:56:32 LootPickupPhase: Found take-bb at [1334, 740]. Clicking.
+2026-07-13 17:56:34 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:56:34 ScanAndAttackPhase: Found target blob at [1052, 824]
+2026-07-13 17:56:36 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:57:00 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:57:03 LootPickupPhase: Found bb-item at [1234, 742]. Right-clicking.
+2026-07-13 17:57:14 LootPickupPhase: take-bb.png not found in time (unexpected). Skipping loot, resuming scan.
+2026-07-13 17:57:14 ScanAndAttackPhase: Found target blob at [1215, 654]
+2026-07-13 17:57:16 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:57:34 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:57:38 LootPickupPhase: Found bb-item at [1250, 598]. Right-clicking.
+2026-07-13 17:57:38 LootPickupPhase: Found take-bb at [1192, 684]. Clicking.
+2026-07-13 17:57:40 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:57:40 ScanAndAttackPhase: Found target blob at [1206, 904]
+2026-07-13 17:57:42 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:58:03 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:58:06 LootPickupPhase: Found bb-item at [1234, 772]. Right-clicking.
+2026-07-13 17:58:07 LootPickupPhase: Found take-bb at [1208, 858]. Clicking.
+2026-07-13 17:58:08 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:58:09 ScanAndAttackPhase: Found target blob at [1264, 439]
+2026-07-13 17:58:11 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:58:41 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:58:45 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 17:58:45 LootPickupPhase: Found take-bb at [1244, 684]. Clicking.
+2026-07-13 17:58:47 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:58:48 ScanAndAttackPhase: Found target blob at [960, 914]
+2026-07-13 17:58:50 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 17:59:34 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 17:59:38 LootPickupPhase: Found bb-item at [1250, 774]. Right-clicking.
+2026-07-13 17:59:39 LootPickupPhase: Found take-bb at [1208, 860]. Clicking.
+2026-07-13 17:59:40 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 17:59:41 ScanAndAttackPhase: Found target blob at [1308, 539]
+2026-07-13 17:59:42 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 18:00:12 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 18:00:16 LootPickupPhase: Found bb-item at [1312, 598]. Right-clicking.
+2026-07-13 18:00:16 LootPickupPhase: Found take-bb at [1286, 684]. Clicking.
+2026-07-13 18:00:18 LootPickupPhase: Clicking inventory slot 1 at [2135, 833].
+2026-07-13 18:00:19 ScanAndAttackPhase: Found target blob at [1040, 979]
+2026-07-13 18:00:21 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 18:00:36 WaitCombatPhase: Kill confirmed. Settling before loot pickup.
+2026-07-13 18:00:39 LootPickupPhase: Found bb-item at [1250, 744]. Right-clicking.
+2026-07-13 18:00:50 LootPickupPhase: take-bb.png not found in time (unexpected). Skipping loot, resuming scan.
+2026-07-13 18:00:50 ScanAndAttackPhase: Found target blob at [1412, 579]
+2026-07-13 18:00:55 WaitCombatPhase: No combat signal after 4000ms - click likely missed, retrying scan
+2026-07-13 18:00:56 ScanAndAttackPhase: Found target blob at [1340, 719]
+2026-07-13 18:00:57 WaitCombatPhase: Combat started. Waiting for kill.
+2026-07-13 18:01:32 Engine: stopped - Stopped (F6)
