@@ -1,11 +1,10 @@
 ; ============================================================
 ; autofighter-loot.ahk
 ; AutoFighter + a post-kill loot pickup step. Combat detection
-; (ScanAndAttackPhase/WaitCombatPhase) is copied verbatim from
-; Bots/AutoFighter/autofighter.ahk (never touched/shared - this repo's
-; convention is one self-contained file per bot) with a single change:
-; WaitCombatPhase's kill-confirmed branch hands off to "lootPickup"
-; instead of straight back to "scanAndAttack".
+; (ScanAndAttackPhase/WaitCombatPhase) is shared with
+; Bots/AutoFighter/autofighter.ahk via Core/SharedPhases.ahk - this bot
+; passes "lootPickup" as WaitCombatPhase's killNextPhaseName instead of
+; the default "scanAndAttack".
 ;
 ; Isolation: reads/writes only this bot's own Config/ and logs/ - never
 ; Bots/AutoFighter's config or log file.
@@ -22,6 +21,7 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Core\EngineContext.ahk
 #Include ..\..\Core\FailSafe.ahk
 #Include ..\..\Core\Phase.ahk
+#Include ..\..\Core\SharedPhases.ahk
 #Include ..\..\Timing\Waiter.ahk
 #Include ..\..\Detection\ColorSearch.ahk
 #Include ..\..\Detection\Telemetry.ahk
@@ -33,144 +33,6 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Diagnostics\Logger.ahk
 #Include ..\..\Diagnostics\WindowFocus.ahk
 #Include ..\..\Diagnostics\Overlay.ahk
-
-; ============================================================
-; ScanAndAttackPhase - identical to Bots/AutoFighter/autofighter.ahk.
-; See that file for full design notes.
-; ============================================================
-class ScanAndAttackPhase extends Phase {
-    __New(targetColor, targetTolerance, refX, refY, searchRadiusX, searchRadiusY, blobRadius, sampleRate, seedRowStep, scanPollKey, waitTimeoutMs, runMode := false) {
-        super.__New("scanAndAttack")
-        this._targetColor := targetColor
-        this._targetTolerance := targetTolerance
-        this._refX := refX
-        this._refY := refY
-        this._searchRadiusX := searchRadiusX
-        this._searchRadiusY := searchRadiusY
-        this._blobRadius := blobRadius
-        this._sampleRate := sampleRate
-        this._seedRowStep := seedRowStep
-        this._scanPollKey := scanPollKey
-        this._waitTimeoutMs := waitTimeoutMs
-        this._runMode := runMode
-    }
-
-    ResetForNewCycle() {
-        ; targetWaitStartedAt is reset by WaitCombatPhase's own completion.
-    }
-
-    Run(ctx) {
-        if (ctx.windowFocus != "" && !ctx.windowFocus.IsActive())
-            return "scanAndAttack"
-
-        x1 := Max(0, this._refX - this._searchRadiusX)
-        y1 := Max(0, this._refY - this._searchRadiusY)
-        x2 := Min(A_ScreenWidth, this._refX + this._searchRadiusX)
-        y2 := Min(A_ScreenHeight, this._refY + this._searchRadiusY)
-
-        found := ColorSearch.FindNearestBlobCenter(x1, y1, x2, y2,
-            this._refX, this._refY, this._targetColor, this._targetTolerance,
-            this._blobRadius, &tx, &ty, this._sampleRate, this._seedRowStep)
-
-        if (!found) {
-            waitStartedAt := ctx.Get("targetWaitStartedAt", 0)
-            if (waitStartedAt == 0) {
-                ctx.Set("targetWaitStartedAt", A_TickCount)
-            } else if ((A_TickCount - waitStartedAt) > this._waitTimeoutMs) {
-                ctx.Log("ScanAndAttackPhase: Timed out waiting for a target - stopping")
-                ctx.engine.Stop("Timed out waiting for a target")
-                return "scanAndAttack"
-            }
-            ctx.waiter.After(ctx.timing, this._scanPollKey)
-            return "scanAndAttack"
-        }
-
-        ctx.Set("targetWaitStartedAt", 0)
-        ctx.Log("ScanAndAttackPhase: Found target blob at [" tx ", " ty "]")
-        ctx.clicker.ClickSettled(ctx, tx, ty, this._runMode)
-        ctx.failsafe.ResetPhaseTimer(ctx)
-
-        ; Fresh per-click baseline for WaitCombatPhase's stale-killColor
-        ; guard - every new click (including a retry after a stall) needs
-        ; its own snapshot of whether killColor was already showing before
-        ; THIS fight had any chance to happen.
-        ctx.Set("entrySnapshotTaken", false)
-        ctx.Set("combatWaitStartedAt", 0)
-
-        return "waitCombat"
-    }
-}
-
-; ============================================================
-; WaitCombatPhase - identical to Bots/AutoFighter/autofighter.ahk,
-; except the kill-confirmed branch hands off to "lootPickup" instead
-; of "scanAndAttack". See that file for full design notes (stale-kill-
-; color guard, retry-on-missed-click, etc.).
-; ============================================================
-class WaitCombatPhase extends Phase {
-    __New(indicatorGate, startColor, killColor, combatPollKey, retryClickAfterMs, startTimeoutMs, postKillSettleKey) {
-        super.__New("waitCombat")
-        this._indicatorGate := indicatorGate
-        this._startColor := startColor
-        this._killColor := killColor
-        this._combatPollKey := combatPollKey
-        this._retryClickAfterMs := retryClickAfterMs
-        this._startTimeoutMs := startTimeoutMs
-        this._postKillSettleKey := postKillSettleKey
-    }
-
-    ResetForNewCycle() {
-        ; combatWaitStartedAt/staleKillCleared reset below on kill.
-    }
-
-    Run(ctx) {
-        if (!ctx.Get("entrySnapshotTaken", false)) {
-            ctx.Set("entrySnapshotTaken", true)
-            ctx.Set("staleKillCleared", !this._indicatorGate.Matches(this._killColor))
-        }
-
-        if (!ctx.Get("staleKillCleared", false)) {
-            if (!this._indicatorGate.Matches(this._killColor))
-                ctx.Set("staleKillCleared", true)
-        } else if (this._indicatorGate.Matches(this._killColor)) {
-            ctx.Log("WaitCombatPhase: Kill confirmed. Settling before loot pickup.")
-            ctx.waiter.After(ctx.timing, this._postKillSettleKey)
-            ctx.Set("targetWaitStartedAt", 0)
-            ctx.Set("combatWaitStartedAt", 0)
-            ctx.Set("entrySnapshotTaken", false)
-            ctx.Set("staleKillCleared", false)
-            ctx.failsafe.ResetPhaseTimer(ctx)
-            return "lootPickup"
-        }
-
-        if (this._indicatorGate.Matches(this._startColor)) {
-            if (ctx.Get("combatWaitStartedAt", 0) != 0) {
-                ctx.Log("WaitCombatPhase: Combat started. Waiting for kill.")
-                ctx.failsafe.ResetPhaseTimer(ctx)
-            }
-            ctx.Set("combatWaitStartedAt", 0)
-            ctx.waiter.After(ctx.timing, this._combatPollKey)
-            return "waitCombat"
-        }
-
-        waitStartedAt := ctx.Get("combatWaitStartedAt", 0)
-        if (waitStartedAt == 0) {
-            ctx.Set("combatWaitStartedAt", A_TickCount)
-        } else if ((A_TickCount - waitStartedAt) > this._startTimeoutMs) {
-            ctx.Log("WaitCombatPhase: Timed out waiting for a combat signal - stopping")
-            ctx.engine.Stop("Timed out waiting for combat signal")
-            return "waitCombat"
-        } else if ((A_TickCount - waitStartedAt) > this._retryClickAfterMs) {
-            ctx.Log("WaitCombatPhase: No combat signal after " this._retryClickAfterMs "ms - click likely missed, retrying scan")
-            ctx.Set("combatWaitStartedAt", 0)
-            ctx.failsafe.ResetPhaseTimer(ctx)
-            return "scanAndAttack"
-        }
-
-        ctx.waiter.After(ctx.timing, this._combatPollKey)
-        return "waitCombat"
-    }
-}
 
 ; ============================================================
 ; LootPickupPhase - after a kill, right-click the dropped bb-item,
@@ -236,7 +98,13 @@ class LootPickupPhase extends Phase {
         if (stage == 1) {
             if (this._bbItemAnchor.Find(&ix, &iy)) {
                 ctx.Log("LootPickupPhase: Found bb-item at [" ix ", " iy "]. Right-clicking.")
-                ctx.clicker.ClickSettled(ctx, ix, iy, this._runMode, "Right")
+                ; Never Ctrl-hold a right-click: runMode's Ctrl-hold is
+                ; OSRS's left-click "force-run"/quick-action modifier
+                ; everywhere else it's used in this codebase - holding
+                ; Ctrl during a right-click (which opens a context menu)
+                ; is untested/unestablished behavior and risks silently
+                ; altering or suppressing the menu this phase depends on.
+                ctx.clicker.ClickSettled(ctx, ix, iy, false, "Right")
                 ctx.Set("lootStage", 2)
                 ctx.Set("lootWaitStartedAt", 0)
                 ctx.failsafe.ResetPhaseTimer(ctx)
@@ -369,12 +237,12 @@ botScanAndAttackPhase := ScanAndAttackPhase(
     botConfig.Get("refPointX"), botConfig.Get("refPointY"),
     botConfig.Get("targetSearchRadiusX"), botConfig.Get("targetSearchRadiusY"),
     botConfig.Get("targetBlobRadius"), botConfig.Get("targetSampleRate"), botConfig.Get("targetSeedRowStep"), "scanPoll",
-    botConfig.Get("targetWaitTimeoutMs"), botConfig.Get("runMode")
+    botConfig.Get("targetWaitTimeoutMs"), "waitCombat", botConfig.Get("runMode")
 )
 
 botWaitCombatPhase := WaitCombatPhase(
     combatIndicatorGate, botConfig.Get("combatStartColor"), botConfig.Get("combatKillColor"),
-    "combatPoll", botConfig.Get("retryClickAfterMs"), botConfig.Get("combatStartTimeoutMs"), "postKillSettle"
+    "combatPoll", botConfig.Get("retryClickAfterMs"), botConfig.Get("combatStartTimeoutMs"), "postKillSettle", "lootPickup"
 )
 
 ; bb-item.png uses #00FF00 as its transparent-background marker color -

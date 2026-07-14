@@ -35,43 +35,132 @@ CoordMode("ToolTip", "Screen")
 #Include ..\..\Diagnostics\Overlay.ahk
 
 ; ============================================================
+; VeinChecker - shared "is this fixed-position vein active" check,
+; used by both MinePhase and ReturnToMinePhase (previously duplicated
+; verbatim in each).
+;
+; Pads the search box beyond the required block size (searchPaddingPx)
+; - a box exactly the block's own size leaves FindFilledBlock's
+; VerifyBlock zero room to spare, so even a few pixels of calibration
+; drift makes a genuinely active vein read as inactive. Every other
+; fixed-point search in this bot (DepositBankPhase's
+; depositSearchPaddingPx) already pads beyond its block size.
+;
+; Guards against the padded boxes of two different veins overlapping
+; (which would let one vein's color falsely match inside the other's
+; search box) by clamping the padded box so it never crosses the
+; midpoint between the two veins - this makes the padding safe by
+; construction instead of relying on the two vein colors happening to
+; differ by more than the color tolerance.
+; ============================================================
+class VeinChecker {
+    __New(blockW, blockH, tolerance, searchPaddingPx, otherVeinX := "", otherVeinY := "") {
+        this._blockW := blockW
+        this._blockH := blockH
+        this._tolerance := tolerance
+        this._searchPaddingPx := searchPaddingPx
+        this._otherVeinX := otherVeinX
+        this._otherVeinY := otherVeinY
+    }
+
+    IsActive(vein) {
+        hw := this._blockW // 2 + this._searchPaddingPx
+        hh := this._blockH // 2 + this._searchPaddingPx
+        x1 := vein["x"] - hw
+        y1 := vein["y"] - hh
+        x2 := vein["x"] + hw
+        y2 := vein["y"] + hh
+
+        if (this._otherVeinX != "") {
+            midX := (vein["x"] + this._otherVeinX) / 2
+            midY := (vein["y"] + this._otherVeinY) / 2
+            x1 := vein["x"] < this._otherVeinX ? Max(x1, midX) : Min(x1, midX)
+            x2 := vein["x"] < this._otherVeinX ? Min(x2, midX) : Max(x2, midX)
+            y1 := vein["y"] < this._otherVeinY ? Max(y1, midY) : Min(y1, midY)
+            y2 := vein["y"] < this._otherVeinY ? Min(y2, midY) : Max(y2, midY)
+        }
+
+        return ColorSearch.FindFilledBlock(
+            Min(x1, x2), Min(y1, y2), Max(x1, x2), Max(y1, y2),
+            vein["color"], this._tolerance, this._blockW, this._blockH, &cx, &cy)
+    }
+}
+
+; ============================================================
+; MissDebounce - "has this been missing for N consecutive checks"
+; counter. A plain, purpose-built replacement for borrowing TargetLock
+; (a position/stability-debounce class for a MOVING target) to get
+; this one narrow behavior for a FIXED point that never moves - using
+; TargetLock here worked, but only by disabling most of what it does
+; (stableTicksRequired=0, moveTolerancePx=0, dummy coordinates), which
+; is a fragile implicit dependency on TargetLock's internals never
+; changing to consult those now-inert fields.
+; ============================================================
+class MissDebounce {
+    __New(missingTicksToUnlock) {
+        this._missingTicksToUnlock := missingTicksToUnlock
+        this._missingTicks := 0
+    }
+
+    ; True once `found` has been false for missingTicksToUnlock
+    ; consecutive Observe() calls.
+    Observe(found) {
+        this._missingTicks := found ? 0 : this._missingTicks + 1
+    }
+
+    IsLost() => this._missingTicks >= this._missingTicksToUnlock
+
+    Reset() {
+        this._missingTicks := 0
+    }
+}
+
+; ============================================================
 ; MinePhase - two fixed-position veins, no walking/searching.
 ;
 ; While a vein is marked active (activeVein scratch key set), only
 ; that vein's fixed point is checked - still active means the
 ; ongoing mining action continues on its own, no re-click needed.
-; Once it's confirmed gone, activeVein clears and BOTH points are
-; checked again on the same tick (a switch shouldn't cost an idle
-; poll first).
+; Once it's been MISSING for missingTicksToUnlock consecutive ticks
+; (a MissDebounce, tolerating single-frame detection flicker from
+; animation/particle effects rather than reacting to the very first
+; miss), activeVein clears and BOTH points are checked again on the
+; same tick (a switch shouldn't cost an idle poll first).
+;
+; The failsafe timer is reset only on genuine progress - a click, or
+; a fresh hit after having been missing at all - never on every
+; "still active, nothing changed" tick. Core/FailSafe.ahk's own
+; contract is "call after real progress, NOT on every tick"; resetting
+; it on every steady-state tick would let phaseTimeoutMine never fire
+; even if the vein got stuck active for a reason unrelated to actual
+; mining (a stray overlay/graphical glitch permanently painting that
+; pixel, for instance) - the 180s ceiling needs to mean something.
 ;
 ; "Never abandon a still-active vein just because the other lit up"
 ; falls out naturally from only ever checking the active vein's own
 ; point while one is locked in - the other vein's state is never
-; even read until the current one depletes.
+; even read until the current one is confirmed depleted.
 ; ============================================================
 class MinePhase extends Phase {
-    __New(veinA, veinB, blockW, blockH, tolerance, runMode := false) {
+    __New(veinA, veinB, veinCheckerA, veinCheckerB, missingTicksToUnlock, minePollKey, runMode := false) {
         super.__New("mine")
         this._veinA := veinA   ; {x, y, color}
-        this._veinB := veinB   ; {x, y, color}
-        this._blockW := blockW
-        this._blockH := blockH
-        this._tolerance := tolerance
+        this._veinB := veinB
+        this._veinCheckerA := veinCheckerA
+        this._veinCheckerB := veinCheckerB
+        this._minePollKey := minePollKey
         this._runMode := runMode
+        this._debounce := MissDebounce(missingTicksToUnlock)
+        this._wasMissing := false
     }
 
     ResetForNewCycle() {
-        ; activeVein is cleared explicitly wherever a full cycle resets
-        ; (see the inventory-full transition below), not here - this
-        ; phase has no TargetLock/stability state to reset.
+        this._debounce.Reset()
+        this._wasMissing := false
     }
 
-    _VeinActive(vein) {
-        hw := this._blockW // 2
-        hh := this._blockH // 2
-        return ColorSearch.FindFilledBlock(
-            vein["x"] - hw, vein["y"] - hh, vein["x"] + hw, vein["y"] + hh,
-            vein["color"], this._tolerance, this._blockW, this._blockH, &cx, &cy)
+    _VeinAndChecker(label) {
+        return label = "A" ? [this._veinA, this._veinCheckerA] : [this._veinB, this._veinCheckerB]
     }
 
     Run(ctx) {
@@ -81,6 +170,8 @@ class MinePhase extends Phase {
         if (ctx.inventory.IsFull()) {
             ctx.Log("MinePhase: Inventory full, transitioning to depositBank")
             ctx.Set("activeVein", "")
+            this._debounce.Reset()
+            this._wasMissing := false
             ctx.Set("depositPreDelayApplied", false)
             ctx.Set("returnClicked", false)
             ctx.Set("returnWaitStartedAt", 0)
@@ -90,28 +181,51 @@ class MinePhase extends Phase {
         active := ctx.Get("activeVein", "")
 
         if (active != "") {
-            vein := active = "A" ? this._veinA : this._veinB
-            if (this._VeinActive(vein))
-                return "mine"   ; still mining, ongoing action continues on its own
+            pair := this._VeinAndChecker(active)
+            found := pair[2].IsActive(pair[1])
+            this._debounce.Observe(found)
+
+            if (!this._debounce.IsLost()) {
+                if (found && this._wasMissing) {
+                    ; Genuine recovery after a tolerated miss - real
+                    ; progress, worth extending the failsafe budget.
+                    ctx.failsafe.ResetPhaseTimer(ctx)
+                }
+                this._wasMissing := !found
+                return "mine"
+            }
 
             ctx.Log("MinePhase: Vein " active " depleted. Checking for another.")
             ctx.Set("activeVein", "")
+            this._debounce.Reset()
+            this._wasMissing := false
             active := ""
         }
 
-        ; No vein currently locked in - check both fixed points fresh.
-        if (this._VeinActive(this._veinA)) {
+        ; No vein currently locked in - check A, then B (A preferred
+        ; when both are simultaneously active, same as before).
+        if (this._veinCheckerA.IsActive(this._veinA)) {
             ctx.clicker.ClickSettled(ctx, this._veinA["x"], this._veinA["y"], this._runMode)
             ctx.Set("activeVein", "A")
+            this._debounce.Reset()
+            this._wasMissing := false
             ctx.Log("MinePhase: Clicked vein A at [" this._veinA["x"] ", " this._veinA["y"] "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
-        } else if (this._VeinActive(this._veinB)) {
+            return "mine"
+        }
+        if (this._veinCheckerB.IsActive(this._veinB)) {
             ctx.clicker.ClickSettled(ctx, this._veinB["x"], this._veinB["y"], this._runMode)
             ctx.Set("activeVein", "B")
+            this._debounce.Reset()
+            this._wasMissing := false
             ctx.Log("MinePhase: Clicked vein B at [" this._veinB["x"] ", " this._veinB["y"] "]")
             ctx.failsafe.ResetPhaseTimer(ctx)
+            return "mine"
         }
 
+        ; Neither vein active yet - throttle below the raw engine tick
+        ; rate instead of hammering PixelSearch every tick.
+        ctx.waiter.After(ctx.timing, this._minePollKey)
         return "mine"
     }
 }
@@ -128,7 +242,7 @@ class MinePhase extends Phase {
 ; engine cleanly if the deposit box image never appears.
 ; ============================================================
 class DepositBankPhase extends Phase {
-    __New(color, tolerance, reqW, reqH, markerX, markerY, searchPaddingPx, depositAnchor, imageWaitTimeoutMs, imagePollKey, preClickDelayKey, runMode := false) {
+    __New(color, tolerance, reqW, reqH, markerX, markerY, searchPaddingPx, depositAnchor, imageWaitTimeoutMs, imagePollKey, preClickDelayKey, markerPollKey, runMode := false) {
         super.__New("depositBank")
         this._color := color
         this._tolerance := tolerance
@@ -141,6 +255,7 @@ class DepositBankPhase extends Phase {
         this._imageWaitTimeoutMs := imageWaitTimeoutMs
         this._imagePollKey := imagePollKey
         this._preClickDelayKey := preClickDelayKey
+        this._markerPollKey := markerPollKey
         this._runMode := runMode
     }
 
@@ -170,6 +285,7 @@ class DepositBankPhase extends Phase {
 
         if (!found) {
             ctx.Log("DepositBankPhase: Cannot see deposit container!")
+            ctx.waiter.After(ctx.timing, this._markerPollKey)
             return "depositBank"
         }
 
@@ -201,15 +317,14 @@ class DepositBankPhase extends Phase {
 ; the engine cleanly if neither vein appears before the timeout.
 ; ============================================================
 class ReturnToMinePhase extends Phase {
-    __New(clickX, clickY, veinA, veinB, blockW, blockH, tolerance, veinPollKey, waitTimeoutMs, nextCyclePhases, runMode := false) {
+    __New(clickX, clickY, veinA, veinB, veinCheckerA, veinCheckerB, veinPollKey, waitTimeoutMs, nextCyclePhases, runMode := false) {
         super.__New("returnToMine")
         this._clickX := clickX
         this._clickY := clickY
         this._veinA := veinA
         this._veinB := veinB
-        this._blockW := blockW
-        this._blockH := blockH
-        this._tolerance := tolerance
+        this._veinCheckerA := veinCheckerA
+        this._veinCheckerB := veinCheckerB
         this._veinPollKey := veinPollKey
         this._waitTimeoutMs := waitTimeoutMs
         this._nextCyclePhases := nextCyclePhases
@@ -219,14 +334,6 @@ class ReturnToMinePhase extends Phase {
     ResetForNewCycle() {
         ; returnClicked/returnWaitStartedAt are reset by this phase's own
         ; completion below, alongside every other phase's per-cycle state.
-    }
-
-    _VeinActive(vein) {
-        hw := this._blockW // 2
-        hh := this._blockH // 2
-        return ColorSearch.FindFilledBlock(
-            vein["x"] - hw, vein["y"] - hh, vein["x"] + hw, vein["y"] + hh,
-            vein["color"], this._tolerance, this._blockW, this._blockH, &cx, &cy)
     }
 
     Run(ctx) {
@@ -241,7 +348,7 @@ class ReturnToMinePhase extends Phase {
             return "returnToMine"
         }
 
-        if (this._VeinActive(this._veinA) || this._VeinActive(this._veinB)) {
+        if (this._veinCheckerA.IsActive(this._veinA) || this._veinCheckerB.IsActive(this._veinB)) {
             ctx.Log("ReturnToMinePhase: Arrived - vein visible. Resuming mining.")
 
             ; Full per-cycle reset before handing off to "mine".
@@ -278,6 +385,8 @@ schema := Map(
     "phaseTimeoutMine", Map("section", "Tunables", "type", "int"),
     "phaseTimeoutBank", Map("section", "Tunables", "type", "int"),
     "phaseTimeoutReturn", Map("section", "Tunables", "type", "int"),
+    "minePollMs", Map("section", "Tunables", "type", "int"),
+    "depositMarkerPollMs", Map("section", "Tunables", "type", "int"),
     "veinTolerance", Map("section", "Tunables", "type", "int"),
     "veinAX", Map("section", "Tunables", "type", "int"),
     "veinAY", Map("section", "Tunables", "type", "int"),
@@ -287,6 +396,8 @@ schema := Map(
     "veinBColor", Map("section", "Tunables", "type", "color"),
     "veinBlockW", Map("section", "Tunables", "type", "int"),
     "veinBlockH", Map("section", "Tunables", "type", "int"),
+    "veinSearchPaddingPx", Map("section", "Tunables", "type", "int"),
+    "veinMissingTicksToUnlock", Map("section", "Tunables", "type", "int"),
     "depositColor", Map("section", "Tunables", "type", "color"),
     "depositTolerance", Map("section", "Tunables", "type", "int"),
     "depositBlockW", Map("section", "Tunables", "type", "int"),
@@ -315,7 +426,9 @@ timingSchema := Map(
     "ctrlHoldSettle", Map("section", "Tunables", "baseMsKey", "ctrlHoldSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
     "depositPreClickDelay", Map("section", "Tunables", "baseMsKey", "depositPreClickDelayMs"),
     "depositImagePoll", Map("section", "Tunables", "baseMsKey", "depositImagePollMs"),
-    "returnVeinPoll", Map("section", "Tunables", "baseMsKey", "returnVeinPollMs")
+    "returnVeinPoll", Map("section", "Tunables", "baseMsKey", "returnVeinPollMs"),
+    "minePoll", Map("section", "Tunables", "baseMsKey", "minePollMs"),
+    "depositMarkerPoll", Map("section", "Tunables", "baseMsKey", "depositMarkerPollMs")
 )
 
 iniPath := A_ScriptDir "\..\..\Config\auto-motherlode-fixed.ini"
@@ -347,6 +460,13 @@ ctx.inventory.SetEmptyGate(NotGate(indicatorGate))
 
 veinA := Map("x", botConfig.Get("veinAX"), "y", botConfig.Get("veinAY"), "color", botConfig.Get("veinAColor"))
 veinB := Map("x", botConfig.Get("veinBX"), "y", botConfig.Get("veinBY"), "color", botConfig.Get("veinBColor"))
+; Each checker knows the OTHER vein's position, so its padded search box
+; is clamped at the midpoint between the two veins - the two boxes can
+; never overlap regardless of how the two vein colors happen to be
+; calibrated (previously, only the color-tolerance gap prevented a
+; false cross-vein match in the overlap region).
+botVeinCheckerA := VeinChecker(botConfig.Get("veinBlockW"), botConfig.Get("veinBlockH"), botConfig.Get("veinTolerance"), botConfig.Get("veinSearchPaddingPx"), botConfig.Get("veinBX"), botConfig.Get("veinBY"))
+botVeinCheckerB := VeinChecker(botConfig.Get("veinBlockW"), botConfig.Get("veinBlockH"), botConfig.Get("veinTolerance"), botConfig.Get("veinSearchPaddingPx"), botConfig.Get("veinAX"), botConfig.Get("veinAY"))
 
 ; Deposit box "Deposit All" button image anchor - the search region is
 ; the calibrated anchor padded by depositImageSearchPaddingPx.
@@ -366,21 +486,21 @@ botDepositBankPhase := DepositBankPhase(
     botConfig.Get("depositBlockW"), botConfig.Get("depositBlockH"),
     botConfig.Get("depositMarkerX"), botConfig.Get("depositMarkerY"), botConfig.Get("depositSearchPaddingPx"),
     depositAnchor, botConfig.Get("depositImageWaitTimeoutMs"), "depositImagePoll",
-    "depositPreClickDelay", botConfig.Get("runMode")
+    "depositPreClickDelay", "depositMarkerPoll", botConfig.Get("runMode")
 )
 
 nextCyclePhases := [botDepositBankPhase]
 
 botReturnToMinePhase := ReturnToMinePhase(
     botConfig.Get("returnClickX"), botConfig.Get("returnClickY"),
-    veinA, veinB, botConfig.Get("veinBlockW"), botConfig.Get("veinBlockH"), botConfig.Get("veinTolerance"),
+    veinA, veinB, botVeinCheckerA, botVeinCheckerB,
     "returnVeinPoll", botConfig.Get("returnWaitTimeoutMs"), nextCyclePhases, botConfig.Get("runMode")
 )
 nextCyclePhases.Push(botReturnToMinePhase)
 
 botMinePhase := MinePhase(
-    veinA, veinB, botConfig.Get("veinBlockW"), botConfig.Get("veinBlockH"), botConfig.Get("veinTolerance"),
-    botConfig.Get("runMode")
+    veinA, veinB, botVeinCheckerA, botVeinCheckerB, botConfig.Get("veinMissingTicksToUnlock"),
+    "minePoll", botConfig.Get("runMode")
 )
 
 botEngine := Engine(ctx, botConfig.Get("runnerTickMs"))

@@ -149,41 +149,91 @@ class ColorSearch {
         return true
     }
 
+    ; Finds the single contiguous run of `color` on row `y` (within
+    ; [x1,x2]) that contains or is nearest to column `nearX` - used by
+    ; FindCentroid to pick the right run on a row where the color
+    ; appears as two or more disconnected segments (e.g. a raised
+    ; weapon/limb splitting an NPC overlay). Returns false if the row
+    ; has no match at all.
+    ;
+    ; Walks outward from nearX in both directions one PixelSearch at a
+    ; time (bounded by the row's own width, not an unbounded scan) -
+    ; cheap because a real run's boundary is only ever a handful of
+    ; pixels from nearX in practice (nearX starts life as a genuine
+    ; seed/previous-row hit, so it's already inside or adjacent to a
+    ; run most of the time).
+    static _FindRunContaining(x1, x2, y, nearX, color, tol, &runLeft, &runRight) {
+        ; Establish a start point: nearX itself if it matches, otherwise
+        ; the nearest match on the row to nearX (mirrors FindNearestColor's
+        ; seed logic, but scoped to one row).
+        if (ColorSearch.IsColorAt(nearX, y, color, tol)) {
+            startX := nearX
+        } else {
+            leftHit := PixelSearch(&lx, &ly, nearX, y, x1, y, color, tol)
+            rightHit := PixelSearch(&rx, &ry, nearX, y, x2, y, color, tol)
+            if (!leftHit && !rightHit)
+                return false
+            if (leftHit && rightHit)
+                startX := (nearX - lx) <= (rx - nearX) ? lx : rx
+            else
+                startX := leftHit ? lx : rx
+        }
+
+        ; Walk outward from startX to find this one run's true left/right
+        ; edges - stop at the first non-matching pixel each direction.
+        runLeft := startX
+        while (runLeft > x1 && ColorSearch.IsColorAt(runLeft - 1, y, color, tol))
+            runLeft -= 1
+
+        runRight := startX
+        while (runRight < x2 && ColorSearch.IsColorAt(runRight + 1, y, color, tol))
+            runRight += 1
+
+        return true
+    }
+
     ; Centroid (average position) of `color` pixels inside [x1,y1]-[x2,y2],
     ; one sampled row per `sampleRate` rows - NOT a per-pixel PixelGetColor
-    ; loop. On this framework's target machines, individual
-    ; PixelGetColor/PixelSearch calls carry a large fixed per-call cost (the
-    ; underlying screen-capture setup, not the pixel comparison itself), so
-    ; a brute-force per-pixel loop over even a small 120x120 box multiplies
-    ; into a multi-second stall - PixelSearch already scans a whole row
-    ; natively in one call, so this reuses that same primitive instead of
-    ; re-implementing the scan by hand. Returns false if nothing matches.
+    ; loop over the WHOLE box. On this framework's target machines,
+    ; individual PixelGetColor/PixelSearch calls carry a large fixed
+    ; per-call cost (the underlying screen-capture setup, not the pixel
+    ; comparison itself), so a brute-force per-pixel loop over even a
+    ; small 120x120 box multiplies into a multi-second stall - this
+    ; still uses PixelSearch's native whole-row scan for the common case,
+    ; only walking pixel-by-pixel to trace ONE run's edges (via
+    ; _FindRunContaining), never the whole row/box.
     ;
-    ; Each sampled row is searched TWICE: once left-to-right (leftmost
-    ; match) and once right-to-left (rightmost match, by swapping which X
-    ; comes first - PixelSearch scans toward the second X argument, same
-    ; trick FindFilledBlock uses for scanBottomUp), then the row's own
-    ; midpoint (leftmost+rightmost)/2 is what gets averaged into the
-    ; centroid - not just the leftmost match. A solid blob's row is
-    ; usually several pixels wide; averaging only the leftmost match per
-    ; row (the original implementation) systematically drags the whole
-    ; centroid toward the blob's LEFT edge instead of its true center,
-    ; which was confirmed live as a real mis-click bug on AutoFighter's
-    ; NPC-blob targeting before this fix.
-    static FindCentroid(x1, y1, x2, y2, color, tol, &cx, &cy, sampleRate := 2) {
+    ; nearX tracks the running centroid's own X (seeded from refX) as
+    ; rows are processed top-to-bottom - each row's run is chosen as
+    ; whichever contiguous segment is nearest THAT row to the blob's
+    ; centroid-so-far, not just the leftmost match. This fixes two
+    ; distinct bugs found live on AutoFighter's NPC-blob targeting:
+    ; 1. Averaging only the leftmost match per row (the very first
+    ;    implementation) drags the whole centroid toward the blob's
+    ;    LEFT edge instead of its true center.
+    ; 2. Averaging (leftmost+rightmost)/2 per row (the first fix) is
+    ;    only correct when a row's color is ONE contiguous run - a
+    ;    concave/notched/multi-segment overlay (e.g. a raised weapon or
+    ;    limb splitting a row into two disjoint segments) can put that
+    ;    naive midpoint in the gap BETWEEN segments, a point that isn't
+    ;    even on the blob. Picking the run nearest the running centroid
+    ;    keeps every row's contribution genuinely ON the blob and
+    ;    converges toward its real visual middle, rather than falling
+    ;    back to the (edge-biased) seed pixel on a verification miss.
+    static FindCentroid(x1, y1, x2, y2, color, tol, refX, refY, &cx, &cy, sampleRate := 2) {
         sumX := 0
         sumY := 0
         count := 0
+        nearX := refX
 
         y := y1
         while (y <= y2) {
-            leftFound := PixelSearch(&leftX, &leftY, x1, y, x2, y, color, tol)
-            if (leftFound) {
-                rightFound := PixelSearch(&rightX, &rightY, x2, y, x1, y, color, tol)
-                midX := rightFound ? (leftX + rightX) / 2 : leftX
+            if (ColorSearch._FindRunContaining(x1, x2, y, nearX, color, tol, &runLeft, &runRight)) {
+                midX := (runLeft + runRight) / 2
                 sumX += midX
-                sumY += leftY
+                sumY += y
                 count += 1
+                nearX := Round(midX)
             }
             y += sampleRate
         }
@@ -207,9 +257,11 @@ class ColorSearch {
     ; 1. Seed: nearest single matching pixel to (refX, refY) - picks WHICH
     ;    blob is closest when several exist simultaneously.
     ; 2. Centroid: average position of matching pixels within a
-    ;    blobRadius box around that seed (clamped to the original region) -
-    ;    the real click target, not the seed pixel itself (which is likely
-    ;    on the blob's edge, not its middle).
+    ;    blobRadius box around that seed (clamped to the original region),
+    ;    tracking the nearest RUN per row (see FindCentroid) so a
+    ;    concave/notched blob's centroid is still a real point ON the
+    ;    blob - the actual click target, not the seed pixel itself
+    ;    (which is likely on the blob's edge, not its middle).
     static FindNearestBlobCenter(x1, y1, x2, y2, refX, refY, color, tol, blobRadius, &targetX, &targetY, sampleRate := 2, seedRowStep := 4) {
         if (!ColorSearch.FindNearestColor(x1, y1, x2, y2, refX, refY, color, tol, &seedX, &seedY, seedRowStep))
             return false
@@ -219,6 +271,14 @@ class ColorSearch {
         bx2 := Min(x2, seedX + blobRadius)
         by2 := Min(y2, seedY + blobRadius)
 
-        return ColorSearch.FindCentroid(bx1, by1, bx2, by2, color, tol, &targetX, &targetY, sampleRate)
+        if (!ColorSearch.FindCentroid(bx1, by1, bx2, by2, color, tol, seedX, seedY, &cx, &cy, sampleRate)) {
+            targetX := seedX
+            targetY := seedY
+            return true
+        }
+
+        targetX := cx
+        targetY := cy
+        return true
     }
 }
