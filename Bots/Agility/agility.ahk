@@ -99,8 +99,9 @@ LoadSteps(iniPath, stepCount) {
 ; ============================================================
 class AgilityPhase extends Phase {
     __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx,
-          mogAnchor, graceClickOffsetY, slotSignature, gracePreDelayKey, gracePostDelayKey,
-          graceConfirmPollKey, gracePickupTimeoutMs, fallRecoveryBlock := "", runMode := false) {
+          mogAnchor, graceClickOffsetY, slotSignature, gracePreDelayKey,
+          graceConfirmPollKey, gracePickupTimeoutMs, gracePickedUpDelayKey,
+          fallRecoveryDelayKey, fallRecoveryBlock := "", runMode := false) {
         super.__New("agility")
         this._steps := steps
         this._colorTolerance := colorTolerance
@@ -110,9 +111,10 @@ class AgilityPhase extends Phase {
         this._graceClickOffsetY := graceClickOffsetY
         this._slotSignature := slotSignature
         this._gracePreDelayKey := gracePreDelayKey
-        this._gracePostDelayKey := gracePostDelayKey
         this._graceConfirmPollKey := graceConfirmPollKey
         this._gracePickupTimeoutMs := gracePickupTimeoutMs
+        this._gracePickedUpDelayKey := gracePickedUpDelayKey
+        this._fallRecoveryDelayKey := fallRecoveryDelayKey
         this._fallRecoveryBlock := fallRecoveryBlock
         this._runMode := runMode
     }
@@ -164,7 +166,9 @@ class AgilityPhase extends Phase {
                 fy2 := fb["y"] + fb["h"] // 2
                 if (ColorSearch.FindFilledBlock(fx1, fy1, fx2, fy2,
                     fb["color"], this._colorTolerance, fb["w"], fb["h"], &fcx, &fcy)) {
-                    ctx.Log("AgilityPhase: Detected fall-recovery block at [" fcx ", " fcy "]. Clicking, resetting to step 1.")
+                    ctx.Log("AgilityPhase: Detected fall-recovery block at [" fcx ", " fcy "]. Waiting before clicking.")
+                    ctx.waiter.After(ctx.timing, this._fallRecoveryDelayKey)
+                    ctx.Log("AgilityPhase: Clicking fall-recovery block, resetting to step 1.")
                     ctx.clicker.ClickSettled(ctx, fcx, fcy, this._runMode)
                     ctx.failsafe.ResetPhaseTimer(ctx)
                     ctx.Set("currentStep", 1)
@@ -216,10 +220,15 @@ class AgilityPhase extends Phase {
                 ; detour.
                 ctx.Set("dynamicSearchActive", true)
                 ctx.failsafe.ResetPhaseTimer(ctx)
-                ctx.waiter.After(ctx.timing, this._gracePostDelayKey)
 
                 if (changed) {
                     ctx.Log("AgilityPhase: Mark of Grace pickup confirmed.")
+                    ; Brief settle after a CONFIRMED pickup only - the
+                    ; inventory update just landed, give the client a beat
+                    ; before searching again. The timed-out case below gets
+                    ; no delay: nothing changed, so there's nothing to
+                    ; settle from.
+                    ctx.waiter.After(ctx.timing, this._gracePickedUpDelayKey)
                     ; Loop again - another mark may be visible.
                     continue
                 }
@@ -283,8 +292,9 @@ schema := Map(
     "mogShadeTolerance", Map("section", "Tunables", "type", "int"),
     "graceClickOffsetY", Map("section", "Tunables", "type", "int"),
     "gracePrePickupDelayMs", Map("section", "Tunables", "type", "int"),
-    "gracePostPickupDelayMs", Map("section", "Tunables", "type", "int"),
     "gracePickupTimeoutMs", Map("section", "Tunables", "type", "int"),
+    "gracePickedUpDelayMs", Map("section", "Tunables", "type", "int"),
+    "fallRecoveryDelayMs", Map("section", "Tunables", "type", "int"),
     "graceConfirmPollMs", Map("section", "Tunables", "type", "int"),
     "clickSettleMs", Map("section", "Tunables", "type", "int"),
     "clickSettleJitterPercent", Map("section", "Tunables", "type", "int"),
@@ -297,8 +307,9 @@ timingSchema := Map(
     "ctrlHoldSettle", Map("section", "Tunables", "baseMsKey", "ctrlHoldSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
     "stepSearchDelay", Map("section", "Tunables", "baseMsKey", "stepSearchDelayMs"),
     "gracePreDelay", Map("section", "Tunables", "baseMsKey", "gracePrePickupDelayMs"),
-    "gracePostDelay", Map("section", "Tunables", "baseMsKey", "gracePostPickupDelayMs"),
-    "graceConfirmPoll", Map("section", "Tunables", "baseMsKey", "graceConfirmPollMs")
+    "graceConfirmPoll", Map("section", "Tunables", "baseMsKey", "graceConfirmPollMs"),
+    "gracePickedUpDelay", Map("section", "Tunables", "baseMsKey", "gracePickedUpDelayMs"),
+    "fallRecoveryDelay", Map("section", "Tunables", "baseMsKey", "fallRecoveryDelayMs")
 )
 loop stepCount {
     n := A_Index
@@ -365,8 +376,8 @@ botAgilityPhase := AgilityPhase(
     STEPS, botConfig.Get("colorTolerance"),
     "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"),
     mogAnchor, botConfig.Get("graceClickOffsetY"), botSlotSignature,
-    "gracePreDelay", "gracePostDelay", "graceConfirmPoll", botConfig.Get("gracePickupTimeoutMs"),
-    fallRecoveryBlock, botConfig.Get("runMode")
+    "gracePreDelay", "graceConfirmPoll", botConfig.Get("gracePickupTimeoutMs"), "gracePickedUpDelay",
+    "fallRecoveryDelay", fallRecoveryBlock, botConfig.Get("runMode")
 )
 
 botEngine := Engine(ctx, botConfig.Get("runnerTickMs"))
