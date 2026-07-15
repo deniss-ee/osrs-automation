@@ -15,8 +15,9 @@
 ; Each step's highlight color should be unique across the whole course
 ; (see [Step:N] comments in the .ini) - this is what makes Mark of
 ; Grace recovery simple: after a loot detour moves the player off a
-; step's calibrated position, the SAME step can be re-found anywhere on
-; screen by its own color alone, with no ambiguity against other steps.
+; step's calibrated position, the SAME step can be re-found within the
+; dynamic search region (see below) by its own color alone, with no
+; ambiguity against other steps.
 ;
 ; Mark of Grace: every tick, before ever touching the current
 ; step's obstacle coordinates, search the whole screen for
@@ -26,8 +27,11 @@
 ; gracePickupTimeoutMs for a change - confirms an item actually
 ; landed, not just that a click happened. Whether that confirms or
 ; times out, the next obstacle search switches to "dynamic" mode
-; (whole-screen, fixed-size block, still keyed on the step's own
-; color) since the player likely moved to reach the mark.
+; (a bounded region around screen-center, fixed-size block, still
+; keyed on the step's own color) since the player likely moved to
+; reach the mark - bounded rather than whole-screen since a mark
+; detour is only ever a short walk, and a full-screen PixelSearch-based
+; scan is expensive.
 ;
 ; Fall recovery: only checked while stuck waiting for the marker of the
 ; step right after [FallRecovery] afterStep (falling off the course is
@@ -71,7 +75,8 @@ CoordMode("ToolTip", "Screen")
 
 ; Reads [Step:1]..[Step:stepCount] into the STEPS array shape the phase
 ; expects. pollKey points at that step's own timing key (stepSearchPoll1..N,
-; defined in timingSchema below) - different obstacles take different
+; defined in timingSchema below, backed by that same [Step:N] section's
+; own stepSearchPollNMs key) - different obstacles take different
 ; real-world time to traverse, so each needs its own tunable poll
 ; interval instead of one shared value.
 LoadSteps(iniPath, stepCount) {
@@ -98,7 +103,7 @@ LoadSteps(iniPath, stepCount) {
 ; click its center, settle, advance.
 ; ============================================================
 class AgilityPhase extends Phase {
-    __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx,
+    __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx, dynamicRegion,
           mogAnchor, graceClickOffsetY, slotSignature, gracePreDelayKey,
           graceConfirmPollKey, gracePickupTimeoutMs, gracePickedUpDelayKey,
           fallRecoveryDelayKey, fallRecoveryBlock := "", runMode := false) {
@@ -107,6 +112,7 @@ class AgilityPhase extends Phase {
         this._colorTolerance := colorTolerance
         this._stepSearchDelayKey := stepSearchDelayKey
         this._dynamicSearchBlockSizePx := dynamicSearchBlockSizePx
+        this._dynamicRegion := dynamicRegion
         this._mogAnchor := mogAnchor
         this._graceClickOffsetY := graceClickOffsetY
         this._slotSignature := slotSignature
@@ -130,14 +136,18 @@ class AgilityPhase extends Phase {
         currentStep := ctx.Get("currentStep", 1)
         step := this._steps[currentStep]
 
-        ; --- Obstacle search: fixed calibrated box, or whole-screen at a
-        ; fixed generic block size if a loot detour may have moved us ---
+        ; --- Obstacle search: fixed calibrated box, or a bounded region
+        ; around screen-center at a fixed generic block size if a loot
+        ; detour may have moved us. Bounded (not whole-screen) because a
+        ; full-screen PixelSearch-based scan is expensive and a mark
+        ; detour only ever moves the player a short walk, never far
+        ; enough to land outside this region. ---
         dynamicActive := ctx.Get("dynamicSearchActive", false)
         if (dynamicActive) {
-            x1 := 0
-            y1 := 0
-            x2 := A_ScreenWidth
-            y2 := A_ScreenHeight
+            x1 := this._dynamicRegion["x1"]
+            y1 := this._dynamicRegion["y1"]
+            x2 := this._dynamicRegion["x2"]
+            y2 := this._dynamicRegion["y2"]
             reqW := this._dynamicSearchBlockSizePx
             reqH := this._dynamicSearchBlockSizePx
         } else {
@@ -178,7 +188,7 @@ class AgilityPhase extends Phase {
                 }
             }
 
-            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, whole-screen)" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
+            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, [" x1 "," y1 "]-[" x2 "," y2 "])" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
             ctx.waiter.After(ctx.timing, step["pollKey"])
             return "agility"
         }
@@ -288,32 +298,32 @@ schema := Map(
     "phaseTimeoutAgility", Map("section", "Tunables", "type", "int"),
     "colorTolerance", Map("section", "Tunables", "type", "int"),
     "stepSearchDelayMs", Map("section", "Tunables", "type", "int"),
-    "dynamicSearchBlockSizePx", Map("section", "Tunables", "type", "int"),
-    "mogShadeTolerance", Map("section", "Tunables", "type", "int"),
-    "graceClickOffsetY", Map("section", "Tunables", "type", "int"),
-    "gracePrePickupDelayMs", Map("section", "Tunables", "type", "int"),
-    "gracePickupTimeoutMs", Map("section", "Tunables", "type", "int"),
-    "gracePickedUpDelayMs", Map("section", "Tunables", "type", "int"),
-    "fallRecoveryDelayMs", Map("section", "Tunables", "type", "int"),
-    "graceConfirmPollMs", Map("section", "Tunables", "type", "int"),
-    "clickSettleMs", Map("section", "Tunables", "type", "int"),
-    "clickSettleJitterPercent", Map("section", "Tunables", "type", "int"),
-    "ctrlHoldSettleMs", Map("section", "Tunables", "type", "int"),
+    "dynamicSearchBlockSizePx", Map("section", "MarkOfGrace", "type", "int"),
+    "mogShadeTolerance", Map("section", "MarkOfGrace", "type", "int"),
+    "graceClickOffsetY", Map("section", "MarkOfGrace", "type", "int"),
+    "gracePrePickupDelayMs", Map("section", "MarkOfGrace", "type", "int"),
+    "gracePickupTimeoutMs", Map("section", "MarkOfGrace", "type", "int"),
+    "gracePickedUpDelayMs", Map("section", "MarkOfGrace", "type", "int"),
+    "fallRecoveryDelayMs", Map("section", "FallRecovery", "type", "int"),
+    "graceConfirmPollMs", Map("section", "MarkOfGrace", "type", "int"),
+    "clickSettleMs", Map("section", "ClickExecution", "type", "int"),
+    "clickSettleJitterPercent", Map("section", "ClickExecution", "type", "int"),
+    "ctrlHoldSettleMs", Map("section", "ClickExecution", "type", "int"),
     "runMode", Map("section", "Settings", "type", "int"),
     "stepCount", Map("section", "Settings", "type", "int")
 )
 timingSchema := Map(
-    "clickSettle", Map("section", "Tunables", "baseMsKey", "clickSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
-    "ctrlHoldSettle", Map("section", "Tunables", "baseMsKey", "ctrlHoldSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
+    "clickSettle", Map("section", "ClickExecution", "baseMsKey", "clickSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
+    "ctrlHoldSettle", Map("section", "ClickExecution", "baseMsKey", "ctrlHoldSettleMs", "jitterPercentKey", "clickSettleJitterPercent"),
     "stepSearchDelay", Map("section", "Tunables", "baseMsKey", "stepSearchDelayMs"),
-    "gracePreDelay", Map("section", "Tunables", "baseMsKey", "gracePrePickupDelayMs"),
-    "graceConfirmPoll", Map("section", "Tunables", "baseMsKey", "graceConfirmPollMs"),
-    "gracePickedUpDelay", Map("section", "Tunables", "baseMsKey", "gracePickedUpDelayMs"),
-    "fallRecoveryDelay", Map("section", "Tunables", "baseMsKey", "fallRecoveryDelayMs")
+    "gracePreDelay", Map("section", "MarkOfGrace", "baseMsKey", "gracePrePickupDelayMs"),
+    "graceConfirmPoll", Map("section", "MarkOfGrace", "baseMsKey", "graceConfirmPollMs"),
+    "gracePickedUpDelay", Map("section", "MarkOfGrace", "baseMsKey", "gracePickedUpDelayMs"),
+    "fallRecoveryDelay", Map("section", "FallRecovery", "baseMsKey", "fallRecoveryDelayMs")
 )
 loop stepCount {
     n := A_Index
-    timingSchema["stepSearchPoll" n] := Map("section", "Tunables", "baseMsKey", "stepSearchPoll" n "Ms")
+    timingSchema["stepSearchPoll" n] := Map("section", "Step:" n, "baseMsKey", "stepSearchPoll" n "Ms")
 }
 
 botConfig := Config(iniPath, schema, timingSchema)
@@ -330,6 +340,22 @@ botOverlay := Overlay(4, 10, 10)
 ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, botWindowFocus, botOverlay)
 
 STEPS := LoadSteps(iniPath, stepCount)
+
+; Dynamic obstacle re-acquisition region (used after a Mark of Grace
+; detour, see AgilityPhase.Run) - bounded around screen-center rather
+; than the whole screen, since a mark detour is a short walk, never far
+; enough to move the highlight outside this region, and a full-screen
+; PixelSearch-based scan is expensive.
+dynamicRegionCenterX := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionCenterX"))
+dynamicRegionCenterY := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionCenterY"))
+dynamicRegionWidth := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionWidth"))
+dynamicRegionHeight := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionHeight"))
+dynamicRegion := Map(
+    "x1", dynamicRegionCenterX - dynamicRegionWidth // 2,
+    "y1", dynamicRegionCenterY - dynamicRegionHeight // 2,
+    "x2", dynamicRegionCenterX + dynamicRegionWidth // 2,
+    "y2", dynamicRegionCenterY + dynamicRegionHeight // 2
+)
 
 ; Mark of Grace detection - whole-screen image search, single reference
 ; image. mog-item.png is captured against a #00FF00 matte, so *TransARGB
@@ -374,7 +400,7 @@ if (Integer(IniRead(iniPath, "FallRecovery", "enabled")) = 1) {
 
 botAgilityPhase := AgilityPhase(
     STEPS, botConfig.Get("colorTolerance"),
-    "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"),
+    "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"), dynamicRegion,
     mogAnchor, botConfig.Get("graceClickOffsetY"), botSlotSignature,
     "gracePreDelay", "graceConfirmPoll", botConfig.Get("gracePickupTimeoutMs"), "gracePickedUpDelay",
     "fallRecoveryDelay", fallRecoveryBlock, botConfig.Get("runMode")

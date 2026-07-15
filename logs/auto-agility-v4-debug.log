@@ -573,3 +573,1032 @@
 2026-07-15 23:30:38 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
 2026-07-15 23:30:39 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
 2026-07-15 23:30:39 Engine: stopped - Stopped (F6)
+2026-07-15 23:36:36 Engine: started at phase 'agility'
+2026-07-15 23:36:36 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:36:37 Engine: stopped - Stopped (F6)
+2026-07-15 23:36:39 Engine: started at phase 'agility'
+2026-07-15 23:36:39 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:36:39 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:36:39 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-15 23:36:40 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:36:42 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:36:44 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:36:44 AgilityPhase: Found Mark of Grace at [1422, 1344]. Clicking at [1422, 1354].
+2026-07-15 23:36:49 AgilityPhase: Mark of Grace pickup timed out - giving up for this step.
+2026-07-15 23:36:49 AgilityPhase: Found step 2 at [1259, 719]. Clicking.
+2026-07-15 23:36:50 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:36:50 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:36:51 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:36:52 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:36:53 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:36:53 AgilityPhase: Found Mark of Grace at [1382, 792]. Clicking at [1382, 802].
+2026-07-15 23:36:56 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-15 23:36:56 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:36:57 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:36:57 AgilityPhase: Found step 3 at [1313, 905]. Clicking.
+2026-07-15 23:36:57 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:36:58 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:36:59 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:36:59 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:37:00 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:37:01 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:37:01 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:37:01 AgilityPhase: Found step 4 at [1571, 753]. Clicking.
+2026-07-15 23:37:02 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:37:03 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:37:04 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:37:05 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:37:07 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:37:07 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:37:07 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-15 23:37:07 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:37:09 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:37:11 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:37:13 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:37:15 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:37:15 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:37:15 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-15 23:37:16 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:37:17 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:37:19 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:37:21 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:37:23 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:37:23 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:37:23 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-15 23:37:23 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:37:25 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:37:26 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:37:27 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:37:28 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:37:28 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:37:28 AgilityPhase: Found step 8 at [1051, 781]. Clicking.
+2026-07-15 23:37:29 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:37:30 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:37:31 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:37:32 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:37:33 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-15 23:37:33 Engine: stopped - Stopped (F6)
+2026-07-15 23:37:33 Engine: stopped - Stopped (F6)
+2026-07-15 23:37:33 Engine: stopped - Stopped (F6)
+2026-07-15 23:37:34 Engine: stopped - Stopped (F6)
+2026-07-15 23:37:34 Engine: stopped - Stopped (F6)
+2026-07-15 23:53:07 Engine: started at phase 'agility'
+2026-07-15 23:53:07 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:07 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:53:07 AgilityPhase: Found step 1 at [977, 715]. Clicking.
+2026-07-15 23:53:08 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:53:10 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:53:12 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:53:14 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:14 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:53:14 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:53:14 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:15 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:16 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:16 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:17 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:18 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:53:19 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:19 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:53:19 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-15 23:53:19 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:20 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:21 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:22 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:53:24 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:24 AgilityPhase: Found Mark of Grace at [1380, 754]. Clicking at [1380, 764].
+2026-07-15 23:53:27 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-15 23:53:28 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:28 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:53:28 AgilityPhase: Found step 4 at [1421, 715]. Clicking.
+2026-07-15 23:53:28 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:53:29 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:53:31 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:53:32 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:53:32 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:53:32 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-15 23:53:32 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:34 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:36 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:38 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:40 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:42 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:44 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:46 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:48 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:50 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:57 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:53:59 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:54:01 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:54:04 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:54:36 Engine: started at phase 'agility'
+2026-07-15 23:54:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:54:36 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:54:36 AgilityPhase: Found step 1 at [985, 717]. Clicking.
+2026-07-15 23:54:36 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:54:38 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:54:40 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:54:40 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:54:40 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:54:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:42 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:43 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:44 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:45 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:54:46 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:54:46 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:54:46 AgilityPhase: Found step 3 at [1494, 1010]. Clicking.
+2026-07-15 23:54:46 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:48 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:49 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:50 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:54:51 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:54:51 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:54:51 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-15 23:54:51 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:54:53 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:54:54 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:54:56 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:54:56 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:54:56 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-15 23:54:56 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:54:58 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:54:59 Engine: stopped - Stopped (F6)
+2026-07-15 23:55:27 Engine: started at phase 'agility'
+2026-07-15 23:55:27 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:55:27 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:55:27 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-15 23:55:27 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:55:29 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:55:31 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:55:31 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:55:31 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:55:31 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:55:32 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:55:33 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:55:34 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:55:35 Engine: stopped - Stopped (F6)
+2026-07-15 23:56:32 Engine: started at phase 'agility'
+2026-07-15 23:56:32 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:56:32 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:56:32 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-15 23:56:32 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:56:34 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:56:37 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:56:37 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:56:37 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:56:37 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:38 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:39 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:40 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:40 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:56:42 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:56:42 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:56:42 AgilityPhase: Found step 3 at [1488, 1010]. Clicking.
+2026-07-15 23:56:42 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:43 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:44 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:45 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:46 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:56:48 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:56:48 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:56:48 AgilityPhase: Found step 4 at [1565, 752]. Clicking.
+2026-07-15 23:56:48 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:56:50 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:56:52 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:56:53 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:56:53 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:56:53 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-15 23:56:53 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:56:55 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:56:57 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:57:00 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:57:00 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:57:00 AgilityPhase: Found step 6 at [1249, 266]. Clicking.
+2026-07-15 23:57:00 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:57:02 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:57:03 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:57:05 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-15 23:57:07 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:57:07 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:57:07 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-15 23:57:08 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:57:09 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-15 23:57:26 Engine: started at phase 'agility'
+2026-07-15 23:57:27 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:57:27 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:57:27 AgilityPhase: Found step 1 at [983, 717]. Clicking.
+2026-07-15 23:57:27 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:57:29 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:57:31 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:57:31 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:57:31 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:57:32 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:57:32 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:57:33 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:57:34 Engine: stopped - Stopped (F6)
+2026-07-15 23:58:32 Engine: started at phase 'agility'
+2026-07-15 23:58:33 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:58:33 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:58:33 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-15 23:58:33 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:58:35 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:58:38 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:58:38 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:58:38 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:58:38 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:39 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:40 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:42 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:58:43 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:58:43 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:58:43 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-15 23:58:44 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:44 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:45 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:46 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:48 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:58:49 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:58:49 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:58:49 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-15 23:58:49 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:58:50 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:58:51 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-15 23:58:53 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:58:53 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:58:53 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-15 23:58:53 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:58:55 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-15 23:58:55 Engine: stopped - Stopped (F6)
+2026-07-15 23:59:47 Engine: started at phase 'agility'
+2026-07-15 23:59:47 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:59:47 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:59:47 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-15 23:59:47 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:59:49 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-15 23:59:52 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:59:52 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:59:52 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-15 23:59:52 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:53 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:54 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:55 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:56 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:56 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-15 23:59:57 AgilityPhase: Searching for Mark of Grace...
+2026-07-15 23:59:57 AgilityPhase: No Mark of Grace found.
+2026-07-15 23:59:57 AgilityPhase: Found step 3 at [1486, 1010]. Clicking.
+2026-07-15 23:59:58 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:59:58 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-15 23:59:59 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:00 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:01 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:02 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:03 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:03 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:03 AgilityPhase: Found step 4 at [1569, 753]. Clicking.
+2026-07-16 00:00:03 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:05 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:06 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:08 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:08 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:08 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:00:08 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:00:10 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:00:12 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:00:14 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:00:16 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:16 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:16 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:00:17 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:00:18 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:00:20 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:00:22 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:00:24 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:24 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:24 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:00:24 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:00:26 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:00:27 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:00:28 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:00:29 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:30 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:30 AgilityPhase: Found step 8 at [1055, 781]. Clicking.
+2026-07-16 00:00:30 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:31 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:32 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:33 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:34 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:35 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:00:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:36 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:36 AgilityPhase: Found step 1 at [973, 715]. Clicking.
+2026-07-16 00:00:36 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:00:39 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:00:41 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:41 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:41 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:00:42 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:42 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:43 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:44 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:45 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:46 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:00:47 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:47 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:47 AgilityPhase: Found step 3 at [1487, 1010]. Clicking.
+2026-07-16 00:00:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:48 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:49 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:49 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:50 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:51 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:00:52 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:52 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:52 AgilityPhase: Found step 4 at [1569, 753]. Clicking.
+2026-07-16 00:00:52 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:54 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:55 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:00:57 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:00:57 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:00:57 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:00:57 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:00 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:02 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:04 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:06 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:06 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:06 AgilityPhase: Found step 6 at [1246, 279]. Clicking.
+2026-07-16 00:01:06 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:08 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:10 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:12 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:13 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:14 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:14 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:01:14 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:01:15 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:01:16 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:01:18 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:01:19 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:19 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:19 AgilityPhase: Found step 8 at [1049, 781]. Clicking.
+2026-07-16 00:01:19 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:20 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:21 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:22 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:23 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:24 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:01:25 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:26 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:26 AgilityPhase: Found step 1 at [939, 709]. Clicking.
+2026-07-16 00:01:26 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:01:28 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:01:31 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:31 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:31 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:01:31 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:32 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:33 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:33 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:34 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:35 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:01:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:36 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:36 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-16 00:01:36 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:37 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:38 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:39 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:40 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:40 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:01:41 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:41 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:41 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-16 00:01:42 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:01:43 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:01:45 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:01:46 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:46 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:46 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:01:47 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:49 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:51 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:53 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:01:55 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:01:55 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:01:55 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:01:55 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:57 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:01:59 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:01 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:03 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:03 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:03 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:02:03 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:02:04 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:02:06 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:02:07 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:02:08 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:08 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:08 AgilityPhase: Found step 8 at [1051, 781]. Clicking.
+2026-07-16 00:02:08 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:10 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:11 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:12 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:13 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:14 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:02:15 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:15 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:15 AgilityPhase: Found step 1 at [953, 711]. Clicking.
+2026-07-16 00:02:15 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:02:17 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:02:20 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:20 AgilityPhase: Found Mark of Grace at [1422, 1344]. Clicking at [1422, 1354].
+2026-07-16 00:02:25 AgilityPhase: Mark of Grace pickup timed out - giving up for this step.
+2026-07-16 00:02:25 AgilityPhase: Found step 2 at [1259, 719]. Clicking.
+2026-07-16 00:02:26 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:02:26 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:02:27 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:02:28 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:02:29 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:29 AgilityPhase: Found Mark of Grace at [1382, 790]. Clicking at [1382, 800].
+2026-07-16 00:02:32 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-16 00:02:32 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:32 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:32 AgilityPhase: Found step 3 at [1321, 909]. Clicking.
+2026-07-16 00:02:33 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:33 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:34 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:35 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:36 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:37 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:02:38 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:38 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:38 AgilityPhase: Found step 4 at [1567, 752]. Clicking.
+2026-07-16 00:02:38 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:02:39 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:02:41 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:02:43 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:43 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:43 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:02:43 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:02:45 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:02:47 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:02:49 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:02:51 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:51 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:51 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:02:52 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:53 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:55 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:57 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:02:59 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:02:59 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:02:59 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:02:59 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:00 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:02 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:03 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:04 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:04 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:04 AgilityPhase: Found step 8 at [1055, 781]. Clicking.
+2026-07-16 00:03:05 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:06 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:07 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:08 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:09 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:10 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:11 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:11 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:11 AgilityPhase: Found step 1 at [975, 715]. Clicking.
+2026-07-16 00:03:11 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:03:14 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:03:16 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:16 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:16 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:03:16 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:17 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:18 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:19 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:20 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:21 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:03:21 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:22 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:22 AgilityPhase: Found step 3 at [1486, 1010]. Clicking.
+2026-07-16 00:03:22 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:24 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:25 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:26 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:03:27 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:27 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:27 AgilityPhase: Found step 4 at [1569, 753]. Clicking.
+2026-07-16 00:03:27 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:03:29 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:03:30 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:03:32 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:32 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:32 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:03:32 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:03:34 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:03:36 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:03:38 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:03:40 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:41 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:41 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:03:41 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:03:43 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:03:44 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:03:46 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:03:48 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:48 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:48 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:03:49 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:50 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:51 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:52 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:03:54 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:03:54 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:03:54 AgilityPhase: Found step 8 at [1045, 781]. Clicking.
+2026-07-16 00:03:54 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:55 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:56 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:57 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:58 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:03:59 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:00 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:00 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:00 AgilityPhase: Found step 1 at [938, 709]. Clicking.
+2026-07-16 00:04:01 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:04:03 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:04:05 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:05 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:05 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:04:06 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:07 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:07 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:08 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:09 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:10 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:11 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:11 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:11 AgilityPhase: Found step 3 at [1486, 1009]. Clicking.
+2026-07-16 00:04:11 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:12 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:13 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:14 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:15 AgilityPhase: Detected fall-recovery block at [1514, 67]. Waiting before clicking.
+2026-07-16 00:04:15 AgilityPhase: Clicking fall-recovery block, resetting to step 1.
+2026-07-16 00:04:16 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:17 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:18 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:19 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:20 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:21 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:22 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:23 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:04:23 Engine: stopped - Stopped (F6)
+2026-07-16 00:04:23 Engine: stopped - Stopped (F6)
+2026-07-16 00:04:46 Engine: started at phase 'agility'
+2026-07-16 00:04:46 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:47 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:47 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-16 00:04:47 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:04:49 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:04:52 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:52 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:52 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:04:52 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:53 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:54 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:54 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:55 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:56 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:04:57 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:04:57 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:04:57 AgilityPhase: Found step 3 at [1486, 1009]. Clicking.
+2026-07-16 00:04:57 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:58 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:04:59 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:00 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:01 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:01 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:02 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:03 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:03 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-16 00:05:03 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:04 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:06 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:07 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:08 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:08 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:05:08 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:05:10 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:05:12 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:05:14 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:05:16 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:16 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:16 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:05:16 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:05:18 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:05:20 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:05:22 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:05:24 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:24 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:24 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:05:24 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:05:25 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:05:27 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:05:28 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:05:29 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:29 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:29 AgilityPhase: Found step 8 at [1049, 781]. Clicking.
+2026-07-16 00:05:30 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:31 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:32 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:33 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:34 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:35 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:05:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:36 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:36 AgilityPhase: Found step 1 at [943, 709]. Clicking.
+2026-07-16 00:05:36 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:05:38 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:05:41 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:41 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:41 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:05:41 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:42 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:43 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:44 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:45 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:45 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:05:46 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:46 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:46 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-16 00:05:47 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:48 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:48 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:49 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:50 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:51 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:05:52 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:52 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:05:52 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-16 00:05:52 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:54 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:55 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:05:57 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:05:57 AgilityPhase: Found Mark of Grace at [1334, 708]. Clicking at [1334, 718].
+2026-07-16 00:06:00 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-16 00:06:00 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:06:00 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:06:10 AgilityPhase: Found step 5 at [1277, 633]. Clicking.
+2026-07-16 00:06:10 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:06:12 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:06:14 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:06:16 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:06:18 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:06:18 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:06:18 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:06:19 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:06:20 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:06:22 Engine: stopped - Stopped (F6)
+2026-07-16 00:14:11 Engine: started at phase 'agility'
+2026-07-16 00:14:11 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:11 AgilityPhase: Found Mark of Grace at [1036, 598]. Clicking at [1036, 608].
+2026-07-16 00:14:16 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-16 00:14:16 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:16 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:16 AgilityPhase: Found step 1 at [1149, 801]. Clicking.
+2026-07-16 00:14:17 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:14:19 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:14:21 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:21 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:21 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:14:22 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:23 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:23 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:24 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:25 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:26 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:14:27 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:27 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:27 AgilityPhase: Found step 3 at [1494, 1010]. Clicking.
+2026-07-16 00:14:27 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:28 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:29 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:30 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:30 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:31 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:14:32 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:32 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:32 AgilityPhase: Found step 4 at [1565, 753]. Clicking.
+2026-07-16 00:14:33 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:14:34 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:14:36 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:14:37 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:37 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:37 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:14:38 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:14:40 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:14:42 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:14:44 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:14:46 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:46 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:46 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:14:46 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:14:48 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:14:50 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:14:52 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:14:53 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:54 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:54 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:14:54 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:14:55 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:14:56 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:14:58 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:14:59 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:14:59 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:14:59 AgilityPhase: Found step 8 at [1053, 781]. Clicking.
+2026-07-16 00:14:59 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:00 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:01 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:02 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:03 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:04 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:05 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:06 AgilityPhase: Found Mark of Grace at [616, 922]. Clicking at [616, 932].
+2026-07-16 00:15:10 AgilityPhase: Mark of Grace pickup timed out - giving up for this step.
+2026-07-16 00:15:10 AgilityPhase: Found step 1 at [1169, 653]. Clicking.
+2026-07-16 00:15:11 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:15:13 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:13 AgilityPhase: Found Mark of Grace at [1208, 746]. Clicking at [1208, 756].
+2026-07-16 00:15:15 AgilityPhase: Mark of Grace pickup confirmed.
+2026-07-16 00:15:16 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:16 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:15:16 AgilityPhase: Found step 2 at [1255, 897]. Clicking.
+2026-07-16 00:15:16 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:17 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:18 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:19 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:19 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:20 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:21 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:21 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:15:21 AgilityPhase: Found step 3 at [1492, 1009]. Clicking.
+2026-07-16 00:15:22 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:22 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:24 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:25 AgilityPhase: Detected fall-recovery block at [1514, 67]. Waiting before clicking.
+2026-07-16 00:15:27 AgilityPhase: Clicking fall-recovery block, resetting to step 1.
+2026-07-16 00:15:27 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:28 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:29 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:30 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:31 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:32 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:33 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:34 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:35 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:36 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:37 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:38 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:40 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:40 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:15:40 AgilityPhase: Found step 1 at [953, 711]. Clicking.
+2026-07-16 00:15:40 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:15:42 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:15:45 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:45 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:15:45 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:15:45 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:46 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:47 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:48 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:48 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:49 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:15:50 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:15:50 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:15:50 AgilityPhase: Found step 3 at [1486, 1007]. Clicking.
+2026-07-16 00:15:51 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:51 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:52 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:53 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:54 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:15:55 AgilityPhase: Detected fall-recovery block at [1512, 67]. Waiting before clicking.
+2026-07-16 00:15:57 AgilityPhase: Clicking fall-recovery block, resetting to step 1.
+2026-07-16 00:15:57 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:58 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:15:59 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:00 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:01 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:02 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:03 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:04 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:05 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:06 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:07 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:08 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:09 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:10 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:10 AgilityPhase: Found step 1 at [938, 709]. Clicking.
+2026-07-16 00:16:10 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:16:12 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:16:15 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:15 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:15 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:16:15 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:16 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:17 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:17 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:18 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:19 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:16:20 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:20 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:20 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-16 00:16:20 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:21 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:22 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:23 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:24 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:25 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:16:25 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:26 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:26 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-16 00:16:26 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:16:27 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:16:29 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:16:30 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:31 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:31 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:16:31 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:16:33 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:16:35 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:16:37 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:16:39 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:39 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:39 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:16:39 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:16:41 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:16:43 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:16:45 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:16:47 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:47 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:47 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:16:47 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:16:48 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:16:50 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:16:51 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:16:52 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:52 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:52 AgilityPhase: Found step 8 at [1049, 781]. Clicking.
+2026-07-16 00:16:53 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:54 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:55 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:56 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:57 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:58 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:16:59 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:16:59 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:16:59 AgilityPhase: Found step 1 at [949, 711]. Clicking.
+2026-07-16 00:16:59 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:17:02 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:17:04 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:04 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:04 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:17:04 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:05 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:06 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:07 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:08 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:08 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:17:09 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:09 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:09 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-16 00:17:10 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:11 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:11 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:12 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:13 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:14 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:17:15 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:15 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:15 AgilityPhase: Found step 4 at [1567, 753]. Clicking.
+2026-07-16 00:17:15 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:17:17 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:17:18 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:17:20 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:20 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:20 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:17:20 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:17:22 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:17:24 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:17:26 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:17:28 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:29 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:29 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:17:29 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:17:31 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:17:32 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:17:34 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:17:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:17:36 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:17:36 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:17:37 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:17:38 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:17:39 Engine: stopped - Stopped (F6)
+2026-07-16 00:46:19 Engine: started at phase 'agility'
+2026-07-16 00:46:20 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:20 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:20 AgilityPhase: Found step 1 at [989, 717]. Clicking.
+2026-07-16 00:46:20 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:46:22 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:46:25 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:25 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:25 AgilityPhase: Found step 2 at [1239, 954]. Clicking.
+2026-07-16 00:46:25 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:26 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:27 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:28 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:28 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:29 AgilityPhase: Waiting for step 3 (102x52 at 1447,984)
+2026-07-16 00:46:30 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:30 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:30 AgilityPhase: Found step 3 at [1492, 1007]. Clicking.
+2026-07-16 00:46:31 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:31 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:32 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:33 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:34 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:35 AgilityPhase: Waiting for step 4 (88x50 at 1527,728)
+2026-07-16 00:46:36 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:36 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:36 AgilityPhase: Found step 4 at [1565, 753]. Clicking.
+2026-07-16 00:46:36 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:46:37 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:46:39 AgilityPhase: Waiting for step 5 (44x48 at 1348,620)
+2026-07-16 00:46:41 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:41 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:41 AgilityPhase: Found step 5 at [1361, 641]. Clicking.
+2026-07-16 00:46:41 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:46:43 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:46:45 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:46:47 AgilityPhase: Waiting for step 6 (66x40 at 1216,266)
+2026-07-16 00:46:49 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:49 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:49 AgilityPhase: Found step 6 at [1246, 281]. Clicking.
+2026-07-16 00:46:49 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:46:51 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:46:53 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:46:55 AgilityPhase: Waiting for step 7 (56x42 at 919,696)
+2026-07-16 00:46:57 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:46:57 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:46:57 AgilityPhase: Found step 7 at [939, 706]. Clicking.
+2026-07-16 00:46:57 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:46:58 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:47:00 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:47:01 AgilityPhase: Waiting for step 8 (52x40 at 1031,781)
+2026-07-16 00:47:02 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:47:02 AgilityPhase: No Mark of Grace found.
+2026-07-16 00:47:02 AgilityPhase: Found step 8 at [1051, 781]. Clicking.
+2026-07-16 00:47:03 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:04 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:05 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:06 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:07 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:08 AgilityPhase: Waiting for step 1 (104x88 at 938,687)
+2026-07-16 00:47:09 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:47:09 AgilityPhase: Found Mark of Grace at [1098, 702]. Clicking at [1098, 712].
+2026-07-16 00:47:14 AgilityPhase: Mark of Grace pickup timed out - giving up for this step.
+2026-07-16 00:47:14 AgilityPhase: Found step 1 at [1125, 689]. Clicking.
+2026-07-16 00:47:14 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:47:16 AgilityPhase: Waiting for step 2 (96x54 at 1199,930)
+2026-07-16 00:47:19 AgilityPhase: Searching for Mark of Grace...
+2026-07-16 00:47:19 AgilityPhase: Found Mark of Grace at [1598, 564]. Clicking at [1598, 574].
+2026-07-16 00:47:24 AgilityPhase: Mark of Grace pickup timed out - giving up for this step.
+2026-07-16 00:47:24 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:26 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:28 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:31 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:33 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:35 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:38 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:40 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:42 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:45 AgilityPhase: Waiting for step 2 (dynamic, [960,540]-[1600,900])
+2026-07-16 00:47:46 Engine: stopped - Stopped (F6)
