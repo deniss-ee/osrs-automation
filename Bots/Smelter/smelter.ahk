@@ -78,7 +78,8 @@ class GoToFurnacePhase extends Phase {
         ry2 := Min(A_ScreenHeight, this._markerY + this._searchPaddingPx)
 
         found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2,
-            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy)
+            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy,
+            false, this._markerX, this._markerY)
 
         if (!found) {
             waitStartedAt := ctx.Get("furnaceMarkerWaitStartedAt", 0)

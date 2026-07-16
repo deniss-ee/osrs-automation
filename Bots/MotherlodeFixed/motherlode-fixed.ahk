@@ -82,7 +82,8 @@ class VeinChecker {
 
         return ColorSearch.FindFilledBlock(
             Min(x1, x2), Min(y1, y2), Max(x1, x2), Max(y1, y2),
-            vein["color"], this._tolerance, this._blockW, this._blockH, &cx, &cy)
+            vein["color"], this._tolerance, this._blockW, this._blockH, &cx, &cy,
+            false, vein["x"], vein["y"])
     }
 }
 
@@ -281,7 +282,8 @@ class DepositBankPhase extends Phase {
         ry2 := this._markerY + this._searchPaddingPx
 
         found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2,
-            this._color, this._tolerance, this._reqW, this._reqH, &cx, &cy)
+            this._color, this._tolerance, this._reqW, this._reqH, &cx, &cy,
+            false, this._markerX, this._markerY)
 
         if (!found) {
             ctx.Log("DepositBankPhase: Cannot see deposit container!")

@@ -175,7 +175,8 @@ class MinePhase extends Phase {
         ry2 := Min(this._region["y2"], lastY + this._trackBoxRadiusPx)
 
         nvx := 0, nvy := 0
-        found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2, lockedColor, this._tolerance, this._reqW, this._reqH, &nvx, &nvy, this._scanBottomUp)
+        found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2, lockedColor, this._tolerance, this._reqW, this._reqH, &nvx, &nvy,
+            this._scanBottomUp, lastX, lastY)
         this._lock.Observe(found, nvx, nvy, &outX, &outY)
 
         if (!found) {
@@ -286,7 +287,8 @@ class ClearRedPhase extends Phase {
         ry2 := Min(A_ScreenHeight, lastY + this._trackBoxRadiusPx)
 
         nvx := 0, nvy := 0
-        found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2, this._color, this._tolerance, this._reqW, this._reqH, &nvx, &nvy)
+        found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2, this._color, this._tolerance, this._reqW, this._reqH, &nvx, &nvy,
+            false, lastX, lastY)
         this._lock.Observe(found, nvx, nvy, &outX, &outY)
 
         if (!found) {
@@ -358,8 +360,14 @@ class ClearYellowPhase extends Phase {
             return "withdrawSack"
         }
 
+        ; The hopper doesn't move once found, so last tick's own position
+        ; (if any) is a genuine reference point - steers the search toward
+        ; it instead of a blind top-down whole-screen scan.
+        lastX := ctx.Get("yellowTargetX", "")
+        lastY := ctx.Get("yellowTargetY", "")
         found := ColorSearch.FindFilledBlock(0, 0, A_ScreenWidth, A_ScreenHeight,
-            this._color, this._tolerance, this._reqW, this._reqH, &cx, &cy)
+            this._color, this._tolerance, this._reqW, this._reqH, &cx, &cy,
+            false, lastX, lastY)
 
         if (!found) {
             ctx.Log("ClearYellowPhase: Cannot see hopper!")
@@ -563,7 +571,8 @@ class ReturnMine1Phase extends Phase {
         ry2 := Min(A_ScreenHeight, this._markerY + this._searchPaddingPx)
 
         found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2,
-            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy)
+            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy,
+            false, this._markerX, this._markerY)
 
         if (found) {
             ctx.Log("ReturnMine1Phase: Arrived at waypoint 1!")
@@ -648,7 +657,8 @@ class ReturnMine2Phase extends Phase {
         ry2 := Min(A_ScreenHeight, this._markerY + this._searchPaddingPx)
 
         found := ColorSearch.FindFilledBlock(rx1, ry1, rx2, ry2,
-            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy)
+            this._markerColor, this._markerTolerance, this._markerW, this._markerH, &cx, &cy,
+            false, this._markerX, this._markerY)
 
         if (found) {
             ctx.Log("ReturnMine2Phase: Saw waypoint 2 marker. Moving to final approach.")

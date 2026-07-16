@@ -66,7 +66,27 @@ class ColorSearch {
     ;
     ; Edge clamp: the returned center is clamped to the searched region's
     ; own bounds, since a match can extend beyond the region's edge.
-    static FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, scanBottomUp := false) {
+    ;
+    ; refX/refY (optional): when supplied, every failed verify-and-split
+    ; pushes its two sub-rectangles in an order biased toward whichever one
+    ; CONTAINS (or is nearest) the reference point - since a LIFO stack
+    ; explores whatever was pushed last first, that sub-rectangle is
+    ; explored next. Every current caller already has a natural reference
+    ; point (a calibrated marker/vein/step position) - for a COMMON color
+    ; (e.g. pure green shared with outdoor scenery), a blind top-down scan
+    ; over a large region can hit many false-positive pixels before ever
+    ; reaching the real block; steering toward the known likely location
+    ; finds it in the first few attempts instead. Omitting refX/refY keeps
+    ; today's exact top-down/bottom-up behavior (existing callers
+    ; unaffected).
+    ;
+    ; maxAttempts (optional, 0 = unlimited): caps the number of
+    ; verify-and-split cycles this call will perform before giving up and
+    ; returning false, even if unexplored region remains - a safety valve
+    ; against a pathologically common color still costing unbounded time
+    ; on a large region the reference point doesn't actually help with
+    ; (e.g. the real block isn't where expected at all).
+    static FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, scanBottomUp := false, refX := "", refY := "", maxAttempts := 0) {
         ; PixelSearch's scan direction is set by which corner comes first
         ; (y1 > y2 scans bottom-up) - normalize here so the loop below
         ; always walks from startY toward endY either way.
@@ -74,9 +94,14 @@ class ColorSearch {
         endY := scanBottomUp ? y1 : y2
         step := scanBottomUp ? -1 : 1
 
+        hasRef := (refX != "" && refY != "")
         stack := [[x1, startY, x2, endY]]
+        attempts := 0
 
         while (stack.Length > 0) {
+            if (maxAttempts > 0 && attempts >= maxAttempts)
+                return false
+
             rect := stack.Pop()
             rx1 := rect[1], ry1 := rect[2], rx2 := rect[3], ry2 := rect[4]
 
@@ -86,17 +111,52 @@ class ColorSearch {
             if (!PixelSearch(&foundX, &foundY, rx1, ry1, rx2, ry2, color, tol))
                 continue
 
+            attempts += 1
+
             if (ColorSearch.VerifyBlock(foundX, foundY, color, tol, reqW, reqH, step)) {
                 cx := Min(Max(foundX + reqW // 2, x1), x2)
                 cy := Min(Max(foundY + step * (reqH // 2), y1), y2)
                 return true
             }
 
-            ; Push both sub-rectangles - the rest of the row last, so it's
-            ; searched first (LIFO stack). "Below" = further along the
-            ; scan direction (toward endY), not necessarily increasing Y.
-            stack.Push([rx1, foundY + step, rx2, ry2])
-            stack.Push([foundX + 1, foundY, rx2, foundY])
+            ; Two sub-rectangles: the rest of the row, and everything
+            ; further along the scan direction. Default push order (no ref
+            ; point) is unchanged from before - "below" pushed first, "rest
+            ; of row" pushed last so it's explored first (LIFO).
+            restOfRow := [foundX + 1, foundY, rx2, foundY]
+            below := [rx1, foundY + step, rx2, ry2]
+
+            if (hasRef) {
+                ; Explore whichever sub-rectangle contains refX/refY first
+                ; (pushed last). If neither contains it, fall back to
+                ; whichever is geometrically closer to it.
+                restContainsRef := (refX >= restOfRow[1] && refX <= restOfRow[3] && refY = foundY)
+                belowContainsRef := (refY >= Min(below[2], below[4]) && refY <= Max(below[2], below[4]))
+
+                if (restContainsRef && !belowContainsRef) {
+                    stack.Push(below)
+                    stack.Push(restOfRow)
+                } else if (belowContainsRef && !restContainsRef) {
+                    stack.Push(restOfRow)
+                    stack.Push(below)
+                } else {
+                    ; Neither (or both, e.g. ref is on this exact row) -
+                    ; steer by vertical distance from ref to each
+                    ; sub-rectangle's own row range.
+                    belowDist := Abs(refY - below[2])
+                    restDist := Abs(refY - foundY)
+                    if (restDist <= belowDist) {
+                        stack.Push(below)
+                        stack.Push(restOfRow)
+                    } else {
+                        stack.Push(restOfRow)
+                        stack.Push(below)
+                    }
+                }
+            } else {
+                stack.Push(below)
+                stack.Push(restOfRow)
+            }
         }
 
         return false

@@ -163,8 +163,15 @@ class AgilityPhase extends Phase {
             reqH := step["h"]
         }
 
+        ; refX/refY = the step's own known position - both search boxes
+        ; above are already centered on it, so steering the search toward
+        ; it (instead of a blind top-down scan) matters most in dynamic
+        ; mode's much larger window, where a common highlight color (e.g.
+        ; step 5's pure green) can otherwise cost many false-positive
+        ; verify cycles before reaching the real block.
         found := ColorSearch.FindFilledBlock(x1, y1, x2, y2,
-            step["color"], this._colorTolerance, reqW, reqH, &cx, &cy)
+            step["color"], this._colorTolerance, reqW, reqH, &cx, &cy,
+            false, step["x"], step["y"])
 
         if (!found) {
             ; Fall recovery: falling off the course after a specific step
@@ -179,7 +186,8 @@ class AgilityPhase extends Phase {
                 fx2 := fb["x"] + fb["w"] // 2
                 fy2 := fb["y"] + fb["h"] // 2
                 if (ColorSearch.FindFilledBlock(fx1, fy1, fx2, fy2,
-                    fb["color"], this._colorTolerance, fb["w"], fb["h"], &fcx, &fcy)) {
+                    fb["color"], this._colorTolerance, fb["w"], fb["h"], &fcx, &fcy,
+                    false, fb["x"], fb["y"])) {
                     ctx.Log("AgilityPhase: Detected fall-recovery block at [" fcx ", " fcy "]. Waiting before clicking.")
                     ctx.waiter.After(ctx.timing, this._fallRecoveryDelayKey)
                     ctx.Log("AgilityPhase: Clicking fall-recovery block, resetting to step 1.")
