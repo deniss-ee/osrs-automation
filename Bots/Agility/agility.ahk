@@ -26,8 +26,11 @@
 ; gracePickupTimeoutMs for a change - confirms an item actually
 ; landed, not just that a click happened. Whether that confirms or
 ; times out, the next obstacle search switches to "dynamic" mode
-; (whole-screen, fixed-size block, still keyed on the step's own
-; color) since the player likely moved to reach the mark.
+; (a bounded window centered on the step's own position, sized
+; dynamicSearchWidthPx x dynamicSearchHeightPx, fixed-size block, still
+; keyed on the step's own color) since the player likely moved to reach
+; the mark - bounded rather than whole-screen since a common highlight
+; color (e.g. pure green) makes a whole-screen scan expensive.
 ;
 ; Fall recovery: only checked while stuck waiting for the marker of the
 ; step right after [FallRecovery] afterStep (falling off the course is
@@ -100,6 +103,7 @@ LoadSteps(iniPath, stepCount) {
 ; ============================================================
 class AgilityPhase extends Phase {
     __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx,
+          dynamicSearchWidthPx, dynamicSearchHeightPx,
           mogAnchor, graceClickOffsetY, slotSignature, gracePreDelayKey,
           graceConfirmPollKey, gracePickupTimeoutMs, gracePickedUpDelayKey,
           fallRecoveryDelayKey, fallRecoveryBlock := "", runMode := false) {
@@ -108,6 +112,8 @@ class AgilityPhase extends Phase {
         this._colorTolerance := colorTolerance
         this._stepSearchDelayKey := stepSearchDelayKey
         this._dynamicSearchBlockSizePx := dynamicSearchBlockSizePx
+        this._dynamicSearchWidthPx := dynamicSearchWidthPx
+        this._dynamicSearchHeightPx := dynamicSearchHeightPx
         this._mogAnchor := mogAnchor
         this._graceClickOffsetY := graceClickOffsetY
         this._slotSignature := slotSignature
@@ -131,14 +137,21 @@ class AgilityPhase extends Phase {
         currentStep := ctx.Get("currentStep", 1)
         step := this._steps[currentStep]
 
-        ; --- Obstacle search: fixed calibrated box, or whole-screen at a
-        ; fixed generic block size if a loot detour may have moved us ---
+        ; --- Obstacle search: fixed calibrated box, or a bounded window
+        ; (centered on the step's own position) at a fixed generic block
+        ; size if a loot detour may have moved us. Bounded rather than
+        ; whole-screen: a common highlight color (e.g. step 5's pure
+        ; green, shared with lots of outdoor scenery) makes a whole-screen
+        ; ColorSearch.FindFilledBlock scan expensive - every false-positive
+        ; pixel costs another PixelSearch + VerifyBlock cycle - so a
+        ; smaller bounded window sharply cuts false candidates while still
+        ; comfortably covering a realistic mark-detour distance. ---
         dynamicActive := ctx.Get("dynamicSearchActive", false)
         if (dynamicActive) {
-            x1 := 0
-            y1 := 0
-            x2 := A_ScreenWidth
-            y2 := A_ScreenHeight
+            x1 := step["x"] - this._dynamicSearchWidthPx // 2
+            y1 := step["y"] - this._dynamicSearchHeightPx // 2
+            x2 := step["x"] + this._dynamicSearchWidthPx // 2
+            y2 := step["y"] + this._dynamicSearchHeightPx // 2
             reqW := this._dynamicSearchBlockSizePx
             reqH := this._dynamicSearchBlockSizePx
         } else {
@@ -179,7 +192,7 @@ class AgilityPhase extends Phase {
                 }
             }
 
-            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, whole-screen)" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
+            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, [" x1 "," y1 "]-[" x2 "," y2 "])" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
             ctx.waiter.After(ctx.timing, step["pollKey"])
             return "agility"
         }
@@ -290,6 +303,8 @@ schema := Map(
     "colorTolerance", Map("section", "Tunables", "type", "int"),
     "stepSearchDelayMs", Map("section", "Tunables", "type", "int"),
     "dynamicSearchBlockSizePx", Map("section", "MarkOfGrace", "type", "int"),
+    "dynamicSearchWidthPx", Map("section", "MarkOfGrace", "type", "int"),
+    "dynamicSearchHeightPx", Map("section", "MarkOfGrace", "type", "int"),
     "mogShadeTolerance", Map("section", "MarkOfGrace", "type", "int"),
     "graceClickOffsetY", Map("section", "MarkOfGrace", "type", "int"),
     "gracePrePickupDelayMs", Map("section", "MarkOfGrace", "type", "int"),
@@ -376,6 +391,7 @@ if (Integer(IniRead(iniPath, "FallRecovery", "enabled")) = 1) {
 botAgilityPhase := AgilityPhase(
     STEPS, botConfig.Get("colorTolerance"),
     "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"),
+    botConfig.Get("dynamicSearchWidthPx"), botConfig.Get("dynamicSearchHeightPx"),
     mogAnchor, botConfig.Get("graceClickOffsetY"), botSlotSignature,
     "gracePreDelay", "graceConfirmPoll", botConfig.Get("gracePickupTimeoutMs"), "gracePickedUpDelay",
     "fallRecoveryDelay", fallRecoveryBlock, botConfig.Get("runMode")
