@@ -15,9 +15,8 @@
 ; Each step's highlight color should be unique across the whole course
 ; (see [Step:N] comments in the .ini) - this is what makes Mark of
 ; Grace recovery simple: after a loot detour moves the player off a
-; step's calibrated position, the SAME step can be re-found within the
-; dynamic search region (see below) by its own color alone, with no
-; ambiguity against other steps.
+; step's calibrated position, the SAME step can be re-found anywhere on
+; screen by its own color alone, with no ambiguity against other steps.
 ;
 ; Mark of Grace: every tick, before ever touching the current
 ; step's obstacle coordinates, search the whole screen for
@@ -27,11 +26,8 @@
 ; gracePickupTimeoutMs for a change - confirms an item actually
 ; landed, not just that a click happened. Whether that confirms or
 ; times out, the next obstacle search switches to "dynamic" mode
-; (a bounded region around screen-center, fixed-size block, still
-; keyed on the step's own color) since the player likely moved to
-; reach the mark - bounded rather than whole-screen since a mark
-; detour is only ever a short walk, and a full-screen PixelSearch-based
-; scan is expensive.
+; (whole-screen, fixed-size block, still keyed on the step's own
+; color) since the player likely moved to reach the mark.
 ;
 ; Fall recovery: only checked while stuck waiting for the marker of the
 ; step right after [FallRecovery] afterStep (falling off the course is
@@ -103,7 +99,7 @@ LoadSteps(iniPath, stepCount) {
 ; click its center, settle, advance.
 ; ============================================================
 class AgilityPhase extends Phase {
-    __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx, dynamicRegion,
+    __New(steps, colorTolerance, stepSearchDelayKey, dynamicSearchBlockSizePx,
           mogAnchor, graceClickOffsetY, slotSignature, gracePreDelayKey,
           graceConfirmPollKey, gracePickupTimeoutMs, gracePickedUpDelayKey,
           fallRecoveryDelayKey, fallRecoveryBlock := "", runMode := false) {
@@ -112,7 +108,6 @@ class AgilityPhase extends Phase {
         this._colorTolerance := colorTolerance
         this._stepSearchDelayKey := stepSearchDelayKey
         this._dynamicSearchBlockSizePx := dynamicSearchBlockSizePx
-        this._dynamicRegion := dynamicRegion
         this._mogAnchor := mogAnchor
         this._graceClickOffsetY := graceClickOffsetY
         this._slotSignature := slotSignature
@@ -136,18 +131,14 @@ class AgilityPhase extends Phase {
         currentStep := ctx.Get("currentStep", 1)
         step := this._steps[currentStep]
 
-        ; --- Obstacle search: fixed calibrated box, or a bounded region
-        ; around screen-center at a fixed generic block size if a loot
-        ; detour may have moved us. Bounded (not whole-screen) because a
-        ; full-screen PixelSearch-based scan is expensive and a mark
-        ; detour only ever moves the player a short walk, never far
-        ; enough to land outside this region. ---
+        ; --- Obstacle search: fixed calibrated box, or whole-screen at a
+        ; fixed generic block size if a loot detour may have moved us ---
         dynamicActive := ctx.Get("dynamicSearchActive", false)
         if (dynamicActive) {
-            x1 := this._dynamicRegion["x1"]
-            y1 := this._dynamicRegion["y1"]
-            x2 := this._dynamicRegion["x2"]
-            y2 := this._dynamicRegion["y2"]
+            x1 := 0
+            y1 := 0
+            x2 := A_ScreenWidth
+            y2 := A_ScreenHeight
             reqW := this._dynamicSearchBlockSizePx
             reqH := this._dynamicSearchBlockSizePx
         } else {
@@ -188,7 +179,7 @@ class AgilityPhase extends Phase {
                 }
             }
 
-            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, [" x1 "," y1 "]-[" x2 "," y2 "])" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
+            ctx.Log("AgilityPhase: Waiting for step " currentStep (dynamicActive ? " (dynamic, whole-screen)" : " (" step["w"] "x" step["h"] " at " step["x"] "," step["y"] ")"))
             ctx.waiter.After(ctx.timing, step["pollKey"])
             return "agility"
         }
@@ -341,22 +332,6 @@ ctx := EngineContext(botConfig, botLogger, botClicker, botFailsafe, botWaiter, b
 
 STEPS := LoadSteps(iniPath, stepCount)
 
-; Dynamic obstacle re-acquisition region (used after a Mark of Grace
-; detour, see AgilityPhase.Run) - bounded around screen-center rather
-; than the whole screen, since a mark detour is a short walk, never far
-; enough to move the highlight outside this region, and a full-screen
-; PixelSearch-based scan is expensive.
-dynamicRegionCenterX := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionCenterX"))
-dynamicRegionCenterY := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionCenterY"))
-dynamicRegionWidth := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionWidth"))
-dynamicRegionHeight := Integer(IniRead(iniPath, "MarkOfGrace", "dynamicRegionHeight"))
-dynamicRegion := Map(
-    "x1", dynamicRegionCenterX - dynamicRegionWidth // 2,
-    "y1", dynamicRegionCenterY - dynamicRegionHeight // 2,
-    "x2", dynamicRegionCenterX + dynamicRegionWidth // 2,
-    "y2", dynamicRegionCenterY + dynamicRegionHeight // 2
-)
-
 ; Mark of Grace detection - whole-screen image search, single reference
 ; image. mog-item.png is captured against a #00FF00 matte, so *TransARGB
 ; is required or ImageSearch tries to literally match those green pixels
@@ -400,7 +375,7 @@ if (Integer(IniRead(iniPath, "FallRecovery", "enabled")) = 1) {
 
 botAgilityPhase := AgilityPhase(
     STEPS, botConfig.Get("colorTolerance"),
-    "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"), dynamicRegion,
+    "stepSearchDelay", botConfig.Get("dynamicSearchBlockSizePx"),
     mogAnchor, botConfig.Get("graceClickOffsetY"), botSlotSignature,
     "gracePreDelay", "graceConfirmPoll", botConfig.Get("gracePickupTimeoutMs"), "gracePickedUpDelay",
     "fallRecoveryDelay", fallRecoveryBlock, botConfig.Get("runMode")
