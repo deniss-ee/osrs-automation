@@ -250,7 +250,7 @@ class ScanAndAttackPhase extends Phase {
 ; baseline clears count as a fresh kill.
 ; ============================================================
 class WaitCombatPhase extends Phase {
-    __New(indicatorGate, startColor, killColor, combatPollKey, retryClickAfterMs, startTimeoutMs, postKillSettleKey, killNextPhaseName := "scanAndAttack") {
+    __New(indicatorGate, startColor, killColor, combatPollKey, retryClickAfterMs, startTimeoutMs, postKillSettleKey, killNextPhaseName := "scanAndAttack", retryNextPhaseName := "") {
         super.__New("waitCombat")
         this._indicatorGate := indicatorGate
         this._startColor := startColor
@@ -260,6 +260,14 @@ class WaitCombatPhase extends Phase {
         this._startTimeoutMs := startTimeoutMs
         this._postKillSettleKey := postKillSettleKey
         this._killNextPhaseName := killNextPhaseName
+        ; Where to go when no combat signal shows up in time (a missed/
+        ; no-op click, or - for a passive-aggro bot with no attack click at
+        ; all - simply nothing happening yet). Defaults to killNextPhaseName
+        ; itself: for AutoFighter/AutoFighterLoot this is "scanAndAttack"
+        ; (the same phase either way, so the old hardcoded value is
+        ; preserved); a bot with a different re-entry point (e.g.
+        ; FruitStall's "thieving") should pass its own.
+        this._retryNextPhaseName := retryNextPhaseName != "" ? retryNextPhaseName : killNextPhaseName
     }
 
     ResetForNewCycle() {
@@ -289,15 +297,27 @@ class WaitCombatPhase extends Phase {
             ctx.Set("combatWaitStartedAt", 0)
             ctx.Set("entrySnapshotTaken", false)
             ctx.Set("staleKillCleared", false)
+            ctx.Set("combatStartLogged", false)
             ctx.failsafe.ResetPhaseTimer(ctx)
             return this._killNextPhaseName
         }
 
         if (this._indicatorGate.Matches(this._startColor)) {
-            if (ctx.Get("combatWaitStartedAt", 0) != 0) {
+            ; Logged once per fight via its own latch - independent of
+            ; combatWaitStartedAt, which only tracks the no-signal-yet
+            ; timeout and is already 0 (never armed) when startColor shows
+            ; up on the very first tick, which would otherwise skip this
+            ; log entirely.
+            if (!ctx.Get("combatStartLogged", false)) {
                 ctx.Log("WaitCombatPhase: Combat started. Waiting for kill.")
-                ctx.failsafe.ResetPhaseTimer(ctx)
+                ctx.Set("combatStartLogged", true)
             }
+            ; Reset on EVERY tick combat is confirmed ongoing, not just the
+            ; first - startColor still matching is proof this phase is
+            ; making real progress (fighting), not stalled, so a long fight
+            ; must not trip phaseTimeoutCombat just because it outlasts that
+            ; budget.
+            ctx.failsafe.ResetPhaseTimer(ctx)
             ctx.Set("combatWaitStartedAt", 0)
             ctx.waiter.After(ctx.timing, this._combatPollKey)
             return "waitCombat"
@@ -314,10 +334,13 @@ class WaitCombatPhase extends Phase {
             ctx.engine.Stop("Timed out waiting for combat signal")
             return "waitCombat"
         } else if ((A_TickCount - waitStartedAt) > this._retryClickAfterMs) {
-            ctx.Log("WaitCombatPhase: No combat signal after " this._retryClickAfterMs "ms - click likely missed, retrying scan")
+            ctx.Log("WaitCombatPhase: No combat signal after " this._retryClickAfterMs "ms - retrying")
             ctx.Set("combatWaitStartedAt", 0)
+            ctx.Set("entrySnapshotTaken", false)
+            ctx.Set("staleKillCleared", false)
+            ctx.Set("combatStartLogged", false)
             ctx.failsafe.ResetPhaseTimer(ctx)
-            return "scanAndAttack"
+            return this._retryNextPhaseName
         }
 
         ctx.waiter.After(ctx.timing, this._combatPollKey)
