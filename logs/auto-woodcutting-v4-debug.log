@@ -1,0 +1,93 @@
+2026-07-18 22:43:57 Engine: started at phase 'chopWood'
+2026-07-18 22:44:01 Engine: stopped - Stopped (F6)
+2026-07-18 22:44:01 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:44:06 Engine: started at phase 'chopWood'
+2026-07-18 22:44:07 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:44:08 ChopWoodPhase: Initial/re-click on tree at [1321, 573]
+2026-07-18 22:44:09 Engine: stopped - Stopped (F6)
+2026-07-18 22:44:09 Engine: stopped - Stopped (F6)
+2026-07-18 22:46:44 Engine: started at phase 'chopWood'
+2026-07-18 22:46:47 ChopWoodPhase: Found new tree at [1254, 793]
+2026-07-18 22:46:47 ChopWoodPhase: Initial/re-click on tree at [1243, 793]
+2026-07-18 22:46:49 Engine: stopped - Stopped (F6)
+2026-07-18 22:46:52 Engine: started at phase 'chopWood'
+2026-07-18 22:46:59 Engine: started at phase 'chopWood'
+2026-07-18 22:46:59 Engine: started at phase 'chopWood'
+2026-07-18 22:46:59 Engine: started at phase 'chopWood'
+2026-07-18 22:46:59 Engine: started at phase 'chopWood'
+2026-07-18 22:46:59 Engine: started at phase 'chopWood'
+2026-07-18 22:47:00 Engine: started at phase 'chopWood'
+2026-07-18 22:47:00 Engine: stopped - Stopped (F6)
+2026-07-18 22:47:01 Engine: started at phase 'chopWood'
+2026-07-18 22:47:01 Engine: started at phase 'chopWood'
+2026-07-18 22:47:01 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:47:05 ChopWoodPhase: Initial/re-click on tree at [1321, 573]
+2026-07-18 22:51:28 Engine: started at phase 'chopWood'
+2026-07-18 22:51:31 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:51:31 ChopWoodPhase: Inventory full. Heading to bank.
+2026-07-18 22:51:31 DepositBankPhase: Clicked deposit marker at [897, 578]
+2026-07-18 22:51:31 DepositBankPhase: Waiting for deposit box to open...
+2026-07-18 22:51:34 Engine: stopped - Stopped (F6)
+2026-07-18 22:55:06 Engine: started at phase 'chopWood'
+2026-07-18 22:55:08 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:55:08 ChopWoodPhase: Tree depleted or lost. Finding new tree.
+2026-07-18 22:55:14 Engine: started at phase 'chopWood'
+2026-07-18 22:55:14 Engine: stopped - Stopped (F6)
+2026-07-18 22:55:15 ChopWoodPhase: Found new tree at [1321, 573]
+2026-07-18 22:55:16 Engine: stopped - Stopped (F6)
+2026-07-18 23:11:06 Engine: started at phase 'chopWood'
+2026-07-18 23:11:10 Engine: started at phase 'chopWood'
+2026-07-18 23:11:11 Engine: started at phase 'chopWood'
+2026-07-18 23:11:11 Engine: started at phase 'chopWood'
+2026-07-18 23:11:11 Engine: started at phase 'chopWood'
+2026-07-18 23:11:12 ChopWoodPhase: Found new tree at [1333, 535]
+2026-07-18 23:11:12 ChopWoodPhase: Tree depleted or lost. Finding new tree.
+2026-07-18 23:11:17 Engine: stopped - Stopped (F6)
+2026-07-18 23:11:17 Engine: started at phase 'chopWood'
+2026-07-18 23:11:19 Engine: started at phase 'chopWood'
+2026-07-18 23:11:23 ChopWoodPhase: Found new tree at [1333, 535]
+2026-07-18 23:11:23 ChopWoodPhase: Tree depleted or lost. Finding new tree.
+2026-07-18 23:11:26 ChopWoodPhase: Inventory full. Heading to bank.
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:26 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:27 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Cannot see deposit marker!
+2026-07-18 23:11:28 DepositBankPhase: Clicked deposit marker at [905, 546]
+2026-07-18 23:11:29 DepositBankPhase: Waiting for deposit box to open...
+2026-07-18 23:11:33 DepositBankPhase: Deposited all. Moving to final approach click.
+2026-07-18 23:11:33 DepositBankPhase: Clicked final point at [1652, 842]
+2026-07-18 23:11:36 DepositBankPhase: Settle wait complete. Handing off to chopWood.
+2026-07-18 23:11:44 Engine: started at phase 'chopWood'
+2026-07-18 23:11:44 ChopWoodPhase: Found new tree at [1333, 535]
+2026-07-18 23:11:45 ChopWoodPhase: Initial/re-click on tree at [1333, 535]
+2026-07-18 23:11:47 ChopWoodPhase: Clicked stable tree at [1279, 571]
+2026-07-18 23:11:47 Engine: stopped - Stopped (F6)
+2026-07-18 23:11:49 Engine: started at phase 'chopWood'
+2026-07-18 23:11:55 Engine: started at phase 'chopWood'
+2026-07-18 23:11:56 ChopWoodPhase: Found new tree at [1277, 573]
+2026-07-18 23:11:56 ChopWoodPhase: Tree depleted or lost. Finding new tree.
