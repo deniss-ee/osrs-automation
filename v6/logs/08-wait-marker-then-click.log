@@ -1,0 +1,16 @@
+2026-07-19 00:41:13 [08-wait-marker-then-click] Script loaded. F5=run flow  F6=stop  Esc=exit
+2026-07-19 00:41:16 [08-wait-marker-then-click] Flow started: click start=1000,720 -> wait for marker in 787,533 -> 808,554 (timeout 15000ms) -> click after=1153,1037
+2026-07-19 00:41:16 [08-wait-marker-then-click] Clicked start point 1000,720 (ctrl/force-run)
+2026-07-19 00:41:16 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:16 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:17 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:17 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:17 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:18 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:18 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:18 [08-wait-marker-then-click] MarkerVisible: not yet visible
+2026-07-19 00:41:19 [08-wait-marker-then-click] MarkerVisible: found at 798,543
+2026-07-19 00:41:19 [08-wait-marker-then-click] Marker confirmed after 2829 ms - clicking AFTER point (separate from marker location)
+2026-07-19 00:41:19 [08-wait-marker-then-click] DONE: marker confirmed (2829 ms), clicked AFTER at 1153,1037
+2026-07-19 00:41:23 [08-wait-marker-then-click] F6 pressed - stop requested
+2026-07-19 00:41:26 [08-wait-marker-then-click] Script loaded. F5=run flow  F6=stop  Esc=exit

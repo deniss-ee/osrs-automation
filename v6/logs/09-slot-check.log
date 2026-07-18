@@ -1,0 +1,186 @@
+2026-07-19 00:45:46 [09-slot-check] Script loaded. F5=check all slots  F7=move to calibrate slot 1  F6=clear  Esc=exit
+2026-07-19 00:45:53 [09-slot-check] F7: moved to slot 1 computed center 2135,833
+2026-07-19 00:46:15 [09-slot-check] Script loaded. F5=check all slots  F7=move to calibrate slot 28  F6=clear  Esc=exit
+2026-07-19 00:46:16 [09-slot-check] F7: moved to slot 28 computed center 2387,1265
+2026-07-19 00:46:28 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:46:28 [09-slot-check] Slot 1 (2135,833): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 2 (2219,833): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 3 (2303,833): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 4 (2387,833): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 5 (2135,905): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 6 (2219,905): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 7 (2303,905): FULL
+2026-07-19 00:46:28 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 12 (2387,977): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 15 (2303,1049): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 17 (2135,1121): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 18 (2219,1121): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 20 (2387,1121): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 21 (2135,1193): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 24 (2387,1193): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 25 (2135,1265): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 26 (2219,1265): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 27 (2303,1265): empty
+2026-07-19 00:46:28 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:46:28 [09-slot-check] Grid result: 8/28 full in 609 ms
+2026-07-19 00:46:36 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:46:36 [09-slot-check] Slot 1 (2135,833): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 2 (2219,833): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 3 (2303,833): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 4 (2387,833): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 5 (2135,905): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 6 (2219,905): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 7 (2303,905): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 12 (2387,977): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 15 (2303,1049): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 17 (2135,1121): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 18 (2219,1121): FULL
+2026-07-19 00:46:36 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 20 (2387,1121): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 21 (2135,1193): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 24 (2387,1193): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 25 (2135,1265): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 26 (2219,1265): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 27 (2303,1265): empty
+2026-07-19 00:46:36 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:46:36 [09-slot-check] Grid result: 8/28 full in 625 ms
+2026-07-19 00:46:37 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:46:37 [09-slot-check] Slot 1 (2135,833): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 2 (2219,833): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 3 (2303,833): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 4 (2387,833): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 5 (2135,905): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 6 (2219,905): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 7 (2303,905): FULL
+2026-07-19 00:46:37 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 12 (2387,977): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 15 (2303,1049): empty
+2026-07-19 00:46:37 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 17 (2135,1121): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 18 (2219,1121): FULL
+2026-07-19 00:46:38 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 20 (2387,1121): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 21 (2135,1193): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 24 (2387,1193): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 25 (2135,1265): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 26 (2219,1265): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 27 (2303,1265): empty
+2026-07-19 00:46:38 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:46:38 [09-slot-check] Grid result: 8/28 full in 625 ms
+2026-07-19 00:46:41 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:46:41 [09-slot-check] Slot 1 (2135,833): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 2 (2219,833): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 3 (2303,833): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 4 (2387,833): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 5 (2135,905): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 6 (2219,905): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 7 (2303,905): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 12 (2387,977): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 15 (2303,1049): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 17 (2135,1121): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 18 (2219,1121): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 20 (2387,1121): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 21 (2135,1193): FULL
+2026-07-19 00:46:41 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 24 (2387,1193): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 25 (2135,1265): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 26 (2219,1265): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 27 (2303,1265): empty
+2026-07-19 00:46:41 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:46:41 [09-slot-check] Grid result: 8/28 full in 625 ms
+2026-07-19 00:46:46 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:46:46 [09-slot-check] Slot 1 (2135,833): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 2 (2219,833): FULL
+2026-07-19 00:46:46 [09-slot-check] Slot 3 (2303,833): FULL
+2026-07-19 00:46:46 [09-slot-check] Slot 4 (2387,833): FULL
+2026-07-19 00:46:46 [09-slot-check] Slot 5 (2135,905): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 6 (2219,905): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 7 (2303,905): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 12 (2387,977): FULL
+2026-07-19 00:46:46 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:46:46 [09-slot-check] Slot 15 (2303,1049): FULL
+2026-07-19 00:46:46 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 17 (2135,1121): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 18 (2219,1121): FULL
+2026-07-19 00:46:47 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 20 (2387,1121): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 21 (2135,1193): FULL
+2026-07-19 00:46:47 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 24 (2387,1193): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 25 (2135,1265): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 26 (2219,1265): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 27 (2303,1265): empty
+2026-07-19 00:46:47 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:46:47 [09-slot-check] Grid result: 8/28 full in 610 ms
+2026-07-19 00:47:00 [09-slot-check] Slot check started: 28 slots, layout firstX=2099 firstY=801 slotW=72 slotH=64
+2026-07-19 00:47:00 [09-slot-check] Slot 1 (2135,833): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 2 (2219,833): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 3 (2303,833): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 4 (2387,833): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 5 (2135,905): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 6 (2219,905): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 7 (2303,905): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 8 (2387,905): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 9 (2135,977): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 10 (2219,977): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 11 (2303,977): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 12 (2387,977): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 13 (2135,1049): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 14 (2219,1049): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 15 (2303,1049): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 16 (2387,1049): empty
+2026-07-19 00:47:00 [09-slot-check] Slot 17 (2135,1121): FULL
+2026-07-19 00:47:00 [09-slot-check] Slot 18 (2219,1121): empty
+2026-07-19 00:47:01 [09-slot-check] Slot 19 (2303,1121): empty
+2026-07-19 00:47:01 [09-slot-check] Slot 20 (2387,1121): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 21 (2135,1193): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 22 (2219,1193): empty
+2026-07-19 00:47:01 [09-slot-check] Slot 23 (2303,1193): empty
+2026-07-19 00:47:01 [09-slot-check] Slot 24 (2387,1193): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 25 (2135,1265): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 26 (2219,1265): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 27 (2303,1265): FULL
+2026-07-19 00:47:01 [09-slot-check] Slot 28 (2387,1265): FULL
+2026-07-19 00:47:01 [09-slot-check] Grid result: 8/28 full in 625 ms
+2026-07-19 00:47:07 [09-slot-check] Script loaded. F5=check all slots  F7=move to calibrate slot 28  F6=clear  Esc=exit
+2026-07-19 00:56:03 [09-slot-check] Esc pressed - exiting
