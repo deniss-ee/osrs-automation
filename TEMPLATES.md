@@ -9,7 +9,7 @@ Building-block vocabulary used below (v6 names):
 - **FindColor [name]** — find a solid color block (region-limited when possible, steered toward a known point)
 - **FindImage [name.png]** — find a PNG on screen or in a region
 - **FindBlob [name]** — find nearest irregular color blob (NPC overlays); always region-limited
-- **Click / CtrlClick [target or point]** — settled click (150ms settle)
+- **Click / CtrlClick [target or point]** — settled click (100ms settle before the click; CtrlClick holds Ctrl an additional 100ms after the click before releasing — load-bearing, not redundant, confirmed live: releasing sooner risks the client not registering the held modifier, so the character walks instead of runs)
 - **TrackAndClick** — acquire a target, keep tracking it in a small box, re-click when it depletes/moves, until a condition
 - **PickupAppeared** — wait for a thing to appear -> snapshot a confirm box -> click it -> confirm the box changed (the Mark-of-Grace block)
 - **WaitFor / WaitUntil** — interruptible wait with timeout (300ms tick-aligned polls)

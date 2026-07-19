@@ -15,7 +15,7 @@
 ; exists in the class but ChopWoodPhase never actually calls IsLost() -
 ; it just acts on FindFilledBlock's own found=false directly).
 ;
-; Composes: FindFilledBlock (01/02/03/05/08/11), ClickAt (04/05/08/11),
+; Composes: FindFilledBlock (01/02/03/05/08), ClickAt (04/05/08/11),
 ; Pause/WaitUntil/BotStopped (07/08/10/11), SlotCenter/SlotFull (09) as
 ; the until-condition.
 ;
@@ -197,10 +197,9 @@ RunTrackAndClick() {
     colorsMsg := ""
     for i, c in TARGET_COLORS
         colorsMsg .= (i = 1 ? "" : "/") HexColor(c)
-    LogLine("TrackAndClick started: colors=" colorsMsg " tol=" COLOR_TOL
+    Say("TrackAndClick started: colors=" colorsMsg " tol=" COLOR_TOL
         . " block=" BLOCK_W "x" BLOCK_H " trackRadius=" TRACK_RADIUS_PX
         . " indicatorSlot=" INDICATOR_SLOT " overallTimeout=" OVERALL_TIMEOUT_MS "ms")
-    ToolTip("TrackAndClick running - F6 to stop", 20, 20)
 
     lock := TargetLock(STABLE_TICKS_REQUIRED, MOVE_TOLERANCE_PX, MISSING_TICKS_TO_UNLOCK)
     hasTarget := false

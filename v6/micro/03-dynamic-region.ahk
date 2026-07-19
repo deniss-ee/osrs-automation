@@ -64,8 +64,8 @@ RunSearch() {
 
     tStage := A_TickCount
     LogLine("Stage 2 (expanded): region=" EXPANDED_X1 "," EXPANDED_Y1 " -> " EXPANDED_X2 "," EXPANDED_Y2)
-    if (FindFilledBlock(EXPANDED_X1, EXPANDED_Y1, EXPANDED_X2, EXPANDED_Y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &
-        cx, &cy)) {
+    if (FindFilledBlock(EXPANDED_X1, EXPANDED_Y1, EXPANDED_X2, EXPANDED_Y2, TARGET_COLOR, COLOR_TOL,
+        BLOCK_W, BLOCK_H, &cx, &cy)) {
         Report("EXPANDED", cx, cy, A_TickCount - t0)
         return
     }

@@ -48,7 +48,7 @@ IMAGE_H    := 16
 IMAGE_TOL  := 5
 TRANS_COLOR := "0x00FF00"   ; background color to treat as see-through ("" to disable)
 
-REGION_X1 := 0, REGION_Y1 := 0, REGION_X2 := 2559, REGION_Y2 := 1439
+REGION_X1 := 0, REGION_Y1 := 0, REGION_X2 := A_ScreenWidth - 1, REGION_Y2 := A_ScreenHeight - 1
 APPEAR_TIMEOUT_MS := 15000   ; give up if the item never appears
 
 CLICK_OFFSET_X := 0   ; offset from the found image's CENTER to the actual

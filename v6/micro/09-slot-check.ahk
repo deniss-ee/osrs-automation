@@ -92,7 +92,10 @@ CheckAllSlots() {
     }
 
     elapsedMs := A_TickCount - t0
-    msg := grid "`n" fullCount "/" total " full (" elapsedMs " ms)"
+    ; loop above already ends the grid with "`n" after the last slot
+    ; (a full row) - trim it so the summary line doesn't get a blank
+    ; line before it.
+    msg := RTrim(grid, "`n") "`n" fullCount "/" total " full (" elapsedMs " ms)"
     ToolTip(msg, 20, 20)
     LogLine("Grid result: " fullCount "/" total " full in " elapsedMs " ms")
 }

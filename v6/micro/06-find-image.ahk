@@ -49,12 +49,12 @@ CoordMode("ToolTip", "Screen")
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
-IMAGE_W := 72     ; must match the PNG's real pixel size (see list above)
+IMAGE_W := 80     ; must match the PNG's real pixel size (see list above)
 IMAGE_H := 72
 IMAGE_TOL := 5      ; shade-of-variation tolerance, 0-255 (0 = exact)
 TRANS_COLOR := "0x00FF00"   ; background color to treat as see-through ("" to disable)
 
-REGION_X1 := 0, REGION_Y1 := 0, REGION_X2 := 2559, REGION_Y2 := 1439
+REGION_X1 := 0, REGION_Y1 := 0, REGION_X2 := A_ScreenWidth - 1, REGION_Y2 := A_ScreenHeight - 1
 ; ========================================================================
 
 F5:: RunSearch()
