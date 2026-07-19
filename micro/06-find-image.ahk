@@ -45,7 +45,7 @@ CoordMode("ToolTip", "Screen")
 g_LogName := "06-find-image"
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
-IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
+IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
 IMAGE_W := 80     ; must match the PNG's real pixel size (see list above)
 IMAGE_H := 72
 IMAGE_TOL := 5      ; shade-of-variation tolerance, 0-255 (0 = exact)

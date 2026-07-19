@@ -3,7 +3,7 @@
 Plain-English step breakdowns of all 10 bots, distilled from the v5 scripts.
 These are the **specs** for the v6 ports. Format: `condition -> action [target type]`.
 Concrete colors, regions, and coordinates live in each bot's INI under `Config\`
-(v5) and later `v6\Config\` — templates reference them by name.
+— templates reference them by name.
 
 Building-block vocabulary used below (v6 names):
 - **FindColor [name]** — find a solid color block (region-limited when possible, steered toward a known point)

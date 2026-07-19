@@ -71,7 +71,7 @@ BANK_BLOCK_H := 24
 BANK_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the bank marker never appears
 
 ; --- Deposit box image (same primitive as micro 06) ---
-DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
+DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
 DEPOSIT_IMAGE_W := 80, DEPOSIT_IMAGE_H := 72   ; must match the PNG's real pixel size
 DEPOSIT_IMAGE_TOL := 5
 DEPOSIT_TRANS_COLOR := "0x00FF00"

@@ -1,51 +1,44 @@
-# osrs-automation
+# OSRS Automation
 
-A from-scratch, config-driven automation framework for Old School RuneScape, written in native object-oriented [AutoHotkey v2](https://www.autohotkey.com/). It works entirely by reading pixels on screen and moving/clicking the mouse — no game memory reading, no network packet injection, no client modification.
+AutoHotkey v2 automation scripts for Old School RuneScape, built around a small
+set of shared detection/click/wait primitives rather than one-off scripts per
+bot.
 
-The framework is built like Lego: small reusable pieces (a "Phase," a "Gate," a timing profile, a `.ini` config file) that snap together into a bot. Once you understand the pieces, building a new bot for a different training method is mostly copy-adjust-recalibrate, not writing new engine code.
-
-## ⚠️ Before you use this
-
-This automates gameplay in a live game (Old School RuneScape, by Jagex). Using automation software of this kind is against Jagex's Rules of Conduct and can get an account banned. This project is shared **for educational purposes** — to learn AutoHotkey v2, screen-based automation techniques, and state-machine bot architecture. You are responsible for how you use it and for any consequences to any account you use it on. Nobody involved in this project is responsible for banned accounts, lost items, or anything else that happens as a result of running this code.
-
-## Requirements
-
-- Windows (this uses Windows-only screen/pixel APIs)
-- [AutoHotkey v2.0](https://www.autohotkey.com/download/) installed
-- OSRS running in a **fixed-size client window** — every coordinate in every `.ini` file is calibrated against one specific window size/position. If your client is a different size, every coordinate needs recalibrating (see `GETTING_STARTED.md`).
-
-## Quick start
-
-1. Install AutoHotkey v2.
-2. Clone this repo.
-3. Pick a bot under `Bots/` — e.g. `Bots/Firemaking/firemaking.ahk` is the simplest one to read first.
-4. Open its matching `.ini` in `Config/` and recalibrate the coordinates/colors to your own screen (see `GETTING_STARTED.md` for how — this step is unavoidable, nobody's screen setup matches another's exactly).
-5. Double-click the bot's `.ahk` file to launch it (or run it via the AutoHotkey v2 interpreter).
-6. Get your character into the right starting position/state in-game (each bot's own doc comment at the top of its file says what it assumes), then press **F5** to start, **F6** to stop.
-7. Watch `logs/<bot-name>-debug.log` while it runs — every phase transition, click, and timeout gets logged there, which is the fastest way to tell what a bot is actually doing (or why it stopped).
-
-## How it's organized
-
-Every bot is a small state machine: a handful of **Phases** (e.g. "walk to the fire," "wait for the burning animation to finish," "walk to the bank") that hand off to each other in a loop. Every Phase reads its behavior — coordinates, colors, timings, thresholds — entirely from that bot's own `.ini` file. Nothing is hardcoded in the bot's code, so tuning a bot for your own screen/account/preferences never means editing the `.ahk` file itself.
+## Layout
 
 ```
-Core/         Engine, EngineContext, FailSafe, Phase, SharedPhases — the state machine itself
-Timing/       Waiter, TimingProfile                                — the only place delays happen
-Detection/    ColorSearch, TargetLock, Telemetry, StaticAnchor,
-              DynamicTarget                                        — finding things on screen
-Actions/      Click, Humanizer, KeyAction                           — moving the mouse / clicking
-Interfaces/   Inventory, Bank, Walk                                 — bot-facing wrappers
-Config/       Config.ahk + every bot's own .ini file
-Diagnostics/  Logger, WindowFocus, Overlay
-Bots/<Name>/  <name>.ahk                                            — one bot = one entry point + its own Phases
-Images/       reference .png screenshots used for image-based detection
-logs/         <bot>-debug.log, generated at runtime
+Lib\      shared building blocks - #Include Lib\v6.ahk to get all of them
+  v6.ahk    umbrella include
+  Core.ahk  stop flag, interruptible Pause/WaitUntil, Say/LogLine, GameActive
+  Find.ahk  color-block + image detection (FindFilledBlock, FindImage, ...)
+  Act.ahk   ClickAt (settled click, optional force-run/Ctrl-hold)
+  Inv.ahk   inventory layout + slot addressing, pixel-box snapshot/diff
+  Steps.ahk composites: TrackAndClick (acquire/track/depleted loop), PickupAppeared
+micro\    standalone calibration/diagnostic scripts, one per primitive -
+          each is F5 to run, F6 to stop, Esc to exit, with its own log
+Bots\     real bots built on top of Lib\ (currently: woodcutting.ahk)
+Config\   per-bot config (not yet used - bots currently hardcode their own
+          calibration constants; see each bot's own EDIT-THESE block)
+logs\     one timestamped log file per micro/bot run
+Images\   reference PNGs used by image-based detection
 ```
 
-- **`GETTING_STARTED.md`** — start here if you want to understand the building blocks and build your own bot. Written for someone who has never touched this codebase before.
-- **`ARCHITECTURE.md`** — the full reference: every shared class, every gate, every pattern, every known gotcha discovered while building the existing bots. Denser, meant to be searched/skimmed once you already understand the basics from `GETTING_STARTED.md`.
-- **`CURRENT_STATE.md`** — a status snapshot of what's built and working right now.
+## Running a bot or micro script
 
-## License
+Every script follows the same pattern:
+- **F5** starts it
+- **F6** requests a stop - takes effect within ~40ms, even mid-search or mid-wait
+- **Esc** exits immediately
 
-MIT — see [LICENSE](LICENSE). Do whatever you want with the code; there's no warranty and no support obligation.
+Open the script, edit the `EDIT THESE FOR YOUR TEST` block at the top
+(colors, regions, timeouts) to match your own screen/setup, then run it.
+Every run appends to its own file in `logs\`.
+
+## Status
+
+- All shared primitives in `Lib\` are calibrated and confirmed in-game (see
+  `micro\` for the standalone test for each one).
+- `Bots\woodcutting.ahk` is confirmed working end-to-end.
+- Motherlode is the next bot being built.
+
+`TEMPLATES.md` has a plain-English step breakdown of every planned bot.
