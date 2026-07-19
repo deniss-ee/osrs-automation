@@ -961,3 +961,839 @@
 2026-07-19 17:16:31 [12-track-and-click] Pause: stop flag seen - throwing BotStopped
 2026-07-19 17:16:31 [12-track-and-click] STOPPED by F6 after 32407 ms
 2026-07-19 17:16:35 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:28:40 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:28:50 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:28:51 [12-track-and-click] TrackAndClick started: colors=0x00FF00/0x00B809 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=600000ms
+2026-07-19 17:28:51 [12-track-and-click] FindFilledBlock: found at 1462,556 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:28:51 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:28:51 [12-track-and-click] Acquired new target at 1114,516 (0x00B809, ring 250, 32 ms)
+2026-07-19 17:28:51 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:28:52 [12-track-and-click] Clicked initial/re-click target at 1114,516 (search 16 ms)
+2026-07-19 17:28:52 [12-track-and-click] FindFilledBlock: found at 1116,518 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:52 [12-track-and-click] Tracking not-yet-stable target at 1116,518 (search 0 ms)
+2026-07-19 17:28:52 [12-track-and-click] FindFilledBlock: found at 1126,528 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:52 [12-track-and-click] Tracking stable target at 1126,528 (cooldown active, search 0 ms)
+2026-07-19 17:28:53 [12-track-and-click] FindFilledBlock: found at 1144,546 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:28:53 [12-track-and-click] Tracking not-yet-stable target at 1144,546 (search 16 ms)
+2026-07-19 17:28:53 [12-track-and-click] FindFilledBlock: found at 1152,554 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:53 [12-track-and-click] Tracking not-yet-stable target at 1152,554 (search 15 ms)
+2026-07-19 17:28:54 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:54 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:28:54 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:54 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:55 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:55 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:28:55 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:55 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:55 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:56 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:28:56 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:56 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:28:56 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:56 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:57 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:57 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:57 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:57 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:28:58 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:58 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:58 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:28:58 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:28:58 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:28:58 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:28:59 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:28:59 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:28:59 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:28:59 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:00 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:00 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:00 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:00 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:29:01 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:01 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:01 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:01 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:02 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:02 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:29:02 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:02 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:29:02 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:03 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:03 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:03 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:03 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:03 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:04 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:04 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:04 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:04 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:05 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:05 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:29:05 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:05 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:06 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:06 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:06 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:06 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:06 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:06 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:07 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:07 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:07 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:07 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:29:08 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:08 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:08 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:08 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:09 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:09 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:09 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:09 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:09 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:10 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:10 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:10 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:10 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:10 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:11 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:11 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:11 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:11 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:12 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:12 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:12 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:12 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:13 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:13 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:13 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:13 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:14 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:14 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:14 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:14 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:14 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:14 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:15 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:15 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:15 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:15 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:16 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:16 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:16 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:16 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:16 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:17 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:17 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:17 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:17 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:17 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:18 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:18 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:18 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:18 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:19 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:19 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:19 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:19 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:20 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:20 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:20 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:20 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:21 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:21 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:21 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:21 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:21 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:21 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:22 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:22 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:29:22 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:22 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:23 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:23 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:23 [12-track-and-click] FindFilledBlock: not found (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:23 [12-track-and-click] Target depleted or lost - re-acquiring (searched 0 ms)
+2026-07-19 17:29:23 [12-track-and-click] FindFilledBlock: found at 1100,724 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:29:23 [12-track-and-click] FindFilledBlock: found at 1294,768 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:23 [12-track-and-click] Acquired new target at 1294,768 (0x00B809, ring 250, 16 ms)
+2026-07-19 17:29:24 [12-track-and-click] FindFilledBlock: found at 1294,768 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:24 [12-track-and-click] Clicked initial/re-click target at 1294,768 (search 16 ms)
+2026-07-19 17:29:24 [12-track-and-click] FindFilledBlock: found at 1290,764 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:24 [12-track-and-click] Tracking not-yet-stable target at 1290,764 (search 0 ms)
+2026-07-19 17:29:25 [12-track-and-click] FindFilledBlock: found at 1278,754 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:25 [12-track-and-click] Tracking not-yet-stable target at 1278,754 (search 15 ms)
+2026-07-19 17:29:25 [12-track-and-click] FindFilledBlock: found at 1258,734 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:25 [12-track-and-click] Tracking not-yet-stable target at 1258,734 (search 16 ms)
+2026-07-19 17:29:26 [12-track-and-click] FindFilledBlock: found at 1248,726 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:26 [12-track-and-click] Tracking not-yet-stable target at 1248,726 (search 16 ms)
+2026-07-19 17:29:26 [12-track-and-click] FindFilledBlock: found at 1244,724 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:26 [12-track-and-click] Clicked STABLE target at 1244,724 (search 0 ms)
+2026-07-19 17:29:27 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:29:27 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:29:27 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:29:28 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:28 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:29:28 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:28 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:29:29 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:29 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:29:29 [12-track-and-click] UNTIL-CONDITION MET: indicator slot 28 is full - stopping (38125 ms total)
+2026-07-19 17:29:35 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 17:29:38 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:29:48 [12-track-and-click] TrackAndClick started: colors=0x00FF00/0x00B809 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=600000ms
+2026-07-19 17:29:48 [12-track-and-click] FindFilledBlock: found at 1462,556 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:29:48 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:48 [12-track-and-click] Acquired new target at 1114,516 (0x00B809, ring 250, 32 ms)
+2026-07-19 17:29:49 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:49 [12-track-and-click] Clicked initial/re-click target at 1114,516 (search 0 ms)
+2026-07-19 17:29:49 [12-track-and-click] FindFilledBlock: found at 1118,520 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:49 [12-track-and-click] Tracking not-yet-stable target at 1118,520 (search 16 ms)
+2026-07-19 17:29:50 [12-track-and-click] FindFilledBlock: found at 1128,532 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:50 [12-track-and-click] Tracking not-yet-stable target at 1128,532 (search 0 ms)
+2026-07-19 17:29:50 [12-track-and-click] FindFilledBlock: found at 1146,548 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:50 [12-track-and-click] Tracking not-yet-stable target at 1146,548 (search 0 ms)
+2026-07-19 17:29:50 [12-track-and-click] FindFilledBlock: found at 1152,554 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:50 [12-track-and-click] Tracking not-yet-stable target at 1152,554 (search 16 ms)
+2026-07-19 17:29:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:51 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:29:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:51 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:29:52 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:52 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:29:52 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 17:29:52 [12-track-and-click] Pause: stop flag seen - throwing BotStopped
+2026-07-19 17:29:52 [12-track-and-click] STOPPED by F6 after 3922 ms
+2026-07-19 17:29:55 [12-track-and-click] TrackAndClick started: colors=0x00FF00/0x00B809 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=600000ms
+2026-07-19 17:29:55 [12-track-and-click] FindFilledBlock: found at 1354,712 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:29:55 [12-track-and-click] FindFilledBlock: found at 1394,538 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:55 [12-track-and-click] Acquired new target at 1354,712 (0x00FF00, ring 250, 16 ms)
+2026-07-19 17:29:55 [12-track-and-click] FindFilledBlock: found at 1352,714 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:29:55 [12-track-and-click] Clicked initial/re-click target at 1352,714 (search 0 ms)
+2026-07-19 17:29:56 [12-track-and-click] FindFilledBlock: found at 1276,778 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:29:56 [12-track-and-click] Track: found 0x00FF00 block at 1276,778 but 76px from last position 1352,714 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:56 [12-track-and-click] Target depleted or lost - re-acquiring (searched 16 ms)
+2026-07-19 17:29:56 [12-track-and-click] FindFilledBlock: found at 1252,824 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:29:56 [12-track-and-click] FindFilledBlock: found at 1300,638 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:56 [12-track-and-click] Acquired new target at 1300,638 (0x00B809, ring 250, 31 ms)
+2026-07-19 17:29:56 [12-track-and-click] FindFilledBlock: found at 1296,636 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:57 [12-track-and-click] Clicked initial/re-click target at 1296,636 (search 0 ms)
+2026-07-19 17:29:57 [12-track-and-click] FindFilledBlock: found at 1292,592 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:57 [12-track-and-click] Track: found 0x00B809 block at 1292,592 but 44px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:57 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:57 [12-track-and-click] Tracking not-yet-stable target at 1296,636 (search 16 ms)
+2026-07-19 17:29:57 [12-track-and-click] FindFilledBlock: found at 1292,560 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:57 [12-track-and-click] Track: found 0x00B809 block at 1292,560 but 76px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:57 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:57 [12-track-and-click] Tracking stable target at 1296,636 (cooldown active, search 0 ms)
+2026-07-19 17:29:58 [12-track-and-click] FindFilledBlock: found at 1284,546 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:29:58 [12-track-and-click] Track: found 0x00B809 block at 1284,546 but 90px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:58 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:58 [12-track-and-click] Tracking stable target at 1296,636 (cooldown active, search 15 ms)
+2026-07-19 17:29:58 [12-track-and-click] FindFilledBlock: found at 1266,550 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:29:58 [12-track-and-click] Track: found 0x00B809 block at 1266,550 but 86px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:58 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:58 [12-track-and-click] Clicked STABLE target at 1296,636 (search 0 ms)
+2026-07-19 17:29:59 [12-track-and-click] FindFilledBlock: found at 1248,548 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:59 [12-track-and-click] Track: found 0x00B809 block at 1248,548 but 88px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:59 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:59 [12-track-and-click] Tracking stable target at 1296,636 (cooldown active, search 16 ms)
+2026-07-19 17:29:59 [12-track-and-click] FindFilledBlock: found at 1246,548 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:29:59 [12-track-and-click] Track: found 0x00B809 block at 1246,548 but 88px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:29:59 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:29:59 [12-track-and-click] Tracking stable target at 1296,636 (cooldown active, search 16 ms)
+2026-07-19 17:30:00 [12-track-and-click] FindFilledBlock: found at 1246,548 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:00 [12-track-and-click] Track: found 0x00B809 block at 1246,548 but 88px from last position 1296,636 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:00 [12-track-and-click] Track: search missed this tick, but anchor point 1296,636 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:30:00 [12-track-and-click] Tracking stable target at 1296,636 (cooldown active, search 0 ms)
+2026-07-19 17:30:00 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 17:30:00 [12-track-and-click] Pause: stop flag seen - throwing BotStopped
+2026-07-19 17:30:00 [12-track-and-click] STOPPED by F6 after 5140 ms
+2026-07-19 17:30:13 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:30:13 [12-track-and-click] TrackAndClick started: colors=0x00FF00/0x00B809 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=600000ms
+2026-07-19 17:30:13 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:13 [12-track-and-click] FindFilledBlock: found at 1246,548 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:13 [12-track-and-click] Acquired new target at 1192,718 (0x00FF00, ring 250, 16 ms)
+2026-07-19 17:30:14 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:14 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:14 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:14 [12-track-and-click] Clicked initial/re-click target at 1192,718 (search 16 ms)
+2026-07-19 17:30:14 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:14 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:14 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:14 [12-track-and-click] Tracking not-yet-stable target at 1192,718 (search 16 ms)
+2026-07-19 17:30:15 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:15 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:15 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:15 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:15 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:15 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:15 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:15 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:15 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:15 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:15 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:16 [12-track-and-click] Clicked STABLE target at 1192,718 (search 0 ms)
+2026-07-19 17:30:16 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:16 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:16 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:16 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:16 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:16 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:16 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:16 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:17 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:17 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:17 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:17 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:17 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:17 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:17 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:17 [12-track-and-click] Clicked STABLE target at 1192,718 (search 16 ms)
+2026-07-19 17:30:18 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:18 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:18 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:18 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:18 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:18 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:18 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:18 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:19 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:19 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:19 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:19 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:19 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:19 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:19 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:19 [12-track-and-click] Clicked STABLE target at 1192,718 (search 16 ms)
+2026-07-19 17:30:20 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:20 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:20 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:20 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:20 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:20 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:20 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:20 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:21 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:21 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:21 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:21 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:21 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:21 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:21 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:21 [12-track-and-click] Clicked STABLE target at 1192,718 (search 16 ms)
+2026-07-19 17:30:22 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:22 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:22 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:22 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:22 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:22 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:22 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:22 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:22 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:22 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:22 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:22 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:23 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:23 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:23 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:23 [12-track-and-click] Clicked STABLE target at 1192,718 (search 0 ms)
+2026-07-19 17:30:23 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:23 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:23 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:23 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:24 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:24 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:24 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:24 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:24 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:24 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:24 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:24 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:25 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:25 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:25 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:25 [12-track-and-click] Clicked STABLE target at 1192,718 (search 15 ms)
+2026-07-19 17:30:25 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:25 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:25 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:25 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:26 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:26 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:26 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:26 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:26 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:26 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:26 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:26 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:26 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:26 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:26 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:27 [12-track-and-click] Clicked STABLE target at 1192,718 (search 16 ms)
+2026-07-19 17:30:27 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:27 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:27 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:27 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:27 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:27 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:27 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:27 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:28 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:28 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:28 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:28 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:28 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:28 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:28 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:29 [12-track-and-click] Clicked STABLE target at 1192,718 (search 0 ms)
+2026-07-19 17:30:29 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:29 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:29 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:29 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:29 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:29 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:29 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:29 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 16 ms)
+2026-07-19 17:30:30 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:30 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:30 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:30 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:30 [12-track-and-click] FindFilledBlock: found at 1268,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:30 [12-track-and-click] Track: found 0x00FF00 block at 1268,718 but 76px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:30 [12-track-and-click] Track: search missed this tick, but anchor point 1192,718 is still 0x00FF00 - holding current target, not switching
+2026-07-19 17:30:30 [12-track-and-click] Clicked STABLE target at 1192,718 (search 0 ms)
+2026-07-19 17:30:31 [12-track-and-click] FindFilledBlock: found at 1272,736 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:31 [12-track-and-click] Track: found 0x00FF00 block at 1272,736 but 80px from last position 1192,718 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:30:31 [12-track-and-click] Target depleted or lost - re-acquiring (searched 16 ms)
+2026-07-19 17:30:31 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:31 [12-track-and-click] FindFilledBlock: found at 1246,548 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:31 [12-track-and-click] Acquired new target at 1192,718 (0x00FF00, ring 250, 16 ms)
+2026-07-19 17:30:32 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:32 [12-track-and-click] Clicked initial/re-click target at 1192,718 (search 0 ms)
+2026-07-19 17:30:32 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 16 ms)
+2026-07-19 17:30:32 [12-track-and-click] Tracking not-yet-stable target at 1192,718 (search 16 ms)
+2026-07-19 17:30:33 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:33 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 0 ms)
+2026-07-19 17:30:33 [12-track-and-click] FindFilledBlock: found at 1192,718 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:30:33 [12-track-and-click] Tracking stable target at 1192,718 (cooldown active, search 15 ms)
+2026-07-19 17:30:34 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:30:44 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Targets=0x00FF00/0x00B809 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 17:30:44 [12-track-and-click] TrackAndClick started: colors=0x00FF00/0x00B809 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=600000ms
+2026-07-19 17:30:44 [12-track-and-click] FindFilledBlock: found at 1468,594 (31x31 0x00FF00 tol=5, 0 ms)
+2026-07-19 17:30:44 [12-track-and-click] FindFilledBlock: found at 1112,552 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:44 [12-track-and-click] Acquired new target at 1112,552 (0x00B809, ring 250, 15 ms)
+2026-07-19 17:30:45 [12-track-and-click] FindFilledBlock: found at 1112,552 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:45 [12-track-and-click] Clicked initial/re-click target at 1112,552 (search 16 ms)
+2026-07-19 17:30:45 [12-track-and-click] FindFilledBlock: found at 1112,554 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:45 [12-track-and-click] Tracking not-yet-stable target at 1112,554 (search 16 ms)
+2026-07-19 17:30:46 [12-track-and-click] FindFilledBlock: found at 1120,554 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:46 [12-track-and-click] Tracking stable target at 1120,554 (cooldown active, search 0 ms)
+2026-07-19 17:30:46 [12-track-and-click] FindFilledBlock: found at 1134,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:46 [12-track-and-click] Tracking not-yet-stable target at 1134,556 (search 16 ms)
+2026-07-19 17:30:46 [12-track-and-click] FindFilledBlock: found at 1148,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:46 [12-track-and-click] Tracking not-yet-stable target at 1148,556 (search 16 ms)
+2026-07-19 17:30:47 [12-track-and-click] FindFilledBlock: found at 1152,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:47 [12-track-and-click] Tracking not-yet-stable target at 1152,556 (search 16 ms)
+2026-07-19 17:30:47 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:47 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:30:48 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:48 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:48 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:48 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:49 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:49 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:30:49 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:49 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:30:50 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:50 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:30:50 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:50 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:50 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:50 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:51 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:30:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:51 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:52 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:52 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:52 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:52 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:53 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:53 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:30:53 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:53 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:54 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:54 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:30:54 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:54 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:30:54 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:55 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:30:55 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:55 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:55 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:55 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:30:56 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:56 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:56 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:56 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:30:57 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:57 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:57 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:57 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:57 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:57 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:30:58 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:30:58 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:30:58 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:58 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:59 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:30:59 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:30:59 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:30:59 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:00 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:00 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:31:00 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:00 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:01 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:01 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:01 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:01 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:01 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:02 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:31:02 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:02 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:02 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:02 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:03 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:03 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:03 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:03 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:31:04 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:04 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:04 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:04 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:04 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:04 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:05 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:05 [12-track-and-click] Clicked STABLE target at 1154,556 (search 16 ms)
+2026-07-19 17:31:05 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:05 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:06 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:06 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:06 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:06 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:07 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:07 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:31:07 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:07 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:08 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:08 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:08 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:08 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:08 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:09 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:31:09 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:09 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:09 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:09 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:10 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:10 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:10 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:10 [12-track-and-click] Clicked STABLE target at 1154,556 (search 15 ms)
+2026-07-19 17:31:11 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:11 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:11 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:11 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:12 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:12 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:12 [12-track-and-click] FindFilledBlock: not found (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:12 [12-track-and-click] Target depleted or lost - re-acquiring (searched 16 ms)
+2026-07-19 17:31:12 [12-track-and-click] FindFilledBlock: found at 1100,724 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:31:12 [12-track-and-click] FindFilledBlock: found at 1294,768 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:12 [12-track-and-click] Acquired new target at 1294,768 (0x00B809, ring 250, 15 ms)
+2026-07-19 17:31:13 [12-track-and-click] FindFilledBlock: found at 1294,768 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:13 [12-track-and-click] Clicked initial/re-click target at 1294,768 (search 16 ms)
+2026-07-19 17:31:13 [12-track-and-click] FindFilledBlock: found at 1294,768 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:13 [12-track-and-click] Tracking not-yet-stable target at 1294,768 (search 15 ms)
+2026-07-19 17:31:14 [12-track-and-click] FindFilledBlock: found at 1290,764 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:14 [12-track-and-click] Tracking stable target at 1290,764 (cooldown active, search 15 ms)
+2026-07-19 17:31:14 [12-track-and-click] FindFilledBlock: found at 1278,754 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:14 [12-track-and-click] Tracking not-yet-stable target at 1278,754 (search 15 ms)
+2026-07-19 17:31:14 [12-track-and-click] FindFilledBlock: found at 1258,734 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:14 [12-track-and-click] Tracking not-yet-stable target at 1258,734 (search 16 ms)
+2026-07-19 17:31:15 [12-track-and-click] FindFilledBlock: found at 1248,726 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:15 [12-track-and-click] Tracking not-yet-stable target at 1248,726 (search 15 ms)
+2026-07-19 17:31:15 [12-track-and-click] FindFilledBlock: found at 1244,724 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:15 [12-track-and-click] Clicked STABLE target at 1244,724 (search 16 ms)
+2026-07-19 17:31:16 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:16 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:16 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:16 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:17 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:17 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:17 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:17 [12-track-and-click] Clicked STABLE target at 1244,722 (search 15 ms)
+2026-07-19 17:31:18 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:18 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:18 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:18 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:18 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:18 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:19 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:19 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:19 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:19 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:20 [12-track-and-click] FindFilledBlock: found at 1244,722 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:20 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:20 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:20 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:20 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:20 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:21 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:21 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:21 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:21 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:31:21 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:21 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:21 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:21 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:22 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:22 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:22 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:22 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:22 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:22 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:22 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:22 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:22 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:22 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:22 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:23 [12-track-and-click] Clicked STABLE target at 1244,722 (search 15 ms)
+2026-07-19 17:31:23 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:23 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:23 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:23 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:23 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:23 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:23 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:23 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:24 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:24 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:24 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:24 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:24 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:24 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:24 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:24 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:25 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:25 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:25 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:25 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:25 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:25 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:25 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:25 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:26 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:26 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:26 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:26 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:26 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:26 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:26 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:26 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:27 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:27 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:27 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:27 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:27 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:27 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:27 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:27 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:27 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:27 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:28 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:28 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:28 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:28 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:29 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:29 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:29 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:29 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:29 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:29 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:29 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:29 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:29 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:29 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:29 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:29 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:30 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:30 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:30 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:30 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:31:30 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:30 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:30 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:30 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:31 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:31 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:31 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:31 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:31 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:31 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:31 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:31 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:32 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:32 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:32 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:32 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:32 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:32 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:32 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:32 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:33 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:33 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:33 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:33 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:33 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:33 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:33 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:33 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:33 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:33 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:33 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:34 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:34 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:34 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:34 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:34 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:34 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:34 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:34 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:34 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:35 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:35 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:35 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:35 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:35 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:35 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:35 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:36 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:31:36 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:36 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:36 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:36 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:36 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:36 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:36 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:36 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:37 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:37 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:37 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:37 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:37 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:37 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:37 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:37 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:38 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:38 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:38 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:38 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:38 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:38 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:38 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:38 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:39 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:39 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:39 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:39 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:39 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:39 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:39 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:39 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:31:40 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:40 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:40 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:40 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:40 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:40 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:40 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:40 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:40 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:40 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:40 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:40 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:41 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:41 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:41 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:41 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:41 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:41 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:41 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:41 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:42 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:42 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:42 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:42 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:42 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:42 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:42 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:42 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:43 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:43 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:43 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:43 [12-track-and-click] Clicked STABLE target at 1244,722 (search 16 ms)
+2026-07-19 17:31:43 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:43 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:43 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:43 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 16 ms)
+2026-07-19 17:31:44 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:44 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:44 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:44 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 0 ms)
+2026-07-19 17:31:44 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:44 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:44 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:44 [12-track-and-click] Tracking stable target at 1244,722 (cooldown active, search 15 ms)
+2026-07-19 17:31:45 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:45 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:45 [12-track-and-click] Track: search missed this tick, but anchor point 1244,722 is still 0x00B809 - holding current target, not switching
+2026-07-19 17:31:45 [12-track-and-click] Clicked STABLE target at 1244,722 (search 0 ms)
+2026-07-19 17:31:45 [12-track-and-click] FindFilledBlock: found at 1114,517 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:45 [12-track-and-click] Track: found 0x00B809 block at 1114,517 but 205px from last position 1244,722 (max drift 40) - likely a DIFFERENT block, rejecting
+2026-07-19 17:31:45 [12-track-and-click] Target depleted or lost - re-acquiring (searched 0 ms)
+2026-07-19 17:31:46 [12-track-and-click] FindFilledBlock: found at 1462,556 (31x31 0x00FF00 tol=5, 15 ms)
+2026-07-19 17:31:46 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:46 [12-track-and-click] Acquired new target at 1114,516 (0x00B809, ring 250, 31 ms)
+2026-07-19 17:31:46 [12-track-and-click] FindFilledBlock: found at 1114,516 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:46 [12-track-and-click] Clicked initial/re-click target at 1114,516 (search 16 ms)
+2026-07-19 17:31:46 [12-track-and-click] FindFilledBlock: found at 1116,518 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:47 [12-track-and-click] Tracking not-yet-stable target at 1116,518 (search 16 ms)
+2026-07-19 17:31:47 [12-track-and-click] FindFilledBlock: found at 1122,524 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:47 [12-track-and-click] Tracking stable target at 1122,524 (cooldown active, search 16 ms)
+2026-07-19 17:31:47 [12-track-and-click] FindFilledBlock: found at 1134,538 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:47 [12-track-and-click] Tracking not-yet-stable target at 1134,538 (search 15 ms)
+2026-07-19 17:31:48 [12-track-and-click] FindFilledBlock: found at 1148,552 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:48 [12-track-and-click] Tracking not-yet-stable target at 1148,552 (search 16 ms)
+2026-07-19 17:31:48 [12-track-and-click] FindFilledBlock: found at 1152,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:48 [12-track-and-click] Tracking not-yet-stable target at 1152,556 (search 0 ms)
+2026-07-19 17:31:48 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:49 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:31:49 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:49 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:49 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:49 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:50 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 15 ms)
+2026-07-19 17:31:50 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 15 ms)
+2026-07-19 17:31:50 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:50 [12-track-and-click] Clicked STABLE target at 1154,556 (search 0 ms)
+2026-07-19 17:31:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 16 ms)
+2026-07-19 17:31:51 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 16 ms)
+2026-07-19 17:31:51 [12-track-and-click] FindFilledBlock: found at 1154,556 (31x31 0x00B809 tol=5, 0 ms)
+2026-07-19 17:31:51 [12-track-and-click] Tracking stable target at 1154,556 (cooldown active, search 0 ms)
+2026-07-19 17:31:52 [12-track-and-click] UNTIL-CONDITION MET: indicator slot 28 is full - stopping (67266 ms total)
+2026-07-19 17:31:58 [12-track-and-click] F6 pressed - stop requested

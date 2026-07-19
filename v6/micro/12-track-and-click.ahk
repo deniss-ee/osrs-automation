@@ -76,6 +76,23 @@ BLOCK_H      := 31
 ; soft/anti-aliased edges make the strict match miss - F8-probe first.
 VERIFY_PERCENT := 100
 
+; Acquire proximity: the character's on-screen point. Acquire prefers
+; the target NEAREST this point (see ACQUIRE_RADII) instead of the
+; native scan-order match (top-to-bottom/left-to-right, which made a
+; distant-but-higher block beat one right next to the character).
+; Recalibrate if the camera zoom/layout changes.
+REF_X := 1248, REF_Y := 707
+
+; Expanding search rings around REF, tried in order: half-sizes of the
+; square boxes searched before falling back to the whole screen. A
+; match in an inner ring is by construction closer than anything only
+; findable further out - AND a small box is far cheaper than the whole
+; screen (ImageSearch cost scales with area), so the common case (a
+; target near the character) gets FASTER, not slower. The whole-screen
+; fallback after the last ring means a target anywhere on screen is
+; still always found. Tune radii to taste.
+ACQUIRE_RADII := [250, 600]
+
 TRACK_RADIUS_PX := 220   ; narrowed search box half-size once a target is locked
 
 ; Max px a found match may be from the last known position and still be
@@ -206,25 +223,35 @@ RunTrackAndClick() {
             }
 
             if (!hasTarget) {
-                ; Acquire mode: whole screen, EVERY color in
-                ; TARGET_COLORS searched every attempt - no color is
-                ; favored by list order. If more than one matches, the
-                ; one whose match would come first in a natural
-                ; top-to-bottom/left-to-right scan wins (smallest y,
-                ; then smallest x) - as if every color were searched in
-                ; one unified pass. The native solid-block search costs
-                ; the same no matter how much of a color is elsewhere on
-                ; screen, so no region limiting needed either way.
+                ; Acquire mode: expanding rings centered on REF_X/Y
+                ; (near -> far), then the whole screen as the final
+                ; fallback. Every color in TARGET_COLORS is searched in
+                ; each stage (equal priority, per AcquireClosestInBox);
+                ; a match in an inner ring is by construction closer to
+                ; the character than anything only findable in a wider
+                ; stage, so stopping at the first stage that finds
+                ; anything is both correct AND fast - a nearby target
+                ; costs one small search, not a whole-screen one.
                 tSearch := A_TickCount
                 found := false
-                for color in TARGET_COLORS {
-                    if (FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
-                        color, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy, VERIFY_PERCENT)) {
-                        if (!found || cy < ty || (cy = ty && cx < tx)) {
-                            found := true
-                            tx := cx, ty := cy, foundColor := color
-                        }
+                stageLabel := ""
+                for radius in ACQUIRE_RADII {
+                    rx1 := Max(0, REF_X - radius)
+                    ry1 := Max(0, REF_Y - radius)
+                    rx2 := Min(A_ScreenWidth - 1, REF_X + radius)
+                    ry2 := Min(A_ScreenHeight - 1, REF_Y + radius)
+
+                    tStage := A_TickCount
+                    found := AcquireClosestInBox(rx1, ry1, rx2, ry2, &tx, &ty, &foundColor)
+                    if (found) {
+                        stageLabel := "ring " radius
+                        break
                     }
+                    Say("Acquire ring " radius ": not found (" (A_TickCount - tStage) " ms)")
+                }
+                if (!found) {
+                    found := AcquireClosestInBox(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1, &tx, &ty, &foundColor)
+                    stageLabel := "whole screen"
                 }
                 searchMs := A_TickCount - tSearch
                 if (found) {
@@ -233,7 +260,7 @@ RunTrackAndClick() {
                     lockedColor := foundColor
                     lastClickTime := 0
                     lock.Reset()
-                    Say("Acquired new target at " tx "," ty " (" HexColor(lockedColor) ") in " searchMs " ms")
+                    Say("Acquired new target at " tx "," ty " (" HexColor(lockedColor) ", " stageLabel ", " searchMs " ms)")
                 } else {
                     Say("Acquire: not found (searched " searchMs " ms)")
                 }
@@ -311,6 +338,28 @@ RunTrackAndClick() {
     } catch BotStopped as e {
         Say("STOPPED by F6 after " (A_TickCount - t0) " ms")
     }
+}
+
+; Searches every color in TARGET_COLORS within [x1,y1]-[x2,y2] and
+; returns the match closest to REF_X,REF_Y (squared-distance compare -
+; no need for the actual distance, just which is smaller - same
+; tie-break v5 Motherlode's _Acquire uses when multiple candidates
+; match), NOT scan order. Used once per acquire stage (each ring, then
+; the whole-screen fallback) - see the acquire branch above.
+AcquireClosestInBox(x1, y1, x2, y2, &tx, &ty, &foundColor) {
+    found := false
+    bestDist := 0
+    for color in TARGET_COLORS {
+        if (FindFilledBlock(x1, y1, x2, y2, color, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy, VERIFY_PERCENT)) {
+            dist := (cx - REF_X) ** 2 + (cy - REF_Y) ** 2
+            if (!found || dist < bestDist) {
+                found := true
+                bestDist := dist
+                tx := cx, ty := cy, foundColor := color
+            }
+        }
+    }
+    return found
 }
 
 ; ---------- target lock (verbatim port of v5 Detection\TargetLock.ahk) ----------
