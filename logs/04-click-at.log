@@ -1,5 +1,0 @@
-2026-07-19 23:42:51 [04-click-at] Script loaded. F5=click  F7=ctrl-click  F6=clear tooltip  Esc=exit. Target=1400,696
-2026-07-19 23:42:53 [04-click-at] Click started: target=1400,696
-2026-07-19 23:42:53 [04-click-at] Clicked at 1400,696 (125 ms incl. settle)
-2026-07-19 23:42:58 [04-click-at] Ctrl-click started: target=1400,696
-2026-07-19 23:42:58 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (234 ms incl. settle)

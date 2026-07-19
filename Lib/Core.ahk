@@ -85,6 +85,29 @@ LogLine(msg) {
     try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [" g_LogName "] " msg "`n", logDir "\" g_LogName ".log")
 }
 
+; Call once at script start (after g_LogName is set) to keep a bot's
+; log file from growing unbounded across long/overnight AFK sessions.
+; Keeps the last keepLines lines, dropping everything older.
+TrimLogOnStart(keepLines := 5000) {
+    global g_LogName
+    logDir := A_ScriptDir "\..\logs"
+    logPath := logDir "\" g_LogName ".log"
+    if (!FileExist(logPath))
+        return
+    try {
+        lines := StrSplit(FileRead(logPath), "`n")
+        if (lines.Length <= keepLines)
+            return
+        trimmed := ""
+        startAt := lines.Length - keepLines + 1
+        loop keepLines {
+            trimmed .= lines[startAt + A_Index - 1] "`n"
+        }
+        FileDelete(logPath)
+        FileAppend(trimmed, logPath)
+    }
+}
+
 ; Confirmed live in micro 13 (v6\logs\13-focus-guard.log, 2026-07-19):
 ; the real foreground process is literally RuneLite.exe (class
 ; SunAwtFrame), not a javaw/launcher wrapper - "ahk_exe RuneLite.exe"

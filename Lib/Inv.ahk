@@ -55,12 +55,27 @@ SlotCorner(slotIndex, &x, &y) {
     y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
 }
 
-; True if OCCUPIED: any of 4 sample points (center + 3 inset from edges)
-; no longer matches the empty-background color.
+; True if OCCUPIED: any sample point no longer matches the empty-
+; background color.
+;
+; BUG FIXED LIVE (2026-07-20): the original 4-point sample (center + 3
+; corners) + a fairly loose tolerance (30) let some item icons read as
+; "empty" - a particular log sprite's art happened to be background-
+; colored at all 4 of those exact pixel offsets, so a genuinely full
+; slot (blocking the whole "inventory full -> bank" transition) was
+; silently misreported as empty. First fix attempt widened to 9 sample
+; points, but PixelGetColor's ~5-7ms fixed per-call cost made that
+; noticeably slower per check (called every poll tick via the
+; inventory-full condition) - reverted back to 4 points and instead
+; tightened the tolerance from 30 to 5 (a real item's color needs to be
+; within 5 per channel of EMPTY_COLOR at ALL 4 points to slip through
+; now, vs. 30 before - much narrower room for a coincidental match)
+; without paying for more PixelGetColor calls. Try 3 points next if 4
+; still isn't fast enough - keep tolerance tight if you do.
 SlotFull(slotIndex) {
     static offsets := [[0, 0], [-14, -12], [14, -12], [0, 12]]
     static EMPTY_COLOR := 0x3F3629
-    static EMPTY_TOL := 30
+    static EMPTY_TOL := 5
 
     SlotCenter(slotIndex, &cx, &cy)
     for off in offsets {
