@@ -1,19 +1,11 @@
-2026-07-19 16:36:44 [05-find-and-click] Script loaded. F5=find+click  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 16:36:47 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 16:36:47 [05-find-and-click] FindFilledBlock: found at 765,547 (21x21 0xFF00FF tol=5, 16 ms)
-2026-07-19 16:36:47 [05-find-and-click] Found at 765,547 in 16 ms - clicking
-2026-07-19 16:36:47 [05-find-and-click] FOUND + CLICKED at 765,547 in 16 ms (total 250 ms incl. click)
-2026-07-19 16:36:52 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 16:36:52 [05-find-and-click] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 16:36:52 [05-find-and-click] NOT FOUND (searched 0 ms) - no click
-2026-07-19 16:36:55 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 16:36:55 [05-find-and-click] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 16:36:55 [05-find-and-click] NOT FOUND (searched 0 ms) - no click
-2026-07-19 16:37:03 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 16:37:03 [05-find-and-click] FindFilledBlock: found at 793,545 (21x21 0xFF00FF tol=5, 16 ms)
-2026-07-19 16:37:03 [05-find-and-click] Found at 793,545 in 16 ms - clicking
-2026-07-19 16:37:03 [05-find-and-click] FOUND + CLICKED at 793,545 in 16 ms (total 250 ms incl. click)
-2026-07-19 16:37:10 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 16:37:10 [05-find-and-click] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
-2026-07-19 16:37:10 [05-find-and-click] NOT FOUND (searched 16 ms) - no click
-2026-07-19 16:37:14 [05-find-and-click] Script loaded. F5=find+click  F6=clear tooltip  Esc=exit. Target=0xFF00FF
+2026-07-19 23:43:05 [05-find-and-click] Script loaded. F5=find+click  F6=clear tooltip  Esc=exit. Target=0xFF00FF
+2026-07-19 23:43:06 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 23:43:06 [05-find-and-click] FindFilledBlock: found at 795,541 (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 23:43:06 [05-find-and-click] Found at 795,541 in 0 ms - clicking
+2026-07-19 23:43:07 [05-find-and-click] FOUND + CLICKED at 795,541 in 0 ms (total 234 ms incl. click)
+2026-07-19 23:43:11 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 23:43:11 [05-find-and-click] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 23:43:11 [05-find-and-click] NOT FOUND (searched 15 ms) - no click
+2026-07-19 23:43:12 [05-find-and-click] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 23:43:12 [05-find-and-click] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 23:43:12 [05-find-and-click] NOT FOUND (searched 16 ms) - no click

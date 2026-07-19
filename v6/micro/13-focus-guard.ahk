@@ -3,37 +3,33 @@
 ;
 ; v5's WindowFocus class guards every bot phase with
 ; `WinActive("ahk_exe RuneLite.exe")` - and it's been DISABLED in
-; Woodcutting (Bots\Woodcutting\woodcutting.ahk:71-77) because it kept
-; reporting "not active" even while RuneLite visibly had focus. Root
-; cause was never diagnosed. This micro finds it: report the ACTIVE
-; window's real exe/class/title next to what "ahk_exe RuneLite.exe"
-; actually matches, so the correct WinTitle criterion can be picked.
+; Woodcutting because it kept reporting "not active" even while
+; RuneLite visibly had focus. This micro found it: reports the ACTIVE
+; window's real exe/class/title next to what a few candidate criteria
+; actually match, so the correct WinTitle criterion could be picked.
 ;
-; Likely culprit: many RuneLite installs run through a launcher/JVM
-; wrapper, so the real foreground process may be "javaw.exe" or similar,
-; not literally "RuneLite.exe" - WinActive("ahk_exe RuneLite.exe") would
-; then always report false with the game clearly focused.
+; CONFIRMED (v6\logs\13-focus-guard.log, 2026-07-19): the real
+; foreground process on this setup is literally RuneLite.exe (class
+; SunAwtFrame, not a javaw/launcher wrapper) - "ahk_exe RuneLite.exe"
+; correctly tracked active/inactive across multiple focus transitions.
+; That's now Lib\Core.ahk's GameActive().
 ;
 ; WHAT IT DOES
 ;   F5  = snapshot the CURRENT active window: exe name, class, title,
-;         hwnd, and whether each of three candidate match criteria
-;         (ahk_exe RuneLite.exe / ahk_class SunAwtFrame / title-substring
-;         "RuneLite") would report active RIGHT NOW. Tooltip + log.
+;         hwnd, whether each candidate match criterion would report
+;         active RIGHT NOW, and what Lib\Core.ahk's GameActive() itself
+;         returns. Tooltip + log.
 ;   F6  = clear the tooltip
 ;   Esc = exit the script
-;
-; TEST IT: click into the RuneLite game window, press F5 - note the
-; real exe/class/title and which candidate criteria say "ACTIVE". Then
-; click into some OTHER window (browser, notepad) and press F5 again -
-; confirm the same criteria now say "not active". Whichever criterion
-; is ACTIVE-when-focused and NOT-active-when-unfocused, consistently,
-; is the one that becomes GameActive() when this graduates to Lib.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include ..\Lib\v6.ahk
 
 CoordMode("ToolTip", "Screen")
+
+g_LogName := "13-focus-guard"
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 ; Candidate match criteria to compare - add/edit if your setup differs
@@ -78,20 +74,14 @@ RunProbe() {
         LogLine(line)
     }
 
+    gameActiveLine := "  GameActive() = " (GameActive() ? "ACTIVE" : "not active")
+    lines.Push(gameActiveLine)
+    LogLine(gameActiveLine)
+
     msg := ""
     for i, line in lines
         msg .= (i = 1 ? "" : "`n") line
     ToolTip(msg, 20, 20)
-}
-
-; ---------- logging ----------
-
-LogLine(msg) {
-    static logDir := A_ScriptDir "\..\logs"
-    static logPath := logDir "\13-focus-guard.log"
-    if (!DirExist(logDir))
-        DirCreate(logDir)
-    try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [13-focus-guard] " msg "`n", logPath)
 }
 
 LogLine("Script loaded. F5=probe active window  F6=clear tooltip  Esc=exit")

@@ -11,23 +11,12 @@
 ;   F6  = clear the tooltip
 ;   Esc = exit the script
 ;
-; Syntax verified against AutoHotkey.pdf: ImageSearch(&x, &y, x1, y1,
-; x2, y2, imageFile) returns the match's UPPER-LEFT corner, not its
-; center - center math (+imageW/2, +imageH/2) must be done by the
-; caller, exactly as v5 Detection\StaticAnchor.ahk does. The "*n" option
-; prefixed to the path controls shade-of-variation tolerance (0-255,
-; default 0 = exact match) - same idea as color tolerance.
-;
 ; TRANS_COLOR: this project's PNGs are captured with #00FF00 as the
 ; background - ImageSearch's *TransN option treats that exact color as
-; see-through (matches whatever's really on screen there) instead of
-; requiring it to actually match, which *n tolerance alone can't do for
-; a genuinely irrelevant background. Harmless to leave on for images
-; that don't contain that color (Options: "*TransN" - a color that
-; never appears in the image simply never gets matched/replaced).
-; NOTE: AHK's named color "Green" = 0x008000 (a darker shade), NOT
-; 0x00FF00 (that one's named "Lime") - use the explicit hex form to
-; avoid targeting the wrong color.
+; see-through instead of requiring it to actually match. NOTE: AHK's
+; named color "Green" = 0x008000 (a darker shade), NOT 0x00FF00 (that
+; one's named "Lime") - use the explicit hex form to avoid targeting
+; the wrong color.
 ;
 ; Existing PNGs in root Images\ and their real pixel dimensions
 ; (measured from each file's IHDR chunk - AHK cannot query this):
@@ -38,14 +27,22 @@
 ;   deposit-motherlode.png 80 x 72
 ;   mog-item.png          134 x 22
 ;   take-bb.png           194 x 30
+;
+; FindImage lives in Lib\Find.ahk - promoted here after in-game
+; confirmation during Stage 1 (fixed a real IMAGE_W bug, 72 -> 80,
+; during the final audit; whole-screen fallback made resolution-
+; agnostic at the same time).
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include ..\Lib\v6.ahk
 
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
+
+g_LogName := "06-find-image"
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
@@ -72,49 +69,17 @@ RunSearch() {
         . " size=" IMAGE_W "x" IMAGE_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
 
     t0 := A_TickCount
-    try {
-        found := ImageSearch(&foundX, &foundY, REGION_X1, REGION_Y1, REGION_X2, REGION_Y2,
-            ImagePattern(IMAGE_PATH, IMAGE_TOL, TRANS_COLOR))
-    } catch as exc {
-        msg := "ERROR: " exc.Message " (check IMAGE_PATH exists and IMAGE_W/H are correct)"
-        ToolTip(msg, 20, 20)
-        LogLine(msg)
-        return
-    }
+    found := FindImage(REGION_X1, REGION_Y1, REGION_X2, REGION_Y2, IMAGE_PATH, IMAGE_W, IMAGE_H, IMAGE_TOL, TRANS_COLOR, &cx, &cy)
     elapsedMs := A_TickCount - t0
 
     if (found) {
-        cx := foundX + IMAGE_W // 2
-        cy := foundY + IMAGE_H // 2
         MouseMove(cx, cy, 5)
-        msg := "FOUND at " cx "," cy " (corner " foundX "," foundY ") in " elapsedMs " ms"
+        msg := "FOUND at " cx "," cy " in " elapsedMs " ms"
     } else {
         msg := "NOT FOUND (searched " elapsedMs " ms)"
     }
     ToolTip(msg, 20, 20)
     LogLine(msg)
-}
-
-; ---------- image search pattern (universal - every ImageSearch call
-; in this project builds its pattern string this way) ----------
-
-; Builds the "*tol *TransColor path" ImageSearch pattern string.
-; transColor := "" omits the *Trans option entirely.
-ImagePattern(path, tol, transColor := "") {
-    pattern := "*" tol
-    if (transColor != "")
-        pattern .= " *Trans" transColor
-    return pattern " " path
-}
-
-; ---------- logging ----------
-
-LogLine(msg) {
-    static logDir := A_ScriptDir "\..\logs"
-    static logPath := logDir "\06-find-image.log"
-    if (!DirExist(logDir))
-        DirCreate(logDir)
-    try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [06-find-image] " msg "`n", logPath)
 }
 
 LogLine("Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=" IMAGE_PATH)

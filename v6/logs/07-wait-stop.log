@@ -1,7 +1,2 @@
-2026-07-19 16:37:49 [07-wait-stop] Script loaded. F5=start 30s wait  F6=request stop  Esc=exit
-2026-07-19 16:37:53 [07-wait-stop] Wait started: timeout=30000ms pollMs=300ms - press F6 to stop early
-2026-07-19 16:37:57 [07-wait-stop] F6 pressed - stop requested
-2026-07-19 16:37:57 [07-wait-stop] Pause: stop flag seen - throwing BotStopped
-2026-07-19 16:37:57 [07-wait-stop] STOPPED by F6 after 4797 ms (requested stop landed within one 40ms chunk)
-2026-07-19 16:37:58 [07-wait-stop] Wait started: timeout=30000ms pollMs=300ms - press F6 to stop early
-2026-07-19 16:38:29 [07-wait-stop] TIMED OUT after 30250 ms (full 30000ms wait - F6 was NOT pressed in time)
+2026-07-19 23:43:46 [07-wait-stop] Script loaded. F5=start 30s wait  F6=request stop  Esc=exit
+2026-07-19 23:43:47 [07-wait-stop] Esc pressed - exiting

@@ -1,8 +1,8 @@
 ; ============================================================
 ; v6 micro 04 - single settled click
 ;
-; Proves the click primitive every other block will use: move mouse to
-; a fixed point, settle briefly (let the client register hover state),
+; Proves the click primitive every other block uses: move mouse to a
+; fixed point, settle briefly (let the client register hover state),
 ; then click. Includes a Ctrl-held variant (OSRS "force run").
 ;
 ; No search involved - hardcode a point you can verify by eye (e.g. an
@@ -14,26 +14,23 @@
 ;   F6  = clear the tooltip
 ;   Esc = exit the script
 ;
-; Syntax verified against AutoHotkey.pdf: Click() with no args clicks
-; the left button at the mouse's current position; Click("Right") right
-; -clicks at current position. Ctrl is NOT auto-released by Click (only
-; Send auto-releases modifiers) - hold/release it explicitly, exactly
-; as the docs' own Ctrl-click example does.
+; ClickAt lives in Lib\Act.ahk - promoted here after in-game
+; confirmation during Stage 1.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include ..\Lib\v6.ahk
 
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
+g_LogName := "04-click-at"
+
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 TARGET_X := 1400   ; a point you can visually verify - inventory slot,
 TARGET_Y := 696   ; ground tile, etc.
-SETTLE_MS := 100      ; mechanical delay between move and click (v6 default minimum)
-CTRL_HOLD_MS := 100   ; ctrl-click only: held between the click firing and Ctrl release -
-                       ; NOT redundant with SETTLE_MS (see ClickAt comment) - do not remove
 ; ========================================================================
 
 F5:: RunClick(false)
@@ -48,7 +45,7 @@ Esc:: {
 }
 
 RunClick(useCtrl) {
-    LogLine((useCtrl ? "Ctrl-click" : "Click") " started: target=" TARGET_X "," TARGET_Y " settle=" SETTLE_MS "ms")
+    LogLine((useCtrl ? "Ctrl-click" : "Click") " started: target=" TARGET_X "," TARGET_Y)
     t0 := A_TickCount
 
     ClickAt(TARGET_X, TARGET_Y, useCtrl)
@@ -57,42 +54,6 @@ RunClick(useCtrl) {
     msg := (useCtrl ? "Ctrl-clicked (force-run)" : "Clicked") " at " TARGET_X "," TARGET_Y " (" elapsedMs " ms incl. settle)"
     ToolTip(msg, 20, 20)
     LogLine(msg)
-}
-
-; ---------- click (universal, ctrl-toggleable - the canonical shape
-; micros 05/08/11/12 copy) ----------
-
-ClickAt(x, y, useCtrl := false) {
-    if (useCtrl)
-        Send("{Ctrl down}")
-
-    MouseMove(x, y, 5)
-    Sleep(SETTLE_MS)
-    Click()
-
-    ; CTRL_HOLD_MS is load-bearing, not redundant with SETTLE_MS - a prior
-    ; attempt to remove it broke force-run in-game. Click() being
-    ; synchronous only means the OS input queue accepted the down/up
-    ; pair; it says nothing about whether OSRS's own client (reading
-    ; input on its own thread/tick) has processed it yet. Releasing
-    ; Ctrl too soon risks the client seeing the click without the held
-    ; modifier, so the character walks instead of runs. v5's production
-    ; Click.ahk holds this same gap (ctrlHoldSettleMs, default 100 in
-    ; every bot's .ini) for exactly this reason.
-    if (useCtrl) {
-        Sleep(CTRL_HOLD_MS)
-        Send("{Ctrl up}")
-    }
-}
-
-; ---------- logging ----------
-
-LogLine(msg) {
-    static logDir := A_ScriptDir "\..\logs"
-    static logPath := logDir "\04-click-at.log"
-    if (!DirExist(logDir))
-        DirCreate(logDir)
-    try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [04-click-at] " msg "`n", logPath)
 }
 
 LogLine("Script loaded. F5=click  F7=ctrl-click  F6=clear tooltip  Esc=exit. Target=" TARGET_X "," TARGET_Y)

@@ -1,42 +1,13 @@
-2026-07-19 16:54:34 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,801 52x16
-2026-07-19 16:54:38 [10-watch-box] F7: tracing box outline 2185,801 52x16
-2026-07-19 16:54:51 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
-2026-07-19 16:54:52 [10-watch-box] F7: tracing box outline 2185,873 52x16
-2026-07-19 16:55:29 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
-2026-07-19 16:55:31 [10-watch-box] F7: tracing box outline 2185,873 52x16
-2026-07-19 16:55:33 [10-watch-box] Watch started: box=2185,873 52x16 tol=10 timeout=15000ms
-2026-07-19 16:55:34 [10-watch-box] Snapshot taken (52 samples, stride 4x4) in 360 ms
-2026-07-19 16:55:34 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:55:35 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:55:35 [10-watch-box] BoxChanged: CHANGED (343 ms)
-2026-07-19 16:55:35 [10-watch-box] CHANGED after 1750 ms
-2026-07-19 16:55:43 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
-2026-07-19 16:55:44 [10-watch-box] Watch started: box=2185,873 52x16 tol=10 timeout=15000ms
-2026-07-19 16:55:45 [10-watch-box] Snapshot taken (52 samples, stride 4x4) in 360 ms
-2026-07-19 16:55:45 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:46 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:47 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:47 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:48 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:49 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:49 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:55:50 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:55:51 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:55:52 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:52 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:53 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:54 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:55:54 [10-watch-box] BoxChanged: CHANGED (31 ms)
-2026-07-19 16:55:54 [10-watch-box] CHANGED after 9187 ms
-2026-07-19 16:55:58 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
-2026-07-19 16:55:59 [10-watch-box] Watch started: box=2185,873 52x16 tol=10 timeout=15000ms
-2026-07-19 16:55:59 [10-watch-box] Snapshot taken (52 samples, stride 4x4) in 359 ms
-2026-07-19 16:55:59 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:56:00 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:56:01 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:56:02 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 16:56:02 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:56:03 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 16:56:04 [10-watch-box] BoxChanged: CHANGED (328 ms)
-2026-07-19 16:56:04 [10-watch-box] CHANGED after 4547 ms
-2026-07-19 16:56:07 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
+2026-07-19 23:45:28 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2185,873 52x16
+2026-07-19 23:45:34 [10-watch-box] F7: tracing box outline 2185,873 52x16
+2026-07-19 23:45:46 [10-watch-box] F7: tracing box outline 2185,873 52x16
+2026-07-19 23:45:50 [10-watch-box] F7: tracing box outline 2185,873 52x16
+2026-07-19 23:45:52 [10-watch-box] Watch started: box=2185,873 52x16 tol=10 timeout=15000ms
+2026-07-19 23:45:52 [10-watch-box] Snapshot taken (52 samples, stride 4x4) in 360 ms
+2026-07-19 23:45:52 [10-watch-box] BoxChanged: unchanged (359 ms)
+2026-07-19 23:45:53 [10-watch-box] BoxChanged: unchanged (359 ms)
+2026-07-19 23:45:54 [10-watch-box] BoxChanged: unchanged (359 ms)
+2026-07-19 23:45:55 [10-watch-box] BoxChanged: unchanged (359 ms)
+2026-07-19 23:45:55 [10-watch-box] BoxChanged: CHANGED (16 ms)
+2026-07-19 23:45:55 [10-watch-box] CHANGED after 2828 ms
+2026-07-19 23:45:56 [10-watch-box] Esc pressed - exiting

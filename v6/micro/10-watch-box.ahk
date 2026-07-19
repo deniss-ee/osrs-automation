@@ -5,24 +5,7 @@
 ; ANY of them changed - used to confirm something actually happened
 ; (an item landed in a slot, a counter ticked up) independent of any
 ; full/empty color check. This is the building block micro 11 (the
-; Mark-of-Grace pickup pattern) will poll through WaitUntil.
-;
-; Algorithm ported from v5 Interfaces\SlotSignature.ahk (Snapshot /
-; HasChanged), but STRIDED rather than exhaustive: v5 sampled every
-; single pixel, which is fine for the tiny boxes it targeted but costs
-; ~5-7ms per PixelGetColor call (same fixed per-call overhead documented
-; in Detection\ColorSearch.ahk) - an 832-pixel box (52x16) took ~6
-; SECONDS to snapshot exhaustively (measured live in this project's own
-; test log). Sampling ~TARGET_SAMPLES points instead of every pixel
-; (same idea as ColorSearch's sampleRate/rowStep) keeps that fast - while
-; still reliably catching a digit/counter change, since a changed glyph
-; alters many neighboring pixels, not just one isolated one.
-;
-; The stride is DERIVED from box size + TARGET_SAMPLES, not a flat
-; constant - a stride tuned for a small box (a thin counter) silently
-; got far too slow when reused on a bigger box (a whole 72x64 inventory
-; slot: 288 samples at stride 4 took ~2 SECONDS, also measured live) -
-; deriving it means any box size costs about the same.
+; Mark-of-Grace pickup pattern) polls through WaitUntil.
 ;
 ; WHAT IT DOES
 ;   F7  = trace the box's outline with the mouse (4 corners) - use this
@@ -36,38 +19,36 @@
 ; The watched box is ALWAYS BOX_W x BOX_H, offset by BOX_OFFSET_X/Y from
 ; a corner - SLOT_INDEX only picks WHICH corner:
 ;   - SLOT_INDEX left "": offset from the inventory block's own
-;     top-left corner (slot 1's corner, confirmed in micro 09 as
-;     2099,801) - the default, for a counter near slot 1 (e.g. the
-;     52x16 Mark of Grace count area at offset 2,0).
+;     top-left corner (slot 1's corner) - the default, for a counter
+;     near slot 1 (e.g. the 52x16 Mark of Grace count area at offset 2,0).
 ;   - SLOT_INDEX set (1-28): offset from THAT slot's corner instead
-;     (SlotCorner - same col/row math as micro 09's SlotCenter) - e.g.
-;     the same counter, but watched near slot 2 instead of slot 1.
-;     Setting SLOT_INDEX to 1 must therefore give the EXACT same box as
-;     leaving it "" (both resolve to slot 1's corner) - it does NOT
+;     (Lib\Inv.ahk's SlotCorner) - e.g. the same counter, but watched
+;     near slot 2 instead of slot 1. Setting SLOT_INDEX to 1 must
+;     therefore give the EXACT same box as leaving it "" - it does NOT
 ;     switch to watching the whole 72x64 slot.
+;
+; TakeSnapshot/HasChanged (Lib\Inv.ahk), SlotCorner (Lib\Inv.ahk), and
+; Pause/WaitUntil/BotStopped (Lib\Core.ahk) - all promoted here after
+; in-game confirmation during Stage 1.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include ..\Lib\v6.ahk
 
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
-; ======= EDIT THESE FOR YOUR TEST =======================================
-; Confirmed inventory layout (micro 09) - needed either way, since
-; SlotCorner() below computes a slot's corner from these same numbers.
-INV_FIRST_X := 2099, INV_FIRST_Y := 801
-INV_COLS := 4, INV_ROWS := 7
-INV_SLOT_W := 72, INV_SLOT_H := 64
-INV_GAP_X := 12, INV_GAP_Y := 8
+g_LogName := "10-watch-box"
 
+; ======= EDIT THESE FOR YOUR TEST =======================================
 ; Set SLOT_INDEX to offset the box below from a DIFFERENT slot's corner
 ; instead of slot 1's - e.g. watching the same counter but positioned
-; near slot 2 instead of slot 1. Leave it "" to use slot 1's own corner
-; (INV_FIRST_X/Y directly). Either way the box is ALWAYS BOX_W x BOX_H -
-; SLOT_INDEX never changes the SIZE of what's watched, only WHICH
-; slot's corner BOX_OFFSET_X/Y is measured from.
+; near slot 2 instead of slot 1. Leave it "" to use slot 1's own corner.
+; Either way the box is ALWAYS BOX_W x BOX_H - SLOT_INDEX never changes
+; the SIZE of what's watched, only WHICH slot's corner BOX_OFFSET_X/Y
+; is measured from.
 SLOT_INDEX := "6"
 
 ; The box to watch: BOX_W x BOX_H, offset by BOX_OFFSET_X/Y from
@@ -79,21 +60,18 @@ BOX_H := 16
 
 CHANGE_TOL := 10   ; per-channel tolerance before a pixel counts as "changed"
 
-; Sample budget, NOT a fixed stride: stride is computed from box size so
-; a big box (a whole slot) and a small box (a thin counter) both cost
-; about the same regardless of their raw pixel area. See TakeSnapshot.
+; Sample budget, NOT a fixed stride - see Lib\Inv.ahk's TakeSnapshot.
 TARGET_SAMPLES := 50
 
 WAIT_TIMEOUT_MS := 15000
 POLL_MS         := 300     ; tick-aligned poll interval
-CHUNK_MS        := 40
 ; ========================================================================
 
-; Resolve the box's base corner - a specific slot's corner (SlotCorner,
-; same col/row math as micro 09's SlotCenter) if SLOT_INDEX is set, else
-; slot 1's own corner (INV_FIRST_X/Y) - then offset BOX_OFFSET_X/Y from
-; it. BOX_W/BOX_H are never touched here; they stay exactly what's
-; configured above no matter which slot SLOT_INDEX points at.
+; Resolve the box's base corner - a specific slot's corner (SlotCorner)
+; if SLOT_INDEX is set, else slot 1's own corner (INV_FIRST_X/Y, from
+; Lib\Inv.ahk) - then offset BOX_OFFSET_X/Y from it. BOX_W/BOX_H are
+; never touched here; they stay exactly what's configured above no
+; matter which slot SLOT_INDEX points at.
 if (SLOT_INDEX != "")
     SlotCorner(SLOT_INDEX, &baseX, &baseY)
 else {
@@ -103,7 +81,6 @@ else {
 BOX_X := baseX + BOX_OFFSET_X
 BOX_Y := baseY + BOX_OFFSET_Y
 
-g_StopRequested := false
 g_Snapshot := ""
 
 F5:: RunWatch()
@@ -175,126 +152,6 @@ BoxChanged() {
     changed := HasChanged(g_Snapshot, BOX_X, BOX_Y, CHANGE_TOL)
     LogLine("BoxChanged: " (changed ? "CHANGED" : "unchanged") " (" (A_TickCount - t0Check) " ms)")
     return changed
-}
-
-; ---------- slot addressing (corner math ported from micro 09's SlotCenter) ----------
-
-; 1-based, row-major slot index -> that slot's top-left corner. No size
-; output - the watched box's size is always the configured BOX_W/H,
-; independent of which slot's corner it's offset from (see the
-; SLOT_INDEX config comment above).
-SlotCorner(slotIndex, &x, &y) {
-    total := INV_COLS * INV_ROWS
-    if (slotIndex < 1 || slotIndex > total)
-        throw ValueError("SlotCorner: slotIndex " slotIndex " out of range (1.." total ")")
-
-    col := Mod(slotIndex - 1, INV_COLS)
-    row := (slotIndex - 1) // INV_COLS
-
-    x := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
-    y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
-}
-
-; ---------- watch-box (v5 SlotSignature port, strided) ----------
-
-; Samples roughly targetSamples points spread evenly across a w x h box
-; whose top-left corner is x,y - NOT every pixel (see header comment for
-; why). The stride is DERIVED from box size + targetSamples, not fixed,
-; so a big box (a whole slot) and a small box (a thin counter) both cost
-; about the same regardless of raw pixel area - a flat stride tuned for
-; one box size silently gets far too slow (or too sparse) on another.
-; Returns one snapshot object bundling the samples with the stride/size
-; used to take them, so HasChanged always re-samples at the exact same
-; points - a caller can't accidentally pass a mismatched stride.
-TakeSnapshot(x, y, w, h, targetSamples := 50) {
-    scale := Sqrt(w * h / targetSamples)
-    strideX := Max(1, Round(scale))
-    strideY := Max(1, Round(scale))
-
-    colors := []
-    yy := 0
-    while (yy < h) {
-        xx := 0
-        while (xx < w) {
-            colors.Push(PixelGetColor(x + xx, y + yy))
-            xx += strideX
-        }
-        yy += strideY
-    }
-    return {colors: colors, w: w, h: h, strideX: strideX, strideY: strideY}
-}
-
-; True if any sampled point now differs from the snapshot's baseline.
-; x,y: the box's CURRENT top-left corner (usually unchanged from the
-; snapshot, but kept separate in case the box legitimately moves).
-HasChanged(snapshot, x, y, tol) {
-    idx := 1
-    yy := 0
-    while (yy < snapshot.h) {
-        xx := 0
-        while (xx < snapshot.w) {
-            current := PixelGetColor(x + xx, y + yy)
-            if (!ColorClose(current, snapshot.colors[idx], tol))
-                return true
-            idx += 1
-            xx += snapshot.strideX
-        }
-        yy += snapshot.strideY
-    }
-    return false
-}
-
-ColorClose(c1, c2, tol) {
-    return Abs(((c1 >> 16) & 0xFF) - ((c2 >> 16) & 0xFF)) <= tol
-        && Abs(((c1 >> 8) & 0xFF) - ((c2 >> 8) & 0xFF)) <= tol
-        && Abs((c1 & 0xFF) - (c2 & 0xFF)) <= tol
-}
-
-; ---------- interruptible wait (identical port of micro 07/08) ----------
-
-class BotStopped extends Error {
-    __New() {
-        super.__New("Bot stopped by user")
-    }
-}
-
-Pause(ms) {
-    global g_StopRequested
-    remaining := ms
-    while (remaining > 0) {
-        if (g_StopRequested) {
-            LogLine("Pause: stop flag seen - throwing BotStopped")
-            throw BotStopped()
-        }
-        step := Min(CHUNK_MS, remaining)
-        Sleep(step)
-        remaining -= step
-    }
-    if (g_StopRequested) {
-        LogLine("Pause: stop flag seen at end of wait - throwing BotStopped")
-        throw BotStopped()
-    }
-}
-
-WaitUntil(condFn, timeoutMs, pollMs := 300) {
-    startedAt := A_TickCount
-    loop {
-        if (condFn())
-            return true
-        if ((A_TickCount - startedAt) >= timeoutMs)
-            return false
-        Pause(pollMs)
-    }
-}
-
-; ---------- logging ----------
-
-LogLine(msg) {
-    static logDir := A_ScriptDir "\..\logs"
-    static logPath := logDir "\10-watch-box.log"
-    if (!DirExist(logDir))
-        DirCreate(logDir)
-    try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [10-watch-box] " msg "`n", logPath)
 }
 
 LogLine("Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=" BOX_X "," BOX_Y " " BOX_W "x" BOX_H)

@@ -19,22 +19,23 @@
 ;   F6  = request stop (sets the flag Pause() checks)
 ;   Esc = exit the script immediately (hard escape, bypasses everything)
 ;
-; Every step (each Pause chunk boundary, the stop request, the outcome)
-; is logged so you can see the actual interrupt latency afterward.
+; Pause/WaitUntil/BotStopped live in Lib\Core.ahk - promoted here after
+; in-game confirmation during Stage 1 (this micro's version, with its
+; own diagnostic LogLine calls at each stop-flag check, was canonical).
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+#Include ..\Lib\v6.ahk
 
 CoordMode("ToolTip", "Screen")
 
+g_LogName := "07-wait-stop"
+
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 WAIT_TIMEOUT_MS := 30000   ; the wait F5 starts (should NOT need to run this long)
-CHUNK_MS        := 40      ; Pause's internal sleep granularity (interrupt latency)
 POLL_MS         := 300     ; how often WaitUntil re-checks its condition (tick-aligned)
 ; ========================================================================
-
-g_StopRequested := false
 
 F5:: StartWait()
 F6:: {
@@ -67,64 +68,11 @@ StartWait() {
             : "TIMED OUT after " elapsedMs " ms (full " WAIT_TIMEOUT_MS "ms wait - F6 was NOT pressed in time)"
     } catch BotStopped as e {
         elapsedMs := A_TickCount - t0
-        msg := "STOPPED by F6 after " elapsedMs " ms (requested stop landed within one " CHUNK_MS "ms chunk)"
+        msg := "STOPPED by F6 after " elapsedMs " ms (requested stop landed quickly)"
     }
 
     ToolTip(msg, 20, 20)
     LogLine(msg)
-}
-
-; ---------- core (new v6 code - the interruptible-wait keystone) ----------
-
-class BotStopped extends Error {
-    __New() {
-        super.__New("Bot stopped by user")
-    }
-}
-
-; The ONLY sleep function in v6. Sleeps in small chunks, checking the
-; stop flag between each - so a stop request lands within one chunk
-; instead of after the full requested duration.
-Pause(ms) {
-    global g_StopRequested
-    remaining := ms
-    while (remaining > 0) {
-        if (g_StopRequested) {
-            LogLine("Pause: stop flag seen - throwing BotStopped")
-            throw BotStopped()
-        }
-        step := Min(CHUNK_MS, remaining)
-        Sleep(step)
-        remaining -= step
-    }
-    if (g_StopRequested) {
-        LogLine("Pause: stop flag seen at end of wait - throwing BotStopped")
-        throw BotStopped()
-    }
-}
-
-; Polls condFn via Pause until it returns true or timeoutMs elapses.
-; Returns false on timeout; throws BotStopped if F6 fires mid-poll
-; (propagates up through Pause - never swallowed here).
-WaitUntil(condFn, timeoutMs, pollMs := 300) {
-    startedAt := A_TickCount
-    loop {
-        if (condFn())
-            return true
-        if ((A_TickCount - startedAt) >= timeoutMs)
-            return false
-        Pause(pollMs)
-    }
-}
-
-; ---------- logging ----------
-
-LogLine(msg) {
-    static logDir := A_ScriptDir "\..\logs"
-    static logPath := logDir "\07-wait-stop.log"
-    if (!DirExist(logDir))
-        DirCreate(logDir)
-    try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [07-wait-stop] " msg "`n", logPath)
 }
 
 LogLine("Script loaded. F5=start 30s wait  F6=request stop  Esc=exit")

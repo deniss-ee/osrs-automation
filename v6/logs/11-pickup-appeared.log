@@ -1,37 +1,12 @@
-2026-07-19 16:41:38 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:41:39 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16
-2026-07-19 16:42:25 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:42:28 [11-pickup-appeared] F7: tracing confirm box outline 2183,801 72x64
-2026-07-19 16:42:32 [11-pickup-appeared] F7: tracing confirm box outline 2183,801 72x64
-2026-07-19 16:42:43 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:42:44 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16
-2026-07-19 16:42:49 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:42:57 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:42:58 [11-pickup-appeared] F7: tracing confirm box outline 2099,801 72x64
-2026-07-19 16:43:12 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:43:13 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16
-2026-07-19 16:43:42 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:43:43 [11-pickup-appeared] F7: tracing confirm box outline 2099,801 72x64
-2026-07-19 16:56:10 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
-2026-07-19 16:56:19 [11-pickup-appeared] F7: tracing confirm box outline 2185,801 52x16
-2026-07-19 16:56:22 [11-pickup-appeared] F7: tracing confirm box outline 2185,801 52x16
-2026-07-19 16:56:37 [11-pickup-appeared] F7: tracing confirm box outline 2185,801 52x16
-2026-07-19 16:56:43 [11-pickup-appeared] Pickup flow started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2185,801 52x16 confirmTimeout=8000ms
-2026-07-19 16:56:43 [11-pickup-appeared] ImageAppeared: found at 1052,785 in 109 ms
-2026-07-19 16:56:43 [11-pickup-appeared] Appeared at 1052,785 after 109 ms - snapshotting confirm box BEFORE click
-2026-07-19 16:56:44 [11-pickup-appeared] Clicked at 1052,789 (ctrl/force-run) - waiting for pickup confirmation
-2026-07-19 16:56:44 [11-pickup-appeared] BoxChanged: unchanged
-2026-07-19 16:56:45 [11-pickup-appeared] F6 pressed - stop requested
-2026-07-19 16:56:45 [11-pickup-appeared] BoxChanged: unchanged
-2026-07-19 16:56:45 [11-pickup-appeared] Pause: stop flag seen - throwing BotStopped
-2026-07-19 16:56:45 [11-pickup-appeared] STOPPED by F6 after click, 1063 ms into confirm wait - pickup NOT confirmed
-2026-07-19 16:56:49 [11-pickup-appeared] Pickup flow started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2185,801 52x16 confirmTimeout=8000ms
-2026-07-19 16:56:49 [11-pickup-appeared] ImageAppeared: found at 1258,883 in 93 ms
-2026-07-19 16:56:49 [11-pickup-appeared] Appeared at 1258,883 after 93 ms - snapshotting confirm box BEFORE click
-2026-07-19 16:56:50 [11-pickup-appeared] Clicked at 1258,887 (ctrl/force-run) - waiting for pickup confirmation
-2026-07-19 16:56:50 [11-pickup-appeared] BoxChanged: unchanged
-2026-07-19 16:56:51 [11-pickup-appeared] BoxChanged: unchanged
-2026-07-19 16:56:51 [11-pickup-appeared] BoxChanged: unchanged
-2026-07-19 16:56:52 [11-pickup-appeared] BoxChanged: CHANGED
-2026-07-19 16:56:52 [11-pickup-appeared] PICKUP CONFIRMED (2125 ms after click, 2828 ms total)
-2026-07-19 16:56:54 [11-pickup-appeared] F6 pressed - stop requested
+2026-07-19 23:45:59 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 23:46:10 [11-pickup-appeared] Pickup flow started (via Lib\Steps.ahk PickupAppeared): image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2185,801 52x16 confirmTimeout=8000ms
+2026-07-19 23:46:10 [11-pickup-appeared] FindImage: found at 1232,739 (C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png, 110 ms)
+2026-07-19 23:46:10 [11-pickup-appeared] PickupAppeared: appeared at 1232,739 after 110 ms - snapshotting confirm box BEFORE click
+2026-07-19 23:46:10 [11-pickup-appeared] PickupAppeared: clicking item at 1232,743
+2026-07-19 23:46:14 [11-pickup-appeared] Esc pressed - exiting
+2026-07-19 23:46:16 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 23:46:17 [11-pickup-appeared] Pickup flow started (via Lib\Steps.ahk PickupAppeared): image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2185,801 52x16 confirmTimeout=8000ms
+2026-07-19 23:46:17 [11-pickup-appeared] FindImage: found at 1164,743 (C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png, 94 ms)
+2026-07-19 23:46:17 [11-pickup-appeared] PickupAppeared: appeared at 1164,743 after 94 ms - snapshotting confirm box BEFORE click
+2026-07-19 23:46:17 [11-pickup-appeared] PickupAppeared: clicking item at 1164,747
+2026-07-19 23:46:21 [11-pickup-appeared] Esc pressed - exiting
