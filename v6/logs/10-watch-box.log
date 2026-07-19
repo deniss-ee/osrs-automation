@@ -1,11 +1,20 @@
-2026-07-19 01:05:47 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2101,801 52x16
-2026-07-19 01:05:49 [10-watch-box] F7: tracing box outline 2101,801 52x16
-2026-07-19 01:05:52 [10-watch-box] Watch started: box=2101,801 52x16 tol=10 timeout=15000ms
-2026-07-19 01:05:52 [10-watch-box] Snapshot taken (52 samples, stride 4x4) in 359 ms
-2026-07-19 01:05:52 [10-watch-box] BoxChanged: unchanged (359 ms)
-2026-07-19 01:05:53 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 01:05:54 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 01:05:55 [10-watch-box] BoxChanged: unchanged (360 ms)
-2026-07-19 01:05:55 [10-watch-box] BoxChanged: CHANGED (0 ms)
-2026-07-19 01:05:55 [10-watch-box] CHANGED after 2813 ms
-2026-07-19 01:05:55 [10-watch-box] F6 pressed - stop requested
+2026-07-19 10:18:01 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2183,801 72x64
+2026-07-19 10:18:05 [10-watch-box] Watch started: box=2183,801 72x64 tol=10 timeout=15000ms
+2026-07-19 10:18:06 [10-watch-box] Snapshot taken (56 samples, stride 10x10) in 391 ms
+2026-07-19 10:18:06 [10-watch-box] BoxChanged: unchanged (390 ms)
+2026-07-19 10:18:07 [10-watch-box] BoxChanged: unchanged (391 ms)
+2026-07-19 10:18:08 [10-watch-box] BoxChanged: unchanged (391 ms)
+2026-07-19 10:18:08 [10-watch-box] BoxChanged: unchanged (390 ms)
+2026-07-19 10:18:09 [10-watch-box] BoxChanged: CHANGED (16 ms)
+2026-07-19 10:18:09 [10-watch-box] CHANGED after 2953 ms
+2026-07-19 10:18:12 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2183,801 72x64
+2026-07-19 10:26:47 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2183,801 72x64
+2026-07-19 10:26:50 [10-watch-box] Watch started: box=2183,801 72x64 tol=10 timeout=15000ms
+2026-07-19 10:26:50 [10-watch-box] Snapshot taken (56 samples, stride 10x10) in 375 ms
+2026-07-19 10:26:51 [10-watch-box] BoxChanged: unchanged (390 ms)
+2026-07-19 10:26:51 [10-watch-box] BoxChanged: unchanged (375 ms)
+2026-07-19 10:26:52 [10-watch-box] BoxChanged: unchanged (391 ms)
+2026-07-19 10:26:53 [10-watch-box] BoxChanged: unchanged (390 ms)
+2026-07-19 10:26:53 [10-watch-box] BoxChanged: CHANGED (16 ms)
+2026-07-19 10:26:53 [10-watch-box] CHANGED after 2953 ms
+2026-07-19 10:27:00 [10-watch-box] Script loaded. F5=snapshot+watch  F6=stop  Esc=exit. Box=2183,801 72x64

@@ -13,26 +13,35 @@
 ; ~5-7ms per PixelGetColor call (same fixed per-call overhead documented
 ; in Detection\ColorSearch.ahk) - an 832-pixel box (52x16) took ~6
 ; SECONDS to snapshot exhaustively (measured live in this project's own
-; test log). Sampling every STRIDE_Xth column / STRIDE_Yth row instead
-; (same idea as ColorSearch's sampleRate/rowStep) cuts an 832-pixel box
-; to ~52 samples - fast enough to poll every tick - while still reliably
-; catching a digit/counter change, since a changed glyph alters many
-; neighboring pixels, not just one isolated one.
+; test log). Sampling ~TARGET_SAMPLES points instead of every pixel
+; (same idea as ColorSearch's sampleRate/rowStep) keeps that fast - while
+; still reliably catching a digit/counter change, since a changed glyph
+; alters many neighboring pixels, not just one isolated one.
+;
+; The stride is DERIVED from box size + TARGET_SAMPLES, not a flat
+; constant - a stride tuned for a small box (a thin counter) silently
+; got far too slow when reused on a bigger box (a whole 72x64 inventory
+; slot: 288 samples at stride 4 took ~2 SECONDS, also measured live) -
+; deriving it means any box size costs about the same.
 ;
 ; WHAT IT DOES
 ;   F7  = trace the box's outline with the mouse (4 corners) - use this
-;         FIRST to visually confirm BOX_X/Y/W/H actually covers the
-;         counter area before trusting F5
+;         FIRST to visually confirm the box actually covers the right
+;         area before trusting F5
 ;   F5  = snapshot the box now, then wait (interruptible, with
 ;         timeout) until any pixel in it changes
 ;   F6  = request stop (interrupts the wait, same as micros 07/08)
 ;   Esc = exit the script
 ;
-; Default box = a numeric counter area (52x16px) at offset (x=2, y=0)
-; relative to the inventory block's own top-left corner. ASSUMPTION:
-; "inventory block top-left" = slot 1's top-left corner as confirmed in
-; micro 09 (2099,801) - if your counter isn't actually there, use F7
-; below to trace the box's outline with the mouse and correct BOX_X/Y.
+; The box to watch is resolved ONE OF TWO WAYS (see SLOT_INDEX below):
+;   - SLOT_INDEX set (1-28): watches that WHOLE inventory slot (its
+;     full corner+size, via SlotBox - same corner math as micro 09's
+;     SlotCenter) - e.g. "did an item appear in slot 2".
+;   - SLOT_INDEX left "": watches a CUSTOM box at BOX_OFFSET_X/Y +
+;     BOX_W/H relative to the inventory block's own top-left corner
+;     (slot 1's corner, confirmed in micro 09 as 2099,801) - for things
+;     that aren't a whole slot, like a counter (default: the 52x16
+;     counter area at offset 2,0).
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -43,25 +52,46 @@ CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
-INV_BLOCK_X := 2099   ; inventory block's top-left corner (micro 09's confirmed slot-1 corner)
-INV_BLOCK_Y := 801
+; Confirmed inventory layout (micro 09) - needed either way, since
+; SlotBox() below computes a slot's box from these same numbers.
+INV_FIRST_X := 2099, INV_FIRST_Y := 801
+INV_COLS := 4, INV_ROWS := 7
+INV_SLOT_W := 72, INV_SLOT_H := 64
+INV_GAP_X := 12, INV_GAP_Y := 8
 
-BOX_OFFSET_X := 2     ; the counter box's offset from the inventory block's corner
+; Set SLOT_INDEX to watch a WHOLE inventory slot (1-28) - e.g. "did an
+; item appear in slot 2". Leave it "" to instead watch a CUSTOM box via
+; BOX_OFFSET_X/Y + BOX_W/H below (e.g. a counter that isn't a whole
+; slot, like the Mark of Grace count).
+SLOT_INDEX := "2"
+
+; Custom box (only used when SLOT_INDEX is "") - offset from the
+; inventory block's own top-left corner (slot 1's corner).
+BOX_OFFSET_X := 2
 BOX_OFFSET_Y := 0
 BOX_W := 52
 BOX_H := 16
 
-BOX_X := INV_BLOCK_X + BOX_OFFSET_X   ; top-left corner of the box to watch
-BOX_Y := INV_BLOCK_Y + BOX_OFFSET_Y
 CHANGE_TOL := 10   ; per-channel tolerance before a pixel counts as "changed"
 
-STRIDE_X := 4   ; sample every STRIDE_Xth column instead of every column
-STRIDE_Y := 4   ; sample every STRIDE_Yth row instead of every row
+; Sample budget, NOT a fixed stride: stride is computed from box size so
+; a big box (a whole slot) and a small box (a thin counter) both cost
+; about the same regardless of their raw pixel area. See TakeSnapshot.
+TARGET_SAMPLES := 50
 
 WAIT_TIMEOUT_MS := 15000
 POLL_MS         := 300     ; tick-aligned poll interval
 CHUNK_MS        := 40
 ; ========================================================================
+
+; Resolve the box to watch, once at load time: a whole slot (SlotBox,
+; ported from micro 09's SlotCenter corner math) or the custom offset box.
+if (SLOT_INDEX != "")
+    SlotBox(SLOT_INDEX, &BOX_X, &BOX_Y, &BOX_W, &BOX_H)
+else {
+    BOX_X := INV_FIRST_X + BOX_OFFSET_X
+    BOX_Y := INV_FIRST_Y + BOX_OFFSET_Y
+}
 
 g_StopRequested := false
 g_Snapshot := ""
@@ -107,9 +137,9 @@ RunWatch() {
         . " timeout=" WAIT_TIMEOUT_MS "ms")
 
     t0Snap := A_TickCount
-    g_Snapshot := TakeSnapshot(BOX_X, BOX_Y, BOX_W, BOX_H, STRIDE_X, STRIDE_Y)
-    LogLine("Snapshot taken (" g_Snapshot.colors.Length " samples, stride " STRIDE_X "x" STRIDE_Y
-        . ") in " (A_TickCount - t0Snap) " ms")
+    g_Snapshot := TakeSnapshot(BOX_X, BOX_Y, BOX_W, BOX_H, TARGET_SAMPLES)
+    LogLine("Snapshot taken (" g_Snapshot.colors.Length " samples, stride "
+        . g_Snapshot.strideX "x" g_Snapshot.strideY ") in " (A_TickCount - t0Snap) " ms")
     ToolTip("Snapshot taken - waiting for change (F6 to cancel)", 20, 20)
 
     t0 := A_TickCount
@@ -137,14 +167,41 @@ BoxChanged() {
     return changed
 }
 
+; ---------- slot addressing (corner math ported from micro 09's SlotCenter) ----------
+
+; 1-based, row-major slot index -> that slot's top-left corner + size
+; (a watch-box needs a corner+size, not a center point like micro 09's
+; SlotCenter - same math, just not shifted to the middle).
+SlotBox(slotIndex, &x, &y, &w, &h) {
+    total := INV_COLS * INV_ROWS
+    if (slotIndex < 1 || slotIndex > total)
+        throw ValueError("SlotBox: slotIndex " slotIndex " out of range (1.." total ")")
+
+    col := Mod(slotIndex - 1, INV_COLS)
+    row := (slotIndex - 1) // INV_COLS
+
+    x := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
+    y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
+    w := INV_SLOT_W
+    h := INV_SLOT_H
+}
+
 ; ---------- watch-box (v5 SlotSignature port, strided) ----------
 
-; Samples every STRIDE_Xth column / STRIDE_Yth row of a w x h box whose
-; top-left corner is x,y - NOT every pixel (see header comment for why).
+; Samples roughly targetSamples points spread evenly across a w x h box
+; whose top-left corner is x,y - NOT every pixel (see header comment for
+; why). The stride is DERIVED from box size + targetSamples, not fixed,
+; so a big box (a whole slot) and a small box (a thin counter) both cost
+; about the same regardless of raw pixel area - a flat stride tuned for
+; one box size silently gets far too slow (or too sparse) on another.
 ; Returns one snapshot object bundling the samples with the stride/size
 ; used to take them, so HasChanged always re-samples at the exact same
 ; points - a caller can't accidentally pass a mismatched stride.
-TakeSnapshot(x, y, w, h, strideX := 4, strideY := 4) {
+TakeSnapshot(x, y, w, h, targetSamples := 50) {
+    scale := Sqrt(w * h / targetSamples)
+    strideX := Max(1, Round(scale))
+    strideY := Max(1, Round(scale))
+
     colors := []
     yy := 0
     while (yy < h) {

@@ -33,6 +33,7 @@ REGION_X2 := 894
 REGION_Y2 := 600
 
 SETTLE_MS := 150   ; mechanical delay between move and click (v6 default)
+USE_CTRL  := false  ; true = force-run (Ctrl-held) click on the found target
 ; ========================================================================
 
 F5:: FindAndClick()
@@ -62,14 +63,28 @@ FindAndClick() {
     }
 
     LogLine("Found at " cx "," cy " in " searchMs " ms - clicking")
-    MouseMove(cx, cy, 5)
-    Sleep(SETTLE_MS)
-    Click()
+    ClickAt(cx, cy, USE_CTRL)
     totalMs := A_TickCount - t0
 
     msg := "FOUND + CLICKED at " cx "," cy " (search " searchMs " ms, total " totalMs " ms)"
     ToolTip(msg, 20, 20)
     LogLine(msg)
+}
+
+; ---------- click (universal, ctrl-toggleable - port of micro 04) ----------
+
+ClickAt(x, y, useCtrl := false) {
+    if (useCtrl)
+        Send("{Ctrl down}")
+
+    MouseMove(x, y, 5)
+    Sleep(SETTLE_MS)
+    Click()
+
+    if (useCtrl) {
+        Sleep(SETTLE_MS)
+        Send("{Ctrl up}")
+    }
 }
 
 ; ---------- detection (identical port to micro 01-03) ----------

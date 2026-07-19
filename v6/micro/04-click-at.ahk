@@ -34,8 +34,8 @@ TARGET_Y := 696   ; ground tile, etc.
 SETTLE_MS := 150   ; mechanical delay between move and click (v6 default)
 ; ========================================================================
 
-F5:: ClickPlain()
-F7:: ClickWithCtrl()
+F5:: RunClick(false)
+F7:: RunClick(true)
 F6:: {
     ToolTip()
     LogLine("F6 pressed - tooltip cleared")
@@ -45,35 +45,33 @@ Esc:: {
     ExitApp()
 }
 
-ClickPlain() {
-    LogLine("Click started: target=" TARGET_X "," TARGET_Y " settle=" SETTLE_MS "ms")
+RunClick(useCtrl) {
+    LogLine((useCtrl ? "Ctrl-click" : "Click") " started: target=" TARGET_X "," TARGET_Y " settle=" SETTLE_MS "ms")
     t0 := A_TickCount
 
-    MouseMove(TARGET_X, TARGET_Y, 5)
-    Sleep(SETTLE_MS)
-    Click()
+    ClickAt(TARGET_X, TARGET_Y, useCtrl)
 
     elapsedMs := A_TickCount - t0
-    msg := "Clicked at " TARGET_X "," TARGET_Y " (" elapsedMs " ms incl. settle)"
+    msg := (useCtrl ? "Ctrl-clicked (force-run)" : "Clicked") " at " TARGET_X "," TARGET_Y " (" elapsedMs " ms incl. settle)"
     ToolTip(msg, 20, 20)
     LogLine(msg)
 }
 
-ClickWithCtrl() {
-    LogLine("Ctrl-click started: target=" TARGET_X "," TARGET_Y " settle=" SETTLE_MS "ms")
-    t0 := A_TickCount
+; ---------- click (universal, ctrl-toggleable - the canonical shape
+; micros 08/11 copy) ----------
 
-    Send("{Ctrl down}")
-    MouseMove(TARGET_X, TARGET_Y, 5)
+ClickAt(x, y, useCtrl := false) {
+    if (useCtrl)
+        Send("{Ctrl down}")
+
+    MouseMove(x, y, 5)
     Sleep(SETTLE_MS)
     Click()
-    Sleep(SETTLE_MS)
-    Send("{Ctrl up}")
 
-    elapsedMs := A_TickCount - t0
-    msg := "Ctrl-clicked (force-run) at " TARGET_X "," TARGET_Y " (" elapsedMs " ms incl. settle)"
-    ToolTip(msg, 20, 20)
-    LogLine(msg)
+    if (useCtrl) {
+        Sleep(SETTLE_MS)
+        Send("{Ctrl up}")
+    }
 }
 
 ; ---------- logging ----------

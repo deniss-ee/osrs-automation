@@ -18,6 +18,17 @@
 ; prefixed to the path controls shade-of-variation tolerance (0-255,
 ; default 0 = exact match) - same idea as color tolerance.
 ;
+; TRANS_COLOR: this project's PNGs are captured with #00FF00 as the
+; background - ImageSearch's *TransN option treats that exact color as
+; see-through (matches whatever's really on screen there) instead of
+; requiring it to actually match, which *n tolerance alone can't do for
+; a genuinely irrelevant background. Harmless to leave on for images
+; that don't contain that color (Options: "*TransN" - a color that
+; never appears in the image simply never gets matched/replaced).
+; NOTE: AHK's named color "Green" = 0x008000 (a darker shade), NOT
+; 0x00FF00 (that one's named "Lime") - use the explicit hex form to
+; avoid targeting the wrong color.
+;
 ; Existing PNGs in root Images\ and their real pixel dimensions
 ; (measured from each file's IHDR chunk - AHK cannot query this):
 ;   bb-item.png           94 x 22
@@ -37,10 +48,11 @@ CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
-IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-motherlode.png"
+IMAGE_PATH := A_ScriptDir "\..\..\Images\deposit-default.png"
 IMAGE_W := 72     ; must match the PNG's real pixel size (see list above)
 IMAGE_H := 72
-IMAGE_TOL := 20      ; shade-of-variation tolerance, 0-255 (0 = exact)
+IMAGE_TOL := 5      ; shade-of-variation tolerance, 0-255 (0 = exact)
+TRANS_COLOR := "0x00FF00"   ; background color to treat as see-through ("" to disable)
 
 REGION_X1 := 0, REGION_Y1 := 0, REGION_X2 := 2559, REGION_Y2 := 1439
 ; ========================================================================
@@ -56,13 +68,13 @@ Esc:: {
 }
 
 RunSearch() {
-    LogLine("Search started: image=" IMAGE_PATH " tol=" IMAGE_TOL
+    LogLine("Search started: image=" IMAGE_PATH " tol=" IMAGE_TOL " trans=" TRANS_COLOR
         . " size=" IMAGE_W "x" IMAGE_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
 
     t0 := A_TickCount
     try {
         found := ImageSearch(&foundX, &foundY, REGION_X1, REGION_Y1, REGION_X2, REGION_Y2,
-            "*" IMAGE_TOL " " IMAGE_PATH)
+            ImagePattern(IMAGE_PATH, IMAGE_TOL, TRANS_COLOR))
     } catch as exc {
         msg := "ERROR: " exc.Message " (check IMAGE_PATH exists and IMAGE_W/H are correct)"
         ToolTip(msg, 20, 20)
@@ -81,6 +93,18 @@ RunSearch() {
     }
     ToolTip(msg, 20, 20)
     LogLine(msg)
+}
+
+; ---------- image search pattern (universal - every ImageSearch call
+; in this project builds its pattern string this way) ----------
+
+; Builds the "*tol *TransColor path" ImageSearch pattern string.
+; transColor := "" omits the *Trans option entirely.
+ImagePattern(path, tol, transColor := "") {
+    pattern := "*" tol
+    if (transColor != "")
+        pattern .= " *Trans" transColor
+    return pattern " " path
 }
 
 ; ---------- logging ----------

@@ -1,0 +1,43 @@
+2026-07-19 10:28:37 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 10:28:44 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16
+2026-07-19 10:28:59 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 10:29:00 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16
+2026-07-19 10:29:02 [11-pickup-appeared] Pickup flow started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2101,801 52x16 confirmTimeout=8000ms
+2026-07-19 10:29:02 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:02 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:03 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:03 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:04 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:04 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:05 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:05 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:06 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:06 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:06 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:07 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:07 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:08 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:08 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:09 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:09 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:10 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:10 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:11 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:11 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:12 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:12 [11-pickup-appeared] ImageAppeared: not yet visible
+2026-07-19 10:29:13 [11-pickup-appeared] ImageAppeared: found at 1250,723
+2026-07-19 10:29:13 [11-pickup-appeared] Appeared at 1250,723 after 11063 ms - snapshotting confirm box BEFORE click
+2026-07-19 10:29:13 [11-pickup-appeared] Clicked at 1250,727 (ctrl/force-run) - waiting for pickup confirmation
+2026-07-19 10:29:14 [11-pickup-appeared] BoxChanged: CHANGED
+2026-07-19 10:29:14 [11-pickup-appeared] PICKUP CONFIRMED (344 ms after click, 12094 ms total)
+2026-07-19 10:29:22 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 10:29:25 [11-pickup-appeared] Pickup flow started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\img\air-rune.png appearTimeout=15000ms confirmBox=2101,801 52x16 confirmTimeout=8000ms
+2026-07-19 10:29:25 [11-pickup-appeared] ImageAppeared: found at 1250,723
+2026-07-19 10:29:25 [11-pickup-appeared] Appeared at 1250,723 after 110 ms - snapshotting confirm box BEFORE click
+2026-07-19 10:29:26 [11-pickup-appeared] Clicked at 1250,727 (ctrl/force-run) - waiting for pickup confirmation
+2026-07-19 10:29:26 [11-pickup-appeared] BoxChanged: CHANGED
+2026-07-19 10:29:26 [11-pickup-appeared] PICKUP CONFIRMED (141 ms after click, 938 ms total)
+2026-07-19 10:29:28 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 10:33:22 [11-pickup-appeared] Script loaded. F5=run pickup flow  F7=trace confirm box  F6=stop  Esc=exit
+2026-07-19 10:33:29 [11-pickup-appeared] F7: tracing confirm box outline 2101,801 52x16

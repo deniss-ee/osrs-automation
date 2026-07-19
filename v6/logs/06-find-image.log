@@ -137,3 +137,59 @@
 2026-07-19 00:21:59 [06-find-image] FOUND at 811,801 (corner 775,765) in 78 ms
 2026-07-19 00:22:00 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 size=72x72 region=0,0 -> 2559,1439
 2026-07-19 00:22:00 [06-find-image] FOUND at 811,801 (corner 775,765) in 78 ms
+2026-07-19 10:24:36 [06-find-image] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png
+2026-07-19 10:24:41 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:41 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:42 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:42 [06-find-image] NOT FOUND (searched 265 ms)
+2026-07-19 10:24:43 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:43 [06-find-image] NOT FOUND (searched 265 ms)
+2026-07-19 10:24:44 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:44 [06-find-image] NOT FOUND (searched 265 ms)
+2026-07-19 10:24:46 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:46 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:46 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:46 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:49 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:49 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:50 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:51 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:53 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:53 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:24:57 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:24:57 [06-find-image] NOT FOUND (searched 265 ms)
+2026-07-19 10:25:00 [06-find-image] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png
+2026-07-19 10:25:01 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:02 [06-find-image] NOT FOUND (searched 281 ms)
+2026-07-19 10:25:02 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:02 [06-find-image] NOT FOUND (searched 265 ms)
+2026-07-19 10:25:02 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-motherlode.png tol=20 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:02 [06-find-image] NOT FOUND (searched 282 ms)
+2026-07-19 10:25:37 [06-find-image] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png
+2026-07-19 10:25:38 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:38 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:39 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:39 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:40 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:40 [06-find-image] NOT FOUND (searched 78 ms)
+2026-07-19 10:25:41 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:41 [06-find-image] NOT FOUND (searched 78 ms)
+2026-07-19 10:25:42 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:42 [06-find-image] NOT FOUND (searched 78 ms)
+2026-07-19 10:25:47 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:47 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:47 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:48 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:51 [06-find-image] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png
+2026-07-19 10:25:51 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:51 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:52 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:52 [06-find-image] FOUND at 1363,999 (corner 1327,963) in 109 ms
+2026-07-19 10:25:54 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:54 [06-find-image] FOUND at 1363,999 (corner 1327,963) in 94 ms
+2026-07-19 10:25:56 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:56 [06-find-image] NOT FOUND (searched 94 ms)
+2026-07-19 10:25:57 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:57 [06-find-image] NOT FOUND (searched 78 ms)
+2026-07-19 10:25:58 [06-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v6\micro\..\..\Images\deposit-default.png tol=5 trans=0x00FF00 size=72x72 region=0,0 -> 2559,1439
+2026-07-19 10:25:58 [06-find-image] FOUND at 1363,999 (corner 1327,963) in 93 ms
