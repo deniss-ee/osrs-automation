@@ -126,3 +126,17 @@
 2026-07-19 00:00:04 [01-find-color-screen] FindFilledBlock: verified block on attempt 1 at 711,541
 2026-07-19 00:00:04 [01-find-color-screen] FOUND 0xFF00FF at 711,541 in 78 ms
 2026-07-19 00:00:06 [01-find-color-screen] F6 pressed - tooltip cleared
+2026-07-19 11:55:48 [01-find-color-screen] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF
+2026-07-19 11:56:01 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
+2026-07-19 11:56:01 [01-find-color-screen] FindFilledBlock: found at 543,539 (21x21 0xFF00FF tol=5, 78 ms)
+2026-07-19 11:56:01 [01-find-color-screen] FOUND 0xFF00FF at 543,539 in 78 ms
+2026-07-19 11:56:12 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
+2026-07-19 11:56:12 [01-find-color-screen] FindFilledBlock: found at 543,539 (21x21 0xFF00FF tol=5, 47 ms)
+2026-07-19 11:56:12 [01-find-color-screen] FOUND 0xFF00FF at 543,539 in 62 ms
+2026-07-19 11:56:13 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
+2026-07-19 11:56:13 [01-find-color-screen] FindFilledBlock: found at 543,539 (21x21 0xFF00FF tol=5, 62 ms)
+2026-07-19 11:56:13 [01-find-color-screen] FOUND 0xFF00FF at 543,539 in 62 ms
+2026-07-19 11:56:14 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
+2026-07-19 11:56:14 [01-find-color-screen] FindFilledBlock: found at 543,539 (21x21 0xFF00FF tol=5, 62 ms)
+2026-07-19 11:56:14 [01-find-color-screen] FOUND 0xFF00FF at 543,539 in 62 ms
+2026-07-19 11:56:16 [01-find-color-screen] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF

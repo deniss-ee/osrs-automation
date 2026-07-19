@@ -37,12 +37,11 @@ START_USE_CTRL := true              ; true = force-run (Ctrl-held) click
 
 MARKER_COLOR := 0xFF00FF
 COLOR_TOL    := 5
-BLOCK_W      := 21
-BLOCK_H      := 21
-MAX_ATTEMPTS := 40
+BLOCK_W      := 11
+BLOCK_H      := 11
 
 ; Where the marker should appear once you've arrived/something happened.
-WAIT_REGION_X1 := 787, WAIT_REGION_Y1 := 533, WAIT_REGION_X2 := 808, WAIT_REGION_Y2 := 554
+WAIT_REGION_X1 := 794, WAIT_REGION_Y1 := 540, WAIT_REGION_X2 := 806, WAIT_REGION_Y2 := 552
 WAIT_TIMEOUT_MS := 15000   ; give up after this long if the marker never appears
 POLL_MS         := 300     ; tick-aligned poll interval
 
@@ -131,7 +130,7 @@ ClickAt(x, y, useCtrl := false) {
 ; anywhere in WAIT_REGION. Logs each check's outcome.
 MarkerVisible() {
     found := FindFilledBlock(WAIT_REGION_X1, WAIT_REGION_Y1, WAIT_REGION_X2, WAIT_REGION_Y2,
-        MARKER_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy, , , MAX_ATTEMPTS)
+        MARKER_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)
     if (found)
         LogLine("MarkerVisible: found at " cx "," cy)
     else
@@ -172,84 +171,73 @@ WaitUntil(condFn, timeoutMs, pollMs := 300) {
     }
 }
 
-; ---------- detection (identical port to micro 01-03/05) ----------
+; ---------- detection (fast native block search - identical across micros) ----------
+;
+; SPEED OVERHAUL (2026-07-19): the old verify-and-split loop paid a
+; stack of ~7ms pixel-API calls per rejected candidate, so whole-screen
+; speed depended on how much of the color was elsewhere on screen
+; (measured live: 42 yellow UI specks cost ~3s). Replaced with ONE
+; native ImageSearch for a solid reqW x reqH block of the color: only
+; a full-size solid block can match, decoys/specks cost nothing, and
+; whole-screen search runs at a constant ~100-200 ms no matter what
+; else is visible. Syntax verified against AutoHotkey.pdf: ImageSearch
+; accepts a bitmap handle as "HBITMAP:*" handle, and *n allows n shades
+; of variation per RGB channel (same semantics as PixelSearch tolerance).
 
-ColorClose(c1, c2, tol) {
-    return Abs(((c1 >> 16) & 0xFF) - ((c2 >> 16) & 0xFF)) <= tol
-        && Abs(((c1 >> 8) & 0xFF) - ((c2 >> 8) & 0xFF)) <= tol
-        && Abs((c1 & 0xFF) - (c2 & 0xFF)) <= tol
+; Builds (and caches per color+size) the solid-color in-memory bitmap
+; that ImageSearch matches against.
+SolidBlockBitmap(color, w, h) {
+    static cache := Map()
+    key := color "_" w "x" h
+    if (cache.Has(key))
+        return cache[key]
+
+    hdc := DllCall("GetDC", "ptr", 0, "ptr")
+    memDC := DllCall("CreateCompatibleDC", "ptr", hdc, "ptr")
+    hbm := DllCall("CreateCompatibleBitmap", "ptr", hdc, "int", w, "int", h, "ptr")
+    oldBmp := DllCall("SelectObject", "ptr", memDC, "ptr", hbm, "ptr")
+
+    ; GDI COLORREF is 0x00BBGGRR - swap R and B from the 0xRRGGBB value
+    bgr := ((color & 0xFF) << 16) | (color & 0xFF00) | ((color >> 16) & 0xFF)
+    brush := DllCall("CreateSolidBrush", "uint", bgr, "ptr")
+    rect := Buffer(16, 0)
+    NumPut("int", 0, "int", 0, "int", w, "int", h, rect)
+    DllCall("FillRect", "ptr", memDC, "ptr", rect, "ptr", brush)
+
+    DllCall("DeleteObject", "ptr", brush)
+    DllCall("SelectObject", "ptr", memDC, "ptr", oldBmp, "ptr")
+    DllCall("DeleteDC", "ptr", memDC)
+    DllCall("ReleaseDC", "ptr", 0, "ptr", hdc)
+
+    cache[key] := hbm
+    return hbm
 }
 
-IsColorAt(x, y, color, tol) {
-    return ColorClose(PixelGetColor(x, y), color, tol)
-}
+; True if a solid block of `color` at least reqW x reqH (scaled by
+; verifyPercent) exists in the region; &cx/&cy get the center of the
+; matched area. verifyPercent 100 = strict full size; lower it only if
+; a real target's soft/anti-aliased edges make the strict match miss.
+FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, verifyPercent := 100) {
+    t0 := A_TickCount
+    bmpW := Max(1, reqW * verifyPercent // 100)
+    bmpH := Max(1, reqH * verifyPercent // 100)
+    hbm := SolidBlockBitmap(color, bmpW, bmpH)
 
-VerifyBlock(x, y, color, tol, reqW, reqH) {
-    checkW := reqW * 3 // 4
-    checkH := reqH * 3 // 4
-    if (!IsColorAt(x + checkW // 2, y + checkH // 2, color, tol))
+    if (!ImageSearch(&fx, &fy, x1, y1, x2, y2, "*" tol " HBITMAP:*" hbm)) {
+        LogLine("FindFilledBlock: not found (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
         return false
-    if (!IsColorAt(x, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y, color, tol))
-        return false
-    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
-        return false
+    }
+    cx := fx + bmpW // 2
+    cy := fy + bmpH // 2
+    LogLine("FindFilledBlock: found at " cx "," cy " (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
     return true
 }
 
-FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, refX := "", refY := "", maxAttempts := 40) {
-    hasRef := (refX != "" && refY != "")
-    stack := [[x1, y1, x2, y2]]
-    attempts := 0
-
-    while (stack.Length > 0) {
-        if (maxAttempts > 0 && attempts >= maxAttempts)
-            return false
-
-        rect := stack.Pop()
-        rx1 := rect[1], ry1 := rect[2], rx2 := rect[3], ry2 := rect[4]
-
-        if (rx1 > rx2 || ry1 > ry2)
-            continue
-
-        if (!PixelSearch(&foundX, &foundY, rx1, ry1, rx2, ry2, color, tol))
-            continue
-
-        attempts += 1
-
-        if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
-            cx := Min(Max(foundX + reqW // 2, x1), x2)
-            cy := Min(Max(foundY + reqH // 2, y1), y2)
-            return true
-        }
-
-        restOfRow := [foundX + 1, foundY, rx2, foundY]
-        below := [rx1, foundY + 1, rx2, ry2]
-
-        if (hasRef) {
-            restContainsRef := (refY = foundY && refX >= restOfRow[1] && refX <= restOfRow[3])
-            belowContainsRef := (refY >= below[2] && refY <= below[4])
-            if (restContainsRef && !belowContainsRef) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else if (belowContainsRef && !restContainsRef) {
-                stack.Push(restOfRow), stack.Push(below)
-            } else if (Abs(refY - foundY) <= Abs(refY - below[2])) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else {
-                stack.Push(restOfRow), stack.Push(below)
-            }
-        } else {
-            stack.Push(below), stack.Push(restOfRow)
-        }
-    }
-
-    return false
-}
-
 ; ---------- logging ----------
+
+HexColor(c) {
+    return Format("0x{:06X}", c)
+}
 
 LogLine(msg) {
     static logDir := A_ScriptDir "\..\logs"

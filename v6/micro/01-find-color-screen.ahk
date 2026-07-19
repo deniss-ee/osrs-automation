@@ -8,11 +8,10 @@
 ;   F6  = clear the tooltip
 ;   Esc = exit the script
 ;
-; Algorithm ported from v5 Detection\ColorSearch.ahk (FindFilledBlock,
-; VerifyBlock, ColorClose, IsColorAt), minus the bottom-up scan option.
-; Syntax verified against AutoHotkey.pdf (PixelSearch, PixelGetColor,
-; FormatTime). Note: v2's PixelGetColor always returns RGB - the "RGB"
-; mode word used in v5 is a v1 leftover and is NOT passed here.
+; Detection: one native ImageSearch for a solid BLOCK_W x BLOCK_H
+; bitmap of TARGET_COLOR (see the detection section) - replaced the
+; v5 verify-and-split port on 2026-07-19 for constant whole-screen
+; speed regardless of decoys/specks sharing the color.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -27,7 +26,6 @@ TARGET_COLOR := 0xFF00FF   ; the RuneLite marker color to search for
 COLOR_TOL := 5         ; per-channel tolerance (0-255)
 BLOCK_W := 21         ; required solid block width in px
 BLOCK_H := 21         ; required solid block height in px
-MAX_ATTEMPTS := 3         ; verify-and-split cap (speed safety valve)
 ; ========================================================================
 
 F5:: RunSearch()
@@ -47,7 +45,7 @@ RunSearch() {
     . " block=" BLOCK_W "x" BLOCK_H " region=0,0 -> " x2 "," y2 " (whole screen)")
 
     t0 := A_TickCount
-    found := FindFilledBlock(0, 0, x2, y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy, , , MAX_ATTEMPTS)
+    found := FindFilledBlock(0, 0, x2, y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)
     elapsedMs := A_TickCount - t0
 
     if (found) {
@@ -60,97 +58,66 @@ RunSearch() {
     LogLine(msg)
 }
 
-; ---------- detection (v5 ColorSearch port, top-down only) ----------
+; ---------- detection (fast native block search - identical across micros) ----------
+;
+; SPEED OVERHAUL (2026-07-19): the old verify-and-split loop paid a
+; stack of ~7ms pixel-API calls per rejected candidate, so whole-screen
+; speed depended on how much of the color was elsewhere on screen
+; (measured live: 42 yellow UI specks cost ~3s). Replaced with ONE
+; native ImageSearch for a solid reqW x reqH block of the color: only
+; a full-size solid block can match, decoys/specks cost nothing, and
+; whole-screen search runs at a constant ~100-200 ms no matter what
+; else is visible. Syntax verified against AutoHotkey.pdf: ImageSearch
+; accepts a bitmap handle as "HBITMAP:*" handle, and *n allows n shades
+; of variation per RGB channel (same semantics as PixelSearch tolerance).
 
-; Each RGB channel of c1 within tol of c2's channel.
-ColorClose(c1, c2, tol) {
-    return Abs(((c1 >> 16) & 0xFF) - ((c2 >> 16) & 0xFF)) <= tol
-    && Abs(((c1 >> 8) & 0xFF) - ((c2 >> 8) & 0xFF)) <= tol
-    && Abs((c1 & 0xFF) - (c2 & 0xFF)) <= tol
+; Builds (and caches per color+size) the solid-color in-memory bitmap
+; that ImageSearch matches against.
+SolidBlockBitmap(color, w, h) {
+    static cache := Map()
+    key := color "_" w "x" h
+    if (cache.Has(key))
+        return cache[key]
+
+    hdc := DllCall("GetDC", "ptr", 0, "ptr")
+    memDC := DllCall("CreateCompatibleDC", "ptr", hdc, "ptr")
+    hbm := DllCall("CreateCompatibleBitmap", "ptr", hdc, "int", w, "int", h, "ptr")
+    oldBmp := DllCall("SelectObject", "ptr", memDC, "ptr", hbm, "ptr")
+
+    ; GDI COLORREF is 0x00BBGGRR - swap R and B from the 0xRRGGBB value
+    bgr := ((color & 0xFF) << 16) | (color & 0xFF00) | ((color >> 16) & 0xFF)
+    brush := DllCall("CreateSolidBrush", "uint", bgr, "ptr")
+    rect := Buffer(16, 0)
+    NumPut("int", 0, "int", 0, "int", w, "int", h, rect)
+    DllCall("FillRect", "ptr", memDC, "ptr", rect, "ptr", brush)
+
+    DllCall("DeleteObject", "ptr", brush)
+    DllCall("SelectObject", "ptr", memDC, "ptr", oldBmp, "ptr")
+    DllCall("DeleteDC", "ptr", memDC)
+    DllCall("ReleaseDC", "ptr", 0, "ptr", hdc)
+
+    cache[key] := hbm
+    return hbm
 }
 
-IsColorAt(x, y, color, tol) {
-    return ColorClose(PixelGetColor(x, y), color, tol)
-}
+; True if a solid block of `color` at least reqW x reqH (scaled by
+; verifyPercent) exists in the region; &cx/&cy get the center of the
+; matched area. verifyPercent 100 = strict full size; lower it only if
+; a real target's soft/anti-aliased edges make the strict match miss.
+FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, verifyPercent := 100) {
+    t0 := A_TickCount
+    bmpW := Max(1, reqW * verifyPercent // 100)
+    bmpH := Max(1, reqH * verifyPercent // 100)
+    hbm := SolidBlockBitmap(color, bmpW, bmpH)
 
-; Fast 5-point cross-check that a reqW x reqH block anchored at (x,y) is
-; solidly filled. Checks 75% of the requested size (safe against edge
-; anti-aliasing). Always extends downward (top-down scan only in v6).
-VerifyBlock(x, y, color, tol, reqW, reqH) {
-    checkW := reqW * 3 // 4
-    checkH := reqH * 3 // 4
-    if (!IsColorAt(x + checkW // 2, y + checkH // 2, color, tol))
+    if (!ImageSearch(&fx, &fy, x1, y1, x2, y2, "*" tol " HBITMAP:*" hbm)) {
+        LogLine("FindFilledBlock: not found (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
         return false
-    if (!IsColorAt(x, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y, color, tol))
-        return false
-    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
-        return false
-    return true
-}
-
-; Searches [x1,y1]-[x2,y2] top-down for a continuous block of `color` at
-; least reqW x reqH. Writes the verified block's center to &cx/&cy.
-; Iterative verify-and-split (stack, not recursion): each false-positive
-; pixel splits the remaining area into "rest of row" + "everything below".
-; refX/refY (optional) steer the split order toward an expected location.
-; maxAttempts caps total verify cycles so a common color can't stall us.
-FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, refX := "", refY := "", maxAttempts := 40) {
-    hasRef := (refX != "" && refY != "")
-    stack := [[x1, y1, x2, y2]]
-    attempts := 0
-
-    while (stack.Length > 0) {
-        if (maxAttempts > 0 && attempts >= maxAttempts) {
-            LogLine("FindFilledBlock: gave up after " attempts " verify attempts (maxAttempts)")
-            return false
-        }
-
-        rect := stack.Pop()
-        rx1 := rect[1], ry1 := rect[2], rx2 := rect[3], ry2 := rect[4]
-
-        if (rx1 > rx2 || ry1 > ry2)
-            continue
-
-        if (!PixelSearch(&foundX, &foundY, rx1, ry1, rx2, ry2, color, tol))
-            continue
-
-        attempts += 1
-
-        if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
-            cx := Min(Max(foundX + reqW // 2, x1), x2)
-            cy := Min(Max(foundY + reqH // 2, y1), y2)
-            LogLine("FindFilledBlock: verified block on attempt " attempts " at " cx "," cy)
-            return true
-        }
-
-        restOfRow := [foundX + 1, foundY, rx2, foundY]
-        below := [rx1, foundY + 1, rx2, ry2]
-
-        if (hasRef) {
-            ; Explore whichever sub-rectangle contains the reference point
-            ; first (LIFO stack - pushed last is searched next); if neither
-            ; contains it, prefer the vertically closer one.
-            restContainsRef := (refY = foundY && refX >= restOfRow[1] && refX <= restOfRow[3])
-            belowContainsRef := (refY >= below[2] && refY <= below[4])
-            if (restContainsRef && !belowContainsRef) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else if (belowContainsRef && !restContainsRef) {
-                stack.Push(restOfRow), stack.Push(below)
-            } else if (Abs(refY - foundY) <= Abs(refY - below[2])) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else {
-                stack.Push(restOfRow), stack.Push(below)
-            }
-        } else {
-            stack.Push(below), stack.Push(restOfRow)
-        }
     }
-
-    return false
+    cx := fx + bmpW // 2
+    cy := fy + bmpH // 2
+    LogLine("FindFilledBlock: found at " cx "," cy " (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
+    return true
 }
 
 ; ---------- logging ----------

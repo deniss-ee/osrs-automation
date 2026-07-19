@@ -1,300 +1,195 @@
-2026-07-19 10:36:26 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:36:33 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:36:34 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=5 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:36:35 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:36 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:37 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:38 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:38 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:38 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:39 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:39 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:41 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:42 [12-track-and-click] Acquire: not found
-2026-07-19 10:36:43 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:39:07 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:39:07 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=5 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:39:08 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:09 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:11 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:12 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:13 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:14 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:15 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:17 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:18 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:19 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:20 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:21 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:22 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:24 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:25 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:26 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:39:27 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=5 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:39:28 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:29 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:30 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:31 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:32 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:34 [12-track-and-click] Acquire: not found
-2026-07-19 10:39:35 [12-track-and-click] Acquired new target at 500,128
-2026-07-19 10:39:35 [12-track-and-click] Clicked initial/re-click target at 500,128
-2026-07-19 10:39:36 [12-track-and-click] Tracking not-yet-stable target at 500,128
-2026-07-19 10:39:36 [12-track-and-click] Tracking not-yet-stable target at 500,128
-2026-07-19 10:39:37 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:37 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:38 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:38 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:39 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:39 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:40 [12-track-and-click] Clicked STABLE target at 500,128
-2026-07-19 10:39:40 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:41 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:41 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:42 [12-track-and-click] Tracking stable target at 500,128 (cooldown active)
-2026-07-19 10:39:42 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:39:43 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:08 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:40:09 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=40 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:40:10 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:11 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:13 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:14 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:14 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:15 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:15 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:15 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:16 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:16 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:17 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:19 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:40:19 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=40 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:40:20 [12-track-and-click] Acquired new target at 1689,803
-2026-07-19 10:40:20 [12-track-and-click] Clicked initial/re-click target at 1689,803
-2026-07-19 10:40:21 [12-track-and-click] Tracking not-yet-stable target at 1677,805
-2026-07-19 10:40:21 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:40:21 [12-track-and-click] STOPPED by F6 after 1469 ms
-2026-07-19 10:40:23 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:40:34 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:40:34 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=40 block=21x21 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:40:35 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:37 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:38 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:40:38 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:38 [12-track-and-click] STOPPED by F6 after 3329 ms
-2026-07-19 10:40:41 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:40:49 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:40:53 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:40:54 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=40 block=13x13 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:40:55 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:57 [12-track-and-click] Acquire: not found
-2026-07-19 10:40:58 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:40:58 [12-track-and-click] Acquired new target at 1627,803
-2026-07-19 10:40:58 [12-track-and-click] STOPPED by F6 after 4765 ms
-2026-07-19 10:41:01 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0x00FF00 IndicatorSlot=28
-2026-07-19 10:41:01 [12-track-and-click] TrackAndClick started: color=0x00FF00 tol=40 block=13x13 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:41:03 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:41:03 [12-track-and-click] Acquired new target at 1627,803
-2026-07-19 10:41:03 [12-track-and-click] STOPPED by F6 after 2047 ms
-2026-07-19 10:41:16 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:41:16 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=40 block=13x13 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:41:16 [12-track-and-click] Acquired new target at 1627,803
-2026-07-19 10:41:17 [12-track-and-click] Clicked initial/re-click target at 1627,803
-2026-07-19 10:41:17 [12-track-and-click] Tracking not-yet-stable target at 1623,805
-2026-07-19 10:41:18 [12-track-and-click] Tracking not-yet-stable target at 1595,809
-2026-07-19 10:41:18 [12-track-and-click] Tracking not-yet-stable target at 1573,815
-2026-07-19 10:41:18 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:41:18 [12-track-and-click] STOPPED by F6 after 2125 ms
-2026-07-19 10:41:24 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:41:25 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=40 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:41:25 [12-track-and-click] Acquired new target at 1581,817
-2026-07-19 10:41:25 [12-track-and-click] Clicked initial/re-click target at 1581,817
-2026-07-19 10:41:26 [12-track-and-click] Tracking not-yet-stable target at 1577,819
-2026-07-19 10:41:26 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:41:26 [12-track-and-click] Tracking not-yet-stable target at 1565,835
-2026-07-19 10:41:26 [12-track-and-click] STOPPED by F6 after 1703 ms
-2026-07-19 10:42:17 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:42:23 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:42:23 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=40 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:42:25 [12-track-and-click] Acquire: not found
-2026-07-19 10:42:27 [12-track-and-click] Acquire: not found
-2026-07-19 10:42:28 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:43:15 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:43:19 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:43:20 [12-track-and-click] Acquire: not found
-2026-07-19 10:43:22 [12-track-and-click] Acquire: not found
-2026-07-19 10:43:25 [12-track-and-click] Acquire: not found
-2026-07-19 10:43:27 [12-track-and-click] Acquire: not found
-2026-07-19 10:43:29 [12-track-and-click] Acquire: not found
-2026-07-19 10:43:29 [12-track-and-click] Acquired new target at 734,134
-2026-07-19 10:43:30 [12-track-and-click] Clicked initial/re-click target at 734,134
-2026-07-19 10:43:30 [12-track-and-click] Tracking not-yet-stable target at 734,134
-2026-07-19 10:43:31 [12-track-and-click] Tracking not-yet-stable target at 734,134
-2026-07-19 10:43:31 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:31 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:32 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:32 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:33 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:33 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:34 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:34 [12-track-and-click] Clicked STABLE target at 734,134
-2026-07-19 10:43:35 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:35 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:36 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:36 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:36 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:37 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:37 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:38 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:38 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:43:38 [12-track-and-click] Tracking stable target at 734,134 (cooldown active)
-2026-07-19 10:43:38 [12-track-and-click] STOPPED by F6 after 18985 ms
-2026-07-19 10:43:38 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:43:38 [12-track-and-click] Acquired new target at 734,134
-2026-07-19 10:43:39 [12-track-and-click] Clicked initial/re-click target at 734,134
-2026-07-19 10:43:39 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:43:39 [12-track-and-click] STOPPED by F6 after 1031 ms
-2026-07-19 10:43:58 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:43:58 [12-track-and-click] Acquired new target at 734,134
-2026-07-19 10:43:58 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:43:58 [12-track-and-click] STOPPED by F6 after 453 ms
-2026-07-19 10:43:58 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:43:59 [12-track-and-click] Acquired new target at 734,134
-2026-07-19 10:43:59 [12-track-and-click] Clicked initial/re-click target at 734,134
-2026-07-19 10:44:00 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:00 [12-track-and-click] Tracking not-yet-stable target at 734,134
-2026-07-19 10:44:00 [12-track-and-click] STOPPED by F6 after 1235 ms
-2026-07-19 10:44:06 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:44:08 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:08 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=77x77 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:44:09 [12-track-and-click] Acquire: not found
-2026-07-19 10:44:11 [12-track-and-click] Acquire: not found
-2026-07-19 10:44:12 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:12 [12-track-and-click] Acquire: not found
-2026-07-19 10:44:12 [12-track-and-click] STOPPED by F6 after 4031 ms
-2026-07-19 10:44:13 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:13 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:13 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:44:37 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:44:38 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:44:38 [12-track-and-click] Acquired new target at 737,137
-2026-07-19 10:44:39 [12-track-and-click] Clicked initial/re-click target at 737,137
-2026-07-19 10:44:39 [12-track-and-click] Tracking not-yet-stable target at 737,137
-2026-07-19 10:44:40 [12-track-and-click] Tracking not-yet-stable target at 737,137
-2026-07-19 10:44:40 [12-track-and-click] Tracking stable target at 737,137 (cooldown active)
-2026-07-19 10:44:41 [12-track-and-click] Tracking stable target at 737,137 (cooldown active)
-2026-07-19 10:44:41 [12-track-and-click] Tracking stable target at 737,137 (cooldown active)
-2026-07-19 10:44:42 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:45:15 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:45:16 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:45:18 [12-track-and-click] Acquire: not found
-2026-07-19 10:45:18 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:45:18 [12-track-and-click] STOPPED by F6 after 1938 ms
-2026-07-19 10:45:54 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:45:55 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:45:55 [12-track-and-click] Acquired new target at 1572,778
-2026-07-19 10:45:56 [12-track-and-click] Clicked initial/re-click target at 1572,778
-2026-07-19 10:45:56 [12-track-and-click] Tracking not-yet-stable target at 1572,780
-2026-07-19 10:45:57 [12-track-and-click] Tracking not-yet-stable target at 1562,836
-2026-07-19 10:45:57 [12-track-and-click] Tracking not-yet-stable target at 1522,860
-2026-07-19 10:45:58 [12-track-and-click] Tracking not-yet-stable target at 1470,866
-2026-07-19 10:45:58 [12-track-and-click] Tracking not-yet-stable target at 1408,868
-2026-07-19 10:45:58 [12-track-and-click] Tracking not-yet-stable target at 1346,870
-2026-07-19 10:45:59 [12-track-and-click] Tracking not-yet-stable target at 1284,870
-2026-07-19 10:45:59 [12-track-and-click] Tracking not-yet-stable target at 1220,870
-2026-07-19 10:46:00 [12-track-and-click] Tracking not-yet-stable target at 1168,866
-2026-07-19 10:46:00 [12-track-and-click] Tracking not-yet-stable target at 1150,835
-2026-07-19 10:46:00 [12-track-and-click] Tracking not-yet-stable target at 1150,770
-2026-07-19 10:46:01 [12-track-and-click] Tracking not-yet-stable target at 1154,698
-2026-07-19 10:46:01 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:46:02 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:02 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:03 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:03 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:03 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:04 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:04 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:04 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:46:04 [12-track-and-click] STOPPED by F6 after 9750 ms
-2026-07-19 10:46:05 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:46:05 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:06 [12-track-and-click] Clicked initial/re-click target at 1246,654
-2026-07-19 10:46:06 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:46:07 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:07 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:07 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:46:07 [12-track-and-click] STOPPED by F6 after 2156 ms
-2026-07-19 10:46:09 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:46:28 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:46:29 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:46:30 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:31 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:46:32 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:32 [12-track-and-click] STOPPED by F6 after 2609 ms
-2026-07-19 10:46:40 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:46:41 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:46:43 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:46:43 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:46:43 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:44 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:44 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:45 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:45 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:45 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:46 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:46 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:47 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:47 [12-track-and-click] Acquired new target at 699,137
-2026-07-19 10:46:48 [12-track-and-click] Clicked initial/re-click target at 699,137
-2026-07-19 10:46:48 [12-track-and-click] Tracking not-yet-stable target at 699,137
-2026-07-19 10:46:49 [12-track-and-click] Tracking not-yet-stable target at 699,137
-2026-07-19 10:46:49 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:46:50 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:50 [12-track-and-click] Clicked initial/re-click target at 1246,654
-2026-07-19 10:46:51 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:46:51 [12-track-and-click] Acquire: not found
-2026-07-19 10:46:52 [12-track-and-click] Acquired new target at 1246,654
-2026-07-19 10:46:52 [12-track-and-click] Clicked initial/re-click target at 1246,654
-2026-07-19 10:46:53 [12-track-and-click] Tracking not-yet-stable target at 1246,654
-2026-07-19 10:46:53 [12-track-and-click] Tracking not-yet-stable target at 1246,654
-2026-07-19 10:46:53 [12-track-and-click] Tracking stable target at 1246,654 (cooldown active)
-2026-07-19 10:46:54 [12-track-and-click] Tracking stable target at 1246,654 (cooldown active)
-2026-07-19 10:46:54 [12-track-and-click] Tracking stable target at 1246,654 (cooldown active)
-2026-07-19 10:46:56 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:53:42 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:54:12 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:54:16 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:54:16 [12-track-and-click] Acquired new target at 1244,650
-2026-07-19 10:54:17 [12-track-and-click] Clicked initial/re-click target at 1244,650
-2026-07-19 10:54:18 [12-track-and-click] Tracking not-yet-stable target at 1250,655
-2026-07-19 10:54:18 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:54:18 [12-track-and-click] Acquire: not found
-2026-07-19 10:54:19 [12-track-and-click] Acquire: not found
-2026-07-19 10:54:19 [12-track-and-click] Acquire: not found
-2026-07-19 10:54:20 [12-track-and-click] Acquired new target at 1244,650
-2026-07-19 10:54:21 [12-track-and-click] Clicked initial/re-click target at 1244,654
-2026-07-19 10:54:21 [12-track-and-click] Tracking not-yet-stable target at 1244,654
-2026-07-19 10:54:21 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:54:22 [12-track-and-click] Acquire: not found
-2026-07-19 10:54:22 [12-track-and-click] Acquired new target at 1244,650
-2026-07-19 10:54:23 [12-track-and-click] Clicked initial/re-click target at 1244,650
-2026-07-19 10:54:24 [12-track-and-click] Tracking not-yet-stable target at 1244,651
-2026-07-19 10:54:24 [12-track-and-click] Target depleted or lost - re-acquiring
-2026-07-19 10:54:24 [12-track-and-click] Acquired new target at 1244,650
-2026-07-19 10:54:25 [12-track-and-click] Clicked initial/re-click target at 1244,650
-2026-07-19 10:54:26 [12-track-and-click] Tracking not-yet-stable target at 1244,653
-2026-07-19 10:54:26 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:54:26 [12-track-and-click] STOPPED by F6 after 9640 ms
-2026-07-19 10:54:27 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFF00FF IndicatorSlot=28
-2026-07-19 10:54:43 [12-track-and-click] TrackAndClick started: color=0xFF00FF tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:54:43 [12-track-and-click] Acquired new target at 1452,379
-2026-07-19 10:54:44 [12-track-and-click] Clicked initial/re-click target at 1452,379
-2026-07-19 10:54:44 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:54:45 [12-track-and-click] Tracking not-yet-stable target at 1452,379
-2026-07-19 10:54:45 [12-track-and-click] STOPPED by F6 after 1250 ms
-2026-07-19 10:55:55 [12-track-and-click] Script loaded. F5=start loop  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28
-2026-07-19 10:55:55 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=39x39 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
-2026-07-19 10:55:57 [12-track-and-click] Acquire: not found
-2026-07-19 10:55:58 [12-track-and-click] F6 pressed - stop requested
-2026-07-19 10:55:59 [12-track-and-click] Acquire: not found
-2026-07-19 10:55:59 [12-track-and-click] STOPPED by F6 after 3703 ms
+2026-07-19 11:32:49 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:32:50 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=31x31 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:32:50 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1536,387
+2026-07-19 11:32:50 [12-track-and-click] Acquired new target at 1536,387
+2026-07-19 11:32:50 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1536,387
+2026-07-19 11:32:50 [12-track-and-click] Clicked initial/re-click target at 1536,387
+2026-07-19 11:32:51 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1536,387
+2026-07-19 11:32:51 [12-track-and-click] Tracking not-yet-stable target at 1536,387
+2026-07-19 11:32:51 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1536,387
+2026-07-19 11:32:51 [12-track-and-click] Tracking not-yet-stable target at 1536,387
+2026-07-19 11:32:51 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 11:32:51 [12-track-and-click] STOPPED by F6 after 1734 ms
+2026-07-19 11:33:04 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:33:05 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:33:05 [12-track-and-click] FindFilledBlock: candidate at 1521,372 failed verify (blob ~32x32) - excluded
+2026-07-19 11:33:05 [12-track-and-click] FindFilledBlock: verified block on attempt 2 at 1269,494
+2026-07-19 11:33:05 [12-track-and-click] Acquired new target at 1269,494
+2026-07-19 11:33:06 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1269,494
+2026-07-19 11:33:06 [12-track-and-click] Clicked initial/re-click target at 1269,494
+2026-07-19 11:33:06 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1269,494
+2026-07-19 11:33:06 [12-track-and-click] Tracking not-yet-stable target at 1269,494
+2026-07-19 11:33:06 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 11:33:06 [12-track-and-click] STOPPED by F6 after 1844 ms
+2026-07-19 11:33:08 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:33:09 [12-track-and-click] FindFilledBlock: candidate at 1521,372 failed verify (blob ~32x32) - excluded
+2026-07-19 11:33:09 [12-track-and-click] FindFilledBlock: verified block on attempt 2 at 1269,494
+2026-07-19 11:33:09 [12-track-and-click] Acquired new target at 1269,494
+2026-07-19 11:33:09 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1269,494
+2026-07-19 11:33:09 [12-track-and-click] Clicked initial/re-click target at 1269,494
+2026-07-19 11:33:10 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 11:33:10 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1269,494
+2026-07-19 11:33:10 [12-track-and-click] Tracking not-yet-stable target at 1269,494
+2026-07-19 11:33:10 [12-track-and-click] STOPPED by F6 after 1797 ms
+2026-07-19 11:33:45 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:33:49 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:33:49 [12-track-and-click] FindFilledBlock: candidate at 2389,149 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:49 [12-track-and-click] FindFilledBlock: candidate at 2387,151 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:49 [12-track-and-click] FindFilledBlock: candidate at 2387,155 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2389,157 failed verify (blob ~4x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2385,157 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2343,159 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2341,161 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2331,165 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2347,167 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2329,167 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2345,169 failed verify (blob ~4x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2347,177 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2345,179 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2299,185 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2389,185 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2389,186 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2355,187 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2359,187 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:50 [12-track-and-click] FindFilledBlock: candidate at 2387,187 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2359,188 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2387,188 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2297,187 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2353,189 failed verify (blob ~8x2) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2385,189 failed verify (blob ~4x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2385,190 failed verify (blob ~4x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2371,195 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2307,197 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2319,197 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2369,197 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2319,198 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2369,198 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2305,199 failed verify (blob ~4x2) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2317,199 failed verify (blob ~4x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2339,199 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2317,200 failed verify (blob ~4x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2339,200 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:51 [12-track-and-click] FindFilledBlock: candidate at 2337,201 failed verify (blob ~4x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2319,205 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2323,205 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2331,205 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2323,206 failed verify (blob ~2x3) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2331,206 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2329,207 failed verify (blob ~4x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2321,207 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2317,207 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2361,223 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2365,223 failed verify (blob ~2x1) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2365,224 failed verify (blob ~2x3) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2363,225 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2359,225 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2305,229 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2303,231 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2385,243 failed verify (blob ~2x4) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: candidate at 2383,245 failed verify (blob ~2x2) - excluded
+2026-07-19 11:33:52 [12-track-and-click] FindFilledBlock: verified block on attempt 55 at 1243,651
+2026-07-19 11:33:52 [12-track-and-click] Acquired new target at 1243,651
+2026-07-19 11:33:53 [12-track-and-click] FindFilledBlock: verified block on attempt 1 at 1243,651
+2026-07-19 11:33:53 [12-track-and-click] Clicked initial/re-click target at 1243,651
+2026-07-19 11:33:53 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 11:33:53 [12-track-and-click] STOPPED by F6 after 4094 ms
+2026-07-19 11:51:28 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:51:31 [12-track-and-click] PROBE at 1048,440: actual=0xFF00FF  configured=0xFFFF00  delta R/G/B=0/255/255  -> needs tol >= 255 (or set TARGET_COLOR := 0xFF00FF)
+2026-07-19 11:51:44 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:51:45 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:51:45 [12-track-and-click] UNTIL-CONDITION MET: indicator slot 28 is full - stopping (0 ms total)
+2026-07-19 11:51:48 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:51:48 [12-track-and-click] FindFilledBlock: found at 1263,369 (33x33 0xFFFF00 tol=5, 62 ms)
+2026-07-19 11:51:48 [12-track-and-click] Acquired new target at 1263,369
+2026-07-19 11:51:48 [12-track-and-click] FindFilledBlock: found at 1263,369 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:49 [12-track-and-click] Clicked initial/re-click target at 1263,369
+2026-07-19 11:51:49 [12-track-and-click] FindFilledBlock: found at 1263,369 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:49 [12-track-and-click] Tracking not-yet-stable target at 1263,369
+2026-07-19 11:51:49 [12-track-and-click] FindFilledBlock: found at 1263,369 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:51:49 [12-track-and-click] Tracking not-yet-stable target at 1263,369
+2026-07-19 11:51:50 [12-track-and-click] FindFilledBlock: found at 1271,383 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:50 [12-track-and-click] Tracking not-yet-stable target at 1271,383
+2026-07-19 11:51:50 [12-track-and-click] FindFilledBlock: found at 1279,407 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:50 [12-track-and-click] Tracking not-yet-stable target at 1279,407
+2026-07-19 11:51:50 [12-track-and-click] FindFilledBlock: found at 1263,421 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:50 [12-track-and-click] Tracking not-yet-stable target at 1263,421
+2026-07-19 11:51:51 [12-track-and-click] FindFilledBlock: found at 1237,431 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:51 [12-track-and-click] Tracking not-yet-stable target at 1237,431
+2026-07-19 11:51:51 [12-track-and-click] FindFilledBlock: found at 1241,431 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:51:51 [12-track-and-click] Tracking not-yet-stable target at 1241,431
+2026-07-19 11:51:52 [12-track-and-click] FindFilledBlock: found at 1269,423 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:52 [12-track-and-click] Tracking not-yet-stable target at 1269,423
+2026-07-19 11:51:52 [12-track-and-click] FindFilledBlock: found at 1337,413 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:52 [12-track-and-click] Tracking not-yet-stable target at 1337,413
+2026-07-19 11:51:52 [12-track-and-click] FindFilledBlock: found at 1491,445 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:52 [12-track-and-click] Tracking not-yet-stable target at 1491,445
+2026-07-19 11:51:53 [12-track-and-click] FindFilledBlock: found at 1537,421 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:51:53 [12-track-and-click] Tracking not-yet-stable target at 1537,421
+2026-07-19 11:51:53 [12-track-and-click] FindFilledBlock: found at 1575,393 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:51:53 [12-track-and-click] Tracking not-yet-stable target at 1575,393
+2026-07-19 11:51:54 [12-track-and-click] FindFilledBlock: found at 1607,369 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:51:54 [12-track-and-click] Tracking not-yet-stable target at 1607,369
+2026-07-19 11:51:54 [12-track-and-click] FindFilledBlock: found at 1621,375 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:54 [12-track-and-click] Tracking not-yet-stable target at 1621,375
+2026-07-19 11:51:54 [12-track-and-click] FindFilledBlock: found at 1679,339 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:54 [12-track-and-click] Tracking not-yet-stable target at 1679,339
+2026-07-19 11:51:55 [12-track-and-click] FindFilledBlock: found at 1729,351 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:55 [12-track-and-click] Tracking not-yet-stable target at 1729,351
+2026-07-19 11:51:55 [12-track-and-click] FindFilledBlock: found at 1787,353 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:55 [12-track-and-click] Tracking not-yet-stable target at 1787,353
+2026-07-19 11:51:56 [12-track-and-click] FindFilledBlock: found at 1823,345 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:56 [12-track-and-click] Tracking not-yet-stable target at 1823,345
+2026-07-19 11:51:56 [12-track-and-click] FindFilledBlock: found at 1837,323 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:56 [12-track-and-click] Tracking not-yet-stable target at 1837,323
+2026-07-19 11:51:56 [12-track-and-click] FindFilledBlock: found at 1859,295 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:56 [12-track-and-click] Tracking not-yet-stable target at 1859,295
+2026-07-19 11:51:57 [12-track-and-click] FindFilledBlock: found at 1879,275 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:57 [12-track-and-click] Tracking not-yet-stable target at 1879,275
+2026-07-19 11:51:57 [12-track-and-click] FindFilledBlock: found at 1867,289 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:57 [12-track-and-click] Tracking not-yet-stable target at 1867,289
+2026-07-19 11:51:57 [12-track-and-click] FindFilledBlock: found at 1869,287 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:57 [12-track-and-click] Tracking not-yet-stable target at 1869,287
+2026-07-19 11:51:58 [12-track-and-click] FindFilledBlock: not found (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:51:58 [12-track-and-click] Target depleted or lost - re-acquiring
+2026-07-19 11:51:58 [12-track-and-click] FindFilledBlock: found at 1871,285 (33x33 0xFFFF00 tol=5, 63 ms)
+2026-07-19 11:51:58 [12-track-and-click] Acquired new target at 1871,285
+2026-07-19 11:51:59 [12-track-and-click] FindFilledBlock: found at 1871,285 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:59 [12-track-and-click] Clicked initial/re-click target at 1871,285
+2026-07-19 11:51:59 [12-track-and-click] FindFilledBlock: found at 1869,287 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:51:59 [12-track-and-click] Tracking not-yet-stable target at 1869,287
+2026-07-19 11:52:00 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:52:05 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:52:05 [12-track-and-click] FindFilledBlock: found at 1835,287 (33x33 0xFFFF00 tol=5, 63 ms)
+2026-07-19 11:52:05 [12-track-and-click] Acquired new target at 1835,287
+2026-07-19 11:52:06 [12-track-and-click] FindFilledBlock: found at 1835,287 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:06 [12-track-and-click] Clicked initial/re-click target at 1835,287
+2026-07-19 11:52:06 [12-track-and-click] FindFilledBlock: found at 1835,287 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:06 [12-track-and-click] Tracking not-yet-stable target at 1835,287
+2026-07-19 11:52:07 [12-track-and-click] FindFilledBlock: found at 1853,269 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:52:07 [12-track-and-click] Tracking not-yet-stable target at 1853,269
+2026-07-19 11:52:07 [12-track-and-click] FindFilledBlock: found at 1825,323 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:52:07 [12-track-and-click] Tracking not-yet-stable target at 1825,323
+2026-07-19 11:52:08 [12-track-and-click] FindFilledBlock: found at 1859,315 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:08 [12-track-and-click] Tracking not-yet-stable target at 1859,315
+2026-07-19 11:52:08 [12-track-and-click] F6 pressed - stop requested
+2026-07-19 11:52:08 [12-track-and-click] STOPPED by F6 after 2437 ms
+2026-07-19 11:52:14 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:52:29 [12-track-and-click] TrackAndClick started: color=0xFFFF00 tol=5 block=33x33 trackRadius=220 indicatorSlot=28 overallTimeout=90000ms
+2026-07-19 11:52:29 [12-track-and-click] FindFilledBlock: found at 1405,1277 (33x33 0xFFFF00 tol=5, 78 ms)
+2026-07-19 11:52:29 [12-track-and-click] Acquired new target at 1405,1277
+2026-07-19 11:52:30 [12-track-and-click] FindFilledBlock: found at 1405,1277 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:30 [12-track-and-click] Clicked initial/re-click target at 1405,1277
+2026-07-19 11:52:30 [12-track-and-click] FindFilledBlock: found at 1405,1277 (33x33 0xFFFF00 tol=5, 15 ms)
+2026-07-19 11:52:30 [12-track-and-click] Tracking not-yet-stable target at 1405,1277
+2026-07-19 11:52:31 [12-track-and-click] FindFilledBlock: found at 1379,1247 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:31 [12-track-and-click] Tracking not-yet-stable target at 1379,1247
+2026-07-19 11:52:31 [12-track-and-click] FindFilledBlock: found at 1325,1183 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:31 [12-track-and-click] Tracking not-yet-stable target at 1325,1183
+2026-07-19 11:52:32 [12-track-and-click] FindFilledBlock: found at 1297,1121 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:52:32 [12-track-and-click] Tracking not-yet-stable target at 1297,1121
+2026-07-19 11:52:32 [12-track-and-click] FindFilledBlock: found at 1263,1065 (33x33 0xFFFF00 tol=5, 0 ms)
+2026-07-19 11:52:32 [12-track-and-click] Tracking not-yet-stable target at 1263,1065
+2026-07-19 11:52:32 [12-track-and-click] FindFilledBlock: found at 1243,1007 (33x33 0xFFFF00 tol=5, 16 ms)
+2026-07-19 11:52:32 [12-track-and-click] Tracking not-yet-stable target at 1243,1007
+2026-07-19 11:52:33 [12-track-and-click] Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=0xFFFF00 IndicatorSlot=28 VerifyPercent=100
+2026-07-19 11:53:37 [12-track-and-click] Esc pressed - exiting

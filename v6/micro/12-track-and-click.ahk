@@ -20,6 +20,11 @@
 ; the until-condition.
 ;
 ; WHAT IT DOES
+;   F8  = COLOR PROBE: hover any pixel, get its TRUE on-screen color,
+;         the per-channel delta vs TARGET_COLOR, and the minimum
+;         tolerance that would match - use this FIRST whenever a new
+;         color "isn't found" (on-screen rendering often blends/shades
+;         the configured pure hex)
 ;   F5  = start the loop: acquire a target -> track/click it -> on
 ;         depletion (color stops matching), re-acquire -> repeat, until
 ;         the indicator slot is full OR the overall failsafe timeout
@@ -43,9 +48,14 @@ CoordMode("ToolTip", "Screen")
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 TARGET_COLOR := 0xFFFF00
 COLOR_TOL    := 5
-BLOCK_W      := 39
-BLOCK_H      := 39
-MAX_ATTEMPTS := 60
+BLOCK_W      := 33
+BLOCK_H      := 33
+
+; How much of BLOCK_W/H must match as one solid block, in percent.
+; 100 = strict full size (a 32x32 same-color decoy can never pass a
+; 39x39 request). Lower slightly (e.g. 90) only if a real target's
+; soft/anti-aliased edges make the strict match miss - F8-probe first.
+VERIFY_PERCENT := 100
 
 TRACK_RADIUS_PX := 220   ; narrowed search box half-size once a target is locked
 
@@ -76,6 +86,7 @@ OVERALL_TIMEOUT_MS := 90000   ; safety failsafe - stop if nothing meets the unti
 g_StopRequested := false
 
 F5:: RunTrackAndClick()
+F8:: ProbeColor()
 F6:: {
     global g_StopRequested
     g_StopRequested := true
@@ -84,6 +95,32 @@ F6:: {
 Esc:: {
     LogLine("Esc pressed - exiting")
     ExitApp()
+}
+
+; Calibration probe (AutoHotkey.pdf's official method for determining
+; color IDs: "Color IDs can be determined using Window Spy or via
+; PixelGetColor"). Hover the target block, press F8: reports the TRUE
+; on-screen color under the cursor, the per-channel difference from the
+; configured TARGET_COLOR, and the minimum COLOR_TOL that would match.
+; If the reported color differs from what you configured, the on-screen
+; rendering is blended/shaded - use the REPORTED value as TARGET_COLOR.
+ProbeColor() {
+    MouseGetPos(&mx, &my)
+    actual := PixelGetColor(mx, my)
+
+    dR := Abs(((actual >> 16) & 0xFF) - ((TARGET_COLOR >> 16) & 0xFF))
+    dG := Abs(((actual >> 8) & 0xFF) - ((TARGET_COLOR >> 8) & 0xFF))
+    dB := Abs((actual & 0xFF) - (TARGET_COLOR & 0xFF))
+    minTol := Max(dR, dG, dB)
+
+    msg := "PROBE at " mx "," my ": actual=" HexColor(actual)
+        . "  configured=" HexColor(TARGET_COLOR)
+        . "  delta R/G/B=" dR "/" dG "/" dB
+        . "  -> " (minTol <= COLOR_TOL
+            ? "MATCHES at current tol " COLOR_TOL
+            : "needs tol >= " minTol " (or set TARGET_COLOR := " HexColor(actual) ")")
+    ToolTip(msg, 20, 20)
+    LogLine(msg)
 }
 
 RunTrackAndClick() {
@@ -100,8 +137,6 @@ RunTrackAndClick() {
     targetX := 0, targetY := 0
     lastClickTime := 0
     t0 := A_TickCount
-    screenX2 := A_ScreenWidth - 1
-    screenY2 := A_ScreenHeight - 1
 
     try {
         loop {
@@ -121,9 +156,11 @@ RunTrackAndClick() {
             }
 
             if (!hasTarget) {
-                ; Acquire mode: whole-screen search, no target locked yet.
-                found := FindFilledBlock(0, 0, screenX2, screenY2, TARGET_COLOR, COLOR_TOL,
-                    BLOCK_W, BLOCK_H, &tx, &ty, , , MAX_ATTEMPTS)
+                ; Acquire mode: whole screen. The native solid-block
+                ; search costs the same no matter how much of the color
+                ; is elsewhere on screen, so no region limiting needed.
+                found := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+                    TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &tx, &ty, VERIFY_PERCENT)
                 if (found) {
                     hasTarget := true
                     targetX := tx, targetY := ty
@@ -134,15 +171,14 @@ RunTrackAndClick() {
                     LogLine("Acquire: not found")
                 }
             } else {
-                ; Track mode: narrowed box around the last known position,
-                ; steered toward it (refX/refY) for a fast re-find.
+                ; Track mode: narrowed box around the last known position.
                 rx1 := Max(0, targetX - TRACK_RADIUS_PX)
                 ry1 := Max(0, targetY - TRACK_RADIUS_PX)
-                rx2 := Min(screenX2, targetX + TRACK_RADIUS_PX)
-                ry2 := Min(screenY2, targetY + TRACK_RADIUS_PX)
+                rx2 := Min(A_ScreenWidth - 1, targetX + TRACK_RADIUS_PX)
+                ry2 := Min(A_ScreenHeight - 1, targetY + TRACK_RADIUS_PX)
 
                 found := FindFilledBlock(rx1, ry1, rx2, ry2, TARGET_COLOR, COLOR_TOL,
-                    BLOCK_W, BLOCK_H, &nx, &ny, targetX, targetY, MAX_ATTEMPTS)
+                    BLOCK_W, BLOCK_H, &nx, &ny, VERIFY_PERCENT)
                 lock.Observe(found, found ? nx : 0, found ? ny : 0, &outX, &outY)
 
                 if (!found) {
@@ -275,7 +311,7 @@ SlotFull(slotIndex) {
     return false
 }
 
-; ---------- detection (identical port to micro 01-03/05/08/11) ----------
+; ---------- pixel helper (used by the SlotFull until-condition) ----------
 
 ColorClose(c1, c2, tol) {
     return Abs(((c1 >> 16) & 0xFF) - ((c2 >> 16) & 0xFF)) <= tol
@@ -283,73 +319,66 @@ ColorClose(c1, c2, tol) {
         && Abs((c1 & 0xFF) - (c2 & 0xFF)) <= tol
 }
 
-IsColorAt(x, y, color, tol) {
-    return ColorClose(PixelGetColor(x, y), color, tol)
+; ---------- detection (fast native block search - identical across micros) ----------
+;
+; SPEED OVERHAUL (2026-07-19): the old verify-and-split loop paid a
+; stack of ~7ms pixel-API calls per rejected candidate, so whole-screen
+; speed depended on how much of the color was elsewhere on screen
+; (measured live: 42 yellow UI specks cost ~3s). Replaced with ONE
+; native ImageSearch for a solid reqW x reqH block of the color: only
+; a full-size solid block can match, decoys/specks cost nothing, and
+; whole-screen search runs at a constant ~100-200 ms no matter what
+; else is visible. Syntax verified against AutoHotkey.pdf: ImageSearch
+; accepts a bitmap handle as "HBITMAP:*" handle, and *n allows n shades
+; of variation per RGB channel (same semantics as PixelSearch tolerance).
+
+; Builds (and caches per color+size) the solid-color in-memory bitmap
+; that ImageSearch matches against.
+SolidBlockBitmap(color, w, h) {
+    static cache := Map()
+    key := color "_" w "x" h
+    if (cache.Has(key))
+        return cache[key]
+
+    hdc := DllCall("GetDC", "ptr", 0, "ptr")
+    memDC := DllCall("CreateCompatibleDC", "ptr", hdc, "ptr")
+    hbm := DllCall("CreateCompatibleBitmap", "ptr", hdc, "int", w, "int", h, "ptr")
+    oldBmp := DllCall("SelectObject", "ptr", memDC, "ptr", hbm, "ptr")
+
+    ; GDI COLORREF is 0x00BBGGRR - swap R and B from the 0xRRGGBB value
+    bgr := ((color & 0xFF) << 16) | (color & 0xFF00) | ((color >> 16) & 0xFF)
+    brush := DllCall("CreateSolidBrush", "uint", bgr, "ptr")
+    rect := Buffer(16, 0)
+    NumPut("int", 0, "int", 0, "int", w, "int", h, rect)
+    DllCall("FillRect", "ptr", memDC, "ptr", rect, "ptr", brush)
+
+    DllCall("DeleteObject", "ptr", brush)
+    DllCall("SelectObject", "ptr", memDC, "ptr", oldBmp, "ptr")
+    DllCall("DeleteDC", "ptr", memDC)
+    DllCall("ReleaseDC", "ptr", 0, "ptr", hdc)
+
+    cache[key] := hbm
+    return hbm
 }
 
-VerifyBlock(x, y, color, tol, reqW, reqH) {
-    checkW := reqW * 3 // 4
-    checkH := reqH * 3 // 4
-    if (!IsColorAt(x + checkW // 2, y + checkH // 2, color, tol))
+; True if a solid block of `color` at least reqW x reqH (scaled by
+; verifyPercent) exists in the region; &cx/&cy get the center of the
+; matched area. verifyPercent 100 = strict full size; lower it only if
+; a real target's soft/anti-aliased edges make the strict match miss.
+FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, verifyPercent := 100) {
+    t0 := A_TickCount
+    bmpW := Max(1, reqW * verifyPercent // 100)
+    bmpH := Max(1, reqH * verifyPercent // 100)
+    hbm := SolidBlockBitmap(color, bmpW, bmpH)
+
+    if (!ImageSearch(&fx, &fy, x1, y1, x2, y2, "*" tol " HBITMAP:*" hbm)) {
+        LogLine("FindFilledBlock: not found (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
         return false
-    if (!IsColorAt(x, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y, color, tol))
-        return false
-    if (!IsColorAt(x + checkW - 1, y + checkH // 2, color, tol))
-        return false
-    if (!IsColorAt(x + checkW // 2, y + checkH - 1, color, tol))
-        return false
-    return true
-}
-
-FindFilledBlock(x1, y1, x2, y2, color, tol, reqW, reqH, &cx, &cy, refX := "", refY := "", maxAttempts := 40) {
-    hasRef := (refX != "" && refY != "")
-    stack := [[x1, y1, x2, y2]]
-    attempts := 0
-
-    while (stack.Length > 0) {
-        if (maxAttempts > 0 && attempts >= maxAttempts)
-            return false
-
-        rect := stack.Pop()
-        rx1 := rect[1], ry1 := rect[2], rx2 := rect[3], ry2 := rect[4]
-
-        if (rx1 > rx2 || ry1 > ry2)
-            continue
-
-        if (!PixelSearch(&foundX, &foundY, rx1, ry1, rx2, ry2, color, tol))
-            continue
-
-        attempts += 1
-
-        if (VerifyBlock(foundX, foundY, color, tol, reqW, reqH)) {
-            cx := Min(Max(foundX + reqW // 2, x1), x2)
-            cy := Min(Max(foundY + reqH // 2, y1), y2)
-            return true
-        }
-
-        restOfRow := [foundX + 1, foundY, rx2, foundY]
-        below := [rx1, foundY + 1, rx2, ry2]
-
-        if (hasRef) {
-            restContainsRef := (refY = foundY && refX >= restOfRow[1] && refX <= restOfRow[3])
-            belowContainsRef := (refY >= below[2] && refY <= below[4])
-            if (restContainsRef && !belowContainsRef) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else if (belowContainsRef && !restContainsRef) {
-                stack.Push(restOfRow), stack.Push(below)
-            } else if (Abs(refY - foundY) <= Abs(refY - below[2])) {
-                stack.Push(below), stack.Push(restOfRow)
-            } else {
-                stack.Push(restOfRow), stack.Push(below)
-            }
-        } else {
-            stack.Push(below), stack.Push(restOfRow)
-        }
     }
-
-    return false
+    cx := fx + bmpW // 2
+    cy := fy + bmpH // 2
+    LogLine("FindFilledBlock: found at " cx "," cy " (" bmpW "x" bmpH " " HexColor(color) " tol=" tol ", " (A_TickCount - t0) " ms)")
+    return true
 }
 
 ; ---------- interruptible wait (identical port of micro 07/08/10/11) ----------
@@ -388,6 +417,6 @@ LogLine(msg) {
     try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [12-track-and-click] " msg "`n", logPath)
 }
 
-LogLine("Script loaded. F5=start loop  F6=stop  Esc=exit. Target=" HexColor(TARGET_COLOR)
-    . " IndicatorSlot=" INDICATOR_SLOT)
-ToolTip("micro 12 ready - F5 to start acquire/track/depleted loop", 20, 20)
+LogLine("Script loaded. F5=start loop  F8=probe color under cursor  F6=stop  Esc=exit. Target=" HexColor(TARGET_COLOR)
+    . " IndicatorSlot=" INDICATOR_SLOT " VerifyPercent=" VERIFY_PERCENT)
+ToolTip("micro 12 ready - F8 to probe a color, F5 to start the loop", 20, 20)
