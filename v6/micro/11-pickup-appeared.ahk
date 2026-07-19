@@ -57,17 +57,19 @@ CLICK_OFFSET_Y := 4   ; click point (v5's graceClickOffsetY equivalent - tune if
 CLICK_USE_CTRL := true
 
 ; Confirmed inventory layout (micro 09) - needed either way, since
-; SlotBox() below computes a slot's box from these same numbers.
+; SlotCorner() below computes a slot's corner from these same numbers.
 INV_FIRST_X := 2099, INV_FIRST_Y := 801
 INV_COLS := 4, INV_ROWS := 7
 INV_SLOT_W := 72, INV_SLOT_H := 64
 INV_GAP_X := 12, INV_GAP_Y := 8
 
-; Confirm box - set SLOT_INDEX to watch a WHOLE inventory slot (1-28)
-; instead of a custom box. Leave it "" to use BOX_OFFSET_X/Y + BOX_W/H
-; below (same defaults as micro 10: the 52x16 counter area at offset
-; 2,0 from the inventory block's top-left/slot-1 corner).
-SLOT_INDEX := ""
+; Confirm box - ALWAYS BOX_W x BOX_H, offset by BOX_OFFSET_X/Y from a
+; corner. Set SLOT_INDEX to offset from a DIFFERENT slot's corner
+; instead of slot 1's (e.g. the pickup confirms near slot 2 instead of
+; slot 1) - leave it "" to use slot 1's own corner (same defaults as
+; micro 10: the 52x16 counter area at offset 2,0). SLOT_INDEX never
+; changes the box's SIZE, only which slot's corner it's offset from.
+SLOT_INDEX := "2"
 BOX_OFFSET_X := 2, BOX_OFFSET_Y := 0
 BOX_W := 52, BOX_H := 16
 CHANGE_TOL := 10
@@ -79,16 +81,23 @@ TARGET_SAMPLES := 50
 CONFIRM_TIMEOUT_MS := 8000   ; give up waiting for the pickup to register
 POLL_MS   := 300             ; tick-aligned poll interval (both waits)
 CHUNK_MS  := 40
-SETTLE_MS := 150
+SETTLE_MS := 100
+CTRL_HOLD_MS := 100   ; ctrl-click only: held between the click firing and Ctrl release -
+                       ; NOT redundant with SETTLE_MS (see ClickAt comment) - do not remove
 ; ========================================================================
 
-; Resolve the confirm box, once at load time (same pattern as micro 10).
+; Resolve the confirm box's base corner (same pattern as micro 10):
+; a specific slot's corner via SlotCorner, or slot 1's own corner when
+; SLOT_INDEX is "" - then offset BOX_OFFSET_X/Y from it. BOX_W/BOX_H
+; are never touched here; they stay exactly what's configured above.
 if (SLOT_INDEX != "")
-    SlotBox(SLOT_INDEX, &BOX_X, &BOX_Y, &BOX_W, &BOX_H)
+    SlotCorner(SLOT_INDEX, &baseX, &baseY)
 else {
-    BOX_X := INV_FIRST_X + BOX_OFFSET_X
-    BOX_Y := INV_FIRST_Y + BOX_OFFSET_Y
+    baseX := INV_FIRST_X
+    baseY := INV_FIRST_Y
 }
+BOX_X := baseX + BOX_OFFSET_X
+BOX_Y := baseY + BOX_OFFSET_Y
 
 g_StopRequested := false
 g_FoundX := 0
@@ -182,6 +191,7 @@ RunPickup() {
 ; is found anywhere in the search region. Stores the found point.
 ImageAppeared() {
     global g_FoundX, g_FoundY
+    t0 := A_TickCount
     try {
         found := ImageSearch(&foundX, &foundY, REGION_X1, REGION_Y1,
             REGION_X2, REGION_Y2, ImagePattern(IMAGE_PATH, IMAGE_TOL, TRANS_COLOR))
@@ -189,13 +199,14 @@ ImageAppeared() {
         LogLine("ImageAppeared: ERROR " exc.Message)
         return false
     }
+    searchMs := A_TickCount - t0
     if (found) {
         g_FoundX := foundX + IMAGE_W // 2
         g_FoundY := foundY + IMAGE_H // 2
-        LogLine("ImageAppeared: found at " g_FoundX "," g_FoundY)
+        LogLine("ImageAppeared: found at " g_FoundX "," g_FoundY " in " searchMs " ms")
         return true
     }
-    LogLine("ImageAppeared: not yet visible")
+    LogLine("ImageAppeared: not yet visible (searched " searchMs " ms)")
     return false
 }
 
@@ -229,27 +240,36 @@ ClickAt(x, y, useCtrl := false) {
     Sleep(SETTLE_MS)
     Click()
 
+    ; CTRL_HOLD_MS is load-bearing, not redundant with SETTLE_MS - a prior
+    ; attempt to remove it broke force-run in-game. Click() being
+    ; synchronous only means the OS input queue accepted the down/up
+    ; pair; it says nothing about whether OSRS's own client (reading
+    ; input on its own thread/tick) has processed it yet. Releasing
+    ; Ctrl too soon risks the client seeing the click without the held
+    ; modifier, so the character walks instead of runs. v5's production
+    ; Click.ahk holds this same gap (ctrlHoldSettleMs, default 100 in
+    ; every bot's .ini) for exactly this reason.
     if (useCtrl) {
-        Sleep(SETTLE_MS)
+        Sleep(CTRL_HOLD_MS)
         Send("{Ctrl up}")
     }
 }
 
 ; ---------- slot addressing (corner math ported from micro 09/10) ----------
 
-; 1-based, row-major slot index -> that slot's top-left corner + size.
-SlotBox(slotIndex, &x, &y, &w, &h) {
+; 1-based, row-major slot index -> that slot's top-left corner. No size
+; output - the confirm box's size is always the configured BOX_W/H,
+; independent of which slot's corner it's offset from.
+SlotCorner(slotIndex, &x, &y) {
     total := INV_COLS * INV_ROWS
     if (slotIndex < 1 || slotIndex > total)
-        throw ValueError("SlotBox: slotIndex " slotIndex " out of range (1.." total ")")
+        throw ValueError("SlotCorner: slotIndex " slotIndex " out of range (1.." total ")")
 
     col := Mod(slotIndex - 1, INV_COLS)
     row := (slotIndex - 1) // INV_COLS
 
     x := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
     y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
-    w := INV_SLOT_W
-    h := INV_SLOT_H
 }
 
 ; ---------- watch-box (strided port of micro 10) ----------
@@ -307,14 +327,18 @@ Pause(ms) {
     global g_StopRequested
     remaining := ms
     while (remaining > 0) {
-        if (g_StopRequested)
+        if (g_StopRequested) {
+            LogLine("Pause: stop flag seen - throwing BotStopped")
             throw BotStopped()
+        }
         step := Min(CHUNK_MS, remaining)
         Sleep(step)
         remaining -= step
     }
-    if (g_StopRequested)
+    if (g_StopRequested) {
+        LogLine("Pause: stop flag seen at end of wait - throwing BotStopped")
         throw BotStopped()
+    }
 }
 
 WaitUntil(condFn, timeoutMs, pollMs := 300) {

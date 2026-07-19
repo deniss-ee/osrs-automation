@@ -1,27 +1,5 @@
-2026-07-19 09:57:45 [04-click-at] Script loaded. F5=click  F7=ctrl-click  F6=clear tooltip  Esc=exit. Target=1400,696
-2026-07-19 09:57:46 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:57:46 [04-click-at] Clicked at 1400,696 (156 ms incl. settle)
-2026-07-19 09:57:49 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:57:49 [04-click-at] Clicked at 1400,696 (156 ms incl. settle)
-2026-07-19 09:57:50 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:57:50 [04-click-at] Clicked at 1400,696 (157 ms incl. settle)
-2026-07-19 09:57:50 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:57:50 [04-click-at] Clicked at 1400,696 (172 ms incl. settle)
-2026-07-19 09:57:53 [04-click-at] F6 pressed - tooltip cleared
-2026-07-19 09:58:25 [04-click-at] Ctrl-click started: target=1400,696 settle=150ms
-2026-07-19 09:58:25 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (313 ms incl. settle)
-2026-07-19 09:58:29 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:58:29 [04-click-at] Clicked at 1400,696 (157 ms incl. settle)
-2026-07-19 09:58:57 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:58:57 [04-click-at] Clicked at 1400,696 (172 ms incl. settle)
-2026-07-19 09:59:05 [04-click-at] Ctrl-click started: target=1400,696 settle=150ms
-2026-07-19 09:59:06 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (328 ms incl. settle)
-2026-07-19 09:59:09 [04-click-at] Ctrl-click started: target=1400,696 settle=150ms
-2026-07-19 09:59:10 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (312 ms incl. settle)
-2026-07-19 09:59:13 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:59:13 [04-click-at] Clicked at 1400,696 (172 ms incl. settle)
-2026-07-19 09:59:21 [04-click-at] Click started: target=1400,696 settle=150ms
-2026-07-19 09:59:21 [04-click-at] Clicked at 1400,696 (156 ms incl. settle)
-2026-07-19 09:59:26 [04-click-at] Ctrl-click started: target=1400,696 settle=150ms
-2026-07-19 09:59:26 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (312 ms incl. settle)
-2026-07-19 09:59:31 [04-click-at] Script loaded. F5=click  F7=ctrl-click  F6=clear tooltip  Esc=exit. Target=1400,696
+2026-07-19 16:36:28 [04-click-at] Script loaded. F5=click  F7=ctrl-click  F6=clear tooltip  Esc=exit. Target=1400,696
+2026-07-19 16:36:34 [04-click-at] Click started: target=1400,696 settle=100ms
+2026-07-19 16:36:34 [04-click-at] Clicked at 1400,696 (109 ms incl. settle)
+2026-07-19 16:36:39 [04-click-at] Ctrl-click started: target=1400,696 settle=100ms
+2026-07-19 16:36:39 [04-click-at] Ctrl-clicked (force-run) at 1400,696 (218 ms incl. settle)

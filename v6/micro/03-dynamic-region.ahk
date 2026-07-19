@@ -54,36 +54,47 @@ Esc:: {
 RunSearch() {
     t0 := A_TickCount
 
+    tStage := A_TickCount
     LogLine("Stage 1 (small): region=" SMALL_X1 "," SMALL_Y1 " -> " SMALL_X2 "," SMALL_Y2)
     if (FindFilledBlock(SMALL_X1, SMALL_Y1, SMALL_X2, SMALL_Y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)) {
         Report("SMALL", cx, cy, A_TickCount - t0)
         return
     }
-    LogLine("Stage 1 (small): not found")
+    LogLine("Stage 1 (small): not found (searched " (A_TickCount - tStage) " ms)")
 
+    tStage := A_TickCount
     LogLine("Stage 2 (expanded): region=" EXPANDED_X1 "," EXPANDED_Y1 " -> " EXPANDED_X2 "," EXPANDED_Y2)
     if (FindFilledBlock(EXPANDED_X1, EXPANDED_Y1, EXPANDED_X2, EXPANDED_Y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &
         cx, &cy)) {
         Report("EXPANDED", cx, cy, A_TickCount - t0)
         return
     }
-    LogLine("Stage 2 (expanded): not found")
+    LogLine("Stage 2 (expanded): not found (searched " (A_TickCount - tStage) " ms)")
 
     x2 := A_ScreenWidth - 1
     y2 := A_ScreenHeight - 1
+    tStage := A_TickCount
     LogLine("Stage 3 (whole screen): region=0,0 -> " x2 "," y2)
     if (FindFilledBlock(0, 0, x2, y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)) {
         Report("WHOLE SCREEN", cx, cy, A_TickCount - t0)
         return
     }
-    LogLine("Stage 3 (whole screen): not found")
+    LogLine("Stage 3 (whole screen): not found (searched " (A_TickCount - tStage) " ms)")
 
+    ; "ms total" (not "in N ms"/"(searched N ms)" like the other micros)
+    ; is deliberate here, not a drift - this elapsed figure is cumulative
+    ; across all 3 stages, not one search call, so it needs its own
+    ; wording to avoid implying it's a single search's duration.
     elapsedMs := A_TickCount - t0
     msg := "NOT FOUND at any stage (" elapsedMs " ms total)"
     ToolTip(msg, 20, 20)
     LogLine(msg)
 }
 
+; elapsedMs here is cumulative from RunSearch's t0 across every stage
+; tried so far, not just the one that matched - "ms total" reflects that
+; (matches the "not found" messages above, kept deliberately distinct
+; from the single-search "in N ms" wording used elsewhere).
 Report(stage, cx, cy, elapsedMs) {
     MouseMove(cx, cy, 5)
     msg := "FOUND via " stage " at " cx "," cy " (" elapsedMs " ms total)"

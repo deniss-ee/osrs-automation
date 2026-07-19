@@ -86,6 +86,7 @@ class BotStopped extends Error {
 ; stop flag between each - so a stop request lands within one chunk
 ; instead of after the full requested duration.
 Pause(ms) {
+    global g_StopRequested
     remaining := ms
     while (remaining > 0) {
         if (g_StopRequested) {

@@ -1,365 +1,40 @@
-2026-07-19 00:07:43 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 00:07:47 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:07:47 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:07:47 [03-dynamic-region] FOUND via SMALL at 795,541 (47 ms total)
-2026-07-19 00:07:55 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:07:55 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:07:55 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:07:55 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 745,331
-2026-07-19 00:07:55 [03-dynamic-region] FOUND via EXPANDED at 745,331 (78 ms total)
-2026-07-19 00:08:05 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:08:05 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:08:05 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:08:05 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 00:08:05 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 00:08:05 [03-dynamic-region] Stage 3 (whole screen): not found
-2026-07-19 00:08:05 [03-dynamic-region] NOT FOUND at any stage (110 ms total)
-2026-07-19 00:08:06 [03-dynamic-region] F6 pressed - tooltip cleared
-2026-07-19 00:21:22 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 00:21:25 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:25 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:25 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:25 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1245,651
-2026-07-19 00:21:25 [03-dynamic-region] FOUND via EXPANDED at 1245,651 (62 ms total)
-2026-07-19 00:21:26 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:26 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:26 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:26 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1245,651
-2026-07-19 00:21:26 [03-dynamic-region] FOUND via EXPANDED at 1245,651 (78 ms total)
-2026-07-19 00:21:27 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:27 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:27 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:27 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1245,651
-2026-07-19 00:21:27 [03-dynamic-region] FOUND via EXPANDED at 1245,651 (63 ms total)
-2026-07-19 00:21:29 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:29 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:29 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:29 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1227,617
-2026-07-19 00:21:29 [03-dynamic-region] FOUND via EXPANDED at 1227,617 (63 ms total)
-2026-07-19 00:21:30 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:30 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:30 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:30 [03-dynamic-region] FindFilledBlock: verified block on attempt 2 at 1135,617
-2026-07-19 00:21:30 [03-dynamic-region] FOUND via EXPANDED at 1135,617 (110 ms total)
-2026-07-19 00:21:30 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:30 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:30 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:30 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1069,643
-2026-07-19 00:21:30 [03-dynamic-region] FOUND via EXPANDED at 1069,643 (62 ms total)
-2026-07-19 00:21:31 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:31 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:31 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:31 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1033,625
-2026-07-19 00:21:31 [03-dynamic-region] FOUND via EXPANDED at 1033,625 (63 ms total)
-2026-07-19 00:21:32 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:32 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:32 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:32 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 993,585
-2026-07-19 00:21:32 [03-dynamic-region] FOUND via EXPANDED at 993,585 (62 ms total)
-2026-07-19 00:21:32 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:32 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 00:21:32 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 00:21:32 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 915,567
-2026-07-19 00:21:32 [03-dynamic-region] FOUND via EXPANDED at 915,567 (62 ms total)
-2026-07-19 00:21:33 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 00:21:33 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 847,545
-2026-07-19 00:21:33 [03-dynamic-region] FOUND via SMALL at 847,545 (47 ms total)
-2026-07-19 11:36:37 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 11:36:49 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:36:49 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:36:49 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:36:50 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 565,475
-2026-07-19 11:36:50 [03-dynamic-region] FOUND via EXPANDED at 565,475 (63 ms total)
-2026-07-19 11:36:55 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:36:55 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:36:55 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:36:55 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 541,315
-2026-07-19 11:36:55 [03-dynamic-region] FOUND via EXPANDED at 541,315 (78 ms total)
-2026-07-19 11:36:58 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:36:58 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:36:58 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:36:58 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:36:58 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:36:58 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 547,183
-2026-07-19 11:36:58 [03-dynamic-region] FOUND via WHOLE SCREEN at 547,183 (141 ms total)
-2026-07-19 11:37:00 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:37:00 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:37:00 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:37:00 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:37:00 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:37:00 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 655,119
-2026-07-19 11:37:00 [03-dynamic-region] FOUND via WHOLE SCREEN at 655,119 (141 ms total)
-2026-07-19 11:37:22 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:37:22 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:37:22 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:37:22 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:37:22 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:37:22 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 2173,677
-2026-07-19 11:37:22 [03-dynamic-region] FOUND via WHOLE SCREEN at 2173,677 (125 ms total)
-2026-07-19 11:37:24 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:37:24 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:37:24 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:37:24 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:37:24 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:37:24 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 2173,677
-2026-07-19 11:37:24 [03-dynamic-region] FOUND via WHOLE SCREEN at 2173,677 (125 ms total)
-2026-07-19 11:37:25 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:37:25 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:37:25 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:37:25 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:37:25 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:37:25 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 2173,677
-2026-07-19 11:37:25 [03-dynamic-region] FOUND via WHOLE SCREEN at 2173,677 (172 ms total)
-2026-07-19 11:37:29 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 11:37:30 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:37:30 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:37:30 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:37:30 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:37:30 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:37:30 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 2173,677
-2026-07-19 11:37:30 [03-dynamic-region] FOUND via WHOLE SCREEN at 2173,677 (141 ms total)
-2026-07-19 11:38:15 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 11:38:15 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:15 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:15 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:15 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:15 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:15 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 2173,677
-2026-07-19 11:38:15 [03-dynamic-region] FOUND via WHOLE SCREEN at 2173,677 (140 ms total)
-2026-07-19 11:38:26 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:26 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:26 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:26 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:26 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:26 [03-dynamic-region] FindFilledBlock: verified block on attempt 3 at 1409,1269
-2026-07-19 11:38:27 [03-dynamic-region] FOUND via WHOLE SCREEN at 1409,1269 (188 ms total)
-2026-07-19 11:38:28 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:28 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:28 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:29 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:29 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:29 [03-dynamic-region] Stage 3 (whole screen): not found
-2026-07-19 11:38:29 [03-dynamic-region] NOT FOUND at any stage (94 ms total)
-2026-07-19 11:38:31 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:31 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:31 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:31 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:31 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:31 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1319,1191
-2026-07-19 11:38:31 [03-dynamic-region] FOUND via WHOLE SCREEN at 1319,1191 (141 ms total)
-2026-07-19 11:38:33 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:33 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:33 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:33 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:33 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:33 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1173,1081
-2026-07-19 11:38:33 [03-dynamic-region] FOUND via WHOLE SCREEN at 1173,1081 (109 ms total)
-2026-07-19 11:38:33 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:34 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:34 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1145,1063
-2026-07-19 11:38:34 [03-dynamic-region] FOUND via WHOLE SCREEN at 1145,1063 (125 ms total)
-2026-07-19 11:38:34 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:34 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:34 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1125,1003
-2026-07-19 11:38:34 [03-dynamic-region] FOUND via WHOLE SCREEN at 1125,1003 (125 ms total)
-2026-07-19 11:38:34 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:34 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:34 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:38:34 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:38:34 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1129,945
-2026-07-19 11:38:34 [03-dynamic-region] FOUND via WHOLE SCREEN at 1129,945 (125 ms total)
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:35 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:35 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1131,891
-2026-07-19 11:38:35 [03-dynamic-region] FOUND via EXPANDED at 1131,891 (62 ms total)
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:35 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:35 [03-dynamic-region] FindFilledBlock: verified block on attempt 2 at 1137,845
-2026-07-19 11:38:35 [03-dynamic-region] FOUND via EXPANDED at 1137,845 (94 ms total)
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:35 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:35 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:35 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1137,797
-2026-07-19 11:38:35 [03-dynamic-region] FOUND via EXPANDED at 1137,797 (78 ms total)
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:36 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:36 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1141,737
-2026-07-19 11:38:36 [03-dynamic-region] FOUND via EXPANDED at 1141,737 (78 ms total)
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:36 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:36 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1133,693
-2026-07-19 11:38:36 [03-dynamic-region] FOUND via EXPANDED at 1133,693 (63 ms total)
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:36 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:36 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:36 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1101,651
-2026-07-19 11:38:36 [03-dynamic-region] FOUND via EXPANDED at 1101,651 (62 ms total)
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:37 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:37 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1061,611
-2026-07-19 11:38:37 [03-dynamic-region] FOUND via EXPANDED at 1061,611 (63 ms total)
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:37 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:37 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1037,587
-2026-07-19 11:38:37 [03-dynamic-region] FOUND via EXPANDED at 1037,587 (78 ms total)
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:37 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:37 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:37 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1029,577
-2026-07-19 11:38:37 [03-dynamic-region] FOUND via EXPANDED at 1029,577 (62 ms total)
-2026-07-19 11:38:39 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:39 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:39 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:39 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1003,519
-2026-07-19 11:38:39 [03-dynamic-region] FOUND via EXPANDED at 1003,519 (78 ms total)
-2026-07-19 11:38:39 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:39 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:39 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:40 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 973,483
-2026-07-19 11:38:40 [03-dynamic-region] FOUND via EXPANDED at 973,483 (63 ms total)
-2026-07-19 11:38:40 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:40 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:40 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:40 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 965,451
-2026-07-19 11:38:40 [03-dynamic-region] FOUND via EXPANDED at 965,451 (62 ms total)
-2026-07-19 11:38:41 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:41 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:41 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:41 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 913,375
-2026-07-19 11:38:41 [03-dynamic-region] FOUND via EXPANDED at 913,375 (78 ms total)
-2026-07-19 11:38:41 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:38:41 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:38:41 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:38:42 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 867,337
-2026-07-19 11:38:42 [03-dynamic-region] FOUND via EXPANDED at 867,337 (63 ms total)
-2026-07-19 11:40:03 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:03 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:03 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:03 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:03 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:03 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1003,231
-2026-07-19 11:40:03 [03-dynamic-region] FOUND via WHOLE SCREEN at 1003,231 (141 ms total)
-2026-07-19 11:40:05 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:05 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:05 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:05 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:05 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:05 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1031,231
-2026-07-19 11:40:05 [03-dynamic-region] FOUND via WHOLE SCREEN at 1031,231 (125 ms total)
-2026-07-19 11:40:06 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:06 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:06 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:06 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:06 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:06 [03-dynamic-region] FindFilledBlock: verified block on attempt 2 at 1055,187
-2026-07-19 11:40:06 [03-dynamic-region] FOUND via WHOLE SCREEN at 1055,187 (140 ms total)
-2026-07-19 11:40:07 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:07 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:07 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:07 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:07 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:07 [03-dynamic-region] FindFilledBlock: verified block on attempt 3 at 1101,153
-2026-07-19 11:40:07 [03-dynamic-region] FOUND via WHOLE SCREEN at 1101,153 (187 ms total)
-2026-07-19 11:40:07 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:07 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:07 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:07 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:07 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:08 [03-dynamic-region] FindFilledBlock: verified block on attempt 21 at 1255,155
-2026-07-19 11:40:08 [03-dynamic-region] FOUND via WHOLE SCREEN at 1255,155 (1031 ms total)
-2026-07-19 11:40:09 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:09 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:09 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:09 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:09 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:09 [03-dynamic-region] FindFilledBlock: verified block on attempt 2 at 1293,141
-2026-07-19 11:40:09 [03-dynamic-region] FOUND via WHOLE SCREEN at 1293,141 (156 ms total)
-2026-07-19 11:40:09 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:09 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:09 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:09 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:09 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:09 [03-dynamic-region] FindFilledBlock: verified block on attempt 2 at 1335,93
-2026-07-19 11:40:09 [03-dynamic-region] FOUND via WHOLE SCREEN at 1335,93 (140 ms total)
-2026-07-19 11:40:12 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:12 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:12 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:12 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:12 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:13 [03-dynamic-region] FindFilledBlock: verified block on attempt 23 at 1453,201
-2026-07-19 11:40:13 [03-dynamic-region] FOUND via WHOLE SCREEN at 1453,201 (1469 ms total)
-2026-07-19 11:40:14 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:14 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:14 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:14 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:14 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:16 [03-dynamic-region] FindFilledBlock: gave up after 40 verify attempts (maxAttempts)
-2026-07-19 11:40:16 [03-dynamic-region] Stage 3 (whole screen): not found
-2026-07-19 11:40:16 [03-dynamic-region] NOT FOUND at any stage (2703 ms total)
-2026-07-19 11:40:18 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:18 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:18 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:18 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:18 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:18 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1749,419
-2026-07-19 11:40:18 [03-dynamic-region] FOUND via WHOLE SCREEN at 1749,419 (141 ms total)
-2026-07-19 11:40:18 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:18 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:18 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:18 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:18 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:19 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1749,421
-2026-07-19 11:40:19 [03-dynamic-region] FOUND via WHOLE SCREEN at 1749,421 (125 ms total)
-2026-07-19 11:40:20 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:20 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:20 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:20 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:20 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:20 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1741,407
-2026-07-19 11:40:20 [03-dynamic-region] FOUND via WHOLE SCREEN at 1741,407 (125 ms total)
-2026-07-19 11:40:21 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:21 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:21 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:21 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:21 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:21 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1645,325
-2026-07-19 11:40:21 [03-dynamic-region] FOUND via WHOLE SCREEN at 1645,325 (141 ms total)
-2026-07-19 11:40:22 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:40:22 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:40:22 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:40:22 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:40:22 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:40:22 [03-dynamic-region] FindFilledBlock: verified block on attempt 1 at 1559,277
-2026-07-19 11:40:22 [03-dynamic-region] FOUND via WHOLE SCREEN at 1559,277 (141 ms total)
-2026-07-19 11:56:47 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-19 11:56:55 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:56:55 [03-dynamic-region] FindFilledBlock: found at 795,541 (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 11:56:55 [03-dynamic-region] FOUND via SMALL at 795,541 (0 ms total)
-2026-07-19 11:57:00 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:57:00 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 11:57:00 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:57:00 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:57:00 [03-dynamic-region] FindFilledBlock: found at 545,539 (21x21 0xFF00FF tol=5, 31 ms)
-2026-07-19 11:57:00 [03-dynamic-region] FOUND via EXPANDED at 545,539 (47 ms total)
-2026-07-19 11:57:07 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
-2026-07-19 11:57:07 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 11:57:07 [03-dynamic-region] Stage 1 (small): not found
-2026-07-19 11:57:07 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
-2026-07-19 11:57:07 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
-2026-07-19 11:57:07 [03-dynamic-region] Stage 2 (expanded): not found
-2026-07-19 11:57:07 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
-2026-07-19 11:57:07 [03-dynamic-region] FindFilledBlock: found at 447,127 (21x21 0xFF00FF tol=5, 62 ms)
-2026-07-19 11:57:07 [03-dynamic-region] FOUND via WHOLE SCREEN at 447,127 (125 ms total)
+2026-07-19 16:36:03 [03-dynamic-region] Script loaded. F5=search (small->expanded->whole)  F6=clear tooltip  Esc=exit. Target=0xFF00FF
+2026-07-19 16:36:05 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:05 [03-dynamic-region] FindFilledBlock: found at 791,545 (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:36:05 [03-dynamic-region] FOUND via SMALL at 791,545 (16 ms total)
+2026-07-19 16:36:10 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:10 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:36:10 [03-dynamic-region] Stage 1 (small): not found (searched 16 ms)
+2026-07-19 16:36:10 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
+2026-07-19 16:36:10 [03-dynamic-region] FindFilledBlock: found at 547,543 (21x21 0xFF00FF tol=5, 31 ms)
+2026-07-19 16:36:10 [03-dynamic-region] FOUND via EXPANDED at 547,543 (47 ms total)
+2026-07-19 16:36:13 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:13 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:36:13 [03-dynamic-region] Stage 1 (small): not found (searched 0 ms)
+2026-07-19 16:36:13 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
+2026-07-19 16:36:13 [03-dynamic-region] FindFilledBlock: found at 589,399 (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:13 [03-dynamic-region] FOUND via EXPANDED at 589,399 (31 ms total)
+2026-07-19 16:36:16 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:16 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:16 [03-dynamic-region] Stage 1 (small): not found (searched 16 ms)
+2026-07-19 16:36:16 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
+2026-07-19 16:36:16 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:16 [03-dynamic-region] Stage 2 (expanded): not found (searched 16 ms)
+2026-07-19 16:36:16 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
+2026-07-19 16:36:16 [03-dynamic-region] FindFilledBlock: found at 425,231 (21x21 0xFF00FF tol=5, 78 ms)
+2026-07-19 16:36:16 [03-dynamic-region] FOUND via WHOLE SCREEN at 425,231 (141 ms total)
+2026-07-19 16:36:17 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:17 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:17 [03-dynamic-region] Stage 1 (small): not found (searched 16 ms)
+2026-07-19 16:36:17 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
+2026-07-19 16:36:17 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:17 [03-dynamic-region] Stage 2 (expanded): not found (searched 32 ms)
+2026-07-19 16:36:17 [03-dynamic-region] Stage 3 (whole screen): region=0,0 -> 2559,1439
+2026-07-19 16:36:17 [03-dynamic-region] FindFilledBlock: found at 425,231 (21x21 0xFF00FF tol=5, 63 ms)
+2026-07-19 16:36:17 [03-dynamic-region] FOUND via WHOLE SCREEN at 425,231 (141 ms total)
+2026-07-19 16:36:23 [03-dynamic-region] Stage 1 (small): region=734,511 -> 894,600
+2026-07-19 16:36:23 [03-dynamic-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:36:23 [03-dynamic-region] Stage 1 (small): not found (searched 16 ms)
+2026-07-19 16:36:23 [03-dynamic-region] Stage 2 (expanded): region=400,300 -> 1400,900
+2026-07-19 16:36:23 [03-dynamic-region] FindFilledBlock: found at 541,539 (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:36:23 [03-dynamic-region] FOUND via EXPANDED at 541,539 (47 ms total)

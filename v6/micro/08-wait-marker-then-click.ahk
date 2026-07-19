@@ -41,7 +41,7 @@ BLOCK_W      := 11
 BLOCK_H      := 11
 
 ; Where the marker should appear once you've arrived/something happened.
-WAIT_REGION_X1 := 794, WAIT_REGION_Y1 := 540, WAIT_REGION_X2 := 806, WAIT_REGION_Y2 := 552
+WAIT_REGION_X1 := 716, WAIT_REGION_Y1 := 543, WAIT_REGION_X2 := 737, WAIT_REGION_Y2 := 564
 WAIT_TIMEOUT_MS := 15000   ; give up after this long if the marker never appears
 POLL_MS         := 300     ; tick-aligned poll interval
 
@@ -49,7 +49,9 @@ AFTER_X := 1153, AFTER_Y := 1037      ; the SEPARATE point to click once confirm
                                      ; (NOT the marker's own found coordinates)
 AFTER_USE_CTRL := true              ; true = force-run (Ctrl-held) click
 
-SETTLE_MS := 150
+SETTLE_MS := 100
+CTRL_HOLD_MS := 100   ; ctrl-click only: held between the click firing and Ctrl release -
+                       ; NOT redundant with SETTLE_MS (see ClickAt comment) - do not remove
 CHUNK_MS  := 40
 ; ========================================================================
 
@@ -120,8 +122,17 @@ ClickAt(x, y, useCtrl := false) {
     Sleep(SETTLE_MS)
     Click()
 
+    ; CTRL_HOLD_MS is load-bearing, not redundant with SETTLE_MS - a prior
+    ; attempt to remove it broke force-run in-game. Click() being
+    ; synchronous only means the OS input queue accepted the down/up
+    ; pair; it says nothing about whether OSRS's own client (reading
+    ; input on its own thread/tick) has processed it yet. Releasing
+    ; Ctrl too soon risks the client seeing the click without the held
+    ; modifier, so the character walks instead of runs. v5's production
+    ; Click.ahk holds this same gap (ctrlHoldSettleMs, default 100 in
+    ; every bot's .ini) for exactly this reason.
     if (useCtrl) {
-        Sleep(SETTLE_MS)
+        Sleep(CTRL_HOLD_MS)
         Send("{Ctrl up}")
     }
 }
@@ -129,12 +140,14 @@ ClickAt(x, y, useCtrl := false) {
 ; Condition passed to WaitUntil - true the instant the marker is found
 ; anywhere in WAIT_REGION. Logs each check's outcome.
 MarkerVisible() {
+    t0 := A_TickCount
     found := FindFilledBlock(WAIT_REGION_X1, WAIT_REGION_Y1, WAIT_REGION_X2, WAIT_REGION_Y2,
         MARKER_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)
+    searchMs := A_TickCount - t0
     if (found)
-        LogLine("MarkerVisible: found at " cx "," cy)
+        LogLine("MarkerVisible: found at " cx "," cy " in " searchMs " ms")
     else
-        LogLine("MarkerVisible: not yet visible")
+        LogLine("MarkerVisible: not yet visible (searched " searchMs " ms)")
     return found
 }
 
@@ -150,14 +163,18 @@ Pause(ms) {
     global g_StopRequested
     remaining := ms
     while (remaining > 0) {
-        if (g_StopRequested)
+        if (g_StopRequested) {
+            LogLine("Pause: stop flag seen - throwing BotStopped")
             throw BotStopped()
+        }
         step := Min(CHUNK_MS, remaining)
         Sleep(step)
         remaining -= step
     }
-    if (g_StopRequested)
+    if (g_StopRequested) {
+        LogLine("Pause: stop flag seen at end of wait - throwing BotStopped")
         throw BotStopped()
+    }
 }
 
 WaitUntil(condFn, timeoutMs, pollMs := 300) {

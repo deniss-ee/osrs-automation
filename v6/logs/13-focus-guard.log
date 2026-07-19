@@ -1,0 +1,14 @@
+2026-07-19 16:39:54 [13-focus-guard] Script loaded. F5=probe active window  F6=clear tooltip  Esc=exit
+2026-07-19 16:40:03 [13-focus-guard] Script loaded. F5=probe active window  F6=clear tooltip  Esc=exit
+2026-07-19 16:40:05 [13-focus-guard] ACTIVE WINDOW: exe=RuneLite.exe class=SunAwtFrame title="RuneLite - LinkFE" hwnd=328454
+2026-07-19 16:40:05 [13-focus-guard]   [ahk_exe RuneLite.exe] WinActive("ahk_exe RuneLite.exe") = ACTIVE
+2026-07-19 16:40:05 [13-focus-guard]   [ahk_exe javaw.exe] WinActive("ahk_exe javaw.exe") = not active
+2026-07-19 16:40:05 [13-focus-guard]   [title contains RuneLite] WinActive("RuneLite") = ACTIVE
+2026-07-19 16:40:06 [13-focus-guard] ACTIVE WINDOW: exe=explorer.exe class=CabinetWClass title="micro - File Explorer" hwnd=459242
+2026-07-19 16:40:06 [13-focus-guard]   [ahk_exe RuneLite.exe] WinActive("ahk_exe RuneLite.exe") = not active
+2026-07-19 16:40:06 [13-focus-guard]   [ahk_exe javaw.exe] WinActive("ahk_exe javaw.exe") = not active
+2026-07-19 16:40:06 [13-focus-guard]   [title contains RuneLite] WinActive("RuneLite") = not active
+2026-07-19 16:40:07 [13-focus-guard] ACTIVE WINDOW: exe=RuneLite.exe class=SunAwtFrame title="RuneLite - LinkFE" hwnd=328454
+2026-07-19 16:40:07 [13-focus-guard]   [ahk_exe RuneLite.exe] WinActive("ahk_exe RuneLite.exe") = ACTIVE
+2026-07-19 16:40:07 [13-focus-guard]   [ahk_exe javaw.exe] WinActive("ahk_exe javaw.exe") = not active
+2026-07-19 16:40:07 [13-focus-guard]   [title contains RuneLite] WinActive("RuneLite") = ACTIVE

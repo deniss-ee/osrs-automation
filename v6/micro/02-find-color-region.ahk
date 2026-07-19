@@ -49,7 +49,7 @@ Esc:: {
 
 RunSearch() {
     LogLine("Search started: color=" HexColor(TARGET_COLOR) " tol=" COLOR_TOL
-    . " block=" BLOCK_W "x" BLOCK_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
+        . " block=" BLOCK_W "x" BLOCK_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
 
     t0 := A_TickCount
     found := FindFilledBlock(REGION_X1, REGION_Y1, REGION_X2, REGION_Y2,
@@ -60,7 +60,7 @@ RunSearch() {
         inRegion := (cx >= REGION_X1 && cx <= REGION_X2 && cy >= REGION_Y1 && cy <= REGION_Y2)
         MouseMove(cx, cy, 5)
         msg := "FOUND " HexColor(TARGET_COLOR) " at " cx "," cy " in " elapsedMs " ms"
-        . (inRegion ? " (inside region - correct)" : " (OUTSIDE region! bug)")
+            . (inRegion ? " (inside region - correct)" : " (OUTSIDE region! bug)")
     } else {
         msg := "NOT FOUND " HexColor(TARGET_COLOR) " in region (searched " elapsedMs " ms)"
     }

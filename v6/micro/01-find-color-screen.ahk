@@ -42,7 +42,7 @@ RunSearch() {
     x2 := A_ScreenWidth - 1
     y2 := A_ScreenHeight - 1
     LogLine("Search started: color=" HexColor(TARGET_COLOR) " tol=" COLOR_TOL
-    . " block=" BLOCK_W "x" BLOCK_H " region=0,0 -> " x2 "," y2 " (whole screen)")
+        . " block=" BLOCK_W "x" BLOCK_H " region=0,0 -> " x2 "," y2 " (whole screen)")
 
     t0 := A_TickCount
     found := FindFilledBlock(0, 0, x2, y2, TARGET_COLOR, COLOR_TOL, BLOCK_W, BLOCK_H, &cx, &cy)

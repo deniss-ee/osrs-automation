@@ -31,7 +31,9 @@ REGION_Y1 := 511
 REGION_X2 := 894
 REGION_Y2 := 600
 
-SETTLE_MS := 150   ; mechanical delay between move and click (v6 default)
+SETTLE_MS := 100      ; mechanical delay between move and click (v6 default minimum)
+CTRL_HOLD_MS := 100   ; ctrl-click only: held between the click firing and Ctrl release -
+                       ; NOT redundant with SETTLE_MS (see ClickAt comment) - do not remove
 USE_CTRL  := true  ; true = force-run (Ctrl-held) click on the found target
 ; ========================================================================
 
@@ -47,7 +49,7 @@ Esc:: {
 
 FindAndClick() {
     LogLine("Search started: color=" HexColor(TARGET_COLOR) " tol=" COLOR_TOL
-    . " block=" BLOCK_W "x" BLOCK_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
+        . " block=" BLOCK_W "x" BLOCK_H " region=" REGION_X1 "," REGION_Y1 " -> " REGION_X2 "," REGION_Y2)
 
     t0 := A_TickCount
     found := FindFilledBlock(REGION_X1, REGION_Y1, REGION_X2, REGION_Y2,
@@ -65,7 +67,7 @@ FindAndClick() {
     ClickAt(cx, cy, USE_CTRL)
     totalMs := A_TickCount - t0
 
-    msg := "FOUND + CLICKED at " cx "," cy " (search " searchMs " ms, total " totalMs " ms)"
+    msg := "FOUND + CLICKED at " cx "," cy " in " searchMs " ms (total " totalMs " ms incl. click)"
     ToolTip(msg, 20, 20)
     LogLine(msg)
 }
@@ -80,8 +82,17 @@ ClickAt(x, y, useCtrl := false) {
     Sleep(SETTLE_MS)
     Click()
 
+    ; CTRL_HOLD_MS is load-bearing, not redundant with SETTLE_MS - a prior
+    ; attempt to remove it broke force-run in-game. Click() being
+    ; synchronous only means the OS input queue accepted the down/up
+    ; pair; it says nothing about whether OSRS's own client (reading
+    ; input on its own thread/tick) has processed it yet. Releasing
+    ; Ctrl too soon risks the client seeing the click without the held
+    ; modifier, so the character walks instead of runs. v5's production
+    ; Click.ahk holds this same gap (ctrlHoldSettleMs, default 100 in
+    ; every bot's .ini) for exactly this reason.
     if (useCtrl) {
-        Sleep(SETTLE_MS)
+        Sleep(CTRL_HOLD_MS)
         Send("{Ctrl up}")
     }
 }

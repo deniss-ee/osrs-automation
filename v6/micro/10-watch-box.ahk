@@ -33,15 +33,18 @@
 ;   F6  = request stop (interrupts the wait, same as micros 07/08)
 ;   Esc = exit the script
 ;
-; The box to watch is resolved ONE OF TWO WAYS (see SLOT_INDEX below):
-;   - SLOT_INDEX set (1-28): watches that WHOLE inventory slot (its
-;     full corner+size, via SlotBox - same corner math as micro 09's
-;     SlotCenter) - e.g. "did an item appear in slot 2".
-;   - SLOT_INDEX left "": watches a CUSTOM box at BOX_OFFSET_X/Y +
-;     BOX_W/H relative to the inventory block's own top-left corner
-;     (slot 1's corner, confirmed in micro 09 as 2099,801) - for things
-;     that aren't a whole slot, like a counter (default: the 52x16
-;     counter area at offset 2,0).
+; The watched box is ALWAYS BOX_W x BOX_H, offset by BOX_OFFSET_X/Y from
+; a corner - SLOT_INDEX only picks WHICH corner:
+;   - SLOT_INDEX left "": offset from the inventory block's own
+;     top-left corner (slot 1's corner, confirmed in micro 09 as
+;     2099,801) - the default, for a counter near slot 1 (e.g. the
+;     52x16 Mark of Grace count area at offset 2,0).
+;   - SLOT_INDEX set (1-28): offset from THAT slot's corner instead
+;     (SlotCorner - same col/row math as micro 09's SlotCenter) - e.g.
+;     the same counter, but watched near slot 2 instead of slot 1.
+;     Setting SLOT_INDEX to 1 must therefore give the EXACT same box as
+;     leaving it "" (both resolve to slot 1's corner) - it does NOT
+;     switch to watching the whole 72x64 slot.
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -53,20 +56,22 @@ CoordMode("ToolTip", "Screen")
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 ; Confirmed inventory layout (micro 09) - needed either way, since
-; SlotBox() below computes a slot's box from these same numbers.
+; SlotCorner() below computes a slot's corner from these same numbers.
 INV_FIRST_X := 2099, INV_FIRST_Y := 801
 INV_COLS := 4, INV_ROWS := 7
 INV_SLOT_W := 72, INV_SLOT_H := 64
 INV_GAP_X := 12, INV_GAP_Y := 8
 
-; Set SLOT_INDEX to watch a WHOLE inventory slot (1-28) - e.g. "did an
-; item appear in slot 2". Leave it "" to instead watch a CUSTOM box via
-; BOX_OFFSET_X/Y + BOX_W/H below (e.g. a counter that isn't a whole
-; slot, like the Mark of Grace count).
-SLOT_INDEX := "2"
+; Set SLOT_INDEX to offset the box below from a DIFFERENT slot's corner
+; instead of slot 1's - e.g. watching the same counter but positioned
+; near slot 2 instead of slot 1. Leave it "" to use slot 1's own corner
+; (INV_FIRST_X/Y directly). Either way the box is ALWAYS BOX_W x BOX_H -
+; SLOT_INDEX never changes the SIZE of what's watched, only WHICH
+; slot's corner BOX_OFFSET_X/Y is measured from.
+SLOT_INDEX := "6"
 
-; Custom box (only used when SLOT_INDEX is "") - offset from the
-; inventory block's own top-left corner (slot 1's corner).
+; The box to watch: BOX_W x BOX_H, offset by BOX_OFFSET_X/Y from
+; whichever corner SLOT_INDEX resolves to (slot 1's corner by default).
 BOX_OFFSET_X := 2
 BOX_OFFSET_Y := 0
 BOX_W := 52
@@ -84,14 +89,19 @@ POLL_MS         := 300     ; tick-aligned poll interval
 CHUNK_MS        := 40
 ; ========================================================================
 
-; Resolve the box to watch, once at load time: a whole slot (SlotBox,
-; ported from micro 09's SlotCenter corner math) or the custom offset box.
+; Resolve the box's base corner - a specific slot's corner (SlotCorner,
+; same col/row math as micro 09's SlotCenter) if SLOT_INDEX is set, else
+; slot 1's own corner (INV_FIRST_X/Y) - then offset BOX_OFFSET_X/Y from
+; it. BOX_W/BOX_H are never touched here; they stay exactly what's
+; configured above no matter which slot SLOT_INDEX points at.
 if (SLOT_INDEX != "")
-    SlotBox(SLOT_INDEX, &BOX_X, &BOX_Y, &BOX_W, &BOX_H)
+    SlotCorner(SLOT_INDEX, &baseX, &baseY)
 else {
-    BOX_X := INV_FIRST_X + BOX_OFFSET_X
-    BOX_Y := INV_FIRST_Y + BOX_OFFSET_Y
+    baseX := INV_FIRST_X
+    baseY := INV_FIRST_Y
 }
+BOX_X := baseX + BOX_OFFSET_X
+BOX_Y := baseY + BOX_OFFSET_Y
 
 g_StopRequested := false
 g_Snapshot := ""
@@ -169,21 +179,20 @@ BoxChanged() {
 
 ; ---------- slot addressing (corner math ported from micro 09's SlotCenter) ----------
 
-; 1-based, row-major slot index -> that slot's top-left corner + size
-; (a watch-box needs a corner+size, not a center point like micro 09's
-; SlotCenter - same math, just not shifted to the middle).
-SlotBox(slotIndex, &x, &y, &w, &h) {
+; 1-based, row-major slot index -> that slot's top-left corner. No size
+; output - the watched box's size is always the configured BOX_W/H,
+; independent of which slot's corner it's offset from (see the
+; SLOT_INDEX config comment above).
+SlotCorner(slotIndex, &x, &y) {
     total := INV_COLS * INV_ROWS
     if (slotIndex < 1 || slotIndex > total)
-        throw ValueError("SlotBox: slotIndex " slotIndex " out of range (1.." total ")")
+        throw ValueError("SlotCorner: slotIndex " slotIndex " out of range (1.." total ")")
 
     col := Mod(slotIndex - 1, INV_COLS)
     row := (slotIndex - 1) // INV_COLS
 
     x := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
     y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
-    w := INV_SLOT_W
-    h := INV_SLOT_H
 }
 
 ; ---------- watch-box (v5 SlotSignature port, strided) ----------
@@ -253,14 +262,18 @@ Pause(ms) {
     global g_StopRequested
     remaining := ms
     while (remaining > 0) {
-        if (g_StopRequested)
+        if (g_StopRequested) {
+            LogLine("Pause: stop flag seen - throwing BotStopped")
             throw BotStopped()
+        }
         step := Min(CHUNK_MS, remaining)
         Sleep(step)
         remaining -= step
     }
-    if (g_StopRequested)
+    if (g_StopRequested) {
+        LogLine("Pause: stop flag seen at end of wait - throwing BotStopped")
         throw BotStopped()
+    }
 }
 
 WaitUntil(condFn, timeoutMs, pollMs := 300) {

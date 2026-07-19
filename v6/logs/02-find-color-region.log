@@ -1,68 +1,25 @@
-2026-07-19 00:05:11 [02-find-color-region] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF Region=734,511 -> 894,600
-2026-07-19 00:05:13 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:13 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:05:13 [02-find-color-region] FOUND 0xFF00FF at 795,541 in 47 ms (inside region - correct)
-2026-07-19 00:05:19 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:19 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
-2026-07-19 00:05:22 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:22 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 16 ms)
-2026-07-19 00:05:22 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:22 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
-2026-07-19 00:05:23 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:23 [02-find-color-region] FindFilledBlock: verified block on attempt 4 at 747,561
-2026-07-19 00:05:23 [02-find-color-region] FOUND 0xFF00FF at 747,561 in 125 ms (inside region - correct)
-2026-07-19 00:05:28 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:28 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:05:28 [02-find-color-region] FOUND 0xFF00FF at 795,541 in 31 ms (inside region - correct)
-2026-07-19 00:05:28 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:28 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:05:28 [02-find-color-region] FOUND 0xFF00FF at 795,541 in 31 ms (inside region - correct)
-2026-07-19 00:05:30 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:30 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:05:30 [02-find-color-region] FOUND 0xFF00FF at 795,541 in 31 ms (inside region - correct)
-2026-07-19 00:05:35 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:35 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 795,541
-2026-07-19 00:05:35 [02-find-color-region] FOUND 0xFF00FF at 795,541 in 47 ms (inside region - correct)
-2026-07-19 00:05:35 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:35 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 799,525
-2026-07-19 00:05:35 [02-find-color-region] FOUND 0xFF00FF at 799,525 in 46 ms (inside region - correct)
-2026-07-19 00:05:36 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:36 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 281 ms)
-2026-07-19 00:05:36 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:36 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 16 ms)
-2026-07-19 00:05:40 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:40 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
-2026-07-19 00:05:41 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:41 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 15 ms)
-2026-07-19 00:05:41 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:41 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
-2026-07-19 00:05:42 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:42 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 15 ms)
-2026-07-19 00:05:42 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:42 [02-find-color-region] FindFilledBlock: verified block on attempt 3 at 795,521
-2026-07-19 00:05:42 [02-find-color-region] FOUND 0xFF00FF at 795,521 in 78 ms (inside region - correct)
-2026-07-19 00:05:43 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:43 [02-find-color-region] FindFilledBlock: verified block on attempt 4 at 762,521
-2026-07-19 00:05:43 [02-find-color-region] FOUND 0xFF00FF at 762,521 in 125 ms (inside region - correct)
-2026-07-19 00:05:44 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:44 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 759,521
-2026-07-19 00:05:44 [02-find-color-region] FOUND 0xFF00FF at 759,521 in 47 ms (inside region - correct)
-2026-07-19 00:05:44 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:45 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 759,521
-2026-07-19 00:05:45 [02-find-color-region] FOUND 0xFF00FF at 759,521 in 31 ms (inside region - correct)
-2026-07-19 00:05:45 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:45 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 759,521
-2026-07-19 00:05:45 [02-find-color-region] FOUND 0xFF00FF at 759,521 in 31 ms (inside region - correct)
-2026-07-19 00:05:46 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 00:05:46 [02-find-color-region] FindFilledBlock: verified block on attempt 1 at 759,521
-2026-07-19 00:05:46 [02-find-color-region] FOUND 0xFF00FF at 759,521 in 32 ms (inside region - correct)
-2026-07-19 11:56:25 [02-find-color-region] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF Region=734,511 -> 894,600
-2026-07-19 11:56:26 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 11:56:26 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 15 ms)
-2026-07-19 11:56:26 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 15 ms)
-2026-07-19 11:56:28 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 11:56:28 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
-2026-07-19 11:56:28 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 16 ms)
-2026-07-19 11:56:32 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
-2026-07-19 11:56:32 [02-find-color-region] FindFilledBlock: found at 791,541 (21x21 0xFF00FF tol=5, 16 ms)
-2026-07-19 11:56:32 [02-find-color-region] FOUND 0xFF00FF at 791,541 in 16 ms (inside region - correct)
+2026-07-19 16:35:39 [02-find-color-region] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF Region=734,511 -> 894,600
+2026-07-19 16:35:40 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:40 [02-find-color-region] FindFilledBlock: found at 791,545 (21x21 0xFF00FF tol=5, 16 ms)
+2026-07-19 16:35:40 [02-find-color-region] FOUND 0xFF00FF at 791,545 in 16 ms (inside region - correct)
+2026-07-19 16:35:45 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:45 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:45 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
+2026-07-19 16:35:48 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:48 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:48 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
+2026-07-19 16:35:50 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:50 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:50 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 0 ms)
+2026-07-19 16:35:51 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:51 [02-find-color-region] FindFilledBlock: found at 744,537 (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:51 [02-find-color-region] FOUND 0xFF00FF at 744,537 in 0 ms (inside region - correct)
+2026-07-19 16:35:53 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:53 [02-find-color-region] FindFilledBlock: found at 791,545 (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:53 [02-find-color-region] FOUND 0xFF00FF at 791,545 in 0 ms (inside region - correct)
+2026-07-19 16:35:56 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:56 [02-find-color-region] FindFilledBlock: found at 793,541 (21x21 0xFF00FF tol=5, 0 ms)
+2026-07-19 16:35:56 [02-find-color-region] FOUND 0xFF00FF at 793,541 in 0 ms (inside region - correct)
+2026-07-19 16:35:57 [02-find-color-region] Search started: color=0xFF00FF tol=5 block=21x21 region=734,511 -> 894,600
+2026-07-19 16:35:57 [02-find-color-region] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 15 ms)
+2026-07-19 16:35:57 [02-find-color-region] NOT FOUND 0xFF00FF in region (searched 15 ms)
