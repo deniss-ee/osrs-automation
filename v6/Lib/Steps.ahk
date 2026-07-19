@@ -24,6 +24,43 @@
 ;                   the whole-screen fallback (default [] = whole screen only)
 ;   trackRadius   - half-size of the narrowed re-search box once locked (required)
 ;   maxDriftPx    - reject a track match this far from the last position (default 40)
+;
+;   TUNING trackRadius vs maxDriftPx (learned live tuning Woodcutting,
+;   2026-07-20 - a same-color-neighbor scenario like Motherlode's
+;   veinColorLight/veinColorDark, or several same-sized blocks in a row,
+;   makes this worth getting right):
+;     - trackRadius is the SEARCH NET: "how far from the last known spot
+;       do I even look." Too small and legitimate camera pan/walking
+;       moves the target clean out of the search box (reported as
+;       "not found" even though it's still on screen).
+;     - maxDriftPx is a SUSPICION CHECK applied AFTER a match is found
+;       inside that net: "this match is far enough from last tick that
+;       it's probably a DIFFERENT same-colored block standing nearby,
+;       not the one I'm tracking - reject it." It exists purely to stop
+;       hijacking a same-colored neighbor's position as if it were drift.
+;     - A DIFFERENT-colored neighbor is already excluded by FindFilledBlock's
+;       own color filter during track mode (it only searches `lockedColor`)
+;       - maxDriftPx only matters when a SECOND instance of the SAME
+;         locked color can appear within roughly maxDriftPx of the real
+;         target (e.g. two vein patches of the same shade near each other).
+;         If every nearby block is a visibly different color (e.g. 4
+;         differently-colored ~33x33 blocks in a row), this risk is much
+;         lower and maxDriftPx can be set generously.
+;     - Measure your real per-tick drift first: watch the log for
+;       "found ... but Npx from last position ... rejecting" lines that
+;       are clearly still the SAME target (not a real re-acquire) - that
+;       N is your floor. In this codebase's own test session, normal
+;       camera pan while walking toward a ~77x77 tree needed ~120px of
+;       tolerance; 40px was far too tight and caused false "depleted,
+;       re-acquire" cascades that could land on a different candidate
+;       color entirely (looked like a color-priority bug, wasn't one).
+;     - Suggested starting point for a same-size-block-row layout like
+;       Motherlode's (several ~30-35px blocks spaced out, each its own
+;       color): `trackRadius` ~150-180, `maxDriftPx` ~100-130 (matches
+;       the measured-good value above - drift speed is about camera/
+;       character movement, not block size). Keep `maxDriftPx` under
+;       roughly half of `trackRadius`, and well under the on-screen
+;       distance to the nearest SAME-colored duplicate if one exists.
 ;   stableTicks   - consecutive in-tolerance ticks before "stable" (default 2)
 ;   moveTolerancePx - px drift still counted "stable" (default 10)
 ;   cooldownMs    - min ms between clicks once stable (required)
