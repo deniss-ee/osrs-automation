@@ -88,7 +88,7 @@ LogLine(msg) {
 ; Call once at script start (after g_LogName is set) to keep a bot's
 ; log file from growing unbounded across long/overnight AFK sessions.
 ; Keeps the last keepLines lines, dropping everything older.
-TrimLogOnStart(keepLines := 5000) {
+TrimLogOnStart(keepLines := 2500) {
     global g_LogName
     logDir := A_ScriptDir "\..\logs"
     logPath := logDir "\" g_LogName ".log"

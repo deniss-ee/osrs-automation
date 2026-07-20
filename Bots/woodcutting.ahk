@@ -37,8 +37,8 @@ TrimLogOnStart()
 TREE_COLORS := [0x00FF00, 0x00B809]   ; candidate tree overlay colors, equal priority
 
 COLOR_TOL      := 5
-BLOCK_W        := 33
-BLOCK_H        := 33
+BLOCK_W        := 51
+BLOCK_H        := 51
 VERIFY_PERCENT := 100
 
 REF_X := 1248, REF_Y := 707     ; character's on-screen point (acquire proximity)
@@ -61,7 +61,20 @@ WALK_RECLICK_TIMEOUT_MS := 3000
 CLICK_USE_CTRL          := true
 
 INDICATOR_SLOT     := 28      ; inventory-full check (Lib\Inv.ahk's SlotFull)
-OVERALL_TIMEOUT_MS := 600000  ; failsafe - stop if inventory never fills (slow trees take a while)
+
+; PROGRESS_TIMEOUT_MS is the real safety net: resets whenever a target is
+; acquired, depletes, or gets clicked, so it only fires on genuine
+; inactivity, not "this phase is just taking a while." Raised from a flat
+; 600000ms total-phase cap (2026-07-20) after that cap killed multiple
+; provably-healthy phases (trees were still depleting on a normal ~2min
+; cadence right up to the cutoff) - see Lib\Steps.ahk's TrackAndClick doc
+; comment for the full story. 300000 (5min) gives ~2x margin over the
+; longest observed real depletion gap (~155s) in this codebase's own logs.
+PROGRESS_TIMEOUT_MS := 300000
+; OVERALL_TIMEOUT_MS is now just a generous absolute backstop underneath
+; that, for the pathological case where something keeps generating
+; progress signals without ever actually filling the inventory.
+OVERALL_TIMEOUT_MS := 1800000
 
 ; --- Bank marker (whole-screen FindFilledBlock - same primitive as micro 01/03) ---
 BANK_COLOR   := 0xFF00FF
@@ -78,7 +91,7 @@ DEPOSIT_TRANS_COLOR := "0x00FF00"
 DEPOSIT_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the deposit box never opens
 DEPOSIT_CONFIRM_TIMEOUT_MS := 5000   ; give up + stop if depositing doesn't actually empty the inventory
 
-POLL_MS := 200   ; tick-aligned poll interval for both waits below
+POLL_MS := 100   ; tick-aligned poll interval for both waits below
 ; ========================================================================
 
 F5:: RunChopLoop()
@@ -122,12 +135,13 @@ ChopLoop() {
             refX: REF_X, refY: REF_Y, acquireRadii: ACQUIRE_RADII, trackRadius: TRACK_RADIUS_PX,
             maxDriftPx: MAX_DRIFT_PX, stableTicks: STABLE_TICKS_REQUIRED, moveTolerancePx: MOVE_TOLERANCE_PX,
             cooldownMs: CLICK_COOLDOWN_MS, reclickAfterMs: WALK_RECLICK_TIMEOUT_MS, ctrl: CLICK_USE_CTRL,
-            until: () => SlotFull(INDICATOR_SLOT), timeoutMs: OVERALL_TIMEOUT_MS, pollMs: POLL_MS
+            until: () => SlotFull(INDICATOR_SLOT), timeoutMs: OVERALL_TIMEOUT_MS,
+            progressTimeoutMs: PROGRESS_TIMEOUT_MS, pollMs: POLL_MS
         }
 
         filled := TrackAndClick(chopOpts)
         if (!filled) {
-            Say("Chop loop gave up (overall timeout) - stopping")
+            Say("Chop loop gave up (no progress or overall timeout) - stopping")
             return
         }
 

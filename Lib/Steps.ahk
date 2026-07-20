@@ -67,12 +67,33 @@
 ;   reclickAfterMs - re-click cadence while not yet stable (required)
 ;   ctrl          - hold Ctrl (force-run) while clicking (default false)
 ;   until         - zero-arg function; loop stops (returns true) once it's true (required)
-;   timeoutMs     - overall failsafe; loop stops (returns false) past this (default 600000)
+;   timeoutMs     - ABSOLUTE backstop for the whole phase; loop stops (returns
+;                   false) past this no matter what (default 1800000 / 30min)
+;   progressTimeoutMs - the REAL safety net; loop stops (returns false) if
+;                   nothing has been acquired, depleted, or clicked for this
+;                   long (default 300000 / 5min)
 ;   pollMs        - tick-aligned loop interval (default 300)
 ;
-; Returns true if `until` became true, false on overall timeout. Throws
-; BotStopped (propagated from Pause) if the user stops mid-loop - never
-; swallowed here, same as WaitUntil.
+;   TIMEOUTMS VS PROGRESSTIMEOUTMS (learned live tuning Woodcutting,
+;   2026-07-20): a single fixed `timeoutMs` counting the WHOLE phase is the
+;   wrong shape for "did this get stuck" - a phase that's working perfectly
+;   just legitimately takes longer some runs (farther trees, slower
+;   respawns, walking after a bank trip all eat into the same budget), so a
+;   tight total-time cap fires on a genuinely healthy run and looks
+;   identical in the log to a real stall (confirmed live: a phase that
+;   depleted 4 real trees at a completely normal ~2min cadence still hit a
+;   600000ms total cap and got killed, because the total was tight, not
+;   because anything was wrong). `progressTimeoutMs` fixes this by
+;   resetting its clock on any real evidence of activity (an acquire, a
+;   depletion, or a click) - it only fires when NOTHING has happened for
+;   that long, which is what "stuck" actually means. `timeoutMs` stays as a
+;   generous absolute backstop underneath it, purely for the pathological
+;   case where something keeps generating progress signals without the
+;   until-condition ever actually being reached.
+;
+; Returns true if `until` became true, false if either timeout fires.
+; Throws BotStopped (propagated from Pause) if the user stops mid-loop -
+; never swallowed here, same as WaitUntil.
 TrackAndClick(opts) {
     colors := opts.colors
     tol := opts.HasOwnProp("tol") ? opts.tol : 5
@@ -90,7 +111,8 @@ TrackAndClick(opts) {
     reclickAfterMs := opts.reclickAfterMs
     useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
     untilFn := opts.until
-    timeoutMs := opts.HasOwnProp("timeoutMs") ? opts.timeoutMs : 600000
+    timeoutMs := opts.HasOwnProp("timeoutMs") ? opts.timeoutMs : 1800000
+    progressTimeoutMs := opts.HasOwnProp("progressTimeoutMs") ? opts.progressTimeoutMs : 300000
     pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
 
     lock := TargetLock(stableTicksRequired, moveTolerancePx)
@@ -99,6 +121,7 @@ TrackAndClick(opts) {
     lockedColor := colors[1]
     lastClickTime := 0
     t0 := A_TickCount
+    lastProgressAt := A_TickCount
 
     loop {
         if (untilFn()) {
@@ -108,6 +131,12 @@ TrackAndClick(opts) {
 
         if ((A_TickCount - t0) > timeoutMs) {
             Say("TrackAndClick: OVERALL TIMEOUT after " (A_TickCount - t0) " ms - stopping (until-condition never met)")
+            return false
+        }
+
+        if ((A_TickCount - lastProgressAt) > progressTimeoutMs) {
+            Say("TrackAndClick: NO PROGRESS for " (A_TickCount - lastProgressAt)
+                " ms (nothing acquired/depleted/clicked) - stopping (until-condition never met)")
             return false
         }
 
@@ -147,6 +176,7 @@ TrackAndClick(opts) {
                 lockedColor := foundColor
                 lastClickTime := 0
                 lock.Reset()
+                lastProgressAt := A_TickCount
                 Say("Acquired new target at " tx "," ty " (" HexColor(lockedColor) ", " stageLabel ", " searchMs " ms)")
             } else {
                 Say("Acquire: not found (searched " searchMs " ms)")
@@ -189,6 +219,7 @@ TrackAndClick(opts) {
                 Say("Target depleted or lost - re-acquiring (searched " searchMs " ms)")
                 hasTarget := false
                 targetX := 0, targetY := 0
+                lastProgressAt := A_TickCount
             } else {
                 targetX := outX, targetY := outY
 
@@ -196,6 +227,7 @@ TrackAndClick(opts) {
                     if (lastClickTime == 0 || (A_TickCount - lastClickTime) > cooldownMs) {
                         ClickAt(outX, outY, useCtrl)
                         lastClickTime := A_TickCount
+                        lastProgressAt := A_TickCount
                         Say("Clicked STABLE target at " outX "," outY " (search " searchMs " ms)")
                     } else {
                         Say("Tracking stable target at " outX "," outY " (cooldown active, search " searchMs " ms)")
@@ -204,6 +236,7 @@ TrackAndClick(opts) {
                     if (lastClickTime == 0 || (A_TickCount - lastClickTime) > reclickAfterMs) {
                         ClickAt(outX, outY, useCtrl)
                         lastClickTime := A_TickCount
+                        lastProgressAt := A_TickCount
                         Say("Clicked initial/re-click target at " outX "," outY " (search " searchMs " ms)")
                     } else {
                         Say("Tracking not-yet-stable target at " outX "," outY " (search " searchMs " ms)")
