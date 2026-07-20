@@ -37,8 +37,8 @@ TrimLogOnStart()
 TREE_COLORS := [0x00FF00, 0x00B809]   ; candidate tree overlay colors, equal priority
 
 COLOR_TOL      := 5
-BLOCK_W        := 55
-BLOCK_H        := 55
+BLOCK_W        := 33
+BLOCK_H        := 33
 VERIFY_PERCENT := 100
 
 REF_X := 1248, REF_Y := 707     ; character's on-screen point (acquire proximity)
@@ -66,22 +66,23 @@ OVERALL_TIMEOUT_MS := 600000  ; failsafe - stop if inventory never fills (slow t
 ; --- Bank marker (whole-screen FindFilledBlock - same primitive as micro 01/03) ---
 BANK_COLOR   := 0xFF00FF
 BANK_TOL     := 0
-BANK_BLOCK_W := 23
-BANK_BLOCK_H := 23
+BANK_BLOCK_W := 21
+BANK_BLOCK_H := 21
 BANK_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the bank marker never appears
 
 ; --- Deposit box image (same primitive as micro 06) ---
-DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-default.png"
-DEPOSIT_IMAGE_W := 72, DEPOSIT_IMAGE_H := 72   ; must match the PNG's real pixel size
+DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
+DEPOSIT_IMAGE_W := 80, DEPOSIT_IMAGE_H := 72   ; must match the PNG's real pixel size
 DEPOSIT_IMAGE_TOL := 5
 DEPOSIT_TRANS_COLOR := "0x00FF00"
 DEPOSIT_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the deposit box never opens
 DEPOSIT_CONFIRM_TIMEOUT_MS := 5000   ; give up + stop if depositing doesn't actually empty the inventory
 
-POLL_MS := 100   ; tick-aligned poll interval for both waits below
+POLL_MS := 200   ; tick-aligned poll interval for both waits below
 ; ========================================================================
 
 F5:: RunChopLoop()
+F8:: ProbeIndicatorSlot()
 F6:: {
     global g_StopRequested
     g_StopRequested := true
@@ -90,6 +91,15 @@ F6:: {
 Esc:: {
     LogLine("Esc pressed - exiting")
     ExitApp()
+}
+
+; Diagnostic: press F8 any time (bot doesn't need to be running) with
+; a KNOWN, visually-confirmed inventory state to see exactly what
+; SlotFull(INDICATOR_SLOT) is actually reading - use this instead of
+; re-guessing SLOT_EMPTY_TOL/SLOT_FULL_OFFSETS blind next time a
+; specific item type doesn't get detected as occupied.
+ProbeIndicatorSlot() {
+    Say(SlotProbe(INDICATOR_SLOT))
 }
 
 RunChopLoop() {

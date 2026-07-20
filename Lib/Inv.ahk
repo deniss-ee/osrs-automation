@@ -72,18 +72,44 @@ SlotCorner(slotIndex, &x, &y) {
 ; now, vs. 30 before - much narrower room for a coincidental match)
 ; without paying for more PixelGetColor calls. Try 3 points next if 4
 ; still isn't fast enough - keep tolerance tight if you do.
-SlotFull(slotIndex) {
-    static offsets := [[0, 0], [-14, -12], [14, -12], [0, 12]]
-    static EMPTY_COLOR := 0x3F3629
-    static EMPTY_TOL := 5
+; File-level (not function-static) so SlotProbe below can share the
+; exact same values SlotFull actually checks against - duplicating
+; these into a second function risks the two silently drifting apart.
+SLOT_FULL_OFFSETS := [[0, 0], [-14, -12], [14, -12], [0, 12]]
+SLOT_EMPTY_COLOR := 0x3F3629
+SLOT_EMPTY_TOL := 5
 
+SlotFull(slotIndex) {
     SlotCenter(slotIndex, &cx, &cy)
-    for off in offsets {
+    for off in SLOT_FULL_OFFSETS {
         current := PixelGetColor(cx + off[1], cy + off[2])
-        if (!ColorClose(current, EMPTY_COLOR, EMPTY_TOL))
+        if (!ColorClose(current, SLOT_EMPTY_COLOR, SLOT_EMPTY_TOL))
             return true
     }
     return false
+}
+
+; Diagnostic twin of SlotFull - logs the actual on-screen color at each
+; of SlotFull's sample points plus whether it's within tolerance of
+; "empty", instead of just the true/false result. Use this against a
+; slot you can SEE is occupied in-game whenever SlotFull disagrees -
+; it tells you exactly which sample point(s) are (or aren't) the
+; problem, so tolerance/offsets get tuned from real measured colors
+; instead of another guess.
+SlotProbe(slotIndex) {
+    SlotCenter(slotIndex, &cx, &cy)
+    msg := "SlotProbe " slotIndex " (" cx "," cy "):"
+    anyDiffers := false
+    for i, off in SLOT_FULL_OFFSETS {
+        current := PixelGetColor(cx + off[1], cy + off[2])
+        close := ColorClose(current, SLOT_EMPTY_COLOR, SLOT_EMPTY_TOL)
+        if (!close)
+            anyDiffers := true
+        msg .= "`n  [" i "] offset " off[1] "," off[2] " = " HexColor(current)
+            . (close ? " (~= empty, tol " SLOT_EMPTY_TOL ")" : " (DIFFERS from empty - occupied signal)")
+    }
+    msg .= "`n  => SlotFull(" slotIndex ") would report: " (anyDiffers ? "FULL" : "EMPTY")
+    return msg
 }
 
 ; ---------- watch-box (pixel-box snapshot + change detection) ----------
