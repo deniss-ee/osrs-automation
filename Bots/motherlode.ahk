@@ -1,12 +1,12 @@
 ; ============================================================
-; v6 Motherlode bot - PART 1 (mine + hopper skeleton)
+; v6 Motherlode bot - PART 1 + PART 2 (full loop)
 ;
-; Explicitly scoped as a first part: mine veins -> deposit into
-; hopper -> repeat HOPPER_CYCLES times -> alarm and stop. NOT included
-; yet (later parts): clearing rockfalls, withdrawing the ore sack,
-; banking, or walking back to the mine - after the alarm fires, the
-; user handles those manually before running this again. That's the
-; whole point of the alarm.
+; Full loop, repeated forever until F6: mine veins -> deposit into
+; hopper -> repeat HOPPER_CYCLES times -> walk to the sack platform ->
+; (withdraw sack -> bank deposit) repeated SACK_CYCLES times -> walk
+; back to the mine -> repeat. NOT included: clearing rockfalls - the
+; user still handles that manually (it hasn't caused problems in
+; practice since rockfalls are rare on this world/route).
 ;
 ; Built entirely from already-proven Lib primitives, no new composites:
 ;   - Mine phase: TrackAndClick (Lib\Steps.ahk, unchanged from
@@ -29,10 +29,18 @@
 ;     empty - bouncing straight back into another hopper click, rapid-
 ;     fire, with zero mining in between. See INDICATOR_SLOT's comment
 ;     below for the full story.
+;   - Sack/bank phase (Part 2): GoToSackArea/WithdrawAndBankOnce/
+;     ReturnToMine, all hand-written the same find+WaitUntil+ClickAt
+;     longhand shape as DepositHopper()/Woodcutting's Bank() - not
+;     promoted to Lib composites since these are still only 1-2 call
+;     sites each, matching this project's "no speculative abstraction"
+;     rule. The two "wait until a block is exactly at a fixed x,y"
+;     arrival checks (GoToSackArea/ReturnToMine) share one small local
+;     helper, BlockAtPoint().
 ;
 ; WHAT IT DOES
-;   F5  = start the mine/hopper loop
-;   F8  = probe both indicator slots (same diagnostic as Woodcutting's F8)
+;   F5  = start the full mine->hopper->sack->bank->return loop, forever
+;   F8  = probe indicator + sack slots (same diagnostic as Woodcutting's F8)
 ;   F6  = request stop (interrupts instantly, mid-track or mid-wait)
 ;   Esc = exit the script
 ; ============================================================
@@ -119,19 +127,89 @@ HOPPER_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the hopper marker never ap
 ; After clicking the hopper, wait for ANY slot to empty (AnySlotEmpty,
 ; Lib\Inv.ahk - see DepositHopper()) before considering this cycle done.
 HOPPER_EMPTY_WAIT_TIMEOUT_MS := 15000
+HOPPER_CLICK_SETTLE_MS := 600   ; settle after the hopper deposit registers, same
+                                  ; reasoning as SACK_CLICK_SETTLE_MS below
 
-HOPPER_CYCLES := 7   ; how many mine->hopper cycles before alarming + stopping
+HOPPER_CYCLES := 7   ; how many mine->hopper cycles before moving on to the sack/bank phase
 
-POLL_MS := 100   ; tick-aligned poll interval for TrackAndClick + both waits
+POLL_MS := 100   ; tick-aligned poll interval for TrackAndClick + all waits
 
-; --- Alarm (after HOPPER_CYCLES cycles complete) ---
-ALARM_BEEP_COUNT := 6
-ALARM_BEEP_FREQ_HZ := 1200
-ALARM_BEEP_MS := 200
-ALARM_BEEP_GAP_MS := 150
+; --- Entrance to sack platform (whole-screen find+click, one-shot) ---
+ENTRANCE_COLOR := 0x5676FF
+ENTRANCE_TOL   := 5
+ENTRANCE_BLOCK_W := 27
+ENTRANCE_BLOCK_H := 27
+ENTRANCE_WAIT_TIMEOUT_MS := 15000
+
+; --- Arrival confirmation at the sack platform: wait until a green block's
+; CENTER is exactly at (ARRIVE_SACK_X, ARRIVE_SACK_Y) - see BlockAtPoint()
+; below. ARRIVE_SACK_POS_TOL_PX is slack around that expected center;
+; tune live from the log like MAX_DRIFT_PX was tuned above. ---
+ARRIVE_SACK_COLOR := 0x00FF00
+ARRIVE_SACK_TOL   := 5
+ARRIVE_SACK_BLOCK_W := 27
+ARRIVE_SACK_BLOCK_H := 27
+ARRIVE_SACK_X := 1583
+ARRIVE_SACK_Y := 450
+ARRIVE_SACK_POS_TOL_PX := 15
+ARRIVE_SACK_WAIT_TIMEOUT_MS := 15000
+
+; --- Sack withdrawal (FindImage, same green-transparency convention as
+; deposit-motherlode.png) + wait for slots 2/3/4 to fill ---
+SACK_IMAGE_PATH := A_ScriptDir "\..\Images\sack.png"
+SACK_IMAGE_W := 44
+SACK_IMAGE_H := 16
+SACK_IMAGE_TOL := 5
+SACK_TRANS_COLOR := "0x00FF00"
+SACK_WAIT_TIMEOUT_MS := 15000
+SACK_CLICK_SETTLE_MS := 1200   ; the bank marker moves right after taking items from the sack -
+                                ; without this, the marker search below can start before it's
+                                ; settled and miss the click. Tick-aligned (600ms = 1 game tick).
+SACK_SLOTS := [2, 3, 4]
+SACK_SLOTS_WAIT_TIMEOUT_MS := 15000
+
+; --- Motherlode bank marker (own size/tolerance - different marker from
+; Woodcutting's BANK_COLOR/21x21) + deposit-all image (same image/consts
+; as Woodcutting's Bank(), duplicated here per this project's
+; one-hardcoded-copy-per-bot convention, not shared via Lib) ---
+MLBANK_COLOR := 0xFF00FF
+MLBANK_TOL   := 5
+MLBANK_BLOCK_W := 31
+MLBANK_BLOCK_H := 31
+MLBANK_CLICK_OFFSET_Y := 26   ; the marker's raw center click was landing off the real
+                                ; clickable spot - offset down to compensate
+MLBANK_WAIT_TIMEOUT_MS := 15000
+
+DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
+DEPOSIT_IMAGE_W := 80
+DEPOSIT_IMAGE_H := 72
+DEPOSIT_IMAGE_TOL := 5
+DEPOSIT_TRANS_COLOR := "0x00FF00"
+DEPOSIT_WAIT_TIMEOUT_MS := 15000
+DEPOSIT_CONFIRM_TIMEOUT_MS := 5000   ; wait for slots 2/3/4 to empty after clicking deposit
+
+SACK_CYCLES := HOPPER_CYCLES   ; tied to HOPPER_CYCLES - one sack/bank trip per hopper load
+
+; --- Exit the sack platform + confirm arrival back at the mine (same
+; corner-coordinate convention as ARRIVE_SACK_*) ---
+EXIT_COLOR := 0x0000FF
+EXIT_TOL   := 5
+EXIT_BLOCK_W := 29
+EXIT_BLOCK_H := 29
+EXIT_WAIT_TIMEOUT_MS := 15000
+
+; Same CENTER semantics as ARRIVE_SACK_* above (see BlockAtPoint()).
+ARRIVE_MINE_COLOR := 0xFFFF00
+ARRIVE_MINE_TOL   := 5
+ARRIVE_MINE_BLOCK_W := 17
+ARRIVE_MINE_BLOCK_H := 17
+ARRIVE_MINE_X := 857
+ARRIVE_MINE_Y := 1308
+ARRIVE_MINE_POS_TOL_PX := 15
+ARRIVE_MINE_WAIT_TIMEOUT_MS := 15000
 ; ========================================================================
 
-F5:: RunMineLoop()
+F5:: RunFullLoop()
 F8:: ProbeIndicatorSlot()
 F6:: {
     global g_StopRequested
@@ -145,24 +223,54 @@ Esc:: {
 
 ; Diagnostic: press F8 any time (bot doesn't need to be running) with a
 ; KNOWN, visually-confirmed inventory state to see exactly what both
-; indicator slots are reading - same tool Woodcutting uses (SlotProbe,
-; shared via Lib\Inv.ahk), extended here to both slots of the AND-gate.
+; indicator slots AND the three sack-withdrawal slots (2/3/4) are
+; reading - same tool Woodcutting uses (SlotProbe, shared via
+; Lib\Inv.ahk), extended here for live-tuning the Part 2 sack check.
 ProbeIndicatorSlot() {
-    Say(SlotProbe(INDICATOR_SLOT) "`n`n" SlotProbe(SECONDARY_INDICATOR_SLOT))
+    Say(SlotProbe(INDICATOR_SLOT) "`n`n" SlotProbe(SECONDARY_INDICATOR_SLOT)
+        . "`n`n" SlotProbe(2) "`n`n" SlotProbe(3) "`n`n" SlotProbe(4))
 }
 
-RunMineLoop() {
+RunFullLoop() {
     global g_StopRequested
     g_StopRequested := false
 
     Say("Motherlode started: veins=" VeinColorsMsg() " indicatorSlot=" INDICATOR_SLOT
-        . " cycles=" HOPPER_CYCLES)
+        . " hopperCycles=" HOPPER_CYCLES " sackCycles=" SACK_CYCLES)
 
     try {
-        MineLoop()
+        loop {
+            if (!FullCycle()) {
+                Say("Full cycle failed - stopping (see log for which step)")
+                break
+            }
+        }
     } catch BotStopped as e {
         Say("STOPPED by F6")
     }
+}
+
+; One full lap: mine->hopper (x HOPPER_CYCLES) -> sack platform ->
+; withdraw+bank (x SACK_CYCLES) -> back to the mine. Returns false and
+; stops the whole bot cleanly the instant any step fails (no partial
+; retry) - same fail-clean convention as every wait in this file.
+FullCycle() {
+    if (!MineLoop())
+        return false
+    if (!GoToSackArea())
+        return false
+
+    loop SACK_CYCLES {
+        cycleNum := A_Index
+        Say("Sack/bank cycle " cycleNum "/" SACK_CYCLES)
+        if (!WithdrawAndBankOnce())
+            return false
+    }
+
+    if (!ReturnToMine())
+        return false
+
+    return true
 }
 
 MineLoop() {
@@ -180,16 +288,16 @@ MineLoop() {
         filled := TrackAndClick(mineOpts)
         if (!filled) {
             Say("Mine loop gave up (no progress or overall timeout) - stopping")
-            return
+            return false
         }
 
         Say("Inventory full - depositing into hopper (cycle " cycleNum "/" HOPPER_CYCLES ")")
         if (!DepositHopper()) {
-            return
+            return false
         }
     }
 
-    Alarm()
+    return true
 }
 
 ; Whole-screen search for the hopper marker, click it, then wait for at
@@ -230,19 +338,226 @@ DepositHopper() {
         return false
     }
 
-    Say("Hopper: a slot emptied - back to mining")
+    Say("Hopper: a slot emptied - settling " HOPPER_CLICK_SETTLE_MS "ms before continuing")
+    Pause(HOPPER_CLICK_SETTLE_MS)
     return true
 }
 
-; Repeated system beeps to get the user's attention once HOPPER_CYCLES
-; cycles are done - the sack/bank/return trip isn't automated yet
-; (later part), so this is where the bot hands back control.
-Alarm() {
-    Say(HOPPER_CYCLES " cycles done - handle sack/bank/return manually")
-    loop ALARM_BEEP_COUNT {
-        SoundBeep(ALARM_BEEP_FREQ_HZ, ALARM_BEEP_MS)
-        Sleep(ALARM_BEEP_GAP_MS)
+; Shared by GoToSackArea()/ReturnToMine(): waits for a color block whose
+; CENTER lands exactly at (expectedCx, expectedCy) - not just "this color
+; is somewhere on screen". Originally written assuming the given point was
+; a top-left corner (per the user's initial answer), but live log evidence
+; (2026-07-20) contradicted that: FindFilledBlock settled on a steady
+; center of 849,1309 for a marker the user gave as x=857,y=1308 - only
+; ~8px off the RAW point, but 16px off the corner-converted expected
+; center (865,1316), which was enough to fail posTolPx=10 every time.
+; Fixed to compare directly against the given point as a center. Outputs
+; the real matched center via &fx/&fy (only meaningful when true is
+; returned).
+BlockAtPoint(expectedCx, expectedCy, color, tol, blockW, blockH, posTolPx, &fx, &fy) {
+    static MARGIN_PX := 40   ; search slack around the expected block area
+
+    found := FindFilledBlock(expectedCx - blockW // 2 - MARGIN_PX, expectedCy - blockH // 2 - MARGIN_PX,
+        expectedCx + blockW // 2 + MARGIN_PX, expectedCy + blockH // 2 + MARGIN_PX,
+        color, tol, blockW, blockH, &mx, &my)
+    if (!found)
+        return false
+
+    if (Abs(mx - expectedCx) > posTolPx || Abs(my - expectedCy) > posTolPx)
+        return false
+
+    fx := mx, fy := my
+    return true
+}
+
+; Whole-screen find+click the sack-platform entrance marker, then wait
+; for the arrival marker to appear at its exact expected corner - same
+; fail-clean shape as DepositHopper().
+GoToSackArea() {
+    entX := 0, entY := 0
+    EntranceVisible() {
+        found := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            ENTRANCE_COLOR, ENTRANCE_TOL, ENTRANCE_BLOCK_W, ENTRANCE_BLOCK_H, &fx, &fy)
+        if (found) {
+            entX := fx, entY := fy
+        }
+        return found
     }
+
+    Say("GoToSackArea: waiting for entrance marker")
+    found := WaitUntil(EntranceVisible, ENTRANCE_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!found) {
+        Say("GoToSackArea: entrance marker never appeared within " ENTRANCE_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("GoToSackArea: clicking entrance at " entX "," entY)
+    ClickAt(entX, entY, CLICK_USE_CTRL)
+
+    ArrivedAtSack() {
+        return BlockAtPoint(ARRIVE_SACK_X, ARRIVE_SACK_Y, ARRIVE_SACK_COLOR, ARRIVE_SACK_TOL,
+            ARRIVE_SACK_BLOCK_W, ARRIVE_SACK_BLOCK_H, ARRIVE_SACK_POS_TOL_PX, &fx, &fy)
+    }
+
+    Say("GoToSackArea: waiting for arrival at sack platform")
+    arrived := WaitUntil(ArrivedAtSack, ARRIVE_SACK_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!arrived) {
+        Say("GoToSackArea: never arrived at sack platform within " ARRIVE_SACK_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("GoToSackArea: arrived at sack platform")
+    return true
+}
+
+; One withdraw+bank round trip: click the sack, wait for slots 2/3/4 to
+; fill, click the Motherlode deposit-box marker, wait for the deposit-all
+; image, click it, then confirm slots 2/3/4 actually emptied before
+; letting the caller loop back to the sack again.
+WithdrawAndBankOnce() {
+    sackX := 0, sackY := 0
+    SackVisible() {
+        found := FindImage(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            SACK_IMAGE_PATH, SACK_IMAGE_W, SACK_IMAGE_H, SACK_IMAGE_TOL, SACK_TRANS_COLOR, &fx, &fy)
+        if (found) {
+            sackX := fx, sackY := fy
+        }
+        return found
+    }
+
+    Say("Sack: waiting for sack")
+    found := WaitUntil(SackVisible, SACK_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!found) {
+        Say("Sack: sack never appeared within " SACK_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("Sack: clicking sack at " sackX "," sackY)
+    ClickAt(sackX, sackY, CLICK_USE_CTRL)
+
+    Say("Sack: settling " SACK_CLICK_SETTLE_MS "ms before searching for the bank marker")
+    Pause(SACK_CLICK_SETTLE_MS)
+
+    SackSlotsFull() {
+        for slot in SACK_SLOTS {
+            if (!SlotFull(slot))
+                return false
+        }
+        return true
+    }
+
+    Say("Sack: waiting for slots " SackSlotsMsg() " to fill")
+    filled := WaitUntil(SackSlotsFull, SACK_SLOTS_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!filled) {
+        Say("Sack: slots " SackSlotsMsg() " never filled within " SACK_SLOTS_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    bankX := 0, bankY := 0
+    MlBankVisible() {
+        found := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            MLBANK_COLOR, MLBANK_TOL, MLBANK_BLOCK_W, MLBANK_BLOCK_H, &fx, &fy)
+        if (found) {
+            bankX := fx, bankY := fy
+        }
+        return found
+    }
+
+    Say("Sack: waiting for deposit-box marker")
+    found := WaitUntil(MlBankVisible, MLBANK_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!found) {
+        Say("Sack: deposit-box marker never appeared within " MLBANK_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    bankY += MLBANK_CLICK_OFFSET_Y
+    Say("Sack: clicking deposit-box marker at " bankX "," bankY)
+    ClickAt(bankX, bankY, CLICK_USE_CTRL)
+
+    depositX := 0, depositY := 0
+    DepositImageVisible() {
+        found := FindImage(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            DEPOSIT_IMAGE_PATH, DEPOSIT_IMAGE_W, DEPOSIT_IMAGE_H, DEPOSIT_IMAGE_TOL, DEPOSIT_TRANS_COLOR, &fx, &fy)
+        if (found) {
+            depositX := fx, depositY := fy
+        }
+        return found
+    }
+
+    Say("Sack: waiting for deposit box to open")
+    found := WaitUntil(DepositImageVisible, DEPOSIT_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!found) {
+        Say("Sack: deposit box never opened within " DEPOSIT_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("Sack: clicking Deposit All at " depositX "," depositY)
+    ClickAt(depositX, depositY, CLICK_USE_CTRL)
+
+    SackSlotsEmpty() {
+        for slot in SACK_SLOTS {
+            if (SlotFull(slot))
+                return false
+        }
+        return true
+    }
+
+    Say("Sack: waiting for slots " SackSlotsMsg() " to empty")
+    emptied := WaitUntil(SackSlotsEmpty, DEPOSIT_CONFIRM_TIMEOUT_MS, POLL_MS)
+    if (!emptied) {
+        Say("Sack: slots " SackSlotsMsg() " still full " DEPOSIT_CONFIRM_TIMEOUT_MS
+            . "ms after clicking Deposit All - stopping (deposit may not have registered)")
+        return false
+    }
+
+    Say("Sack: deposited - slots " SackSlotsMsg() " confirmed empty")
+    return true
+}
+
+; Whole-screen find+click the exit marker, then wait for the arrival
+; marker to appear back at the mine's exact expected corner.
+ReturnToMine() {
+    exitX := 0, exitY := 0
+    ExitVisible() {
+        found := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            EXIT_COLOR, EXIT_TOL, EXIT_BLOCK_W, EXIT_BLOCK_H, &fx, &fy)
+        if (found) {
+            exitX := fx, exitY := fy
+        }
+        return found
+    }
+
+    Say("ReturnToMine: waiting for exit marker")
+    found := WaitUntil(ExitVisible, EXIT_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!found) {
+        Say("ReturnToMine: exit marker never appeared within " EXIT_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("ReturnToMine: clicking exit at " exitX "," exitY)
+    ClickAt(exitX, exitY, CLICK_USE_CTRL)
+
+    ArrivedAtMine() {
+        return BlockAtPoint(ARRIVE_MINE_X, ARRIVE_MINE_Y, ARRIVE_MINE_COLOR, ARRIVE_MINE_TOL,
+            ARRIVE_MINE_BLOCK_W, ARRIVE_MINE_BLOCK_H, ARRIVE_MINE_POS_TOL_PX, &fx, &fy)
+    }
+
+    Say("ReturnToMine: waiting for arrival at mine")
+    arrived := WaitUntil(ArrivedAtMine, ARRIVE_MINE_WAIT_TIMEOUT_MS, POLL_MS)
+    if (!arrived) {
+        Say("ReturnToMine: never arrived at mine within " ARRIVE_MINE_WAIT_TIMEOUT_MS "ms - stopping")
+        return false
+    }
+
+    Say("ReturnToMine: arrived at mine - mining again")
+    return true
+}
+
+SackSlotsMsg() {
+    msg := ""
+    for i, slot in SACK_SLOTS
+        msg .= (i = 1 ? "" : "/") slot
+    return msg
 }
 
 VeinColorsMsg() {
@@ -252,5 +567,5 @@ VeinColorsMsg() {
     return msg
 }
 
-LogLine("Script loaded. F5=start mine/hopper loop  F8=probe indicator slot  F6=stop  Esc=exit. Veins=" VeinColorsMsg())
-ToolTip("motherlode part 1 ready - F5 to start", 20, 20)
+LogLine("Script loaded. F5=start full loop  F8=probe indicator+sack slots  F6=stop  Esc=exit. Veins=" VeinColorsMsg())
+ToolTip("motherlode ready (mine+hopper+sack+bank+return) - F5 to start", 20, 20)
