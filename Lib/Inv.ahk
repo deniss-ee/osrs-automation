@@ -112,6 +112,36 @@ SlotProbe(slotIndex) {
     return msg
 }
 
+; True if ANY of the 28 slots reads not-full (empty). Used by
+; Motherlode's "wait until at least one slot emptied" hopper-deposit
+; check - deliberately "any" slot, not one specific slot, since gems
+; don't drain through the hopper and can sit in any slot indefinitely
+; (a check pinned to one specific slot could hang forever on a stray
+; gem). NOTE: this is a different question from "is the inventory
+; full" - that check needs a wholly separate AND-gate over two slots
+; to avoid a stray gem causing false positives THERE too; see
+; Bots\motherlode.ahk's InventoryFull().
+;
+; CORRECTNESS-FIRST, NOT YET SPEED-TUNED: worst case (nothing has
+; emptied yet, which is exactly the case this gets called in a tight
+; WaitUntil poll loop) scans all 28 slots via SlotFull - at roughly
+; 4 PixelGetColor calls each (~5-7ms/call), that's up to ~28 * 4 * 6ms
+; =~ 670ms for one AnySlotEmpty() call, which can dominate a short
+; pollMs. SlotFull itself went through exactly this correctness-then-
+; measure cycle this session (9 points -> back to 4 + tighter
+; tolerance once the real cost was measured live) - do the same here
+; if this proves too slow in practice: e.g. stop scanning at whichever
+; slot order items actually leave first (verify live, don't guess), or
+; check only a handful of representative slots instead of all 28.
+AnySlotEmpty() {
+    total := INV_COLS * INV_ROWS
+    loop total {
+        if (!SlotFull(A_Index))
+            return true
+    }
+    return false
+}
+
 ; ---------- watch-box (pixel-box snapshot + change detection) ----------
 ;
 ; Samples roughly targetSamples points spread evenly across a w x h box
