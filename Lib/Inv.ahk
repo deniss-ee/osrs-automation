@@ -55,6 +55,26 @@ SlotCorner(slotIndex, &x, &y) {
     y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
 }
 
+; ---------- bank interface slot grid (distinct from the player's own
+; inventory grid above - different origin, same corner+size addressing
+; style). Row-major, 1-based. Live-measured horizontally only so far
+; (slots 1-3 confirmed colinear at y=203) - no BANK_SLOT_GAP_Y/rows-per-
+; row yet, so this only walks a single row. Extend when a bot needs
+; slot >8ish (wherever row 2 actually starts) with real measured values,
+; not a guess. ----------
+
+BANK_SLOT_FIRST_X := 625
+BANK_SLOT_FIRST_Y := 203
+BANK_SLOT_W := 72
+BANK_SLOT_H := 64
+BANK_SLOT_GAP_X := 24
+
+BankSlotCenter(slotIndex, &x, &y) {
+    cornerX := BANK_SLOT_FIRST_X + (slotIndex - 1) * (BANK_SLOT_W + BANK_SLOT_GAP_X)
+    x := cornerX + BANK_SLOT_W // 2
+    y := BANK_SLOT_FIRST_Y + BANK_SLOT_H // 2
+}
+
 ; True if OCCUPIED: any sample point no longer matches the empty-
 ; background color.
 ;
