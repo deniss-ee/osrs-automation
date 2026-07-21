@@ -142,6 +142,30 @@ AnySlotEmpty() {
     return false
 }
 
+; True if EVERY slot in the given list reads full. Generalizes the
+; hand-rolled AND-gate loops that showed up independently in
+; Motherlode's InventoryFull() (2 slots) and its sack-withdrawal check
+; (3 slots, `SACK_SLOTS`) - promoted here (2026-07-20) once the same
+; "all of these specific slots must be full" shape appeared 3 times.
+AllSlotsFull(slots) {
+    for slot in slots {
+        if (!SlotFull(slot))
+            return false
+    }
+    return true
+}
+
+; True if EVERY slot in the given list reads empty - the mirror check
+; used to confirm a deposit actually registered across several slots
+; at once (Motherlode's sack-deposit confirm).
+AllSlotsEmpty(slots) {
+    for slot in slots {
+        if (SlotFull(slot))
+            return false
+    }
+    return true
+}
+
 ; ---------- watch-box (pixel-box snapshot + change detection) ----------
 ;
 ; Samples roughly targetSamples points spread evenly across a w x h box

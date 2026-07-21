@@ -128,6 +128,34 @@ IsColorAt(x, y, color, tol) {
     return ColorClose(PixelGetColor(x, y), color, tol)
 }
 
+; ---------- waypoint arrival (exact-position block check) ----------
+
+; Waits for a color block whose CENTER lands exactly at (expectedCx,
+; expectedCy) - not just "this color is somewhere on screen". Used by
+; Motherlode's GoToSackArea()/ReturnToMine() arrival checks; promoted
+; here (2026-07-20, moved verbatim from Bots\motherlode.ahk) since it's
+; a generic "confirm arrival at a fixed waypoint" primitive, not
+; Motherlode-specific logic - the same "click waypoint, wait for a
+; marker at a known position" shape TEMPLATES.md's original Motherlode
+; spec describes for its `return` phase, likely reusable by future
+; walking bots (Agility, Firemaking). Outputs the real matched center
+; via &fx/&fy (only meaningful when true is returned).
+BlockAtPoint(expectedCx, expectedCy, color, tol, blockW, blockH, posTolPx, &fx, &fy) {
+    static MARGIN_PX := 40   ; search slack around the expected block area
+
+    found := FindFilledBlock(expectedCx - blockW // 2 - MARGIN_PX, expectedCy - blockH // 2 - MARGIN_PX,
+        expectedCx + blockW // 2 + MARGIN_PX, expectedCy + blockH // 2 + MARGIN_PX,
+        color, tol, blockW, blockH, &mx, &my)
+    if (!found)
+        return false
+
+    if (Abs(mx - expectedCx) > posTolPx || Abs(my - expectedCy) > posTolPx)
+        return false
+
+    fx := mx, fy := my
+    return true
+}
+
 ; ---------- proximity acquire (multi-color, equal priority) ----------
 
 ; Searches every color in `colors` within [x1,y1]-[x2,y2] and returns

@@ -1,0 +1,1067 @@
+2026-07-20 18:51:50 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 18:51:53 [sudoku] Esc pressed - exiting
+2026-07-20 18:52:02 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 18:52:03 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 18:52:03 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 18:52:04 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:52:04 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 18:52:05 [sudoku] FindImage: found at 501,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:52:05 [sudoku] Sudoku: clicking slot at 501,411
+2026-07-20 18:52:05 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:52:05 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 18:52:06 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 18:52:06 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 18:52:07 [sudoku] FindImage: found at 881,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:52:07 [sudoku] Sudoku: clicking slot at 881,615
+2026-07-20 18:52:08 [sudoku] FindImage: found at 577,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:52:08 [sudoku] Sudoku: clicking slot at 577,683
+2026-07-20 18:52:09 [sudoku] FindImage: found at 957,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:52:09 [sudoku] Sudoku: clicking slot at 957,819
+2026-07-20 18:52:10 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:52:10 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 18:52:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 18:52:11 [sudoku] Sudoku: zone clear (8 slots clicked)
+2026-07-20 18:52:11 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 18:52:11 [sudoku] FindImage: found at 957,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:52:11 [sudoku] Sudoku: clicking slot at 957,275
+2026-07-20 18:52:12 [sudoku] FindImage: found at 653,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 18:52:12 [sudoku] Sudoku: clicking slot at 653,343
+2026-07-20 18:52:13 [sudoku] Esc pressed - exiting
+2026-07-20 18:54:16 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 18:54:22 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 18:54:22 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 18:54:22 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:22 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 18:54:22 [sudoku] FindImage: found at 1109,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:22 [sudoku] Sudoku: clicking slot at 1109,411
+2026-07-20 18:54:22 [sudoku] FindImage: found at 1033,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:22 [sudoku] Sudoku: clicking slot at 1033,479
+2026-07-20 18:54:22 [sudoku] FindImage: found at 881,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:22 [sudoku] Sudoku: clicking slot at 881,547
+2026-07-20 18:54:22 [sudoku] FindImage: found at 577,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:22 [sudoku] Sudoku: clicking slot at 577,615
+2026-07-20 18:54:23 [sudoku] FindImage: found at 501,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:23 [sudoku] Sudoku: clicking slot at 501,751
+2026-07-20 18:54:23 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:23 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 18:54:23 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 18:54:23 [sudoku] FindImage: found at 729,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:23 [sudoku] Sudoku: clicking slot at 729,411
+2026-07-20 18:54:23 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:23 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 18:54:24 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:24 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 18:54:24 [sudoku] FindImage: found at 501,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:24 [sudoku] Sudoku: clicking slot at 501,819
+2026-07-20 18:54:24 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:24 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 18:54:24 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 18:54:24 [sudoku] FindImage: found at 729,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:24 [sudoku] Sudoku: clicking slot at 729,343
+2026-07-20 18:54:24 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:24 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 18:54:25 [sudoku] FindImage: found at 501,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:25 [sudoku] Sudoku: clicking slot at 501,615
+2026-07-20 18:54:25 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:25 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 18:54:25 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:25 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 18:54:25 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 18:54:25 [sudoku] FindImage: found at 1109,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:25 [sudoku] Sudoku: clicking slot at 1109,275
+2026-07-20 18:54:25 [sudoku] FindImage: found at 501,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:25 [sudoku] Sudoku: clicking slot at 501,343
+2026-07-20 18:54:26 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:26 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 18:54:26 [sudoku] FindImage: found at 1033,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:26 [sudoku] Sudoku: clicking slot at 1033,615
+2026-07-20 18:54:26 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:26 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 18:54:26 [sudoku] FindImage: found at 957,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:26 [sudoku] Sudoku: clicking slot at 957,683
+2026-07-20 18:54:26 [sudoku] FindImage: found at 805,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:26 [sudoku] Sudoku: clicking slot at 805,819
+2026-07-20 18:54:27 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:27 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 18:54:27 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 18:54:27 [sudoku] FindImage: found at 501,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:27 [sudoku] Sudoku: clicking slot at 501,275
+2026-07-20 18:54:27 [sudoku] FindImage: found at 881,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:27 [sudoku] Sudoku: clicking slot at 881,343
+2026-07-20 18:54:27 [sudoku] FindImage: found at 729,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:27 [sudoku] Sudoku: clicking slot at 729,479
+2026-07-20 18:54:27 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:27 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 18:54:28 [sudoku] FindImage: found at 957,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:28 [sudoku] Sudoku: clicking slot at 957,615
+2026-07-20 18:54:28 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:28 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 18:54:28 [sudoku] FindImage: found at 1109,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:28 [sudoku] Sudoku: clicking slot at 1109,751
+2026-07-20 18:54:28 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:28 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 18:54:28 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 18:54:28 [sudoku] FindImage: found at 881,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:28 [sudoku] Sudoku: clicking slot at 881,275
+2026-07-20 18:54:29 [sudoku] FindImage: found at 653,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:29 [sudoku] Sudoku: clicking slot at 653,411
+2026-07-20 18:54:29 [sudoku] FindImage: found at 957,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:29 [sudoku] Sudoku: clicking slot at 957,343
+2026-07-20 18:54:29 [sudoku] FindImage: found at 1109,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:29 [sudoku] Sudoku: clicking slot at 1109,479
+2026-07-20 18:54:29 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:29 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 18:54:29 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:29 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 18:54:30 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 18:54:30 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 18:54:30 [sudoku] FindImage: found at 577,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:30 [sudoku] Sudoku: clicking slot at 577,683
+2026-07-20 18:54:30 [sudoku] FindImage: found at 1033,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 18:54:30 [sudoku] Sudoku: clicking slot at 1033,819
+2026-07-20 18:54:30 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:30 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 18:54:31 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: zone clear (10 slots clicked)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 18:54:31 [sudoku] FindImage: found at 957,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking slot at 957,411
+2026-07-20 18:54:31 [sudoku] FindImage: found at 577,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking slot at 577,479
+2026-07-20 18:54:31 [sudoku] FindImage: found at 805,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking slot at 805,547
+2026-07-20 18:54:31 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 18:54:31 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 18:54:31 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 18:54:31 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 18:54:32 [sudoku] FindImage: found at 805,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:32 [sudoku] Sudoku: clicking slot at 805,275
+2026-07-20 18:54:32 [sudoku] FindImage: found at 577,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:32 [sudoku] Sudoku: clicking slot at 577,547
+2026-07-20 18:54:32 [sudoku] FindImage: found at 881,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:32 [sudoku] Sudoku: clicking slot at 881,683
+2026-07-20 18:54:32 [sudoku] FindImage: found at 653,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:32 [sudoku] Sudoku: clicking slot at 653,751
+2026-07-20 18:54:32 [sudoku] FindImage: found at 1109,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:32 [sudoku] Sudoku: clicking slot at 1109,819
+2026-07-20 18:54:33 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:33 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 18:54:33 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 18:54:33 [sudoku] FindImage: found at 577,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:33 [sudoku] Sudoku: clicking slot at 577,275
+2026-07-20 18:54:33 [sudoku] FindImage: found at 1109,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:33 [sudoku] Sudoku: clicking slot at 1109,343
+2026-07-20 18:54:33 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:33 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 18:54:33 [sudoku] FindImage: found at 881,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:33 [sudoku] Sudoku: clicking slot at 881,615
+2026-07-20 18:54:34 [sudoku] FindImage: found at 653,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:34 [sudoku] Sudoku: clicking slot at 653,683
+2026-07-20 18:54:34 [sudoku] FindImage: found at 729,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 18:54:34 [sudoku] Sudoku: clicking slot at 729,819
+2026-07-20 18:54:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 18:54:34 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 18:54:34 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 18:54:34 [sudoku] Sudoku: done
+2026-07-20 18:58:46 [sudoku] Esc pressed - exiting
+2026-07-20 19:27:01 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:27:09 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:27:09 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:27:09 [sudoku] FindImage: found at 1047,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:09 [sudoku] Sudoku: clicking slot at 1047,343
+2026-07-20 19:27:09 [sudoku] FindImage: found at 971,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:09 [sudoku] Sudoku: clicking slot at 971,479
+2026-07-20 19:27:09 [sudoku] FindImage: found at 895,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:09 [sudoku] Sudoku: clicking slot at 895,547
+2026-07-20 19:27:10 [sudoku] FindImage: found at 1123,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:10 [sudoku] Sudoku: clicking slot at 1123,819
+2026-07-20 19:27:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:10 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:27:10 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:27:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:10 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:10 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:27:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:10 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:10 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:27:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:11 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:11 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:27:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:11 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:11 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:27:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:11 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:11 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:27:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:11 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:11 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:27:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:11 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:11 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:27:11 [sudoku] Esc pressed - exiting
+2026-07-20 19:27:24 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:27:33 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:27:33 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:27:33 [sudoku] FindImage: found at 743,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:27:33 [sudoku] Sudoku: clicking slot at 743,275
+2026-07-20 19:27:33 [sudoku] FindImage: found at 1123,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:33 [sudoku] Sudoku: clicking slot at 1123,343
+2026-07-20 19:27:33 [sudoku] FindImage: found at 971,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:33 [sudoku] Sudoku: clicking slot at 971,479
+2026-07-20 19:27:34 [sudoku] FindImage: found at 895,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:34 [sudoku] Sudoku: clicking slot at 895,751
+2026-07-20 19:27:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:34 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:27:34 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:27:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:34 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:34 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:27:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:34 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:34 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:27:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:34 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:34 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:27:35 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:35 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:35 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:27:35 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:27:35 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:35 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:27:35 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:35 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:35 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:27:35 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:35 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:35 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:27:35 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:27:35 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:27:36 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:27:36 [sudoku] Sudoku: done
+2026-07-20 19:27:37 [sudoku] Esc pressed - exiting
+2026-07-20 19:28:03 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:28:08 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:28:08 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:28:08 [sudoku] FindImage: found at 971,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:08 [sudoku] Sudoku: clicking slot at 971,343
+2026-07-20 19:28:09 [sudoku] FindImage: found at 819,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:09 [sudoku] Sudoku: clicking slot at 819,615
+2026-07-20 19:28:09 [sudoku] FindImage: found at 895,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:09 [sudoku] Sudoku: clicking slot at 895,683
+2026-07-20 19:28:09 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:09 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:28:09 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:28:09 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:09 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:09 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:28:09 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:09 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:09 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:28:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:10 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:10 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:28:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:10 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:10 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:28:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:10 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:10 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:28:10 [sudoku] Esc pressed - exiting
+2026-07-20 19:28:23 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:28:28 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:28:28 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:28:28 [sudoku] FindImage: found at 819,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:28 [sudoku] Sudoku: clicking slot at 819,411
+2026-07-20 19:28:28 [sudoku] FindImage: found at 971,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:28 [sudoku] Sudoku: clicking slot at 971,547
+2026-07-20 19:28:29 [sudoku] FindImage: found at 1123,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:29 [sudoku] Sudoku: clicking slot at 1123,751
+2026-07-20 19:28:29 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:29 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:28:29 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:28:29 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:29 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:29 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:28:29 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:29 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:29 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:28:30 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:30 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:30 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:28:30 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:30 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:30 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:28:30 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:30 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:28:30 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:28:30 [sudoku] Esc pressed - exiting
+2026-07-20 19:28:51 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:28:52 [sudoku] F6 pressed - stop requested
+2026-07-20 19:28:54 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:28:54 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:28:54 [sudoku] FindImage: found at 501,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:28:54 [sudoku] Sudoku: clicking slot at 501,411
+2026-07-20 19:28:54 [sudoku] FindImage: found at 1033,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:54 [sudoku] Sudoku: clicking slot at 1033,683
+2026-07-20 19:28:54 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:54 [sudoku] Sudoku: zone clear (2 slots clicked)
+2026-07-20 19:28:54 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:28:54 [sudoku] FindImage: found at 577,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:54 [sudoku] Sudoku: clicking slot at 577,411
+2026-07-20 19:28:55 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:55 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:28:55 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:55 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 19:28:55 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:55 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:28:55 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:28:55 [sudoku] FindImage: found at 1033,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:55 [sudoku] Sudoku: clicking slot at 1033,479
+2026-07-20 19:28:55 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:55 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 19:28:56 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:56 [sudoku] Sudoku: zone clear (2 slots clicked)
+2026-07-20 19:28:56 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:28:56 [sudoku] FindImage: found at 957,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:56 [sudoku] Sudoku: clicking slot at 957,343
+2026-07-20 19:28:56 [sudoku] FindImage: found at 729,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:56 [sudoku] Sudoku: clicking slot at 729,411
+2026-07-20 19:28:56 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:56 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 19:28:57 [sudoku] FindImage: found at 577,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:57 [sudoku] Sudoku: clicking slot at 577,683
+2026-07-20 19:28:57 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:57 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:28:57 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:28:57 [sudoku] FindImage: found at 1033,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:57 [sudoku] Sudoku: clicking slot at 1033,343
+2026-07-20 19:28:57 [sudoku] FindImage: found at 805,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:57 [sudoku] Sudoku: clicking slot at 805,411
+2026-07-20 19:28:57 [sudoku] FindImage: found at 501,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:57 [sudoku] Sudoku: clicking slot at 501,479
+2026-07-20 19:28:58 [sudoku] FindImage: found at 957,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:58 [sudoku] Sudoku: clicking slot at 957,547
+2026-07-20 19:28:58 [sudoku] FindImage: found at 729,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:58 [sudoku] Sudoku: clicking slot at 729,615
+2026-07-20 19:28:58 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:58 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:28:58 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:28:58 [sudoku] FindImage: found at 577,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:58 [sudoku] Sudoku: clicking slot at 577,479
+2026-07-20 19:28:59 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:59 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:28:59 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:59 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 19:28:59 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:59 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 19:28:59 [sudoku] FindImage: found at 957,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:28:59 [sudoku] Sudoku: clicking slot at 957,751
+2026-07-20 19:28:59 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:28:59 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:28:59 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:29:00 [sudoku] FindImage: found at 501,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:00 [sudoku] Sudoku: clicking slot at 501,343
+2026-07-20 19:29:00 [sudoku] FindImage: found at 881,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:00 [sudoku] Sudoku: clicking slot at 881,479
+2026-07-20 19:29:00 [sudoku] FindImage: found at 653,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:00 [sudoku] Sudoku: clicking slot at 653,547
+2026-07-20 19:29:00 [sudoku] FindImage: found at 577,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:29:00 [sudoku] Sudoku: clicking slot at 577,751
+2026-07-20 19:29:01 [sudoku] FindImage: found at 653,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:01 [sudoku] Sudoku: clicking slot at 653,547
+2026-07-20 19:29:01 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:01 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:01 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:29:01 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:01 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 19:29:01 [sudoku] FindImage: found at 957,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:01 [sudoku] Sudoku: clicking slot at 957,615
+2026-07-20 19:29:02 [sudoku] FindImage: found at 881,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:02 [sudoku] Sudoku: clicking slot at 881,683
+2026-07-20 19:29:02 [sudoku] FindImage: found at 653,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:02 [sudoku] Sudoku: clicking slot at 653,751
+2026-07-20 19:29:02 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:02 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:29:02 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:29:02 [sudoku] FindImage: found at 653,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:02 [sudoku] Sudoku: clicking slot at 653,343
+2026-07-20 19:29:02 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:02 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 19:29:03 [sudoku] FindImage: found at 501,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:03 [sudoku] Sudoku: clicking slot at 501,751
+2026-07-20 19:29:03 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:03 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:29:03 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:29:03 [sudoku] Sudoku: done
+2026-07-20 19:29:15 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:29:20 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:29:20 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:29:20 [sudoku] FindImage: found at 653,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:20 [sudoku] Sudoku: clicking slot at 653,275
+2026-07-20 19:29:20 [sudoku] FindImage: found at 729,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:20 [sudoku] Sudoku: clicking slot at 729,343
+2026-07-20 19:29:20 [sudoku] FindImage: found at 1033,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:20 [sudoku] Sudoku: clicking slot at 1033,479
+2026-07-20 19:29:20 [sudoku] FindImage: found at 881,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:20 [sudoku] Sudoku: clicking slot at 881,547
+2026-07-20 19:29:21 [sudoku] FindImage: found at 577,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:21 [sudoku] Sudoku: clicking slot at 577,615
+2026-07-20 19:29:21 [sudoku] FindImage: found at 805,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:21 [sudoku] Sudoku: clicking slot at 805,683
+2026-07-20 19:29:21 [sudoku] FindImage: found at 1109,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:21 [sudoku] Sudoku: clicking slot at 1109,751
+2026-07-20 19:29:21 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:21 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:29:21 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:29:21 [sudoku] FindImage: found at 501,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:21 [sudoku] Sudoku: clicking slot at 501,343
+2026-07-20 19:29:22 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:22 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 19:29:22 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:22 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:29:22 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:22 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:29:22 [sudoku] FindImage: found at 577,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:22 [sudoku] Sudoku: clicking slot at 577,819
+2026-07-20 19:29:22 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:22 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:22 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:29:23 [sudoku] FindImage: found at 577,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:23 [sudoku] Sudoku: clicking slot at 577,275
+2026-07-20 19:29:23 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:23 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 19:29:23 [sudoku] FindImage: found at 1109,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:23 [sudoku] Sudoku: clicking slot at 1109,411
+2026-07-20 19:29:23 [sudoku] FindImage: found at 957,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:23 [sudoku] Sudoku: clicking slot at 957,547
+2026-07-20 19:29:23 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:23 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 19:29:24 [sudoku] FindImage: found at 653,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:24 [sudoku] Sudoku: clicking slot at 653,819
+2026-07-20 19:29:24 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:24 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:24 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:29:24 [sudoku] FindImage: found at 805,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:24 [sudoku] Sudoku: clicking slot at 805,275
+2026-07-20 19:29:24 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:24 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 19:29:24 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:24 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 19:29:25 [sudoku] FindImage: found at 957,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:25 [sudoku] Sudoku: clicking slot at 957,819
+2026-07-20 19:29:25 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:25 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:29:25 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:29:25 [sudoku] FindImage: found at 1033,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:25 [sudoku] Sudoku: clicking slot at 1033,275
+2026-07-20 19:29:25 [sudoku] FindImage: found at 729,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:25 [sudoku] Sudoku: clicking slot at 729,411
+2026-07-20 19:29:25 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:25 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:29:26 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:26 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 19:29:26 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:26 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:29:26 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:29:26 [sudoku] FindImage: found at 1109,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:26 [sudoku] Sudoku: clicking slot at 1109,343
+2026-07-20 19:29:26 [sudoku] FindImage: found at 501,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:26 [sudoku] Sudoku: clicking slot at 501,411
+2026-07-20 19:29:26 [sudoku] FindImage: found at 577,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:26 [sudoku] Sudoku: clicking slot at 577,479
+2026-07-20 19:29:26 [sudoku] FindImage: found at 957,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking slot at 957,615
+2026-07-20 19:29:27 [sudoku] FindImage: found at 881,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking slot at 881,683
+2026-07-20 19:29:27 [sudoku] FindImage: found at 1033,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking slot at 1033,819
+2026-07-20 19:29:27 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:29:27 [sudoku] FindImage: found at 957,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking slot at 957,275
+2026-07-20 19:29:27 [sudoku] FindImage: found at 805,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:27 [sudoku] Sudoku: clicking slot at 805,411
+2026-07-20 19:29:28 [sudoku] FindImage: found at 577,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:28 [sudoku] Sudoku: clicking slot at 577,547
+2026-07-20 19:29:28 [sudoku] FindImage: found at 1033,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:28 [sudoku] Sudoku: clicking slot at 1033,615
+2026-07-20 19:29:28 [sudoku] FindImage: found at 729,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:28 [sudoku] Sudoku: clicking slot at 729,683
+2026-07-20 19:29:28 [sudoku] FindImage: found at 501,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:28 [sudoku] Sudoku: clicking slot at 501,751
+2026-07-20 19:29:28 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:28 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:28 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:29:29 [sudoku] FindImage: found at 881,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:29 [sudoku] Sudoku: clicking slot at 881,343
+2026-07-20 19:29:29 [sudoku] FindImage: found at 957,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:29 [sudoku] Sudoku: clicking slot at 957,479
+2026-07-20 19:29:29 [sudoku] FindImage: found at 653,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:29 [sudoku] Sudoku: clicking slot at 653,547
+2026-07-20 19:29:29 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:29 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 19:29:30 [sudoku] FindImage: found at 805,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:30 [sudoku] Sudoku: clicking slot at 805,819
+2026-07-20 19:29:30 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:30 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:30 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:29:30 [sudoku] FindImage: found at 881,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:30 [sudoku] Sudoku: clicking slot at 881,411
+2026-07-20 19:29:30 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:30 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 19:29:30 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:30 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:29:31 [sudoku] FindImage: found at 653,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:31 [sudoku] Sudoku: clicking slot at 653,615
+2026-07-20 19:29:31 [sudoku] FindImage: found at 1109,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:31 [sudoku] Sudoku: clicking slot at 1109,683
+2026-07-20 19:29:31 [sudoku] FindImage: found at 653,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:31 [sudoku] Sudoku: clicking slot at 653,615
+2026-07-20 19:29:31 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:31 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:31 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:29:31 [sudoku] Sudoku: done
+2026-07-20 19:29:39 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:29:39 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:29:39 [sudoku] FindImage: found at 653,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:39 [sudoku] Sudoku: clicking slot at 653,343
+2026-07-20 19:29:40 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:40 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:29:40 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:40 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 19:29:40 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:40 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:29:40 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:29:40 [sudoku] FindImage: found at 1033,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:29:40 [sudoku] Sudoku: clicking slot at 1033,343
+2026-07-20 19:29:41 [sudoku] FindImage: found at 653,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:41 [sudoku] Sudoku: clicking slot at 653,411
+2026-07-20 19:29:41 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:41 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 19:29:41 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:41 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 19:29:41 [sudoku] FindImage: found at 957,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:41 [sudoku] Sudoku: clicking slot at 957,751
+2026-07-20 19:29:41 [sudoku] FindImage: found at 501,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:41 [sudoku] Sudoku: clicking slot at 501,819
+2026-07-20 19:29:42 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:29:42 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:42 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:29:42 [sudoku] FindImage: found at 957,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:42 [sudoku] Sudoku: clicking slot at 957,343
+2026-07-20 19:29:42 [sudoku] FindImage: found at 1109,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:42 [sudoku] Sudoku: clicking slot at 1109,479
+2026-07-20 19:29:42 [sudoku] FindImage: found at 501,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:42 [sudoku] Sudoku: clicking slot at 501,615
+2026-07-20 19:29:43 [sudoku] FindImage: found at 577,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:43 [sudoku] Sudoku: clicking slot at 577,683
+2026-07-20 19:29:43 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:43 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:29:43 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:29:43 [sudoku] FindImage: found at 805,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:43 [sudoku] Sudoku: clicking slot at 805,411
+2026-07-20 19:29:43 [sudoku] FindImage: found at 881,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:43 [sudoku] Sudoku: clicking slot at 881,547
+2026-07-20 19:29:43 [sudoku] FindImage: found at 577,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:43 [sudoku] Sudoku: clicking slot at 577,751
+2026-07-20 19:29:44 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:44 [sudoku] Sudoku: zone clear (3 slots clicked)
+2026-07-20 19:29:44 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:29:44 [sudoku] FindImage: found at 501,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:44 [sudoku] Sudoku: clicking slot at 501,275
+2026-07-20 19:29:44 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:44 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 19:29:44 [sudoku] FindImage: found at 881,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:44 [sudoku] Sudoku: clicking slot at 881,479
+2026-07-20 19:29:44 [sudoku] FindImage: found at 577,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:44 [sudoku] Sudoku: clicking slot at 577,547
+2026-07-20 19:29:45 [sudoku] FindImage: found at 957,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:45 [sudoku] Sudoku: clicking slot at 957,683
+2026-07-20 19:29:45 [sudoku] FindImage: found at 653,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:45 [sudoku] Sudoku: clicking slot at 653,751
+2026-07-20 19:29:45 [sudoku] FindImage: found at 805,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:45 [sudoku] Sudoku: clicking slot at 805,819
+2026-07-20 19:29:45 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:45 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:29:45 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:29:45 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:45 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 19:29:46 [sudoku] FindImage: found at 729,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:46 [sudoku] Sudoku: clicking slot at 729,479
+2026-07-20 19:29:46 [sudoku] FindImage: found at 653,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:46 [sudoku] Sudoku: clicking slot at 653,547
+2026-07-20 19:29:46 [sudoku] FindImage: found at 1033,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:46 [sudoku] Sudoku: clicking slot at 1033,683
+2026-07-20 19:29:46 [sudoku] FindImage: found at 881,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:46 [sudoku] Sudoku: clicking slot at 881,819
+2026-07-20 19:29:46 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:46 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:47 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:29:47 [sudoku] FindImage: found at 729,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:47 [sudoku] Sudoku: clicking slot at 729,275
+2026-07-20 19:29:47 [sudoku] FindImage: found at 577,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:47 [sudoku] Sudoku: clicking slot at 577,411
+2026-07-20 19:29:47 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:47 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:29:47 [sudoku] FindImage: found at 881,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:47 [sudoku] Sudoku: clicking slot at 881,615
+2026-07-20 19:29:48 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:48 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:29:48 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:48 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:48 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:29:48 [sudoku] FindImage: found at 1109,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:48 [sudoku] Sudoku: clicking slot at 1109,275
+2026-07-20 19:29:48 [sudoku] FindImage: found at 957,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:48 [sudoku] Sudoku: clicking slot at 957,547
+2026-07-20 19:29:48 [sudoku] FindImage: found at 729,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:48 [sudoku] Sudoku: clicking slot at 729,615
+2026-07-20 19:29:49 [sudoku] FindImage: found at 805,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:49 [sudoku] Sudoku: clicking slot at 805,683
+2026-07-20 19:29:49 [sudoku] FindImage: found at 1033,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:49 [sudoku] Sudoku: clicking slot at 1033,751
+2026-07-20 19:29:49 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:49 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:29:49 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:29:49 [sudoku] FindImage: found at 805,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:49 [sudoku] Sudoku: clicking slot at 805,275
+2026-07-20 19:29:49 [sudoku] FindImage: found at 577,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:49 [sudoku] Sudoku: clicking slot at 577,343
+2026-07-20 19:29:50 [sudoku] FindImage: found at 957,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:50 [sudoku] Sudoku: clicking slot at 957,411
+2026-07-20 19:29:50 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:50 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:29:50 [sudoku] FindImage: found at 653,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:50 [sudoku] Sudoku: clicking slot at 653,683
+2026-07-20 19:29:50 [sudoku] FindImage: found at 1109,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:50 [sudoku] Sudoku: clicking slot at 1109,819
+2026-07-20 19:29:51 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:29:51 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:29:51 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:29:51 [sudoku] Sudoku: done
+2026-07-20 19:29:59 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:29:59 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:29:59 [sudoku] FindImage: found at 729,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:29:59 [sudoku] Sudoku: clicking slot at 729,275
+2026-07-20 19:29:59 [sudoku] FindImage: found at 1109,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:29:59 [sudoku] Sudoku: clicking slot at 1109,411
+2026-07-20 19:30:00 [sudoku] FindImage: found at 805,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:00 [sudoku] Sudoku: clicking slot at 805,547
+2026-07-20 19:30:00 [sudoku] FindImage: found at 957,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:00 [sudoku] Sudoku: clicking slot at 957,615
+2026-07-20 19:30:00 [sudoku] FindImage: found at 881,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:00 [sudoku] Sudoku: clicking slot at 881,683
+2026-07-20 19:30:00 [sudoku] FindImage: found at 577,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:00 [sudoku] Sudoku: clicking slot at 577,819
+2026-07-20 19:30:00 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:00 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:30:00 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:30:01 [sudoku] FindImage: found at 1109,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:01 [sudoku] Sudoku: clicking slot at 1109,275
+2026-07-20 19:30:01 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:01 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 19:30:01 [sudoku] FindImage: found at 957,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:01 [sudoku] Sudoku: clicking slot at 957,479
+2026-07-20 19:30:01 [sudoku] FindImage: found at 577,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:01 [sudoku] Sudoku: clicking slot at 577,547
+2026-07-20 19:30:01 [sudoku] FindImage: found at 729,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:01 [sudoku] Sudoku: clicking slot at 729,615
+2026-07-20 19:30:02 [sudoku] FindImage: found at 653,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:02 [sudoku] Sudoku: clicking slot at 653,683
+2026-07-20 19:30:02 [sudoku] FindImage: found at 1033,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:02 [sudoku] Sudoku: clicking slot at 1033,819
+2026-07-20 19:30:02 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:02 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:30:02 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:30:02 [sudoku] FindImage: found at 805,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:02 [sudoku] Sudoku: clicking slot at 805,275
+2026-07-20 19:30:02 [sudoku] FindImage: found at 957,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:02 [sudoku] Sudoku: clicking slot at 957,411
+2026-07-20 19:30:03 [sudoku] FindImage: found at 881,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:03 [sudoku] Sudoku: clicking slot at 881,547
+2026-07-20 19:30:03 [sudoku] FindImage: found at 653,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:03 [sudoku] Sudoku: clicking slot at 653,615
+2026-07-20 19:30:03 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:03 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 19:30:03 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:03 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 19:30:03 [sudoku] FindImage: found at 1109,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:03 [sudoku] Sudoku: clicking slot at 1109,819
+2026-07-20 19:30:04 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:04 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:30:04 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:30:04 [sudoku] FindImage: found at 1033,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:04 [sudoku] Sudoku: clicking slot at 1033,275
+2026-07-20 19:30:04 [sudoku] FindImage: found at 501,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:04 [sudoku] Sudoku: clicking slot at 501,343
+2026-07-20 19:30:04 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:04 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 19:30:04 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:04 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:30:05 [sudoku] FindImage: found at 881,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:05 [sudoku] Sudoku: clicking slot at 881,819
+2026-07-20 19:30:05 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:30:05 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:30:05 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:30:05 [sudoku] FindImage: found at 501,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:05 [sudoku] Sudoku: clicking slot at 501,275
+2026-07-20 19:30:05 [sudoku] FindImage: found at 881,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:30:05 [sudoku] Sudoku: clicking slot at 881,343
+2026-07-20 19:30:05 [sudoku] FindImage: found at 729,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:05 [sudoku] Sudoku: clicking slot at 729,479
+2026-07-20 19:30:06 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:06 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 19:30:06 [sudoku] FindImage: found at 653,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:06 [sudoku] Sudoku: clicking slot at 653,751
+2026-07-20 19:30:06 [sudoku] FindImage: found at 957,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:06 [sudoku] Sudoku: clicking slot at 957,819
+2026-07-20 19:30:06 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:06 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:30:06 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:30:07 [sudoku] FindImage: found at 653,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:07 [sudoku] Sudoku: clicking slot at 653,275
+2026-07-20 19:30:07 [sudoku] FindImage: found at 729,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:07 [sudoku] Sudoku: clicking slot at 729,411
+2026-07-20 19:30:07 [sudoku] FindImage: found at 1109,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:07 [sudoku] Sudoku: clicking slot at 1109,479
+2026-07-20 19:30:07 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:07 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:30:07 [sudoku] FindImage: found at 881,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:07 [sudoku] Sudoku: clicking slot at 881,615
+2026-07-20 19:30:08 [sudoku] FindImage: found at 957,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:08 [sudoku] Sudoku: clicking slot at 957,683
+2026-07-20 19:30:08 [sudoku] FindImage: found at 805,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:08 [sudoku] Sudoku: clicking slot at 805,819
+2026-07-20 19:30:08 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:08 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:30:08 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:30:08 [sudoku] FindImage: found at 577,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:08 [sudoku] Sudoku: clicking slot at 577,275
+2026-07-20 19:30:08 [sudoku] FindImage: found at 957,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:08 [sudoku] Sudoku: clicking slot at 957,343
+2026-07-20 19:30:09 [sudoku] FindImage: found at 881,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:09 [sudoku] Sudoku: clicking slot at 881,411
+2026-07-20 19:30:09 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:09 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 19:30:09 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:09 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:30:09 [sudoku] FindImage: found at 501,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:09 [sudoku] Sudoku: clicking slot at 501,615
+2026-07-20 19:30:09 [sudoku] FindImage: found at 729,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:09 [sudoku] Sudoku: clicking slot at 729,683
+2026-07-20 19:30:10 [sudoku] FindImage: found at 1109,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:10 [sudoku] Sudoku: clicking slot at 1109,751
+2026-07-20 19:30:10 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:10 [sudoku] Sudoku: zone clear (8 slots clicked)
+2026-07-20 19:30:10 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:30:10 [sudoku] FindImage: found at 1109,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:10 [sudoku] Sudoku: clicking slot at 1109,343
+2026-07-20 19:30:10 [sudoku] FindImage: found at 653,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:10 [sudoku] Sudoku: clicking slot at 653,411
+2026-07-20 19:30:11 [sudoku] FindImage: found at 577,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:11 [sudoku] Sudoku: clicking slot at 577,479
+2026-07-20 19:30:11 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:11 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 19:30:11 [sudoku] FindImage: found at 1033,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:11 [sudoku] Sudoku: clicking slot at 1033,683
+2026-07-20 19:30:11 [sudoku] FindImage: found at 501,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:11 [sudoku] Sudoku: clicking slot at 501,751
+2026-07-20 19:30:11 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:11 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:30:11 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:30:12 [sudoku] FindImage: found at 577,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:12 [sudoku] Sudoku: clicking slot at 577,411
+2026-07-20 19:30:12 [sudoku] FindImage: found at 881,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:12 [sudoku] Sudoku: clicking slot at 881,479
+2026-07-20 19:30:12 [sudoku] FindImage: found at 1033,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:12 [sudoku] Sudoku: clicking slot at 1033,615
+2026-07-20 19:30:12 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:12 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:30:13 [sudoku] FindImage: found at 501,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:13 [sudoku] Sudoku: clicking slot at 501,819
+2026-07-20 19:30:13 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:13 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:30:13 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:30:13 [sudoku] Sudoku: done
+2026-07-20 19:30:19 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:30:26 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:30:26 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:30:26 [sudoku] FindImage: found at 881,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:26 [sudoku] Sudoku: clicking slot at 881,275
+2026-07-20 19:30:26 [sudoku] FindImage: found at 957,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:26 [sudoku] Sudoku: clicking slot at 957,411
+2026-07-20 19:30:26 [sudoku] FindImage: found at 729,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:26 [sudoku] Sudoku: clicking slot at 729,615
+2026-07-20 19:30:26 [sudoku] FindImage: found at 729,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:26 [sudoku] Sudoku: clicking slot at 729,615
+2026-07-20 19:30:27 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 19:30:27 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:30:27 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:30:27 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:30:27 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:30:27 [sudoku] FindImage: found at 881,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:30:27 [sudoku] Sudoku: clicking slot at 881,343
+2026-07-20 19:30:28 [sudoku] FindImage: found at 1033,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 1033,275
+2026-07-20 19:30:28 [sudoku] FindImage: found at 1033,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 1033,275
+2026-07-20 19:30:28 [sudoku] FindImage: found at 729,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 729,343
+2026-07-20 19:30:28 [sudoku] FindImage: found at 729,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 729,343
+2026-07-20 19:30:28 [sudoku] FindImage: found at 653,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 653,411
+2026-07-20 19:30:28 [sudoku] FindImage: found at 805,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:28 [sudoku] Sudoku: clicking slot at 805,547
+2026-07-20 19:30:29 [sudoku] FindImage: found at 1109,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking slot at 1109,615
+2026-07-20 19:30:29 [sudoku] FindImage: found at 1109,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking slot at 1109,615
+2026-07-20 19:30:29 [sudoku] FindImage: found at 957,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking slot at 957,683
+2026-07-20 19:30:29 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 19:30:29 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 19:30:29 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:29 [sudoku] Sudoku: zone clear (12 slots clicked)
+2026-07-20 19:30:29 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:30:30 [sudoku] FindImage: found at 653,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 653,275
+2026-07-20 19:30:30 [sudoku] FindImage: found at 957,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 957,479
+2026-07-20 19:30:30 [sudoku] FindImage: found at 957,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 957,479
+2026-07-20 19:30:30 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:30:30 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:30:30 [sudoku] FindImage: found at 1109,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:30 [sudoku] Sudoku: clicking slot at 1109,683
+2026-07-20 19:30:31 [sudoku] FindImage: found at 1109,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:31 [sudoku] Sudoku: clicking slot at 1109,683
+2026-07-20 19:30:31 [sudoku] FindImage: found at 881,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:31 [sudoku] Sudoku: clicking slot at 881,819
+2026-07-20 19:30:31 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:31 [sudoku] Sudoku: zone clear (8 slots clicked)
+2026-07-20 19:30:31 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:30:31 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:31 [sudoku] Sudoku: zone clear (0 slots clicked)
+2026-07-20 19:30:31 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:30:31 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:31 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 19:30:32 [sudoku] FindImage: found at 1033,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 1033,411
+2026-07-20 19:30:32 [sudoku] FindImage: found at 729,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 729,479
+2026-07-20 19:30:32 [sudoku] FindImage: found at 729,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 729,479
+2026-07-20 19:30:32 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 19:30:32 [sudoku] FindImage: found at 957,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 957,751
+2026-07-20 19:30:32 [sudoku] FindImage: found at 957,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:32 [sudoku] Sudoku: clicking slot at 957,751
+2026-07-20 19:30:33 [sudoku] FindImage: found at 653,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking slot at 653,819
+2026-07-20 19:30:33 [sudoku] FindImage: found at 653,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking slot at 653,819
+2026-07-20 19:30:33 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: zone clear (9 slots clicked)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:30:33 [sudoku] FindImage: found at 729,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking slot at 729,275
+2026-07-20 19:30:33 [sudoku] FindImage: found at 729,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking slot at 729,275
+2026-07-20 19:30:33 [sudoku] FindImage: found at 577,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:33 [sudoku] Sudoku: clicking slot at 577,411
+2026-07-20 19:30:34 [sudoku] FindImage: found at 577,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking slot at 577,411
+2026-07-20 19:30:34 [sudoku] FindImage: found at 881,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking slot at 881,479
+2026-07-20 19:30:34 [sudoku] FindImage: found at 881,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking slot at 881,479
+2026-07-20 19:30:34 [sudoku] FindImage: found at 1033,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking slot at 1033,683
+2026-07-20 19:30:34 [sudoku] FindImage: found at 653,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking slot at 653,751
+2026-07-20 19:30:34 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:34 [sudoku] Sudoku: zone clear (8 slots clicked)
+2026-07-20 19:30:34 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:30:35 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:35 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 19:30:35 [sudoku] FindImage: found at 501,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:35 [sudoku] Sudoku: clicking slot at 501,411
+2026-07-20 19:30:35 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:35 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 19:30:35 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:35 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:30:35 [sudoku] FindImage: found at 881,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:35 [sudoku] Sudoku: clicking slot at 881,615
+2026-07-20 19:30:36 [sudoku] FindImage: found at 577,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:36 [sudoku] Sudoku: clicking slot at 577,683
+2026-07-20 19:30:36 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:36 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 19:30:36 [sudoku] FindImage: found at 957,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:36 [sudoku] Sudoku: clicking slot at 957,819
+2026-07-20 19:30:36 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:36 [sudoku] Sudoku: zone clear (8 slots clicked)
+2026-07-20 19:30:36 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:30:36 [sudoku] FindImage: found at 957,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:36 [sudoku] Sudoku: clicking slot at 957,275
+2026-07-20 19:30:37 [sudoku] FindImage: found at 653,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:30:37 [sudoku] Sudoku: clicking slot at 653,343
+2026-07-20 19:30:37 [sudoku] FindImage: found at 501,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:37 [sudoku] Sudoku: clicking slot at 501,479
+2026-07-20 19:30:37 [sudoku] FindImage: found at 501,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:30:37 [sudoku] Sudoku: clicking slot at 501,479
+2026-07-20 19:30:37 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:37 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:30:37 [sudoku] FindImage: found at 805,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:37 [sudoku] Sudoku: clicking slot at 805,683
+2026-07-20 19:30:38 [sudoku] FindImage: found at 577,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:38 [sudoku] Sudoku: clicking slot at 577,819
+2026-07-20 19:30:38 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:38 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:30:38 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:30:38 [sudoku] Sudoku: done
+2026-07-20 19:30:39 [sudoku] Esc pressed - exiting
+2026-07-20 19:30:53 [sudoku] Script loaded. F5=start resolver  F6=stop  Esc=exit.
+2026-07-20 19:30:56 [sudoku] Sudoku resolver started: 8 menu tabs
+2026-07-20 19:30:56 [sudoku] Sudoku: clearing already-selected screen before any tab click
+2026-07-20 19:30:56 [sudoku] FindImage: found at 501,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:56 [sudoku] Sudoku: clicking slot at 501,343
+2026-07-20 19:30:56 [sudoku] FindImage: found at 653,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:56 [sudoku] Sudoku: clicking slot at 653,479
+2026-07-20 19:30:56 [sudoku] FindImage: found at 729,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:56 [sudoku] Sudoku: clicking slot at 729,547
+2026-07-20 19:30:56 [sudoku] FindImage: found at 805,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:56 [sudoku] Sudoku: clicking slot at 805,751
+2026-07-20 19:30:57 [sudoku] FindImage: found at 577,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:57 [sudoku] Sudoku: clicking slot at 577,819
+2026-07-20 19:30:57 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:57 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:30:57 [sudoku] Sudoku: clicking menu item 1/8 at 311,447
+2026-07-20 19:30:57 [sudoku] FindImage: found at 577,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:57 [sudoku] Sudoku: clicking slot at 577,275
+2026-07-20 19:30:57 [sudoku] FindImage: found at 805,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:57 [sudoku] Sudoku: clicking slot at 805,343
+2026-07-20 19:30:57 [sudoku] FindImage: found at 1109,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:30:57 [sudoku] Sudoku: clicking slot at 1109,411
+2026-07-20 19:30:58 [sudoku] FindImage: found at 957,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:30:58 [sudoku] Sudoku: clicking slot at 957,547
+2026-07-20 19:30:58 [sudoku] FindImage: found at 881,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:58 [sudoku] Sudoku: clicking slot at 881,751
+2026-07-20 19:30:58 [sudoku] FindImage: found at 653,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:58 [sudoku] Sudoku: clicking slot at 653,819
+2026-07-20 19:30:58 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:58 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:30:58 [sudoku] Sudoku: clicking menu item 2/8 at 387,447
+2026-07-20 19:30:58 [sudoku] FindImage: found at 805,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:58 [sudoku] Sudoku: clicking slot at 805,275
+2026-07-20 19:30:59 [sudoku] FindImage: found at 1109,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:59 [sudoku] Sudoku: clicking slot at 1109,547
+2026-07-20 19:30:59 [sudoku] FindImage: found at 729,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:30:59 [sudoku] Sudoku: clicking slot at 729,751
+2026-07-20 19:30:59 [sudoku] FindImage: found at 957,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:59 [sudoku] Sudoku: clicking slot at 957,819
+2026-07-20 19:30:59 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:59 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:30:59 [sudoku] Sudoku: clicking menu item 3/8 at 311,521
+2026-07-20 19:30:59 [sudoku] FindImage: found at 1033,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:30:59 [sudoku] Sudoku: clicking slot at 1033,275
+2026-07-20 19:31:00 [sudoku] FindImage: found at 729,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:00 [sudoku] Sudoku: clicking slot at 729,411
+2026-07-20 19:31:00 [sudoku] FindImage: found at 501,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:00 [sudoku] Sudoku: clicking slot at 501,547
+2026-07-20 19:31:00 [sudoku] FindImage: found at 805,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:00 [sudoku] Sudoku: clicking slot at 805,615
+2026-07-20 19:31:00 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:00 [sudoku] Sudoku: zone clear (4 slots clicked)
+2026-07-20 19:31:00 [sudoku] Sudoku: clicking menu item 4/8 at 387,521
+2026-07-20 19:31:00 [sudoku] FindImage: found at 1109,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:00 [sudoku] Sudoku: clicking slot at 1109,343
+2026-07-20 19:31:01 [sudoku] FindImage: found at 501,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:01 [sudoku] Sudoku: clicking slot at 501,411
+2026-07-20 19:31:01 [sudoku] FindImage: found at 577,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:01 [sudoku] Sudoku: clicking slot at 577,479
+2026-07-20 19:31:01 [sudoku] FindImage: found at 957,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:01 [sudoku] Sudoku: clicking slot at 957,615
+2026-07-20 19:31:01 [sudoku] FindImage: found at 881,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:01 [sudoku] Sudoku: clicking slot at 881,683
+2026-07-20 19:31:01 [sudoku] FindImage: found at 1033,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:01 [sudoku] Sudoku: clicking slot at 1033,819
+2026-07-20 19:31:02 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:02 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:31:02 [sudoku] Sudoku: clicking menu item 5/8 at 311,595
+2026-07-20 19:31:02 [sudoku] FindImage: found at 957,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 0 ms)
+2026-07-20 19:31:02 [sudoku] Sudoku: clicking slot at 957,275
+2026-07-20 19:31:02 [sudoku] FindImage: found at 805,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:02 [sudoku] Sudoku: clicking slot at 805,411
+2026-07-20 19:31:02 [sudoku] FindImage: found at 577,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:02 [sudoku] Sudoku: clicking slot at 577,547
+2026-07-20 19:31:02 [sudoku] FindImage: found at 1033,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:02 [sudoku] Sudoku: clicking slot at 1033,615
+2026-07-20 19:31:03 [sudoku] FindImage: found at 729,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:03 [sudoku] Sudoku: clicking slot at 729,683
+2026-07-20 19:31:03 [sudoku] FindImage: found at 501,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:03 [sudoku] Sudoku: clicking slot at 501,751
+2026-07-20 19:31:03 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:03 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:31:03 [sudoku] Sudoku: clicking menu item 6/8 at 387,595
+2026-07-20 19:31:03 [sudoku] FindImage: found at 881,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:03 [sudoku] Sudoku: clicking slot at 881,343
+2026-07-20 19:31:03 [sudoku] FindImage: found at 957,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:03 [sudoku] Sudoku: clicking slot at 957,479
+2026-07-20 19:31:04 [sudoku] FindImage: found at 653,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking slot at 653,547
+2026-07-20 19:31:04 [sudoku] FindImage: found at 501,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking slot at 501,683
+2026-07-20 19:31:04 [sudoku] FindImage: found at 805,819 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking slot at 805,819
+2026-07-20 19:31:04 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: zone clear (5 slots clicked)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking menu item 7/8 at 311,669
+2026-07-20 19:31:04 [sudoku] FindImage: found at 881,411 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking slot at 881,411
+2026-07-20 19:31:04 [sudoku] FindImage: found at 805,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:04 [sudoku] Sudoku: clicking slot at 805,479
+2026-07-20 19:31:05 [sudoku] FindImage: found at 1033,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:05 [sudoku] Sudoku: clicking slot at 1033,547
+2026-07-20 19:31:05 [sudoku] FindImage: found at 653,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:05 [sudoku] Sudoku: clicking slot at 653,615
+2026-07-20 19:31:05 [sudoku] FindImage: found at 1109,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:05 [sudoku] Sudoku: clicking slot at 1109,683
+2026-07-20 19:31:05 [sudoku] FindImage: found at 653,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 31 ms)
+2026-07-20 19:31:05 [sudoku] Sudoku: clicking slot at 653,615
+2026-07-20 19:31:06 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:06 [sudoku] Sudoku: zone clear (6 slots clicked)
+2026-07-20 19:31:06 [sudoku] Sudoku: clicking menu item 8/8 at 387,669
+2026-07-20 19:31:06 [sudoku] FindImage: found at 653,275 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:06 [sudoku] Sudoku: clicking slot at 653,275
+2026-07-20 19:31:06 [sudoku] FindImage: found at 729,343 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:06 [sudoku] Sudoku: clicking slot at 729,343
+2026-07-20 19:31:06 [sudoku] FindImage: found at 1033,479 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:06 [sudoku] Sudoku: clicking slot at 1033,479
+2026-07-20 19:31:06 [sudoku] FindImage: found at 881,547 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:06 [sudoku] Sudoku: clicking slot at 881,547
+2026-07-20 19:31:07 [sudoku] FindImage: found at 577,615 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 16 ms)
+2026-07-20 19:31:07 [sudoku] Sudoku: clicking slot at 577,615
+2026-07-20 19:31:07 [sudoku] FindImage: found at 805,683 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:07 [sudoku] Sudoku: clicking slot at 805,683
+2026-07-20 19:31:07 [sudoku] FindImage: found at 1109,751 (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 32 ms)
+2026-07-20 19:31:07 [sudoku] Sudoku: clicking slot at 1109,751
+2026-07-20 19:31:07 [sudoku] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\Bots\..\Images\sudoku-slot.png, 15 ms)
+2026-07-20 19:31:07 [sudoku] Sudoku: zone clear (7 slots clicked)
+2026-07-20 19:31:07 [sudoku] Sudoku: all menu items cleared - clicking open button at 349,736
+2026-07-20 19:31:07 [sudoku] Sudoku: done

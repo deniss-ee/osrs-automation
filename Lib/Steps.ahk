@@ -375,3 +375,113 @@ PickupAppeared(opts) {
     Say("PickupAppeared: CLICKED but NOT CONFIRMED - box never changed within " confirmTimeoutMs "ms")
     return false
 }
+
+; ---------- find-and-click (one-shot marker/image click, no tracking) ----------
+;
+; The "wait for a one-shot marker to appear, then click it" shape -
+; promoted here (2026-07-20) after appearing independently 5 times
+; (block variant: Motherlode's hopper/entrance/bank-marker/exit clicks,
+; Woodcutting's bank-marker click) and 3 times (image variant:
+; Motherlode's sack/deposit-image clicks, Woodcutting's deposit-image
+; click). Pure mechanical extraction of the closure+WaitUntil+ClickAt
+; shape those call sites already had - no new logic. Unlike
+; PickupAppeared above, there's no before/after confirm-box diff here;
+; callers that need to confirm the click registered do that separately
+; (e.g. AllSlotsFull/AllSlotsEmpty, !SlotFull, AnySlotEmpty).
+;
+; Common opts for both:
+;   region        - [x1,y1,x2,y2] to search (default whole screen)
+;   clickOffsetX/Y - offset applied to the found center before clicking
+;                   (default 0,0) - e.g. Motherlode's MLBANK_CLICK_OFFSET_Y
+;   ctrl          - hold Ctrl (force-run) while clicking (default false)
+;   waitTimeoutMs - give up if the marker/image never appears (required)
+;   pollMs        - tick-aligned poll interval (default 300)
+;   label         - Say()/log message prefix, e.g. "Hopper" (default the function name)
+;   itemLabel     - what's being searched/clicked, e.g. "hopper marker" (default "target")
+;
+; Returns true if found+clicked, false (logged, no throw) if it never
+; appeared within waitTimeoutMs. Throws BotStopped (propagated from
+; WaitUntil/Pause) if the user stops mid-wait - never swallowed here,
+; same as every other wait in this codebase.
+FindAndClickBlock(opts) {
+    color := opts.color
+    tol := opts.tol
+    blockW := opts.blockW
+    blockH := opts.blockH
+    region := opts.HasOwnProp("region") ? opts.region : [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
+    clickOffsetX := opts.HasOwnProp("clickOffsetX") ? opts.clickOffsetX : 0
+    clickOffsetY := opts.HasOwnProp("clickOffsetY") ? opts.clickOffsetY : 0
+    useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
+    waitTimeoutMs := opts.waitTimeoutMs
+    pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
+    label := opts.HasOwnProp("label") ? opts.label : "FindAndClickBlock"
+    itemLabel := opts.HasOwnProp("itemLabel") ? opts.itemLabel : "target"
+
+    foundX := 0, foundY := 0
+    Visible() {
+        found := FindFilledBlock(region[1], region[2], region[3], region[4], color, tol, blockW, blockH, &fx, &fy)
+        if (found) {
+            foundX := fx, foundY := fy
+        }
+        return found
+    }
+
+    Say(label ": waiting for " itemLabel)
+    found := WaitUntil(Visible, waitTimeoutMs, pollMs)
+    if (!found) {
+        Say(label ": " itemLabel " never appeared within " waitTimeoutMs "ms - stopping")
+        return false
+    }
+
+    clickX := foundX + clickOffsetX
+    clickY := foundY + clickOffsetY
+    Say(label ": clicking " itemLabel " at " clickX "," clickY)
+    ClickAt(clickX, clickY, useCtrl)
+    return true
+}
+
+; Same shape as FindAndClickBlock but for a PNG (FindImage) instead of
+; a solid color block.
+;
+; Additional/different opts:
+;   imagePath, imageW, imageH  - required, the image's real pixel size
+;   tol           - shade-of-variation tolerance (default 5)
+;   transColor    - background see-through color, "" to disable (default "")
+; (region/clickOffsetX/Y/ctrl/waitTimeoutMs/pollMs/label/itemLabel same as FindAndClickBlock)
+FindAndClickImage(opts) {
+    imagePath := opts.imagePath
+    imageW := opts.imageW
+    imageH := opts.imageH
+    tol := opts.HasOwnProp("tol") ? opts.tol : 5
+    transColor := opts.HasOwnProp("transColor") ? opts.transColor : ""
+    region := opts.HasOwnProp("region") ? opts.region : [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
+    clickOffsetX := opts.HasOwnProp("clickOffsetX") ? opts.clickOffsetX : 0
+    clickOffsetY := opts.HasOwnProp("clickOffsetY") ? opts.clickOffsetY : 0
+    useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
+    waitTimeoutMs := opts.waitTimeoutMs
+    pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
+    label := opts.HasOwnProp("label") ? opts.label : "FindAndClickImage"
+    itemLabel := opts.HasOwnProp("itemLabel") ? opts.itemLabel : "target"
+
+    foundX := 0, foundY := 0
+    Visible() {
+        found := FindImage(region[1], region[2], region[3], region[4], imagePath, imageW, imageH, tol, transColor, &fx, &fy)
+        if (found) {
+            foundX := fx, foundY := fy
+        }
+        return found
+    }
+
+    Say(label ": waiting for " itemLabel)
+    found := WaitUntil(Visible, waitTimeoutMs, pollMs)
+    if (!found) {
+        Say(label ": " itemLabel " never appeared within " waitTimeoutMs "ms - stopping")
+        return false
+    }
+
+    clickX := foundX + clickOffsetX
+    clickY := foundY + clickOffsetY
+    Say(label ": clicking " itemLabel " at " clickX "," clickY)
+    ClickAt(clickX, clickY, useCtrl)
+    return true
+}

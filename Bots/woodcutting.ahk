@@ -8,8 +8,10 @@
 ;
 ; Built entirely from already-proven Lib primitives: TrackAndClick
 ; (Lib\Steps.ahk, unchanged from micro 12) for the chop loop,
-; FindFilledBlock (Lib\Find.ahk, micro 01/03) for the bank marker,
-; FindImage (Lib\Find.ahk, micro 06) for the deposit-box image.
+; Bank()'s marker/image clicks go through Lib\Steps.ahk's
+; FindAndClickBlock/FindAndClickImage (promoted 2026-07-20, once
+; Motherlode's own bank/hopper/waypoint clicks made the same one-shot
+; find+click shape appear 5x/3x across both bot files).
 ;
 ; Pacing defaults to the fastest already-proven-safe values in the
 ; codebase (Motherlode-tuned) rather than conservative ones - tune the
@@ -155,45 +157,19 @@ ChopLoop() {
 ; whole bot cleanly (via BotStopped or a plain return) if either step
 ; never resolves - no infinite silent retry.
 Bank() {
-    bankX := 0, bankY := 0
-    BankMarkerVisible() {
-        found := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
-            BANK_COLOR, BANK_TOL, BANK_BLOCK_W, BANK_BLOCK_H, &fx, &fy)
-        if (found) {
-            bankX := fx, bankY := fy
-        }
-        return found
-    }
-
-    Say("Bank: waiting for deposit-box marker")
-    found := WaitUntil(BankMarkerVisible, BANK_WAIT_TIMEOUT_MS, POLL_MS)
-    if (!found) {
-        Say("Bank: deposit-box marker never appeared within " BANK_WAIT_TIMEOUT_MS "ms - stopping")
+    if (!FindAndClickBlock({
+        color: BANK_COLOR, tol: BANK_TOL, blockW: BANK_BLOCK_W, blockH: BANK_BLOCK_H,
+        ctrl: CLICK_USE_CTRL, waitTimeoutMs: BANK_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
+        label: "Bank", itemLabel: "deposit-box marker"
+    }))
         return
-    }
 
-    Say("Bank: clicking deposit-box marker at " bankX "," bankY)
-    ClickAt(bankX, bankY, CLICK_USE_CTRL)
-
-    depositX := 0, depositY := 0
-    DepositImageVisible() {
-        found := FindImage(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
-            DEPOSIT_IMAGE_PATH, DEPOSIT_IMAGE_W, DEPOSIT_IMAGE_H, DEPOSIT_IMAGE_TOL, DEPOSIT_TRANS_COLOR, &fx, &fy)
-        if (found) {
-            depositX := fx, depositY := fy
-        }
-        return found
-    }
-
-    Say("Bank: waiting for deposit box to open")
-    found := WaitUntil(DepositImageVisible, DEPOSIT_WAIT_TIMEOUT_MS, POLL_MS)
-    if (!found) {
-        Say("Bank: deposit box never opened within " DEPOSIT_WAIT_TIMEOUT_MS "ms - stopping")
+    if (!FindAndClickImage({
+        imagePath: DEPOSIT_IMAGE_PATH, imageW: DEPOSIT_IMAGE_W, imageH: DEPOSIT_IMAGE_H, tol: DEPOSIT_IMAGE_TOL,
+        transColor: DEPOSIT_TRANS_COLOR, ctrl: CLICK_USE_CTRL, waitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
+        label: "Bank", itemLabel: "deposit box"
+    }))
         return
-    }
-
-    Say("Bank: clicking Deposit All at " depositX "," depositY)
-    ClickAt(depositX, depositY, CLICK_USE_CTRL)
 
     ; Verify the deposit actually happened instead of assuming it did -
     ; a missed/late click here previously went unnoticed: the loop went
