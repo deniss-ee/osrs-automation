@@ -33,6 +33,9 @@
 ; WHAT IT DOES
 ;   F5  = start the full mine->hopper->sack->bank->return loop, forever
 ;   F8  = probe the current pay-dirt check pointer + sack slots
+;   F9  = toggle DEBUG MODE: treat inventory "full" at DEBUG_FULL_AT_SLOT
+;         instead of slot 28 (for testing hopper/sack/bank/return without
+;         grinding a real full inventory first)
 ;   F6  = request stop (interrupts instantly, mid-track or mid-wait)
 ;   F12 = exit the script
 ; ============================================================
@@ -53,8 +56,9 @@ TrimLogOnStart()
 VEIN_COLORS := [0x00FF00, 0x00B809]   ; candidate vein overlay colors, equal priority
 
 COLOR_TOL      := 5
-BLOCK_W        := 27
-BLOCK_H        := 27
+; Re-measured 2026-07-22: veins are now 23x23px (was 27x27).
+BLOCK_W        := 23
+BLOCK_H        := 23
 VERIFY_PERCENT := 100
 
 REF_X := 1248, REF_Y := 707     ; character's on-screen point (acquire proximity) -
@@ -62,6 +66,17 @@ REF_X := 1248, REF_Y := 707     ; character's on-screen point (acquire proximity
                                  ; the Motherlode camera/zoom setup differs.
 ACQUIRE_RADII := [90, 270]     ; smaller than Woodcutting's [250,600] - veins
                                  ; cluster near the character, no need to search wide.
+
+; Re-measured 2026-07-22: veins now confirmed to live inside a 680x540 box at
+; top-left corner (VEIN_AREA_X, VEIN_AREA_Y) - same CORNER+W/H convention as
+; Crafting's CRAFT_START_X/Y/W/H. Built into TrackAndClick's new `region` opt
+; (Lib\Steps.ahk) via RegionAround(marginPx: 0) at the MineLoop() call site -
+; 0 margin because this box IS the full measured search area already, not a
+; small marker needing slack around it. Clamps both the acquire rings AND the
+; track re-search box to this area instead of the whole screen - should make
+; every search noticeably faster.
+VEIN_AREA_X := 884, VEIN_AREA_Y := 559
+VEIN_AREA_W := 680, VEIN_AREA_H := 540
 
 ; Same values as motherlode.ahk's live-tuned settings (2026-07-20/21) -
 ; see that file's history for the full tuning story (drift-reject was
@@ -88,6 +103,16 @@ FIRST_CHECK_SLOT := HAMMER_SLOT + 1
 ; see MineFullnessCheck()/DropSlot() below. Resets to FIRST_CHECK_SLOT
 ; both at the start of a run and after every confirmed hopper deposit.
 g_CheckSlot := FIRST_CHECK_SLOT
+
+; --- Debug: short-circuit mining "full" early, for testing the hopper/
+; sack/bank/return phases without grinding a real 28-slot inventory first.
+; Toggle with F9 (off by default); when on, MineFullnessCheck() below
+; treats the inventory as full as soon as DEBUG_FULL_AT_SLOT is confirmed
+; pay-dirt instead of waiting for slot 28. Edit DEBUG_FULL_AT_SLOT per test
+; run (e.g. 5 to stop after slot 5). Not wired into anything except
+; MineFullnessCheck - has no effect while F9 debug mode is off.
+DEBUG_FULL_AT_SLOT := 5
+g_DebugMode := false
 
 ; Set by DepositHopper() each call: true if that deposit needed the
 ; retry fallback (past the first patient wait). CONFIRMED LIVE
@@ -122,11 +147,18 @@ GEM_DROP_SETTLE_MS := 300   ; settle after shift-clicking a gem away - starting 
 PROGRESS_TIMEOUT_MS := 300000
 OVERALL_TIMEOUT_MS  := 1800000
 
-; --- Hopper (single whole-screen FindFilledBlock + click, no tracking) ---
+; --- Hopper (region-constrained FindFilledBlock + click, no tracking) ---
 HOPPER_COLOR   := 0xC9FFC4
 HOPPER_TOL     := 5
-HOPPER_BLOCK_W := 27
-HOPPER_BLOCK_H := 27
+; Re-measured 2026-07-22: hopper marker is now 23x23px (was 27x27), inside a
+; 300x230 box at top-left corner (HOPPER_AREA_X, HOPPER_AREA_Y) - same
+; CORNER+W/H convention as Crafting's CRAFT_START_X/Y/W/H, built into a region
+; via RegionAround(marginPx: 0) at the FindAndClickBlock call site below
+; instead of a whole-screen search (0 margin: this box IS the measured area).
+HOPPER_BLOCK_W := 23
+HOPPER_BLOCK_H := 23
+HOPPER_AREA_X := 953, HOPPER_AREA_Y := 448
+HOPPER_AREA_W := 300, HOPPER_AREA_H := 230
 HOPPER_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the hopper marker never appears
 
 ; After clicking the hopper, wait for the inventory to clear. Simpler
@@ -155,13 +187,29 @@ HOPPER_CLICK_SETTLE_MS := 600   ; settle after the hopper deposit registers, sam
 
 HOPPER_CYCLES := 1   ; how many mine->hopper cycles before moving on to the sack/bank phase
 
-POLL_MS := 150   ; tick-aligned poll interval for TrackAndClick + all waits
+POLL_MS := 125   ; tick-aligned poll interval for TrackAndClick + all waits
 
-; --- Entrance to sack platform (whole-screen find+click, one-shot) ---
+SEARCH_MARGIN_PX := 40   ; same margin Crafting.ahk uses around a precisely-measured
+                           ; marker corner (Lib\Find.ahk's BlockAtPoint uses the same
+                           ; idea) - passed to RegionAround() for markers measured as
+                           ; an exact corner+size (currently just ENTRANCE_X/Y below),
+                           ; as opposed to the wider pre-measured search boxes (vein/
+                           ; hopper/sack/mlbank/exit) which use RegionAround(marginPx: 0)
+                           ; since those boxes ARE the intended search area already.
+
+; --- Entrance to sack platform (region-constrained find+click, one-shot) ---
 ENTRANCE_COLOR := 0x5676FF
 ENTRANCE_TOL   := 5
-ENTRANCE_BLOCK_W := 27
-ENTRANCE_BLOCK_H := 27
+; Re-measured AGAIN 2026-07-22 after the first guess (27x27 in a loose 300x230
+; box @ 942,342) never matched live (log: "FindFilledBlock: not found (27x27
+; 0x5676FF ...)" repeatedly). Confirmed marker is actually a precise 17x17px
+; block at corner (ENTRANCE_X, ENTRANCE_Y) - same CORNER+W/H convention as
+; Crafting's CRAFT_START_X/Y/W/H, region built via RegionAround(SEARCH_MARGIN_PX)
+; below (a real margin here, unlike the 0-margin exact-area boxes elsewhere,
+; since this is a small precise marker point, not a wide roam area).
+ENTRANCE_BLOCK_W := 17
+ENTRANCE_BLOCK_H := 17
+ENTRANCE_X := 1206, ENTRANCE_Y := 601
 ENTRANCE_WAIT_TIMEOUT_MS := 15000
 
 ; --- Arrival confirmation at the sack platform: wait until a green block's
@@ -170,12 +218,13 @@ ENTRANCE_WAIT_TIMEOUT_MS := 15000
 ; computes that expected center via CenterX/CenterY and feeds it to
 ; BlockAtPoint (Lib\Find.ahk). ARRIVE_SACK_POS_TOL_PX is slack around that
 ; expected center; tune live from the log like MAX_DRIFT_PX was tuned. ---
-ARRIVE_SACK_COLOR := 0x00FF00
+; Re-measured 2026-07-22: color/size/corner all changed (was 0x00FF00, 27x27 @ 1570,437).
+ARRIVE_SACK_COLOR := 0x0B5C11
 ARRIVE_SACK_TOL   := 5
-ARRIVE_SACK_BLOCK_W := 27
-ARRIVE_SACK_BLOCK_H := 27
-ARRIVE_SACK_X := 1570
-ARRIVE_SACK_Y := 437
+ARRIVE_SACK_BLOCK_W := 21
+ARRIVE_SACK_BLOCK_H := 21
+ARRIVE_SACK_X := 1573
+ARRIVE_SACK_Y := 434
 ARRIVE_SACK_POS_TOL_PX := 15
 ARRIVE_SACK_WAIT_TIMEOUT_MS := 30000
 
@@ -193,6 +242,17 @@ SACK_IMAGE_H := 16
 SACK_IMAGE_TOL := 5
 SACK_TRANS_COLOR := "0x00FF00"
 SACK_WAIT_TIMEOUT_MS := 15000
+; Re-measured 2026-07-22: two different areas were given for sack.png - a
+; general 64x32 box @ (1461,235), and a narrower 102x62 box @ (1529,513)
+; explicitly scoped to "the bank-sack run" (this WithdrawAndBankOnce flow).
+; Only one FindAndClickImage call site exists for sack.png (below), so the
+; bank-sack-run box is the one actually wired in (via RegionAround(marginPx: 0)
+; at that call site); the general box is kept here as unused reference
+; constants only. FLAG FOR REVIEW: confirm this mapping is what you meant.
+SACK_IMAGE_AREA_GENERAL_X := 1461, SACK_IMAGE_AREA_GENERAL_Y := 235   ; unused - reference only
+SACK_IMAGE_AREA_GENERAL_W := 64, SACK_IMAGE_AREA_GENERAL_H := 32       ; unused - reference only
+SACK_IMAGE_AREA_X := 1529, SACK_IMAGE_AREA_Y := 513
+SACK_IMAGE_AREA_W := 102, SACK_IMAGE_AREA_H := 62
 SACK_CLICK_SETTLE_MS := 600    ; the bank marker moves right after taking items from the sack -
                                 ; without this, the marker search below can start before it's
                                 ; settled and miss the click. Runs right after the FIRST sack
@@ -223,10 +283,20 @@ SACK_SLOTS_RECLICK_MS := 1500
 ; one-hardcoded-copy-per-bot convention, not shared via Lib) ---
 MLBANK_COLOR := 0xFF00FF
 MLBANK_TOL   := 5
-MLBANK_BLOCK_W := 31
-MLBANK_BLOCK_H := 31
-MLBANK_CLICK_OFFSET_Y := 32   ; the marker's raw center click was landing off the real
-                                ; clickable spot - offset down to compensate
+; Re-measured 2026-07-22: marker is now 21x21px (was 31x31), inside a 110x92
+; box at top-left corner (MLBANK_AREA_X, MLBANK_AREA_Y) - built into a region
+; via RegionAround(marginPx: 0) at the DepositAllToBank call site below.
+MLBANK_BLOCK_W := 21
+MLBANK_BLOCK_H := 21
+MLBANK_AREA_X := 858, MLBANK_AREA_Y := 825
+MLBANK_AREA_W := 110, MLBANK_AREA_H := 92
+; Commented out (not deleted) 2026-07-22: coordinates were fully re-measured
+; for the new region above, so this old offset compensating for the previous
+; (imprecise) click point shouldn't be needed anymore. Re-enable by restoring
+; the `markerClickOffsetY: MLBANK_CLICK_OFFSET_Y` line in WithdrawAndBankOnce()
+; below if live testing shows the click still lands off-target.
+; MLBANK_CLICK_OFFSET_Y := 32   ; the marker's raw center click was landing off the real
+;                                 ; clickable spot - offset down to compensate
 MLBANK_WAIT_TIMEOUT_MS := 15000
 
 DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
@@ -241,38 +311,57 @@ SACK_CYCLES := HOPPER_CYCLES   ; tied to HOPPER_CYCLES - one sack/bank trip per 
 
 ; --- Exit the sack platform + confirm arrival back at the mine (same
 ; CENTER-coordinate convention as ARRIVE_SACK_*) ---
+; Re-measured 2026-07-22: marker is now 15x15px (was 11x7), inside a 126x163
+; box at top-left corner (EXIT_AREA_X, EXIT_AREA_Y) - was previously a 75x75
+; box @ (1378,1158). Built into a region via RegionAround(marginPx: 0) at the
+; ReturnToMine() call site below.
 EXIT_COLOR := 0x0000FF
 EXIT_TOL   := 5
-EXIT_BLOCK_W := 11
-EXIT_BLOCK_H := 7
+EXIT_BLOCK_W := 15
+EXIT_BLOCK_H := 15
 EXIT_WAIT_TIMEOUT_MS := 15000
-; Search region for the exit marker - constrained to a 75x75 box (not
-; whole-screen) for faster detection. Corner given as x=1378,y=1158.
-EXIT_REGION := [1378, 1158, 1378 + 75, 1158 + 75]
-; Same shape as MLBANK_CLICK_OFFSET_Y below - the marker's raw center
-; click was landing off the real clickable spot, offset to compensate.
-EXIT_CLICK_OFFSET_X := 7
-EXIT_CLICK_OFFSET_Y := 7
+EXIT_AREA_X := 1263, EXIT_AREA_Y := 995
+EXIT_AREA_W := 126, EXIT_AREA_H := 163
+; Commented out (not deleted) 2026-07-22: coordinates were fully re-measured
+; for the region above, so these old offsets compensating for the previous
+; (imprecise) click point shouldn't be needed anymore. Re-enable by restoring
+; the `markerClickOffsetX: EXIT_CLICK_OFFSET_X` line in ReturnToMine() below
+; if live testing shows the click still lands off-target.
+; EXIT_CLICK_OFFSET_X := 7
+; EXIT_CLICK_OFFSET_Y := 7
 
 ; Same corner-measured semantics as ARRIVE_SACK_* above (see TravelToPoint).
 ARRIVE_MINE_COLOR := 0xFFFF00
 ARRIVE_MINE_TOL   := 5
-ARRIVE_MINE_BLOCK_W := 11
-ARRIVE_MINE_BLOCK_H := 11
-ARRIVE_MINE_X := 864
-ARRIVE_MINE_Y := 1306
+ARRIVE_MINE_BLOCK_W := 15
+ARRIVE_MINE_BLOCK_H := 15
+ARRIVE_MINE_X := 1013
+ARRIVE_MINE_Y := 1116
 ARRIVE_MINE_POS_TOL_PX := 25
 ARRIVE_MINE_WAIT_TIMEOUT_MS := 30000
 ; ========================================================================
 
 F5:: RunFullLoop()
 F8:: ProbeSlots()
+F9:: ToggleDebugMode()
 F6:: {
     global g_StopRequested
     g_StopRequested := true
     LogLine("F6 pressed - stop requested")
 }
 ; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
+
+; Debug toggle: when on, MineFullnessCheck() calls the inventory "full"
+; after DEBUG_FULL_AT_SLOT instead of slot 28 - for testing the hopper/
+; sack/bank/return phases without grinding a real full inventory each time.
+; Safe to flip mid-run or before starting; takes effect on the next
+; MineFullnessCheck() call.
+ToggleDebugMode() {
+    global g_DebugMode
+    g_DebugMode := !g_DebugMode
+    msg := "F9 pressed - DEBUG MODE " (g_DebugMode ? "ON (full at slot " DEBUG_FULL_AT_SLOT ")" : "OFF (full at slot 28)")
+    Say(msg)
+}
 
 ; Diagnostic: press F8 any time (bot doesn't need to be running) with a
 ; KNOWN, visually-confirmed inventory state to see exactly what the
@@ -332,7 +421,9 @@ MineLoop() {
         cycleNum := A_Index
         mineOpts := {
             colors: VEIN_COLORS, tol: COLOR_TOL, blockW: BLOCK_W, blockH: BLOCK_H, verifyPercent: VERIFY_PERCENT,
-            refX: REF_X, refY: REF_Y, acquireRadii: ACQUIRE_RADII, trackRadius: TRACK_RADIUS_PX,
+            refX: REF_X, refY: REF_Y, acquireRadii: ACQUIRE_RADII,
+            region: RegionAround(VEIN_AREA_X, VEIN_AREA_Y, VEIN_AREA_W, VEIN_AREA_H, 0),
+            trackRadius: TRACK_RADIUS_PX,
             maxDriftPx: MAX_DRIFT_PX, stableTicks: STABLE_TICKS_REQUIRED, moveTolerancePx: MOVE_TOLERANCE_PX,
             cooldownMs: CLICK_COOLDOWN_MS, reclickAfterMs: WALK_RECLICK_TIMEOUT_MS, ctrl: CLICK_USE_CTRL,
             until: MineFullnessCheck, timeoutMs: OVERALL_TIMEOUT_MS,
@@ -372,13 +463,17 @@ MineLoop() {
 ; yet" (return false). A slot that just filled gets classified against
 ; pay-dirt.png: a real match advances the pointer; anything else (a
 ; gem) gets shift-clicked away via DropSlot() and re-checked next tick
-; (pointer doesn't move). Returns true only once slot 28 is confirmed
-; real pay-dirt - at that point the inventory is genuinely full of
-; pay-dirt (plus the hammer in slot 1), no gems anywhere.
+; (pointer doesn't move). Returns true once the "full" slot is confirmed
+; real pay-dirt - normally slot 28 (genuinely full inventory, plus the
+; hammer in slot 1, no gems anywhere); in F9 debug mode, DEBUG_FULL_AT_SLOT
+; instead, so the hopper/sack/bank/return phases can be exercised without
+; grinding a real full inventory first.
 MineFullnessCheck() {
-    global g_CheckSlot
+    global g_CheckSlot, g_DebugMode
 
-    if (g_CheckSlot > 28)
+    lastSlot := g_DebugMode ? DEBUG_FULL_AT_SLOT : 28
+
+    if (g_CheckSlot > lastSlot)
         return true
 
     if (!SlotFull(g_CheckSlot))
@@ -391,7 +486,7 @@ MineFullnessCheck() {
     if (isPayDirt) {
         Say("Slot " g_CheckSlot " confirmed pay-dirt")
         g_CheckSlot += 1
-        return g_CheckSlot > 28
+        return g_CheckSlot > lastSlot
     }
 
     Say("Slot " g_CheckSlot " is NOT pay-dirt - dropping it")
@@ -436,6 +531,7 @@ DepositHopper() {
     ok := ClickUntilCondition({
         click: () => FindAndClickBlock({
             color: HOPPER_COLOR, tol: HOPPER_TOL, blockW: HOPPER_BLOCK_W, blockH: HOPPER_BLOCK_H,
+            region: RegionAround(HOPPER_AREA_X, HOPPER_AREA_Y, HOPPER_AREA_W, HOPPER_AREA_H, 0),
             ctrl: CLICK_USE_CTRL, waitTimeoutMs: HOPPER_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
             label: "Hopper", itemLabel: "hopper marker"
         }),
@@ -468,6 +564,7 @@ GoToSackArea() {
     return TravelToPoint({
         markerColor: ENTRANCE_COLOR, markerTol: ENTRANCE_TOL,
         markerBlockW: ENTRANCE_BLOCK_W, markerBlockH: ENTRANCE_BLOCK_H,
+        markerRegion: RegionAround(ENTRANCE_X, ENTRANCE_Y, ENTRANCE_BLOCK_W, ENTRANCE_BLOCK_H, SEARCH_MARGIN_PX),
         markerWaitTimeoutMs: ENTRANCE_WAIT_TIMEOUT_MS, markerItemLabel: "entrance marker",
         arriveColor: ARRIVE_SACK_COLOR, arriveTol: ARRIVE_SACK_TOL,
         arriveBlockW: ARRIVE_SACK_BLOCK_W, arriveBlockH: ARRIVE_SACK_BLOCK_H,
@@ -497,7 +594,12 @@ WithdrawAndBankOnce() {
     if (!ClickUntilCondition({
         click: () => FindAndClickImage({
             imagePath: SACK_IMAGE_PATH, imageW: SACK_IMAGE_W, imageH: SACK_IMAGE_H, tol: SACK_IMAGE_TOL,
-            transColor: SACK_TRANS_COLOR, ctrl: CLICK_USE_CTRL, waitTimeoutMs: SACK_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
+            transColor: SACK_TRANS_COLOR,
+            ; region omitted 2026-07-22 - live log showed "FindImage: not found" with the
+            ; SACK_IMAGE_AREA_* region wired in (never matched), so back to a whole-screen
+            ; search (FindAndClickImage's default) until the real area is re-measured.
+            ; SACK_IMAGE_AREA_* constants above are left defined but currently unused.
+            ctrl: CLICK_USE_CTRL, waitTimeoutMs: SACK_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
             label: "Sack", itemLabel: "sack"
         }),
         condition: () => AllSlotsFull(SACK_SLOTS),
@@ -512,7 +614,9 @@ WithdrawAndBankOnce() {
     ; Same bool contract as before - FullCycle stops the bot on a false.
     return DepositAllToBank({
         markerColor: MLBANK_COLOR, markerTol: MLBANK_TOL, markerBlockW: MLBANK_BLOCK_W, markerBlockH: MLBANK_BLOCK_H,
-        markerClickOffsetY: MLBANK_CLICK_OFFSET_Y, markerWaitTimeoutMs: MLBANK_WAIT_TIMEOUT_MS,
+        markerRegion: RegionAround(MLBANK_AREA_X, MLBANK_AREA_Y, MLBANK_AREA_W, MLBANK_AREA_H, 0),
+        ; markerClickOffsetY: MLBANK_CLICK_OFFSET_Y,   ; commented out 2026-07-22 - see MLBANK_CLICK_OFFSET_Y comment above
+        markerWaitTimeoutMs: MLBANK_WAIT_TIMEOUT_MS,
         markerItemLabel: "deposit-box marker",
         depositImagePath: DEPOSIT_IMAGE_PATH, depositImageW: DEPOSIT_IMAGE_W, depositImageH: DEPOSIT_IMAGE_H,
         depositTol: DEPOSIT_IMAGE_TOL, depositTransColor: DEPOSIT_TRANS_COLOR,
@@ -528,8 +632,9 @@ WithdrawAndBankOnce() {
 ReturnToMine() {
     return TravelToPoint({
         markerColor: EXIT_COLOR, markerTol: EXIT_TOL,
-        markerBlockW: EXIT_BLOCK_W, markerBlockH: EXIT_BLOCK_H, markerRegion: EXIT_REGION,
-        markerClickOffsetX: EXIT_CLICK_OFFSET_X,
+        markerBlockW: EXIT_BLOCK_W, markerBlockH: EXIT_BLOCK_H,
+        markerRegion: RegionAround(EXIT_AREA_X, EXIT_AREA_Y, EXIT_AREA_W, EXIT_AREA_H, 0),
+        ; markerClickOffsetX: EXIT_CLICK_OFFSET_X,   ; commented out 2026-07-22 - see EXIT_CLICK_OFFSET_X/Y comment above
         markerWaitTimeoutMs: EXIT_WAIT_TIMEOUT_MS, markerItemLabel: "exit marker",
         arriveColor: ARRIVE_MINE_COLOR, arriveTol: ARRIVE_MINE_TOL,
         arriveBlockW: ARRIVE_MINE_BLOCK_W, arriveBlockH: ARRIVE_MINE_BLOCK_H,
@@ -547,5 +652,5 @@ VeinColorsMsg() {
     return JoinMsg(VEIN_COLORS, "/", HexColor)
 }
 
-LogLine("Script loaded. F5=start full loop  F8=probe check slot+sack slots  F6=stop  F12=exit. Veins=" VeinColorsMsg())
+LogLine("Script loaded. F5=start full loop  F8=probe check slot+sack slots  F9=toggle debug mode  F6=stop  F12=exit. Veins=" VeinColorsMsg())
 ToolTip("motherlode2 ready (pay-dirt verification) - F5 to start", 20, 20)

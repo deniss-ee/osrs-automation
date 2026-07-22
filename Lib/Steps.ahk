@@ -35,7 +35,12 @@
 ;   verifyPercent - block-match strictness, 100 = strict (default 100)
 ;   refX/refY     - character's on-screen point, used for acquire proximity (required)
 ;   acquireRadii  - array of expanding square-ring half-sizes tried before
-;                   the whole-screen fallback (default [] = whole screen only)
+;                   the region-wide fallback (default [] = region-wide only)
+;   region        - [x1,y1,x2,y2] outer bound clamping BOTH the acquire rings/
+;                   fallback AND the track-mode re-search box (default whole
+;                   screen). Added 2026-07-22 for Motherlode2's re-measured
+;                   680x540 vein area - narrowing this makes every underlying
+;                   Find* call scan far fewer pixels than a whole-screen search.
 ;   trackRadius   - half-size of the narrowed re-search box once locked (required)
 ;   maxDriftPx    - reject a track match this far from the last position (default 40)
 ;
@@ -117,6 +122,7 @@ TrackAndClick(opts) {
     refX := opts.refX
     refY := opts.refY
     acquireRadii := opts.HasOwnProp("acquireRadii") ? opts.acquireRadii : []
+    region := opts.HasOwnProp("region") ? opts.region : [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
     trackRadius := opts.trackRadius
     maxDriftPx := opts.HasOwnProp("maxDriftPx") ? opts.maxDriftPx : 40
     stableTicksRequired := opts.HasOwnProp("stableTicks") ? opts.stableTicks : 2
@@ -166,10 +172,10 @@ TrackAndClick(opts) {
             found := false
             stageLabel := ""
             for radius in acquireRadii {
-                rx1 := Max(0, refX - radius)
-                ry1 := Max(0, refY - radius)
-                rx2 := Min(A_ScreenWidth - 1, refX + radius)
-                ry2 := Min(A_ScreenHeight - 1, refY + radius)
+                rx1 := Max(region[1], refX - radius)
+                ry1 := Max(region[2], refY - radius)
+                rx2 := Min(region[3], refX + radius)
+                ry2 := Min(region[4], refY + radius)
 
                 tStage := A_TickCount
                 found := AcquireClosestInBox(rx1, ry1, rx2, ry2, colors, tol, blockW, blockH, verifyPercent, refX, refY, &tx, &ty, &foundColor)
@@ -180,8 +186,8 @@ TrackAndClick(opts) {
                 Say("Acquire ring " radius ": not found (" (A_TickCount - tStage) " ms)")
             }
             if (!found) {
-                found := AcquireClosestInBox(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1, colors, tol, blockW, blockH, verifyPercent, refX, refY, &tx, &ty, &foundColor)
-                stageLabel := "whole screen"
+                found := AcquireClosestInBox(region[1], region[2], region[3], region[4], colors, tol, blockW, blockH, verifyPercent, refX, refY, &tx, &ty, &foundColor)
+                stageLabel := "region-wide"
             }
             searchMs := A_TickCount - tSearch
             if (found) {
@@ -198,10 +204,10 @@ TrackAndClick(opts) {
         } else {
             ; Track mode: narrowed box around the last known position,
             ; locked to whichever color acquire actually matched.
-            rx1 := Max(0, targetX - trackRadius)
-            ry1 := Max(0, targetY - trackRadius)
-            rx2 := Min(A_ScreenWidth - 1, targetX + trackRadius)
-            ry2 := Min(A_ScreenHeight - 1, targetY + trackRadius)
+            rx1 := Max(region[1], targetX - trackRadius)
+            ry1 := Max(region[2], targetY - trackRadius)
+            rx2 := Min(region[3], targetX + trackRadius)
+            ry2 := Min(region[4], targetY + trackRadius)
 
             tSearch := A_TickCount
             found := FindFilledBlock(rx1, ry1, rx2, ry2, lockedColor, tol, blockW, blockH, &nx, &ny, verifyPercent)
