@@ -1,0 +1,24 @@
+2026-07-22 23:35:43 [03-find-color-screen] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Targets=0x56FF50
+2026-07-22 23:35:46 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:46 [03-find-color-screen] FindFilledBlock: found at 752,500 (55x55 0x56FF50 tol=5, 63 ms)
+2026-07-22 23:35:46 [03-find-color-screen] FOUND 0x56FF50 at 752,500 in 63 ms
+2026-07-22 23:35:47 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:47 [03-find-color-screen] FindFilledBlock: found at 838,492 (55x55 0x56FF50 tol=5, 47 ms)
+2026-07-22 23:35:47 [03-find-color-screen] FOUND 0x56FF50 at 838,492 in 47 ms
+2026-07-22 23:35:48 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:48 [03-find-color-screen] FindFilledBlock: found at 910,496 (55x55 0x56FF50 tol=5, 63 ms)
+2026-07-22 23:35:48 [03-find-color-screen] FOUND 0x56FF50 at 910,496 in 63 ms
+2026-07-22 23:35:49 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:49 [03-find-color-screen] FindFilledBlock: found at 962,534 (55x55 0x56FF50 tol=5, 62 ms)
+2026-07-22 23:35:49 [03-find-color-screen] FOUND 0x56FF50 at 962,534 in 62 ms
+2026-07-22 23:35:50 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:50 [03-find-color-screen] FindFilledBlock: found at 1064,568 (55x55 0x56FF50 tol=5, 62 ms)
+2026-07-22 23:35:50 [03-find-color-screen] FOUND 0x56FF50 at 1064,568 in 62 ms
+2026-07-22 23:35:50 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:51 [03-find-color-screen] FindFilledBlock: found at 1128,608 (55x55 0x56FF50 tol=5, 62 ms)
+2026-07-22 23:35:51 [03-find-color-screen] FOUND 0x56FF50 at 1128,608 in 62 ms
+2026-07-22 23:35:51 [03-find-color-screen] Search started: colors=0x56FF50 tol=5 block=55x55 region=0,0 -> 2559,1439 (whole screen)
+2026-07-22 23:35:52 [03-find-color-screen] F6 pressed - stop requested
+2026-07-22 23:35:52 [03-find-color-screen] FindFilledBlock: found at 1312,604 (55x55 0x56FF50 tol=5, 63 ms)
+2026-07-22 23:35:52 [03-find-color-screen] FOUND 0x56FF50 at 1312,604 in 63 ms
+2026-07-22 23:35:54 [03-find-color-screen] Esc pressed - exiting

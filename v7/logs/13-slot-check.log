@@ -1,0 +1,126 @@
+2026-07-23 01:05:16 [13-slot-check] Script loaded. F5=check all slots  F7=move to calibrate slot 28  F8=probe slot 28  F6=request stop  Esc=exit
+2026-07-23 01:05:25 [13-slot-check] F7: moved to slot 28 computed center 2387,1265
+2026-07-23 01:05:35 [13-slot-check] F7: moved to slot 28 computed center 2387,1265
+2026-07-23 01:05:45 [13-slot-check] Script loaded. F5=check all slots  F7=move to calibrate slot 1  F8=probe slot 1  F6=request stop  Esc=exit
+2026-07-23 01:05:48 [13-slot-check] F7: moved to slot 1 computed center 2135,833
+2026-07-23 01:05:49 [13-slot-check] Slot check started: 28 slots (layout from Lib\Inv.ahk INV_GRID)
+2026-07-23 01:05:49 [13-slot-check] Slot 1 (2135,833): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 2 (2219,833): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 3 (2303,833): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 4 (2387,833): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 5 (2135,905): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 6 (2219,905): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 7 (2303,905): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 8 (2387,905): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 9 (2135,977): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 10 (2219,977): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 11 (2303,977): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 12 (2387,977): FULL
+2026-07-23 01:05:49 [13-slot-check] Slot 13 (2135,1049): FULL
+2026-07-23 01:05:50 [13-slot-check] Slot 14 (2219,1049): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 15 (2303,1049): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 16 (2387,1049): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 17 (2135,1121): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 18 (2219,1121): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 19 (2303,1121): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 20 (2387,1121): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 21 (2135,1193): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 22 (2219,1193): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 23 (2303,1193): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 24 (2387,1193): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 25 (2135,1265): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 26 (2219,1265): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 27 (2303,1265): empty
+2026-07-23 01:05:50 [13-slot-check] Slot 28 (2387,1265): empty
+2026-07-23 01:05:50 [13-slot-check] Grid result: 13/28 full in 532 ms
+2026-07-23 01:06:10 [13-slot-check] SlotProbe 1 (2135,833):
+  [1] offset 0,0 = 0x771109 (DIFFERS from empty - occupied signal)
+  [2] offset -14,-12 = 0x897D7D (DIFFERS from empty - occupied signal)
+  [3] offset 14,-12 = 0xB0A5A5 (DIFFERS from empty - occupied signal)
+  [4] offset 0,12 = 0x771109 (DIFFERS from empty - occupied signal)
+  => SlotFull(1) would report: FULL
+2026-07-23 01:06:17 [13-slot-check] SlotProbe 1 (2135,833):
+  [1] offset 0,0 = 0x771109 (DIFFERS from empty - occupied signal)
+  [2] offset -14,-12 = 0x897D7D (DIFFERS from empty - occupied signal)
+  [3] offset 14,-12 = 0xB0A5A5 (DIFFERS from empty - occupied signal)
+  [4] offset 0,12 = 0x771109 (DIFFERS from empty - occupied signal)
+  => SlotFull(1) would report: FULL
+2026-07-23 01:06:18 [13-slot-check] SlotProbe 1 (2135,833):
+  [1] offset 0,0 = 0x771109 (DIFFERS from empty - occupied signal)
+  [2] offset -14,-12 = 0x897D7D (DIFFERS from empty - occupied signal)
+  [3] offset 14,-12 = 0xB0A5A5 (DIFFERS from empty - occupied signal)
+  [4] offset 0,12 = 0x771109 (DIFFERS from empty - occupied signal)
+  => SlotFull(1) would report: FULL
+2026-07-23 01:06:22 [13-slot-check] SlotProbe 1 (2135,833):
+  [1] offset 0,0 = 0x3E3529 (~= empty, tol 5)
+  [2] offset -14,-12 = 0x3E3529 (~= empty, tol 5)
+  [3] offset 14,-12 = 0x3E3529 (~= empty, tol 5)
+  [4] offset 0,12 = 0x3E3529 (~= empty, tol 5)
+  => SlotFull(1) would report: EMPTY
+2026-07-23 01:06:30 [13-slot-check] SlotProbe 1 (2135,833):
+  [1] offset 0,0 = 0x771109 (DIFFERS from empty - occupied signal)
+  [2] offset -14,-12 = 0x897D7D (DIFFERS from empty - occupied signal)
+  [3] offset 14,-12 = 0xB0A5A5 (DIFFERS from empty - occupied signal)
+  [4] offset 0,12 = 0x771109 (DIFFERS from empty - occupied signal)
+  => SlotFull(1) would report: FULL
+2026-07-23 01:06:33 [13-slot-check] Slot check started: 28 slots (layout from Lib\Inv.ahk INV_GRID)
+2026-07-23 01:06:33 [13-slot-check] Slot 1 (2135,833): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 2 (2219,833): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 3 (2303,833): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 4 (2387,833): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 5 (2135,905): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 6 (2219,905): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 7 (2303,905): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 8 (2387,905): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 9 (2135,977): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 10 (2219,977): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 11 (2303,977): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 12 (2387,977): FULL
+2026-07-23 01:06:33 [13-slot-check] Slot 13 (2135,1049): FULL
+2026-07-23 01:06:34 [13-slot-check] Slot 14 (2219,1049): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 15 (2303,1049): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 16 (2387,1049): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 17 (2135,1121): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 18 (2219,1121): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 19 (2303,1121): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 20 (2387,1121): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 21 (2135,1193): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 22 (2219,1193): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 23 (2303,1193): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 24 (2387,1193): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 25 (2135,1265): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 26 (2219,1265): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 27 (2303,1265): empty
+2026-07-23 01:06:34 [13-slot-check] Slot 28 (2387,1265): empty
+2026-07-23 01:06:34 [13-slot-check] Grid result: 13/28 full in 547 ms
+2026-07-23 01:06:46 [13-slot-check] Slot check started: 28 slots (layout from Lib\Inv.ahk INV_GRID)
+2026-07-23 01:06:46 [13-slot-check] Slot 1 (2135,833): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 2 (2219,833): FULL
+2026-07-23 01:06:46 [13-slot-check] Slot 3 (2303,833): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 4 (2387,833): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 5 (2135,905): FULL
+2026-07-23 01:06:46 [13-slot-check] Slot 6 (2219,905): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 7 (2303,905): FULL
+2026-07-23 01:06:46 [13-slot-check] Slot 8 (2387,905): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 9 (2135,977): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 10 (2219,977): FULL
+2026-07-23 01:06:46 [13-slot-check] Slot 11 (2303,977): empty
+2026-07-23 01:06:46 [13-slot-check] Slot 12 (2387,977): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 13 (2135,1049): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 14 (2219,1049): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 15 (2303,1049): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 16 (2387,1049): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 17 (2135,1121): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 18 (2219,1121): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 19 (2303,1121): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 20 (2387,1121): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 21 (2135,1193): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 22 (2219,1193): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 23 (2303,1193): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 24 (2387,1193): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 25 (2135,1265): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 26 (2219,1265): FULL
+2026-07-23 01:06:47 [13-slot-check] Slot 27 (2303,1265): empty
+2026-07-23 01:06:47 [13-slot-check] Slot 28 (2387,1265): FULL
+2026-07-23 01:06:47 [13-slot-check] Grid result: 13/28 full in 578 ms
+2026-07-23 01:07:03 [13-slot-check] Esc pressed - exiting

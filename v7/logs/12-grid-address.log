@@ -1,0 +1,15 @@
+2026-07-23 01:01:07 [12-grid-address] Script loaded. F5=center  F7=corner  F8=region  F6=request stop  Esc=exit. Grid origin=2099,801 cols=4 rows=7 cell=72x64 gap=12,8 index=1
+2026-07-23 01:01:08 [12-grid-address] GridCenter(1) = 2135,833 - mouse moved there
+2026-07-23 01:01:11 [12-grid-address] GridCenter(1) = 2135,833 - mouse moved there
+2026-07-23 01:01:23 [12-grid-address] Script loaded. F5=center  F7=corner  F8=region  F6=request stop  Esc=exit. Grid origin=2099,801 cols=4 rows=7 cell=72x64 gap=12,8 index=7
+2026-07-23 01:01:23 [12-grid-address] GridCenter(7) = 2303,905 - mouse moved there
+2026-07-23 01:01:25 [12-grid-address] GridCenter(7) = 2303,905 - mouse moved there
+2026-07-23 01:01:26 [12-grid-address] GridCenter(7) = 2303,905 - mouse moved there
+2026-07-23 01:01:37 [12-grid-address] GridCorner(7) = 2267,873 - mouse moved there
+2026-07-23 01:01:40 [12-grid-address] GridCorner(7) = 2267,873 - mouse moved there
+2026-07-23 01:01:45 [12-grid-address] GridCellRegion(7) = 2267,873 -> 2339,937
+2026-07-23 01:01:48 [12-grid-address] GridCellRegion(7) = 2267,873 -> 2339,937
+2026-07-23 01:01:53 [12-grid-address] GridCellRegion(7) = 2267,873 -> 2339,937
+2026-07-23 01:02:01 [12-grid-address] GridCellRegion(7) = 2267,873 -> 2339,937
+2026-07-23 01:02:08 [12-grid-address] GridCellRegion(7) = 2267,873 -> 2339,937
+2026-07-23 01:03:35 [12-grid-address] Esc pressed - exiting

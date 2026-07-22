@@ -1,0 +1,35 @@
+2026-07-22 23:36:35 [07-find-image] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png at 775,765
+2026-07-22 23:36:38 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:38 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 16 ms)
+2026-07-22 23:36:38 [07-find-image] NOT FOUND (searched 16 ms)
+2026-07-22 23:36:38 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:38 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 15 ms)
+2026-07-22 23:36:38 [07-find-image] NOT FOUND (searched 15 ms)
+2026-07-22 23:36:38 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:38 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:38 [07-find-image] NOT FOUND (searched 0 ms)
+2026-07-22 23:36:39 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:39 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:39 [07-find-image] NOT FOUND (searched 0 ms)
+2026-07-22 23:36:39 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:39 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:39 [07-find-image] NOT FOUND (searched 0 ms)
+2026-07-22 23:36:39 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:39 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 16 ms)
+2026-07-22 23:36:39 [07-find-image] NOT FOUND (searched 16 ms)
+2026-07-22 23:36:40 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:40 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 16 ms)
+2026-07-22 23:36:40 [07-find-image] NOT FOUND (searched 16 ms)
+2026-07-22 23:36:40 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:40 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:40 [07-find-image] NOT FOUND (searched 0 ms)
+2026-07-22 23:36:40 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:40 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 15 ms)
+2026-07-22 23:36:40 [07-find-image] NOT FOUND (searched 15 ms)
+2026-07-22 23:36:40 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:40 [07-find-image] FindImage: not found (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:40 [07-find-image] NOT FOUND (searched 0 ms)
+2026-07-22 23:36:41 [07-find-image] Search started: image=C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png tol=5 trans=0x00FF00 size=80x72 region=775,765 -> 855,837
+2026-07-22 23:36:41 [07-find-image] FindImage: found at 815,801 (C:\Users\link\Documents\GitHub\osrs-automation\v7\micro\..\Images\deposit-motherlode.png, 0 ms)
+2026-07-22 23:36:41 [07-find-image] FOUND at 815,801 in 15 ms
+2026-07-22 23:36:42 [07-find-image] Esc pressed - exiting

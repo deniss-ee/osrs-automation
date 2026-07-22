@@ -1,0 +1,91 @@
+2026-07-23 00:43:24 [11-find-and-click] Script loaded. F5=find+click block  F8=find block+click PIN  F6=request stop  Esc=exit.
+2026-07-23 00:43:31 [11-find-and-click] FindAndClickBlock started: colors=0xCC5D02
+2026-07-23 00:43:31 [11-find-and-click] F5: waiting for test block
+2026-07-23 00:43:31 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:31 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:43:31 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:43:32 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:43:32 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:43:32 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:33 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:33 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:33 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:34 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:34 [11-find-and-click] F5: test block never appeared within 3000ms - stopping
+2026-07-23 00:43:34 [11-find-and-click] NOT FOUND - block never appeared (3204 ms)
+2026-07-23 00:43:40 [11-find-and-click] Esc pressed - exiting
+2026-07-23 00:43:50 [11-find-and-click] Script loaded. F5=find+click block  F8=find block+click PIN  F6=request stop  Esc=exit.
+2026-07-23 00:43:52 [11-find-and-click] FindAndClickBlock started: colors=0xCC5D02
+2026-07-23 00:43:52 [11-find-and-click] F5: waiting for test block
+2026-07-23 00:43:52 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:53 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:43:53 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:54 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:54 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:54 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:55 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:55 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:55 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:56 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:56 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:56 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:57 [11-find-and-click] FindFilledBlock: found at 1634,891 (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:43:57 [11-find-and-click] F5: clicking test block at 1634,891
+2026-07-23 00:43:57 [11-find-and-click] FOUND and clicked block (4297 ms)
+2026-07-23 00:44:01 [11-find-and-click] Esc pressed - exiting
+2026-07-23 00:44:08 [11-find-and-click] Script loaded. F5=find+click block  F8=find block+click PIN  F6=request stop  Esc=exit.
+2026-07-23 00:44:09 [11-find-and-click] FindAndClickBlock started: colors=0xCC5D02
+2026-07-23 00:44:09 [11-find-and-click] F5: waiting for test block
+2026-07-23 00:44:09 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:09 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:10 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:10 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:10 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:11 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:11 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:11 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:12 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:12 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:12 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:13 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:13 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:13 [11-find-and-click] FindFilledBlock: found at 1635,899 (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:13 [11-find-and-click] F5: clicking test block at 1635,899
+2026-07-23 00:44:14 [11-find-and-click] FOUND and clicked block (4828 ms)
+2026-07-23 00:44:15 [11-find-and-click] Esc pressed - exiting
+2026-07-23 00:44:23 [11-find-and-click] Script loaded. F5=find+click block  F8=find block+click PIN  F6=request stop  Esc=exit.
+2026-07-23 00:44:25 [11-find-and-click] FindAndClickBlock started: colors=0xCC5D02
+2026-07-23 00:44:25 [11-find-and-click] F5: waiting for test block
+2026-07-23 00:44:25 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:25 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:26 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:26 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:26 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:27 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:27 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:27 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:28 [11-find-and-click] FindFilledBlock: found at 1649,943 (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:28 [11-find-and-click] F5: clicking test block at 1649,943
+2026-07-23 00:44:28 [11-find-and-click] FOUND and clicked block (2968 ms)
+2026-07-23 00:44:29 [11-find-and-click] Esc pressed - exiting
+2026-07-23 00:44:37 [11-find-and-click] Script loaded. F5=find+click block  F8=find block+click PIN  F6=request stop  Esc=exit.
+2026-07-23 00:44:41 [11-find-and-click] FindAndClickBlock (PINNED) started: colors=0xCC5D02 pin=1100,848
+2026-07-23 00:44:41 [11-find-and-click] F8: waiting for test block
+2026-07-23 00:44:41 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 15 ms)
+2026-07-23 00:44:41 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:41 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:42 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 16 ms)
+2026-07-23 00:44:42 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:43 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:43 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:43 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:44 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:44 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:44 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:45 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:45 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:45 [11-find-and-click] FindFilledBlock: not found (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:46 [11-find-and-click] FindFilledBlock: found at 1622,903 (17x17 0xCC5D02 tol=5, 0 ms)
+2026-07-23 00:44:46 [11-find-and-click] F8: clicking test block at 1100,848
+2026-07-23 00:44:46 [11-find-and-click] FOUND block, but clicked PIN at 1100,848 instead (4968 ms)
+2026-07-23 00:44:48 [11-find-and-click] Esc pressed - exiting
