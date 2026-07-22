@@ -20,7 +20,7 @@
 ; WHAT IT DOES
 ;   F5  = start the chop/bank loop
 ;   F6  = request stop (interrupts instantly, mid-track or mid-wait)
-;   Esc = exit the script
+;   F12 = exit the script
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -103,10 +103,7 @@ F6:: {
     g_StopRequested := true
     LogLine("F6 pressed - stop requested")
 }
-Esc:: {
-    LogLine("Esc pressed - exiting")
-    ExitApp()
-}
+; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
 
 ; Diagnostic: press F8 any time (bot doesn't need to be running) with
 ; a KNOWN, visually-confirmed inventory state to see exactly what
@@ -175,5 +172,5 @@ TreeColorsMsg() {
     return JoinMsg(TREE_COLORS, "/", HexColor)
 }
 
-LogLine("Script loaded. F5=start chop/bank loop  F6=stop  Esc=exit. Trees=" TreeColorsMsg())
+LogLine("Script loaded. F5=start chop/bank loop  F6=stop  F12=exit. Trees=" TreeColorsMsg())
 ToolTip("woodcutting v1 ready - F5 to start", 20, 20)

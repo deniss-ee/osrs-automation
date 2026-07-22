@@ -34,7 +34,7 @@
 ;   F5  = start the full mine->hopper->sack->bank->return loop, forever
 ;   F8  = probe the current pay-dirt check pointer + sack slots
 ;   F6  = request stop (interrupts instantly, mid-track or mid-wait)
-;   Esc = exit the script
+;   F12 = exit the script
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -153,7 +153,7 @@ HOPPER_EMPTY_WAIT_TIMEOUT_MS := 600000
 HOPPER_CLICK_SETTLE_MS := 600   ; settle after the hopper deposit registers, same
                                   ; reasoning as SACK_CLICK_SETTLE_MS below
 
-HOPPER_CYCLES := 7   ; how many mine->hopper cycles before moving on to the sack/bank phase
+HOPPER_CYCLES := 1   ; how many mine->hopper cycles before moving on to the sack/bank phase
 
 POLL_MS := 150   ; tick-aligned poll interval for TrackAndClick + all waits
 
@@ -165,15 +165,17 @@ ENTRANCE_BLOCK_H := 27
 ENTRANCE_WAIT_TIMEOUT_MS := 15000
 
 ; --- Arrival confirmation at the sack platform: wait until a green block's
-; CENTER is exactly at (ARRIVE_SACK_X, ARRIVE_SACK_Y) - see BlockAtPoint()
-; (Lib\Find.ahk). ARRIVE_SACK_POS_TOL_PX is slack around that expected
-; center; tune live from the log like MAX_DRIFT_PX was tuned. ---
+; CENTER lands at the point expected from this measured top-left corner
+; (ARRIVE_SACK_X, ARRIVE_SACK_Y) + block size - TravelToPoint (Lib\Steps.ahk)
+; computes that expected center via CenterX/CenterY and feeds it to
+; BlockAtPoint (Lib\Find.ahk). ARRIVE_SACK_POS_TOL_PX is slack around that
+; expected center; tune live from the log like MAX_DRIFT_PX was tuned. ---
 ARRIVE_SACK_COLOR := 0x00FF00
 ARRIVE_SACK_TOL   := 5
 ARRIVE_SACK_BLOCK_W := 27
 ARRIVE_SACK_BLOCK_H := 27
-ARRIVE_SACK_X := 1583
-ARRIVE_SACK_Y := 450
+ARRIVE_SACK_X := 1570
+ARRIVE_SACK_Y := 437
 ARRIVE_SACK_POS_TOL_PX := 15
 ARRIVE_SACK_WAIT_TIMEOUT_MS := 30000
 
@@ -252,15 +254,13 @@ EXIT_REGION := [1378, 1158, 1378 + 75, 1158 + 75]
 EXIT_CLICK_OFFSET_X := 7
 EXIT_CLICK_OFFSET_Y := 7
 
-; Same CENTER semantics as ARRIVE_SACK_* above (see BlockAtPoint()).
-; ARRIVE_MINE_X/Y = 869,1311 is the CENTER for an 11x11 block whose
-; top-left corner is 864,1306 (center = corner + size//2).
+; Same corner-measured semantics as ARRIVE_SACK_* above (see TravelToPoint).
 ARRIVE_MINE_COLOR := 0xFFFF00
 ARRIVE_MINE_TOL   := 5
 ARRIVE_MINE_BLOCK_W := 11
 ARRIVE_MINE_BLOCK_H := 11
-ARRIVE_MINE_X := 869
-ARRIVE_MINE_Y := 1311
+ARRIVE_MINE_X := 864
+ARRIVE_MINE_Y := 1306
 ARRIVE_MINE_POS_TOL_PX := 25
 ARRIVE_MINE_WAIT_TIMEOUT_MS := 30000
 ; ========================================================================
@@ -272,10 +272,7 @@ F6:: {
     g_StopRequested := true
     LogLine("F6 pressed - stop requested")
 }
-Esc:: {
-    LogLine("Esc pressed - exiting")
-    ExitApp()
-}
+; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
 
 ; Diagnostic: press F8 any time (bot doesn't need to be running) with a
 ; KNOWN, visually-confirmed inventory state to see exactly what the
@@ -474,7 +471,7 @@ GoToSackArea() {
         markerWaitTimeoutMs: ENTRANCE_WAIT_TIMEOUT_MS, markerItemLabel: "entrance marker",
         arriveColor: ARRIVE_SACK_COLOR, arriveTol: ARRIVE_SACK_TOL,
         arriveBlockW: ARRIVE_SACK_BLOCK_W, arriveBlockH: ARRIVE_SACK_BLOCK_H,
-        arriveX: ARRIVE_SACK_X, arriveY: ARRIVE_SACK_Y, arrivePosTolPx: ARRIVE_SACK_POS_TOL_PX,
+        arriveCornerX: ARRIVE_SACK_X, arriveCornerY: ARRIVE_SACK_Y, arrivePosTolPx: ARRIVE_SACK_POS_TOL_PX,
         arriveWaitTimeoutMs: ARRIVE_SACK_WAIT_TIMEOUT_MS,
         ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "GoToSackArea"
     })
@@ -536,7 +533,7 @@ ReturnToMine() {
         markerWaitTimeoutMs: EXIT_WAIT_TIMEOUT_MS, markerItemLabel: "exit marker",
         arriveColor: ARRIVE_MINE_COLOR, arriveTol: ARRIVE_MINE_TOL,
         arriveBlockW: ARRIVE_MINE_BLOCK_W, arriveBlockH: ARRIVE_MINE_BLOCK_H,
-        arriveX: ARRIVE_MINE_X, arriveY: ARRIVE_MINE_Y, arrivePosTolPx: ARRIVE_MINE_POS_TOL_PX,
+        arriveCornerX: ARRIVE_MINE_X, arriveCornerY: ARRIVE_MINE_Y, arrivePosTolPx: ARRIVE_MINE_POS_TOL_PX,
         arriveWaitTimeoutMs: ARRIVE_MINE_WAIT_TIMEOUT_MS,
         ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "ReturnToMine"
     })
@@ -550,5 +547,5 @@ VeinColorsMsg() {
     return JoinMsg(VEIN_COLORS, "/", HexColor)
 }
 
-LogLine("Script loaded. F5=start full loop  F8=probe check slot+sack slots  F6=stop  Esc=exit. Veins=" VeinColorsMsg())
+LogLine("Script loaded. F5=start full loop  F8=probe check slot+sack slots  F6=stop  F12=exit. Veins=" VeinColorsMsg())
 ToolTip("motherlode2 ready (pay-dirt verification) - F5 to start", 20, 20)

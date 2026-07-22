@@ -24,7 +24,7 @@
 ;         clearing its zone before moving to the next, then click the
 ;         open button once
 ;   F6  = request stop (interrupts instantly, mid-clear)
-;   Esc = exit the script
+;   F12 = exit the script
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -71,7 +71,9 @@ MENU_COLS := 2, MENU_ROWS := 4
 MENU_ITEM_W := 72, MENU_ITEM_H := 64
 MENU_GAP_X := 4, MENU_GAP_Y := 10
 
-; --- Open button (fixed point, no detection - unlike the slot icons) ---
+; --- Open button (fixed point, no detection - unlike the slot icons).
+; X/Y is the measured top-left CORNER, as-is - the click center is
+; computed at the point of use via CenterX/CenterY (see RunSudokuResolver). ---
 OPEN_BUTTON_X := 269, OPEN_BUTTON_Y := 711
 OPEN_BUTTON_W := 160, OPEN_BUTTON_H := 50
 ; ========================================================================
@@ -82,10 +84,7 @@ F6:: {
     g_StopRequested := true
     LogLine("F6 pressed - stop requested")
 }
-Esc:: {
-    LogLine("Esc pressed - exiting")
-    ExitApp()
-}
+; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
 
 RunSudokuResolver() {
     global g_StopRequested
@@ -121,8 +120,8 @@ SudokuLoop() {
     loop total {
         itemIndex := A_Index
         MenuItemCorner(itemIndex, &mx, &my)
-        clickX := mx + MENU_ITEM_W // 2
-        clickY := my + MENU_ITEM_H // 2
+        clickX := CenterX(mx, MENU_ITEM_W)
+        clickY := CenterY(my, MENU_ITEM_H)
 
         Say("Sudoku: clicking menu item " itemIndex "/" total " at " clickX "," clickY)
         ClickAt(clickX, clickY, CLICK_USE_CTRL)
@@ -134,8 +133,8 @@ SudokuLoop() {
         }
     }
 
-    openX := OPEN_BUTTON_X + OPEN_BUTTON_W // 2
-    openY := OPEN_BUTTON_Y + OPEN_BUTTON_H // 2
+    openX := CenterX(OPEN_BUTTON_X, OPEN_BUTTON_W)
+    openY := CenterY(OPEN_BUTTON_Y, OPEN_BUTTON_H)
     Say("Sudoku: all menu items cleared - clicking open button at " openX "," openY)
     ClickAt(openX, openY, CLICK_USE_CTRL)
     Say("Sudoku: done")
@@ -182,5 +181,5 @@ MenuItemCorner(itemIndex, &x, &y) {
     y := MENU_FIRST_Y + row * (MENU_ITEM_H + MENU_GAP_Y)
 }
 
-LogLine("Script loaded. F5=start resolver  F6=stop  Esc=exit.")
+LogLine("Script loaded. F5=start resolver  F6=stop  F12=exit.")
 ToolTip("sudoku resolver ready - F5 to start", 20, 20)

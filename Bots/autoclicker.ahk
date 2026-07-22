@@ -9,7 +9,7 @@
 ;   F7  = set the click target to the current mouse position
 ;   F5  = start clicking the target every CLICK_DELAY_MS
 ;   F6  = stop clicking
-;   Esc = exit the script
+;   F12 = exit the script
 ; ============================================================
 
 #Requires AutoHotkey v2.0
@@ -39,10 +39,7 @@ F6:: {
     g_StopRequested := true
     LogLine("F6 pressed - stop requested")
 }
-Esc:: {
-    LogLine("Esc pressed - exiting")
-    ExitApp()
-}
+; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
 
 SetTarget() {
     global g_TargetX, g_TargetY, g_HasTarget
@@ -77,5 +74,5 @@ RunClicker() {
     }
 }
 
-LogLine("Script loaded. F7=set target  F5=start  F6=stop  Esc=exit.")
+LogLine("Script loaded. F7=set target  F5=start  F6=stop  F12=exit.")
 ToolTip("autoclicker ready - F7 to set target, F5 to start", 20, 20)

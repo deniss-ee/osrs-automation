@@ -31,12 +31,12 @@ TrimLogOnStart()
 ; --- Step 2: red "start craft" marker. X/Y is the measured top-left
 ; CORNER, as-is - RegionAround builds the search box directly from it,
 ; no center math needed here. ---
-CRAFT_START_COLOR := 0xFF0000
-CRAFT_START_TOL := 1
-CRAFT_START_W := 33
-CRAFT_START_H := 33
-CRAFT_START_X := 436
-CRAFT_START_Y := 1025
+CRAFT_START_COLOR := 0xFFFF00
+CRAFT_START_TOL := 0
+CRAFT_START_W := 11
+CRAFT_START_H := 11
+CRAFT_START_X := 1568
+CRAFT_START_Y := 600
 CRAFT_START_WAIT_TIMEOUT_MS := 30000
 
 ; --- Step 3/4: craft dialog marker, then press Space. No click here -
@@ -51,27 +51,27 @@ CRAFT_MARKER_TRANS_COLOR := "0x00FF00"   ; assumed - same convention as every ot
                                             ; etc). Not yet confirmed via direct pixel
                                             ; inspection - verify if the search misbehaves.
 ; Measured top-left CORNER, as-is - same convention as CRAFT_START_X/Y.
-CRAFT_MARKER_X := 1411
-CRAFT_MARKER_Y := 659
+CRAFT_MARKER_X := 1397
+CRAFT_MARKER_Y := 643
 CRAFT_MARKER_WAIT_TIMEOUT_MS := 30000
 
 ; --- Step 5: which inventory slot to watch empty out. Recipe-specific
 ; (a different craft might consume from a different starting slot) -
 ; kept as its own named constant, not hardcoded inline, for exactly
 ; that reason. ---
-CRAFT_CHECK_SLOT := 27
+CRAFT_CHECK_SLOT := 26
 CRAFT_DONE_WAIT_TIMEOUT_MS := 300000   ; generous placeholder - crafting a full inventory
                                           ; takes a while and no real duration has been
                                           ; logged yet. Tune down once one has.
 
 ; --- Step 6: green "deposit"-side marker. ---
-CRAFT_DEPOSIT_COLOR := 0x00FF00
-CRAFT_DEPOSIT_TOL := 1
-CRAFT_DEPOSIT_W := 33
-CRAFT_DEPOSIT_H := 33
+CRAFT_DEPOSIT_COLOR := 0xFF00FF
+CRAFT_DEPOSIT_TOL := 0
+CRAFT_DEPOSIT_W := 21
+CRAFT_DEPOSIT_H := 21
 ; Measured top-left CORNER, as-is - same convention as CRAFT_START_X/Y.
-CRAFT_DEPOSIT_X := 1960
-CRAFT_DEPOSIT_Y := 301
+CRAFT_DEPOSIT_X := 902
+CRAFT_DEPOSIT_Y := 779
 CRAFT_DEPOSIT_WAIT_TIMEOUT_MS := 30000
 
 ; --- Step 7: deposit-inventory confirm image. ---
@@ -92,14 +92,15 @@ DEPOSIT_DEFAULT_WAIT_TIMEOUT_MS := 30000
 ; (Lib\Inv.ahk) maps slot -> screen point, no fullness check - matches
 ; what was asked for exactly. ---
 RESTOCK_PLAN := [
-    [1, 1],   ; [slot, clicks]
-    [2, 1]
+    [1, 1]   ; [slot, clicks]
 ]
+
+DEPOSIT_SETTLE_MS := 200   ; small pause after banking, before the loop starts again
 
 CLICK_USE_CTRL := true   ; uniform with every other bot's clicks (motherlode2 applies
                             ; this to every FindAndClickBlock/Image call regardless of
                             ; whether it's a walk-destination or a UI button)
-POLL_MS := 150
+POLL_MS := 100
 SEARCH_MARGIN_PX := 40   ; same margin Lib\Find.ahk's BlockAtPoint uses around an
                             ; expected point - passed into Lib\Steps.ahk's shared
                             ; RegionAround below (marginPx param)
@@ -168,6 +169,7 @@ CraftCycle() {
     ; 8: restock - Lib\Steps.ahk's shared RunRestockPlan
     RunRestockPlan(RESTOCK_PLAN, CLICK_USE_CTRL)
 
+    Pause(DEPOSIT_SETTLE_MS)
     return true
 }
 

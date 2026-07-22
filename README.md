@@ -28,7 +28,8 @@ Images\   reference PNGs used by image-based detection
 Every script follows the same pattern:
 - **F5** starts it
 - **F6** requests a stop - takes effect within ~40ms, even mid-search or mid-wait
-- **Esc** exits immediately
+- **Esc** exits immediately (micro\ scripts) / **F12** exits immediately (Bots\ scripts -
+  some bots send a real Esc keypress as an in-game action, so Esc is left free for that)
 
 Open the script, edit the `EDIT THESE FOR YOUR TEST` block at the top
 (colors, regions, timeouts) to match your own screen/setup, then run it.

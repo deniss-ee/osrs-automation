@@ -405,8 +405,23 @@ PickupAppeared(opts) {
 ;
 ; Common opts for both:
 ;   region        - [x1,y1,x2,y2] to search (default whole screen)
-;   clickOffsetX/Y - offset applied to the found center before clicking
+;   clickOffsetX/Y - offset applied to the click point before clicking
 ;                   (default 0,0) - e.g. Motherlode's MLBANK_CLICK_OFFSET_Y
+;   clickX/clickY - click HERE instead of the live-found position (default:
+;                   click wherever Find*/ImageSearch actually matched). Use
+;                   this for a static UI marker whose exact screen position
+;                   is already known/measured - Find* still gates the wait
+;                   (confirms something matching is actually visible before
+;                   clicking) but a search region is inherently loose (only
+;                   guarantees SOME WxH/image match inside it, not that the
+;                   match's own reported center is exactly your measured
+;                   point - e.g. if the true on-screen colored area is
+;                   larger than the declared block size, multiple positions
+;                   satisfy the search and ImageSearch returns whichever it
+;                   hits first, not necessarily centered on the real target).
+;                   Omit for a genuinely moving/variable-position target
+;                   (e.g. Motherlode's world markers) where the found
+;                   position IS the only correct click point.
 ;   ctrl          - hold Ctrl (force-run) while clicking (default false)
 ;   waitTimeoutMs - give up if the marker/image never appears (required)
 ;   pollMs        - tick-aligned poll interval (default 300)
@@ -447,8 +462,10 @@ FindAndClickBlock(opts) {
         return false
     }
 
-    clickX := foundX + clickOffsetX
-    clickY := foundY + clickOffsetY
+    targetX := opts.HasOwnProp("clickX") ? opts.clickX : foundX
+    targetY := opts.HasOwnProp("clickY") ? opts.clickY : foundY
+    clickX := targetX + clickOffsetX
+    clickY := targetY + clickOffsetY
     Say(label ": clicking " itemLabel " at " clickX "," clickY)
     ClickAt(clickX, clickY, useCtrl)
     return true
@@ -552,7 +569,9 @@ ClickUntilCondition(opts, &neededRetry?) {
 ;                           real clickable spot
 ;   markerItemLabel       - label for the marker in logs (default "travel marker")
 ;   arriveColor/arriveTol/arriveBlockW/arriveBlockH - the arrival block (required)
-;   arriveX/arriveY       - the exact expected CENTER of the arrival block (required)
+;   arriveCornerX/arriveCornerY - the arrival block's measured top-left CORNER
+;                           (required) - the expected CENTER is computed here via
+;                           Lib\Core.ahk's CenterX/CenterY, never stored by the caller
 ;   arrivePosTolPx        - slack around that center (BlockAtPoint's posTolPx) (required)
 ;   arriveWaitTimeoutMs   - give up if arrival never confirms (required)
 ;   ctrl                  - hold Ctrl while clicking the marker (default false)
@@ -576,8 +595,8 @@ TravelToPoint(opts) {
     arriveTol := opts.arriveTol
     arriveBlockW := opts.arriveBlockW
     arriveBlockH := opts.arriveBlockH
-    arriveX := opts.arriveX
-    arriveY := opts.arriveY
+    arriveX := CenterX(opts.arriveCornerX, arriveBlockW)
+    arriveY := CenterY(opts.arriveCornerY, arriveBlockH)
     arrivePosTolPx := opts.arrivePosTolPx
     arriveWaitTimeoutMs := opts.arriveWaitTimeoutMs
     useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
@@ -655,8 +674,10 @@ FindAndClickImage(opts) {
         return false
     }
 
-    clickX := foundX + clickOffsetX
-    clickY := foundY + clickOffsetY
+    targetX := opts.HasOwnProp("clickX") ? opts.clickX : foundX
+    targetY := opts.HasOwnProp("clickY") ? opts.clickY : foundY
+    clickX := targetX + clickOffsetX
+    clickY := targetY + clickOffsetY
     Say(label ": clicking " itemLabel " at " clickX "," clickY)
     ClickAt(clickX, clickY, useCtrl)
     return true
@@ -679,12 +700,18 @@ FindAndClickImage(opts) {
 ;   markerWaitTimeoutMs   - give up if the marker never appears (required)
 ;   markerRegion          - [x1,y1,x2,y2] to search for the marker (default whole screen)
 ;   markerClickOffsetY    - Y offset applied to the marker click (default 0)
+;   markerClickX/markerClickY - click HERE instead of the live-found marker
+;                           position (default: found position) - see
+;                           FindAndClickBlock's clickX/clickY doc; use for a
+;                           static marker whose exact position is known
 ;   markerItemLabel       - log label (default "deposit-box marker")
 ;   depositImagePath/depositImageW/depositImageH - the "deposit all" image (required)
 ;   depositTol            - shade-of-variation tolerance (default 5)
 ;   depositTransColor     - background see-through color, "" to disable (default "")
 ;   depositWaitTimeoutMs  - give up if the deposit box never opens (required)
 ;   depositRegion         - [x1,y1,x2,y2] to search for the image (default whole screen)
+;   depositClickX/depositClickY - same idea as markerClickX/Y, for the
+;                           deposit-image click (default: found position)
 ;   depositItemLabel      - log label (default "deposit box")
 ;   confirmCondition      - OPTIONAL zero-arg closure; true once the deposit registered.
 ;                           Omit to skip the confirm step (return true right after the
@@ -711,18 +738,28 @@ DepositAllToBank(opts) {
     pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
     label := opts.HasOwnProp("label") ? opts.label : "DepositAllToBank"
 
-    if (!FindAndClickBlock({
+    markerOpts := {
         color: opts.markerColor, tol: opts.markerTol, blockW: opts.markerBlockW, blockH: opts.markerBlockH,
         region: markerRegion, clickOffsetY: markerClickOffsetY, ctrl: useCtrl,
         waitTimeoutMs: opts.markerWaitTimeoutMs, pollMs: pollMs, label: label, itemLabel: markerItemLabel
-    }))
+    }
+    if (opts.HasOwnProp("markerClickX"))
+        markerOpts.clickX := opts.markerClickX
+    if (opts.HasOwnProp("markerClickY"))
+        markerOpts.clickY := opts.markerClickY
+    if (!FindAndClickBlock(markerOpts))
         return false
 
-    if (!FindAndClickImage({
+    depositOpts := {
         imagePath: opts.depositImagePath, imageW: opts.depositImageW, imageH: opts.depositImageH,
         tol: depositTol, transColor: depositTransColor, region: depositRegion, ctrl: useCtrl,
         waitTimeoutMs: opts.depositWaitTimeoutMs, pollMs: pollMs, label: label, itemLabel: depositItemLabel
-    }))
+    }
+    if (opts.HasOwnProp("depositClickX"))
+        depositOpts.clickX := opts.depositClickX
+    if (opts.HasOwnProp("depositClickY"))
+        depositOpts.clickY := opts.depositClickY
+    if (!FindAndClickImage(depositOpts))
         return false
 
     if (!opts.HasOwnProp("confirmCondition"))
@@ -736,4 +773,38 @@ DepositAllToBank(opts) {
 
     Say(label ": deposit confirmed")
     return true
+}
+
+; ---------- withdraw plan (restock N clicks per bank slot) ----------
+;
+; Runs a "withdraw plan" - a list of [slot, clicks] pairs (same shape
+; TEMPLATES.md's Firemaking/Smelter specs call "for each (slot, clicks):
+; Click [bank slot N] x clicks"). Promoted here (2026-07-22) once it
+; existed independently in Crafting's and Smithing's restock steps.
+; BankSlotCenter (Lib\Inv.ahk) maps each entry's slot to a screen point,
+; clicked that many times before moving to the next entry - no fullness
+; check, matches what was asked for exactly.
+RunRestockPlan(plan, ctrl := false) {
+    for entry in plan {
+        BankSlotCenter(entry[1], &x, &y)
+        loop entry[2]
+            ClickAt(x, y, ctrl)
+    }
+}
+
+; ---------- region-around-a-corner (small search box, not whole-screen) ----------
+;
+; Constrains a find to a small box around a known top-left corner instead
+; of a whole-screen search. Built directly from the corner - no center
+; step needed for a bounding box, just corner-margin to corner+size+margin.
+; Promoted here (2026-07-22) once it existed byte-identical in Crafting
+; and Smithing (each with its own SEARCH_MARGIN_PX global) - marginPx is
+; now an explicit param instead, so callers stay free to tune it per-bot
+; without a naming collision. Clamps to 0 so a corner near the screen
+; edge (e.g. Crafting's CRAFT_START at 176,715) doesn't push the region
+; negative - ImageSearch can't take that.
+RegionAround(cornerX, cornerY, w, h, marginPx := 40) {
+    x1 := Max(0, cornerX - marginPx)
+    y1 := Max(0, cornerY - marginPx)
+    return [x1, y1, cornerX + w + marginPx, cornerY + h + marginPx]
 }

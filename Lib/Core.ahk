@@ -135,3 +135,9 @@ TrimLogOnStart(keepLines := 2500) {
 GameActive() {
     return WinActive("ahk_exe RuneLite.exe") ? true : false
 }
+
+; Corner+size -> center, for the coordinate constant blocks at the top of
+; every Bots\*.ahk file. Keeps the center math out of sight at each call
+; site (just CenterX(cornerX, w) / CenterY(cornerY, h) per axis).
+CenterX(cornerX, w) => cornerX + w // 2
+CenterY(cornerY, h) => cornerY + h // 2
