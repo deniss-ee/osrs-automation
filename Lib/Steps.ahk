@@ -10,6 +10,20 @@
 ;
 ; PickupAppeared: same generalization of micro 11's pickup flow.
 ;
+; FindAndClickBlock/FindAndClickImage: the one-shot "wait for a marker/
+; image, then click it" shape (promoted 2026-07-20).
+;
+; ClickUntilCondition/TravelToPoint: two shapes promoted 2026-07-21 from
+; Motherlode2 once each had a real second caller - the patient-first-
+; wait/re-click retry loop (hopper + sack) and the click-marker/confirm-
+; arrival-at-a-point/whole-screen-diagnostic travel step (GoToSackArea +
+; ReturnToMine) respectively. See each function's own header for details.
+;
+; DepositAllToBank: the "click a bank/deposit marker -> click deposit-all
+; image -> optionally confirm the inventory emptied" shape, promoted
+; 2026-07-21 across Woodcutting's Bank(), Motherlode2's WithdrawAndBankOnce
+; tail, and Crafting's deposit steps.
+;
 ; opts is a plain object (not a Map) - same {key: value} shape as the
 ; Find-spec sketch in the plan file.
 ; ============================================================
@@ -440,6 +454,168 @@ FindAndClickBlock(opts) {
     return true
 }
 
+; ---------- click-until-condition (patient first wait, then re-click) ----------
+;
+; The "click a thing, wait patiently for a condition, and if it doesn't
+; hold yet re-click every N ms until it does" shape - promoted here
+; (2026-07-21) once it appeared in BOTH Motherlode2's DepositHopper()
+; (hopper deposit, capped retry budget) and WithdrawAndBankOnce() (sack
+; withdrawal, uncapped retry). It exists because these targets are
+; SHARED/laggy: one click doesn't always register the effect right away
+; (a backed-up hopper still draining, sack items arriving late), so the
+; first click gets a generous patient wait and only on a miss does it
+; downgrade to hammering re-clicks - never spamming when one click was
+; enough.
+;
+; opts:
+;   click         - zero-arg closure that performs the click and returns
+;                   bool; false means the marker/image never appeared, so
+;                   abort the whole thing (required). Callers pass e.g.
+;                   () => FindAndClickBlock({...}) or () => FindAndClickImage({...}).
+;   condition     - zero-arg closure; the loop succeeds (returns true) the
+;                   instant this is true (required)
+;   firstWaitMs   - patient wait after the FIRST click (required)
+;   reclickMs     - wait between re-clicks after that first wait (required)
+;   firstSettleMs - optional Pause right after the FIRST click, BEFORE its
+;                   wait, for a target whose follow-up UI needs a moment to
+;                   settle (default 0 = none)
+;   totalTimeoutMs- 0 = retry forever; >0 = give up + return false once this
+;                   much time has elapsed across the whole loop (default 0)
+;   pollMs        - tick-aligned poll interval for the condition wait (default 300)
+;   label         - Say()/log prefix (default "ClickUntilCondition")
+;   itemLabel     - what's being waited on, e.g. "inventory to clear" (default "condition")
+;
+; &neededRetry (optional out) - set true if the loop ever had to re-click
+;   past the first wait (a caller that cares - like the hopper's
+;   g_HopperWasFull stall heuristic - reads it; one that doesn't - like the
+;   sack - just omits the argument entirely).
+;
+; Returns true once `condition` holds, false if `click()` ever fails or
+; totalTimeoutMs is exceeded. Throws BotStopped (propagated from the inner
+; click's WaitUntil, from WaitUntil(condition,...), and from Pause) if the
+; user stops mid-loop - never swallowed here, same as every other wait.
+ClickUntilCondition(opts, &neededRetry?) {
+    click := opts.click
+    condition := opts.condition
+    firstWaitMs := opts.firstWaitMs
+    reclickMs := opts.reclickMs
+    firstSettleMs := opts.HasOwnProp("firstSettleMs") ? opts.firstSettleMs : 0
+    totalTimeoutMs := opts.HasOwnProp("totalTimeoutMs") ? opts.totalTimeoutMs : 0
+    pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
+    label := opts.HasOwnProp("label") ? opts.label : "ClickUntilCondition"
+    itemLabel := opts.HasOwnProp("itemLabel") ? opts.itemLabel : "condition"
+
+    neededRetry := false
+    t0 := A_TickCount
+    firstAttempt := true
+    loop {
+        if (!click())
+            return false
+
+        if (firstAttempt && firstSettleMs > 0) {
+            Say(label ": settling " firstSettleMs "ms before checking " itemLabel)
+            Pause(firstSettleMs)
+        }
+
+        waitMs := firstAttempt ? firstWaitMs : reclickMs
+        firstAttempt := false
+        if (WaitUntil(condition, waitMs, pollMs))
+            return true
+
+        neededRetry := true
+
+        if (totalTimeoutMs > 0 && (A_TickCount - t0) > totalTimeoutMs) {
+            Say(label ": " itemLabel " not met after " totalTimeoutMs "ms total - stopping")
+            return false
+        }
+        Say(label ": " itemLabel " not met after " (A_TickCount - t0) "ms - re-clicking")
+    }
+}
+
+; ---------- travel-to-point (click a travel marker, confirm arrival) ----------
+;
+; The "click a travel marker, then wait for a block to show up at an EXACT
+; expected point (not just anywhere on screen), with a whole-screen
+; diagnostic on failure" shape - promoted here (2026-07-21) from
+; Motherlode2's GoToSackArea() and ReturnToMine(), which are identical
+; apart from their marker/arrival constants. Reuses FindAndClickBlock for
+; the click and BlockAtPoint for the exact-point arrival; the whole-screen
+; FindFilledBlock fallback on a miss (found-elsewhere vs not-found-anywhere)
+; lives here so every caller gets that same debugging aid for free.
+;
+; opts (flat, house style):
+;   markerColor/markerTol/markerBlockW/markerBlockH - the travel marker block (required)
+;   markerWaitTimeoutMs   - give up if the marker never appears (required)
+;   markerRegion          - [x1,y1,x2,y2] to search for the marker (default whole screen)
+;   markerClickOffsetX/Y  - offset applied to the marker's found center before clicking
+;                           (default 0,0) - e.g. when the marker's raw center isn't the
+;                           real clickable spot
+;   markerItemLabel       - label for the marker in logs (default "travel marker")
+;   arriveColor/arriveTol/arriveBlockW/arriveBlockH - the arrival block (required)
+;   arriveX/arriveY       - the exact expected CENTER of the arrival block (required)
+;   arrivePosTolPx        - slack around that center (BlockAtPoint's posTolPx) (required)
+;   arriveWaitTimeoutMs   - give up if arrival never confirms (required)
+;   ctrl                  - hold Ctrl while clicking the marker (default false)
+;   pollMs                - poll interval for the arrival wait (default 300)
+;   label                 - Say()/log prefix (default "TravelToPoint")
+;
+; Returns true on confirmed arrival, false (logged, no throw) if the marker
+; never appears or arrival never confirms. Throws BotStopped if the user
+; stops mid-travel - never swallowed here.
+TravelToPoint(opts) {
+    markerColor := opts.markerColor
+    markerTol := opts.markerTol
+    markerBlockW := opts.markerBlockW
+    markerBlockH := opts.markerBlockH
+    markerWaitTimeoutMs := opts.markerWaitTimeoutMs
+    markerRegion := opts.HasOwnProp("markerRegion") ? opts.markerRegion : [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
+    markerClickOffsetX := opts.HasOwnProp("markerClickOffsetX") ? opts.markerClickOffsetX : 0
+    markerClickOffsetY := opts.HasOwnProp("markerClickOffsetY") ? opts.markerClickOffsetY : 0
+    markerItemLabel := opts.HasOwnProp("markerItemLabel") ? opts.markerItemLabel : "travel marker"
+    arriveColor := opts.arriveColor
+    arriveTol := opts.arriveTol
+    arriveBlockW := opts.arriveBlockW
+    arriveBlockH := opts.arriveBlockH
+    arriveX := opts.arriveX
+    arriveY := opts.arriveY
+    arrivePosTolPx := opts.arrivePosTolPx
+    arriveWaitTimeoutMs := opts.arriveWaitTimeoutMs
+    useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
+    pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
+    label := opts.HasOwnProp("label") ? opts.label : "TravelToPoint"
+
+    if (!FindAndClickBlock({
+        color: markerColor, tol: markerTol, blockW: markerBlockW, blockH: markerBlockH,
+        region: markerRegion, clickOffsetX: markerClickOffsetX, clickOffsetY: markerClickOffsetY,
+        ctrl: useCtrl, waitTimeoutMs: markerWaitTimeoutMs, pollMs: pollMs,
+        label: label, itemLabel: markerItemLabel
+    }))
+        return false
+
+    ArrivedAtPoint() {
+        return BlockAtPoint(arriveX, arriveY, arriveColor, arriveTol,
+            arriveBlockW, arriveBlockH, arrivePosTolPx, &fx, &fy)
+    }
+
+    Say(label ": waiting for arrival")
+    arrived := WaitUntil(ArrivedAtPoint, arriveWaitTimeoutMs, pollMs)
+    if (!arrived) {
+        wholeScreenFound := FindFilledBlock(0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1,
+            arriveColor, arriveTol, arriveBlockW, arriveBlockH, &wx, &wy)
+        if (wholeScreenFound) {
+            Say(label ": never arrived within " arriveWaitTimeoutMs "ms - but marker WAS found"
+                . " elsewhere on screen at " wx "," wy " (expected near " arriveX "," arriveY ") - stopping")
+        } else {
+            Say(label ": never arrived within " arriveWaitTimeoutMs
+                . "ms - marker not found ANYWHERE on screen, not just near the expected point - stopping")
+        }
+        return false
+    }
+
+    Say(label ": arrived")
+    return true
+}
+
 ; Same shape as FindAndClickBlock but for a PNG (FindImage) instead of
 ; a solid color block.
 ;
@@ -483,5 +659,81 @@ FindAndClickImage(opts) {
     clickY := foundY + clickOffsetY
     Say(label ": clicking " itemLabel " at " clickX "," clickY)
     ClickAt(clickX, clickY, useCtrl)
+    return true
+}
+
+; ---------- deposit-all-to-bank (marker -> deposit image -> confirm) ----------
+;
+; The "click a bank/deposit marker, click the deposit-all image, then
+; (optionally) confirm the inventory actually emptied" shape - promoted
+; here (2026-07-21) once it existed in Woodcutting's Bank(), Motherlode2's
+; WithdrawAndBankOnce() tail, and Crafting's deposit steps. The confirm
+; step is OPTIONAL: Woodcutting/Motherlode2 verify the deposit registered
+; (via a caller-supplied condition), Crafting just deposits and moves on
+; to restocking, so it omits the condition. Marker/deposit searches take
+; an optional region (Crafting constrains both to a small box; the others
+; search whole-screen).
+;
+; opts:
+;   markerColor/markerTol/markerBlockW/markerBlockH - the bank/deposit marker (required)
+;   markerWaitTimeoutMs   - give up if the marker never appears (required)
+;   markerRegion          - [x1,y1,x2,y2] to search for the marker (default whole screen)
+;   markerClickOffsetY    - Y offset applied to the marker click (default 0)
+;   markerItemLabel       - log label (default "deposit-box marker")
+;   depositImagePath/depositImageW/depositImageH - the "deposit all" image (required)
+;   depositTol            - shade-of-variation tolerance (default 5)
+;   depositTransColor     - background see-through color, "" to disable (default "")
+;   depositWaitTimeoutMs  - give up if the deposit box never opens (required)
+;   depositRegion         - [x1,y1,x2,y2] to search for the image (default whole screen)
+;   depositItemLabel      - log label (default "deposit box")
+;   confirmCondition      - OPTIONAL zero-arg closure; true once the deposit registered.
+;                           Omit to skip the confirm step (return true right after the
+;                           deposit click).
+;   confirmTimeoutMs      - how long to wait for confirmCondition (required only if it's given)
+;   ctrl                  - hold Ctrl while clicking (default false)
+;   pollMs                - poll interval (default 300)
+;   label                 - Say()/log prefix (default "DepositAllToBank")
+;
+; Returns true if the marker + deposit both clicked (and confirmCondition
+; held within confirmTimeoutMs, when given); false (logged, no throw)
+; otherwise. Throws BotStopped if the user stops mid-deposit - never
+; swallowed here.
+DepositAllToBank(opts) {
+    wholeScreen := [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
+    markerRegion := opts.HasOwnProp("markerRegion") ? opts.markerRegion : wholeScreen
+    depositRegion := opts.HasOwnProp("depositRegion") ? opts.depositRegion : wholeScreen
+    markerClickOffsetY := opts.HasOwnProp("markerClickOffsetY") ? opts.markerClickOffsetY : 0
+    markerItemLabel := opts.HasOwnProp("markerItemLabel") ? opts.markerItemLabel : "deposit-box marker"
+    depositTol := opts.HasOwnProp("depositTol") ? opts.depositTol : 5
+    depositTransColor := opts.HasOwnProp("depositTransColor") ? opts.depositTransColor : ""
+    depositItemLabel := opts.HasOwnProp("depositItemLabel") ? opts.depositItemLabel : "deposit box"
+    useCtrl := opts.HasOwnProp("ctrl") ? opts.ctrl : false
+    pollMs := opts.HasOwnProp("pollMs") ? opts.pollMs : 300
+    label := opts.HasOwnProp("label") ? opts.label : "DepositAllToBank"
+
+    if (!FindAndClickBlock({
+        color: opts.markerColor, tol: opts.markerTol, blockW: opts.markerBlockW, blockH: opts.markerBlockH,
+        region: markerRegion, clickOffsetY: markerClickOffsetY, ctrl: useCtrl,
+        waitTimeoutMs: opts.markerWaitTimeoutMs, pollMs: pollMs, label: label, itemLabel: markerItemLabel
+    }))
+        return false
+
+    if (!FindAndClickImage({
+        imagePath: opts.depositImagePath, imageW: opts.depositImageW, imageH: opts.depositImageH,
+        tol: depositTol, transColor: depositTransColor, region: depositRegion, ctrl: useCtrl,
+        waitTimeoutMs: opts.depositWaitTimeoutMs, pollMs: pollMs, label: label, itemLabel: depositItemLabel
+    }))
+        return false
+
+    if (!opts.HasOwnProp("confirmCondition"))
+        return true
+
+    Say(label ": waiting for inventory to confirm the deposit")
+    if (!WaitUntil(opts.confirmCondition, opts.confirmTimeoutMs, pollMs)) {
+        Say(label ": deposit not confirmed within " opts.confirmTimeoutMs "ms - stopping (may not have registered)")
+        return false
+    }
+
+    Say(label ": deposit confirmed")
     return true
 }

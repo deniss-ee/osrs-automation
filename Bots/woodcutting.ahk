@@ -152,44 +152,27 @@ ChopLoop() {
     }
 }
 
-; Whole-screen search for the bank/deposit-box marker, click it, wait
-; for the deposit box's "Deposit All" image, click that too. Stops the
-; whole bot cleanly (via BotStopped or a plain return) if either step
-; never resolves - no infinite silent retry.
+; Bank marker -> deposit-all image -> confirm the inventory emptied, via
+; Lib\Steps.ahk's DepositAllToBank (shared with Motherlode2/Crafting). The
+; confirm step is what catches a missed/late deposit click that would
+; otherwise go unnoticed (the loop bounces back to "inventory full,"
+; still full from before, then can't find the bank marker again under the
+; still-open deposit UI). ChopLoop deliberately ignores the return, so a
+; failed step just loops back and retries rather than stopping the bot.
 Bank() {
-    if (!FindAndClickBlock({
-        color: BANK_COLOR, tol: BANK_TOL, blockW: BANK_BLOCK_W, blockH: BANK_BLOCK_H,
-        ctrl: CLICK_USE_CTRL, waitTimeoutMs: BANK_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
-        label: "Bank", itemLabel: "deposit-box marker"
-    }))
-        return
-
-    if (!FindAndClickImage({
-        imagePath: DEPOSIT_IMAGE_PATH, imageW: DEPOSIT_IMAGE_W, imageH: DEPOSIT_IMAGE_H, tol: DEPOSIT_IMAGE_TOL,
-        transColor: DEPOSIT_TRANS_COLOR, ctrl: CLICK_USE_CTRL, waitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
-        label: "Bank", itemLabel: "deposit box"
-    }))
-        return
-
-    ; Verify the deposit actually happened instead of assuming it did -
-    ; a missed/late click here previously went unnoticed: the loop went
-    ; straight back to "inventory full" (still full from before) and
-    ; then couldn't find the bank marker again (deposit box UI still
-    ; open, covering it), with no indication anything had gone wrong.
-    Say("Bank: waiting for inventory to actually empty")
-    emptied := WaitUntil(() => !SlotFull(INDICATOR_SLOT), DEPOSIT_CONFIRM_TIMEOUT_MS, POLL_MS)
-    if (!emptied) {
-        Say("Bank: still shows full " DEPOSIT_CONFIRM_TIMEOUT_MS "ms after clicking Deposit All - stopping (deposit may not have registered)")
-        return
-    }
-    Say("Bank: deposited - back to chopping")
+    DepositAllToBank({
+        markerColor: BANK_COLOR, markerTol: BANK_TOL, markerBlockW: BANK_BLOCK_W, markerBlockH: BANK_BLOCK_H,
+        markerWaitTimeoutMs: BANK_WAIT_TIMEOUT_MS, markerItemLabel: "deposit-box marker",
+        depositImagePath: DEPOSIT_IMAGE_PATH, depositImageW: DEPOSIT_IMAGE_W, depositImageH: DEPOSIT_IMAGE_H,
+        depositTol: DEPOSIT_IMAGE_TOL, depositTransColor: DEPOSIT_TRANS_COLOR,
+        depositWaitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS, depositItemLabel: "deposit box",
+        confirmCondition: () => !SlotFull(INDICATOR_SLOT), confirmTimeoutMs: DEPOSIT_CONFIRM_TIMEOUT_MS,
+        ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "Bank"
+    })
 }
 
 TreeColorsMsg() {
-    msg := ""
-    for i, c in TREE_COLORS
-        msg .= (i = 1 ? "" : "/") HexColor(c)
-    return msg
+    return JoinMsg(TREE_COLORS, "/", HexColor)
 }
 
 LogLine("Script loaded. F5=start chop/bank loop  F6=stop  Esc=exit. Trees=" TreeColorsMsg())

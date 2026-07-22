@@ -149,22 +149,21 @@ CraftCycle() {
         return false
     }
 
-    ; 6: click the green deposit-side marker
-    if (!FindAndClickBlock({
-        color: CRAFT_DEPOSIT_COLOR, tol: CRAFT_DEPOSIT_TOL, blockW: CRAFT_DEPOSIT_W, blockH: CRAFT_DEPOSIT_H,
-        region: RegionAround(CRAFT_DEPOSIT_X, CRAFT_DEPOSIT_Y, CRAFT_DEPOSIT_W, CRAFT_DEPOSIT_H),
-        ctrl: CLICK_USE_CTRL, waitTimeoutMs: CRAFT_DEPOSIT_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
-        label: "Craft", itemLabel: "deposit-side marker"
-    }))
-        return false
-
-    ; 7: wait for + click "deposit inventory"
-    if (!FindAndClickImage({
-        imagePath: DEPOSIT_DEFAULT_IMAGE_PATH, imageW: DEPOSIT_DEFAULT_W, imageH: DEPOSIT_DEFAULT_H,
-        tol: DEPOSIT_DEFAULT_TOL, transColor: DEPOSIT_DEFAULT_TRANS_COLOR,
-        region: RegionAround(DEPOSIT_DEFAULT_X, DEPOSIT_DEFAULT_Y, DEPOSIT_DEFAULT_W, DEPOSIT_DEFAULT_H),
-        ctrl: CLICK_USE_CTRL, waitTimeoutMs: DEPOSIT_DEFAULT_WAIT_TIMEOUT_MS, pollMs: POLL_MS,
-        label: "Craft", itemLabel: "deposit-inventory button"
+    ; 6+7: green deposit-side marker -> deposit-inventory image, via
+    ; Lib\Steps.ahk's DepositAllToBank (shared with Woodcutting/Motherlode2).
+    ; No confirmCondition - crafting deposits then restocks, with no
+    ; empty-check in between (that's what the following bank clicks assume).
+    ; Both searches stay region-constrained via RegionAround, as before.
+    if (!DepositAllToBank({
+        markerColor: CRAFT_DEPOSIT_COLOR, markerTol: CRAFT_DEPOSIT_TOL,
+        markerBlockW: CRAFT_DEPOSIT_W, markerBlockH: CRAFT_DEPOSIT_H,
+        markerRegion: RegionAround(CRAFT_DEPOSIT_X, CRAFT_DEPOSIT_Y, CRAFT_DEPOSIT_W, CRAFT_DEPOSIT_H),
+        markerWaitTimeoutMs: CRAFT_DEPOSIT_WAIT_TIMEOUT_MS, markerItemLabel: "deposit-side marker",
+        depositImagePath: DEPOSIT_DEFAULT_IMAGE_PATH, depositImageW: DEPOSIT_DEFAULT_W, depositImageH: DEPOSIT_DEFAULT_H,
+        depositTol: DEPOSIT_DEFAULT_TOL, depositTransColor: DEPOSIT_DEFAULT_TRANS_COLOR,
+        depositRegion: RegionAround(DEPOSIT_DEFAULT_X, DEPOSIT_DEFAULT_Y, DEPOSIT_DEFAULT_W, DEPOSIT_DEFAULT_H),
+        depositWaitTimeoutMs: DEPOSIT_DEFAULT_WAIT_TIMEOUT_MS, depositItemLabel: "deposit-inventory button",
+        ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "Craft"
     }))
         return false
 

@@ -147,9 +147,9 @@ HOPPER_EMPTY_WAIT_TIMEOUT_MS := 15000
 HOPPER_CLICK_SETTLE_MS := 600   ; settle after the hopper deposit registers, same
                                   ; reasoning as SACK_CLICK_SETTLE_MS below
 
-HOPPER_CYCLES := 7   ; how many mine->hopper cycles before moving on to the sack/bank phase
+HOPPER_CYCLES := 1   ; how many mine->hopper cycles before moving on to the sack/bank phase
 
-POLL_MS := 200   ; tick-aligned poll interval for TrackAndClick + all waits
+POLL_MS := 150   ; tick-aligned poll interval for TrackAndClick + all waits
 
 ; --- Entrance to sack platform (whole-screen find+click, one-shot) ---
 ENTRANCE_COLOR := 0x5676FF

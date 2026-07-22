@@ -72,6 +72,22 @@ Say(msg) {
     LogLine(msg)
 }
 
+; Joins an array into an "a/b/c" string for log/status lines. Optional
+; mapFn transforms each element first (e.g. HexColor for color arrays).
+; Backs the thin per-bot accessors (SackSlotsMsg/VeinColorsMsg/
+; TreeColorsMsg) that used to each hand-roll this identical join loop -
+; promoted here (2026-07-21) once the same shape existed across every
+; bot with a colors/slots array. mapFn is an optional param (IsSet-
+; guarded) so passing a Func object is safe - no object-vs-"" compare.
+JoinMsg(arr, sep := "/", mapFn?) {
+    msg := ""
+    for i, v in arr {
+        piece := IsSet(mapFn) ? mapFn(v) : v
+        msg .= (i = 1 ? "" : sep) piece
+    }
+    return msg
+}
+
 ; Shared logger. g_LogName is set once near the top of each micro/bot
 ; script (e.g. g_LogName := "12-track-and-click") so every script still
 ; gets its own v6\logs\<name>.log file without LogLine needing a name
