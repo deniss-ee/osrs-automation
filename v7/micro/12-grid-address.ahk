@@ -8,12 +8,12 @@
 ; (here: your inventory panel) just by changing the GridSpec, with no
 ; new code needed per grid shape.
 ;
-; YOU NEED TO CALIBRATE THIS: INV_ORIGIN_X/Y below are placeholders -
-; measure your own inventory panel's real top-left corner (slot 1's
-; corner, not its center) and real cell size/gaps on your screen (2560x
-; 1440, per this session) and fill those in. v6's own INV_FIRST_X/Y=
-; 2099,801 were measured on a DIFFERENT setup and are not assumed to
-; transfer here.
+; CALIBRATION CONFIRMED (2026-07-22, this setup): the values below
+; started as v6's measurements and were reconfirmed live on this
+; screen via this micro + micro 13 - they are now the same numbers
+; Lib\Inv.ahk's INV_GRID uses. This micro keeps its own local copies
+; on purpose: its job is proving the Grid math itself against editable
+; inputs, not consuming the Lib constant.
 ;
 ; WHAT IT DOES
 ;   F5  = GridCenter: move the mouse to slot CELL_INDEX's computed

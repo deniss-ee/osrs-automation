@@ -3,11 +3,11 @@
 ; specific entry
 ;
 ; Brand-new primitive (gap primitive from TEMPLATES.md's AutoFighterLoot
-; spec - no v6 bot ever built this). RightClickMenuItem(x, y, ...)
-; right-clicks a point, waits for a specific menu entry image to appear
-; in a fixed searchBoxSize box CENTERED on the click point, and
-; left-clicks its center. On a miss, it sends Esc to close the menu so
-; it doesn't linger open.
+; spec - no v6 bot ever built this). RightClickMenuItem (opts-object,
+; like every Steps composite) right-clicks a point, waits for a specific
+; menu entry image to appear in a fixed searchBoxSize box CENTERED on
+; the click point, and left-clicks its center. On a miss, it sends Esc
+; to close the menu so it doesn't linger open.
 ;
 ; The right-click TARGET reuses micro 06's exact block config (same
 ; TARGET_COLORS/MARKER_X/MARKER_Y/BLOCK_W/BLOCK_H, same CenterX/CenterY
@@ -118,8 +118,13 @@ RunTest() {
     LogLine("Block confirmed (" HexColor(foundColor) ") - right-clicking " CENTER_X "," CENTER_Y)
     t0 := A_TickCount
 
-    found := RightClickMenuItem(CENTER_X, CENTER_Y, ITEM_IMAGE_PATH, ITEM_IMAGE_W, ITEM_IMAGE_H,
-        ITEM_TOL, ITEM_TRANS_COLOR, WAIT_TIMEOUT_MS, SEARCH_BOX_SIZE, , MENU_SETTLE_MS, USE_CTRL)
+    found := RightClickMenuItem({
+        x: CENTER_X, y: CENTER_Y,
+        path: ITEM_IMAGE_PATH, w: ITEM_IMAGE_W, h: ITEM_IMAGE_H,
+        tol: ITEM_TOL, transColor: ITEM_TRANS_COLOR,
+        waitTimeoutMs: WAIT_TIMEOUT_MS, searchBoxSize: SEARCH_BOX_SIZE,
+        menuSettleMs: MENU_SETTLE_MS, ctrl: USE_CTRL
+    })
 
     elapsedMs := A_TickCount - t0
     msg := found

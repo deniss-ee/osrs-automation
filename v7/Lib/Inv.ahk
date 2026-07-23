@@ -15,9 +15,31 @@
 ; color is a UI skin color, not a screen coordinate, so it's expected
 ; to hold across setups/resolutions; SlotProbe (micro 13) is the tool
 ; to re-verify this live if it ever doesn't match.
+;
+; DropSlot for micro 18 - promoted from v6 motherlode2.ahk's shift-drop
+; helper (used there to discard a gem that fails a pay-dirt image
+; check). CONTRACT CHANGE from v6: settleMs is a real parameter now
+; (default 100, the v7-wide default - see Act.ahk's ClickAt), not a
+; hardcoded GEM_DROP_SETTLE_MS file-local constant.
+;
+; BANK_GRID/BankSlotCenter for micro 24 (DepositAllToBank's restock
+; step needs to click bank interface slots) - a SEPARATE grid from the
+; player's own inventory (different origin, distinct GridSpec instance,
+; same corner+size addressing style). v6's own bank grid was only
+; live-measured horizontally so far (a single row) - carried over as-is
+; here; extend with real measured rows if a bot ever needs slot >8ish.
 ; ============================================================
 
 INV_GRID := GridSpec(2099, 801, 4, 7, 72, 64, 12, 8)
+
+; Single row only (v6's own measured limit - see note above). Row-major
+; addressing still works via GridCenter/GridCorner, it just never wraps
+; to a second row with these numbers.
+BANK_GRID := GridSpec(625, 203, 999, 1, 72, 64, 24, 0)
+
+BankSlotCenter(slotIndex, &x, &y) {
+    GridCenter(BANK_GRID, slotIndex, &x, &y)
+}
 
 SlotCenter(slotIndex, &x, &y) {
     GridCenter(INV_GRID, slotIndex, &x, &y)
@@ -96,4 +118,21 @@ AllSlotsEmpty(slots) {
             return false
     }
     return true
+}
+
+; Shift-click drop of a slot's contents. Settles afterward so the next
+; SlotFull/FindImage check isn't racing the drop animation. useShift is
+; the only modifier this needs (ClickAt's async release/guard already
+; handles the same-tick safety this had no special-cased need for in
+; v6).
+DropSlot(slotIndex, settleMs := 100, preDelayMs := 0, postDelayMs := 0) {
+    if (preDelayMs > 0)
+        Pause(preDelayMs)
+
+    SlotCenter(slotIndex, &x, &y)
+    ClickAt(x, y, false, true, settleMs)
+    Pause(settleMs)
+
+    if (postDelayMs > 0)
+        Pause(postDelayMs)
 }

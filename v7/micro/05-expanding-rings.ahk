@@ -133,5 +133,5 @@ RunAcquire() {
     LogLine(msg)
 }
 
-LogLine("Script loaded. F5=acquire (rings->whole region)  F6=clear tooltip  Esc=exit.")
+LogLine("Script loaded. F5=acquire (rings->whole region)  F6=request stop  Esc=exit.")
 ToolTip("micro 05 ready - F5 to acquire nearest target", 20, 20)

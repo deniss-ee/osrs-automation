@@ -45,7 +45,7 @@ g_LogName := "14-watch-box"
 ; SlotCorner). The box is ALWAYS BOX_W x BOX_H - SLOT_INDEX never
 ; changes the SIZE of what's watched, only WHICH slot's corner
 ; BOX_OFFSET_X/Y is measured from.
-SLOT_INDEX := 13
+SLOT_INDEX := 3
 
 ; The stack-count box to watch: BOX_W x BOX_H, offset by
 ; BOX_OFFSET_X/Y from SLOT_INDEX's corner.

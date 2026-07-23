@@ -91,6 +91,6 @@ RunSearch() {
     LogLine(msg)
 }
 
-LogLine("Script loaded. F5=search region  F6=clear tooltip  Esc=exit. Targets=" JoinMsg(TARGET_COLORS, "/", HexColor)
+LogLine("Script loaded. F5=search region  F6=request stop  Esc=exit. Targets=" JoinMsg(TARGET_COLORS, "/", HexColor)
     . " Area=" AREA_X "," AREA_Y "," AREA_W "x" AREA_H " margin=" MARGIN_PX)
 ToolTip("micro 04 ready - F5 to search region", 20, 20)

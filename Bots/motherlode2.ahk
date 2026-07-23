@@ -185,9 +185,9 @@ HOPPER_EMPTY_WAIT_TIMEOUT_MS := 600000
 HOPPER_CLICK_SETTLE_MS := 600   ; settle after the hopper deposit registers, same
                                   ; reasoning as SACK_CLICK_SETTLE_MS below
 
-HOPPER_CYCLES := 1   ; how many mine->hopper cycles before moving on to the sack/bank phase
+HOPPER_CYCLES := 7   ; how many mine->hopper cycles before moving on to the sack/bank phase
 
-POLL_MS := 125   ; tick-aligned poll interval for TrackAndClick + all waits
+POLL_MS := 100   ; tick-aligned poll interval for TrackAndClick + all waits
 
 SEARCH_MARGIN_PX := 40   ; same margin Crafting.ahk uses around a precisely-measured
                            ; marker corner (Lib\Find.ahk's BlockAtPoint uses the same
@@ -288,8 +288,8 @@ MLBANK_TOL   := 5
 ; via RegionAround(marginPx: 0) at the DepositAllToBank call site below.
 MLBANK_BLOCK_W := 21
 MLBANK_BLOCK_H := 21
-MLBANK_AREA_X := 858, MLBANK_AREA_Y := 825
-MLBANK_AREA_W := 110, MLBANK_AREA_H := 92
+MLBANK_AREA_X := 899, MLBANK_AREA_Y := 866
+MLBANK_AREA_W := 29, MLBANK_AREA_H := 29
 ; Commented out (not deleted) 2026-07-22: coordinates were fully re-measured
 ; for the new region above, so this old offset compensating for the previous
 ; (imprecise) click point shouldn't be needed anymore. Re-enable by restoring

@@ -58,6 +58,10 @@ TARGET_COLORS := [0xFFB232]   ; array of candidate colors - add/remove freely
 COLOR_TOL := 5
 BLOCK_W := 17
 BLOCK_H := 17
+VERIFY_PERCENT := 100   ; block-match strictness, 100=strict - present for
+                        ; config consistency with every other color-block
+                        ; search (micros 05/21) even though it's expected
+                        ; to stay 100 for a crisp marker like this one
 
 ; Corner-measured marker position (top-left corner) - the ONE position
 ; input, same convention as every other micro.
@@ -103,7 +107,7 @@ RunBlockAtPointCheck() {
 
     t0 := A_TickCount
     arrived := BlockAtPoint(CENTER_X, CENTER_Y, TARGET_COLORS, COLOR_TOL, BLOCK_W, BLOCK_H,
-        POS_TOL_PX, &fx, &fy, &foundColor, MARGIN_PX)
+        POS_TOL_PX, &fx, &fy, &foundColor, MARGIN_PX, VERIFY_PERCENT)
     elapsedMs := A_TickCount - t0
 
     if (arrived) {

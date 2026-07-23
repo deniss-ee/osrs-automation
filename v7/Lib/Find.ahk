@@ -107,6 +107,54 @@ RegionAround(cornerX, cornerY, w, h, marginPx := 40) {
     return [x1, y1, cornerX + w + marginPx, cornerY + h + marginPx]
 }
 
+; Single-flag switch (2026-07-23) between the three region shapes every
+; script's own config already boils down to (standard #3): "full" (whole
+; game viewport, GameZoneRegion()), "area" (a rough box bigger than the
+; target - opts.x/y/w/h ARE that area's own box), or "fixed" (an exact
+; box the same size as the object itself - opts.x/y are the object's own
+; measured corner, opts.w/h its own block size, marginPx should stay 0).
+;
+; Added because switching a script between these by hand meant deleting/
+; re-adding whichever X/Y/W/H constants that mode needs - and a
+; RegionAround(...) call left referencing a deleted constant breaks the
+; whole script. This collapses that decision into ONE field
+; (opts.mode) a script can flip without touching its position constants.
+;
+; IMPORTANT for callers: do NOT keep separate MARKER_AREA_X/Y/W/H-style
+; globals and conditionally copy them into the opts object based on
+; opts.mode - AHK v2's "variable never assigned" check is a WHOLE-FILE
+; static scan, not a per-branch runtime one, so a global referenced in a
+; branch that never executes (e.g. an "area" block while mode is "full")
+; still gets flagged as unassigned if its own assignment line is
+; commented out. Confirmed live (2026-07-23): exactly this pattern
+; warned on MARKER_AREA_X even though the "area" branch was dead code.
+;
+; Instead, write ONE opts object literal PER MODE inline, right where
+; the mode is chosen, and comment out the other modes' lines - e.g.:
+;   MARKER_ZONE := {mode: "full"}
+;   ; MARKER_ZONE := {mode: "area", x: 693, y: 229, w: 708, h: 636, marginPx: 0}
+;   ; MARKER_ZONE := {mode: "fixed", x: 1044, y: 928, w: 15, h: 15, marginPx: 0}
+; then pass that single variable straight to SearchZone (SearchZone(MARKER_ZONE)).
+; Exactly one assignment to MARKER_ZONE ever exists in the file, so
+; there's nothing for the unassigned-variable check to flag, and the
+; other modes' x/y/w/h live as object-literal fields (not separate
+; globals) so they're never independently "unassigned" either.
+;
+; opts:
+;   mode     - "full" | "area" | "fixed" (required)
+;   x/y/w/h  - required for "area"/"fixed", not read at all for "full"
+;   marginPx - extra slack around x/y/w/h (default 0 - "fixed" should
+;              always leave this at 0, per standard #17/#18)
+;
+; Returns a [x1,y1,x2,y2] region - drop-in for any composite's `region`/
+; `markerRegion`/`depositRegion` opt.
+SearchZone(opts) {
+    if (opts.mode = "full")
+        return GameZoneRegion()
+    marginPx := opts.HasOwnProp("marginPx") ? opts.marginPx : 0
+    return RegionAround(opts.x, opts.y, opts.w, opts.h, marginPx)
+}
+
 ; ---------- proximity acquire (multi-color, equal priority) ----------
 
 ; Searches every color in `colors` within [x1,y1]-[x2,y2] and returns
@@ -182,6 +230,20 @@ CHAR_Y := 712
 ; target type genuinely needs different stages.
 ACQUIRE_PADDING_SMALL := 64
 ACQUIRE_PADDING_LARGE := 128
+
+; ---------- bank deposit-image position (fixed screen calibration) ----------
+;
+; Same category as GAME_ZONE_*/CHAR_X/Y: measured once on this setup,
+; lives in Lib, not redefined per script. ONLY the deposit-all PNG
+; buttons are fixed like this - the bank/deposit-box MARKER (a colored
+; box the bot right-clicks/finds to open the bank in the first place)
+; is NOT fixed and stays per-script config (it can be a different
+; color/position per bank location) - do not add a marker position
+; constant here, only PNG button positions belong in this category.
+BANK_DEPOSIT_IMAGE_X := 1327
+BANK_DEPOSIT_IMAGE_Y := 963
+BANK_DEPOSIT_IMAGE_W := 72
+BANK_DEPOSIT_IMAGE_H := 72
 
 ; ---------- color helpers (pixel-level) ----------
 
@@ -287,9 +349,15 @@ WatchIndicator(x, y, colors, tol, targetState, timeoutMs, pollMs := 300, &alread
 ; Also means this box now clamps to >=0 near screen edges (RegionAround
 ; does; the old hand-rolled formula didn't) - a genuine small
 ; correctness fix, not just deduplication.
-BlockAtPoint(expectedCx, expectedCy, colors, tol, blockW, blockH, posTolPx, &fx, &fy, &foundColor, marginPx := 40) {
+;
+; verifyPercent (default 100, added 2026-07-23 for config consistency -
+; every color-block search in the project now exposes this same knob,
+; even where it's expected to stay at the default) is passed straight
+; through to FindAnyFilledBlock/FindFilledBlock - see that function's
+; own doc comment for what it does.
+BlockAtPoint(expectedCx, expectedCy, colors, tol, blockW, blockH, posTolPx, &fx, &fy, &foundColor, marginPx := 40, verifyPercent := 100) {
     box := RegionAround(expectedCx - blockW // 2, expectedCy - blockH // 2, blockW, blockH, marginPx)
-    found := FindAnyFilledBlock(box[1], box[2], box[3], box[4], colors, tol, blockW, blockH, &mx, &my, &fc)
+    found := FindAnyFilledBlock(box[1], box[2], box[3], box[4], colors, tol, blockW, blockH, &mx, &my, &fc, verifyPercent)
     if (!found)
         return false
 

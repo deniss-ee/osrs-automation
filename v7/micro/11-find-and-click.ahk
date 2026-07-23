@@ -70,6 +70,9 @@ TARGET_COLORS := [0xCC5D02]
 COLOR_TOL := 5
 BLOCK_W := 17
 BLOCK_H := 17
+VERIFY_PERCENT := 100   ; block-match strictness, 100=strict - same config
+                        ; slot every color-block search in the project
+                        ; exposes now, even where it stays at the default
 
 ; Corner-measured marker position (top-left corner) - the ONE position
 ; input, same convention as every other micro. MARGIN_PX is small
@@ -110,6 +113,7 @@ RunFindAndClickBlock() {
 
     found := FindAndClickBlock({
         colors: TARGET_COLORS, tol: COLOR_TOL, blockW: BLOCK_W, blockH: BLOCK_H,
+        verifyPercent: VERIFY_PERCENT,
         region: searchRegion, waitTimeoutMs: WAIT_TIMEOUT_MS, label: "F5", itemLabel: "test block"
     })
 
@@ -129,6 +133,7 @@ RunFindAndClickBlockPinned() {
 
     found := FindAndClickBlock({
         colors: TARGET_COLORS, tol: COLOR_TOL, blockW: BLOCK_W, blockH: BLOCK_H,
+        verifyPercent: VERIFY_PERCENT,
         region: searchRegion, clickX: PIN_X, clickY: PIN_Y,
         waitTimeoutMs: WAIT_TIMEOUT_MS, label: "F8", itemLabel: "test block"
     })

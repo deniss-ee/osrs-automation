@@ -75,5 +75,5 @@ RunSearch() {
     LogLine(msg)
 }
 
-LogLine("Script loaded. F5=search  F6=clear tooltip  Esc=exit. Targets=" JoinMsg(TARGET_COLORS, "/", HexColor))
+LogLine("Script loaded. F5=search  F6=request stop  Esc=exit. Targets=" JoinMsg(TARGET_COLORS, "/", HexColor))
 ToolTip("micro 03 ready - F5 to search", 20, 20)
