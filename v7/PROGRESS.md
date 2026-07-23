@@ -315,6 +315,35 @@ do not redefine them per script, reference them.
       numbered standards instead of repeating the full war stories.
     All 26 micros re-validated clean after the rewrite.
 
+25. **`TrackAndClick`/`DepositAllToBank` were missing `preDelayMs`/
+    `postDelayMs` entirely** (found live building woodcutting, 2026-07-23) —
+    standard #8 says every action gets them, but these two composites
+    never threaded them through, so there was nothing to expose in a
+    bot's config no matter how hard you looked. Fixed: both now take
+    `preDelayMs`/`postDelayMs` (default 0), Pause at the very start, and
+    `postDelayMs` only fires on the composite's own SUCCESS return (not
+    on a timeout/no-progress/marker-or-deposit-not-found failure) — same
+    convention `FindAndClickBlock`/`ClearAllInstances` already used.
+    Every bot going forward should expose e.g. `GATHER_PRE_DELAY_MS`/
+    `GATHER_POST_DELAY_MS` even at 0, not just assume the composite has
+    nothing to bracket.
+
+26. **Don't create a local alias for a Lib global just to satisfy a
+    composite's own opts field name.** Woodcutting's first draft had
+    `REF_X := CHAR_X` / `REF_Y := CHAR_Y` purely so `TrackAndClick`'s
+    `refX`/`refY` opts had something short to reference — but `CHAR_X`/
+    `CHAR_Y` are already the fixed Lib constant (same category as
+    `GAME_ZONE_*`), so the alias was pure noise, not real per-script
+    config. Pass `CHAR_X`/`CHAR_Y` directly into the opts object instead
+    of re-declaring them under a new name.
+
+27. **`deposit-box.png` (775,765,80×72) is a SEPARATE, real fixed Lib
+    global (`DEPOSIT_BOX_IMAGE_PATH/X/Y/W/H`, `Find.ahk`) from
+    `BANK_DEPOSIT_IMAGE_*` (deposit-bank.png, 1327,963,72×72, micro
+    24)** — confirmed live 2026-07-23 these are two different real
+    captures, not a duplicate to consolidate; both coexist, pick
+    whichever matches the bank interface a given bot actually uses.
+
 ## File map so far
 
 - `v7\Lib\Core.ahk` — `Pause`, `WaitUntil`, `Say`, `LogLine`,

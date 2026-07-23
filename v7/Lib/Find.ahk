@@ -199,13 +199,23 @@ CHAR_Y := 712
 ACQUIRE_PADDING_SMALL := 64
 ACQUIRE_PADDING_LARGE := 128
 
-; Deposit-all PNG button - a genuinely fixed position, so it lives here.
-; ONLY fixed PNG button positions belong in Lib; bank/deposit-box color
-; MARKERS vary per location and stay per-script config (standard #17).
+; Deposit-all PNG buttons - genuinely fixed positions, so they live
+; here. ONLY fixed PNG button positions belong in Lib; bank/deposit-box
+; color MARKERS vary per location and stay per-script config (standard
+; #17). TWO separate real buttons/captures coexist (2026-07-23) -
+; BANK_DEPOSIT_IMAGE_* (deposit-bank.png, micro 24) and
+; DEPOSIT_BOX_IMAGE_* (deposit-box.png, woodcutting) - pick whichever
+; matches the bank interface a given bot actually sees.
 BANK_DEPOSIT_IMAGE_X := 1327
 BANK_DEPOSIT_IMAGE_Y := 963
 BANK_DEPOSIT_IMAGE_W := 72
 BANK_DEPOSIT_IMAGE_H := 72
+
+DEPOSIT_BOX_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-box.png"
+DEPOSIT_BOX_IMAGE_X := 775
+DEPOSIT_BOX_IMAGE_Y := 765
+DEPOSIT_BOX_IMAGE_W := 80
+DEPOSIT_BOX_IMAGE_H := 72
 
 ; ---------- state-indicator watcher ----------
 

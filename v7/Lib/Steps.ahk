@@ -299,7 +299,10 @@ ClickUntilCondition(opts, &neededRetry?) {
 ;   reclickAfterMs, until (required); tol 5, verifyPercent 100,
 ;   acquireRadii [], region (whole screen), maxDriftPx 40, stableTicks 2,
 ;   moveTolerancePx 10, ctrl false, postClickSettleMs 0,
-;   timeoutMs 1800000, progressTimeoutMs 300000, pollMs.
+;   timeoutMs 1800000, progressTimeoutMs 300000, pollMs,
+;   preDelayMs/postDelayMs 0 (bracket the whole composite, standard #8 -
+;   postDelayMs only runs on the `until`-met SUCCESS return, not on
+;   timeout/no-progress, same convention as FindAndClickBlock).
 TrackAndClick(opts) {
     colors := opts.colors
     tol := Opt(opts, "tol", 5)
@@ -322,6 +325,11 @@ TrackAndClick(opts) {
     timeoutMs := Opt(opts, "timeoutMs", 1800000)
     progressTimeoutMs := Opt(opts, "progressTimeoutMs", 300000)
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
+    preDelayMs := Opt(opts, "preDelayMs", 0)
+    postDelayMs := Opt(opts, "postDelayMs", 0)
+
+    if (preDelayMs > 0)
+        Pause(preDelayMs)
 
     lock := TargetLock(stableTicksRequired, moveTolerancePx)
     hasTarget := false
@@ -334,6 +342,8 @@ TrackAndClick(opts) {
     loop {
         if (untilFn()) {
             Say("TrackAndClick: until-condition met (" (A_TickCount - t0) " ms total)")
+            if (postDelayMs > 0)
+                Pause(postDelayMs)
             return true
         }
 
@@ -641,11 +651,18 @@ TravelToPoint(opts) {
 ;   screen), markerClickX/markerClickY, depositClickX/depositClickY,
 ;   depositTol 5, depositTransColor "", markerItemLabel,
 ;   depositItemLabel, confirmCondition (+ confirmTimeoutMs, required
-;   with it), ctrl false, pollMs, label.
+;   with it), ctrl false, pollMs, label, preDelayMs/postDelayMs 0
+;   (bracket the whole composite, standard #8 - postDelayMs only runs
+;   on the final SUCCESS return, not on a marker/deposit/confirm failure).
 DepositAllToBank(opts) {
     useCtrl := Opt(opts, "ctrl", false)
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
     label := Opt(opts, "label", "DepositAllToBank")
+    preDelayMs := Opt(opts, "preDelayMs", 0)
+    postDelayMs := Opt(opts, "postDelayMs", 0)
+
+    if (preDelayMs > 0)
+        Pause(preDelayMs)
 
     markerOpts := {
         colors: opts.markerColors, tol: opts.markerTol, blockW: opts.markerBlockW, blockH: opts.markerBlockH,
@@ -674,8 +691,11 @@ DepositAllToBank(opts) {
     if (!FindAndClickImage(depositOpts))
         return false
 
-    if (!opts.HasOwnProp("confirmCondition"))
+    if (!opts.HasOwnProp("confirmCondition")) {
+        if (postDelayMs > 0)
+            Pause(postDelayMs)
         return true
+    }
 
     Say(label ": waiting for inventory to confirm the deposit")
     if (!WaitUntil(opts.confirmCondition, opts.confirmTimeoutMs, pollMs)) {
@@ -684,6 +704,8 @@ DepositAllToBank(opts) {
     }
 
     Say(label ": deposit confirmed")
+    if (postDelayMs > 0)
+        Pause(postDelayMs)
     return true
 }
 
