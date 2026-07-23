@@ -7,7 +7,12 @@ is the fast-resume supplement, not a replacement.
 ## Where things stand
 
 **ALL 26 MICROS BUILT AND LIVE-CONFIRMED (2026-07-23). Step 2 is
-COMPLETE — next up is Step 3: build `v7\Bots\`.** Micro 18 (the old
+COMPLETE — next up is Step 3: build `v7\Bots\`.** A full Lib audit ran
+as the pre-Step-3 gate (standard #24): opts unpacking deduped via
+`Opt()`, `POLL_MS_DEFAULT := 100` everywhere, `ScreenRegion()`,
+`FindAndClickBlock`/`Image` merged onto a shared `WaitThenClick`
+engine, Lib margin defaults aligned to 0, comments compressed. All 26
+micros re-validated clean afterward. Micro 18 (the old
 "wait-marker-then-click" M9 two-stage shape) was DROPPED — live testing
 showed it duplicated micro 11's `FindAndClickBlock` with a `clickX`/
 `clickY` pin, which already covers "wait for a marker, click a
@@ -223,7 +228,17 @@ do not redefine them per script, reference them.
     region-building decision into ONE `mode` field** (`"full"` = whole
     game viewport via `GameZoneRegion()`, `"area"` = a rough box bigger
     than the target, `"fixed"` = an exact box the target's own size —
-    the same three shapes standard #3 already named). Added because
+    the same three shapes standard #3 already named — and `"quadrant"`,
+    added 2026-07-23: one quarter of the game zone, via
+    `opts.quadrant: "top-left"|"top-right"|"bottom-left"|"bottom-right"`.
+    `GameZoneQuadrant(which)` splits `GameZoneRegion()` around `CHAR_X`/
+    `CHAR_Y` — the fixed player-center calibration, NOT a recomputed
+    geometric midpoint, so the split is guaranteed to pass through the
+    character's own point by construction even if `GAME_ZONE_*` is ever
+    re-measured asymmetrically (confirmed: they currently coincide
+    exactly — `(0+2499)//2, (45+1380)//2` = `1249,712` = `CHAR_X,CHAR_Y`).
+    Use `"quadrant"` when you know roughly which corner of the screen a
+    marker lives in but haven't measured exact bounds. Added because
     switching a script between them by hand meant deleting/re-adding
     whichever `X/Y/W/H` constants that mode needs, and a `RegionAround(...)`
     call left referencing a deleted constant breaks the whole script.
@@ -273,28 +288,57 @@ do not redefine them per script, reference them.
     log): F9/F10 registered via this factory each fired only their own
     message, never the other's.
 
+24. **Config visibility + Lib audit (2026-07-23, pre-Step-3 gate).** Every
+    new script's EDIT block displays ALL tunables, even at their
+    defaults: `MARGIN_PX := 0`, `VERIFY_PERCENT := 100`,
+    `POS_TOL_PX := 0`, `POLL_MS := 100`, etc. — nothing hidden behind a
+    Lib default the reader can't see. The audit itself changed:
+    - `Opt(opts, name, default)` (`Core.ahk`) replaced ~60
+      `HasOwnProp` ternaries — the ONE way composites unpack opts.
+    - `POLL_MS_DEFAULT := 100` (`Core.ahk`) — every Lib `pollMs`
+      defaults to it (was a mix of 300s), with ONE deliberate
+      exception: `RightClickMenuItem`'s `pollMs` defaults to 150
+      (now a configurable opt, no longer hardcoded) — measured live,
+      the context menu takes at least ~150ms to open after the
+      right-click, so a faster poll only wastes searches.
+    - `ScreenRegion()` (`Find.ahk`) replaced 6 hand-built
+      whole-screen arrays.
+    - `WaitThenClick(findFn, opts, defaultLabel)` (`Steps.ahk`) — the
+      shared wait→click→pin engine; `FindAndClickBlock`/`FindAndClickImage`
+      are now thin wrappers over it (was real duplicated logic).
+    - `RegionAround`/`BlockAtPoint` `marginPx` defaults changed 40 → 0
+      (aligning Lib with standard #18). Every micro passed margins
+      explicitly, so only `TravelToPoint`'s arrival check changed — its
+      margin is now the visible `arriveMarginPx` opt (default 0); set it
+      if a bot's arrival check turns flaky.
+    - All Lib comments compressed to short versions pointing at these
+      numbered standards instead of repeating the full war stories.
+    All 26 micros re-validated clean after the rewrite.
+
 ## File map so far
 
 - `v7\Lib\Core.ahk` — `Pause`, `WaitUntil`, `Say`, `LogLine`,
   `TrimLogOnStart`, `BotStopped`, `GameActive`, `CenterX`/`CenterY`,
-  `JoinMsg`.
+  `JoinMsg`, `Opt` (opts unpacker, standard #24), `POLL_MS_DEFAULT`.
 - `v7\Lib\Find.ahk` — `SolidBlockBitmap`, `FindFilledBlock`, `HexColor`,
-  `RegionAround`, `SearchZone` (mode switch, standard #22),
-  `AcquireClosestInBox`, `GameZoneRegion`/`GAME_ZONE_*`,
-  `CHAR_X/Y`, `ACQUIRE_PADDING_*`, `BANK_DEPOSIT_IMAGE_*` (see standard
-  #17), `ColorClose`, `IsColorAt`, `IsAnyColorAt`, `FindAnyFilledBlock`,
-  `WatchIndicator`, `BlockAtPoint`, `ImagePattern`, `FindImage`,
+  `RegionAround` (marginPx default 0), `ScreenRegion`, `SearchZone`
+  (mode switch, standard #22), `AcquireClosestInBox`,
+  `GameZoneRegion`/`GAME_ZONE_*`, `CHAR_X/Y`, `ACQUIRE_PADDING_*`,
+  `BANK_DEPOSIT_IMAGE_*` (see standard #17), `ColorClose`, `IsColorAt`,
+  `IsAnyColorAt`, `FindAnyFilledBlock`, `WatchIndicator`, `BlockAtPoint`
+  (marginPx default 0), `ImagePattern`, `FindImage`,
   `WaitForImage`/`WaitForImageGone`, `TakeSnapshot`/`HasChanged`.
 - `v7\Lib\Act.ahk` — `ClickAt` (async modifier release), `PressKey`,
   `ReleasePendingModifiersNow`, `g_PendingModifierKeys`.
-- `v7\Lib\Steps.ahk` — `RightClickMenuItem`, `FindAndClickBlock`,
-  `FindAndClickImage` (re-added, standard #19), `ClearAllInstances`,
+- `v7\Lib\Steps.ahk` — `RightClickMenuItem`, `WaitThenClick` (shared
+  engine, standard #24), `FindAndClickBlock`, `FindAndClickImage`
+  (both thin wrappers over `WaitThenClick`), `ClearAllInstances`,
   `VerifySlotsAndDrop`, `ClickUntilCondition`, `TrackAndClick` + `class
   TargetLock` (biggest composite, see standards #15/#16), `PickupAppeared`,
-  `TravelToPoint`, `DepositAllToBank`, `RunRestockPlan`, `GatherBankLoop`
-  (micro 25 — thin forever gather→bank loop, see standard #22 for its
-  bank-region config pattern) (ALL opts-object except `RunRestockPlan`,
-  which is positional `(plan, ctrl)` — see standard #13).
+  `TravelToPoint` (arrival margin = visible `arriveMarginPx` opt,
+  default 0), `DepositAllToBank`, `RunRestockPlan`, `GatherBankLoop`
+  (ALL opts-object except `RunRestockPlan`, which is positional
+  `(plan, ctrl)` — see standard #13).
 - `v7\Lib\Grid.ahk` — `GridSpec`, `GridCorner`, `GridCenter`,
   `GridCellRegion`.
 - `v7\Lib\Inv.ahk` — `INV_GRID`, `SlotCenter`/`SlotCorner` (thin Grid

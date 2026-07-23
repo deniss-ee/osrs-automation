@@ -54,7 +54,7 @@ MARKER_X := 1249
 MARKER_Y := 735
 
 WAIT_TIMEOUT_MS := 15000
-POLL_MS         := 300
+POLL_MS         := 100
 ; ========================================================================
 
 ; Derived center - a 1x1 marker's "center" is just its corner, same

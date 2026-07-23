@@ -60,7 +60,7 @@ CHANGE_TOL := 10   ; per-channel tolerance before a pixel counts as "changed"
 TARGET_SAMPLES := 50
 
 WAIT_TIMEOUT_MS := 15000
-POLL_MS         := 300     ; tick-aligned poll interval
+POLL_MS         := 100     ; tick-aligned poll interval
 ; ========================================================================
 
 ; Resolve the box's base corner via SlotCorner (Lib\Inv.ahk), then

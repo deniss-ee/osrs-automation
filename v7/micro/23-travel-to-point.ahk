@@ -49,19 +49,19 @@ g_LogName := "23-travel-to-point"
 ; ======= EDIT THESE FOR YOUR TEST =======================================
 ; The travel marker - a fixed, always-clickable point (PIN mode, no
 ; color search). Same corner/point convention as every other micro.
-MARKER_CLICK_X := 1335
-MARKER_CLICK_Y := 842
+MARKER_CLICK_X := 1456
+MARKER_CLICK_Y := 715
 CLICK_USE_CTRL := true   ; force-run to the marker
 
 ; The arrival block - a DIFFERENT marker expected at a known corner
 ; once travel completes. Same corner-measured convention as micro 06.
-ARRIVE_COLORS := [0x0B5C11]
+ARRIVE_COLORS := [0xCC5D02]
 ARRIVE_TOL := 5
-ARRIVE_BLOCK_W := 33
-ARRIVE_BLOCK_H := 33
-ARRIVE_CORNER_X := 1746
-ARRIVE_CORNER_Y := 823
-ARRIVE_POS_TOL_PX := 15
+ARRIVE_BLOCK_W := 19
+ARRIVE_BLOCK_H := 19
+ARRIVE_CORNER_X := 1620
+ARRIVE_CORNER_Y := 877
+ARRIVE_POS_TOL_PX := 12
 ARRIVE_WAIT_TIMEOUT_MS := 20000
 
 POLL_MS := 100

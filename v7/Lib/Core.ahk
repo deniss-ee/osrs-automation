@@ -1,25 +1,13 @@
 ; ============================================================
-; v7 Lib\Core.ahk - stop flag, interruptible wait, logging
-;
-; Built incrementally, one function per micro (see the v7 plan's
-; build-order rule): Pause/WaitUntil/Say/LogLine/TrimLogOnStart/
-; BotStopped for micro 01, GameActive for micro 02. CenterX/CenterY
-; pulled forward to micro 06 - the corner+size calibration convention
-; (never hand a function a precomputed center) means ANY micro whose
-; EDIT block takes a corner+size marker needs these, not just Grid
-; addressing. JoinMsg also pulled forward to micro 06 - the "every
-; color config is an array" standard means every script now needs to
-; log an array nicely, not just once a bot-level status line needs it.
-; Do not add functions here ahead of the micro that will exercise them.
-;
-; Ported byte-identical in behavior from v6 Lib\Core.ahk (Pause,
-; WaitUntil, Say, LogLine, TrimLogOnStart, BotStopped) - that file was
-; itself promoted from v6 micro 07 after live confirmation. No
-; contract changes for this micro.
+; v7 Lib\Core.ahk - stop flag, interruptible wait, logging, shared defaults
 ; ============================================================
 
 g_StopRequested := false
 g_LogName := "unnamed"
+
+; Project-wide poll default. Scripts still display POLL_MS := 100 in
+; their own config block (standard #24) - this is the Lib-side fallback.
+POLL_MS_DEFAULT := 100
 
 class BotStopped extends Error {
     __New() {
@@ -27,11 +15,14 @@ class BotStopped extends Error {
     }
 }
 
-; The ONLY sleep function in v7. Sleeps in small chunks, checking the
-; stop flag between each - so a stop request lands within one chunk
-; instead of after the full requested duration. 40ms chunking is an
-; internal interrupt-latency constant, not a caller-tunable timing
-; unit.
+; Reads opts.name with a fallback - the ONE way every composite unpacks
+; its optional opts fields.
+Opt(opts, name, defaultValue) {
+    return opts.HasOwnProp(name) ? opts.%name% : defaultValue
+}
+
+; The ONLY sleep in v7. 40ms chunks so a stop request (F6) lands within
+; one chunk; throws BotStopped when g_StopRequested is set.
 Pause(ms) {
     global g_StopRequested
     static CHUNK_MS := 40
@@ -51,10 +42,11 @@ Pause(ms) {
     }
 }
 
-; Polls condFn via Pause until it returns true or timeoutMs elapses.
-; Returns false on timeout; throws BotStopped if a stop fires mid-poll
-; (propagates up through Pause - never swallowed here).
-WaitUntil(condFn, timeoutMs, pollMs := 300) {
+; Polls condFn via Pause until true or timeoutMs. False on timeout;
+; BotStopped propagates from Pause, never swallowed.
+WaitUntil(condFn, timeoutMs, pollMs?) {
+    if (!IsSet(pollMs))
+        pollMs := POLL_MS_DEFAULT
     startedAt := A_TickCount
     loop {
         if (condFn())
@@ -65,16 +57,13 @@ WaitUntil(condFn, timeoutMs, pollMs := 300) {
     }
 }
 
-; Every per-tick status goes through this, not LogLine directly - keeps
-; the on-screen ToolTip showing exactly what the log just recorded.
+; Status line: on-screen ToolTip + log, always together.
 Say(msg) {
     ToolTip(msg, 20, 20)
     LogLine(msg)
 }
 
-; Shared logger. g_LogName is set once near the top of each micro/bot
-; script so every script gets its own v7\logs\<name>.log file without
-; LogLine needing a name argument at every call site.
+; Shared logger; g_LogName (set once per script) picks the file.
 LogLine(msg) {
     global g_LogName
     static logDir := A_ScriptDir "\..\logs"
@@ -83,8 +72,7 @@ LogLine(msg) {
     try FileAppend(FormatTime(, "yyyy-MM-dd HH:mm:ss") " [" g_LogName "] " msg "`n", logDir "\" g_LogName ".log")
 }
 
-; Call once at script start (after g_LogName is set) to keep a bot's
-; log file from growing unbounded across long/overnight AFK sessions.
+; Call once at script start (after g_LogName is set) to cap log growth.
 TrimLogOnStart(keepLines := 2500) {
     global g_LogName
     logDir := A_ScriptDir "\..\logs"
@@ -105,29 +93,19 @@ TrimLogOnStart(keepLines := 2500) {
     }
 }
 
-; Confirmed live in v6 micro 13: the real foreground process is
-; literally RuneLite.exe (class SunAwtFrame), not a javaw/launcher
-; wrapper - "ahk_exe RuneLite.exe" correctly reported ACTIVE while
-; focused and not-active when another window had focus, across
-; multiple focus/unfocus transitions. Chosen over the title-substring
-; candidate (also correct) since exe name doesn't depend on the
-; RuneLite window title, which includes the logged-in account name.
+; True while RuneLite is the foreground window (confirmed live: the real
+; process is RuneLite.exe, not a javaw/launcher wrapper).
 GameActive() {
     return WinActive("ahk_exe RuneLite.exe") ? true : false
 }
 
-; Corner+size -> center, for the coordinate constant blocks at the top
-; of every micro/bot file. Enforces the corner-measured calibration
-; convention: a marker/area is always defined as X,Y (top-left corner)
-; + W,H, never a precomputed center point typed out by hand - callers
-; use CenterX(cornerX, w) / CenterY(cornerY, h) per axis instead.
+; Corner+size -> center. Calibration is always a top-left corner + W/H
+; (standard #2) - centers are derived here, never hand-typed.
 CenterX(cornerX, w) => cornerX + w // 2
 CenterY(cornerY, h) => cornerY + h // 2
 
-; Joins an array into an "a/b/c" string for log/status lines. Optional
-; mapFn transforms each element first (e.g. HexColor for a colors
-; array). mapFn is an optional param (IsSet-guarded) so passing a Func
-; object is safe - no object-vs-"" compare.
+; Joins an array into "a/b/c" for log lines; optional mapFn transforms
+; each element (e.g. HexColor for a colors array).
 JoinMsg(arr, sep := "/", mapFn?) {
     msg := ""
     for i, v in arr {
