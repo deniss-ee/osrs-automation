@@ -1,176 +1,155 @@
 ; ============================================================
-; v6 Woodcutting bot v1
+; v7 Bots\woodcutting.ahk
 ;
-; Loop: find a tree -> chop/track it until depleted, re-acquire the
-; next one, until the inventory is full -> find the deposit-box
-; marker and click it -> wait for the deposit box's "Deposit All"
-; image to appear and click it -> repeat.
+; Loop: chop trees (TrackAndClick, two tree-overlay colors) until the
+; inventory is full -> click the bank marker (color search, top-right
+; quadrant) -> wait for + click the deposit-all image -> confirm empty
+; -> repeat. Built entirely from confirmed v7 Lib composites - nothing
+; new here (GatherBankLoop, TrackAndClick, DepositAllToBank, SearchZone,
+; InstallBotHarness all already live-confirmed in Step 2).
 ;
-; Built entirely from already-proven Lib primitives: TrackAndClick
-; (Lib\Steps.ahk, unchanged from micro 12) for the chop loop,
-; Bank()'s marker/image clicks go through Lib\Steps.ahk's
-; FindAndClickBlock/FindAndClickImage (promoted 2026-07-20, once
-; Motherlode's own bank/hopper/waypoint clicks made the same one-shot
-; find+click shape appear 5x/3x across both bot files).
+; Calibration ported from v6 Bots\woodcutting.ahk's proven values
+; (colors/tol/block size/track tuning/timeouts) - REF_X/Y switched to
+; the v7 Lib CHAR_X/Y global. Bank marker is NEW config for this v7
+; version (color CC5D02, 19x19, top-right quadrant of the game zone,
+; via SearchZone) - different from v6's old bank marker.
 ;
-; Pacing defaults to the fastest already-proven-safe values in the
-; codebase (Motherlode-tuned) rather than conservative ones - tune the
-; constants below to taste.
+; DEPOSIT-ALL BUTTON (2026-07-27): switched from DEPOSIT_BOX_IMAGE_*
+; (deposit-box.png, 80x72 @ 775,765 - never detected live, see
+; logs\woodcutting.log) to BANK_DEPOSIT_IMAGE_* (deposit-bank.png,
+; 72x72 @ 1327,963 - the "default bank" deposit button, same asset
+; micro 24 uses and confirmed live there). Both are real, separate,
+; genuinely-fixed captures (standard #17/#27) - this just points
+; woodcutting at the one that's actually shown to work.
+;
+; CONTRACT CHANGE from v6: v6's ChopLoop ignored Bank()'s return value
+; and just looped back regardless of whether the deposit was ever
+; confirmed. This version uses GatherBankLoop, which stops the whole
+; bot cleanly the first time bank() fails (matches motherlode2's
+; fail-clean FullCycle, not woodcutting's old silent-retry quirk) - if
+; you want the old lenient behavior back, ask.
+;
+; POST_CLICK_SETTLE_MS is new in v7 (standard #16) - v6's blocking Ctrl
+; release gave TrackAndClick this cushion for free; tune live if a
+; healthy tree gets falsely reported "depleted" after every click.
 ;
 ; WHAT IT DOES
 ;   F5  = start the chop/bank loop
-;   F6  = request stop (interrupts instantly, mid-track or mid-wait)
-;   F12 = exit the script
+;   F6  = request stop
+;   F8  = probe INVENTORY_FULL_SLOT (see it's read as full/empty right now)
+;   F12 = exit
 ; ============================================================
 
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-#Include ..\Lib\v6.ahk
+#Include ..\Lib\v7.ahk
 
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 CoordMode("ToolTip", "Screen")
 
 g_LogName := "woodcutting"
-TrimLogOnStart()
 
-; ======= EDIT THESE FOR YOUR TEST =======================================
-; --- Tree acquire/track (TrackAndClick - same design as micro 12) ---
-TREE_COLORS := [0x00FF00, 0x00B809]   ; candidate tree overlay colors, equal priority
-
-COLOR_TOL      := 5
-BLOCK_W        := 51
-BLOCK_H        := 51
+; ======= EDIT THESE FOR YOUR SETUP =======================================
+; --- Tree acquire/track (TrackAndClick) ---
+TREE_COLORS := [0x00FF00]
+COLOR_TOL := 5
+BLOCK_W := 45
+BLOCK_H := 45
 VERIFY_PERCENT := 100
 
-REF_X := 1248, REF_Y := 707     ; character's on-screen point (acquire proximity)
-ACQUIRE_RADII := [250, 600]     ; expanding search rings before whole-screen fallback
+ACQUIRE_RADII := [160, 320]
+TRACK_RADIUS_PX := 96
+MAX_DRIFT_PX := 64
+STABLE_TICKS_REQUIRED := 2
+MOVE_TOLERANCE_PX := 4
+CLICK_COOLDOWN_MS := 0     ; standard #29: 0 = one real click per tree, then
+                           ; just track while chopping - no periodic reclick
+RECLICK_AFTER_MS := [3000, 6000]   ; [min,max] - randomized per reclick, not a fixed beat
+CLICK_USE_CTRL := true
+POST_CLICK_SETTLE_MS := 100
+GATHER_PRE_DELAY_MS := 0
+GATHER_POST_DELAY_MS := 0
 
-TRACK_RADIUS_PX := 300   ; narrowed search box half-size once a target is locked
-; Raised 40 -> 120 -> 200 (2026-07-20): 120 was still rejecting the SAME
-; tree's found position as "a different block" (log showed a stable
-; 180px drift every tick while walking toward it, anchor-hold then held
-; a stale point forever since the exact old pixel never stopped
-; matching the locked color). Raised TRACK_RADIUS_PX alongside it so the
-; search net still comfortably covers the wider drift.
-MAX_DRIFT_PX    := 200   ; reject a track match this far from the last position
+INVENTORY_FULL_SLOT := 28
 
-; Pacing - fastest already-proven values (Motherlode-tuned). Tune to taste.
-STABLE_TICKS_REQUIRED   := 2
-MOVE_TOLERANCE_PX       := 5
-CLICK_COOLDOWN_MS       := 1500
-WALK_RECLICK_TIMEOUT_MS := 3000
-CLICK_USE_CTRL          := true
-
-INDICATOR_SLOT     := 28      ; inventory-full check (Lib\Inv.ahk's SlotFull)
-
-; PROGRESS_TIMEOUT_MS is the real safety net: resets whenever a target is
-; acquired, depletes, or gets clicked, so it only fires on genuine
-; inactivity, not "this phase is just taking a while." Raised from a flat
-; 600000ms total-phase cap (2026-07-20) after that cap killed multiple
-; provably-healthy phases (trees were still depleting on a normal ~2min
-; cadence right up to the cutoff) - see Lib\Steps.ahk's TrackAndClick doc
-; comment for the full story. 300000 (5min) gives ~2x margin over the
-; longest observed real depletion gap (~155s) in this codebase's own logs.
 PROGRESS_TIMEOUT_MS := 300000
-; OVERALL_TIMEOUT_MS is now just a generous absolute backstop underneath
-; that, for the pathological case where something keeps generating
-; progress signals without ever actually filling the inventory.
 OVERALL_TIMEOUT_MS := 1800000
+POLL_MS := 200
 
-; --- Bank marker (whole-screen FindFilledBlock - same primitive as micro 01/03) ---
-BANK_COLOR   := 0xFF00FF
-BANK_TOL     := 0
-BANK_BLOCK_W := 21
-BANK_BLOCK_H := 21
-BANK_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the bank marker never appears
+; --- Bank marker search zone (SearchZone, standard #22) - top-right
+; quadrant of the game zone. Swap to "full"/"area"/"fixed" here if this
+; ever needs narrowing/pinning.
+MARKER_ZONE := {mode: "full"}
+; MARKER_ZONE := {mode: "full"}
+; MARKER_ZONE := {mode: "area", x: 0, y: 0, w: 0, h: 0, marginPx: 0}
+; MARKER_ZONE := {mode: "fixed", x: 0, y: 0, w: 19, h: 19, marginPx: 0}
 
-; --- Deposit box image (same primitive as micro 06) ---
-DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-motherlode.png"
-DEPOSIT_IMAGE_W := 80, DEPOSIT_IMAGE_H := 72   ; must match the PNG's real pixel size
-DEPOSIT_IMAGE_TOL := 5
+MARKER_COLORS := [0xFF980A]
+MARKER_TOL := 5
+MARKER_BLOCK_W := 13
+MARKER_BLOCK_H := 13
+MARKER_WAIT_TIMEOUT_MS := 15000
+
+; --- Deposit-all image - position/size are the Lib global
+; BANK_DEPOSIT_IMAGE_* (Find.ahk) - a genuinely fixed screen button, not
+; per-script config (standard #17). Find.ahk only hoists a path
+; constant for DEPOSIT_BOX_IMAGE_*, not this one (same asymmetry micro
+; 24 works around) - so the path stays script-local here, matching
+; micro 24's own DEPOSIT_IMAGE_PATH convention. Only tol/transColor/
+; timeouts/path stay here.
+DEPOSIT_IMAGE_PATH := A_ScriptDir "\..\Images\deposit-bank.png"
+DEPOSIT_TOL := 5
 DEPOSIT_TRANS_COLOR := "0x00FF00"
-DEPOSIT_WAIT_TIMEOUT_MS := 15000   ; give up + stop if the deposit box never opens
-DEPOSIT_CONFIRM_TIMEOUT_MS := 5000   ; give up + stop if depositing doesn't actually empty the inventory
+DEPOSIT_WAIT_TIMEOUT_MS := 15000
+DEPOSIT_CONFIRM_TIMEOUT_MS := 5000
+BANK_PRE_DELAY_MS := 0
+BANK_POST_DELAY_MS := 0
 
-POLL_MS := 100   ; tick-aligned poll interval for both waits below
-; ========================================================================
+MAX_CYCLES := 0   ; 0 = forever (real bot); raise for a bounded test run
+; ==========================================================================
 
-F5:: RunChopLoop()
-F8:: ProbeIndicatorSlot()
-F6:: {
-    global g_StopRequested
-    g_StopRequested := true
-    LogLine("F6 pressed - stop requested")
-}
-; F12 (exit) is defined once in Lib\v6.ahk, shared by every bot.
+markerRegion := SearchZone(MARKER_ZONE)
 
-; Diagnostic: press F8 any time (bot doesn't need to be running) with
-; a KNOWN, visually-confirmed inventory state to see exactly what
-; SlotFull(INDICATOR_SLOT) is actually reading - use this instead of
-; re-guessing SLOT_EMPTY_TOL/SLOT_FULL_OFFSETS blind next time a
-; specific item type doesn't get detected as occupied.
-ProbeIndicatorSlot() {
-    Say(SlotProbe(INDICATOR_SLOT))
-}
-
-RunChopLoop() {
-    global g_StopRequested
-    g_StopRequested := false
-
-    Say("Woodcutting started: trees=" TreeColorsMsg() " indicatorSlot=" INDICATOR_SLOT)
-
-    try {
-        ChopLoop()
-    } catch BotStopped as e {
-        Say("STOPPED by F6")
-    }
-}
-
-ChopLoop() {
-    loop {
-        chopOpts := {
-            colors: TREE_COLORS, tol: COLOR_TOL, blockW: BLOCK_W, blockH: BLOCK_H, verifyPercent: VERIFY_PERCENT,
-            refX: REF_X, refY: REF_Y, acquireRadii: ACQUIRE_RADII, trackRadius: TRACK_RADIUS_PX,
-            maxDriftPx: MAX_DRIFT_PX, stableTicks: STABLE_TICKS_REQUIRED, moveTolerancePx: MOVE_TOLERANCE_PX,
-            cooldownMs: CLICK_COOLDOWN_MS, reclickAfterMs: WALK_RECLICK_TIMEOUT_MS, ctrl: CLICK_USE_CTRL,
-            until: () => SlotFull(INDICATOR_SLOT), timeoutMs: OVERALL_TIMEOUT_MS,
-            progressTimeoutMs: PROGRESS_TIMEOUT_MS, pollMs: POLL_MS
-        }
-
-        filled := TrackAndClick(chopOpts)
-        if (!filled) {
-            Say("Chop loop gave up (no progress or overall timeout) - stopping")
-            return
-        }
-
-        Say("Inventory full - banking")
-        Bank()
-    }
-}
-
-; Bank marker -> deposit-all image -> confirm the inventory emptied, via
-; Lib\Steps.ahk's DepositAllToBank (shared with Motherlode2/Crafting). The
-; confirm step is what catches a missed/late deposit click that would
-; otherwise go unnoticed (the loop bounces back to "inventory full,"
-; still full from before, then can't find the bank marker again under the
-; still-open deposit UI). ChopLoop deliberately ignores the return, so a
-; failed step just loops back and retries rather than stopping the bot.
-Bank() {
-    DepositAllToBank({
-        markerColor: BANK_COLOR, markerTol: BANK_TOL, markerBlockW: BANK_BLOCK_W, markerBlockH: BANK_BLOCK_H,
-        markerWaitTimeoutMs: BANK_WAIT_TIMEOUT_MS, markerItemLabel: "deposit-box marker",
-        depositImagePath: DEPOSIT_IMAGE_PATH, depositImageW: DEPOSIT_IMAGE_W, depositImageH: DEPOSIT_IMAGE_H,
-        depositTol: DEPOSIT_IMAGE_TOL, depositTransColor: DEPOSIT_TRANS_COLOR,
-        depositWaitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS, depositItemLabel: "deposit box",
-        confirmCondition: () => !SlotFull(INDICATOR_SLOT), confirmTimeoutMs: DEPOSIT_CONFIRM_TIMEOUT_MS,
-        ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "Bank"
+GatherTrees() {
+    return TrackAndClick({
+        colors: TREE_COLORS, tol: COLOR_TOL, blockW: BLOCK_W, blockH: BLOCK_H, verifyPercent: VERIFY_PERCENT,
+        refX: CHAR_X, refY: CHAR_Y, acquireRadii: ACQUIRE_RADII, region: GameZoneRegion(),
+        trackRadius: TRACK_RADIUS_PX, maxDriftPx: MAX_DRIFT_PX,
+        stableTicks: STABLE_TICKS_REQUIRED, moveTolerancePx: MOVE_TOLERANCE_PX,
+        cooldownMs: CLICK_COOLDOWN_MS, reclickAfterMs: RECLICK_AFTER_MS, ctrl: CLICK_USE_CTRL,
+        postClickSettleMs: POST_CLICK_SETTLE_MS,
+        until: () => SlotFull(INVENTORY_FULL_SLOT),
+        timeoutMs: OVERALL_TIMEOUT_MS, progressTimeoutMs: PROGRESS_TIMEOUT_MS, pollMs: POLL_MS,
+        preDelayMs: GATHER_PRE_DELAY_MS, postDelayMs: GATHER_POST_DELAY_MS
     })
 }
 
-TreeColorsMsg() {
-    return JoinMsg(TREE_COLORS, "/", HexColor)
+BankTrees() {
+    return DepositAllToBank({
+        markerColors: MARKER_COLORS, markerTol: MARKER_TOL,
+        markerBlockW: MARKER_BLOCK_W, markerBlockH: MARKER_BLOCK_H,
+        markerRegion: markerRegion, markerWaitTimeoutMs: MARKER_WAIT_TIMEOUT_MS,
+        depositImagePath: DEPOSIT_IMAGE_PATH, depositImageW: BANK_DEPOSIT_IMAGE_W, depositImageH: BANK_DEPOSIT_IMAGE_H,
+        depositRegion: BANK_DEPOSIT_IMAGE_REGION,
+        depositTol: DEPOSIT_TOL, depositTransColor: DEPOSIT_TRANS_COLOR,
+        depositWaitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS,
+        confirmCondition: () => !SlotFull(INVENTORY_FULL_SLOT), confirmTimeoutMs: DEPOSIT_CONFIRM_TIMEOUT_MS,
+        ctrl: CLICK_USE_CTRL, pollMs: POLL_MS, label: "Woodcutting",
+        preDelayMs: BANK_PRE_DELAY_MS, postDelayMs: BANK_POST_DELAY_MS
+    })
 }
 
-LogLine("Script loaded. F5=start chop/bank loop  F6=stop  F12=exit. Trees=" TreeColorsMsg())
-ToolTip("woodcutting v1 ready - F5 to start", 20, 20)
+RunWoodcutting() {
+    GatherBankLoop({gather: GatherTrees, bank: BankTrees, maxCycles: MAX_CYCLES, label: "Woodcutting"})
+}
+
+ProbeIndicatorSlot() {
+    Say(SlotProbe(INVENTORY_FULL_SLOT))
+}
+
+InstallBotHarness({
+    run: RunWoodcutting,
+    label: "Woodcutting",
+    probe: ProbeIndicatorSlot
+})

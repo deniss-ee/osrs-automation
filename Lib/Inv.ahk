@@ -1,104 +1,37 @@
 ; ============================================================
-; v6 Lib\Inv.ahk - inventory addressing + pixel-box snapshot/diff
+; v7 Lib\Inv.ahk - inventory/bank slot addressing + fullness checks
 ;
-; INV_LAYOUT constants + SlotCenter/SlotFull: byte-identical port from
-; micros 09/12 (md5-verified). SlotCorner: byte-identical port from
-; micros 10/11 (renamed from v5's SlotBox - returns ONLY a corner,
-; never a size; see the header comment in the micros for the bug this
-; fixed). TakeSnapshot/HasChanged: byte-identical strided port from
-; micro 10 (verbatim in 10/11).
-;
-; Layout is defined ONCE here (confirmed screen-accurate across all of
-; Stage 1) instead of every micro/bot redeclaring the same 8 constants.
-; EMPTY_COLOR/EMPTY_TOL are likewise fixed calibration constants, not
-; per-bot config - v5's own comments call EMPTY_COLOR stable across
-; sessions and never needing recalibration.
+; INV_GRID/BANK_GRID are GridSpec instances with this setup's measured
+; calibration (confirmed live, micros 12/13/24). Slot fullness is
+; deliberately 4-point sampling against the empty-background UI color -
+; slot positions are computed, not searched.
 ; ============================================================
 
-INV_FIRST_X := 2099, INV_FIRST_Y := 801
-INV_COLS := 4, INV_ROWS := 7
-INV_SLOT_W := 72, INV_SLOT_H := 64
-INV_GAP_X := 12, INV_GAP_Y := 8
+INV_GRID := GridSpec(2099, 801, 4, 7, 72, 64, 12, 8)
 
-; ---------- inventory addressing ----------
+; Single row only (v6's measured limit) - extend rows only after a real
+; second-row measurement.
+BANK_GRID := GridSpec(625, 203, 999, 1, 72, 64, 24, 0)
 
-; 1-based, row-major slot index (1 = top-left, left-to-right then
-; top-to-bottom) -> that slot's screen-space CENTER.
 SlotCenter(slotIndex, &x, &y) {
-    total := INV_COLS * INV_ROWS
-    if (slotIndex < 1 || slotIndex > total)
-        throw ValueError("SlotCenter: slotIndex " slotIndex " out of range (1.." total ")")
-
-    col := Mod(slotIndex - 1, INV_COLS)
-    row := (slotIndex - 1) // INV_COLS
-
-    cornerX := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
-    cornerY := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
-
-    x := cornerX + INV_SLOT_W // 2
-    y := cornerY + INV_SLOT_H // 2
+    GridCenter(INV_GRID, slotIndex, &x, &y)
 }
 
-; 1-based, row-major slot index -> that slot's top-left CORNER only -
-; no size output. A caller offsets a box of its own choosing from this
-; corner; the box's size never changes based on which slot it's
-; offset from (this was a real bug in v5's SlotBox, fixed here).
 SlotCorner(slotIndex, &x, &y) {
-    total := INV_COLS * INV_ROWS
-    if (slotIndex < 1 || slotIndex > total)
-        throw ValueError("SlotCorner: slotIndex " slotIndex " out of range (1.." total ")")
-
-    col := Mod(slotIndex - 1, INV_COLS)
-    row := (slotIndex - 1) // INV_COLS
-
-    x := INV_FIRST_X + col * (INV_SLOT_W + INV_GAP_X)
-    y := INV_FIRST_Y + row * (INV_SLOT_H + INV_GAP_Y)
+    GridCorner(INV_GRID, slotIndex, &x, &y)
 }
-
-; ---------- bank interface slot grid (distinct from the player's own
-; inventory grid above - different origin, same corner+size addressing
-; style). Row-major, 1-based. Live-measured horizontally only so far
-; (slots 1-3 confirmed colinear at y=203) - no BANK_SLOT_GAP_Y/rows-per-
-; row yet, so this only walks a single row. Extend when a bot needs
-; slot >8ish (wherever row 2 actually starts) with real measured values,
-; not a guess. ----------
-
-BANK_SLOT_FIRST_X := 625
-BANK_SLOT_FIRST_Y := 203
-BANK_SLOT_W := 72
-BANK_SLOT_H := 64
-BANK_SLOT_GAP_X := 24
 
 BankSlotCenter(slotIndex, &x, &y) {
-    cornerX := BANK_SLOT_FIRST_X + (slotIndex - 1) * (BANK_SLOT_W + BANK_SLOT_GAP_X)
-    x := cornerX + BANK_SLOT_W // 2
-    y := BANK_SLOT_FIRST_Y + BANK_SLOT_H // 2
+    GridCenter(BANK_GRID, slotIndex, &x, &y)
 }
 
-; True if OCCUPIED: any sample point no longer matches the empty-
-; background color.
-;
-; BUG FIXED LIVE (2026-07-20): the original 4-point sample (center + 3
-; corners) + a fairly loose tolerance (30) let some item icons read as
-; "empty" - a particular log sprite's art happened to be background-
-; colored at all 4 of those exact pixel offsets, so a genuinely full
-; slot (blocking the whole "inventory full -> bank" transition) was
-; silently misreported as empty. First fix attempt widened to 9 sample
-; points, but PixelGetColor's ~5-7ms fixed per-call cost made that
-; noticeably slower per check (called every poll tick via the
-; inventory-full condition) - reverted back to 4 points and instead
-; tightened the tolerance from 30 to 5 (a real item's color needs to be
-; within 5 per channel of EMPTY_COLOR at ALL 4 points to slip through
-; now, vs. 30 before - much narrower room for a coincidental match)
-; without paying for more PixelGetColor calls. Try 3 points next if 4
-; still isn't fast enough - keep tolerance tight if you do.
-; File-level (not function-static) so SlotProbe below can share the
-; exact same values SlotFull actually checks against - duplicating
-; these into a second function risks the two silently drifting apart.
+; File-level so SlotProbe shares the exact values SlotFull checks -
+; never duplicate these into a second function.
 SLOT_FULL_OFFSETS := [[0, 0], [-14, -12], [14, -12], [0, 12]]
 SLOT_EMPTY_COLOR := 0x3F3629
 SLOT_EMPTY_TOL := 5
 
+; True if OCCUPIED: any sample point differs from the empty color.
 SlotFull(slotIndex) {
     SlotCenter(slotIndex, &cx, &cy)
     for off in SLOT_FULL_OFFSETS {
@@ -109,13 +42,8 @@ SlotFull(slotIndex) {
     return false
 }
 
-; Diagnostic twin of SlotFull - logs the actual on-screen color at each
-; of SlotFull's sample points plus whether it's within tolerance of
-; "empty", instead of just the true/false result. Use this against a
-; slot you can SEE is occupied in-game whenever SlotFull disagrees -
-; it tells you exactly which sample point(s) are (or aren't) the
-; problem, so tolerance/offsets get tuned from real measured colors
-; instead of another guess.
+; Diagnostic twin of SlotFull: logs each sample point's real color and
+; verdict. Use when SlotFull disagrees with what you can see.
 SlotProbe(slotIndex) {
     SlotCenter(slotIndex, &cx, &cy)
     msg := "SlotProbe " slotIndex " (" cx "," cy "):"
@@ -132,29 +60,8 @@ SlotProbe(slotIndex) {
     return msg
 }
 
-; True if ANY of the 28 slots reads not-full (empty). Used by
-; Motherlode's "wait until at least one slot emptied" hopper-deposit
-; check - deliberately "any" slot, not one specific slot, since gems
-; don't drain through the hopper and can sit in any slot indefinitely
-; (a check pinned to one specific slot could hang forever on a stray
-; gem). NOTE: this is a different question from "is the inventory
-; full" - that check needs a wholly separate AND-gate over two slots
-; to avoid a stray gem causing false positives THERE too; see
-; Bots\motherlode.ahk's InventoryFull().
-;
-; CORRECTNESS-FIRST, NOT YET SPEED-TUNED: worst case (nothing has
-; emptied yet, which is exactly the case this gets called in a tight
-; WaitUntil poll loop) scans all 28 slots via SlotFull - at roughly
-; 4 PixelGetColor calls each (~5-7ms/call), that's up to ~28 * 4 * 6ms
-; =~ 670ms for one AnySlotEmpty() call, which can dominate a short
-; pollMs. SlotFull itself went through exactly this correctness-then-
-; measure cycle this session (9 points -> back to 4 + tighter
-; tolerance once the real cost was measured live) - do the same here
-; if this proves too slow in practice: e.g. stop scanning at whichever
-; slot order items actually leave first (verify live, don't guess), or
-; check only a handful of representative slots instead of all 28.
 AnySlotEmpty() {
-    total := INV_COLS * INV_ROWS
+    total := INV_GRID.cols * INV_GRID.rows
     loop total {
         if (!SlotFull(A_Index))
             return true
@@ -162,11 +69,6 @@ AnySlotEmpty() {
     return false
 }
 
-; True if EVERY slot in the given list reads full. Generalizes the
-; hand-rolled AND-gate loops that showed up independently in
-; Motherlode's InventoryFull() (2 slots) and its sack-withdrawal check
-; (3 slots, `SACK_SLOTS`) - promoted here (2026-07-20) once the same
-; "all of these specific slots must be full" shape appeared 3 times.
 AllSlotsFull(slots) {
     for slot in slots {
         if (!SlotFull(slot))
@@ -175,9 +77,6 @@ AllSlotsFull(slots) {
     return true
 }
 
-; True if EVERY slot in the given list reads empty - the mirror check
-; used to confirm a deposit actually registered across several slots
-; at once (Motherlode's sack-deposit confirm).
 AllSlotsEmpty(slots) {
     for slot in slots {
         if (SlotFull(slot))
@@ -186,50 +85,18 @@ AllSlotsEmpty(slots) {
     return true
 }
 
-; ---------- watch-box (pixel-box snapshot + change detection) ----------
-;
-; Samples roughly targetSamples points spread evenly across a w x h box
-; whose top-left corner is x,y - NOT every pixel (exhaustive sampling
-; measured ~6 SECONDS for an 832-pixel box; strided sampling took
-; ~350ms - see working rule 8). The stride is DERIVED from box size +
-; targetSamples, not fixed, so a big box and a small box both cost
-; about the same regardless of raw pixel area. Returns one snapshot
-; object bundling the samples with the stride/size used to take them,
-; so HasChanged always re-samples at the exact same points.
-TakeSnapshot(x, y, w, h, targetSamples := 50) {
-    scale := Sqrt(w * h / targetSamples)
-    strideX := Max(1, Round(scale))
-    strideY := Max(1, Round(scale))
+; Shift-click drop; settles afterward so the next check isn't racing
+; the drop animation. Click jitter (standard #29) proportional to the
+; slot's own cell size.
+DropSlot(slotIndex, settleMs := 100, preDelayMs := 0, postDelayMs := 0) {
+    global INV_GRID
+    if (preDelayMs > 0)
+        Pause(preDelayMs)
 
-    colors := []
-    yy := 0
-    while (yy < h) {
-        xx := 0
-        while (xx < w) {
-            colors.Push(PixelGetColor(x + xx, y + yy))
-            xx += strideX
-        }
-        yy += strideY
-    }
-    return {colors: colors, w: w, h: h, strideX: strideX, strideY: strideY}
-}
+    SlotCenter(slotIndex, &x, &y)
+    ClickAt(x, y, false, true, settleMs, 100, 0, 0, BlockJitterPx(INV_GRID.cellW, INV_GRID.cellH))
+    Pause(settleMs)
 
-; True if any sampled point now differs from the snapshot's baseline.
-; x,y: the box's CURRENT top-left corner (usually unchanged from the
-; snapshot, but kept separate in case the box legitimately moves).
-HasChanged(snapshot, x, y, tol) {
-    idx := 1
-    yy := 0
-    while (yy < snapshot.h) {
-        xx := 0
-        while (xx < snapshot.w) {
-            current := PixelGetColor(x + xx, y + yy)
-            if (!ColorClose(current, snapshot.colors[idx], tol))
-                return true
-            idx += 1
-            xx += snapshot.strideX
-        }
-        yy += snapshot.strideY
-    }
-    return false
+    if (postDelayMs > 0)
+        Pause(postDelayMs)
 }
