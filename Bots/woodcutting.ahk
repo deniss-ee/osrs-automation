@@ -1,9 +1,9 @@
 ; ============================================================
 ; v7 Bots\woodcutting.ahk
 ;
-; Loop: chop trees (TrackAndClick, two tree-overlay colors) until the
-; inventory is full -> click the bank marker (color search, top-right
-; quadrant) -> wait for + click the deposit-all image -> confirm empty
+; Loop: chop trees (TrackAndClick, single tree-overlay color) until the
+; inventory is full -> click the bank marker (color search, full game
+; zone) -> wait for + click the deposit-all image -> confirm empty
 ; -> repeat. Built entirely from confirmed v7 Lib composites - nothing
 ; new here (GatherBankLoop, TrackAndClick, DepositAllToBank, SearchZone,
 ; InstallBotHarness all already live-confirmed in Step 2).
@@ -11,8 +11,8 @@
 ; Calibration ported from v6 Bots\woodcutting.ahk's proven values
 ; (colors/tol/block size/track tuning/timeouts) - REF_X/Y switched to
 ; the v7 Lib CHAR_X/Y global. Bank marker is NEW config for this v7
-; version (color CC5D02, 19x19, top-right quadrant of the game zone,
-; via SearchZone) - different from v6's old bank marker.
+; version (color CC5D02, 19x19, full game-zone viewport search via
+; SearchZone) - different from v6's old bank marker.
 ;
 ; DEPOSIT-ALL BUTTON (2026-07-27): switched from DEPOSIT_BOX_IMAGE_*
 ; (deposit-box.png, 80x72 @ 775,765 - never detected live, see
@@ -77,11 +77,11 @@ PROGRESS_TIMEOUT_MS := 300000
 OVERALL_TIMEOUT_MS := 1800000
 POLL_MS := 200
 
-; --- Bank marker search zone (SearchZone, standard #22) - top-right
-; quadrant of the game zone. Swap to "full"/"area"/"fixed" here if this
+; --- Bank marker search zone (SearchZone, standard #22) - full
+; game-zone viewport. Swap to "quadrant"/"area"/"fixed" here if this
 ; ever needs narrowing/pinning.
 MARKER_ZONE := {mode: "full"}
-; MARKER_ZONE := {mode: "full"}
+; MARKER_ZONE := {mode: "quadrant", quadrant: "top-right"}
 ; MARKER_ZONE := {mode: "area", x: 0, y: 0, w: 0, h: 0, marginPx: 0}
 ; MARKER_ZONE := {mode: "fixed", x: 0, y: 0, w: 19, h: 19, marginPx: 0}
 

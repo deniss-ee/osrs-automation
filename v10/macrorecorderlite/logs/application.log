@@ -1,0 +1,7 @@
+2026-07-31 15:32:58 INFO  [AWT-EventQueue-0] nom.MacroRecorder - State RECORD 
+2026-07-31 15:33:20 INFO  [AWT-EventQueue-0] nom.actions.Recording - Create cycle 
+2026-07-31 15:33:20 INFO  [AWT-EventQueue-0] nom.MacroRecorder - State IDLE 
+2026-07-31 15:33:22 INFO  [AWT-EventQueue-0] nom.MacroRecorder - State RECORD 
+2026-07-31 15:33:31 INFO  [AWT-EventQueue-0] nom.actions.Recording - Create cycle 
+2026-07-31 15:33:31 INFO  [AWT-EventQueue-0] nom.MacroRecorder - State IDLE 
+2026-07-31 15:33:35 INFO  [AWT-EventQueue-0] nom.MacroRecorder - State RECORD 

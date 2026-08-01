@@ -13,45 +13,45 @@ is the fast-resume supplement, not a replacement.
 **ALL 26 MICROS BUILT AND LIVE-CONFIRMED (2026-07-23). Step 2 is
 COMPLETE — next up is Step 3: build `Bots\`.**
 
-**2026-07-27: WindMouse integrated (standard #29, micro 27 — NOT yet
-live-confirmed).** All game-input cursor movement now glides via
-`WindMouseMove` in `Act.ahk`. First live pass found it too slow, too
-straight, and firing a redundant second click per target. Fix #1
-(same day): physics retuned to 35/7/22/10 (from canonical 9/3/15/12),
-an overshoot-and-correct pass added (`WindMouseGlide` is now the raw
-physics loop; `WindMouseMove` wraps it with a chance of a near-miss +
-quick correction), `TrackAndClick`'s `cooldownMs` periodic reclick
-defaulted to 0/disabled (one real click per acquired target). Live
-retest: STILL slow. **Fix #2 (same day) - actual root cause**:
-Windows' default timer resolution is ~15.6ms, so `Sleep(1)` was really
-sleeping ~15.6ms, not 1ms - `WINDMOUSE_STEP_DELAY_MIN/MAX_MS` was
-being silently overridden by that rounding the whole time, which is
-why raising gravity/maxStep (fewer steps) barely moved the needle: the
-FIXED per-step tax dominated, not the step count. Tried
-`DllCall("winmm\timeBeginPeriod", "UInt", 1)` + step delay 1-3ms - live
-retest: WORSE, not better. **Fix #3 (same day) - what fix #2 got
-wrong**: `timeBeginPeriod` does NOT tighten AHK's own `Sleep()`/
-`Pause()` granularity (its message-pump wait doesn't honor it the way
-plain Sleep does) - `Sleep(1..3)` was STILL rounding up to the full
-~15.6ms tick, and unlike the old 0..1 range (where `Sleep(0)` was
-genuinely free ~half the time), 1..3 never hit that free case, so
-EVERY step now paid the full tax instead of ~half - hence "even
-slower." Real fix: stopped going through `Sleep`/`Pause` for the
-per-step delay entirely. New `WindMouseStepDelay()` in `Act.ahk` is a
-`QueryPerformanceCounter` busy-wait - genuine sub-ms precision,
-independent of Windows' Sleep granularity, still F6-interruptible
-(checks `g_StopRequested` itself, throws `BotStopped` like `Pause`
-does). `timeBeginPeriod` call left in place (harmless, may help
-elsewhere) but is NOT what makes per-step pacing accurate anymore.
-NOT yet live-reconfirmed after fix #3 - if it's STILL slow, the lever
-is `WINDMOUSE_STEP_DELAY_MIN/MAX_MS` first (now genuinely responsive,
-no Windows rounding involved), `WINDMOUSE_GRAVITY`/`MAX_STEP` second.
-Live re-confirm order: micro 27
-→ 08 (modifier reorder) → 10 (coordless right-click) → 18
-(shift-after-glide drop) → 21 (coordinate staleness + single-click
-behavior) → full woodcutting run. Watch-for: `TrackAndClick` coords
-are up to ~650ms stale at click time (remedy if misclicks appear:
-post-glide re-probe, not constant tuning). A full Lib audit ran
+**2026-07-27: WindMouse integrated, then replaced 2026-07-30 (standard
+#29). All game-input cursor movement glides via `HumanMove` in
+`Act.ahk` now — a minimum-jerk (Flash & Hogan) model promoted from
+`Tools\humanized-mouse.ahk`, not WindMouse.** WindMouse's physics-glide
+(gravity+wind, continuous curvy wander) went through a same-day tuning
+saga on 2026-07-27 (too slow → retuned physics → still slow → traced to
+Windows' ~15.6ms `Sleep` rounding silently eating the step-delay knob →
+`timeBeginPeriod` attempted, made it WORSE (doesn't tighten AHK's own
+`Sleep`) → real fix was a `QueryPerformanceCounter` busy-wait instead of
+`Sleep`/`Pause` for per-step pacing). That busy-wait technique is still
+correct and still in use (renamed `GlideStepDelay`) — but on 2026-07-30,
+live feedback made clear the WindMouse *algorithm itself* (continuous
+curvy physics wander) was never going to feel right: the user plays
+like an expert who already knows exactly where every UI element is —
+near-instant, almost-direct movement, tremor only leaving rest and
+settling on target, not throughout. WindMouse (`WindMouseGlide`/
+`WindMouseMove`, the 5 `WINDMOUSE_OVERSHOOT_*` overshoot-and-correct
+constants) was deleted outright and replaced with `HumanGlide`/
+`HumanMove` — see standard #29 below for the full design (edge-only
+tremor via `TremorWeight`, no ballistic-miss/correction phase since
+`BlockJitterPx`/`JitterPoint` already jitter the aim point upstream,
+and the worked speed arithmetic that keeps this project from repeating
+the "retuned blind, still slow" mistake a second time). Also added,
+then REMOVED same day: `IdleWander` (small random cursor hops during
+long idle stretches, wired into `TrackAndClick` only, opt-in via
+`idleWanderAfterMs`) — live-tested, didn't work as intended, ripped
+out entirely (`IdleWander`/`IDLE_WANDER_*` gone from `Act.ahk`,
+`idleWanderAfterMs` gone from `TrackAndClick`, `micro\28-idle-wander`
+deleted). Not worth re-attempting without a clearer idea of what
+specifically felt wrong about it.
+NOT yet live-reconfirmed after the 2026-07-30 rewrite — live-confirm
+order: micro 27 (renamed `27-human-move`) → 08 (modifier reorder) → 10
+(coordless right-click) → 18 (shift-after-glide drop) → 21 (coordinate
+staleness + single-click behavior) → full woodcutting run. Watch-for:
+`TrackAndClick` coords can be stale at
+click time by roughly one glide's duration (remedy if misclicks appear:
+post-glide re-probe, not constant tuning — same watch-for as before,
+just now bounded by `HumanMove`'s much shorter worst-case glide time
+instead of WindMouse's). A full Lib audit ran
 as the pre-Step-3 gate (standard #24): opts unpacking deduped via
 `Opt()`, `POLL_MS_DEFAULT := 100` everywhere, `ScreenRegion()`,
 `FindAndClickBlock`/`Image` merged onto a shared `WaitThenClick`
@@ -381,7 +381,7 @@ do not redefine them per script, reference them.
     config. Pass `CHAR_X`/`CHAR_Y` directly into the opts object instead
     of re-declaring them under a new name.
 
-27. **`deposit-box.png` (775,765,80×72) is a SEPARATE, real fixed Lib
+27. **`deposit-box.png` (721,765,80×72) is a SEPARATE, real fixed Lib
     global (`DEPOSIT_BOX_IMAGE_PATH/X/Y/W/H`, `Find.ahk`) from
     `BANK_DEPOSIT_IMAGE_*` (deposit-bank.png, 1327,963,72×72, micro
     24)** — confirmed live 2026-07-23 these are two different real
@@ -399,52 +399,81 @@ do not redefine them per script, reference them.
     just reference the region constant directly, no `SearchZone` call
     needed for genuinely fixed assets.
 
-29. **All game-input cursor movement flows through `WindMouseMove`
-    (Act.ahk, micro 27)** — the BenLand100 WindMouse glide, the only
-    movement path (no instant-move fallback). `ClickAt` and
-    `RightClickMenuItem` are the only raw click sites and both glide;
-    the diagnostic cursor-parking `MouseMove`s in micros are exempt
-    (not game input). The glide is F6-interruptible (`Pause` on every
-    changed pixel), which is WHY `ClickAt` presses Ctrl/Shift AFTER
-    the glide, not before: a mid-glide `BotStopped` would leak a held
-    key that nothing tracks (`g_PendingModifierKeys` is only set after
-    the click). Ends with an exact-landing snap — `ClickAt` clicks at
-    current position, so 0px landing error is load-bearing. Promoted
-    from `Tools\windmouse.ahk` (deleted) once ClickAt +
-    RightClickMenuItem became its second caller.
-    - **Retuned 2026-07-27 off canonical 9/3/15/12** (live feedback:
-      too slow, too straight) to `WINDMOUSE_GRAVITY/WIND/MAX_STEP/
-      TARGET_AREA := 35/7/22/10`. Higher wind = more lateral push per
-      step = visible curve instead of a near-straight line. This alone
-      did NOT fix the speed complaint (still reported slow) — see next.
-    - **Timer resolution bug (2026-07-27, the actual root cause of
-      "still slow")**: Windows' default timer resolution is ~15.6ms,
-      so `Sleep(1)` was really sleeping ~15.6ms, not 1ms —
-      `WINDMOUSE_STEP_DELAY_MIN/MAX_MS` meant nothing; every delayed
-      step paid a fixed ~15.6ms tax regardless of the requested value,
-      which is also why raising gravity/maxStep (fewer steps) barely
-      helped — the FIXED per-step tax dominated over step count. First
-      attempted fix (`DllCall("winmm\timeBeginPeriod", "UInt", 1)` +
-      step delay 1-3ms) made it WORSE — `timeBeginPeriod` does NOT
-      tighten AHK's own `Sleep()`, so `Sleep(1..3)` still rounded up to
-      the full ~15.6ms tick, and unlike the old 0..1 range (where
-      `Sleep(0)` was genuinely free ~half the time), 1..3 never hit
-      that free case — EVERY step paid the tax instead of ~half.
-      Actual fix: `WindMouseStepDelay()`, a `QueryPerformanceCounter`
-      busy-wait — genuine sub-ms precision independent of Windows'
-      Sleep granularity, still F6-interruptible on its own (checks
-      `g_StopRequested`, throws `BotStopped`, same contract as
-      `Pause`). The `timeBeginPeriod` call is left in (harmless) but
-      is no longer what makes per-step pacing accurate.
-    - **Overshoot-and-correct**: `WindMouseMove` is a thin wrapper
-      around the actual physics loop (renamed `WindMouseGlide`).
-      `WINDMOUSE_OVERSHOOT_CHANCE` (0.35) of moves aim at a random
-      point 4-14px off the real target first, pause 30-90ms (the
-      "notice" beat), then glide the short remaining distance to the
-      exact target via a second `WindMouseGlide` call. The click only
-      ever fires after the corrective leg, so exact landing is
-      unaffected — this is purely a cosmetic pass, not a targeting
-      change.
+29. **All game-input cursor movement flows through `HumanMove`
+    (Act.ahk, micro 27)** — a minimum-jerk glide, the only movement
+    path (no instant-move fallback). `ClickAt` and `RightClickMenuItem`
+    are the only raw click sites and both glide; the diagnostic
+    cursor-parking `MouseMove`s in micros are exempt (not game input).
+    The glide is F6-interruptible (`GlideStepDelay` on every changed
+    pixel), which is WHY `ClickAt` presses Ctrl/Shift AFTER the glide,
+    not before: a mid-glide `BotStopped` would leak a held key that
+    nothing tracks (`g_PendingModifierKeys` is only set after the
+    click). Ends with an exact-landing snap — `ClickAt` clicks at
+    current position, so 0px landing error is load-bearing.
+    - **2026-07-27: first version was WindMouse** (BenLand100 physics
+      glide, promoted from `Tools\windmouse.ahk`) — went through a
+      same-day tuning saga (too slow → retuned physics, still slow →
+      traced to Windows' ~15.6ms `Sleep` rounding silently eating the
+      step-delay knob → `timeBeginPeriod` attempted, made it WORSE →
+      real fix was a `QueryPerformanceCounter` busy-wait instead of
+      `Sleep`/`Pause` for per-step pacing, since `timeBeginPeriod`
+      doesn't tighten AHK's own `Sleep`). That busy-wait is still
+      correct and still used today (see `GlideStepDelay` below) — the
+      full postmortem is preserved in `Lib\Act.ahk`'s own comment above
+      it and in this file's "Where things stand" section, since the
+      *lesson* (Windows Sleep granularity, how to actually fix it)
+      outlived the WindMouse algorithm itself.
+    - **2026-07-30: WindMouse replaced entirely with `HumanMove`/
+      `HumanGlide`**, promoted/adapted from `Tools\humanized-mouse.ahk`
+      (deleted once promoted, same precedent as `Tools\windmouse.ahk`).
+      Reason: WindMouse's continuous curvy physics wander never matched
+      what was wanted — an expert who already knows exactly where every
+      UI element is, moving near-instantly with tremor only leaving
+      rest and settling on target, not throughout. `HumanGlide` is a
+      minimum-jerk (Flash & Hogan) position blend along a subtly bowed
+      arc — `MinJerk(t, skew)` (quintic, zero velocity+accel at both
+      ends) drives a quadratic-Bezier blend toward the target, with
+      per-sample tremor weighted by `TremorWeight(t, edgeFrac)` — the
+      INVERSE of the source file's original mid-flight-peaked wobble:
+      flat ZERO across the whole middle band, easing up to full
+      `HUMANMOVE_TREMOR_PX` strength only in the first/last
+      `HUMANMOVE_TREMOR_EDGE_FRAC` (0.15) of the path. No ballistic-
+      miss/correction phase (the source file's own `HumanMove` had one)
+      — `BlockJitterPx`/`JitterPoint` already pick a slightly-off aim
+      point before this is ever called, so a second, independent aim-
+      error model on top would double-humanize the same decision and
+      cost real time for nothing. `HumanMove(x1,y1)` is now just a thin
+      wrapper: `HumanGlide(x1,y1)`.
+      Speed arithmetic (steps = `clamp(round(dist/HUMANMOVE_PX_PER_STEP),
+      MIN,MAX)` = `clamp(round(dist/8), 5, 30)`, delay uniform in
+      `[2,5]ms`, avg 3.5ms/step, entirely via `GlideStepDelay`, not
+      Sleep/Pause): 100px ≈ 13 steps ≈ 26-65ms; 240px+ (the clamp point)
+      through 1500px all plateau at 30 steps ≈ 60-150ms, since
+      `HUMANMOVE_MAX_STEPS` caps SAMPLE COUNT not step size — a long
+      move just takes proportionally bigger per-sample jumps, not more
+      samples. Conservative upper bound: samples near the eased ends
+      often round to the same pixel and get skipped (no delay paid), so
+      real elapsed time is normally below this table. Redo this
+      arithmetic before retuning these constants — the 2026-07-27
+      WindMouse saga got bitten hard by skipping it.
+    - **`GlideStepDelay`** (renamed from `WindMouseStepDelay`, body
+      unchanged) — still the `QueryPerformanceCounter` busy-wait; still
+      the only way to get real sub-tick pacing on this system, used by
+      `HumanGlide`'s per-step pacing.
+    - **`IdleWander` — added 2026-07-30, REMOVED same day.** Small
+      random cursor hops (via `HumanGlide`) during long idle stretches,
+      wired into `TrackAndClick`'s stable-and-not-clicking branch via an
+      opt-in `idleWanderAfterMs`. Design included a safety mechanism
+      (avoid-region re-roll around the tracked block's own search box,
+      so wandering couldn't occlude the next search tick) that worked as
+      designed, and a timing knob that got tuned down live (20s → 4s to
+      actually fire on shorter chop cycles) — but live testing found the
+      overall feature just didn't work as intended, so it was ripped out
+      completely rather than kept half-working: `IdleWander`/
+      `IDLE_WANDER_*` gone from `Act.ahk`, `idleWanderAfterMs`/
+      `lastMouseActivityAt` gone from `TrackAndClick`, `micro\
+      28-idle-wander.ahk` deleted. Not re-attempting without a clearer
+      idea of what specifically felt wrong.
     - **One real click per acquired target is the human baseline**:
       `TrackAndClick`'s `cooldownMs` (the periodic reclick-while-stable
       interval) now defaults to 0 = disabled, not a required opt. A
@@ -468,7 +497,7 @@ do not redefine them per script, reference them.
       capture, nothing upstream naturally varies it. `Act.ahk`'s
       `JitterPoint(x, y, jitterPx, &jx, &jy)` is applied in `ClickAt`
       (trailing `jitterPx := -1` param) and `RightClickMenuItem`'s
-      right-click, BEFORE the glide - `WindMouseGlide`'s exact-landing
+      right-click, BEFORE the glide - `HumanGlide`'s exact-landing
       guarantee still holds, it just aims at a slightly different spot
       each time.
     - **Made proportional 2026-07-28** (live feedback: jitter should
@@ -504,9 +533,11 @@ do not redefine them per script, reference them.
   `IsAnyColorAt`, `FindAnyFilledBlock`, `WatchIndicator`, `BlockAtPoint`
   (marginPx default 0), `ImagePattern`, `FindImage`,
   `WaitForImage`/`WaitForImageGone`, `TakeSnapshot`/`HasChanged`.
-- `Lib\Act.ahk` — `WindMouseMove` + `WINDMOUSE_*` physics globals
-  (standard #29, micro 27), `ClickAt` (glide, then modifiers, then
-  click; async modifier release), `PressKey`,
+- `Lib\Act.ahk` — `HumanGlide`/`HumanMove` + `HUMANMOVE_*` tuning
+  globals, `GlideStepDelay` (busy-wait pacing), `RandTri`/`MinJerk`/
+  `TremorWeight` (glide math), `JitterPoint`/`BlockJitterPx` +
+  `CLICK_JITTER_*` globals (standard #29, micro 27), `ClickAt` (glide,
+  then modifiers, then click; async modifier release), `PressKey`,
   `ReleasePendingModifiersNow`, `g_PendingModifierKeys`.
 - `Lib\Steps.ahk` — `RightClickMenuItem`, `WaitThenClick` (shared
   engine, standard #24), `FindAndClickBlock`, `FindAndClickImage`
@@ -527,13 +558,13 @@ do not redefine them per script, reference them.
 - `micro\01`–`26` — ALL confirmed live, see each file's own header for
   what it validates and its LIVE CONFIRM steps. (Old micro 18 was
   written, dropped, and deleted — see standard #12.) Step 2 is complete.
-- `micro\27-wind-move.ahk` — WindMouse glide validation (standard #29),
-  added mid-Step-3 alongside the `WindMouseMove` promotion into Act.ahk.
-  NOT yet confirmed live.
-- `Tools\humanized-mouse.ahk` — standalone demo of a competing
-  hand-built movement model (ballistic+correction); not chosen, not in
-  Lib, left as-is. (`Tools\windmouse.ahk` was promoted into Act.ahk and
-  deleted — standard #29.)
+- `micro\27-human-move.ahk` — `HumanMove`/`HumanGlide` validation
+  (standard #29). Was `27-wind-move.ahk` (validated `WindMouseMove`)
+  until the 2026-07-30 rewrite renamed it in place - same slot, new
+  algorithm underneath. NOT yet confirmed live.
+- `Tools\` is now empty — both mover demos it ever held
+  (`windmouse.ahk`, `humanized-mouse.ahk`) have been promoted into
+  `Act.ahk` and deleted, standard #29.
 - `Images\deposit-motherlode.png` (80×72, copied from v6, placeholder
   test asset), `li_bank-deposit-box.png` (332×30, user-supplied real
   menu-item asset), `sudoku-slot.png` (72×64, copied from v6, used by

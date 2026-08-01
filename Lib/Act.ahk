@@ -1,13 +1,13 @@
 ; ============================================================
 ; v7 Lib\Act.ahk - mouse movement, click + keypress primitives
 ;
-; All game-input cursor movement goes through WindMouseMove (standard
-; #29) - a physics glide, F6-interruptible via Pause on every changed
-; pixel. Because it can throw BotStopped mid-glide, ClickAt presses
-; Ctrl/Shift AFTER the glide: a pre-glide press would leak a held key
-; on F6 (g_PendingModifierKeys is only set after the click, so nothing
-; would ever release it). After the press only Sleep+Click run -
-; neither throws - so no leak window remains.
+; All game-input cursor movement goes through HumanMove (standard #29)
+; - a fast minimum-jerk glide, F6-interruptible via GlideStepDelay on
+; every changed pixel. Because it can throw BotStopped mid-glide,
+; ClickAt presses Ctrl/Shift AFTER the glide: a pre-glide press would
+; leak a held key on F6 (g_PendingModifierKeys is only set after the
+; click, so nothing would ever release it). After the press only
+; Sleep+Click run - neither throws - so no leak window remains.
 ;
 ; ClickAt releases Ctrl/Shift ASYNCHRONOUSLY (standard #7): holding a
 ; key costs no real time, so ClickAt returns right after the click and
@@ -38,7 +38,7 @@ g_PendingModifierKeys := []
 ; default) falls back to the flat CLICK_JITTER_MAX_PX for the rare
 ; call with no size info at all (e.g. a pinned marker point). Applied
 ; to the point BEFORE the glide (JitterPoint, called from ClickAt and
-; RightClickMenuItem's right-click), not after - WindMouseGlide's
+; RightClickMenuItem's right-click), not after - HumanGlide's
 ; exact-landing guarantee still holds, it just aims at a slightly
 ; different spot each time. CLICK_JITTER_MAX_PX raised to 40 (from an
 ; earlier flat 3, then a hand-tuned 10) so it acts as a safety ceiling
@@ -68,28 +68,23 @@ JitterPoint(x, y, jitterPx, &jx, &jy) {
     jy := y + Random(-jitterPx, jitterPx)
 }
 
-; ATTEMPTED FIX that made it WORSE (2026-07-27, keeping the postmortem -
-; don't redo this): raising the process timer resolution via
-; DllCall("winmm\timeBeginPeriod", "UInt", 1) does NOT tighten AHK's
-; own Sleep()/Pause() - live-confirmed: bumping WINDMOUSE_STEP_DELAY's
-; minimum from 0 to 1ms made every glide slower, not faster, because
-; Sleep(1..3) was STILL rounding up to a full ~15.6ms Windows tick
-; regardless of timeBeginPeriod, and unlike the old 0..1 range (where
-; Sleep(0) was genuinely free ~half the time), the new range never hit
-; that free case - so EVERY step started paying the full ~15.6ms tax
-; instead of ~half of them. Real fix below: stop going through Sleep()
-; entirely for this - a QueryPerformanceCounter busy-wait gives true
-; sub-millisecond precision. Spinning a core for 1-3ms, a few dozen
-; times per click, is nothing; it's the only way to get real ms-level
-; timing on Windows without fighting its scheduler.
-WindMouseStepDelay(ms) {
+; Sub-tick pacing (was WindMouseStepDelay - kept, renamed, body
+; unchanged): 2026-07-27 postmortem, still true - raising the process
+; timer resolution via DllCall("winmm\timeBeginPeriod", "UInt", 1) does
+; NOT tighten AHK's own Sleep()/Pause(); a request for Sleep(1..3) was
+; live-confirmed to still round up to a full ~15.6ms Windows tick
+; regardless. The only way to get real sub-tick precision on this
+; system is to not go through Sleep() at all - a QueryPerformanceCounter
+; busy-wait. Spinning a core for a few ms, a few dozen times per glide,
+; is nothing. Used by HumanGlide's per-step pacing.
+GlideStepDelay(ms) {
     global g_StopRequested
     static freq := 0
     if (!freq)
         DllCall("QueryPerformanceFrequency", "Int64*", &freq)
 
     if (g_StopRequested) {
-        LogLine("WindMouseStepDelay: stop flag seen - throwing BotStopped")
+        LogLine("GlideStepDelay: stop flag seen - throwing BotStopped")
         throw BotStopped()
     }
 
@@ -102,132 +97,153 @@ WindMouseStepDelay(ms) {
     }
 
     if (g_StopRequested) {
-        LogLine("WindMouseStepDelay: stop flag seen after wait - throwing BotStopped")
+        LogLine("GlideStepDelay: stop flag seen after wait - throwing BotStopped")
         throw BotStopped()
     }
 }
 
-; WindMouse physics - retuned live 2026-07-27 off the algorithm's
-; canonical 9/3/15/12 defaults, which read as too slow AND too straight
-; on a real screen. Higher gravity/maxStep means fewer, bigger steps
-; (faster overall, since step COUNT - not the physics params - drives
-; wall-clock time via WINDMOUSE_STEP_DELAY_*); higher wind means more
-; lateral push per step (visible curve, not a straight line).
-WINDMOUSE_GRAVITY := 10           ; strength of pull toward the target each step
-WINDMOUSE_WIND := 10             ; max random curvature magnitude
-WINDMOUSE_MAX_STEP := 15          ; max pixels of velocity per step
-WINDMOUSE_TARGET_AREA := 10       ; distance at which wind/step damping engages
-
-; The real speed lever: nothing sets SendMode, so per-step
-; MouseMove(...,0) is SendInput-instant and WindMouseStepDelay (the
-; spin-wait above, NOT Sleep/Pause) is the ONLY wall-clock pacing - now
-; genuinely accurate to the millisecond, so 1-3ms per delayed step is
-; the real per-step cost - small enough to stay snappy, large enough to
-; still read as a human cadence rather than an instant teleport.
-WINDMOUSE_STEP_DELAY_MIN_MS := 1
-WINDMOUSE_STEP_DELAY_MAX_MS := 3
-
-; Overshoot-and-correct (standard #29): a real human doesn't always
-; land dead-on their first approach - they land a few px off, notice,
-; and snap back. WINDMOUSE_OVERSHOOT_CHANCE of moves aim at a random
-; point OVERSHOOT_MIN..MAX_PX away from the real target first, pause
-; briefly (the "notice" beat), then glide the short remaining distance
-; to the exact target. The click itself only ever fires after the
-; corrective leg, so this is purely cosmetic - landing is still exact.
-WINDMOUSE_OVERSHOOT_CHANCE := 0.35
-WINDMOUSE_OVERSHOOT_MIN_PX := 4
-WINDMOUSE_OVERSHOOT_MAX_PX := 14
-WINDMOUSE_OVERSHOOT_PAUSE_MIN_MS := 30
-WINDMOUSE_OVERSHOOT_PAUSE_MAX_MS := 90
-
-; Public entry point: current mouse position -> (x1,y1), with a chance
-; of an intentional near-miss + quick correction (see
-; WINDMOUSE_OVERSHOOT_* above). The correction leg re-runs the same
-; physics glide (WindMouseGlide) over a short distance, so it inherits
-; the same F6-interruptibility and exact-landing guarantee.
-WindMouseMove(x1, y1) {
-    global WINDMOUSE_OVERSHOOT_CHANCE, WINDMOUSE_OVERSHOOT_MIN_PX, WINDMOUSE_OVERSHOOT_MAX_PX
-    global WINDMOUSE_OVERSHOOT_PAUSE_MIN_MS, WINDMOUSE_OVERSHOOT_PAUSE_MAX_MS
-
-    if (Random(0.0, 1.0) < WINDMOUSE_OVERSHOOT_CHANCE) {
-        angle := Random(0.0, 6.283185307)
-        overshootPx := Random(WINDMOUSE_OVERSHOOT_MIN_PX, WINDMOUSE_OVERSHOOT_MAX_PX)
-        aimX := Round(x1 + Cos(angle) * overshootPx)
-        aimY := Round(y1 + Sin(angle) * overshootPx)
-        WindMouseGlide(aimX, aimY)
-        Pause(Random(WINDMOUSE_OVERSHOOT_PAUSE_MIN_MS, WINDMOUSE_OVERSHOOT_PAUSE_MAX_MS))
-    }
-    WindMouseGlide(x1, y1)
+; Center-weighted random (triangular): mean of two uniforms. Promoted
+; from Tools\humanized-mouse.ahk unchanged - human parameter spreads
+; cluster around a typical value; a flat uniform spread is itself a
+; statistical tell.
+RandTri(lo, hi) {
+    return (Random(lo, hi) + Random(lo, hi)) / 2
 }
 
-; WindMouse (BenLand100): current mouse position -> (x1,y1). Gravity
-; toward the target plus a wind term damped by 1/sqrt(3) each step and
-; re-randomized by 1/sqrt(5) of the remaining distance, so curvature is
-; strong early and fades near arrival. Velocity clamps to maxStep
-; (itself shrinking inside targetArea) so the cursor decelerates into
-; the target. Only moves when the rounded pixel actually changes; ends
-; with a snap to the exact target (the loop exits at dist<1, which can
-; leave the last sent pixel 1px off - ClickAt clicks at current
-; position, so exact landing is load-bearing). Per-step pacing goes
-; through WindMouseStepDelay (spin-wait), not Pause/Sleep - see its
-; comment for why. Not called directly by anything outside
-; WindMouseMove - both the aim leg and the corrective leg of an
-; overshoot go through here.
-WindMouseGlide(x1, y1) {
-    global WINDMOUSE_GRAVITY, WINDMOUSE_WIND, WINDMOUSE_MAX_STEP, WINDMOUSE_TARGET_AREA
-    global WINDMOUSE_STEP_DELAY_MIN_MS, WINDMOUSE_STEP_DELAY_MAX_MS
+; Minimum-jerk position profile (Flash & Hogan) - promoted unchanged
+; from Tools\humanized-mouse.ahk. Zero velocity AND acceleration at
+; both ends, bell-shaped velocity between; skew warps peak timing
+; without disturbing either endpoint.
+MinJerk(t, skew) {
+    tw := t ** skew
+    return 10 * tw ** 3 - 15 * tw ** 4 + 6 * tw ** 5
+}
 
-    MouseGetPos(&x, &y)
-    vx := 0, vy := 0, wx := 0, wy := 0
-    m0 := WINDMOUSE_MAX_STEP
-    lastX := Round(x)
-    lastY := Round(y)
+; Tremor weight in [0,1] for path-position t in [0,1] - the INVERSE of
+; Tools\humanized-mouse.ahk's original mid-flight-peaked wobble
+; (standard #29, 2026-07-30 rewrite): a real expert's hand isn't
+; shaking mid-flick, it wavers only leaving rest and settling onto the
+; target. Nonzero only within edgeFrac of either end; flat ZERO across
+; the whole middle so a fast glide reads as clean and controlled, not
+; shaky throughout. d = distance from the nearest end (0 at either
+; endpoint, 0.5 at the midpoint); u ramps 1 (at the very end) -> 0 (at
+; the edge-band boundary); squaring gives a zero-slope ease into the
+; flat zero region, so tremor fades out rather than visibly cutting off.
+TremorWeight(t, edgeFrac) {
+    d := Min(t, 1 - t)
+    if (d >= edgeFrac)
+        return 0
+    u := 1 - d / edgeFrac
+    return u * u
+}
 
-    loop {
-        dx := x1 - x
-        dy := y1 - y
-        dist := Sqrt(dx * dx + dy * dy)
-        if (dist < 1)
-            break
+; HumanGlide tuning (standard #29, 2026-07-30 rewrite - replaces
+; WindMouse). Decision: "expert user who already knows exactly where
+; things are, moves almost instantly" - speed is the dominant design
+; goal here, small edge-only tremor is cosmetic on top. Worked
+; arithmetic (steps = clamp(round(dist/PX_PER_STEP), MIN, MAX), delay
+; uniform in [STEP_DELAY_MIN,MAX]ms, avg 3.5ms/step - entirely via
+; GlideStepDelay's busy-wait, not Sleep/Pause):
+;   100px -> 13 steps -> ~26-65ms (avg ~46ms)
+;   240px -> 30 steps (clamp point) -> ~60-150ms (avg ~105ms)
+;   500-1500px -> 30 steps (capped) -> ~60-150ms (avg ~105ms) - MAX_STEPS
+;   caps SAMPLE COUNT, not step size, so long moves don't get
+;   proportionally slower, they just take bigger per-sample jumps.
+; This is a conservative upper bound - samples near the eased ends
+; often round to the same pixel and get skipped (no delay paid), so
+; real elapsed time is normally below this table. The 2026-07-27
+; WindMouse tuning saga got bitten hard by NOT doing this arithmetic up
+; front before retuning - don't repeat that, redo this table if these
+; change.
+HUMANMOVE_PX_PER_STEP := 8
+HUMANMOVE_MIN_STEPS := 5
+HUMANMOVE_MAX_STEPS := 30
+HUMANMOVE_STEP_COUNT_JITTER_FRAC := 0.2
+HUMANMOVE_STEP_DELAY_MIN_MS := 2
+HUMANMOVE_STEP_DELAY_MAX_MS := 5
+HUMANMOVE_BOW_MIN_FRAC := 0.02       ; perpendicular arc as a fraction of distance -
+HUMANMOVE_BOW_MAX_FRAC := 0.05       ; kept subtle so a low-sample-count fast glide
+                                      ; still reads as one clean curve, not a polygon
+HUMANMOVE_SKEW_MIN := 0.85           ; velocity-profile asymmetry (MinJerk skew) -
+HUMANMOVE_SKEW_MAX := 1.15           ; real movements rarely peak exactly midway
+HUMANMOVE_TREMOR_PX := 1.5           ; peak wobble, ONLY near start/end (TremorWeight)
+HUMANMOVE_TREMOR_EDGE_FRAC := 0.15   ; tremor active in the first/last 15% of the
+                                      ; path, flat zero across the middle 70%
 
-        wMag := Min(WINDMOUSE_WIND, dist)
-        if (dist >= WINDMOUSE_TARGET_AREA) {
-            wx := wx / Sqrt(3) + (Random(0.0, 1.0) * 2 - 1) * wMag / Sqrt(5)
-            wy := wy / Sqrt(3) + (Random(0.0, 1.0) * 2 - 1) * wMag / Sqrt(5)
-        } else {
-            wx := wx / Sqrt(3)
-            wy := wy / Sqrt(3)
-            if (m0 < 3)
-                m0 := Random(0.0, 1.0) * 3 + 3
-            else
-                m0 := m0 / Sqrt(5)
-        }
+; Minimum-jerk glide: current mouse position -> (x1,y1) along a subtly
+; bowed arc (promoted/adapted from Tools\humanized-mouse.ahk's Glide -
+; standard #29, 2026-07-30 rewrite, replaces WindMouseGlide). No
+; ballistic-miss/correction phase here (that lived in the source file's
+; own HumanMove, not promoted) - JitterPoint/BlockJitterPx already pick
+; a slightly-off aim point before this is ever called, so this is a
+; single, fast, precise glide straight to the exact target it's given.
+; Consecutive samples that round to the same pixel are skipped (no
+; re-sent pixel, no wasted delay). Ends with an exact-landing snap to
+; (x1,y1) even if the eased tail stopped short - ClickAt clicks at
+; current position, so this is load-bearing. Not called directly by
+; anything except HumanMove.
+HumanGlide(x1, y1) {
+    global HUMANMOVE_PX_PER_STEP, HUMANMOVE_MIN_STEPS, HUMANMOVE_MAX_STEPS, HUMANMOVE_STEP_COUNT_JITTER_FRAC
+    global HUMANMOVE_STEP_DELAY_MIN_MS, HUMANMOVE_STEP_DELAY_MAX_MS
+    global HUMANMOVE_BOW_MIN_FRAC, HUMANMOVE_BOW_MAX_FRAC
+    global HUMANMOVE_SKEW_MIN, HUMANMOVE_SKEW_MAX
+    global HUMANMOVE_TREMOR_PX, HUMANMOVE_TREMOR_EDGE_FRAC
 
-        vx += wx + WINDMOUSE_GRAVITY * dx / dist
-        vy += wy + WINDMOUSE_GRAVITY * dy / dist
+    MouseGetPos(&x0, &y0)
+    dx := x1 - x0
+    dy := y1 - y0
+    dist := Sqrt(dx * dx + dy * dy)
+    if (dist < 1) {
+        MouseMove(x1, y1, 0)
+        return
+    }
 
-        vMag := Sqrt(vx * vx + vy * vy)
-        if (vMag > m0) {
-            vClip := m0 / 2 + Random(0.0, 1.0) * m0 / 2
-            vx := (vx / vMag) * vClip
-            vy := (vy / vMag) * vClip
-        }
+    bowFrac := RandTri(HUMANMOVE_BOW_MIN_FRAC, HUMANMOVE_BOW_MAX_FRAC)
+    bow := dist * bowFrac
+    if (Random(0, 1) = 0)
+        bow := -bow
+    midX := (x0 + x1) / 2 + (-dy / dist) * bow
+    midY := (y0 + y1) / 2 + (dx / dist) * bow
 
-        x += vx
-        y += vy
+    steps := Round(dist / HUMANMOVE_PX_PER_STEP
+        * RandTri(1 - HUMANMOVE_STEP_COUNT_JITTER_FRAC, 1 + HUMANMOVE_STEP_COUNT_JITTER_FRAC))
+    steps := Max(HUMANMOVE_MIN_STEPS, Min(HUMANMOVE_MAX_STEPS, steps))
+    skew := RandTri(HUMANMOVE_SKEW_MIN, HUMANMOVE_SKEW_MAX)
 
-        moveX := Round(x)
-        moveY := Round(y)
-        if (moveX != lastX || moveY != lastY) {
-            MouseMove(moveX, moveY, 0)
-            lastX := moveX
-            lastY := moveY
-            WindMouseStepDelay(Random(WINDMOUSE_STEP_DELAY_MIN_MS, WINDMOUSE_STEP_DELAY_MAX_MS))
-        }
+    lastX := "", lastY := ""
+    loop steps {
+        t := A_Index / steps
+        p := MinJerk(t, skew)
+        bx := (1 - p) ** 2 * x0 + 2 * (1 - p) * p * midX + p ** 2 * x1
+        by := (1 - p) ** 2 * y0 + 2 * (1 - p) * p * midY + p ** 2 * y1
+
+        wobble := HUMANMOVE_TREMOR_PX * TremorWeight(t, HUMANMOVE_TREMOR_EDGE_FRAC)
+        px := Round(bx + Random(-wobble, wobble))
+        py := Round(by + Random(-wobble, wobble))
+
+        if (px = lastX && py = lastY)
+            continue
+        MouseMove(px, py, 0)
+        lastX := px
+        lastY := py
+        GlideStepDelay(Random(HUMANMOVE_STEP_DELAY_MIN_MS, HUMANMOVE_STEP_DELAY_MAX_MS))
     }
 
     if (lastX != x1 || lastY != y1)
         MouseMove(x1, y1, 0)
+}
+
+; Public entry point: current mouse position -> (x1,y1), one straight
+; HumanGlide. No ballistic-miss/correction pass (standard #29,
+; 2026-07-30) - the caller (ClickAt/RightClickMenuItem) already picked
+; a slightly-off aim point via JitterPoint before calling this, so a
+; second, independent "aim error" model here would double-humanize the
+; same decision and cost real time for no visual benefit. HumanGlide's
+; own exact-landing snap guarantees this always lands precisely on
+; (x1,y1). Kept as a thin wrapper (not inlined into HumanGlide) so a
+; future cosmetic addition here never needs a call-site change.
+HumanMove(x1, y1) {
+    HumanGlide(x1, y1)
 }
 
 ClickAt(x, y, useCtrl := false, useShift := false, settleMs := 100, holdMs := 100, preDelayMs := 0, postDelayMs := 0, jitterPx := -1) {
@@ -239,7 +255,7 @@ ClickAt(x, y, useCtrl := false, useShift := false, settleMs := 100, holdMs := 10
     ReleasePendingModifiersNow()
 
     JitterPoint(x, y, jitterPx, &jx, &jy)
-    WindMouseMove(jx, jy)
+    HumanMove(jx, jy)
 
     if (useCtrl)
         Send("{Ctrl down}")

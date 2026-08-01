@@ -56,7 +56,7 @@ RightClickMenuItem(opts) {
     ReleasePendingModifiersNow()
 
     JitterPoint(x, y, targetJitterPx, &jx, &jy)
-    WindMouseMove(jx, jy)
+    HumanMove(jx, jy)
     Sleep(settleMs)
     Click("Right")
     Sleep(menuSettleMs)

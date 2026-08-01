@@ -56,15 +56,6 @@ CoordMode("ToolTip", "Screen")
 g_LogName := "07-find-image"
 
 ; ======= EDIT THESE FOR YOUR TEST =======================================
-; 2026-07-27 diagnostic: woodcutting reports deposit-box.png never
-; found at its calibrated 775,765. Pointed here at deposit-box.png
-; (was still deposit-motherlode.png - stale from before standard #27
-; split them into two separate assets) with MARGIN_PX widened so a
-; miss here tells us WHY: found elsewhere = the button drifted, update
-; DEPOSIT_BOX_IMAGE_X/Y in Find.ahk to the reported cx-w//2,cy-h//2;
-; found nowhere even wide = the bank UI likely isn't open/visible at
-; all when this runs, or the captured PNG no longer matches (theme/
-; scale changed) - recapture the asset, not just re-measure position.
 IMAGE_PATH := A_ScriptDir "\..\Images\deposit-box.png"
 IMAGE_W := 80          ; must match the PNG's real pixel size
 IMAGE_H := 72
@@ -73,11 +64,11 @@ TRANS_COLOR := "0x00FF00"   ; background color to treat as see-through ("" to di
 
 ; Corner-measured marker position (top-left corner) - the ONE position
 ; input, same convention as 04/06. Exact box, no padding (see header).
-MARKER_X := 775
+; Confirmed live 2026-07-27 at 721,765 (PROGRESS.md standard #27) -
+; matches Find.ahk's DEPOSIT_BOX_IMAGE_X/Y.
+MARKER_X := 721
 MARKER_Y := 765
-MARGIN_PX := 300   ; WIDENED for this diagnostic run only (normally 0,
-                   ; exact box, no slack - see header). Once the real
-                   ; position is confirmed, put this back to 0.
+MARGIN_PX := 0     ; named, not a bare literal - exact box, no slack (see header)
 ; ========================================================================
 
 ; Derived exact search box - RegionAround with marginPx=0 (no slack),

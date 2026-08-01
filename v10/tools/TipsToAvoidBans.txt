@@ -1,0 +1,29 @@
+Botting ALWAYS has the risk of a ban
+Well made AHK scripts and randomising recordings will help reduce bans but will not prevent bans themslves if you do not follow these guidelines
+
+Appeal a ban link
+https://support.runescape.com/hc/en-gb/articles/360000867958-Appeal-a-ban
+
+Don't bot straight off Tutorial Island
+
+Bot during the same hours you would play normally
+
+Slowly increase the hours you play/bot
+Do not suddenly bot a new activity for 10 hours
+
+If botting a new activity or skill, start at less than 1 hour and slowly increase bot time to no more than 3-4 hours at a time
+
+Don't bot for exact hour intervals, many botters using clients configure their bots this way and is an easy metric for Jagex to use
+
+Don't do the same activity more than a few days in a row
+
+Do a variety of activities e.g. quests, achievements, minigames, bosses
+
+For the macro recorder specifically, the goal is to have more time in recordings than you bot for which will be basically fool proof. Play normally and record several minutes many times and keep adding recordings when you have time.
+
+BAD EXAMPLES
+Running Herb Cleaner bot overnight having never cleaned herbs on the account before
+Only fletching bows for a week straight 10 hours a day
+
+GOOD EXAMPLE
+Botting crafting for quest requirements an hour a day between boss runs, completing the quest then changing activity to bot
