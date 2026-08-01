@@ -107,6 +107,15 @@ BANK_PRE_DELAY_MS := 0
 BANK_POST_DELAY_MS := 0
 
 MAX_CYCLES := 0   ; 0 = forever (real bot); raise for a bounded test run
+
+; --- Session pacing (standard #30) - BOTH default OFF. Flip on only
+; after micro 28 is live-confirmed; each is independent.
+TAKE_BREAKS := false                        ; master switch for periodic short breaks
+BREAK_CHANCE := 0.05                        ; per-cycle roll, only used if TAKE_BREAKS
+BREAK_MS := SESSION_BREAK_MS_DEFAULT        ; 30s-3min, Lib default
+
+BOUND_SESSION := false                      ; master switch for a bounded overall run
+SESSION_LENGTH_MS := SESSION_LENGTH_MS_DEFAULT  ; 1-2h, Lib default (article-suggested cap)
 ; ==========================================================================
 
 markerRegion := SearchZone(MARKER_ZONE)
@@ -141,7 +150,14 @@ BankTrees() {
 }
 
 RunWoodcutting() {
-    GatherBankLoop({gather: GatherTrees, bank: BankTrees, maxCycles: MAX_CYCLES, label: "Woodcutting"})
+    loopOpts := {gather: GatherTrees, bank: BankTrees, maxCycles: MAX_CYCLES, label: "Woodcutting"}
+    if (TAKE_BREAKS) {
+        loopOpts.breakChance := BREAK_CHANCE
+        loopOpts.breakMs := BREAK_MS
+    }
+    if (BOUND_SESSION)
+        loopOpts.sessionLengthMs := SESSION_LENGTH_MS
+    GatherBankLoop(loopOpts)
 }
 
 ProbeIndicatorSlot() {

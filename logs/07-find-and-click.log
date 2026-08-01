@@ -1,0 +1,787 @@
+2026-08-01 16:09:41 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:09:42 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:09:42 [07-find-and-click] FindFilledBlock: found at 1493,963 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:09:42 [07-find-and-click] micro07: clicking block target at 1493,963
+2026-08-01 16:09:43 [07-find-and-click] micro07: DONE
+2026-08-01 16:09:58 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:09:58 [07-find-and-click] FindFilledBlock: found at 1305,743 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:09:58 [07-find-and-click] micro07: clicking block target at 1305,743
+2026-08-01 16:09:58 [07-find-and-click] micro07: DONE
+2026-08-01 16:10:10 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:10 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:10 [07-find-and-click] FindFilledBlock: found at 1331,743 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:10 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:10 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:11 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:11 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:12 [07-find-and-click] FindFilledBlock: found at 1331,743 (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:12 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:12 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:13 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:13 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:13 [07-find-and-click] FindFilledBlock: found at 1331,767 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:13 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:14 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:15 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:15 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:15 [07-find-and-click] FindFilledBlock: found at 1301,821 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:15 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:15 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:20 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:20 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:20 [07-find-and-click] FindFilledBlock: found at 785,767 (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:20 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:20 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:21 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:21 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:21 [07-find-and-click] FindFilledBlock: found at 663,771 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:21 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:21 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:25 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:10:25 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:25 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:25 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:10:25 [07-find-and-click] FindFilledBlock: found at 651,781 (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:25 [07-find-and-click] micro07: clicking block target at 651,781
+2026-08-01 16:10:26 [07-find-and-click] micro07: DONE
+2026-08-01 16:10:27 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:10:27 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:27 [07-find-and-click] FindFilledBlock: found at 627,854 (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:27 [07-find-and-click] micro07: clicking block target at 627,854
+2026-08-01 16:10:28 [07-find-and-click] micro07: DONE
+2026-08-01 16:10:37 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:37 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:37 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:38 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:39 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:40 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:40 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:41 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:42 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:43 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:44 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:45 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:10:49 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:49 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:50 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:10:50 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:50 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 32 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:51 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:52 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:53 [07-find-and-click] FindFilledBlock: found at 869,979 (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:53 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:10:53 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 46 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:54 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:10:55 [07-find-and-click] FindFilledBlock: found at 783,785 (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:10:55 [07-find-and-click] micro07: clicking block target at 783,785
+2026-08-01 16:10:55 [07-find-and-click] micro07: DONE
+2026-08-01 16:10:59 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:10:59 [07-find-and-click] FindFilledBlock: found at 1007,585 (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:10:59 [07-find-and-click] micro07: clicking block target at 1007,585
+2026-08-01 16:11:00 [07-find-and-click] micro07: DONE
+2026-08-01 16:11:01 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:01 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:01 [07-find-and-click] FindFilledBlock: found at 1047,609 (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:11:01 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:01 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:05 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:05 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:05 [07-find-and-click] FindFilledBlock: found at 1071,611 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:05 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:05 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:11 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:11 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:11 [07-find-and-click] FindFilledBlock: found at 895,581 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:11 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:11 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:18 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:18 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:18 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:18 [07-find-and-click] FindFilledBlock: found at 809,871 (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:18 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:18 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:19 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:19 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:19 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:19 [07-find-and-click] FindFilledBlock: found at 845,945 (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:19 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:19 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:23 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:23 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:23 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:23 [07-find-and-click] FindFilledBlock: found at 847,947 (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:23 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:23 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:11:27 [07-find-and-click] micro07: search target 45x45, pin target 13x13
+2026-08-01 16:11:27 [07-find-and-click] micro07-pinned: waiting for block target
+2026-08-01 16:11:27 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:27 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:28 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:11:29 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:30 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 47 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:31 [07-find-and-click] FindFilledBlock: not found (45x45 0xFF980A tol=5, 31 ms)
+2026-08-01 16:11:32 [07-find-and-click] FindFilledBlock: found at 847,947 (45x45 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:11:32 [07-find-and-click] micro07-pinned: clicking block target at 1249,712
+2026-08-01 16:11:32 [07-find-and-click] pinned-click: DONE
+2026-08-01 16:12:16 [07-find-and-click] FindFilledBlock: not found (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:16 [07-find-and-click] micro07-clear: zone clear (0 instances clicked)
+2026-08-01 16:12:16 [07-find-and-click] micro07 probe: DONE
+2026-08-01 16:12:18 [07-find-and-click] FindFilledBlock: found at 567,1011 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:18 [07-find-and-click] micro07-clear: clicking instance at 567,1011
+2026-08-01 16:12:18 [07-find-and-click] FindFilledBlock: found at 538,1015 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:18 [07-find-and-click] micro07-clear: clicking instance at 538,1015
+2026-08-01 16:12:19 [07-find-and-click] FindFilledBlock: found at 567,1009 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:19 [07-find-and-click] micro07-clear: clicking instance at 567,1009
+2026-08-01 16:12:19 [07-find-and-click] FindFilledBlock: found at 541,1005 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:19 [07-find-and-click] micro07-clear: clicking instance at 541,1005
+2026-08-01 16:12:19 [07-find-and-click] FindFilledBlock: found at 557,987 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:19 [07-find-and-click] micro07-clear: clicking instance at 557,987
+2026-08-01 16:12:19 [07-find-and-click] FindFilledBlock: found at 557,967 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:19 [07-find-and-click] micro07-clear: clicking instance at 557,967
+2026-08-01 16:12:20 [07-find-and-click] FindFilledBlock: found at 577,951 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:20 [07-find-and-click] micro07-clear: clicking instance at 577,951
+2026-08-01 16:12:20 [07-find-and-click] FindFilledBlock: found at 541,933 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:20 [07-find-and-click] micro07-clear: clicking instance at 541,933
+2026-08-01 16:12:20 [07-find-and-click] FindFilledBlock: found at 565,913 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:20 [07-find-and-click] micro07-clear: clicking instance at 565,913
+2026-08-01 16:12:21 [07-find-and-click] FindFilledBlock: found at 587,895 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:21 [07-find-and-click] micro07-clear: clicking instance at 587,895
+2026-08-01 16:12:21 [07-find-and-click] FindFilledBlock: found at 561,879 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:21 [07-find-and-click] micro07-clear: clicking instance at 561,879
+2026-08-01 16:12:21 [07-find-and-click] FindFilledBlock: found at 561,861 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:21 [07-find-and-click] micro07-clear: clicking instance at 561,861
+2026-08-01 16:12:21 [07-find-and-click] FindFilledBlock: found at 583,843 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:21 [07-find-and-click] micro07-clear: clicking instance at 583,843
+2026-08-01 16:12:22 [07-find-and-click] FindFilledBlock: found at 599,835 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:22 [07-find-and-click] micro07-clear: clicking instance at 599,835
+2026-08-01 16:12:22 [07-find-and-click] FindFilledBlock: found at 579,829 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:22 [07-find-and-click] micro07-clear: clicking instance at 579,829
+2026-08-01 16:12:22 [07-find-and-click] FindFilledBlock: found at 603,821 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:22 [07-find-and-click] micro07-clear: clicking instance at 603,821
+2026-08-01 16:12:23 [07-find-and-click] FindFilledBlock: found at 623,805 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:23 [07-find-and-click] micro07-clear: clicking instance at 623,805
+2026-08-01 16:12:23 [07-find-and-click] FindFilledBlock: found at 643,791 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:23 [07-find-and-click] micro07-clear: clicking instance at 643,791
+2026-08-01 16:12:23 [07-find-and-click] FindFilledBlock: found at 665,781 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:23 [07-find-and-click] micro07-clear: clicking instance at 665,781
+2026-08-01 16:12:23 [07-find-and-click] FindFilledBlock: found at 685,777 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:23 [07-find-and-click] micro07-clear: clicking instance at 685,777
+2026-08-01 16:12:24 [07-find-and-click] FindFilledBlock: found at 707,773 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:24 [07-find-and-click] micro07-clear: clicking instance at 707,773
+2026-08-01 16:12:24 [07-find-and-click] FindFilledBlock: found at 727,771 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:24 [07-find-and-click] micro07-clear: clicking instance at 727,771
+2026-08-01 16:12:24 [07-find-and-click] FindFilledBlock: found at 743,767 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:24 [07-find-and-click] micro07-clear: clicking instance at 743,767
+2026-08-01 16:12:24 [07-find-and-click] FindFilledBlock: found at 763,765 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:24 [07-find-and-click] micro07-clear: clicking instance at 763,765
+2026-08-01 16:12:25 [07-find-and-click] FindFilledBlock: found at 785,761 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:25 [07-find-and-click] micro07-clear: clicking instance at 785,761
+2026-08-01 16:12:25 [07-find-and-click] FindFilledBlock: found at 807,759 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:25 [07-find-and-click] micro07-clear: clicking instance at 807,759
+2026-08-01 16:12:25 [07-find-and-click] FindFilledBlock: found at 827,757 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:25 [07-find-and-click] micro07-clear: clicking instance at 827,757
+2026-08-01 16:12:26 [07-find-and-click] FindFilledBlock: found at 847,753 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:26 [07-find-and-click] micro07-clear: clicking instance at 847,753
+2026-08-01 16:12:26 [07-find-and-click] FindFilledBlock: found at 865,751 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:26 [07-find-and-click] micro07-clear: clicking instance at 865,751
+2026-08-01 16:12:26 [07-find-and-click] FindFilledBlock: found at 887,749 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:26 [07-find-and-click] micro07-clear: clicking instance at 887,749
+2026-08-01 16:12:26 [07-find-and-click] FindFilledBlock: found at 907,747 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:26 [07-find-and-click] micro07-clear: clicking instance at 907,747
+2026-08-01 16:12:27 [07-find-and-click] FindFilledBlock: found at 931,745 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:27 [07-find-and-click] micro07-clear: clicking instance at 931,745
+2026-08-01 16:12:27 [07-find-and-click] FindFilledBlock: found at 949,741 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:27 [07-find-and-click] micro07-clear: clicking instance at 949,741
+2026-08-01 16:12:27 [07-find-and-click] FindFilledBlock: found at 969,745 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:27 [07-find-and-click] micro07-clear: clicking instance at 969,745
+2026-08-01 16:12:27 [07-find-and-click] FindFilledBlock: found at 989,743 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:27 [07-find-and-click] micro07-clear: clicking instance at 989,743
+2026-08-01 16:12:28 [07-find-and-click] FindFilledBlock: found at 1005,741 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:28 [07-find-and-click] micro07-clear: clicking instance at 1005,741
+2026-08-01 16:12:28 [07-find-and-click] FindFilledBlock: found at 1027,737 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:28 [07-find-and-click] micro07-clear: clicking instance at 1027,737
+2026-08-01 16:12:28 [07-find-and-click] FindFilledBlock: found at 1049,733 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:28 [07-find-and-click] micro07-clear: clicking instance at 1049,733
+2026-08-01 16:12:29 [07-find-and-click] FindFilledBlock: found at 1071,731 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:29 [07-find-and-click] micro07-clear: clicking instance at 1071,731
+2026-08-01 16:12:29 [07-find-and-click] FindFilledBlock: found at 1093,749 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:29 [07-find-and-click] micro07-clear: clicking instance at 1093,749
+2026-08-01 16:12:29 [07-find-and-click] FindFilledBlock: found at 1071,719 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:29 [07-find-and-click] micro07-clear: clicking instance at 1071,719
+2026-08-01 16:12:30 [07-find-and-click] FindFilledBlock: found at 1091,717 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:30 [07-find-and-click] micro07-clear: clicking instance at 1091,717
+2026-08-01 16:12:30 [07-find-and-click] FindFilledBlock: found at 1115,713 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:30 [07-find-and-click] micro07-clear: clicking instance at 1115,713
+2026-08-01 16:12:30 [07-find-and-click] FindFilledBlock: found at 1143,709 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:30 [07-find-and-click] micro07-clear: clicking instance at 1143,709
+2026-08-01 16:12:30 [07-find-and-click] FindFilledBlock: found at 1165,705 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:30 [07-find-and-click] micro07-clear: clicking instance at 1165,705
+2026-08-01 16:12:31 [07-find-and-click] FindFilledBlock: found at 1179,699 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:31 [07-find-and-click] micro07-clear: clicking instance at 1179,699
+2026-08-01 16:12:31 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:31 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:31 [07-find-and-click] FindFilledBlock: found at 1175,697 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:31 [07-find-and-click] micro07-clear: clicking instance at 1175,697
+2026-08-01 16:12:32 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:32 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:32 [07-find-and-click] FindFilledBlock: found at 1177,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:32 [07-find-and-click] micro07-clear: clicking instance at 1177,697
+2026-08-01 16:12:32 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:32 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:32 [07-find-and-click] FindFilledBlock: found at 1177,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:32 [07-find-and-click] micro07-clear: clicking instance at 1177,697
+2026-08-01 16:12:33 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:33 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:33 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:33 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:33 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:33 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:34 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:34 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:34 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:34 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:34 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:34 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:34 [07-find-and-click] FindFilledBlock: found at 1193,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:34 [07-find-and-click] micro07-clear: clicking instance at 1193,697
+2026-08-01 16:12:35 [07-find-and-click] FindFilledBlock: found at 1175,719 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:35 [07-find-and-click] micro07-clear: clicking instance at 1175,719
+2026-08-01 16:12:35 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:35 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:35 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:35 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:36 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:36 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:36 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:36 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:36 [07-find-and-click] FindFilledBlock: found at 1175,721 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:36 [07-find-and-click] micro07-clear: clicking instance at 1175,721
+2026-08-01 16:12:36 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:36 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:37 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:37 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:37 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:37 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:37 [07-find-and-click] FindFilledBlock: found at 1193,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:37 [07-find-and-click] micro07-clear: clicking instance at 1193,697
+2026-08-01 16:12:38 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:38 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:38 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:38 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:38 [07-find-and-click] FindFilledBlock: found at 1175,721 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:38 [07-find-and-click] micro07-clear: clicking instance at 1175,721
+2026-08-01 16:12:38 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:38 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:39 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:39 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:39 [07-find-and-click] FindFilledBlock: found at 1175,723 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:39 [07-find-and-click] micro07-clear: clicking instance at 1175,723
+2026-08-01 16:12:39 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:39 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:40 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:40 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:40 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:40 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:40 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:40 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:40 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:40 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:41 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:41 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:41 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:41 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:41 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:41 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:42 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:42 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:42 [07-find-and-click] FindFilledBlock: found at 1195,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:42 [07-find-and-click] micro07-clear: clicking instance at 1195,697
+2026-08-01 16:12:42 [07-find-and-click] FindFilledBlock: found at 1175,713 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:42 [07-find-and-click] micro07-clear: clicking instance at 1175,713
+2026-08-01 16:12:42 [07-find-and-click] FindFilledBlock: found at 1195,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:42 [07-find-and-click] micro07-clear: clicking instance at 1195,697
+2026-08-01 16:12:43 [07-find-and-click] FindFilledBlock: found at 1175,719 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:43 [07-find-and-click] micro07-clear: clicking instance at 1175,719
+2026-08-01 16:12:43 [07-find-and-click] FindFilledBlock: found at 1195,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:43 [07-find-and-click] micro07-clear: clicking instance at 1195,697
+2026-08-01 16:12:43 [07-find-and-click] FindFilledBlock: found at 1175,715 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:43 [07-find-and-click] micro07-clear: clicking instance at 1175,715
+2026-08-01 16:12:44 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:44 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:44 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:44 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:44 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:44 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:44 [07-find-and-click] FindFilledBlock: found at 1193,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:44 [07-find-and-click] micro07-clear: clicking instance at 1193,697
+2026-08-01 16:12:45 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:45 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:45 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:45 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:45 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:45 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:46 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:46 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:46 [07-find-and-click] FindFilledBlock: found at 1175,719 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:46 [07-find-and-click] micro07-clear: clicking instance at 1175,719
+2026-08-01 16:12:46 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:46 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:47 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:47 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:47 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:47 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:47 [07-find-and-click] FindFilledBlock: found at 1205,703 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:47 [07-find-and-click] micro07-clear: clicking instance at 1205,703
+2026-08-01 16:12:47 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:47 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:48 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:48 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:48 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:48 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:48 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:48 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:49 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:49 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:49 [07-find-and-click] FindFilledBlock: found at 1193,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:49 [07-find-and-click] micro07-clear: clicking instance at 1193,697
+2026-08-01 16:12:49 [07-find-and-click] FindFilledBlock: found at 1175,721 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:49 [07-find-and-click] micro07-clear: clicking instance at 1175,721
+2026-08-01 16:12:49 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:49 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:50 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:50 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:50 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:50 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:50 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:50 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:51 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 16 ms)
+2026-08-01 16:12:51 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:51 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:51 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:51 [07-find-and-click] FindFilledBlock: found at 1175,719 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:51 [07-find-and-click] micro07-clear: clicking instance at 1175,719
+2026-08-01 16:12:51 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:51 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:52 [07-find-and-click] FindFilledBlock: found at 1195,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:52 [07-find-and-click] micro07-clear: clicking instance at 1195,697
+2026-08-01 16:12:52 [07-find-and-click] FindFilledBlock: found at 1175,717 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:52 [07-find-and-click] micro07-clear: clicking instance at 1175,717
+2026-08-01 16:12:52 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:52 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:52 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:52 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:53 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:53 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:53 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:53 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:53 [07-find-and-click] FindFilledBlock: found at 1175,721 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:53 [07-find-and-click] micro07-clear: clicking instance at 1175,721
+2026-08-01 16:12:54 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:54 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:54 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:54 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:54 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:54 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:54 [07-find-and-click] FindFilledBlock: found at 1201,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:54 [07-find-and-click] micro07-clear: clicking instance at 1201,697
+2026-08-01 16:12:55 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:55 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:55 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:55 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:12:55 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:55 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:56 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:56 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:12:56 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:56 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:56 [07-find-and-click] FindFilledBlock: found at 1195,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:56 [07-find-and-click] micro07-clear: clicking instance at 1195,697
+2026-08-01 16:12:56 [07-find-and-click] FindFilledBlock: found at 1175,719 (20x20 0x00FF00 tol=5, 46 ms)
+2026-08-01 16:12:56 [07-find-and-click] micro07-clear: clicking instance at 1175,719
+2026-08-01 16:12:57 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:57 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:57 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:57 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:57 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:57 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:58 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 15 ms)
+2026-08-01 16:12:58 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:58 [07-find-and-click] FindFilledBlock: found at 1203,703 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:58 [07-find-and-click] micro07-clear: clicking instance at 1203,703
+2026-08-01 16:12:58 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:12:58 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:12:58 [07-find-and-click] FindFilledBlock: found at 1191,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:58 [07-find-and-click] micro07-clear: clicking instance at 1191,697
+2026-08-01 16:12:59 [07-find-and-click] FindFilledBlock: found at 1175,717 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:59 [07-find-and-click] micro07-clear: clicking instance at 1175,717
+2026-08-01 16:12:59 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:12:59 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:12:59 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:12:59 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:13:00 [07-find-and-click] FindFilledBlock: found at 1179,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:13:00 [07-find-and-click] micro07-clear: clicking instance at 1179,697
+2026-08-01 16:13:00 [07-find-and-click] FindFilledBlock: found at 1199,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:13:00 [07-find-and-click] micro07-clear: clicking instance at 1199,697
+2026-08-01 16:13:00 [07-find-and-click] FindFilledBlock: found at 1175,705 (20x20 0x00FF00 tol=5, 32 ms)
+2026-08-01 16:13:00 [07-find-and-click] micro07-clear: clicking instance at 1175,705
+2026-08-01 16:13:00 [07-find-and-click] FindFilledBlock: found at 1197,697 (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:13:00 [07-find-and-click] micro07-clear: clicking instance at 1197,697
+2026-08-01 16:13:01 [07-find-and-click] FindFilledBlock: not found (20x20 0x00FF00 tol=5, 31 ms)
+2026-08-01 16:13:01 [07-find-and-click] micro07-clear: zone clear (150 instances clicked)
+2026-08-01 16:13:01 [07-find-and-click] micro07 probe: DONE
+2026-08-01 16:15:11 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:15:18 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:19 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:20 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:21 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:22 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:23 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:24 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:25 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:26 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:27 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:28 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:28 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:29 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:15:39 [07-find-and-click] micro07: waiting for block target
+2026-08-01 16:15:39 [07-find-and-click] FindFilledBlock: found at 933,1061 (45x45 0x00FF00 tol=5, 47 ms)
+2026-08-01 16:15:39 [07-find-and-click] micro07: clicking block target at 933,1061
+2026-08-01 16:15:40 [07-find-and-click] micro07: DONE
+2026-08-01 16:15:40 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:41 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:42 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:43 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:44 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:45 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:46 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:47 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:48 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:49 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:50 [07-find-and-click] FindImage: ERROR Parameter #7 of ImageSearch is invalid.
+2026-08-01 16:15:51 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:18:57 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 16:18:59 [07-find-and-click] FindImage: found at 1250,705 (C:\Users\link\Documents\GitHub\osrs-automation\v8\micro\..\Images\air-rune.png, 62 ms)
+2026-08-01 16:18:59 [07-find-and-click] micro07-pickup: appeared at 1250,705 after 62 ms - snapshotting confirm box BEFORE click
+2026-08-01 16:18:59 [07-find-and-click] micro07-pickup: clicking item at 1250,705
+2026-08-01 16:19:00 [07-find-and-click] micro07-pickup: CONFIRMED (266 ms after click, 922 ms total)
+2026-08-01 16:19:00 [07-find-and-click] pickup-appeared: DONE
+2026-08-01 16:19:12 [07-find-and-click] micro07: ready - F5 run, F6 stop, F12 exit, F8 probe

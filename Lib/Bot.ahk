@@ -1,74 +1,78 @@
 ; ============================================================
-; v7 Lib\Bot.ahk - shared run/stop harness (standard #23)
+; v8 Lib\Bot.ahk - hotkey harness (F5 run, F6 stop, F8 probe,
+; F12 exit, optional extraHotkeys)
 ;
-; One InstallBotHarness(opts) call replaces the F5/F6/F12 wiring every
-; v6 bot hand-rolled. opts.run is just the bot's actual work - the
-; harness owns the stop-flag reset and the try/catch BotStopped (run
-; must NOT catch BotStopped itself).
+; Refactored from v7\Lib\Bot.ahk. v7 had a real footgun: F5's run
+; went through RunWrapped, which reset g_StopRequested and caught
+; BotStopped - but extraHotkeys handlers went through a bare
+; BindHotkeyHandler factory that did NEITHER. Any extraHotkey that
+; ran a real interruptible loop had to hand-roll its own reset/catch
+; (v7 micro 28's F7 did this) or risk a stale stop flag aborting it
+; instantly, or an uncaught BotStopped crashing the script on F6.
 ;
-;   F5  = start (reset flag, run inside try/catch)
-;   F6  = request stop (instant)
-;   F12 = exit (never Esc - some bots send a real in-game Esc)
-;   F8  = opts.probe (optional)
-;   opts.extraHotkeys = optional [{key, handler, label}] list
+; v8 fixes this structurally: WrapHandler(handler, label) is the
+; ONE wrapping path, applied uniformly to run, probe, AND every
+; extraHotkeys entry. No handler in v8 needs to know about
+; g_StopRequested or BotStopped at all.
 ;
-; opts: run (required); label "Bot", probe, extraHotkeys.
-; Call ONCE near the bottom of the script, after every referenced
-; function is defined.
-InstallBotHarness(opts) {
-    runFn := opts.run
-    label := Opt(opts, "label", "Bot")
+; RunWrapped also now captures and reports the run function's
+; return value (v7 discarded it - Bots\woodcutting.ahk:160 called
+; GatherBankLoop as a bare statement, so a FAILED run looked
+; identical to a clean stop except in the log). v8's steps/StepLoop
+; return true (clean stop) or false (FAILED) - WrapHandler surfaces
+; the difference on screen.
+; ============================================================
 
-    TrimLogOnStart()
+; Wraps any handler for hotkey use: resets g_StopRequested, catches
+; BotStopped, and reports DONE/FAILED/STOPPED based on the handler's
+; return value (handlers that return nothing are treated as "ran to
+; completion" -> DONE, e.g. one-shot probes).
+WrapHandler(handler, label) {
+    return WrappedHandler
 
-    RunWrapped(*) {
+    WrappedHandler(*) {
         global g_StopRequested
         g_StopRequested := false
-        Say(label ": started")
         try {
-            runFn()
+            result := handler()
+            if (result = false)
+                Say(label ": FAILED - still loaded, F5 to restart")
+            else
+                Say(label ": DONE")
         } catch BotStopped {
             Say(label ": STOPPED by F6")
         }
     }
+}
 
-    RequestStop(*) {
-        global g_StopRequested
-        g_StopRequested := true
-        LogLine("F6 pressed - stop requested")
-    }
+InstallBotHarness(opts) {
+    run := opts.run
+    label := Opt(opts, "label", "Bot")
+    probe := Opt(opts, "probe", "")
+    extraHotkeys := Opt(opts, "extraHotkeys", [])
 
-    ExitBot(*) {
-        LogLine("F12 pressed - exiting")
-        ExitApp()
-    }
+    global g_LogName
+    TrimLogOnStart()
 
-    Hotkey("F5", RunWrapped)
+    Hotkey("F5", WrapHandler(run, label))
     Hotkey("F6", RequestStop)
     Hotkey("F12", ExitBot)
 
-    hotkeyMsg := "F5=start  F6=stop  F12=exit"
+    if (probe)
+        Hotkey("F8", WrapHandler(probe, label . " probe"))
 
-    if (opts.HasOwnProp("probe")) {
-        Hotkey("F8", BindHotkeyHandler(opts.probe))
-        hotkeyMsg .= "  F8=probe"
-    }
+    for entry in extraHotkeys
+        Hotkey(entry.key, WrapHandler(entry.handler, Opt(entry, "label", entry.key)))
 
-    if (opts.HasOwnProp("extraHotkeys")) {
-        for entry in opts.extraHotkeys {
-            Hotkey(entry.key, BindHotkeyHandler(entry.handler))
-            hotkeyMsg .= "  " entry.key "=" Opt(entry, "label", "extra")
-        }
-    }
-
-    LogLine("Script loaded. " hotkeyMsg ".")
-    ToolTip(label " ready - F5 to start", 20, 20)
+    Say(label ": ready - F5 run, F6 stop, F12 exit" (probe ? ", F8 probe" : ""))
 }
 
-; Factory, never an inline closure in the registration loop: AHK v2's
-; `for` variable is ONE reused local, so inline closures would all call
-; whichever handler was registered LAST (standard #23). A parameter is
-; a fresh binding per call, so each closure captures its own handler.
-BindHotkeyHandler(handler) {
-    return (*) => handler()
+RequestStop(*) {
+    global g_StopRequested
+    g_StopRequested := true
+    Say("stop requested")
+}
+
+ExitBot(*) {
+    ExitApp()
 }

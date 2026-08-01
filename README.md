@@ -4,46 +4,60 @@ AutoHotkey v2 automation scripts for Old School RuneScape, built around a small
 set of shared detection/click/wait primitives rather than one-off scripts per
 bot.
 
-This is **v7** — a ground-up rewrite of the original codebase, now promoted to
-the repo root. The old codebase (v6) is frozen in [`legacy/`](legacy/) as a
-working fallback; see [Legacy](#legacy) below.
+This is **v8** — a streamlined refactor of v7, now promoted to the repo root.
+All 12 of its micro test scripts are live-confirmed. Every earlier codebase is
+frozen under [`archive/`](archive/); see [Archive](#archive) below.
+
+v8's three headline changes over v7:
+1. **Click-jitter hard guarantee** — every click is built from a
+   `ClickTarget(x, y, w, h)` and jittered strictly inside that cell. No
+   sentinel, no flat fallback, no size-less click path anywhere.
+2. **Unified target specs** — one object shape for a color block
+   (`{colors, tol, w, h}`) or an image (`{path, tol, transColor, w, h}`),
+   dispatched by `FindTarget`/`WaitForTarget`/`WaitForTargetGone`.
+3. **Fail-safe engine** (`Lib\Run.ahk`, new) — `RunSteps` retries each failed
+   step once (a full fresh attempt) before a clean FAILED stop that leaves the
+   script responsive; `StepLoop` wraps it with cycle limits and session pacing.
 
 ## Layout
 
 ```
-Lib\      shared building blocks - #Include Lib\v7.ahk to get all of them
-  v7.ahk    umbrella include
-  Core.ahk  stop flag, interruptible Pause/WaitUntil, Say/LogLine, GameActive,
-            Opt() opts-unpacker, POLL_MS_DEFAULT
-  Find.ahk  color-block + image detection (FindFilledBlock, FindImage,
-            AcquireClosestInBox, SearchZone mode switch, WatchIndicator, ...)
-  Act.ahk   ClickAt, PressKey (async modifier release)
-  Grid.ahk  GridSpec/GridCorner/GridCenter/GridCellRegion (inventory/bank/menu addressing)
-  Inv.ahk   INV_GRID/BANK_GRID, SlotFull/SlotProbe/DropSlot, TakeSnapshot/HasChanged
-  Steps.ahk composites: FindAndClickBlock/Image, TrackAndClick, DepositAllToBank,
-            GatherBankLoop, ClearAllInstances, TravelToPoint, RunRestockPlan, ...
-  Bot.ahk   InstallBotHarness - shared F5/F6/F12/probe/extra-hotkey wiring
-micro\    standalone calibration/diagnostic scripts, one per primitive/composite -
-          each is F5 to run, F6 to stop, Esc to exit, with its own log.
-          All 26 are confirmed live against this user's setup.
-Bots\     real bots built on top of Lib\ (currently: woodcutting.ahk)
-logs\     one timestamped log file per micro/bot run
-Images\   reference PNGs used by image-based detection
-legacy\   the old (v6) codebase - frozen, not developed further, kept
-          runnable as a fallback (see below)
+Lib\      shared building blocks - #Include Lib\v8.ahk to get all of them
+  v8.ahk       umbrella include (Core → Bot → Act → Find → Steps → Run → Grid → Inv → Session)
+  Core.ahk     stop flag, interruptible Pause/WaitUntil, Say/LogLine, Opt(),
+               LOG_DIR/IMAGES_DIR path globals
+  Bot.ahk      InstallBotHarness - uniform F5/F6/F12/probe/extra-hotkey wiring
+  Act.ahk      HumanGlide/HumanMove (minimum-jerk cursor glide), ClickTarget/
+               JitterInCell/ClickAt (the click-jitter hard guarantee), PressKey
+  Find.ahk     block + image detection, unified FindTarget spec dispatch,
+               state watchers, screen calibration constants
+  Steps.ahk    composites: FindAndClick, TrackAndClick, DepositAllToBank,
+               ClearAllInstances, TravelToPoint, RightClickMenuItem,
+               ClickUntilCondition, VerifySlotsAndDrop, RunRestockPlan
+  Run.ahk      RunSteps/StepLoop - the fail-safe retry engine
+  Grid.ahk     GridSpec/GridCorner/GridCenter/GridCellRegion
+  Inv.ahk      INV_GRID/BANK_GRID, SlotFull/SlotProbe/DropSlot
+  Session.ahk  MaybeTakeBreak/NewSessionTimer - session pacing
+micro\    12 standalone test scripts, one per idea - each is F5 to run,
+          F6 to stop, F12 to exit, with its own log. ALL 12 live-confirmed.
+Bots\     real bots built on top of Lib\ (empty - woodcutting is next)
+logs\     one log file per micro/bot
+Images\   reference PNGs used by image-based detection (this tree resolves
+          only its own Images folder, never archive's)
+archive\  every earlier codebase, frozen (see below)
 ```
 
 ## Running a bot or micro script
 
 Every script follows the same pattern:
 - **F5** starts it
-- **F6** requests a stop - takes effect within ~40ms, even mid-search or mid-wait
-- **Esc** exits immediately (`micro\` scripts) / **F12** exits immediately (`Bots\`
-  scripts - some bots send a real Esc keypress as an in-game action, so Esc is
-  left free for that)
-- **F8** probes/diagnostics on bots/micros that expose one
+- **F6** requests a stop - takes effect within ~40ms, even mid-search,
+  mid-glide, or mid-break
+- **F12** exits immediately
+- **F8** probes/diagnostics on scripts that expose one (some micros add
+  F7/F9/F10/F11 - see each file's header)
 
-Open the script, edit the `EDIT THESE FOR YOUR SETUP` block at the top
+Open the script, edit the `EDIT THESE FOR YOUR TEST` block at the top
 (colors, regions, timeouts) to match your own screen/setup, then run it.
 Every run appends to its own file in `logs\`.
 
@@ -55,24 +69,26 @@ Syntax-check any script without running it:
 
 ## Status
 
-- All 26 shared primitives/composites in `Lib\` are calibrated and confirmed
-  live against this user's setup (see `micro\` for the standalone test for
-  each one) — the rewrite's Step 2 is complete.
-- `Bots\woodcutting.ahk` is confirmed working end-to-end (Step 3, in progress).
-- Remaining bots to (re)build in v7: crafting, smithing, seller, sudoku,
-  autoclicker, motherlode2 — see `PROGRESS.md` for the current build order
-  and every standard/lesson learned along the way.
+- All 12 micros are **live-confirmed** against a real RuneLite session
+  (2026-08-01), including the two most load-bearing: the click-jitter
+  scatter proof (micro 03) and the fail-safe engine (micro 10).
+- `Bots\` is empty on purpose - `woodcutting.ahk` gets written fresh next,
+  on top of the confirmed Lib.
+- Known open items: micro 08's menu-row image asset needs a fresh recapture
+  before `RightClickMenuItem` is used in a real bot; `BANK_GRID` rows beyond
+  row 1 are unmeasured.
 
 **`PROGRESS.md`** is the authoritative resume doc for this codebase — read it
 first in any new session before touching `Lib\` or `Bots\`.
 
-## Legacy
+## Archive
 
-`legacy\` holds the original (v6) codebase exactly as it was before the v7
-rewrite: 7 functional bots (woodcutting, motherlode2, crafting, smithing,
-sudoku, autoclicker, seller) on their own `Lib\`/`micro\`/`Images\`/`logs\`.
-It is **frozen** - not developed further, kept only as a known-working
-fallback while v7 (this root) catches up feature-for-feature.
-`legacy\TEMPLATES.md` has the original plain-English step breakdown of every
-planned bot. `legacy\prompts\` holds the session-starter prompts that drove
-the v6→v7 rewrite, kept for historical context.
+`archive\` holds every earlier codebase, frozen:
+- `archive\v7\` — the immediate predecessor (26 micros + working
+  woodcutting bot, all previously live-confirmed). The proven fallback, and
+  the reference for calibration values when building v8 bots.
+- `archive\legacy\` — the original v6 codebase (7 functional bots).
+  `archive\legacy\TEMPLATES.md` has the original plain-English step breakdown
+  of every planned bot.
+- `archive\v10\` — an unrelated third-party toolkit download, kept only for
+  reference; nothing in it is used.

@@ -1,82 +1,46 @@
 ; ============================================================
-; v7 Lib\Act.ahk - mouse movement, click + keypress primitives
+; v8 Lib\Act.ahk - mouse movement, click + keypress primitives
 ;
-; All game-input cursor movement goes through HumanMove (standard #29)
-; - a fast minimum-jerk glide, F6-interruptible via GlideStepDelay on
-; every changed pixel. Because it can throw BotStopped mid-glide,
-; ClickAt presses Ctrl/Shift AFTER the glide: a pre-glide press would
-; leak a held key on F6 (g_PendingModifierKeys is only set after the
-; click, so nothing would ever release it). After the press only
-; Sleep+Click run - neither throws - so no leak window remains.
+; Movement half: ported verbatim from v7\Lib\Act.ahk - HumanGlide is
+; a proven minimum-jerk (Flash & Hogan) glide with edge-only tremor,
+; tuned for an expert user who already knows exactly where the
+; target is. GlideStepDelay's QueryPerformanceCounter busy-wait
+; exists because Windows' Sleep()/Pause() rounds any sub-15ms
+; request up to a full ~15.6ms tick - confirmed live in v7, not
+; re-litigated here.
 ;
-; ClickAt releases Ctrl/Shift ASYNCHRONOUSLY (standard #7): holding a
-; key costs no real time, so ClickAt returns right after the click and
-; a background timer lets go after holdMs. The guard against modifier
-; bleed: every action function calls ReleasePendingModifiersNow() at
-; its own start, forcing any still-pending release before new input.
+; Click half (this pass, micro 03) - THE HARD GUARANTEE: v7's
+; ClickAt took a bare x/y with an optional jitterPx that defaulted
+; to a sentinel (-1) meaning "flat CLICK_JITTER_MAX_PX fallback."
+; Two v7 call sites fell into that fallback silently (TravelToPoint's
+; pinned marker click passed no jitter arg at all; RightClickMenuItem
+; fell back when blockW/blockH were omitted) and landed a flat
+; +/-40px offset unbounded by the actual target's size - on a small
+; marker, that can miss the target's cell entirely.
 ;
-; preDelayMs/postDelayMs (standard #8) bracket every action, route
-; through Pause (F6-interruptible), default 0. settleMs/holdMs stay
-; Sleep - tiny mechanical gaps, not scheduling choices. postDelayMs=0
-; between ClickAt and PressKey means a true zero gap (load-bearing for
-; seller's click-then-immediate-Esc).
+; v8 closes this structurally: ClickAt no longer accepts a bare x/y.
+; Every call site must construct a ClickTarget(x, y, w, h) - the
+; target's REAL measured size - and JitterInCell mathematically
+; cannot produce an offset outside that cell (the +/-25%-of-dimension
+; radius is always <= half the cell's own w/h). A caller that thinks
+; it's clicking "an arbitrary point" now has to state a size; if it
+; doesn't know one, that's a calibration gap, not a Lib default's
+; job to paper over. There is no sentinel, no fallback, no size-less
+; click path anywhere in v8.
+;
+; Jitter is also per-axis TRIANGULAR (RandTri) now, not uniform, to
+; match every other knob in the movement model (RandTri, MinJerk
+; skew, TremorWeight) - v7's uniform-square jitter was the one flat
+; distribution left in an otherwise center-weighted design.
 ; ============================================================
 
 g_PendingModifierKeys := []
 
-; Click-point jitter (standard #29): every click on a fixed UI asset
-; (bank buttons, menu items) previously landed the EXACT same pixel
-; every time - FindImage always returns the identical center for a
-; static asset, so nothing upstream naturally varies it. A real person
-; also clicks more sloppily on a BIGGER target than a small one, so
-; jitter is PROPORTIONAL to the target's own size, not a flat amount:
-; BlockJitterPx(w, h) = CLICK_JITTER_PERCENT of the target's smaller
-; dimension, capped at CLICK_JITTER_MAX_PX. Every composite that knows
-; its target's real size (TrackAndClick's blockW/blockH, an image's
-; w/h, a grid cell's cellW/cellH) computes BlockJitterPx and passes it
-; into ClickAt's trailing jitterPx param; the sentinel -1 (ClickAt's
-; default) falls back to the flat CLICK_JITTER_MAX_PX for the rare
-; call with no size info at all (e.g. a pinned marker point). Applied
-; to the point BEFORE the glide (JitterPoint, called from ClickAt and
-; RightClickMenuItem's right-click), not after - HumanGlide's
-; exact-landing guarantee still holds, it just aims at a slightly
-; different spot each time. CLICK_JITTER_MAX_PX raised to 40 (from an
-; earlier flat 3, then a hand-tuned 10) so it acts as a safety ceiling
-; only - it should essentially never clip a real proportional value in
-; this project (largest target is the ~80px deposit button, 25% of
-; which is 20px).
-CLICK_JITTER_PERCENT := 0.25
-CLICK_JITTER_MAX_PX := 40
-
-; Proportional jitter radius for a target of size w x h - the smaller
-; dimension governs so jitter never exceeds the target's own tightest
-; axis (e.g. a wide-but-short context menu row is bounded by its
-; height, not its width).
-BlockJitterPx(w, h) {
-    global CLICK_JITTER_PERCENT, CLICK_JITTER_MAX_PX
-    return Round(Min(Min(w, h) * CLICK_JITTER_PERCENT, CLICK_JITTER_MAX_PX))
-}
-
-; jitterPx = -1 (sentinel) falls back to the flat CLICK_JITTER_MAX_PX -
-; used when the caller has no target size to compute a proportional
-; value from.
-JitterPoint(x, y, jitterPx, &jx, &jy) {
-    global CLICK_JITTER_MAX_PX
-    if (jitterPx = -1)
-        jitterPx := CLICK_JITTER_MAX_PX
-    jx := x + Random(-jitterPx, jitterPx)
-    jy := y + Random(-jitterPx, jitterPx)
-}
-
-; Sub-tick pacing (was WindMouseStepDelay - kept, renamed, body
-; unchanged): 2026-07-27 postmortem, still true - raising the process
-; timer resolution via DllCall("winmm\timeBeginPeriod", "UInt", 1) does
-; NOT tighten AHK's own Sleep()/Pause(); a request for Sleep(1..3) was
-; live-confirmed to still round up to a full ~15.6ms Windows tick
-; regardless. The only way to get real sub-tick precision on this
-; system is to not go through Sleep() at all - a QueryPerformanceCounter
-; busy-wait. Spinning a core for a few ms, a few dozen times per glide,
-; is nothing. Used by HumanGlide's per-step pacing.
+; Sub-tick pacing: a QueryPerformanceCounter busy-wait, because
+; Sleep()/Pause() cannot deliver real sub-15ms precision on Windows
+; (confirmed in v7 standard #29 - raising process timer resolution
+; via timeBeginPeriod does NOT tighten AHK's own Sleep()). Spinning
+; a core for a few ms, a few dozen times per glide, is nothing.
 GlideStepDelay(ms) {
     global g_StopRequested
     static freq := 0
@@ -102,33 +66,25 @@ GlideStepDelay(ms) {
     }
 }
 
-; Center-weighted random (triangular): mean of two uniforms. Promoted
-; from Tools\humanized-mouse.ahk unchanged - human parameter spreads
-; cluster around a typical value; a flat uniform spread is itself a
-; statistical tell.
+; Center-weighted random (triangular): mean of two uniforms. Human
+; parameter spreads cluster around a typical value; a flat uniform
+; spread is itself a statistical tell.
 RandTri(lo, hi) {
     return (Random(lo, hi) + Random(lo, hi)) / 2
 }
 
-; Minimum-jerk position profile (Flash & Hogan) - promoted unchanged
-; from Tools\humanized-mouse.ahk. Zero velocity AND acceleration at
-; both ends, bell-shaped velocity between; skew warps peak timing
-; without disturbing either endpoint.
+; Minimum-jerk position profile (Flash & Hogan). Zero velocity AND
+; acceleration at both ends, bell-shaped velocity between; skew
+; warps peak timing without disturbing either endpoint.
 MinJerk(t, skew) {
     tw := t ** skew
     return 10 * tw ** 3 - 15 * tw ** 4 + 6 * tw ** 5
 }
 
-; Tremor weight in [0,1] for path-position t in [0,1] - the INVERSE of
-; Tools\humanized-mouse.ahk's original mid-flight-peaked wobble
-; (standard #29, 2026-07-30 rewrite): a real expert's hand isn't
-; shaking mid-flick, it wavers only leaving rest and settling onto the
-; target. Nonzero only within edgeFrac of either end; flat ZERO across
-; the whole middle so a fast glide reads as clean and controlled, not
-; shaky throughout. d = distance from the nearest end (0 at either
-; endpoint, 0.5 at the midpoint); u ramps 1 (at the very end) -> 0 (at
-; the edge-band boundary); squaring gives a zero-slope ease into the
-; flat zero region, so tremor fades out rather than visibly cutting off.
+; Tremor weight in [0,1] for path-position t in [0,1] - a real
+; expert's hand isn't shaking mid-flick, it wavers only leaving rest
+; and settling onto the target. Nonzero only within edgeFrac of
+; either end; flat ZERO across the whole middle.
 TremorWeight(t, edgeFrac) {
     d := Min(t, 1 - t)
     if (d >= edgeFrac)
@@ -137,51 +93,37 @@ TremorWeight(t, edgeFrac) {
     return u * u
 }
 
-; HumanGlide tuning (standard #29, 2026-07-30 rewrite - replaces
-; WindMouse). Decision: "expert user who already knows exactly where
-; things are, moves almost instantly" - speed is the dominant design
-; goal here, small edge-only tremor is cosmetic on top. Worked
-; arithmetic (steps = clamp(round(dist/PX_PER_STEP), MIN, MAX), delay
-; uniform in [STEP_DELAY_MIN,MAX]ms, avg 3.5ms/step - entirely via
-; GlideStepDelay's busy-wait, not Sleep/Pause):
+; HumanGlide tuning. Decision: "expert user who already knows
+; exactly where things are, moves almost instantly" - speed is the
+; dominant design goal, small edge-only tremor is cosmetic on top.
+; Worked arithmetic (steps = clamp(round(dist/PX_PER_STEP), MIN,
+; MAX), delay uniform in [STEP_DELAY_MIN,MAX]ms, avg 3.5ms/step -
+; entirely via GlideStepDelay's busy-wait, not Sleep/Pause):
 ;   100px -> 13 steps -> ~26-65ms (avg ~46ms)
 ;   240px -> 30 steps (clamp point) -> ~60-150ms (avg ~105ms)
-;   500-1500px -> 30 steps (capped) -> ~60-150ms (avg ~105ms) - MAX_STEPS
-;   caps SAMPLE COUNT, not step size, so long moves don't get
-;   proportionally slower, they just take bigger per-sample jumps.
-; This is a conservative upper bound - samples near the eased ends
-; often round to the same pixel and get skipped (no delay paid), so
-; real elapsed time is normally below this table. The 2026-07-27
-; WindMouse tuning saga got bitten hard by NOT doing this arithmetic up
-; front before retuning - don't repeat that, redo this table if these
-; change.
+;   500-1500px -> 30 steps (capped) -> ~60-150ms (avg ~105ms) -
+;   MAX_STEPS caps SAMPLE COUNT, not step size, so long moves don't
+;   get proportionally slower, they just take bigger per-sample jumps.
 HUMANMOVE_PX_PER_STEP := 8
 HUMANMOVE_MIN_STEPS := 5
 HUMANMOVE_MAX_STEPS := 30
 HUMANMOVE_STEP_COUNT_JITTER_FRAC := 0.2
 HUMANMOVE_STEP_DELAY_MIN_MS := 2
 HUMANMOVE_STEP_DELAY_MAX_MS := 5
-HUMANMOVE_BOW_MIN_FRAC := 0.02       ; perpendicular arc as a fraction of distance -
-HUMANMOVE_BOW_MAX_FRAC := 0.05       ; kept subtle so a low-sample-count fast glide
-                                      ; still reads as one clean curve, not a polygon
+HUMANMOVE_BOW_MIN_FRAC := 0.04       ; perpendicular arc as a fraction of distance -
+HUMANMOVE_BOW_MAX_FRAC := 0.08       ; raised from v7's 0.02/0.05 so EVERY glide
+                                      ; reads as a visible curve, never near-straight
 HUMANMOVE_SKEW_MIN := 0.85           ; velocity-profile asymmetry (MinJerk skew) -
 HUMANMOVE_SKEW_MAX := 1.15           ; real movements rarely peak exactly midway
 HUMANMOVE_TREMOR_PX := 1.5           ; peak wobble, ONLY near start/end (TremorWeight)
 HUMANMOVE_TREMOR_EDGE_FRAC := 0.15   ; tremor active in the first/last 15% of the
                                       ; path, flat zero across the middle 70%
 
-; Minimum-jerk glide: current mouse position -> (x1,y1) along a subtly
-; bowed arc (promoted/adapted from Tools\humanized-mouse.ahk's Glide -
-; standard #29, 2026-07-30 rewrite, replaces WindMouseGlide). No
-; ballistic-miss/correction phase here (that lived in the source file's
-; own HumanMove, not promoted) - JitterPoint/BlockJitterPx already pick
-; a slightly-off aim point before this is ever called, so this is a
-; single, fast, precise glide straight to the exact target it's given.
-; Consecutive samples that round to the same pixel are skipped (no
-; re-sent pixel, no wasted delay). Ends with an exact-landing snap to
-; (x1,y1) even if the eased tail stopped short - ClickAt clicks at
-; current position, so this is load-bearing. Not called directly by
-; anything except HumanMove.
+; Minimum-jerk glide: current mouse position -> (x1,y1) along a
+; subtly bowed arc. Consecutive samples that round to the same pixel
+; are skipped (no re-sent pixel, no wasted delay). Ends with an
+; exact-landing snap to (x1,y1) even if the eased tail stopped short
+; - ClickAt clicks at current position, so this is load-bearing.
 HumanGlide(x1, y1) {
     global HUMANMOVE_PX_PER_STEP, HUMANMOVE_MIN_STEPS, HUMANMOVE_MAX_STEPS, HUMANMOVE_STEP_COUNT_JITTER_FRAC
     global HUMANMOVE_STEP_DELAY_MIN_MS, HUMANMOVE_STEP_DELAY_MAX_MS
@@ -233,28 +175,73 @@ HumanGlide(x1, y1) {
         MouseMove(x1, y1, 0)
 }
 
-; Public entry point: current mouse position -> (x1,y1), one straight
-; HumanGlide. No ballistic-miss/correction pass (standard #29,
-; 2026-07-30) - the caller (ClickAt/RightClickMenuItem) already picked
-; a slightly-off aim point via JitterPoint before calling this, so a
-; second, independent "aim error" model here would double-humanize the
-; same decision and cost real time for no visual benefit. HumanGlide's
-; own exact-landing snap guarantees this always lands precisely on
-; (x1,y1). Kept as a thin wrapper (not inlined into HumanGlide) so a
-; future cosmetic addition here never needs a call-site change.
+; Public entry point: current mouse position -> (x1,y1), one
+; straight HumanGlide. Kept as a thin wrapper (not inlined into
+; HumanGlide) so a future cosmetic addition here never needs a
+; call-site change.
 HumanMove(x1, y1) {
     HumanGlide(x1, y1)
 }
 
-ClickAt(x, y, useCtrl := false, useShift := false, settleMs := 100, holdMs := 100, preDelayMs := 0, postDelayMs := 0, jitterPx := -1) {
+; Jitter spans the central CLICK_JITTER_FRAC of each axis of a
+; target cell (0.5 -> +/-25% of that dimension, matching v7's
+; magnitude), capped by CLICK_JITTER_MAX_PX as an absolute safety
+; ceiling only - for any real target in this project the fractional
+; radius is far smaller than the ceiling, so the ceiling should
+; essentially never bind.
+CLICK_JITTER_FRAC := 0.5
+CLICK_JITTER_MAX_PX := 40
+
+; A click target with a REQUIRED, real, measured size - the one
+; object every click in v8 is built from. Throws if given a
+; degenerate size rather than silently allowing an unbounded click;
+; a 1x1 "target" is almost certainly a bug (a marker point that was
+; never given its real dimensions), not an intentional pixel-exact
+; click.
+ClickTarget(x, y, w, h) {
+    if (w < 1 || h < 1)
+        throw ValueError("ClickTarget: w/h must be >= 1 (got " w "x" h ")")
+    return {x: x, y: y, w: w, h: h}
+}
+
+; Per-axis triangular jitter, structurally bounded within the cell:
+; |jx - t.x| <= t.w/2 * CLICK_JITTER_FRAC <= t.w/2, so the jittered
+; point can never leave the target's own bounding box on either
+; axis. A wide-but-short target (e.g. a context-menu row) naturally
+; gets wide-x/narrow-y jitter instead of a flat circular/square
+; spread - more realistic AND strictly in-cell.
+JitterInCell(t, &jx, &jy) {
+    global CLICK_JITTER_FRAC, CLICK_JITTER_MAX_PX
+    rx := Min(t.w / 2 * CLICK_JITTER_FRAC, CLICK_JITTER_MAX_PX)
+    ry := Min(t.h / 2 * CLICK_JITTER_FRAC, CLICK_JITTER_MAX_PX)
+    jx := Round(t.x + RandTri(-rx, rx))
+    jy := Round(t.y + RandTri(-ry, ry))
+}
+
+; THE one click prologue in v8 (the button param is why
+; RightClickMenuItem no longer needs its own copy of this):
+; preDelay -> release any stale modifiers -> jitter within the
+; target cell -> glide there -> press modifiers (AFTER the glide,
+; standard #29: a pre-glide press would leak a held key if F6 threw
+; mid-glide, since g_PendingModifierKeys is only set after the
+; click) -> settle -> click -> async modifier release -> postDelay.
+ClickAt(target, opts := {}) {
     global g_PendingModifierKeys
+
+    button := Opt(opts, "button", "left")
+    useCtrl := Opt(opts, "ctrl", false)
+    useShift := Opt(opts, "shift", false)
+    settleMs := Opt(opts, "settleMs", 100)
+    holdMs := Opt(opts, "holdMs", 100)
+    preDelayMs := Opt(opts, "preDelayMs", 0)
+    postDelayMs := Opt(opts, "postDelayMs", 0)
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
 
     ReleasePendingModifiersNow()
 
-    JitterPoint(x, y, jitterPx, &jx, &jy)
+    JitterInCell(target, &jx, &jy)
     HumanMove(jx, jy)
 
     if (useCtrl)
@@ -263,7 +250,7 @@ ClickAt(x, y, useCtrl := false, useShift := false, settleMs := 100, holdMs := 10
         Send("{Shift down}")
 
     Sleep(settleMs)
-    Click()
+    Click(button)
 
     keysToRelease := []
     if (useCtrl)
@@ -279,9 +266,10 @@ ClickAt(x, y, useCtrl := false, useShift := false, settleMs := 100, holdMs := 10
         Pause(postDelayMs)
 }
 
-; Releases any modifiers still held from a previous ClickAt and cancels
-; its timer. Fired by the timer after holdMs, and defensively at the
-; start of every action function - released at most once either way.
+; Releases any modifiers still held from a previous ClickAt and
+; cancels its timer. Fired by the timer after holdMs, and
+; defensively at the start of every action function - released at
+; most once either way.
 ReleasePendingModifiersNow() {
     global g_PendingModifierKeys
     if (g_PendingModifierKeys.Length = 0)

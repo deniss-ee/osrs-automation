@@ -1,10 +1,15 @@
 ; ============================================================
-; v7 Lib\Grid.ahk - generalized grid addressing
+; v8 Lib\Grid.ahk - parameterized grid addressing (one grid math
+; implementation for inventory, bank, or any other cell layout)
 ;
-; One set of functions parameterized by a GridSpec object - subsumes
-; v6's SlotCorner/SlotCenter/BankSlotCenter and sudoku's local
-; MenuItemCorner (all the same col/row/gap math with different
-; constants). Any regular row-major grid reuses this.
+; Ported verbatim from v7\Lib\Grid.ahk except GridCellRegion, which
+; had an off-by-one inconsistency in v7: Steps.ahk\VerifySlotsAndDrop
+; hand-rolled the SAME box using an inclusive `cx + w - 1` bound
+; while GridCellRegion itself used an exclusive `x + cellW` bound -
+; two different definitions of "this cell's region" existing side by
+; side. v8 fixes GridCellRegion to the inclusive form and makes it
+; the ONLY definition - VerifySlotsAndDrop (Steps.ahk) calls it
+; instead of re-deriving the box itself.
 ; ============================================================
 
 GridSpec(originX, originY, cols, rows, cellW, cellH, gapX := 0, gapY := 0) {
@@ -12,28 +17,25 @@ GridSpec(originX, originY, cols, rows, cellW, cellH, gapX := 0, gapY := 0) {
         cellW: cellW, cellH: cellH, gapX: gapX, gapY: gapY}
 }
 
-; 1-based row-major index -> the cell's top-left CORNER.
 GridCorner(grid, index, &x, &y) {
-    total := grid.cols * grid.rows
-    if (index < 1 || index > total)
-        throw ValueError("GridCorner: index " index " out of range (1.." total ")")
-
+    if (index < 1 || index > grid.cols * grid.rows)
+        throw ValueError("GridCorner: index " index " out of range for a " grid.cols "x" grid.rows " grid")
     col := Mod(index - 1, grid.cols)
     row := (index - 1) // grid.cols
-
     x := grid.originX + col * (grid.cellW + grid.gapX)
     y := grid.originY + row * (grid.cellH + grid.gapY)
 }
 
-; Same indexing, cell CENTER (derived via CenterX/CenterY, standard #2).
 GridCenter(grid, index, &x, &y) {
     GridCorner(grid, index, &cx, &cy)
     x := CenterX(cx, grid.cellW)
     y := CenterY(cy, grid.cellH)
 }
 
-; The cell's box as [x1,y1,x2,y2] - for in-cell classification.
+; [x1, y1, x2, y2] region for one cell, inclusive bounds - the ONE
+; definition of "this cell's box" (Steps.ahk\VerifySlotsAndDrop uses
+; this instead of re-deriving it).
 GridCellRegion(grid, index) {
-    GridCorner(grid, index, &x, &y)
-    return [x, y, x + grid.cellW, y + grid.cellH]
+    GridCorner(grid, index, &cx, &cy)
+    return [cx, cy, cx + grid.cellW - 1, cy + grid.cellH - 1]
 }

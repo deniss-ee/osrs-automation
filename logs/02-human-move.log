@@ -1,0 +1,94 @@
+2026-08-01 15:09:37 [02-human-move] HumanMove: ready - F5 run, F6 stop, F12 exit
+2026-08-01 15:09:38 [02-human-move] human-move: pxPerStep=8 steps=5..30 bow=0.040000000000000001..0.080000000000000002
+2026-08-01 15:09:38 [02-human-move] human-move: 429px in 110ms, err=0px
+2026-08-01 15:09:39 [02-human-move] human-move: 336px in 110ms, err=0px
+2026-08-01 15:09:39 [02-human-move] human-move: 705px in 109ms, err=0px
+2026-08-01 15:09:39 [02-human-move] human-move: 246px in 109ms, err=0px
+2026-08-01 15:09:40 [02-human-move] human-move: 1789px in 125ms, err=0px
+2026-08-01 15:09:40 [02-human-move] human-move: 1698px in 94ms, err=0px
+2026-08-01 15:09:41 [02-human-move] human-move: 939px in 109ms, err=0px
+2026-08-01 15:09:41 [02-human-move] human-move: 1286px in 93ms, err=0px
+2026-08-01 15:09:41 [02-human-move] human-move: 788px in 109ms, err=0px
+2026-08-01 15:09:42 [02-human-move] human-move: 439px in 109ms, err=0px
+2026-08-01 15:09:42 [02-human-move] human-move: 1000px in 110ms, err=0px
+2026-08-01 15:09:42 [02-human-move] human-move: 298px in 109ms, err=0px
+2026-08-01 15:09:43 [02-human-move] human-move: 956px in 94ms, err=0px
+2026-08-01 15:09:43 [02-human-move] human-move: 847px in 109ms, err=0px
+2026-08-01 15:09:43 [02-human-move] human-move: 1531px in 125ms, err=0px
+2026-08-01 15:09:44 [02-human-move] human-move: 388px in 125ms, err=0px
+2026-08-01 15:09:44 [02-human-move] human-move: 1941px in 110ms, err=0px
+2026-08-01 15:09:44 [02-human-move] human-move: 1842px in 109ms, err=0px
+2026-08-01 15:09:45 [02-human-move] human-move: 1450px in 125ms, err=0px
+2026-08-01 15:09:45 [02-human-move] human-move: 1079px in 125ms, err=0px
+2026-08-01 15:09:45 [02-human-move] human-move: 2372px in 109ms, err=0px
+2026-08-01 15:09:46 [02-human-move] human-move: 919px in 109ms, err=0px
+2026-08-01 15:09:46 [02-human-move] human-move: 1088px in 109ms, err=0px
+2026-08-01 15:09:46 [02-human-move] human-move: 398px in 109ms, err=0px
+2026-08-01 15:09:47 [02-human-move] human-move: 668px in 109ms, err=0px
+2026-08-01 15:09:47 [02-human-move] human-move: 816px in 125ms, err=0px
+2026-08-01 15:09:48 [02-human-move] human-move: 910px in 125ms, err=0px
+2026-08-01 15:09:48 [02-human-move] human-move: 876px in 110ms, err=0px
+2026-08-01 15:09:48 [02-human-move] human-move: 447px in 125ms, err=0px
+2026-08-01 15:09:49 [02-human-move] human-move: 1589px in 125ms, err=0px
+2026-08-01 15:09:49 [02-human-move] human-move: 973px in 109ms, err=0px
+2026-08-01 15:09:49 [02-human-move] human-move: 703px in 109ms, err=0px
+2026-08-01 15:09:50 [02-human-move] human-move: 419px in 109ms, err=0px
+2026-08-01 15:09:50 [02-human-move] human-move: 1250px in 125ms, err=0px
+2026-08-01 15:09:50 [02-human-move] human-move: 1530px in 125ms, err=0px
+2026-08-01 15:09:51 [02-human-move] human-move: 754px in 110ms, err=0px
+2026-08-01 15:09:51 [02-human-move] human-move: 2175px in 94ms, err=0px
+2026-08-01 15:09:51 [02-human-move] human-move: 1916px in 110ms, err=0px
+2026-08-01 15:09:52 [02-human-move] human-move: 1117px in 109ms, err=0px
+2026-08-01 15:09:52 [02-human-move] human-move: 677px in 125ms, err=0px
+2026-08-01 15:09:52 [02-human-move] human-move: 1258px in 110ms, err=0px
+2026-08-01 15:09:53 [02-human-move] human-move: 1067px in 109ms, err=0px
+2026-08-01 15:09:53 [02-human-move] human-move: 781px in 110ms, err=0px
+2026-08-01 15:09:53 [02-human-move] stop requested
+2026-08-01 15:09:53 [02-human-move] GlideStepDelay: stop flag seen after wait - throwing BotStopped
+2026-08-01 15:09:53 [02-human-move] HumanMove: STOPPED by F6
+2026-08-01 15:10:05 [02-human-move] HumanMove: ready - F5 run, F6 stop, F12 exit
+2026-08-01 15:10:07 [02-human-move] path-trace: 484px straight-line, 30 steps, maxDev=12.3px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:07 [02-human-move] path-trace: DONE
+2026-08-01 15:10:08 [02-human-move] path-trace: 1315px straight-line, 30 steps, maxDev=36.9px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:08 [02-human-move] path-trace: DONE
+2026-08-01 15:10:09 [02-human-move] path-trace: 741px straight-line, 30 steps, maxDev=18.1px at t=0.53 (straight line would be 0)
+2026-08-01 15:10:09 [02-human-move] path-trace: DONE
+2026-08-01 15:10:10 [02-human-move] path-trace: 1420px straight-line, 30 steps, maxDev=45.7px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:10 [02-human-move] path-trace: DONE
+2026-08-01 15:10:10 [02-human-move] path-trace: 358px straight-line, 30 steps, maxDev=10.5px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:10 [02-human-move] path-trace: DONE
+2026-08-01 15:10:11 [02-human-move] path-trace: 2090px straight-line, 30 steps, maxDev=48.9px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:11 [02-human-move] path-trace: DONE
+2026-08-01 15:10:13 [02-human-move] path-trace: 1888px straight-line, 30 steps, maxDev=64.4px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:13 [02-human-move] path-trace: DONE
+2026-08-01 15:10:14 [02-human-move] path-trace: 1483px straight-line, 30 steps, maxDev=44.2px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:14 [02-human-move] path-trace: DONE
+2026-08-01 15:10:14 [02-human-move] path-trace: 777px straight-line, 30 steps, maxDev=26.9px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:14 [02-human-move] path-trace: DONE
+2026-08-01 15:10:15 [02-human-move] path-trace: 629px straight-line, 30 steps, maxDev=18.7px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:15 [02-human-move] path-trace: DONE
+2026-08-01 15:10:16 [02-human-move] path-trace: 411px straight-line, 30 steps, maxDev=13.2px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:16 [02-human-move] path-trace: DONE
+2026-08-01 15:10:16 [02-human-move] path-trace: 922px straight-line, 30 steps, maxDev=22.6px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:17 [02-human-move] path-trace: DONE
+2026-08-01 15:10:17 [02-human-move] path-trace: 980px straight-line, 30 steps, maxDev=32.2px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:17 [02-human-move] path-trace: DONE
+2026-08-01 15:10:18 [02-human-move] path-trace: 1391px straight-line, 30 steps, maxDev=51.7px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:18 [02-human-move] path-trace: DONE
+2026-08-01 15:10:18 [02-human-move] path-trace: 2248px straight-line, 30 steps, maxDev=61.9px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:19 [02-human-move] path-trace: DONE
+2026-08-01 15:10:20 [02-human-move] path-trace: 1825px straight-line, 30 steps, maxDev=63.3px at t=0.53 (straight line would be 0)
+2026-08-01 15:10:20 [02-human-move] path-trace: DONE
+2026-08-01 15:10:23 [02-human-move] path-trace: 1540px straight-line, 30 steps, maxDev=43.7px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:23 [02-human-move] path-trace: DONE
+2026-08-01 15:10:32 [02-human-move] path-trace: 562px straight-line, 30 steps, maxDev=16.8px at t=0.47 (straight line would be 0)
+2026-08-01 15:10:32 [02-human-move] path-trace: DONE
+2026-08-01 15:10:33 [02-human-move] path-trace: 1315px straight-line, 30 steps, maxDev=45.4px at t=0.53 (straight line would be 0)
+2026-08-01 15:10:33 [02-human-move] path-trace: DONE
+2026-08-01 15:10:33 [02-human-move] path-trace: 85px straight-line, 10 steps, maxDev=1.9px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:33 [02-human-move] path-trace: DONE
+2026-08-01 15:10:34 [02-human-move] path-trace: 1611px straight-line, 30 steps, maxDev=57.8px at t=0.50 (straight line would be 0)
+2026-08-01 15:10:34 [02-human-move] path-trace: DONE
+2026-08-01 15:10:35 [02-human-move] path-trace: 2079px straight-line, 30 steps, maxDev=51.4px at t=0.53 (straight line would be 0)
+2026-08-01 15:10:35 [02-human-move] path-trace: DONE
+2026-08-01 15:10:37 [02-human-move] stop requested

@@ -1,0 +1,22 @@
+2026-08-01 13:04:36 [28-session-breaks] Script loaded. F5=start  F6=stop  F12=exit  F8=probe  F7=no-pacing regression run.
+2026-08-01 13:04:39 [28-session-breaks] micro28: started
+2026-08-01 13:04:39 [28-session-breaks] micro28: session length rolled at 0 min
+2026-08-01 13:04:39 [28-session-breaks] micro28: cycle 1 - gathering
+2026-08-01 13:04:39 [28-session-breaks] micro28: gathering (dummy, 1000ms)
+2026-08-01 13:04:40 [28-session-breaks] micro28: cycle 1 - banking
+2026-08-01 13:04:40 [28-session-breaks] micro28: banking (dummy, 1000ms)
+2026-08-01 13:04:41 [28-session-breaks] micro28: stepping away for a short break (2s)
+2026-08-01 13:04:44 [28-session-breaks] micro28: break over, resuming
+2026-08-01 13:04:44 [28-session-breaks] micro28: cycle 2 - gathering
+2026-08-01 13:04:44 [28-session-breaks] micro28: gathering (dummy, 1000ms)
+2026-08-01 13:04:45 [28-session-breaks] micro28: cycle 2 - banking
+2026-08-01 13:04:45 [28-session-breaks] micro28: banking (dummy, 1000ms)
+2026-08-01 13:04:47 [28-session-breaks] micro28: stepping away for a short break (4s)
+2026-08-01 13:04:51 [28-session-breaks] micro28: break over, resuming
+2026-08-01 13:04:51 [28-session-breaks] micro28: cycle 3 - gathering
+2026-08-01 13:04:51 [28-session-breaks] micro28: gathering (dummy, 1000ms)
+2026-08-01 13:04:52 [28-session-breaks] micro28: cycle 3 - banking
+2026-08-01 13:04:52 [28-session-breaks] micro28: banking (dummy, 1000ms)
+2026-08-01 13:04:53 [28-session-breaks] micro28: session length elapsed after cycle 3 - stopping cleanly
+2026-08-01 13:04:53 [28-session-breaks] micro28: pacing run result=1
+2026-08-01 13:04:56 [28-session-breaks] F12 pressed - exiting

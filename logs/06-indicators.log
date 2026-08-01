@@ -1,0 +1,67 @@
+2026-08-01 15:31:19 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:31:38 [06-indicators] indicators: present=0 alreadyTrue=0
+2026-08-01 15:31:38 [06-indicators] micro06: FAILED - still loaded, F5 to restart
+2026-08-01 15:32:52 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:32:56 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:33:02 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:33:13 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:33:15 [06-indicators] indicators: present=1 alreadyTrue=0
+2026-08-01 15:33:15 [06-indicators] micro06: DONE
+2026-08-01 15:33:21 [06-indicators] stop requested
+2026-08-01 15:33:21 [06-indicators] micro06: STOPPED by F6
+2026-08-01 15:33:24 [06-indicators] stop requested
+2026-08-01 15:33:24 [06-indicators] micro06: STOPPED by F6
+2026-08-01 15:33:26 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:33:31 [06-indicators] indicators: present=1 alreadyTrue=0
+2026-08-01 15:33:31 [06-indicators] micro06: DONE
+2026-08-01 15:33:36 [06-indicators] stop requested
+2026-08-01 15:33:37 [06-indicators] watch-absent: STOPPED by F6
+2026-08-01 15:33:40 [06-indicators] indicators: absent=1 alreadyTrue=0
+2026-08-01 15:33:40 [06-indicators] watch-absent: DONE
+2026-08-01 15:33:45 [06-indicators] FindFilledBlock: not found (20x20 0x00B809 tol=5, 0 ms)
+2026-08-01 15:33:45 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:33:45 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:16 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:34:18 [06-indicators] FindFilledBlock: found at 1529,887 (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:34:18 [06-indicators] indicators: arrived - found 0x00B809 at 1529,887 (within tol of 1534,891)
+2026-08-01 15:34:18 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:21 [06-indicators] FindFilledBlock: found at 1535,913 (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:34:21 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:34:21 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:22 [06-indicators] FindFilledBlock: found at 1531,931 (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:34:22 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:34:22 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:22 [06-indicators] FindFilledBlock: not found (4x4 0x00B809 tol=5, 16 ms)
+2026-08-01 15:34:22 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:34:22 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:22 [06-indicators] FindFilledBlock: not found (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:34:22 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:34:22 [06-indicators] micro06 probe: DONE
+2026-08-01 15:34:25 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:34:29 [06-indicators] FindFilledBlock: not found (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:34:29 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:34:29 [06-indicators] micro06 probe: DONE
+2026-08-01 15:35:06 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:35:11 [06-indicators] FindFilledBlock: not found (4x4 0x00B809 tol=5, 0 ms)
+2026-08-01 15:35:11 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:35:11 [06-indicators] micro06 probe: DONE
+2026-08-01 15:36:09 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:36:10 [06-indicators] FindFilledBlock: not found (33x33 0x00B809 tol=5, 0 ms)
+2026-08-01 15:36:10 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:36:10 [06-indicators] micro06 probe: DONE
+2026-08-01 15:36:19 [06-indicators] FindFilledBlock: found at 1543,901 (33x33 0x00B809 tol=5, 0 ms)
+2026-08-01 15:36:19 [06-indicators] indicators: arrived - found 0x00B809 at 1543,901 (within tol of 1549,911)
+2026-08-01 15:36:19 [06-indicators] micro06 probe: DONE
+2026-08-01 15:36:21 [06-indicators] FindFilledBlock: found at 1543,901 (33x33 0x00B809 tol=5, 0 ms)
+2026-08-01 15:36:21 [06-indicators] indicators: arrived - found 0x00B809 at 1543,901 (within tol of 1549,911)
+2026-08-01 15:36:21 [06-indicators] micro06 probe: DONE
+2026-08-01 15:36:27 [06-indicators] micro06: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:36:29 [06-indicators] FindFilledBlock: found at 1529,887 (5x5 0x00B809 tol=5, 0 ms)
+2026-08-01 15:36:29 [06-indicators] indicators: NOT arrived (no match within tolerance)
+2026-08-01 15:36:29 [06-indicators] micro06 probe: DONE
+2026-08-01 15:36:51 [06-indicators] indicators: snapshot taken (56 samples) - watching for change up to 10000ms
+2026-08-01 15:37:00 [06-indicators] indicators: changed=1
+2026-08-01 15:37:00 [06-indicators] snapshot-watch: DONE
+2026-08-01 15:37:21 [06-indicators] indicators: snapshot taken (56 samples) - watching for change up to 10000ms
+2026-08-01 15:37:22 [06-indicators] indicators: changed=1
+2026-08-01 15:37:22 [06-indicators] snapshot-watch: DONE

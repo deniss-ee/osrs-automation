@@ -1,0 +1,53 @@
+2026-08-01 15:07:08 [01-harness-stop] micro01: ready - F5 run, F6 stop, F12 exit, F8 probe
+2026-08-01 15:07:16 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:07:19 [01-harness-stop] stop requested
+2026-08-01 15:07:19 [01-harness-stop] micro01: STOPPED by F6
+2026-08-01 15:07:26 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:02 [01-harness-stop] micro01: wait completed uninterrupted
+2026-08-01 15:08:02 [01-harness-stop] micro01: DONE
+2026-08-01 15:08:09 [01-harness-stop] stop requested
+2026-08-01 15:08:10 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:12 [01-harness-stop] stop requested
+2026-08-01 15:08:12 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:13 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:14 [01-harness-stop] stop requested
+2026-08-01 15:08:14 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:15 [01-harness-stop] stop requested
+2026-08-01 15:08:17 [01-harness-stop] stop requested
+2026-08-01 15:08:18 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:26 [01-harness-stop] stop requested
+2026-08-01 15:08:27 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:28 [01-harness-stop] stop requested
+2026-08-01 15:08:28 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:29 [01-harness-stop] stop requested
+2026-08-01 15:08:29 [01-harness-stop] micro01: STOPPED by F6
+2026-08-01 15:08:30 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:30 [01-harness-stop] stop requested
+2026-08-01 15:08:30 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:31 [01-harness-stop] stop requested
+2026-08-01 15:08:31 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:36 [01-harness-stop] micro01: GameActive()=1 (call 1)
+2026-08-01 15:08:36 [01-harness-stop] micro01 probe: FAILED - still loaded, F5 to restart
+2026-08-01 15:08:36 [01-harness-stop] micro01: GameActive()=1 (call 2)
+2026-08-01 15:08:36 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:37 [01-harness-stop] micro01: GameActive()=1 (call 3)
+2026-08-01 15:08:37 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:37 [01-harness-stop] micro01: GameActive()=1 (call 4)
+2026-08-01 15:08:37 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:38 [01-harness-stop] stop requested
+2026-08-01 15:08:38 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:39 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:40 [01-harness-stop] micro01: GameActive()=1 (call 5)
+2026-08-01 15:08:40 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:41 [01-harness-stop] stop requested
+2026-08-01 15:08:41 [01-harness-stop] micro01-F7: STOPPED by F6
+2026-08-01 15:08:41 [01-harness-stop] stop requested
+2026-08-01 15:08:42 [01-harness-stop] micro01: GameActive()=1 (call 6)
+2026-08-01 15:08:42 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:42 [01-harness-stop] micro01: GameActive()=1 (call 7)
+2026-08-01 15:08:42 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:42 [01-harness-stop] micro01: waiting 30000ms (or until F6)
+2026-08-01 15:08:43 [01-harness-stop] micro01: GameActive()=1 (call 8)
+2026-08-01 15:08:43 [01-harness-stop] micro01 probe: DONE
+2026-08-01 15:08:43 [01-harness-stop] micro01: GameActive()=1 (call 9)
+2026-08-01 15:08:43 [01-harness-stop] micro01 probe: DONE
