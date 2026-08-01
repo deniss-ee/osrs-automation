@@ -324,10 +324,19 @@ TravelToPoint(opts) {
 ;   depositRegion (whole screen), markerClick/depositClick
 ;   (ClickTargets), markerItemLabel, depositItemLabel,
 ;   confirmCondition (+ confirmTimeoutMs, required with it),
-;   ctrl false, settleMs 100, pollMs, label, preDelayMs/postDelayMs 0
+;   ctrl false (both clicks), markerCtrl/depositCtrl (each defaults
+;   to ctrl - override independently, e.g. run-click the marker but
+;   not a UI deposit button), depositSearchDelayMs 0 (number or
+;   [min,max], rolled fresh per call - a settle gap before the
+;   deposit-button search starts, letting the bank UI actually
+;   render instead of searching the instant the marker click lands),
+;   settleMs 100, pollMs, label, preDelayMs/postDelayMs 0
 ;   (postDelayMs only runs on the final SUCCESS return).
 DepositAllToBank(opts) {
     useCtrl := Opt(opts, "ctrl", false)
+    markerCtrl := Opt(opts, "markerCtrl", useCtrl)
+    depositCtrl := Opt(opts, "depositCtrl", useCtrl)
+    depositSearchDelayMs := Opt(opts, "depositSearchDelayMs", 0)
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
     settleMs := Opt(opts, "settleMs", 100)
     label := Opt(opts, "label", "DepositAllToBank")
@@ -339,7 +348,7 @@ DepositAllToBank(opts) {
 
     markerOpts := {
         target: opts.marker, region: Opt(opts, "markerRegion", ScreenRegion()),
-        waitTimeoutMs: opts.markerWaitTimeoutMs, ctrl: useCtrl, settleMs: settleMs, pollMs: pollMs,
+        waitTimeoutMs: opts.markerWaitTimeoutMs, ctrl: markerCtrl, settleMs: settleMs, pollMs: pollMs,
         label: label, itemLabel: Opt(opts, "markerItemLabel", "bank marker")
     }
     if (opts.HasOwnProp("markerClick"))
@@ -347,10 +356,13 @@ DepositAllToBank(opts) {
     if (!FindAndClick(markerOpts))
         return false
 
+    resolvedDepositDelay := (depositSearchDelayMs is Array)
+        ? Random(depositSearchDelayMs[1], depositSearchDelayMs[2]) : depositSearchDelayMs
     depositOpts := {
         target: opts.deposit, region: Opt(opts, "depositRegion", ScreenRegion()),
-        waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: useCtrl, settleMs: settleMs, pollMs: pollMs,
-        label: label, itemLabel: Opt(opts, "depositItemLabel", "deposit button")
+        waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: depositCtrl, settleMs: settleMs, pollMs: pollMs,
+        label: label, itemLabel: Opt(opts, "depositItemLabel", "deposit button"),
+        preDelayMs: resolvedDepositDelay
     }
     if (opts.HasOwnProp("depositClick"))
         depositOpts.clickTarget := opts.depositClick
@@ -516,7 +528,17 @@ class TargetLock {
 ;   cooldownMs 0, ctrl false, clickSettleMs 100, postClickSettleMs 0,
 ;   timeoutMs 1800000, progressTimeoutMs 300000, pollMs,
 ;   preDelayMs/postDelayMs 0 (postDelayMs only on the until-met
-;   SUCCESS return).
+;   SUCCESS return), acquireDelayChance 0 + acquireDelayMs (number or
+;   [min,max], rolled fresh) - chance-gated pause right before EACH
+;   fresh acquisition search starts (first target of the run and
+;   every re-acquire after a depletion) - models "took a moment to
+;   spot the next target," a different concept from MaybeTakeBreak's
+;   step-away semantics. idleWanderChance 0 + idleWanderCheckMs 1500 +
+;   idleWanderDurationMs [1000,3000] - while STABLE and not clicking
+;   (genuinely idling, watching the target), roll idleWanderChance at
+;   most once per idleWanderCheckMs; on a hit, WanderNear (Act.ahk)
+;   roams the cursor anywhere on screen for idleWanderDurationMs,
+;   never landing on the target's own cell.
 TrackAndClick(opts) {
     target := opts.target
     tol := Opt(target, "tol", 5)
@@ -540,6 +562,11 @@ TrackAndClick(opts) {
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
+    acquireDelayChance := Opt(opts, "acquireDelayChance", 0)
+    acquireDelayMs := Opt(opts, "acquireDelayMs", [5000, 10000])
+    idleWanderChance := Opt(opts, "idleWanderChance", 0)
+    idleWanderCheckMs := Opt(opts, "idleWanderCheckMs", 1500)
+    idleWanderDurationMs := Opt(opts, "idleWanderDurationMs", [1000, 3000])
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -556,6 +583,7 @@ TrackAndClick(opts) {
     lockedColor := target.colors[1]
     lastClickTime := 0
     reclickThreshold := NextReclickThreshold()
+    lastIdleWanderCheckAt := A_TickCount
     t0 := A_TickCount
     lastProgressAt := A_TickCount
 
@@ -579,6 +607,12 @@ TrackAndClick(opts) {
         }
 
         if (!hasTarget) {
+            if (acquireDelayChance > 0 && Random(0.0, 1.0) <= acquireDelayChance) {
+                delayMs := (acquireDelayMs is Array) ? Random(acquireDelayMs[1], acquireDelayMs[2]) : acquireDelayMs
+                Say("TrackAndClick: taking a moment to spot the next target (" Round(delayMs / 1000) "s)")
+                Pause(delayMs)
+            }
+
             ; Acquire: rings near->far, then region-wide fallback. A match
             ; in an inner ring is by construction closer than anything only
             ; findable wider, so stopping at the first hit is correct.
@@ -671,6 +705,16 @@ TrackAndClick(opts) {
                             Pause(postClickSettleMs)
                     } else {
                         Say("Tracking stable target at " outX "," outY " (search " searchMs " ms)")
+                        if (idleWanderChance > 0 && (A_TickCount - lastIdleWanderCheckAt) >= idleWanderCheckMs) {
+                            lastIdleWanderCheckAt := A_TickCount
+                            if (Random(0.0, 1.0) <= idleWanderChance) {
+                                avoidRadiusPx := Max(target.w, target.h) / 2
+                                Say("TrackAndClick: idle-wandering (full screen)")
+                                WanderNear(outX, outY, {
+                                    durationMs: idleWanderDurationMs, avoidRadiusPx: avoidRadiusPx
+                                })
+                            }
+                        }
                     }
                 } else {
                     if (lastClickTime == 0 || (A_TickCount - lastClickTime) > reclickThreshold) {

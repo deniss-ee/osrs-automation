@@ -1,0 +1,16 @@
+2026-08-01 21:57:21 [analyze-movement] analyze-movement: ready - F5 run, F6 stop, F12 exit
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: 5962 samples over 93.8s, 88 movement segments, 87 pauses
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === per-tick distance (px between consecutive samples) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=0.00 avg=9.43 max=192.92 (n=5961)
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === segment curvature (path length / straight-line distance, 1.0=dead straight) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=1.000 avg=2.861 max=81.009 (n=82)
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === segment duration (ms) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=16 avg=410 max=2125
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === segment straight-line distance (px) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=5 avg=514 max=1912
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === segment speed (px/ms, straight-line distance / duration) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=0.019 avg=1.325 max=4.871
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: === pause duration between segments (ms) ===
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: min=78 avg=690 max=13485 (n=87)
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: DONE - see logs\analyze-movement.log for full stats
+2026-08-01 21:57:24 [analyze-movement] analyze-movement: DONE

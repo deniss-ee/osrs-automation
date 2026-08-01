@@ -124,12 +124,27 @@ HUMANMOVE_TREMOR_EDGE_FRAC := 0.15   ; tremor active in the first/last 15% of th
 ; are skipped (no re-sent pixel, no wasted delay). Ends with an
 ; exact-landing snap to (x1,y1) even if the eased tail stopped short
 ; - ClickAt clicks at current position, so this is load-bearing.
-HumanGlide(x1, y1) {
+;
+; opts.stepDelayMinMs/stepDelayMaxMs override the per-step pacing;
+; opts.pxPerStep/maxSteps override the step-count formula (default:
+; the HUMANMOVE_* globals, tuned for real clicks - typically well
+; under 1000px, so a flat 30-step ceiling still looks smooth there).
+; Every existing call site passes no opts, so this is purely
+; additive; only a caller covering much larger distances (e.g.
+; WanderNear's full-screen legs) needs to raise maxSteps/lower
+; pxPerStep to keep per-jump distance small enough to read as a
+; smooth glide instead of a handful of big teleport-y jumps.
+HumanGlide(x1, y1, opts := {}) {
     global HUMANMOVE_PX_PER_STEP, HUMANMOVE_MIN_STEPS, HUMANMOVE_MAX_STEPS, HUMANMOVE_STEP_COUNT_JITTER_FRAC
     global HUMANMOVE_STEP_DELAY_MIN_MS, HUMANMOVE_STEP_DELAY_MAX_MS
     global HUMANMOVE_BOW_MIN_FRAC, HUMANMOVE_BOW_MAX_FRAC
     global HUMANMOVE_SKEW_MIN, HUMANMOVE_SKEW_MAX
     global HUMANMOVE_TREMOR_PX, HUMANMOVE_TREMOR_EDGE_FRAC
+
+    stepDelayMinMs := Opt(opts, "stepDelayMinMs", HUMANMOVE_STEP_DELAY_MIN_MS)
+    stepDelayMaxMs := Opt(opts, "stepDelayMaxMs", HUMANMOVE_STEP_DELAY_MAX_MS)
+    pxPerStep := Opt(opts, "pxPerStep", HUMANMOVE_PX_PER_STEP)
+    maxSteps := Opt(opts, "maxSteps", HUMANMOVE_MAX_STEPS)
 
     MouseGetPos(&x0, &y0)
     dx := x1 - x0
@@ -147,9 +162,9 @@ HumanGlide(x1, y1) {
     midX := (x0 + x1) / 2 + (-dy / dist) * bow
     midY := (y0 + y1) / 2 + (dx / dist) * bow
 
-    steps := Round(dist / HUMANMOVE_PX_PER_STEP
+    steps := Round(dist / pxPerStep
         * RandTri(1 - HUMANMOVE_STEP_COUNT_JITTER_FRAC, 1 + HUMANMOVE_STEP_COUNT_JITTER_FRAC))
-    steps := Max(HUMANMOVE_MIN_STEPS, Min(HUMANMOVE_MAX_STEPS, steps))
+    steps := Max(HUMANMOVE_MIN_STEPS, Min(maxSteps, steps))
     skew := RandTri(HUMANMOVE_SKEW_MIN, HUMANMOVE_SKEW_MAX)
 
     lastX := "", lastY := ""
@@ -168,7 +183,7 @@ HumanGlide(x1, y1) {
         MouseMove(px, py, 0)
         lastX := px
         lastY := py
-        GlideStepDelay(Random(HUMANMOVE_STEP_DELAY_MIN_MS, HUMANMOVE_STEP_DELAY_MAX_MS))
+        GlideStepDelay(Random(stepDelayMinMs, stepDelayMaxMs))
     }
 
     if (lastX != x1 || lastY != y1)
@@ -178,9 +193,90 @@ HumanGlide(x1, y1) {
 ; Public entry point: current mouse position -> (x1,y1), one
 ; straight HumanGlide. Kept as a thin wrapper (not inlined into
 ; HumanGlide) so a future cosmetic addition here never needs a
-; call-site change.
-HumanMove(x1, y1) {
-    HumanGlide(x1, y1)
+; call-site change. opts passes straight through to HumanGlide
+; (e.g. stepDelayMinMs/stepDelayMaxMs) - every existing call site
+; passes none, so this is purely additive.
+HumanMove(x1, y1, opts := {}) {
+    HumanGlide(x1, y1, opts)
+}
+
+; Idle-wander: alternates between two motions for roughly durationMs
+; total (a number or [min,max], rolled once per call) - LOOPS (2-5
+; consecutive waypoints traced around a randomly-placed, randomly-
+; sized circle via Cos/Sin, a smoothly-swept round shape - the
+; "circles/sin" look) and HOPS (the jump from one loop's last point to
+; the next loop's freshly-rolled center, which can land anywhere in
+; region - the long-distance "full screen" moves). Both are ordinary
+; HumanGlide legs; only the WAYPOINTS differ, not the glide itself.
+;
+; Every leg gets dense, distance-scaled stepping (pxPerStep 4,
+; maxSteps computed from the real distance instead of HumanGlide's
+; default 30-step ceiling) - that ceiling is tuned for real click
+; distances (typically under 1000px) and looks visibly choppy at
+; full-screen range, since 30 steps over 2000+px means huge per-jump
+; distances. Per-step pacing is still independently randomized each
+; leg (fast flicks vs deliberately slower drifts) but biased toward
+; the fast end so the overall feel reads as brisk, not sluggish.
+;
+; avoidRadiusPx (default 0) keeps loop centers at least that far from
+; (cx,cy) - pass the tracked target's own half-size so a wander never
+; re-centers a loop on top of it. Safe against the earlier reject-loop
+; bug since region is normally far larger than the exclusion circle,
+; so a valid candidate is found almost immediately (bounded to 10
+; tries regardless).
+WanderNear(cx, cy, opts := {}) {
+    durationMs := Opt(opts, "durationMs", [1000, 3000])
+    resolvedDuration := (durationMs is Array) ? Random(durationMs[1], durationMs[2]) : durationMs
+    avoidRadiusPx := Opt(opts, "avoidRadiusPx", 0)
+    region := Opt(opts, "region", ScreenRegion())
+
+    ; Step-delay range calibrated 2026-08-01 against a real 94s/5962-
+    ; sample recording (Tools\record-movement.ahk + analyze-movement.ahk):
+    ; real avg segment speed was 1.325 px/ms (range 0.019-4.871). The
+    ; previous RandTri(1,10)/+RandTri(2,18) range averaged ~0.38 px/ms
+    ; at pxPerStep=4 - about 3.5x slower than real. Tightened to land
+    ; close to the real average while still spanning a real fast-flick
+    ; to slow-drift range.
+    GlideTo(tx, ty) {
+        MouseGetPos(&fromX, &fromY)
+        dist := Sqrt((tx - fromX) ** 2 + (ty - fromY) ** 2)
+        stepDelayMinMs := Round(RandTri(1, 4))
+        stepDelayMaxMs := stepDelayMinMs + Round(RandTri(1, 12))
+        HumanGlide(tx, ty, {
+            stepDelayMinMs: stepDelayMinMs, stepDelayMaxMs: stepDelayMaxMs,
+            pxPerStep: 4, maxSteps: Max(20, Round(dist / 4))
+        })
+    }
+
+    t0 := A_TickCount
+    loop {
+        if ((A_TickCount - t0) >= resolvedDuration)
+            break
+
+        loopCX := 0, loopCY := 0
+        loop 10 {
+            loopCX := Random(region[1], region[3])
+            loopCY := Random(region[2], region[4])
+            if (avoidRadiusPx <= 0)
+                break
+            dx := loopCX - cx, dy := loopCY - cy
+            if (Sqrt(dx * dx + dy * dy) >= avoidRadiusPx)
+                break
+        }
+
+        loopRadius := Random(40, 220)
+        angle := Random(0.0, 6.283185307)
+        angleStep := RandTri(0.35, 1.1) * (Random(0, 1) = 0 ? -1 : 1)
+
+        loop Random(2, 5) {
+            if ((A_TickCount - t0) >= resolvedDuration)
+                break
+            angle += angleStep
+            tx := Max(region[1], Min(region[3], Round(loopCX + Cos(angle) * loopRadius)))
+            ty := Max(region[2], Min(region[4], Round(loopCY + Sin(angle) * loopRadius)))
+            GlideTo(tx, ty)
+        }
+    }
 }
 
 ; Jitter spans the central CLICK_JITTER_FRAC of each axis of a
