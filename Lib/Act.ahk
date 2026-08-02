@@ -230,21 +230,25 @@ WanderNear(cx, cy, opts := {}) {
     avoidRadiusPx := Opt(opts, "avoidRadiusPx", 0)
     region := Opt(opts, "region", ScreenRegion())
 
-    ; Step-delay range calibrated 2026-08-01 against a real 94s/5962-
-    ; sample recording (Tools\record-movement.ahk + analyze-movement.ahk):
-    ; real avg segment speed was 1.325 px/ms (range 0.019-4.871). The
-    ; previous RandTri(1,10)/+RandTri(2,18) range averaged ~0.38 px/ms
-    ; at pxPerStep=4 - about 3.5x slower than real. Tightened to land
-    ; close to the real average while still spanning a real fast-flick
-    ; to slow-drift range.
+    ; Step-delay/pixel-jump tuning history (live feedback each round):
+    ; delay (1,10)/+(2,18) -> (1,4)/+(1,12) -> (1,4)/+(1,8) -> (1,4)/
+    ; +(1,4) -> (1,2)/+(0,2) -> (1,2)/+(0,1); pxPerStep/step-floor
+    ; 4/20 -> 14/6 was "too quick" -> 9/13 (midpoint) -> here, "a tiny
+    ; bit slower, like 25%": pxPerStep 9/1.25=7.2, step floor
+    ; 13*1.25=16 (leg duration scales ~1/pxPerStep, so this is the
+    ; lever, not stepDelayMinMs/MaxMs - those are already down to 1-2
+    ; whole ms, too coarse to carry a 25% change without quantizing
+    ; back to the same integers). Still Round()ed before reaching
+    ; HumanGlide - GlideStepDelay's `freq * ms // 1000` requires a
+    ; strict integer.
     GlideTo(tx, ty) {
         MouseGetPos(&fromX, &fromY)
         dist := Sqrt((tx - fromX) ** 2 + (ty - fromY) ** 2)
-        stepDelayMinMs := Round(RandTri(1, 4))
-        stepDelayMaxMs := stepDelayMinMs + Round(RandTri(1, 12))
+        stepDelayMinMs := Round(RandTri(0.5, 1.5))
+        stepDelayMaxMs := stepDelayMinMs + Round(RandTri(0, 1))
         HumanGlide(tx, ty, {
             stepDelayMinMs: stepDelayMinMs, stepDelayMaxMs: stepDelayMaxMs,
-            pxPerStep: 4, maxSteps: Max(20, Round(dist / 4))
+            pxPerStep: 7.2, maxSteps: Max(16, Round(dist / 7.2))
         })
     }
 
@@ -266,7 +270,7 @@ WanderNear(cx, cy, opts := {}) {
 
         loopRadius := Random(40, 220)
         angle := Random(0.0, 6.283185307)
-        angleStep := RandTri(0.35, 1.1) * (Random(0, 1) = 0 ? -1 : 1)
+        angleStep := RandTri(0.48, 1.45) * (Random(0, 1) = 0 ? -1 : 1)  ; midpoint of (0.35,1.1) and (0.6,1.8) - the latter alone read as too abrupt
 
         loop Random(2, 5) {
             if ((A_TickCount - t0) >= resolvedDuration)

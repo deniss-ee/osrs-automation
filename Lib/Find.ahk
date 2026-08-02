@@ -280,6 +280,7 @@ FindTarget(region, spec, &cx, &cy, &foundColor := 0) {
 
 WaitForTarget(region, spec, timeoutMs, &cx, &cy, opts := {}) {
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
+    wanderOpts := Opt(opts, "wander", "")
     fx := 0, fy := 0
     Visible() {
         found := FindTarget(region, spec, &mx, &my, &fc)
@@ -287,7 +288,7 @@ WaitForTarget(region, spec, timeoutMs, &cx, &cy, opts := {}) {
             fx := mx, fy := my
         return found
     }
-    result := WaitUntil(Visible, timeoutMs, pollMs)
+    result := WaitUntil(Visible, timeoutMs, pollMs, wanderOpts)
     cx := fx, cy := fy
     return result
 }

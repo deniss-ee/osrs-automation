@@ -45,7 +45,7 @@ BANK_MARKER_REGION := GameZoneRegion()
 MARKER_WAIT_TIMEOUT_MS := 15000
 DEPOSIT_WAIT_TIMEOUT_MS := 15000
 CONFIRM_TIMEOUT_MS := 5000
-DEPOSIT_SEARCH_DELAY_MS := [1250, 2000]   ; min 750ms before searching for the deposit button, randomized longer
+DEPOSIT_SEARCH_DELAY_MS := [1500, 3000]   ; before searching for the deposit button, randomized (1.5x longer per live feedback - felt too fast at [1250,2000])
 
 ; TrackAndClick tuning - proven starting values from micro 11/12 (which
 ; used 45x45 trees). RE-VERIFY trackRadius/maxDriftPx against your real
@@ -57,23 +57,23 @@ TRACK_RADIUS_PX := 96
 MAX_DRIFT_PX := 64
 STABLE_TICKS_REQUIRED := 2
 MOVE_TOLERANCE_PX := 4
-RECLICK_AFTER_MS := [2000, 8000]
+RECLICK_AFTER_MS := [3000, 6000]
 
 ; "roughly every 5" = 1/5 chance, rolled fresh at every fresh tree
 ; acquisition (first tree of the run and every re-acquire after one
 ; depletes) - models "took a moment to spot the next tree"
 ACQUIRE_DELAY_CHANCE := 0.2
-ACQUIRE_DELAY_MS := [2500, 7500]
+ACQUIRE_DELAY_MS := [1000, 6000]
 
 INVENTORY_FULL_SLOT := 28   ; last slot - the only reliable "totally full" signal
 CONFIRM_EMPTY_SLOT := 28    ; confirm the deposit via the last slot emptying - slot 1 sits at the
                             ; grid edge next to UI chrome and can false-read as full (confirmed live)
 
 ; "roughly every 3 runs" = 1/3 chance, rolled fresh each time
-BREAK_AFTER_FULL_CHANCE := 0.333
-BREAK_AFTER_FULL_MS := [2500, 7500]     ; after inventory full, before banking
-BREAK_AFTER_BANK_CHANCE := 0.333
-BREAK_AFTER_BANK_MS := [1500, 5000]      ; after emptying the bank
+BREAK_AFTER_FULL_CHANCE := 0.5
+BREAK_AFTER_FULL_MS := [1000, 6000]     ; after inventory full, before banking
+BREAK_AFTER_BANK_CHANCE := 0.5
+BREAK_AFTER_BANK_MS := [1000, 6000]      ; after emptying the bank
 
 STEP_RETRIES := 1
 MAX_CYCLES := 0   ; bounded first test - raise to 0 for a real unbounded run
@@ -91,7 +91,7 @@ POST_CLICK_SETTLE_MS := 300
 ; flicks and slow drifts). NOT YET LIVE-CONFIRMED - a differently-
 ; shaped prior version of this idea (v7's IdleWander) didn't feel
 ; right and was removed; watch this closely the first few times.
-IDLE_WANDER_CHANCE := 0.333
+IDLE_WANDER_CHANCE := 0.20
 IDLE_WANDER_CHECK_MS := 1500
 IDLE_WANDER_DURATION_MS := [750, 2500]
 ; ==========================================================================
@@ -120,6 +120,7 @@ BankStep() {
         marker: BANK_MARKER, markerRegion: BANK_MARKER_REGION, markerWaitTimeoutMs: MARKER_WAIT_TIMEOUT_MS,
         markerCtrl: true, depositCtrl: false, depositSearchDelayMs: DEPOSIT_SEARCH_DELAY_MS,
         settleMs: CLICK_SETTLE_MS,
+        wanderChance: IDLE_WANDER_CHANCE, wanderCheckMs: IDLE_WANDER_CHECK_MS, wanderDurationMs: IDLE_WANDER_DURATION_MS,
         deposit: {path: BANK_DEPOSIT_IMAGE_PATH, w: BANK_DEPOSIT_IMAGE_W, h: BANK_DEPOSIT_IMAGE_H,
             tol: 5, transColor: "0x00FF00"},
         depositRegion: BANK_DEPOSIT_IMAGE_REGION, depositWaitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS,

@@ -34,7 +34,8 @@
 ;
 ; opts: target, waitTimeoutMs (required); region (whole screen),
 ;   clickTarget, ctrl false, pollMs, settleMs 100, label, itemLabel,
-;   preDelayMs/postDelayMs 0.
+;   preDelayMs/postDelayMs 0, wander (default off - see WaitUntil,
+;   Core.ahk - passed straight through to the target-appear wait).
 FindAndClick(opts) {
     target := opts.target
     region := Opt(opts, "region", ScreenRegion())
@@ -45,12 +46,13 @@ FindAndClick(opts) {
     itemLabel := Opt(opts, "itemLabel", "target")
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
+    wanderOpts := Opt(opts, "wander", "")
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
 
     Say(label ": waiting for " itemLabel)
-    if (!WaitForTarget(region, target, opts.waitTimeoutMs, &fx, &fy, {pollMs: pollMs})) {
+    if (!WaitForTarget(region, target, opts.waitTimeoutMs, &fx, &fy, {pollMs: pollMs, wander: wanderOpts})) {
         Say(label ": " itemLabel " never appeared within " opts.waitTimeoutMs "ms - stopping")
         return false
     }
@@ -331,7 +333,12 @@ TravelToPoint(opts) {
 ;   deposit-button search starts, letting the bank UI actually
 ;   render instead of searching the instant the marker click lands),
 ;   settleMs 100, pollMs, label, preDelayMs/postDelayMs 0
-;   (postDelayMs only runs on the final SUCCESS return).
+;   (postDelayMs only runs on the final SUCCESS return), wanderChance 0
+;   + wanderCheckMs 1500 + wanderDurationMs [1000,3000] - idle-wander
+;   (see WaitUntil, Core.ahk) applied to ALL THREE of this composite's
+;   waits (marker search, deposit-button search, post-deposit confirm)
+;   - these are genuine "nothing to do but wait" stretches, same
+;   spirit as TrackAndClick's stable-tracking idle branch.
 DepositAllToBank(opts) {
     useCtrl := Opt(opts, "ctrl", false)
     markerCtrl := Opt(opts, "markerCtrl", useCtrl)
@@ -342,6 +349,11 @@ DepositAllToBank(opts) {
     label := Opt(opts, "label", "DepositAllToBank")
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
+    wanderChance := Opt(opts, "wanderChance", 0)
+    wanderOpts := wanderChance > 0 ? {
+        chance: wanderChance, checkMs: Opt(opts, "wanderCheckMs", 1500),
+        durationMs: Opt(opts, "wanderDurationMs", [1000, 3000])
+    } : ""
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -349,7 +361,7 @@ DepositAllToBank(opts) {
     markerOpts := {
         target: opts.marker, region: Opt(opts, "markerRegion", ScreenRegion()),
         waitTimeoutMs: opts.markerWaitTimeoutMs, ctrl: markerCtrl, settleMs: settleMs, pollMs: pollMs,
-        label: label, itemLabel: Opt(opts, "markerItemLabel", "bank marker")
+        label: label, itemLabel: Opt(opts, "markerItemLabel", "bank marker"), wander: wanderOpts
     }
     if (opts.HasOwnProp("markerClick"))
         markerOpts.clickTarget := opts.markerClick
@@ -362,7 +374,7 @@ DepositAllToBank(opts) {
         target: opts.deposit, region: Opt(opts, "depositRegion", ScreenRegion()),
         waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: depositCtrl, settleMs: settleMs, pollMs: pollMs,
         label: label, itemLabel: Opt(opts, "depositItemLabel", "deposit button"),
-        preDelayMs: resolvedDepositDelay
+        preDelayMs: resolvedDepositDelay, wander: wanderOpts
     }
     if (opts.HasOwnProp("depositClick"))
         depositOpts.clickTarget := opts.depositClick
@@ -376,7 +388,7 @@ DepositAllToBank(opts) {
     }
 
     Say(label ": waiting for inventory to confirm the deposit")
-    if (!WaitUntil(opts.confirmCondition, opts.confirmTimeoutMs, pollMs)) {
+    if (!WaitUntil(opts.confirmCondition, opts.confirmTimeoutMs, pollMs, wanderOpts)) {
         Say(label ": deposit not confirmed within " opts.confirmTimeoutMs "ms - stopping (may not have registered)")
         return false
     }

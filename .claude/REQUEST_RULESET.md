@@ -68,9 +68,9 @@ correctly instead of misapplying it.)
 
 ## 8. Reference an existing bot/composite when you want the same shape
 
-"Same as woodcutting but for X" or "reuse `DepositAllToBank`" resolves
-ambiguity instantly if a close analog already exists — check `Bots\` and
-`PROGRESS.md`'s file map first.
+"Same as woodcutting but for X" or "reuse `DepositAllToBank`"/`StepLoop`/
+`WanderNear` resolves ambiguity instantly if a close analog already exists —
+check `Bots\` and `PROGRESS.md`'s file map first.
 
 ## 9. It's fine to not know the mechanism — just say what you want to see happen
 

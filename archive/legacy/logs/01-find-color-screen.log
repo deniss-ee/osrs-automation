@@ -1,7 +1,0 @@
-2026-07-23 09:27:14 [01-find-color-screen] Script loaded. F5=search  F6=clear tooltip  Esc=exit. Target=0xFF00FF
-2026-07-23 09:27:14 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
-2026-07-23 09:27:15 [01-find-color-screen] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 79 ms)
-2026-07-23 09:27:15 [01-find-color-screen] NOT FOUND 0xFF00FF (searched 79 ms)
-2026-07-23 09:27:17 [01-find-color-screen] Search started: color=0xFF00FF tol=5 block=21x21 region=0,0 -> 2559,1439 (whole screen)
-2026-07-23 09:27:17 [01-find-color-screen] FindFilledBlock: not found (21x21 0xFF00FF tol=5, 78 ms)
-2026-07-23 09:27:17 [01-find-color-screen] NOT FOUND 0xFF00FF (searched 78 ms)
