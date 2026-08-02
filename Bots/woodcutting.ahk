@@ -57,43 +57,87 @@ TRACK_RADIUS_PX := 96
 MAX_DRIFT_PX := 64
 STABLE_TICKS_REQUIRED := 2
 MOVE_TOLERANCE_PX := 4
-RECLICK_AFTER_MS := [3000, 6000]
+RECLICK_AFTER_MS := [2500, 5000]
 
 ; "roughly every 5" = 1/5 chance, rolled fresh at every fresh tree
 ; acquisition (first tree of the run and every re-acquire after one
 ; depletes) - models "took a moment to spot the next tree"
-ACQUIRE_DELAY_CHANCE := 0.2
-ACQUIRE_DELAY_MS := [1000, 6000]
+ACQUIRE_DELAY_CHANCE := 0.33
+ACQUIRE_DELAY_MS := [1000, 5000]
 
 INVENTORY_FULL_SLOT := 28   ; last slot - the only reliable "totally full" signal
 CONFIRM_EMPTY_SLOT := 28    ; confirm the deposit via the last slot emptying - slot 1 sits at the
                             ; grid edge next to UI chrome and can false-read as full (confirmed live)
 
 ; "roughly every 3 runs" = 1/3 chance, rolled fresh each time
-BREAK_AFTER_FULL_CHANCE := 0.5
-BREAK_AFTER_FULL_MS := [1000, 6000]     ; after inventory full, before banking
+BREAK_AFTER_FULL_CHANCE := 0.75
+BREAK_AFTER_FULL_MS := [1000, 10000]     ; after inventory full, before banking
 BREAK_AFTER_BANK_CHANCE := 0.5
-BREAK_AFTER_BANK_MS := [1000, 6000]      ; after emptying the bank
+BREAK_AFTER_BANK_MS := [1000, 5000]      ; after emptying the bank
 
 STEP_RETRIES := 1
 MAX_CYCLES := 0   ; bounded first test - raise to 0 for a real unbounded run
 
+; Session length - StepLoop checks this at the cycle seam (after a
+; full chop+bank cycle completes, same spot MaybeTakeBreak fires) and
+; stops CLEANLY (DONE, not FAILED - see Run.ahk's StepLoop) once
+; elapsed, even with MAX_CYCLES=0. Number or [min,max] (rolled once at
+; F5) - flat 3h is what was asked for; a range (e.g. [2.75,3.25]*HOUR_MS)
+; would avoid a session length that's suspiciously exact every run.
+HOUR_MS := 3600000
+SESSION_LENGTH_MS := 3 * HOUR_MS
+
 ; Mechanical click-settle gaps (glide-arrival -> actual click, and the
 ; post-click pause TrackAndClick uses to avoid misreading depletion
-; flicker) - Lib defaults these to 100ms/0ms, floored here to 300ms.
-CLICK_SETTLE_MS := 300
-POST_CLICK_SETTLE_MS := 300
+; flicker). Both are ranges, not flat scalars - ClickAt/TrackAndClick
+; resolve them fresh per click via RollMs - a flat unrandomized pause
+; reads as mechanical the same way flat jitter would, and was tuned
+; too slow at a flat 300ms/300ms in an earlier session. Tune to feel,
+; live. ONE hard constraint: POST_CLICK_SETTLE_MS's low end must stay
+; >= the ~100-150ms Steps.ahk documents as the minimum to avoid
+; misreading post-click flicker as depletion - CLICK_SETTLE_MS has no
+; equivalent floor.
+CLICK_SETTLE_MS := [100, 100]
+POST_CLICK_SETTLE_MS := [150, 300]
 
-; While idling (stable-tracking a tree, waiting for it to deplete):
-; roughly 1-in-3 chance, checked at most once every 1500ms, to roam
-; the cursor anywhere on screen for 1-3s (each leg's own distance and
-; pace independently randomized - long hops and short ones, fast
-; flicks and slow drifts). NOT YET LIVE-CONFIRMED - a differently-
-; shaped prior version of this idea (v7's IdleWander) didn't feel
-; right and was removed; watch this closely the first few times.
-IDLE_WANDER_CHANCE := 0.20
-IDLE_WANDER_CHECK_MS := 1500
-IDLE_WANDER_DURATION_MS := [750, 2500]
+; Deposit-button click, tuned separately from the marker/tree clicks
+; above - the marker is a reflexive, always-in-the-same-spot click,
+; the deposit button isn't. DEPOSIT_SETTLE_MS is that click's own
+; mechanical glide-arrival->click gap (same concept as CLICK_SETTLE_MS,
+; independent value). DEPOSIT_DISTRACTED_CHANCE/_MS is a DIFFERENT
+; concept layered on top: some fraction of the time, wait an extra
+; couple seconds BEFORE EVEN STARTING to look for the deposit button
+; (fires before the search, not after finding it - see FindAndClick's
+; doc comment for why: firing it after finding the button meant the
+; search's own idle-wander could coincidentally leave the cursor
+; sitting on the button while "distracted", which looked wrong) - as
+; if attention had drifted elsewhere (alt-tab, watching chat, etc.)
+; and hasn't come back yet. NOT YET LIVE-CONFIRMED.
+DEPOSIT_SETTLE_MS := [500, 1000]
+DEPOSIT_DISTRACTED_CHANCE := 0.5
+DEPOSIT_DISTRACTED_MS := [1500, 3500]
+
+; After EVERY tree click, glide away from the clicked pixel instead of
+; leaving the cursor frozen there - distance is 0-25% of screen height
+; in a random direction (RandTri-weighted toward the middle of that
+; range, see TrackAndClick's own doc comment). NOT YET LIVE-CONFIRMED.
+POST_CLICK_DRIFT_CHANCE := 1.0
+POST_CLICK_DRIFT_FRAC := [0, 0.05]
+
+; While idling (stable-tracking a tree, waiting for it to deplete, or
+; waiting on a bank search) - checked at most once every checkMs, roll
+; chance to roam the cursor within IDLE_WANDER_REGION for durationMs
+; (each leg's own distance and pace independently randomized - long
+; hops and short ones, fast flicks and slow drifts). Live-confirmed as
+; part of this bot (2026-08-01) - a differently-shaped prior version
+; of this idea (v7's IdleWander) didn't feel right and was removed;
+; this WanderNear-based version replaced it and held up live.
+; IDLE_WANDER_REGION_FRAC keeps wandering within the center fraction
+; of the screen (CenteredScreenRegion, Find.ahk) - avoids clipping
+; near edge UI chrome (chat box, minimap, taskbar).
+IDLE_WANDER_REGION_FRAC := 0.95
+IDLE_WANDER_REGION := CenteredScreenRegion(IDLE_WANDER_REGION_FRAC)
+IDLE_WANDER := {chance: 0.20, checkMs: 2000, durationMs: [750, 5000], region: IDLE_WANDER_REGION}
 ; ==========================================================================
 
 ChopStep() {
@@ -105,8 +149,8 @@ ChopStep() {
         reclickAfterMs: RECLICK_AFTER_MS, ctrl: true,
         clickSettleMs: CLICK_SETTLE_MS, postClickSettleMs: POST_CLICK_SETTLE_MS,
         acquireDelayChance: ACQUIRE_DELAY_CHANCE, acquireDelayMs: ACQUIRE_DELAY_MS,
-        idleWanderChance: IDLE_WANDER_CHANCE, idleWanderCheckMs: IDLE_WANDER_CHECK_MS,
-        idleWanderDurationMs: IDLE_WANDER_DURATION_MS,
+        postClickDriftChance: POST_CLICK_DRIFT_CHANCE, postClickDriftFrac: POST_CLICK_DRIFT_FRAC,
+        wander: IDLE_WANDER,
         until: () => SlotFull(INVENTORY_FULL_SLOT),
         label: "woodcutting-chop"
     })
@@ -119,8 +163,9 @@ BankStep() {
     return DepositAllToBank({
         marker: BANK_MARKER, markerRegion: BANK_MARKER_REGION, markerWaitTimeoutMs: MARKER_WAIT_TIMEOUT_MS,
         markerCtrl: true, depositCtrl: false, depositSearchDelayMs: DEPOSIT_SEARCH_DELAY_MS,
-        settleMs: CLICK_SETTLE_MS,
-        wanderChance: IDLE_WANDER_CHANCE, wanderCheckMs: IDLE_WANDER_CHECK_MS, wanderDurationMs: IDLE_WANDER_DURATION_MS,
+        settleMs: CLICK_SETTLE_MS, depositSettleMs: DEPOSIT_SETTLE_MS,
+        depositDistractedChance: DEPOSIT_DISTRACTED_CHANCE, depositDistractedMs: DEPOSIT_DISTRACTED_MS,
+        wander: IDLE_WANDER,
         deposit: {path: BANK_DEPOSIT_IMAGE_PATH, w: BANK_DEPOSIT_IMAGE_W, h: BANK_DEPOSIT_IMAGE_H,
             tol: 5, transColor: "0x00FF00"},
         depositRegion: BANK_DEPOSIT_IMAGE_REGION, depositWaitTimeoutMs: DEPOSIT_WAIT_TIMEOUT_MS,
@@ -137,6 +182,7 @@ RunWoodcutting() {
         ],
         retries: STEP_RETRIES, maxCycles: MAX_CYCLES,
         breakChance: BREAK_AFTER_BANK_CHANCE, breakMs: BREAK_AFTER_BANK_MS,
+        sessionLengthMs: SESSION_LENGTH_MS,
         label: "woodcutting"
     })
 }

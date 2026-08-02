@@ -122,6 +122,17 @@ ScreenRegion() {
     return [0, 0, A_ScreenWidth - 1, A_ScreenHeight - 1]
 }
 
+; Centered box covering frac of the screen's width/height (0-1; frac
+; >= 1 clamps to the full screen). e.g. 0.75 -> centered box at 75%
+; width/height, keeping generated points away from edge UI chrome.
+CenteredScreenRegion(frac) {
+    w := A_ScreenWidth * Min(1, frac)
+    h := A_ScreenHeight * Min(1, frac)
+    x1 := Round((A_ScreenWidth - w) / 2)
+    y1 := Round((A_ScreenHeight - h) / 2)
+    return [x1, y1, Round(x1 + w), Round(y1 + h)]
+}
+
 ; One-flag region builder: mode "full" = GameZoneRegion(), "area" =
 ; box around a corner point (RegionAround). Caller pattern - ONE
 ; object literal per mode, alternates commented out:

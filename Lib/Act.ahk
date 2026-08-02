@@ -218,6 +218,13 @@ HumanMove(x1, y1, opts := {}) {
 ; leg (fast flicks vs deliberately slower drifts) but biased toward
 ; the fast end so the overall feel reads as brisk, not sluggish.
 ;
+; Loop centers are picked via RandTri (not flat Random) per axis - a
+; triangular density peaking at the region's own center and ramping
+; LINEARLY down to each edge, so wandering visits the middle of the
+; region far more often than its corners without ever hard-excluding
+; them. Same center-weighted-over-flat reasoning as every other human
+; parameter in this file (RandTri's own header comment).
+;
 ; avoidRadiusPx (default 0) keeps loop centers at least that far from
 ; (cx,cy) - pass the tracked target's own half-size so a wander never
 ; re-centers a loop on top of it. Safe against the earlier reject-loop
@@ -225,14 +232,16 @@ HumanMove(x1, y1, opts := {}) {
 ; so a valid candidate is found almost immediately (bounded to 10
 ; tries regardless).
 WanderNear(cx, cy, opts := {}) {
-    durationMs := Opt(opts, "durationMs", [1000, 3000])
-    resolvedDuration := (durationMs is Array) ? Random(durationMs[1], durationMs[2]) : durationMs
+    resolvedDuration := RollMs(Opt(opts, "durationMs", [1000, 3000]))
     avoidRadiusPx := Opt(opts, "avoidRadiusPx", 0)
     region := Opt(opts, "region", ScreenRegion())
 
     ; Step-delay/pixel-jump tuning history (live feedback each round):
     ; delay (1,10)/+(2,18) -> (1,4)/+(1,12) -> (1,4)/+(1,8) -> (1,4)/
-    ; +(1,4) -> (1,2)/+(0,2) -> (1,2)/+(0,1); pxPerStep/step-floor
+    ; +(1,4) -> (1,2)/+(0,2) -> (1,2)/+(0,1) -> min unchanged, +-add
+    ; range widened/shifted (0,1) -> (0.5,1.5) (stepDelayMaxMs now
+    ; averages ~1ms above min instead of ~0.5ms - slightly slower,
+    ; slightly more varied per-step pacing); pxPerStep/step-floor
     ; 4/20 -> 14/6 was "too quick" -> 9/13 (midpoint) -> here, "a tiny
     ; bit slower, like 25%": pxPerStep 9/1.25=7.2, step floor
     ; 13*1.25=16 (leg duration scales ~1/pxPerStep, so this is the
@@ -245,7 +254,7 @@ WanderNear(cx, cy, opts := {}) {
         MouseGetPos(&fromX, &fromY)
         dist := Sqrt((tx - fromX) ** 2 + (ty - fromY) ** 2)
         stepDelayMinMs := Round(RandTri(0.5, 1.5))
-        stepDelayMaxMs := stepDelayMinMs + Round(RandTri(0, 1))
+        stepDelayMaxMs := stepDelayMinMs + Round(RandTri(0.5, 1.5))
         HumanGlide(tx, ty, {
             stepDelayMinMs: stepDelayMinMs, stepDelayMaxMs: stepDelayMaxMs,
             pxPerStep: 7.2, maxSteps: Max(16, Round(dist / 7.2))
@@ -259,8 +268,8 @@ WanderNear(cx, cy, opts := {}) {
 
         loopCX := 0, loopCY := 0
         loop 10 {
-            loopCX := Random(region[1], region[3])
-            loopCY := Random(region[2], region[4])
+            loopCX := Round(RandTri(region[1], region[3]))
+            loopCY := Round(RandTri(region[2], region[4]))
             if (avoidRadiusPx <= 0)
                 break
             dx := loopCX - cx, dy := loopCY - cy
@@ -281,6 +290,39 @@ WanderNear(cx, cy, opts := {}) {
             GlideTo(tx, ty)
         }
     }
+}
+
+; The one wander-config shape used everywhere: wanderOpts is either
+; ""  (off) or {chance, checkMs, durationMs, region} - checkMs/
+; durationMs default 1500/[1000,3000] here (the single place those
+; defaults live); region is optional and passed straight through to
+; WanderNear, which itself defaults to the full screen
+; (CenteredScreenRegion(frac), Find.ahk, is the usual way to shrink
+; it). Gates WanderNear behind a checkMs cadence (via &lastCheckAt,
+; owned by the caller's loop) and a chance roll; refX/refY/
+; avoidRadiusPx are runtime context, not config - only the calling
+; composite knows the live tracked position, so they're passed
+; positionally, never through wanderOpts itself (audit pass: this
+; used to be two separate inline copies of the same gate logic, in
+; WaitUntil and in TrackAndClick's stable-idle branch).
+MaybeWander(wanderOpts, &lastCheckAt, refX := 0, refY := 0, avoidRadiusPx := 0) {
+    if (wanderOpts = "" || Opt(wanderOpts, "chance", 0) <= 0)
+        return false
+
+    checkMs := Opt(wanderOpts, "checkMs", 1500)
+    if ((A_TickCount - lastCheckAt) < checkMs)
+        return false
+    lastCheckAt := A_TickCount
+
+    if (Random(0.0, 1.0) > wanderOpts.chance)
+        return false
+
+    Say("MaybeWander: idle-wandering while waiting")
+    wanderCallOpts := {durationMs: Opt(wanderOpts, "durationMs", [1000, 3000]), avoidRadiusPx: avoidRadiusPx}
+    if (wanderOpts.HasOwnProp("region"))
+        wanderCallOpts.region := wanderOpts.region
+    WanderNear(refX, refY, wanderCallOpts)
+    return true
 }
 
 ; Jitter spans the central CLICK_JITTER_FRAC of each axis of a
@@ -325,13 +367,19 @@ JitterInCell(t, &jx, &jy) {
 ; standard #29: a pre-glide press would leak a held key if F6 threw
 ; mid-glide, since g_PendingModifierKeys is only set after the
 ; click) -> settle -> click -> async modifier release -> postDelay.
+;
+; settleMs (default 100, number or [min,max] rolled fresh per call via
+; RollMs) is the arrival->click gap - a flat unrandomized value here
+; reads as mechanical the same way flat jitter/bow/skew would; callers
+; wanting a longer settle for reliability should widen the RANGE, not
+; flatten it back to a scalar.
 ClickAt(target, opts := {}) {
     global g_PendingModifierKeys
 
     button := Opt(opts, "button", "left")
     useCtrl := Opt(opts, "ctrl", false)
     useShift := Opt(opts, "shift", false)
-    settleMs := Opt(opts, "settleMs", 100)
+    settleMs := RollMs(Opt(opts, "settleMs", 100))
     holdMs := Opt(opts, "holdMs", 100)
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)

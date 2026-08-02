@@ -33,9 +33,25 @@
 ; only overrides WHERE the click lands, never whether we click.
 ;
 ; opts: target, waitTimeoutMs (required); region (whole screen),
-;   clickTarget, ctrl false, pollMs, settleMs 100, label, itemLabel,
-;   preDelayMs/postDelayMs 0, wander (default off - see WaitUntil,
-;   Core.ahk - passed straight through to the target-appear wait).
+;   clickTarget, ctrl false, pollMs, settleMs 100 (number or [min,max],
+;   rolled fresh via RollMs - the short mechanical glide-arrival->click
+;   gap, NOT a reaction delay), label, itemLabel, preDelayMs/
+;   postDelayMs 0, wander (default off - see WaitUntil, Core.ahk -
+;   passed straight through to the target-appear wait).
+;   distractedChance 0 + distractedMs [1000,3000] (number or [min,max])
+;   - chance-gated pause BEFORE the search for the target even starts
+;   (after preDelayMs, before WaitForTarget) - models attention having
+;   been elsewhere (e.g. alt-tabbed) and not yet looking for the
+;   target at all, regardless of whether it's already on screen.
+;   Deliberately placed before ANY movement toward the target - a
+;   version of this that fired after WaitForTarget succeeded had a
+;   real live bug: with wander enabled, the search loop's own
+;   wandering could coincidentally leave the cursor resting near the
+;   target by the time it was found, so the "distraction" pause looked
+;   like the cursor had already moved onto the target and just sat
+;   there - the opposite of what it's supposed to model. Distinct from
+;   settleMs (always-applied, short, mechanical) - this is the same
+;   "before search starts" timing as TrackAndClick's acquireDelayChance.
 FindAndClick(opts) {
     target := opts.target
     region := Opt(opts, "region", ScreenRegion())
@@ -47,9 +63,17 @@ FindAndClick(opts) {
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
     wanderOpts := Opt(opts, "wander", "")
+    distractedChance := Opt(opts, "distractedChance", 0)
+    distractedMs := Opt(opts, "distractedMs", [1000, 3000])
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
+
+    if (distractedChance > 0 && Random(0.0, 1.0) <= distractedChance) {
+        delayMs := RollMs(distractedMs)
+        Say(label ": distracted, not looking for " itemLabel " yet (" delayMs "ms / " Round(delayMs / 1000, 1) "s)")
+        Pause(delayMs)
+    }
 
     Say(label ": waiting for " itemLabel)
     if (!WaitForTarget(region, target, opts.waitTimeoutMs, &fx, &fy, {pollMs: pollMs, wander: wanderOpts})) {
@@ -332,13 +356,25 @@ TravelToPoint(opts) {
 ;   [min,max], rolled fresh per call - a settle gap before the
 ;   deposit-button search starts, letting the bank UI actually
 ;   render instead of searching the instant the marker click lands),
-;   settleMs 100, pollMs, label, preDelayMs/postDelayMs 0
-;   (postDelayMs only runs on the final SUCCESS return), wanderChance 0
-;   + wanderCheckMs 1500 + wanderDurationMs [1000,3000] - idle-wander
-;   (see WaitUntil, Core.ahk) applied to ALL THREE of this composite's
-;   waits (marker search, deposit-button search, post-deposit confirm)
-;   - these are genuine "nothing to do but wait" stretches, same
-;   spirit as TrackAndClick's stable-tracking idle branch.
+;   settleMs 100 (marker's own click-settle; number or [min,max]),
+;   depositSettleMs (defaults to settleMs - override to tune the
+;   deposit button's click-settle independently, e.g. the marker is a
+;   reflexive/known-position click while the deposit button isn't),
+;   depositDistractedChance 0 + depositDistractedMs [1000,3000]
+;   (FindAndClick's distractedChance/distractedMs, applied ONLY to the
+;   deposit-button click, never the marker - fires AFTER
+;   depositSearchDelayMs but BEFORE the deposit-button search even
+;   starts, modeling having been doing something else and not yet
+;   looking, regardless of whether the button already rendered; see
+;   FindAndClick's own doc comment for why it's placed there), pollMs,
+;   label, preDelayMs/postDelayMs 0 (postDelayMs
+;   only runs on the final SUCCESS return), wander (default off - the
+;   unified {chance, checkMs, durationMs, region} shape, see
+;   MaybeWander/WaitUntil, Act.ahk/Core.ahk) applied to ALL THREE of
+;   this composite's waits (marker search, deposit-button search,
+;   post-deposit confirm) - these are genuine "nothing to do but
+;   wait" stretches, same spirit as TrackAndClick's stable-tracking
+;   idle branch.
 DepositAllToBank(opts) {
     useCtrl := Opt(opts, "ctrl", false)
     markerCtrl := Opt(opts, "markerCtrl", useCtrl)
@@ -346,14 +382,13 @@ DepositAllToBank(opts) {
     depositSearchDelayMs := Opt(opts, "depositSearchDelayMs", 0)
     pollMs := Opt(opts, "pollMs", POLL_MS_DEFAULT)
     settleMs := Opt(opts, "settleMs", 100)
+    depositSettleMs := Opt(opts, "depositSettleMs", settleMs)
+    depositDistractedChance := Opt(opts, "depositDistractedChance", 0)
+    depositDistractedMs := Opt(opts, "depositDistractedMs", [1000, 3000])
     label := Opt(opts, "label", "DepositAllToBank")
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
-    wanderChance := Opt(opts, "wanderChance", 0)
-    wanderOpts := wanderChance > 0 ? {
-        chance: wanderChance, checkMs: Opt(opts, "wanderCheckMs", 1500),
-        durationMs: Opt(opts, "wanderDurationMs", [1000, 3000])
-    } : ""
+    wanderOpts := Opt(opts, "wander", "")
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -368,13 +403,13 @@ DepositAllToBank(opts) {
     if (!FindAndClick(markerOpts))
         return false
 
-    resolvedDepositDelay := (depositSearchDelayMs is Array)
-        ? Random(depositSearchDelayMs[1], depositSearchDelayMs[2]) : depositSearchDelayMs
+    resolvedDepositDelay := RollMs(depositSearchDelayMs)
     depositOpts := {
         target: opts.deposit, region: Opt(opts, "depositRegion", ScreenRegion()),
-        waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: depositCtrl, settleMs: settleMs, pollMs: pollMs,
+        waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: depositCtrl, settleMs: depositSettleMs, pollMs: pollMs,
         label: label, itemLabel: Opt(opts, "depositItemLabel", "deposit button"),
-        preDelayMs: resolvedDepositDelay, wander: wanderOpts
+        preDelayMs: resolvedDepositDelay, wander: wanderOpts,
+        distractedChance: depositDistractedChance, distractedMs: depositDistractedMs
     }
     if (opts.HasOwnProp("depositClick"))
         depositOpts.clickTarget := opts.depositClick
@@ -523,8 +558,9 @@ class TargetLock {
 ; - trackRadius AND maxDriftPx must BOTH stay well under half the gap
 ;   to the nearest SAME-colored duplicate - track mode's
 ;   FindFilledBlock returns the scan-order FIRST match in the box.
-; - postClickSettleMs (default 0): a target with post-click flicker
-;   reads as falsely depleted without ~100-150ms here.
+; - postClickSettleMs (default 0, number or [min,max] rolled fresh per
+;   click via RollMs): a target with post-click flicker reads as
+;   falsely depleted without ~100-150ms here at minimum.
 ; - progressTimeoutMs resets on any acquire/depletion/click/live
 ;   tracked tick; timeoutMs is the absolute backstop.
 ; - cooldownMs (default 0 = disabled): ONE real click per acquired
@@ -545,12 +581,16 @@ class TargetLock {
 ;   fresh acquisition search starts (first target of the run and
 ;   every re-acquire after a depletion) - models "took a moment to
 ;   spot the next target," a different concept from MaybeTakeBreak's
-;   step-away semantics. idleWanderChance 0 + idleWanderCheckMs 1500 +
-;   idleWanderDurationMs [1000,3000] - while STABLE and not clicking
-;   (genuinely idling, watching the target), roll idleWanderChance at
-;   most once per idleWanderCheckMs; on a hit, WanderNear (Act.ahk)
-;   roams the cursor anywhere on screen for idleWanderDurationMs,
-;   never landing on the target's own cell.
+;   step-away semantics. wander (default off - the unified {chance,
+;   checkMs, durationMs, region} shape, see MaybeWander/WaitUntil,
+;   Act.ahk/Core.ahk) - while STABLE and not clicking (genuinely idling,
+;   watching the target), roams the cursor anywhere on screen, never
+;   landing on the target's own cell. postClickDriftChance 0 +
+;   postClickDriftFrac [0,0.25] (fraction of A_ScreenHeight, RandTri-
+;   weighted toward the middle of the range) - after EVERY real click
+;   (both the stable-click and initial/re-click branches), chance-
+;   gated glide away from wherever the cursor just clicked, clamped to
+;   `region` - a real hand doesn't stay frozen on the clicked pixel.
 TrackAndClick(opts) {
     target := opts.target
     tol := Opt(target, "tol", 5)
@@ -576,9 +616,9 @@ TrackAndClick(opts) {
     postDelayMs := Opt(opts, "postDelayMs", 0)
     acquireDelayChance := Opt(opts, "acquireDelayChance", 0)
     acquireDelayMs := Opt(opts, "acquireDelayMs", [5000, 10000])
-    idleWanderChance := Opt(opts, "idleWanderChance", 0)
-    idleWanderCheckMs := Opt(opts, "idleWanderCheckMs", 1500)
-    idleWanderDurationMs := Opt(opts, "idleWanderDurationMs", [1000, 3000])
+    wanderOpts := Opt(opts, "wander", "")
+    postClickDriftChance := Opt(opts, "postClickDriftChance", 0)
+    postClickDriftFrac := Opt(opts, "postClickDriftFrac", [0, 0.25])
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -589,13 +629,33 @@ TrackAndClick(opts) {
         return reclickAfterMs
     }
 
+    ; Every click leaves the cursor sitting exactly on the clicked
+    ; pixel - a real hand doesn't stay frozen there. Rolls
+    ; postClickDriftChance; on a hit, glides to a random point at a
+    ; RandTri-weighted (center-weighted, not flat - same reasoning as
+    ; every other distance/duration in this file) distance of
+    ; postClickDriftFrac (fraction of A_ScreenHeight, default 0-25%)
+    ; from wherever the cursor currently is, in a random direction,
+    ; clamped to `region`.
+    DriftAfterClick() {
+        if (postClickDriftChance <= 0 || Random(0.0, 1.0) > postClickDriftChance)
+            return
+        MouseGetPos(&fromX, &fromY)
+        distPx := RandTri(postClickDriftFrac[1], postClickDriftFrac[2]) * A_ScreenHeight
+        angle := Random(0.0, 6.283185307)
+        tx := Max(region[1], Min(region[3], Round(fromX + Cos(angle) * distPx)))
+        ty := Max(region[2], Min(region[4], Round(fromY + Sin(angle) * distPx)))
+        Say("TrackAndClick: drifting after click (" Round(distPx) "px)")
+        HumanMove(tx, ty)
+    }
+
     lock := TargetLock(stableTicksRequired, moveTolerancePx)
     hasTarget := false
     targetX := 0, targetY := 0
     lockedColor := target.colors[1]
     lastClickTime := 0
     reclickThreshold := NextReclickThreshold()
-    lastIdleWanderCheckAt := A_TickCount
+    lastWanderCheckAt := A_TickCount
     t0 := A_TickCount
     lastProgressAt := A_TickCount
 
@@ -620,8 +680,8 @@ TrackAndClick(opts) {
 
         if (!hasTarget) {
             if (acquireDelayChance > 0 && Random(0.0, 1.0) <= acquireDelayChance) {
-                delayMs := (acquireDelayMs is Array) ? Random(acquireDelayMs[1], acquireDelayMs[2]) : acquireDelayMs
-                Say("TrackAndClick: taking a moment to spot the next target (" Round(delayMs / 1000) "s)")
+                delayMs := RollMs(acquireDelayMs)
+                Say("TrackAndClick: taking a moment to spot the next target (" delayMs "ms / " Round(delayMs / 1000, 1) "s)")
                 Pause(delayMs)
             }
 
@@ -713,20 +773,13 @@ TrackAndClick(opts) {
                         ClickAt(ClickTarget(outX, outY, target.w, target.h), {ctrl: useCtrl, settleMs: clickSettleMs})
                         lastClickTime := A_TickCount
                         Say("Clicked STABLE target at " outX "," outY " (search " searchMs " ms)")
-                        if (postClickSettleMs > 0)
-                            Pause(postClickSettleMs)
+                        resolvedPostClickSettleMs := RollMs(postClickSettleMs)
+                        if (resolvedPostClickSettleMs > 0)
+                            Pause(resolvedPostClickSettleMs)
+                        DriftAfterClick()
                     } else {
                         Say("Tracking stable target at " outX "," outY " (search " searchMs " ms)")
-                        if (idleWanderChance > 0 && (A_TickCount - lastIdleWanderCheckAt) >= idleWanderCheckMs) {
-                            lastIdleWanderCheckAt := A_TickCount
-                            if (Random(0.0, 1.0) <= idleWanderChance) {
-                                avoidRadiusPx := Max(target.w, target.h) / 2
-                                Say("TrackAndClick: idle-wandering (full screen)")
-                                WanderNear(outX, outY, {
-                                    durationMs: idleWanderDurationMs, avoidRadiusPx: avoidRadiusPx
-                                })
-                            }
-                        }
+                        MaybeWander(wanderOpts, &lastWanderCheckAt, outX, outY, Max(target.w, target.h) / 2)
                     }
                 } else {
                     if (lastClickTime == 0 || (A_TickCount - lastClickTime) > reclickThreshold) {
@@ -735,8 +788,10 @@ TrackAndClick(opts) {
                         reclickThreshold := NextReclickThreshold()
                         lastProgressAt := A_TickCount
                         Say("Clicked initial/re-click target at " outX "," outY " (search " searchMs " ms)")
-                        if (postClickSettleMs > 0)
-                            Pause(postClickSettleMs)
+                        resolvedPostClickSettleMs := RollMs(postClickSettleMs)
+                        if (resolvedPostClickSettleMs > 0)
+                            Pause(resolvedPostClickSettleMs)
+                        DriftAfterClick()
                     } else {
                         Say("Tracking not-yet-stable target at " outX "," outY " (search " searchMs " ms)")
                     }

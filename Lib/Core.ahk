@@ -45,6 +45,13 @@ Opt(opts, name, defaultValue) {
     return opts.HasOwnProp(name) ? opts.%name% : defaultValue
 }
 
+; The one scalar-or-[min,max] resolver, rolled fresh at point of use
+; (audit pass: previously duplicated inline six times across
+; Act/Steps/Session).
+RollMs(v) {
+    return (v is Array) ? Random(v[1], v[2]) : v
+}
+
 ; The only sleep in v8. Chunks in 40ms slices so a stop request
 ; lands within ~40ms instead of blocking through a long Sleep.
 ; Throws BotStopped, which is never caught anywhere in Lib - it
@@ -74,13 +81,17 @@ Pause(ms) {
 ; outcome for most callers, distinct from BotStopped).
 ;
 ; wanderOpts (default "" = off) opts into idle-wandering (Act.ahk's
-; WanderNear) while this specific wait is otherwise doing nothing:
-; {chance, checkMs, durationMs, avoidRadiusPx, refX, refY}. Deliberately
-; NOT wired into every WaitUntil call by default - most waits in this
-; project are short mechanical settles or "about to act again very
-; soon" windows (a reclick wait, a settle gap) where wandering would
-; be wrong; only a caller that explicitly knows this is a genuine
-; "nothing to do but wait" stretch passes wanderOpts.
+; WanderNear, via the shared MaybeWander gate) while this specific
+; wait is otherwise doing nothing: {chance, checkMs, durationMs,
+; region} (region optional, defaults to the full screen) - the
+; ONE wander-config shape used everywhere in the project (audit pass:
+; previously TrackAndClick/DepositAllToBank each had their own flat
+; opt names for this). Deliberately NOT wired into every WaitUntil
+; call by default - most waits in this project are short mechanical
+; settles or "about to act again very soon" windows (a reclick wait,
+; a settle gap) where wandering would be wrong; only a caller that
+; explicitly knows this is a genuine "nothing to do but wait" stretch
+; passes wanderOpts.
 WaitUntil(condFn, timeoutMs, pollMs := 0, wanderOpts := "") {
     if (pollMs = 0)
         pollMs := POLL_MS_DEFAULT
@@ -93,15 +104,7 @@ WaitUntil(condFn, timeoutMs, pollMs := 0, wanderOpts := "") {
         if (A_TickCount - startedAt >= timeoutMs)
             return false
 
-        if (wanderOpts != "" && wanderOpts.chance > 0 && (A_TickCount - lastWanderCheckAt) >= wanderOpts.checkMs) {
-            lastWanderCheckAt := A_TickCount
-            if (Random(0.0, 1.0) <= wanderOpts.chance) {
-                Say("WaitUntil: idle-wandering while waiting")
-                WanderNear(Opt(wanderOpts, "refX", 0), Opt(wanderOpts, "refY", 0), {
-                    durationMs: wanderOpts.durationMs, avoidRadiusPx: Opt(wanderOpts, "avoidRadiusPx", 0)
-                })
-            }
-        }
+        MaybeWander(wanderOpts, &lastWanderCheckAt)
 
         Pause(pollMs)
     }

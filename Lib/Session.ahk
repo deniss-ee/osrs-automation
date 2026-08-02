@@ -27,8 +27,8 @@ MaybeTakeBreak(opts) {
     if (Random(0.0, 1.0) > chance)
         return false
 
-    ms := (breakMs is Array) ? Random(breakMs[1], breakMs[2]) : breakMs
-    Say(label ": stepping away for a short break (" Round(ms / 1000) "s)")
+    ms := RollMs(breakMs)
+    Say(label ": stepping away for a short break (" ms "ms / " Round(ms / 1000, 1) "s)")
     Pause(ms)
     Say(label ": break over, resuming")
     return true
@@ -40,9 +40,9 @@ NewSessionTimer(opts) {
     sessionLengthMs := opts.sessionLengthMs
     label := Opt(opts, "label", "SessionTimer")
 
-    ms := (sessionLengthMs is Array) ? Random(sessionLengthMs[1], sessionLengthMs[2]) : sessionLengthMs
+    ms := RollMs(sessionLengthMs)
     startedAt := A_TickCount
-    Say(label ": session length rolled at " Round(ms / 60000) " min")
+    Say(label ": session length rolled at " ms "ms / " Round(ms / 60000, 1) " min")
 
     return SessionExpired
 
