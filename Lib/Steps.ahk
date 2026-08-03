@@ -58,7 +58,10 @@
 ;   search and the post-deposit confirm wait, but NOT the deposit
 ;   button's own search, specifically because that search is paired
 ;   with distractedChance). Distinct from settleMs (always-applied,
-;   short, mechanical, never chance-gated).
+;   short, mechanical, never chance-gated). flow (default "" = off) - the
+;   unified flow-click opt, passed straight to ClickAt, enabling the
+;   continuous glide-through-click behavior; default off preserves the
+;   standard stop-settle-click sequence.
 FindAndClick(opts) {
     target := opts.target
     region := Opt(opts, "region", ScreenRegion())
@@ -90,7 +93,10 @@ FindAndClick(opts) {
 
     resolvedClickTarget := opts.HasOwnProp("clickTarget") ? opts.clickTarget : ClickTarget(fx, fy, target.w, target.h)
     Say(label ": clicking " itemLabel " at " resolvedClickTarget.x "," resolvedClickTarget.y)
-    ClickAt(resolvedClickTarget, {ctrl: useCtrl, settleMs: settleMs})
+    clickOpts := {ctrl: useCtrl, settleMs: settleMs}
+    if (opts.HasOwnProp("flow"))
+        clickOpts.flow := opts.flow
+    ClickAt(resolvedClickTarget, clickOpts)
 
     if (postDelayMs > 0)
         Pause(postDelayMs)
@@ -398,6 +404,8 @@ DepositAllToBank(opts) {
     preDelayMs := Opt(opts, "preDelayMs", 0)
     postDelayMs := Opt(opts, "postDelayMs", 0)
     wanderOpts := Opt(opts, "wander", "")
+    markerFlowOpts := Opt(opts, "markerFlow", "")
+    depositFlowOpts := Opt(opts, "depositFlow", "")
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -409,6 +417,8 @@ DepositAllToBank(opts) {
     }
     if (opts.HasOwnProp("markerClick"))
         markerOpts.clickTarget := opts.markerClick
+    if (markerFlowOpts != "")
+        markerOpts.flow := markerFlowOpts
     if (!FindAndClick(markerOpts))
         return false
 
@@ -422,6 +432,8 @@ DepositAllToBank(opts) {
     }
     if (opts.HasOwnProp("depositClick"))
         depositOpts.clickTarget := opts.depositClick
+    if (depositFlowOpts != "")
+        depositOpts.flow := depositFlowOpts
     if (!FindAndClick(depositOpts))
         return false
 
@@ -582,7 +594,8 @@ class TargetLock {
 ;   (number or [min,max], re-rolled fresh at every (re)acquire and
 ;   after every reclick), until (required); acquireRadii [], region
 ;   (whole screen), maxDriftPx 40, stableTicks 2, moveTolerancePx 10,
-;   cooldownMs 0, ctrl false, clickSettleMs 100, postClickSettleMs 0,
+;   cooldownMs 0, ctrl false, clickSettleMs 100, postClickSettleMs 0
+;   (DEPRECATED - use flow instead for continuous glide-through-click),
 ;   timeoutMs 1800000, progressTimeoutMs 300000, pollMs,
 ;   preDelayMs/postDelayMs 0 (postDelayMs only on the until-met
 ;   SUCCESS return), acquireDelayChance 0 + acquireDelayMs (number or
@@ -594,12 +607,11 @@ class TargetLock {
 ;   checkMs, durationMs, region} shape, see MaybeWander/WaitUntil,
 ;   Act.ahk/Core.ahk) - while STABLE and not clicking (genuinely idling,
 ;   watching the target), roams the cursor anywhere on screen, never
-;   landing on the target's own cell. postClickDriftChance 0 +
-;   postClickDriftFrac [0,0.25] (fraction of A_ScreenHeight, RandTri-
-;   weighted toward the middle of the range) - after EVERY real click
-;   (both the stable-click and initial/re-click branches), chance-
-;   gated glide away from wherever the cursor just clicked, clamped to
-;   `region` - a real hand doesn't stay frozen on the clicked pixel.
+;   landing on the target's own cell. flow (default "" = off) - the
+;   unified flow-click opt, passed straight to ClickAt at every click
+;   site, enabling the continuous glide-through-click behavior (replaces
+;   the previous postClickDriftChance/postClickDriftFrac approach);
+;   default off preserves the standard click-settle-then-idle behavior.
 TrackAndClick(opts) {
     target := opts.target
     tol := Opt(target, "tol", 5)
@@ -626,8 +638,7 @@ TrackAndClick(opts) {
     acquireDelayChance := Opt(opts, "acquireDelayChance", 0)
     acquireDelayMs := Opt(opts, "acquireDelayMs", [5000, 10000])
     wanderOpts := Opt(opts, "wander", "")
-    postClickDriftChance := Opt(opts, "postClickDriftChance", 0)
-    postClickDriftFrac := Opt(opts, "postClickDriftFrac", [0, 0.25])
+    flowOpts := Opt(opts, "flow", "")
 
     if (preDelayMs > 0)
         Pause(preDelayMs)
@@ -636,26 +647,6 @@ TrackAndClick(opts) {
         if (reclickAfterMs is Array)
             return Random(reclickAfterMs[1], reclickAfterMs[2])
         return reclickAfterMs
-    }
-
-    ; Every click leaves the cursor sitting exactly on the clicked
-    ; pixel - a real hand doesn't stay frozen there. Rolls
-    ; postClickDriftChance; on a hit, glides to a random point at a
-    ; RandTri-weighted (center-weighted, not flat - same reasoning as
-    ; every other distance/duration in this file) distance of
-    ; postClickDriftFrac (fraction of A_ScreenHeight, default 0-25%)
-    ; from wherever the cursor currently is, in a random direction,
-    ; clamped to `region`.
-    DriftAfterClick() {
-        if (postClickDriftChance <= 0 || Random(0.0, 1.0) > postClickDriftChance)
-            return
-        MouseGetPos(&fromX, &fromY)
-        distPx := RandTri(postClickDriftFrac[1], postClickDriftFrac[2]) * A_ScreenHeight
-        angle := Random(0.0, 6.283185307)
-        tx := Max(region[1], Min(region[3], Round(fromX + Cos(angle) * distPx)))
-        ty := Max(region[2], Min(region[4], Round(fromY + Sin(angle) * distPx)))
-        Say("TrackAndClick: drifting after click (" Round(distPx) "px)")
-        HumanMove(tx, ty)
     }
 
     lock := TargetLock(stableTicksRequired, moveTolerancePx)
@@ -779,28 +770,26 @@ TrackAndClick(opts) {
 
                 if (lock.IsStable()) {
                     if (cooldownMs > 0 && (lastClickTime == 0 || (A_TickCount - lastClickTime) > cooldownMs)) {
-                        ClickAt(ClickTarget(outX, outY, target.w, target.h), {ctrl: useCtrl, settleMs: clickSettleMs})
+                        clickOpts := {ctrl: useCtrl, settleMs: clickSettleMs}
+                        if (flowOpts != "")
+                            clickOpts.flow := flowOpts
+                        ClickAt(ClickTarget(outX, outY, target.w, target.h), clickOpts)
                         lastClickTime := A_TickCount
                         Say("Clicked STABLE target at " outX "," outY " (search " searchMs " ms)")
-                        resolvedPostClickSettleMs := RollMs(postClickSettleMs)
-                        if (resolvedPostClickSettleMs > 0)
-                            Pause(resolvedPostClickSettleMs)
-                        DriftAfterClick()
                     } else {
                         Say("Tracking stable target at " outX "," outY " (search " searchMs " ms)")
                         MaybeWander(wanderOpts, &lastWanderCheckAt, outX, outY, Max(target.w, target.h) / 2)
                     }
                 } else {
                     if (lastClickTime == 0 || (A_TickCount - lastClickTime) > reclickThreshold) {
-                        ClickAt(ClickTarget(outX, outY, target.w, target.h), {ctrl: useCtrl, settleMs: clickSettleMs})
+                        clickOpts := {ctrl: useCtrl, settleMs: clickSettleMs}
+                        if (flowOpts != "")
+                            clickOpts.flow := flowOpts
+                        ClickAt(ClickTarget(outX, outY, target.w, target.h), clickOpts)
                         lastClickTime := A_TickCount
                         reclickThreshold := NextReclickThreshold()
                         lastProgressAt := A_TickCount
                         Say("Clicked initial/re-click target at " outX "," outY " (search " searchMs " ms)")
-                        resolvedPostClickSettleMs := RollMs(postClickSettleMs)
-                        if (resolvedPostClickSettleMs > 0)
-                            Pause(resolvedPostClickSettleMs)
-                        DriftAfterClick()
                     } else {
                         Say("Tracking not-yet-stable target at " outX "," outY " (search " searchMs " ms)")
                     }
