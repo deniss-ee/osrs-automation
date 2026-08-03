@@ -39,19 +39,26 @@
 ;   postDelayMs 0, wander (default off - see WaitUntil, Core.ahk -
 ;   passed straight through to the target-appear wait).
 ;   distractedChance 0 + distractedMs [1000,3000] (number or [min,max])
-;   - chance-gated pause BEFORE the search for the target even starts
-;   (after preDelayMs, before WaitForTarget) - models attention having
-;   been elsewhere (e.g. alt-tabbed) and not yet looking for the
-;   target at all, regardless of whether it's already on screen.
-;   Deliberately placed before ANY movement toward the target - a
-;   version of this that fired after WaitForTarget succeeded had a
-;   real live bug: with wander enabled, the search loop's own
-;   wandering could coincidentally leave the cursor resting near the
-;   target by the time it was found, so the "distraction" pause looked
-;   like the cursor had already moved onto the target and just sat
-;   there - the opposite of what it's supposed to model. Distinct from
-;   settleMs (always-applied, short, mechanical) - this is the same
-;   "before search starts" timing as TrackAndClick's acquireDelayChance.
+;   - chance-gated pause AFTER the target is confirmed found, BEFORE
+;   the click-approach starts - models having spotted it but reacting
+;   late. This is deliberately AFTER detection, not before the search -
+;   "distracted while it was already there" is the intended narrative.
+;   IMPORTANT CALLER RESPONSIBILITY: this only reads correctly if the
+;   cursor ISN'T already sitting near the target when the pause starts
+;   - a real live bug happened when a caller passed `wander` into THIS
+;   SAME search: the search loop's own idle-wandering could
+;   coincidentally leave the cursor resting on the target by the time
+;   it was found, making the distraction pause look like the opposite
+;   of what it's supposed to model (cursor already there, then a long
+;   wait). A caller that wants both wander (while genuinely still
+;   searching) AND distraction (once found) needs the wander to stop
+;   being a risk by the time detection succeeds - simplest safe option
+;   is to not pass `wander` into a FindAndClick call that also sets
+;   distractedChance (see DepositAllToBank: wander reaches the marker
+;   search and the post-deposit confirm wait, but NOT the deposit
+;   button's own search, specifically because that search is paired
+;   with distractedChance). Distinct from settleMs (always-applied,
+;   short, mechanical, never chance-gated).
 FindAndClick(opts) {
     target := opts.target
     region := Opt(opts, "region", ScreenRegion())
@@ -69,16 +76,16 @@ FindAndClick(opts) {
     if (preDelayMs > 0)
         Pause(preDelayMs)
 
-    if (distractedChance > 0 && Random(0.0, 1.0) <= distractedChance) {
-        delayMs := RollMs(distractedMs)
-        Say(label ": distracted, not looking for " itemLabel " yet (" delayMs "ms / " Round(delayMs / 1000, 1) "s)")
-        Pause(delayMs)
-    }
-
     Say(label ": waiting for " itemLabel)
     if (!WaitForTarget(region, target, opts.waitTimeoutMs, &fx, &fy, {pollMs: pollMs, wander: wanderOpts})) {
         Say(label ": " itemLabel " never appeared within " opts.waitTimeoutMs "ms - stopping")
         return false
+    }
+
+    if (distractedChance > 0 && Random(0.0, 1.0) <= distractedChance) {
+        delayMs := RollMs(distractedMs)
+        Say(label ": " itemLabel " found, but reacting late (" delayMs "ms / " Round(delayMs / 1000, 1) "s)")
+        Pause(delayMs)
     }
 
     resolvedClickTarget := opts.HasOwnProp("clickTarget") ? opts.clickTarget : ClickTarget(fx, fy, target.w, target.h)
@@ -362,19 +369,21 @@ TravelToPoint(opts) {
 ;   reflexive/known-position click while the deposit button isn't),
 ;   depositDistractedChance 0 + depositDistractedMs [1000,3000]
 ;   (FindAndClick's distractedChance/distractedMs, applied ONLY to the
-;   deposit-button click, never the marker - fires AFTER
-;   depositSearchDelayMs but BEFORE the deposit-button search even
-;   starts, modeling having been doing something else and not yet
-;   looking, regardless of whether the button already rendered; see
-;   FindAndClick's own doc comment for why it's placed there), pollMs,
-;   label, preDelayMs/postDelayMs 0 (postDelayMs
-;   only runs on the final SUCCESS return), wander (default off - the
-;   unified {chance, checkMs, durationMs, region} shape, see
-;   MaybeWander/WaitUntil, Act.ahk/Core.ahk) applied to ALL THREE of
-;   this composite's waits (marker search, deposit-button search,
-;   post-deposit confirm) - these are genuine "nothing to do but
-;   wait" stretches, same spirit as TrackAndClick's stable-tracking
-;   idle branch.
+;   deposit-button click, never the marker - fires AFTER the deposit
+;   button is actually confirmed found, BEFORE the click-approach
+;   starts; see FindAndClick's own doc comment), pollMs, label,
+;   preDelayMs/postDelayMs 0 (postDelayMs only runs on the final
+;   SUCCESS return), wander (default off - the unified {chance,
+;   checkMs, durationMs, region} shape, see MaybeWander/WaitUntil,
+;   Act.ahk/Core.ahk) applied to the marker search and the post-deposit
+;   confirm wait - genuine "nothing to do but wait" stretches, same
+;   spirit as TrackAndClick's stable-tracking idle branch. Deliberately
+;   NOT applied to the deposit-button's OWN search (regardless of
+;   whether depositDistractedChance is even set) - see FindAndClick's
+;   doc comment for why wander and distractedChance on the same search
+;   don't mix (idle-wandering during the search could coincidentally
+;   leave the cursor sitting on the button, breaking the "distracted,
+;   found it late" illusion once detection succeeds).
 DepositAllToBank(opts) {
     useCtrl := Opt(opts, "ctrl", false)
     markerCtrl := Opt(opts, "markerCtrl", useCtrl)
@@ -408,7 +417,7 @@ DepositAllToBank(opts) {
         target: opts.deposit, region: Opt(opts, "depositRegion", ScreenRegion()),
         waitTimeoutMs: opts.depositWaitTimeoutMs, ctrl: depositCtrl, settleMs: depositSettleMs, pollMs: pollMs,
         label: label, itemLabel: Opt(opts, "depositItemLabel", "deposit button"),
-        preDelayMs: resolvedDepositDelay, wander: wanderOpts,
+        preDelayMs: resolvedDepositDelay,
         distractedChance: depositDistractedChance, distractedMs: depositDistractedMs
     }
     if (opts.HasOwnProp("depositClick"))

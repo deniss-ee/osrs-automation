@@ -45,7 +45,7 @@ BANK_MARKER_REGION := GameZoneRegion()
 MARKER_WAIT_TIMEOUT_MS := 15000
 DEPOSIT_WAIT_TIMEOUT_MS := 15000
 CONFIRM_TIMEOUT_MS := 5000
-DEPOSIT_SEARCH_DELAY_MS := [1500, 3000]   ; before searching for the deposit button, randomized (1.5x longer per live feedback - felt too fast at [1250,2000])
+DEPOSIT_SEARCH_DELAY_MS := [500, 1000]   ; before searching for the deposit button, randomized (1.5x longer per live feedback - felt too fast at [1250,2000])
 
 ; TrackAndClick tuning - proven starting values from micro 11/12 (which
 ; used 45x45 trees). RE-VERIFY trackRadius/maxDriftPx against your real
@@ -84,7 +84,7 @@ MAX_CYCLES := 0   ; bounded first test - raise to 0 for a real unbounded run
 ; elapsed, even with MAX_CYCLES=0. Number or [min,max] (rolled once at
 ; F5) - flat 3h is what was asked for; a range (e.g. [2.75,3.25]*HOUR_MS)
 ; would avoid a session length that's suspiciously exact every run.
-HOUR_MS := 3600000
+HOUR_MS := 2400000
 SESSION_LENGTH_MS := 3 * HOUR_MS
 
 ; Mechanical click-settle gaps (glide-arrival -> actual click, and the
@@ -92,36 +92,53 @@ SESSION_LENGTH_MS := 3 * HOUR_MS
 ; flicker). Both are ranges, not flat scalars - ClickAt/TrackAndClick
 ; resolve them fresh per click via RollMs - a flat unrandomized pause
 ; reads as mechanical the same way flat jitter would, and was tuned
-; too slow at a flat 300ms/300ms in an earlier session. Tune to feel,
-; live. ONE hard constraint: POST_CLICK_SETTLE_MS's low end must stay
-; >= the ~100-150ms Steps.ahk documents as the minimum to avoid
-; misreading post-click flicker as depletion - CLICK_SETTLE_MS has no
-; equivalent floor.
-CLICK_SETTLE_MS := [100, 100]
-POST_CLICK_SETTLE_MS := [150, 300]
+; too slow at a flat 300ms/300ms in an earlier session.
+;
+; Trimmed toward zero for a more "on the fly" feel per live feedback -
+; HumanGlide's minimum-jerk curve still comes to a full stop at the
+; click point either way (that's inherent to the model - zero velocity
+; at both ends of every leg, see Act.ahk), so this can't remove the
+; stop itself, only the ARTIFICIAL dwell time sitting at it before/
+; after the click and before DriftAfterClick's departure leg starts.
+; A genuine non-stopping click-through-the-target motion would need a
+; new chained-glide primitive in Act.ahk - a real architecture change,
+; not a tuning one; this is the cheap version of that ask.
+;
+; ONE hard constraint: POST_CLICK_SETTLE_MS's low end must stay >= the
+; ~100-150ms Steps.ahk documents as the minimum to avoid misreading
+; post-click flicker as depletion - CLICK_SETTLE_MS has no equivalent
+; floor (verify live that clicks still register reliably this low).
+CLICK_SETTLE_MS := [15, 40]
+POST_CLICK_SETTLE_MS := [100, 150]
 
 ; Deposit-button click, tuned separately from the marker/tree clicks
 ; above - the marker is a reflexive, always-in-the-same-spot click,
 ; the deposit button isn't. DEPOSIT_SETTLE_MS is that click's own
-; mechanical glide-arrival->click gap (same concept as CLICK_SETTLE_MS,
-; independent value). DEPOSIT_DISTRACTED_CHANCE/_MS is a DIFFERENT
-; concept layered on top: some fraction of the time, wait an extra
-; couple seconds BEFORE EVEN STARTING to look for the deposit button
-; (fires before the search, not after finding it - see FindAndClick's
-; doc comment for why: firing it after finding the button meant the
-; search's own idle-wander could coincidentally leave the cursor
-; sitting on the button while "distracted", which looked wrong) - as
-; if attention had drifted elsewhere (alt-tab, watching chat, etc.)
-; and hasn't come back yet. NOT YET LIVE-CONFIRMED.
-DEPOSIT_SETTLE_MS := [500, 1000]
-DEPOSIT_DISTRACTED_CHANCE := 0.5
-DEPOSIT_DISTRACTED_MS := [1500, 3500]
+; mechanical glide-arrival->click gap (same concept as CLICK_SETTLE_MS
+; - short, "on the fly," NOT where the long pause belongs; a real live
+; bug this session had this at [500,1000], which put a second-long
+; freeze AFTER the mouse arrived at the button - the exact "moved
+; there, then waited" symptom the whole distraction feature exists to
+; avoid). DEPOSIT_DISTRACTED_CHANCE/_MS is the ONE place the long
+; pause belongs: some fraction of the time, once the deposit button is
+; CONFIRMED FOUND (not before - "found it, but reacting late" is the
+; narrative, not "not looking yet"), wait an extra couple seconds
+; before the click-approach starts. DepositAllToBank deliberately does
+; NOT enable idle-wander during the deposit button's own search
+; (unlike the marker search and the post-deposit confirm wait, which
+; both still wander) - a real live bug: wandering during THIS specific
+; search could coincidentally leave the cursor sitting on the button
+; by the time it was found, making the distraction pause look like the
+; opposite of what it's supposed to model. NOT YET LIVE-CONFIRMED.
+DEPOSIT_SETTLE_MS := [20, 60]
+DEPOSIT_DISTRACTED_CHANCE := 1
+DEPOSIT_DISTRACTED_MS := [1000, 4000]
 
 ; After EVERY tree click, glide away from the clicked pixel instead of
 ; leaving the cursor frozen there - distance is 0-25% of screen height
 ; in a random direction (RandTri-weighted toward the middle of that
 ; range, see TrackAndClick's own doc comment). NOT YET LIVE-CONFIRMED.
-POST_CLICK_DRIFT_CHANCE := 1.0
+POST_CLICK_DRIFT_CHANCE := .33
 POST_CLICK_DRIFT_FRAC := [0, 0.05]
 
 ; While idling (stable-tracking a tree, waiting for it to deplete, or
